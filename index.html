@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Source | Decode</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;1,400&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #080808;
+      --bone: #E0D8CC;
+      --muted: #6A6258;
+      --ghost: #151210;
+      --serif: 'Spectral', Georgia, serif;
+      --mono: 'JetBrains Mono', 'Courier New', monospace;
+    }
+
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--bone);
+      font-family: var(--serif);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    /* ── Film grain ── */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 200px 200px;
+    }
+
+    /* ── Title page ── */
+    .title-page {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 6rem 2rem 4rem;
+      position: relative;
+    }
+
+    .title-page h1 {
+      font-family: var(--serif);
+      font-size: clamp(1.4rem, 3vw, 2.4rem);
+      font-weight: 400;
+      letter-spacing: 0.25em;
+      color: var(--bone);
+      opacity: 0;
+      animation: titleReveal 3s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+      text-transform: uppercase;
+    }
+
+    .title-page h1 .separator {
+      display: inline-block;
+      width: 1px;
+      height: 0.8em;
+      background: var(--muted);
+      margin: 0 0.6em;
+      vertical-align: middle;
+      opacity: 0.5;
+      transform: translateY(-0.05em);
+    }
+
+    .scroll-cue { display: none; }
+
+    @keyframes titleReveal {
+      0% { opacity: 0; letter-spacing: 0.35em; }
+      100% { opacity: 0.3; letter-spacing: 0.25em; }
+    }
+
+    @keyframes cueReveal {
+      0% { opacity: 0; }
+      100% { opacity: 0.4; }
+    }
+
+    @keyframes cuePulse {
+      0%, 100% { opacity: 0.2; transform: scaleY(0.7); }
+      50% { opacity: 0.6; transform: scaleY(1); }
+    }
+
+    /* ── Truth sections ── */
+    .section-divider { display: none; }
+    .end-space { height: 8rem; display: block; }
+
+    .truth-section {
+      position: relative;
+      margin-bottom: -1rem;
+      padding-top: 3rem;
+    }
+
+    /* ── Text label ── */
+    .truth-text {
+      position: relative;
+      z-index: 2;
+      max-width: 720px;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 10rem 5rem;
+      margin-bottom: -4rem;
+      text-align: center;
+
+      /* Layered background: inner frost + outer glow */
+      background:
+        linear-gradient(
+          135deg,
+          rgba(0, 0, 0, 0.62) 0%,
+          rgba(0, 0, 0, 0.48) 100%
+        );
+      backdrop-filter: blur(24px) saturate(1.3);
+      -webkit-backdrop-filter: blur(24px) saturate(1.3);
+
+      /* Double border: inner highlight + outer frame */
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      box-shadow:
+        0 1px 0 0 rgba(255, 255, 255, 0.04) inset,
+        0 -1px 0 0 rgba(0, 0, 0, 0.2) inset,
+        0 8px 32px rgba(0, 0, 0, 0.5),
+        0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Subtle top accent line */
+    .truth-text::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 2rem;
+      right: 2rem;
+      height: 1px;
+      background: linear-gradient(
+        to right,
+        transparent,
+        rgba(255, 255, 255, 0.1) 30%,
+        rgba(255, 255, 255, 0.1) 70%,
+        transparent
+      );
+    }
+
+
+    .truth-number {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      font-weight: 400;
+      letter-spacing: 0.3em;
+      color: var(--bone);
+      margin-bottom: 1rem;
+      opacity: 0.3;
+      text-transform: uppercase;
+    }
+
+    .truth-text h2 {
+      font-family: var(--serif);
+      font-size: clamp(1.4rem, 2.2vw, 1.8rem);
+      line-height: 1.35;
+      font-weight: 500;
+      color: var(--bone);
+      margin-bottom: 0.6rem;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+    }
+
+    .truth-text p {
+      font-family: var(--serif);
+      font-size: clamp(1rem, 1.4vw, 1.15rem);
+      line-height: 1.6;
+      font-weight: 300;
+      color: var(--bone);
+      opacity: 0.7;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+    }
+
+    /* ── Image ── */
+    .truth-image {
+      position: relative;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 1.1s ease 0.2s, transform 1.1s ease 0.2s;
+    }
+
+    .truth-section.visible .truth-image {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .truth-image .img-wrapper {
+      overflow: hidden;
+      line-height: 0;
+    }
+
+    .truth-image img {
+      width: 100%;
+      display: block;
+      filter: brightness(0.92) saturate(0.85);
+    }
+
+    .truth-image .subtext {
+      position: absolute;
+      bottom: 1rem;
+      right: 1.2rem;
+      font-family: var(--mono);
+      font-size: clamp(0.6rem, 0.75vw, 0.72rem);
+      font-weight: 300;
+      color: var(--bone);
+      letter-spacing: 0.02em;
+      line-height: 1.5;
+      text-align: right;
+      max-width: 320px;
+      opacity: 0.4;
+    }
+
+    /* ── Control Panel (popup) ── */
+    .ctrl-panel {
+      position: fixed; top: 16px; right: 16px; z-index: 10000;
+      background: #fff; border: 1px solid #ccc; border-radius: 6px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.15);
+      font-family: system-ui, sans-serif; font-size: 12px; color: #333;
+      width: 320px; max-height: calc(100vh - 32px); overflow-y: auto;
+      display: none;
+    }
+    .ctrl-panel.open { display: block; }
+    .ctrl-toggle {
+      position: fixed; top: 16px; right: 16px; z-index: 10001;
+      background: #fff; border: 1px solid #ccc; border-radius: 4px;
+      color: #333; font-family: system-ui, sans-serif; font-size: 11px;
+      padding: 6px 12px; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .ctrl-toggle:hover { background: #f5f5f5; }
+    .ctrl-panel-header {
+      padding: 8px 12px; border-bottom: 1px solid #eee;
+      font-weight: 700; font-size: 11px; color: #666;
+      text-transform: uppercase; letter-spacing: 0.04em;
+      display: flex; justify-content: space-between; align-items: center;
+      position: sticky; top: 0; background: #fff; z-index: 1;
+    }
+    .ctrl-panel-close {
+      background: none; border: none; font-size: 16px; color: #999;
+      cursor: pointer; padding: 0 4px; line-height: 1;
+    }
+    .ctrl-panel-close:hover { color: #333; }
+    .ctrl-group {
+      padding: 10px 12px; border-bottom: 1px solid #f0f0f0;
+    }
+    .ctrl-group:last-child { border-bottom: none; }
+    .ctrl-group-title {
+      font-size: 10px; font-weight: 700; text-transform: uppercase;
+      color: #999; margin-bottom: 8px; letter-spacing: 0.04em;
+    }
+    .ctrl-row {
+      display: grid; grid-template-columns: 16px 90px 1fr 50px;
+      align-items: center; gap: 4px; margin-bottom: 5px;
+    }
+    .ctrl-row:last-child { margin-bottom: 0; }
+    .ctrl-lock { width: 13px; height: 13px; cursor: pointer; accent-color: #888; }
+    .ctrl-row.locked .ctrl-label,
+    .ctrl-row.locked .ctrl-val { color: #ccc; }
+    .ctrl-row.locked .ctrl-range { opacity: 0.3; pointer-events: none; }
+    .ctrl-row.locked .ctrl-color { opacity: 0.3; pointer-events: none; }
+    .ctrl-label { font-size: 11px; color: #555; }
+    .ctrl-range { width: 100%; cursor: pointer; }
+    .ctrl-val { text-align: right; font-size: 11px; color: #888; font-variant-numeric: tabular-nums; }
+    .ctrl-color { width: 28px; height: 22px; border: 1px solid #ccc; border-radius: 3px; cursor: pointer; padding: 0; }
+    .ctrl-export {
+      display: block; width: calc(100% - 24px); margin: 10px 12px;
+      padding: 6px; background: #f5f5f5; border: 1px solid #ddd;
+      border-radius: 4px; font: inherit; font-size: 11px; color: #555;
+      cursor: pointer; text-align: center;
+    }
+    .ctrl-export:hover { background: #eee; }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      .truth-section {
+        margin-bottom: 4rem;
+      }
+
+      .truth-text {
+        padding: 2rem 2.2rem;
+        margin-bottom: -2rem;
+      }
+
+      .truth-text p {
+        font-size: 1.05rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .truth-section {
+        margin-bottom: 3rem;
+      }
+
+      .truth-text {
+        padding: 1.8rem 1.8rem;
+        margin-bottom: -1.5rem;
+      }
+
+      .truth-text p {
+        font-size: 1rem;
+        line-height: 1.5;
+      }
+
+      .title-page h1 {
+        letter-spacing: 0.15em;
+        font-size: 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="title-page">
+    <h1>Source <span class="separator"></span> Decode</h1>
+    <div class="scroll-cue"></div>
+  </header>
+
+  <main>
+
+    <div class="truth-section">
+      <div class="truth-text">
+        <div class="truth-number">01</div>
+        <h2>You don't see reality.</h2>
+        <p>You see a biological dashboard built to keep you alive and reproducing.</p>
+      </div>
+      <div class="truth-image">
+        <div class="img-wrapper">
+          <img src="01-mantis-shrimp.jpg" alt="Mantis shrimp" loading="lazy">
+        </div>
+        <div class="subtext">A mantis shrimp sees 16 color channels. You see 3. Same reef.</div>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="truth-section">
+      <div class="truth-text">
+        <div class="truth-number">02</div>
+        <h2>The dashboard works perfectly.</h2>
+        <p>It always has.</p>
+      </div>
+      <div class="truth-image">
+        <div class="img-wrapper">
+          <img src="02-the-mother.jpg" alt="The mother" loading="lazy">
+        </div>
+        <div class="subtext">3am. Sleep deficit: 14 hours. Every other gauge: green.</div>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="truth-section">
+      <div class="truth-text">
+        <div class="truth-number">03</div>
+        <h2>Every sensation, including every emotion, is an instrument reading.</h2>
+      </div>
+      <div class="truth-image">
+        <div class="img-wrapper">
+          <img src="03-panic-attack.jpg" alt="Panic attack" loading="lazy">
+        </div>
+        <div class="subtext">A panic attack. Heart rate 142. Every reading is a measurement, not a malfunction.</div>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="truth-section">
+      <div class="truth-text">
+        <div class="truth-number">04</div>
+        <h2>The dashboard was calibrated for a world that no longer exists.</h2>
+      </div>
+      <div class="truth-image">
+        <div class="img-wrapper">
+          <img src="04-waking-up-camp.jpg" alt="Waking up at camp" loading="lazy">
+        </div>
+        <div class="subtext">Dawn, 100,000 years ago. 24 people. Every gauge green. This world is gone.</div>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="truth-section">
+      <div class="truth-text">
+        <div class="truth-number">05</div>
+        <h2>Modern distress is accurate signaling about a broken environment.</h2>
+      </div>
+      <div class="truth-image">
+        <div class="img-wrapper">
+          <img src="05-sunday-evening.jpg" alt="Sunday evening" loading="lazy">
+        </div>
+        <div class="subtext">Sunday evening. Nice apartment. Physical needs met. Every social gauge: flatlined.</div>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="truth-section">
+      <div class="truth-text">
+        <div class="truth-number">06</div>
+        <h2>When real satisfaction is blocked, you reach for proxies.</h2>
+        <p>Ones that feel right but never work.</p>
+      </div>
+      <div class="truth-image">
+        <div class="img-wrapper">
+          <img src="06-the-reach.jpg" alt="The reach" loading="lazy">
+        </div>
+        <div class="subtext">1am. The hand reaches for what's there. Not for what it wants.</div>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="truth-section">
+      <div class="truth-text">
+        <div class="truth-number">07</div>
+        <h2>A satisfied human is a terrible customer.</h2>
+        <p>Industries sell the gap.</p>
+      </div>
+      <div class="truth-image">
+        <div class="img-wrapper">
+          <img src="07-supermarket.jpg" alt="Supermarket" loading="lazy">
+        </div>
+        <div class="subtext">~4,200 products. ~12 address a real need. The rest sell the feeling.</div>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="truth-section">
+      <div class="truth-text">
+        <div class="truth-number">08</div>
+        <h2>AI companionship is the most dangerous proxy ever built.</h2>
+        <p>Your biology can't tell the difference.</p>
+      </div>
+      <div class="truth-image">
+        <div class="img-wrapper">
+          <img src="08-ai-friend.jpg" alt="AI friend" loading="lazy">
+        </div>
+        <div class="subtext">All bonding gauges green. The other side feels nothing.</div>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="truth-section">
+      <div class="truth-text">
+        <div class="truth-number">09</div>
+        <h2>Every existing solution adapts you to the broken environment.</h2>
+      </div>
+      <div class="truth-image">
+        <div class="img-wrapper">
+          <img src="09-therapy-office.jpg" alt="Therapy office" loading="lazy">
+        </div>
+        <div class="subtext">50 minutes of understanding. Then back to the environment that produced this.</div>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="truth-section">
+      <div class="truth-text">
+        <div class="truth-number">10</div>
+        <h2>Fix the environment.</h2>
+        <p>The firmware handles the rest.</p>
+      </div>
+      <div class="truth-image">
+        <div class="img-wrapper">
+          <img src="10-tuesday-night.jpg" alt="Tuesday night" loading="lazy">
+        </div>
+        <div class="subtext">Tuesday night. Nothing special. Every gauge green. No app built this.</div>
+      </div>
+    </div>
+
+  </main>
+
+  <div class="end-space"></div>
+
+  <!-- ── Control Panel ── -->
+  <button class="ctrl-toggle" id="ctrlToggle">Controls</button>
+  <div class="ctrl-panel" id="ctrlPanel">
+    <div class="ctrl-panel-header">Controls <button class="ctrl-panel-close" id="ctrlClose">&times;</button></div>
+
+      <div class="ctrl-group">
+        <div class="ctrl-group-title">Frame Padding</div>
+        <div class="ctrl-row"><span class="ctrl-label">Top / Bottom</span><input type="range" class="ctrl-range" id="padY" min="1" max="16" step="0.5" value="10"><span class="ctrl-val" id="padYV">10rem</span></div>
+        <div class="ctrl-row"><span class="ctrl-label">Left / Right</span><input type="range" class="ctrl-range" id="padX" min="1" max="10" step="0.5" value="5"><span class="ctrl-val" id="padXV">5rem</span></div>
+        <div class="ctrl-row"><span class="ctrl-label">Max Width</span><input type="range" class="ctrl-range" id="maxW" min="300" max="1200" step="10" value="720"><span class="ctrl-val" id="maxWV">720px</span></div>
+        <div class="ctrl-row"><span class="ctrl-label">Border Radius</span><input type="range" class="ctrl-range" id="borderR" min="0" max="24" step="1" value="0"><span class="ctrl-val" id="borderRV">0px</span></div>
+      </div>
+
+      <div class="ctrl-group">
+        <div class="ctrl-group-title">Frame Border</div>
+        <div class="ctrl-row"><span class="ctrl-label">Width</span><input type="range" class="ctrl-range" id="borderW" min="0" max="6" step="0.5" value="1"><span class="ctrl-val" id="borderWV">1px</span></div>
+        <div class="ctrl-row"><span class="ctrl-label">Opacity</span><input type="range" class="ctrl-range" id="borderO" min="0" max="0.5" step="0.01" value="0.07"><span class="ctrl-val" id="borderOV">7%</span></div>
+        <div class="ctrl-row"><span class="ctrl-label">Color</span><input type="color" class="ctrl-color" id="borderC" value="#ffffff"></div>
+      </div>
+
+      <div class="ctrl-group">
+        <div class="ctrl-group-title">Frame Background</div>
+        <div class="ctrl-row"><span class="ctrl-label">Opacity</span><input type="range" class="ctrl-range" id="bgO" min="0" max="1" step="0.02" value="0.55"><span class="ctrl-val" id="bgOV">55%</span></div>
+        <div class="ctrl-row"><span class="ctrl-label">Blur</span><input type="range" class="ctrl-range" id="bgBlur" min="0" max="60" step="1" value="24"><span class="ctrl-val" id="bgBlurV">24px</span></div>
+        <div class="ctrl-row"><span class="ctrl-label">Color</span><input type="color" class="ctrl-color" id="bgC" value="#000000"></div>
+      </div>
+
+      <div class="ctrl-group">
+        <div class="ctrl-group-title">Frame Shadow</div>
+        <div class="ctrl-row"><span class="ctrl-label">Blur</span><input type="range" class="ctrl-range" id="shadowBlur" min="0" max="80" step="1" value="32"><span class="ctrl-val" id="shadowBlurV">32px</span></div>
+        <div class="ctrl-row"><span class="ctrl-label">Spread</span><input type="range" class="ctrl-range" id="shadowSpread" min="-20" max="40" step="1" value="0"><span class="ctrl-val" id="shadowSpreadV">0px</span></div>
+        <div class="ctrl-row"><span class="ctrl-label">Opacity</span><input type="range" class="ctrl-range" id="shadowO" min="0" max="1" step="0.02" value="0.5"><span class="ctrl-val" id="shadowOV">50%</span></div>
+        <div class="ctrl-row"><span class="ctrl-label">Y Offset</span><input type="range" class="ctrl-range" id="shadowY" min="-20" max="40" step="1" value="8"><span class="ctrl-val" id="shadowYV">8px</span></div>
+      </div>
+
+      <div class="ctrl-group">
+        <div class="ctrl-group-title">Top Accent Line</div>
+        <div class="ctrl-row"><span class="ctrl-label">Opacity</span><input type="range" class="ctrl-range" id="accentO" min="0" max="0.5" step="0.01" value="0.1"><span class="ctrl-val" id="accentOV">10%</span></div>
+        <div class="ctrl-row"><span class="ctrl-label">Inset</span><input type="range" class="ctrl-range" id="accentInset" min="0" max="8" step="0.5" value="2"><span class="ctrl-val" id="accentInsetV">2rem</span></div>
+      </div>
+
+      <div class="ctrl-group">
+        <div class="ctrl-group-title">Layout</div>
+        <div class="ctrl-row"><span class="ctrl-label">Section Gap</span><input type="range" class="ctrl-range" id="secGap" min="-10" max="1000" step="1" value="-1"><span class="ctrl-val" id="secGapV">-1rem</span></div>
+      </div>
+
+      <div class="ctrl-group">
+        <div class="ctrl-group-title">Label Position</div>
+        <div class="ctrl-row"><span class="ctrl-label">Img Overlap</span><input type="range" class="ctrl-range" id="overlap" min="0" max="20" step="0.5" value="4"><span class="ctrl-val" id="overlapV">4rem</span></div>
+      </div>
+
+      <div class="ctrl-group">
+        <div class="ctrl-group-title">Body Text</div>
+        <div class="ctrl-row"><span class="ctrl-label">Size</span><input type="range" class="ctrl-range" id="bodySize" min="12" max="32" step="1" value="18"><span class="ctrl-val" id="bodySizeV">18px</span></div>
+        <div class="ctrl-row"><span class="ctrl-label">Line Height</span><input type="range" class="ctrl-range" id="bodyLH" min="1.1" max="2.2" step="0.05" value="1.6"><span class="ctrl-val" id="bodyLHV">1.6</span></div>
+        <div class="ctrl-row"><span class="ctrl-label">Weight</span><input type="range" class="ctrl-range" id="bodyWeight" min="300" max="700" step="100" value="400"><span class="ctrl-val" id="bodyWeightV">400</span></div>
+        <div class="ctrl-row"><span class="ctrl-label">Text Shadow</span><input type="range" class="ctrl-range" id="bodyShadow" min="0" max="8" step="0.5" value="3"><span class="ctrl-val" id="bodyShadowV">3px</span></div>
+      </div>
+
+      <div class="ctrl-group">
+        <div class="ctrl-group-title">Number</div>
+        <div class="ctrl-row"><span class="ctrl-label">Size</span><input type="range" class="ctrl-range" id="numSize" min="6" max="24" step="1" value="10"><span class="ctrl-val" id="numSizeV">10px</span></div>
+        <div class="ctrl-row"><span class="ctrl-label">Spacing</span><input type="range" class="ctrl-range" id="numSpacing" min="0" max="1" step="0.02" value="0.3"><span class="ctrl-val" id="numSpacingV">0.3em</span></div>
+        <div class="ctrl-row"><span class="ctrl-label">Opacity</span><input type="range" class="ctrl-range" id="numO" min="0" max="1" step="0.02" value="0.3"><span class="ctrl-val" id="numOV">30%</span></div>
+        <div class="ctrl-row"><span class="ctrl-label">Gap Below</span><input type="range" class="ctrl-range" id="numGap" min="0" max="4" step="0.1" value="1"><span class="ctrl-val" id="numGapV">1rem</span></div>
+      </div>
+
+      <div class="ctrl-group">
+        <div class="ctrl-group-title">Image</div>
+        <div class="ctrl-row"><span class="ctrl-label">Brightness</span><input type="range" class="ctrl-range" id="imgBright" min="0.3" max="1.2" step="0.02" value="0.92"><span class="ctrl-val" id="imgBrightV">0.92</span></div>
+        <div class="ctrl-row"><span class="ctrl-label">Saturation</span><input type="range" class="ctrl-range" id="imgSat" min="0" max="1.5" step="0.05" value="0.85"><span class="ctrl-val" id="imgSatV">0.85</span></div>
+        <div class="ctrl-row"><span class="ctrl-label">Contrast</span><input type="range" class="ctrl-range" id="imgContrast" min="0.5" max="1.5" step="0.02" value="1"><span class="ctrl-val" id="imgContrastV">1.0</span></div>
+        <div class="ctrl-row"><span class="ctrl-label">Border Radius</span><input type="range" class="ctrl-range" id="imgRadius" min="0" max="24" step="1" value="0"><span class="ctrl-val" id="imgRadiusV">0px</span></div>
+      </div>
+
+      <div class="ctrl-group">
+        <div class="ctrl-group-title">Subtext</div>
+        <div class="ctrl-row"><span class="ctrl-label">Size</span><input type="range" class="ctrl-range" id="subSize" min="8" max="18" step="1" value="11"><span class="ctrl-val" id="subSizeV">11px</span></div>
+        <div class="ctrl-row"><span class="ctrl-label">Opacity</span><input type="range" class="ctrl-range" id="subO" min="0" max="1" step="0.05" value="0.7"><span class="ctrl-val" id="subOV">70%</span></div>
+        <div class="ctrl-row"><span class="ctrl-label">Top Gap</span><input type="range" class="ctrl-range" id="subGap" min="0" max="4" step="0.1" value="0.8"><span class="ctrl-val" id="subGapV">0.8rem</span></div>
+      </div>
+
+      <div class="ctrl-group">
+        <div class="ctrl-group-title">Colors</div>
+        <div class="ctrl-row"><span class="ctrl-label">Background</span><input type="color" class="ctrl-color" id="colBg" value="#080808"></div>
+        <div class="ctrl-row"><span class="ctrl-label">Text</span><input type="color" class="ctrl-color" id="colText" value="#E0D8CC"></div>
+        <div class="ctrl-row"><span class="ctrl-label">Muted</span><input type="color" class="ctrl-color" id="colMuted" value="#6A6258"></div>
+        <div class="ctrl-row"><span class="ctrl-label">Grain</span><input type="range" class="ctrl-range" id="grain" min="0" max="0.08" step="0.002" value="0.03"><span class="ctrl-val" id="grainV">3%</span></div>
+      </div>
+
+      <div class="ctrl-group">
+        <div class="ctrl-group-title">Title</div>
+        <div class="ctrl-row"><span class="ctrl-label">Size</span><input type="range" class="ctrl-range" id="titleSize" min="10" max="48" step="1" value="20"><span class="ctrl-val" id="titleSizeV">20px</span></div>
+        <div class="ctrl-row"><span class="ctrl-label">Spacing</span><input type="range" class="ctrl-range" id="titleSpacing" min="0" max="0.6" step="0.01" value="0.25"><span class="ctrl-val" id="titleSpacingV">0.25em</span></div>
+        <div class="ctrl-row"><span class="ctrl-label">Weight</span><input type="range" class="ctrl-range" id="titleWeight" min="300" max="700" step="100" value="400"><span class="ctrl-val" id="titleWeightV">400</span></div>
+        <div class="ctrl-row"><span class="ctrl-label">Padding</span><input type="range" class="ctrl-range" id="titlePad" min="1" max="12" step="0.5" value="6"><span class="ctrl-val" id="titlePadV">6rem</span></div>
+      </div>
+
+    <button class="ctrl-export" id="ctrlExport">Export locked values as JSON</button>
+  </div>
+
+  <script>
+    const sections = document.querySelectorAll('.truth-section');
+    sections.forEach(s => s.classList.add('visible'));
+
+    // Gentle parallax — labels drift slightly slower than scroll
+    let ticking = false;
+    function updateParallax() {
+      const viewCenter = window.innerHeight / 2;
+      sections.forEach(sec => {
+        const rect = sec.getBoundingClientRect();
+        const offset = rect.top + rect.height / 2 - viewCenter;
+        const text = sec.querySelector('.truth-text');
+        if (text) text.style.transform = `translateY(${offset * -0.06}px)`;
+      });
+      ticking = false;
+    }
+
+    window.addEventListener('scroll', () => {
+      if (!ticking) { ticking = true; requestAnimationFrame(updateParallax); }
+    }, { passive: true });
+
+    const $ = id => document.getElementById(id);
+    const root = document.documentElement;
+
+    // Helper: hex to r,g,b
+    function hexRgb(hex) {
+      const r = parseInt(hex.slice(1,3),16);
+      const g = parseInt(hex.slice(3,5),16);
+      const b = parseInt(hex.slice(5,7),16);
+      return `${r},${g},${b}`;
+    }
+
+    // ── State ──
+    let state = {
+      bgC: '#000000', bgO: 0.55, bgBlur: 24,
+      borderW: 1, borderO: 0.07, borderC: '#ffffff', borderR: 0,
+      padY: 10, padX: 5, maxW: 720, overlap: 4,
+      shadowBlur: 32, shadowSpread: 0, shadowO: 0.5, shadowY: 8,
+      accentO: 0.1, accentInset: 2,
+      bodySize: 18, bodyLH: 1.6, bodyWeight: 400, bodyShadow: 3,
+      numSize: 10, numSpacing: 0.3, numO: 0.3, numGap: 1,
+      imgBright: 0.92, imgSat: 0.85, imgContrast: 1, imgRadius: 0,
+      subSize: 11, subO: 0.7, subGap: 0.8,
+      secGap: -1,
+      colBg: '#080808', colText: '#E0D8CC', colMuted: '#6A6258', grain: 0.03,
+      titleSize: 20, titleSpacing: 0.25, titleWeight: 400, titlePad: 6,
+    };
+
+    function apply() {
+      const s = state;
+
+      // Frame
+      document.querySelectorAll('.truth-text').forEach(el => {
+        el.style.padding = `${s.padY}rem ${s.padX}rem`;
+        el.style.maxWidth = s.maxW + 'px';
+        el.style.marginBottom = `-${s.overlap}rem`;
+        el.style.background = `rgba(${hexRgb(s.bgC)}, ${s.bgO})`;
+        el.style.backdropFilter = `blur(${s.bgBlur}px) saturate(1.3)`;
+        el.style.webkitBackdropFilter = `blur(${s.bgBlur}px) saturate(1.3)`;
+        el.style.border = `${s.borderW}px solid rgba(${hexRgb(s.borderC)}, ${s.borderO})`;
+        el.style.borderRadius = s.borderR + 'px';
+        el.style.boxShadow = [
+          `0 1px 0 0 rgba(255,255,255,0.04) inset`,
+          `0 -1px 0 0 rgba(0,0,0,0.2) inset`,
+          `0 ${s.shadowY}px ${s.shadowBlur}px ${s.shadowSpread}px rgba(0,0,0,${s.shadowO})`,
+        ].join(', ');
+      });
+
+      // Top accent
+      document.querySelectorAll('.truth-text').forEach(el => {
+        const before = el.querySelector('style') || document.createElement('style');
+      });
+      let accentStyle = $('accentStyle');
+      if (!accentStyle) { accentStyle = document.createElement('style'); accentStyle.id = 'accentStyle'; document.head.appendChild(accentStyle); }
+      accentStyle.textContent = `.truth-text::before { left: ${s.accentInset}rem !important; right: ${s.accentInset}rem !important; background: linear-gradient(to right, transparent, rgba(255,255,255,${s.accentO}) 30%, rgba(255,255,255,${s.accentO}) 70%, transparent) !important; }`;
+
+      // Body text
+      document.querySelectorAll('.truth-text p').forEach(el => {
+        el.style.fontSize = s.bodySize + 'px';
+        el.style.lineHeight = s.bodyLH;
+        el.style.fontWeight = s.bodyWeight;
+        el.style.textShadow = `0 1px ${s.bodyShadow}px rgba(0,0,0,0.15)`;
+      });
+
+      // Number
+      document.querySelectorAll('.truth-number').forEach(el => {
+        el.style.fontSize = s.numSize + 'px';
+        el.style.letterSpacing = s.numSpacing + 'em';
+        el.style.opacity = s.numO;
+        el.style.marginBottom = s.numGap + 'rem';
+      });
+
+      // Image
+      document.querySelectorAll('.truth-image img').forEach(el => {
+        el.style.filter = `brightness(${s.imgBright}) saturate(${s.imgSat}) contrast(${s.imgContrast})`;
+      });
+      document.querySelectorAll('.truth-image .img-wrapper').forEach(el => {
+        el.style.borderRadius = s.imgRadius + 'px';
+      });
+
+      // Subtext
+      document.querySelectorAll('.truth-image .subtext').forEach(el => {
+        el.style.fontSize = s.subSize + 'px';
+        el.style.marginTop = s.subGap + 'rem';
+      });
+      let subStyle = $('subStyle');
+      if (!subStyle) { subStyle = document.createElement('style'); subStyle.id = 'subStyle'; document.head.appendChild(subStyle); }
+      subStyle.textContent = `.truth-section.visible .truth-image .subtext { opacity: ${s.subO} !important; }`;
+
+      // Section gap
+      document.querySelectorAll('.truth-section').forEach(el => {
+        el.style.marginBottom = s.secGap + 'rem';
+      });
+
+      // Colors
+      root.style.setProperty('--bg', s.colBg);
+      root.style.setProperty('--bone', s.colText);
+      root.style.setProperty('--muted', s.colMuted);
+
+      // Grain
+      let gs = $('grainStyle');
+      if (!gs) { gs = document.createElement('style'); gs.id = 'grainStyle'; document.head.appendChild(gs); }
+      gs.textContent = `body::after { opacity: ${s.grain} !important; }`;
+
+      // Title
+      const h1 = document.querySelector('.title-page h1');
+      h1.style.fontSize = s.titleSize + 'px';
+      h1.style.letterSpacing = s.titleSpacing + 'em';
+      h1.style.fontWeight = s.titleWeight;
+      document.querySelector('.title-page').style.padding = `${s.titlePad}rem 2rem ${s.titlePad * 0.6}rem`;
+
+
+    }
+
+    // Wire up all controls
+    const controls = {
+      padY:         { unit: 'rem' },
+      padX:         { unit: 'rem' },
+      maxW:         { unit: 'px' },
+      borderR:      { unit: 'px' },
+      borderW:      { unit: 'px' },
+      borderO:      { unit: '%', mult: 100 },
+      bgO:          { unit: '%', mult: 100 },
+      bgBlur:       { unit: 'px' },
+      shadowBlur:   { unit: 'px' },
+      shadowSpread: { unit: 'px' },
+      shadowO:      { unit: '%', mult: 100 },
+      shadowY:      { unit: 'px' },
+      accentO:      { unit: '%', mult: 100 },
+      accentInset:  { unit: 'rem' },
+      overlap:      { unit: 'rem' },
+      secGap:       { unit: 'rem' },
+      bodySize:     { unit: 'px' },
+      bodyLH:       { unit: '' },
+      bodyWeight:   { unit: '' },
+      bodyShadow:   { unit: 'px' },
+      numSize:      { unit: 'px' },
+      numSpacing:   { unit: 'em' },
+      numO:         { unit: '%', mult: 100 },
+      numGap:       { unit: 'rem' },
+      imgBright:    { unit: '' },
+      imgSat:       { unit: '' },
+      imgContrast:  { unit: '' },
+      imgRadius:    { unit: 'px' },
+      subSize:      { unit: 'px' },
+      subO:         { unit: '%', mult: 100 },
+      subGap:       { unit: 'rem' },
+      grain:        { unit: '%', mult: 100 },
+      titleSize:    { unit: 'px' },
+      titleSpacing: { unit: 'em' },
+      titleWeight:  { unit: '' },
+      titlePad:     { unit: 'rem' },
+    };
+
+    Object.entries(controls).forEach(([key, cfg]) => {
+      const el = $(key);
+      if (!el) return;
+      el.addEventListener('input', () => {
+        const v = parseFloat(el.value);
+        state[key] = v;
+        const display = cfg.mult ? Math.round(v * cfg.mult) : (Number.isInteger(v) ? v : v.toFixed(2));
+        $(key + 'V').textContent = display + cfg.unit;
+        apply();
+      });
+    });
+
+    // Color controls
+    ['bgC', 'borderC'].forEach(key => {
+      $(key).addEventListener('input', e => { state[key] = e.target.value; apply(); });
+    });
+    ['colBg', 'colText', 'colMuted'].forEach(key => {
+      $(key).addEventListener('input', e => { state[key] = e.target.value; apply(); });
+    });
+
+    // Add lock checkboxes to every ctrl-row
+    const locked = {};
+    document.querySelectorAll('.ctrl-row').forEach(row => {
+      const range = row.querySelector('.ctrl-range') || row.querySelector('.ctrl-color');
+      if (!range) return;
+      const key = range.id;
+      const cb = document.createElement('input');
+      cb.type = 'checkbox';
+      cb.className = 'ctrl-lock';
+      cb.title = 'Lock (grey out)';
+      cb.addEventListener('change', () => {
+        row.classList.toggle('locked', cb.checked);
+        locked[key] = cb.checked;
+      });
+      row.insertBefore(cb, row.firstChild);
+    });
+
+    // Pre-lock secGap
+    const secGapRow = $('secGap').closest('.ctrl-row');
+    const secGapCb = secGapRow.querySelector('.ctrl-lock');
+    secGapCb.checked = true;
+    secGapCb.dispatchEvent(new Event('change'));
+
+    // Export
+    $('ctrlExport').addEventListener('click', () => {
+      const out = {};
+      Object.keys(locked).forEach(key => {
+        if (locked[key] && state[key] !== undefined) {
+          out[key] = state[key];
+        }
+      });
+      // Also grab locked colors
+      ['bgC', 'borderC', 'colBg', 'colText', 'colMuted'].forEach(key => {
+        if (locked[key]) out[key] = state[key];
+      });
+      const json = JSON.stringify(out, null, 2);
+      navigator.clipboard.writeText(json).then(() => {
+        $('ctrlExport').textContent = 'Copied to clipboard!';
+        setTimeout(() => { $('ctrlExport').textContent = 'Export locked values as JSON'; }, 1500);
+      }).catch(() => {
+        prompt('Copy this JSON:', json);
+      });
+    });
+
+    // Toggle
+    $('ctrlToggle').addEventListener('click', () => {
+      const p = $('ctrlPanel');
+      const open = p.classList.toggle('open');
+      $('ctrlToggle').style.display = open ? 'none' : '';
+    });
+    $('ctrlClose').addEventListener('click', () => {
+      $('ctrlPanel').classList.remove('open');
+      $('ctrlToggle').style.display = '';
+    });
+
+    // Init
+    apply();
+    updateParallax();
+  </script>
+
+</body>
+</html>
