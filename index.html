@@ -327,7 +327,7 @@
   </style>
 </head>
 <body>
-  <div id="ver" style="position:fixed;top:0;left:0;z-index:99999;background:red;color:white;font:bold 24px system-ui;padding:8px 16px;">v7</div>
+  <div id="ver" style="position:fixed;top:0;left:0;z-index:99999;background:red;color:white;font:bold 24px system-ui;padding:8px 16px;">v8</div>
 
   <header class="title-page">
     <h1>Source <span class="separator"></span> Decode</h1>
@@ -616,7 +616,11 @@
         // Only apply drift relative to when section is centered
         const raw = (secCenter - viewCenter) * -0.5;
         const drift = Math.max(-150, Math.min(150, raw));
-        text.style.transform = `translateY(calc(20% + ${drift}px))`;
+        if (window.innerWidth <= 768) {
+          text.style.transform = '';
+        } else {
+          text.style.transform = `translateY(calc(20% + ${drift}px))`;
+        }
       });
       ticking = false;
     }
