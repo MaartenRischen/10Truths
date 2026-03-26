@@ -288,15 +288,20 @@
 
       main {
         display: flex;
+        flex-direction: column;
+        justify-content: center;
         width: 100vw;
         height: 100vh; height: 100dvh;
         overflow: hidden;
         position: relative;
+        background: var(--bg);
       }
 
       .truth-section {
         position: absolute;
-        inset: 0;
+        left: 0; right: 0;
+        top: 50%;
+        transform: translateY(-50%);
         margin: 0;
         padding: 0;
         opacity: 0;
@@ -310,21 +315,19 @@
       }
 
       .truth-image {
-        position: absolute;
-        inset: 0;
+        position: relative;
       }
 
       .truth-image .img-wrapper {
-        height: 100%;
         overflow: hidden;
+        line-height: 0;
       }
 
       .truth-image img {
         width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transform: scale(1.15);
-        transition: transform 8s ease-out;
+        display: block;
+        transform: scale(1.08);
+        transition: transform 10s ease-out;
       }
 
       .truth-section.carousel-active .truth-image img {
@@ -333,9 +336,9 @@
 
       .truth-text {
         position: absolute;
-        bottom: 12vh;
+        bottom: 0;
         left: 50%;
-        transform: translateX(-50%);
+        transform: translate(-50%, 50%);
         max-width: 85%;
         width: auto;
         padding: 1rem 1.4rem;
@@ -369,16 +372,6 @@
         bottom: 0.8rem;
         right: 0.8rem;
         max-width: 200px;
-      }
-
-      /* Vignette for readability */
-      .truth-section::before {
-        content: '';
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 50%);
-        z-index: 1;
-        pointer-events: none;
       }
 
       /* Carousel dots */
@@ -416,7 +409,7 @@
   </style>
 </head>
 <body>
-  <div id="ver" style="position:fixed;top:0;left:0;z-index:99999;background:red;color:white;font:bold 24px system-ui;padding:8px 16px;">v9</div>
+  <div id="ver" style="position:fixed;top:0;left:0;z-index:99999;background:red;color:white;font:bold 24px system-ui;padding:8px 16px;">v10</div>
 
   <header class="title-page">
     <h1>Source <span class="separator"></span> Decode</h1>
