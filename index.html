@@ -279,27 +279,83 @@
     }
     .ctrl-export:hover { background: #eee; }
 
-    /* ── Responsive ── */
+    /* ── Responsive / Mobile Carousel ── */
     @media (max-width: 768px) {
+      body { overflow: hidden; height: 100vh; height: 100dvh; }
+
+      .title-page { display: none; }
+      .end-space { display: none; }
+
+      main {
+        display: flex;
+        width: 100vw;
+        height: 100vh; height: 100dvh;
+        overflow: hidden;
+        position: relative;
+      }
+
       .truth-section {
-        margin-bottom: 0;
-        padding-top: 1rem;
+        position: absolute;
+        inset: 0;
+        margin: 0;
+        padding: 0;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.6s ease;
+      }
+
+      .truth-section.carousel-active {
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .truth-image {
+        position: absolute;
+        inset: 0;
+      }
+
+      .truth-image .img-wrapper {
+        height: 100%;
+        overflow: hidden;
+      }
+
+      .truth-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transform: scale(1.15);
+        transition: transform 8s ease-out;
+      }
+
+      .truth-section.carousel-active .truth-image img {
+        transform: scale(1);
       }
 
       .truth-text {
-        padding: 0.8rem 1rem;
-        margin-bottom: -1rem;
-        max-width: 70%;
+        position: absolute;
+        bottom: 12vh;
+        left: 50%;
+        transform: translateX(-50%);
+        max-width: 85%;
+        width: auto;
+        padding: 1rem 1.4rem;
+        margin: 0;
         border-width: 2px;
+        z-index: 2;
+        background: rgba(0,0,0,0.55);
+        backdrop-filter: blur(24px) saturate(1.3);
+        -webkit-backdrop-filter: blur(24px) saturate(1.3);
       }
 
+      .truth-text::before { display: none; }
+
       .truth-text h2 {
-        font-size: 0.85rem;
+        font-size: 0.95rem;
         margin-bottom: 0.3rem;
       }
 
       .truth-text p {
-        font-size: 0.75rem;
+        font-size: 0.8rem;
         line-height: 1.4;
       }
 
@@ -310,24 +366,57 @@
 
       .truth-image .subtext {
         font-size: 0.5rem;
-        bottom: 0.5rem;
-        right: 0.6rem;
-        max-width: 160px;
+        bottom: 0.8rem;
+        right: 0.8rem;
+        max-width: 200px;
       }
 
-      .title-page {
-        padding: 3rem 1rem 2rem;
+      /* Vignette for readability */
+      .truth-section::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 50%);
+        z-index: 1;
+        pointer-events: none;
       }
 
-      .title-page h1 {
-        letter-spacing: 0.15em;
-        font-size: 0.9rem;
+      /* Carousel dots */
+      .carousel-dots {
+        display: flex !important;
       }
+    }
+
+    /* Carousel dots (hidden on desktop) */
+    .carousel-dots {
+      display: none;
+      position: fixed;
+      bottom: 2.5vh;
+      left: 50%;
+      transform: translateX(-50%);
+      gap: 8px;
+      z-index: 100;
+    }
+
+    .carousel-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.25);
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.3s;
+    }
+
+    .carousel-dot.active {
+      background: rgba(255,255,255,0.8);
+      transform: scale(1.4);
     }
   </style>
 </head>
 <body>
-  <div id="ver" style="position:fixed;top:0;left:0;z-index:99999;background:red;color:white;font:bold 24px system-ui;padding:8px 16px;">v8</div>
+  <div id="ver" style="position:fixed;top:0;left:0;z-index:99999;background:red;color:white;font:bold 24px system-ui;padding:8px 16px;">v9</div>
 
   <header class="title-page">
     <h1>Source <span class="separator"></span> Decode</h1>
@@ -493,6 +582,7 @@
   </main>
 
   <div class="end-space"></div>
+  <div class="carousel-dots" id="carouselDots"></div>
 
   <!-- ── Control Panel ── -->
   <button class="ctrl-toggle" id="ctrlToggle">Controls</button>
@@ -872,9 +962,75 @@
       $('ctrlToggle').style.display = '';
     });
 
+    // ── Mobile Carousel ──
+    if (window.innerWidth <= 768) {
+      let current = 0;
+      const secs = Array.from(document.querySelectorAll('.truth-section'));
+      const dots = document.getElementById('carouselDots');
+
+      // Build dots
+      secs.forEach((_, i) => {
+        const dot = document.createElement('button');
+        dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+        dot.addEventListener('click', () => goTo(i));
+        dots.appendChild(dot);
+      });
+
+      function goTo(i) {
+        // Remove active from old
+        secs[current]?.classList.remove('carousel-active');
+        dots.children[current]?.classList.remove('active');
+        // Reset zoom on old image
+        const oldImg = secs[current]?.querySelector('.truth-image img');
+        if (oldImg) { oldImg.style.transition = 'none'; oldImg.style.transform = 'scale(1.15)'; }
+
+        current = i;
+
+        // Activate new
+        secs[current].classList.add('carousel-active');
+        dots.children[current].classList.add('active');
+        // Trigger zoom with slight delay so transition kicks in
+        const newImg = secs[current].querySelector('.truth-image img');
+        if (newImg) {
+          requestAnimationFrame(() => {
+            newImg.style.transition = 'transform 8s ease-out';
+            newImg.style.transform = 'scale(1)';
+          });
+        }
+      }
+
+      // Swipe detection
+      let touchStartX = 0;
+      let touchStartY = 0;
+      document.addEventListener('touchstart', e => {
+        touchStartX = e.touches[0].clientX;
+        touchStartY = e.touches[0].clientY;
+      }, { passive: true });
+
+      document.addEventListener('touchend', e => {
+        const dx = e.changedTouches[0].clientX - touchStartX;
+        const dy = e.changedTouches[0].clientY - touchStartY;
+        if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 50) {
+          if (dx < 0 && current < secs.length - 1) goTo(current + 1);
+          if (dx > 0 && current > 0) goTo(current - 1);
+        }
+      }, { passive: true });
+
+      // Also tap left/right halves
+      document.addEventListener('click', e => {
+        if (e.target.closest('.ctrl-panel, .ctrl-toggle, .carousel-dots')) return;
+        const x = e.clientX / window.innerWidth;
+        if (x > 0.65 && current < secs.length - 1) goTo(current + 1);
+        else if (x < 0.35 && current > 0) goTo(current - 1);
+      });
+
+      // Init first slide
+      goTo(0);
+    }
+
     // Init
     apply();
-    updateParallax();
+    if (window.innerWidth > 768) updateParallax();
   </script>
 
 </body>
