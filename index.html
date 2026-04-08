@@ -56,19 +56,21 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 6rem 2rem 4rem;
+      padding: 7rem 2rem 5rem;
       position: relative;
+      gap: 1.5rem;
     }
 
     .title-page h1 {
       font-family: var(--serif);
-      font-size: clamp(1.4rem, 3vw, 2.4rem);
+      font-size: clamp(4.8rem, 16vw, 9.5rem);
       font-weight: 400;
-      letter-spacing: 0.25em;
+      letter-spacing: 0.12em;
       color: var(--bone);
       opacity: 0;
       animation: titleReveal 3s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
       text-transform: uppercase;
+      text-align: center;
     }
 
     .title-page h1 .separator {
@@ -84,9 +86,33 @@
 
     .scroll-cue { display: none; }
 
+    .cor-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.95rem 1.5rem;
+      border: 1px solid rgba(224, 216, 204, 0.45);
+      background: rgba(224, 216, 204, 0.08);
+      color: var(--bone);
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-family: var(--mono);
+      font-size: clamp(0.82rem, 1.8vw, 1rem);
+      transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+      text-align: center;
+    }
+
+    .cor-link:hover,
+    .cor-link:focus-visible {
+      background: rgba(224, 216, 204, 0.16);
+      border-color: rgba(224, 216, 204, 0.75);
+      transform: translateY(-2px);
+    }
+
     @keyframes titleReveal {
-      0% { opacity: 0; letter-spacing: 0.35em; }
-      100% { opacity: 0.3; letter-spacing: 0.25em; }
+      0% { opacity: 0; letter-spacing: 0.22em; }
+      100% { opacity: 0.55; letter-spacing: 0.12em; }
     }
 
     @keyframes cueReveal {
@@ -409,10 +435,9 @@
   </style>
 </head>
 <body>
-  <div id="ver" style="position:fixed;top:0;left:0;z-index:99999;background:red;color:white;font:bold 24px system-ui;padding:8px 16px;">v10</div>
-
   <header class="title-page">
     <h1>Demismatch</h1>
+    <a class="cor-link" href="https://cor.demismatch.com/">Enter COR: cor.demismatch.com</a>
     <div class="scroll-cue"></div>
   </header>
 
