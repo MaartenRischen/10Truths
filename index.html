@@ -131,19 +131,21 @@
 
     .truth-section {
       position: relative;
-      margin-bottom: -1rem;
-      padding-top: 3rem;
+      margin-bottom: 3rem;
+      padding-top: 0;
     }
 
     /* ── Text label ── */
     .truth-text {
-      position: relative;
+      position: absolute;
+      left: 50%;
+      bottom: 3rem;
+      transform: translateX(-50%);
       z-index: 2;
+      width: calc(100% - 4rem);
       max-width: 720px;
-      margin-left: auto;
-      margin-right: auto;
-      padding: 7rem 5rem;
-      margin-bottom: -4rem;
+      margin: 0;
+      padding: 4.5rem 4rem;
       text-align: center;
 
       background: rgba(0, 0, 0, 0.55);
@@ -308,11 +310,11 @@
 
       .truth-text {
         position: absolute;
-        bottom: 0;
+        bottom: 1rem;
         left: 50%;
-        transform: translate(-50%, 50%);
-        max-width: 85%;
-        width: auto;
+        transform: translateX(-50%);
+        width: calc(100% - 1.5rem);
+        max-width: calc(100% - 1.5rem);
         padding: 1rem 1.4rem;
         margin: 0;
         border-width: 2px;
@@ -577,40 +579,9 @@
 
   <div class="end-space"></div>
   <div class="carousel-dots" id="carouselDots"></div>
-
   <script>
     const sections = document.querySelectorAll('.truth-section');
     sections.forEach(s => s.classList.add('visible'));
-
-    // Gentle parallax — labels drift slightly slower than scroll
-    let ticking = false;
-    // Store each label's initial offset from viewport on first run
-    const labelOffsets = new Map();
-    let initialized = false;
-
-    function updateParallax() {
-      const viewCenter = window.innerHeight / 2;
-      sections.forEach(sec => {
-        const rect = sec.getBoundingClientRect();
-        const text = sec.querySelector('.truth-text');
-        if (!text) return;
-
-        const secCenter = rect.top + rect.height / 2;
-        // Only apply drift relative to when section is centered
-        const raw = (secCenter - viewCenter) * -0.5;
-        const drift = Math.max(-150, Math.min(150, raw));
-        if (window.innerWidth <= 768) {
-          text.style.transform = '';
-        } else {
-          text.style.transform = `translateY(calc(20% + ${drift}px))`;
-        }
-      });
-      ticking = false;
-    }
-
-    window.addEventListener('scroll', () => {
-      if (!ticking) { ticking = true; requestAnimationFrame(updateParallax); }
-    }, { passive: true });
 
     // ── Mobile Carousel ──
     if (window.innerWidth <= 768) {
@@ -679,7 +650,6 @@
     }
 
     // Init
-    if (window.innerWidth > 768) updateParallax();
   </script>
 
 </body>
