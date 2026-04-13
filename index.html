@@ -130,7 +130,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 2rem 2rem;
+      padding: 1rem 2rem 2rem;
       text-align: center;
     }
 
@@ -283,6 +283,39 @@
     .truth-text.pos-lower  { top: 72%; }
     .truth-text.pos-bottom { top: 85%; }
 
+    /* Intro band — sits at top, title peeks below it */
+    .intro-band {
+      display: flex;
+      justify-content: center;
+      padding: 3rem 2rem 0;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Intro label — in-flow, not absolutely positioned */
+    .truth-text.intro {
+      position: relative;
+      top: auto;
+      left: auto;
+      transform: translateY(var(--parallax-y, 0px));
+      will-change: transform;
+      max-width: min(1200px, 100%);
+      padding: 1.75rem 2.5rem;
+    }
+    .truth-text.intro p {
+      font-family: var(--serif);
+      font-size: clamp(0.92rem, 1.2vw, 1.05rem);
+      line-height: 1.65;
+      font-weight: 300;
+      color: var(--bone);
+      opacity: 0.8;
+      margin-bottom: 0.9rem;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    }
+    .truth-text.intro p:last-child {
+      margin-bottom: 0;
+    }
+
     /* Subtle top accent line */
     .truth-text::before {
       content: '';
@@ -434,6 +467,8 @@
 
       .truth-body { display: none; }
 
+      .truth-text.intro { display: none; }
+
       main {
         display: flex;
         flex-direction: column;
@@ -552,14 +587,17 @@
   </style>
 </head>
 <body>
+  <div class="intro-band">
+    <div class="truth-text intro">
+      <h2>You are not broken. You are mismatched.</h2>
+      <p>You are a completely functional organism, unable to be human in a world that no longer fits. The exhaustion, the loneliness, the loss of meaning, the sense that something is wrong and you can't name it - these are not symptoms of a disease. They are accurate signals from a body that knows it is in the wrong environment. The organism works. The world it was built for is gone.</p>
+      <p style="font-size: clamp(1.15rem, 1.7vw, 1.4rem); line-height: 1.5; opacity: 0.9;">Tech and AI aren't the enemy - they're the most powerful tools we've ever made. But right now they're owned by people who profit when you stay hungry and confused. This is our last chance to use them to become human again.</p>
+    </div>
+  </div>
+
   <header class="hero">
     <div class="hero-content">
       <h1 class="site-title">Demismatch</h1>
-      <h2 class="hero-headline">You are not broken. You are mismatched.</h2>
-      <div class="hero-body">
-        <p>You are a completely functional organism, unable to be human in a world that no longer fits. The exhaustion, the loneliness, the loss of meaning, the sense that something is wrong and you can't name it - these are not symptoms of a disease. They are accurate signals from a body that knows it is in the wrong environment. The organism works. The world it was built for is gone.</p>
-        <p style="font-weight: 500; opacity: 0.85;">Tech and AI aren't the enemy - they're the most powerful tools we've ever made. But right now they're owned by people who profit when you stay hungry and confused. This is our last chance to use them to become human again.</p>
-      </div>
     </div>
   </header>
 
@@ -776,9 +814,11 @@
 
     // ── Subtle parallax on text labels (desktop only) ──
     if (window.innerWidth > 768) {
-      const parallaxLabels = Array.from(document.querySelectorAll('.truth-section'))
-        .map(section => ({ section, label: section.querySelector('.truth-text') }))
-        .filter(p => p.label);
+      const parallaxLabels = Array.from(document.querySelectorAll('.truth-section, .intro-band'))
+        .flatMap(container =>
+          Array.from(container.querySelectorAll('.truth-text'))
+            .map(label => ({ section: container, label }))
+        );
       let ticking = false;
       function updateParallax() {
         const viewportH = window.innerHeight;
