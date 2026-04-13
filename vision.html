@@ -30,7 +30,7 @@ body {
   width: 1800px;
   background: var(--parchment);
   color: var(--ink);
-  padding: 64px 80px 72px;
+  padding: 72px 88px 80px;
   position: relative;
   box-shadow: 0 40px 120px rgba(0,0,0,0.8), 0 10px 30px rgba(0,0,0,0.5);
   background-image:
@@ -40,40 +40,34 @@ body {
 
 .masthead {
   border-bottom: 2px solid var(--oxblood);
-  padding-bottom: 24px;
-  margin-bottom: 48px;
+  padding-bottom: 28px;
+  margin-bottom: 56px;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
 }
-.masthead .left {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 12px;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  color: var(--oxblood);
-  font-weight: 500;
-}
+.masthead .left,
 .masthead .right {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 12px;
+  font-size: 13px;
   letter-spacing: 0.25em;
   text-transform: uppercase;
-  color: var(--teal);
   font-weight: 500;
 }
+.masthead .left { color: var(--oxblood); }
+.masthead .right { color: var(--teal); }
 
 .title-block {
   text-align: center;
-  margin-bottom: 56px;
+  margin-bottom: 64px;
 }
 .title-block h1 {
   font-family: 'Spectral', serif;
   font-weight: 400;
-  font-size: 148px;
+  font-size: 156px;
   letter-spacing: -0.04em;
   line-height: 0.92;
-  margin-bottom: 22px;
+  margin-bottom: 28px;
   font-style: italic;
   color: var(--oxblood);
 }
@@ -85,9 +79,9 @@ body {
 .title-block .standfirst {
   font-family: 'Spectral', serif;
   font-weight: 300;
-  font-size: 21px;
+  font-size: 24px;
   font-style: italic;
-  max-width: 840px;
+  max-width: 920px;
   margin: 0 auto;
   line-height: 1.5;
   color: #4a1e26;
@@ -97,36 +91,36 @@ body {
   align-items: center;
   justify-content: center;
   gap: 18px;
-  margin: 40px auto 0;
+  margin: 44px auto 0;
 }
 .rule-ornate .line {
-  width: 160px;
+  width: 180px;
   height: 1px;
   background: var(--oxblood);
 }
 .rule-ornate .diamond {
-  width: 9px;
-  height: 9px;
+  width: 10px;
+  height: 10px;
   background: var(--teal);
   transform: rotate(45deg);
 }
 
 .layout {
   position: relative;
-  margin-bottom: 64px;
+  margin-bottom: 72px;
 }
 
 .section-headers {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 48px;
-  margin-bottom: 40px;
+  grid-template-columns: 1fr 1.3fr 1fr;
+  gap: 64px;
+  margin-bottom: 48px;
   position: relative;
   z-index: 5;
 }
 .section-header {
   text-align: center;
-  padding-bottom: 24px;
+  padding-bottom: 28px;
   border-bottom: 2px solid var(--oxblood);
 }
 .section-header.middle {
@@ -135,35 +129,35 @@ body {
 }
 .section-header .chapter {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 11px;
+  font-size: 13px;
   letter-spacing: 0.3em;
   text-transform: uppercase;
   color: var(--teal);
   font-weight: 500;
-  margin-bottom: 14px;
+  margin-bottom: 18px;
   display: block;
 }
 .section-header h2 {
   font-family: 'Spectral', serif;
-  font-size: 54px;
+  font-size: 56px;
   font-weight: 500;
   letter-spacing: -0.02em;
   line-height: 1;
-  margin-bottom: 10px;
+  margin-bottom: 14px;
   font-style: italic;
   color: var(--oxblood);
 }
 .section-header p {
   font-family: 'Spectral', serif;
-  font-size: 14px;
+  font-size: 17px;
   font-style: italic;
   color: #5a2a32;
 }
 
 .columns-area {
   display: grid;
-  grid-template-columns: 1fr 1.2fr 1fr;
-  gap: 48px;
+  grid-template-columns: 1fr 1.3fr 1fr;
+  gap: 64px;
   align-items: start;
   position: relative;
 }
@@ -173,14 +167,13 @@ body {
   inset: 0;
   pointer-events: none;
   z-index: 1;
-  width: 100%;
-  height: 100%;
+  overflow: visible;
 }
 
 .card-stack {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 18px;
   position: relative;
   z-index: 2;
 }
@@ -188,17 +181,22 @@ body {
 .card {
   background: var(--parchment-dark);
   border: 1px solid var(--oxblood);
-  padding: 16px 16px 20px;
+  padding: 22px 24px 24px;
   position: relative;
   box-shadow: 4px 4px 0 var(--teal);
+  cursor: pointer;
+  transition: box-shadow 0.3s ease;
+}
+.card:hover {
+  box-shadow: 6px 6px 0 var(--teal);
 }
 .card .num {
   position: absolute;
-  top: 10px;
-  right: 14px;
+  top: 14px;
+  right: 18px;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.2em;
+  font-size: 11px;
+  letter-spacing: 0.25em;
   color: var(--teal);
   font-weight: 500;
   background: var(--parchment-dark);
@@ -209,42 +207,54 @@ body {
   width: 100%;
   aspect-ratio: 16 / 9;
   background: var(--ink);
-  margin-bottom: 14px;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
   border: 1px solid var(--oxblood);
+  max-height: 0;
+  border-width: 0;
+  margin-bottom: 0;
+  opacity: 0;
+  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              border-width 0.4s ease,
+              margin-bottom 0.4s ease,
+              opacity 0.35s ease;
+}
+.card:hover .visual {
+  max-height: 340px;
+  border-width: 1px;
+  margin-bottom: 18px;
+  opacity: 1;
 }
 .card .visual svg { width: 62%; height: 62%; }
 .card .name {
   font-family: 'Spectral', serif;
-  font-size: 17px;
+  font-size: 23px;
   font-weight: 600;
-  letter-spacing: 0.01em;
+  letter-spacing: 0.005em;
   display: block;
-  margin-bottom: 5px;
-  padding: 0 6px;
+  margin-bottom: 8px;
   color: var(--oxblood);
+  line-height: 1.15;
+  padding-right: 44px;
 }
 .card .desc {
   font-family: 'Spectral', serif;
-  font-size: 13px;
+  font-size: 17px;
   font-style: italic;
   color: #5a2a32;
-  line-height: 1.5;
+  line-height: 1.45;
   display: block;
-  padding: 0 6px;
 }
 
 .card.placeholder .visual {
   background: var(--parchment);
-  border: 1px dashed rgba(58, 18, 24, 0.4);
 }
 .card.placeholder .visual .ph-label {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 9px;
+  font-size: 11px;
   letter-spacing: 0.25em;
   text-transform: uppercase;
   color: rgba(58, 18, 24, 0.55);
@@ -253,9 +263,9 @@ body {
 }
 .card.placeholder .visual .ph-label .big {
   display: block;
-  font-size: 26px;
+  font-size: 32px;
   color: rgba(58, 18, 24, 0.3);
-  margin-bottom: 4px;
+  margin-bottom: 6px;
   font-family: 'Spectral', serif;
   font-style: italic;
   text-transform: none;
@@ -264,13 +274,15 @@ body {
 .more-card {
   background: transparent;
   border: 1px dashed rgba(58, 18, 24, 0.4);
-  padding: 18px;
+  padding: 22px;
   text-align: center;
   box-shadow: none;
+  cursor: default;
 }
+.more-card:hover { box-shadow: none; }
 .more-card .more-text {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 11px;
+  font-size: 13px;
   letter-spacing: 0.3em;
   text-transform: uppercase;
   color: var(--oxblood);
@@ -283,58 +295,54 @@ body {
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  padding-top: 120px;
 }
-
 .cor {
   background: var(--oxblood);
   color: var(--parchment);
-  padding: 44px 38px 46px;
+  padding: 48px 42px 52px;
   position: relative;
   width: 100%;
   box-shadow: 6px 6px 0 var(--teal), 12px 12px 0 var(--gold);
 }
 .cor .cor-title {
   text-align: center;
-  padding-bottom: 24px;
-  margin-bottom: 28px;
+  padding-bottom: 28px;
+  margin-bottom: 32px;
   border-bottom: 1px solid rgba(236, 224, 196, 0.25);
 }
 .cor .cor-title .chapter {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 11px;
+  font-size: 13px;
   letter-spacing: 0.3em;
   text-transform: uppercase;
   color: var(--gold);
   display: block;
-  margin-bottom: 16px;
+  margin-bottom: 18px;
 }
 .cor .cor-title h2 {
   font-family: 'Spectral', serif;
-  font-size: 96px;
+  font-size: 104px;
   font-weight: 400;
   letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--parchment);
   line-height: 1;
-  margin-bottom: 12px;
+  margin-bottom: 14px;
 }
 .cor .cor-title p {
   font-family: 'Spectral', serif;
-  font-size: 15px;
+  font-size: 18px;
   font-style: italic;
   color: #c4b894;
 }
-.cor-body {
-  text-align: center;
-}
+.cor-body { text-align: center; }
 .cor-body .quote {
   font-family: 'Spectral', serif;
-  font-size: 19px;
+  font-size: 23px;
   font-style: italic;
-  line-height: 1.65;
+  line-height: 1.55;
   color: var(--parchment);
-  margin-bottom: 32px;
+  margin-bottom: 36px;
   padding: 0 8px;
 }
 .cor-body .quote em {
@@ -345,42 +353,40 @@ body {
 .cor-attrs {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 14px;
-  padding: 24px 0;
+  gap: 16px;
+  padding: 28px 0;
   border-top: 1px solid rgba(236, 224, 196, 0.25);
   border-bottom: 1px solid rgba(236, 224, 196, 0.25);
-  margin-bottom: 28px;
+  margin-bottom: 32px;
 }
-.cor-attrs .a {
-  text-align: center;
-}
+.cor-attrs .a { text-align: center; }
 .cor-attrs .a .k {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 9px;
+  font-size: 11px;
   letter-spacing: 0.24em;
   text-transform: uppercase;
   color: var(--gold);
   display: block;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 .cor-attrs .a .v {
   font-family: 'Spectral', serif;
-  font-size: 14px;
+  font-size: 17px;
   font-style: italic;
   color: #c4b894;
 }
 .cor-tail {
   font-family: 'Spectral', serif;
-  font-size: 13px;
+  font-size: 16px;
   font-style: italic;
   color: #c4b894;
   text-align: center;
-  line-height: 1.7;
+  line-height: 1.65;
 }
 
 .footer {
   border-top: 2px solid var(--oxblood);
-  padding-top: 28px;
+  padding-top: 32px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -388,7 +394,7 @@ body {
 .footer .motto {
   font-family: 'Spectral', serif;
   font-style: italic;
-  font-size: 24px;
+  font-size: 26px;
   letter-spacing: 0.02em;
   color: var(--oxblood);
 }
@@ -399,7 +405,7 @@ body {
 }
 .footer .folio {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 12px;
+  font-size: 13px;
   letter-spacing: 0.25em;
   text-transform: uppercase;
   color: var(--oxblood);
@@ -448,47 +454,7 @@ body {
 
     <div class="columns-area">
 
-      <svg class="connector-layer" viewBox="0 0 1640 1680" preserveAspectRatio="none">
-        <line x1="380" y1="140" x2="620" y2="400" stroke="#3a1218" stroke-width="1.2" opacity="0.55"/>
-        <circle cx="380" cy="140" r="4" fill="#2d6b6b"/>
-        <circle cx="620" cy="400" r="4" fill="#2d6b6b"/>
-
-        <line x1="380" y1="440" x2="620" y2="560" stroke="#3a1218" stroke-width="1.2" opacity="0.55"/>
-        <circle cx="380" cy="440" r="4" fill="#2d6b6b"/>
-        <circle cx="620" cy="560" r="4" fill="#2d6b6b"/>
-
-        <line x1="380" y1="740" x2="620" y2="720" stroke="#3a1218" stroke-width="1.2" opacity="0.55"/>
-        <circle cx="380" cy="740" r="4" fill="#2d6b6b"/>
-        <circle cx="620" cy="720" r="4" fill="#2d6b6b"/>
-
-        <line x1="380" y1="1040" x2="620" y2="880" stroke="#3a1218" stroke-width="1.2" opacity="0.55"/>
-        <circle cx="380" cy="1040" r="4" fill="#2d6b6b"/>
-        <circle cx="620" cy="880" r="4" fill="#2d6b6b"/>
-
-        <line x1="380" y1="1340" x2="620" y2="1040" stroke="#3a1218" stroke-width="1.2" opacity="0.55"/>
-        <circle cx="380" cy="1340" r="4" fill="#2d6b6b"/>
-        <circle cx="620" cy="1040" r="4" fill="#2d6b6b"/>
-
-        <line x1="1260" y1="140" x2="1020" y2="400" stroke="#3a1218" stroke-width="1.2" opacity="0.55"/>
-        <circle cx="1260" cy="140" r="4" fill="#2d6b6b"/>
-        <circle cx="1020" cy="400" r="4" fill="#2d6b6b"/>
-
-        <line x1="1260" y1="440" x2="1020" y2="560" stroke="#3a1218" stroke-width="1.2" opacity="0.55"/>
-        <circle cx="1260" cy="440" r="4" fill="#2d6b6b"/>
-        <circle cx="1020" cy="560" r="4" fill="#2d6b6b"/>
-
-        <line x1="1260" y1="740" x2="1020" y2="720" stroke="#3a1218" stroke-width="1.2" opacity="0.55"/>
-        <circle cx="1260" cy="740" r="4" fill="#2d6b6b"/>
-        <circle cx="1020" cy="720" r="4" fill="#2d6b6b"/>
-
-        <line x1="1260" y1="1040" x2="1020" y2="880" stroke="#3a1218" stroke-width="1.2" opacity="0.55"/>
-        <circle cx="1260" cy="1040" r="4" fill="#2d6b6b"/>
-        <circle cx="1020" cy="880" r="4" fill="#2d6b6b"/>
-
-        <line x1="1260" y1="1340" x2="1020" y2="1040" stroke="#3a1218" stroke-width="1.2" opacity="0.55"/>
-        <circle cx="1260" cy="1340" r="4" fill="#2d6b6b"/>
-        <circle cx="1020" cy="1040" r="4" fill="#2d6b6b"/>
-      </svg>
+      <svg class="connector-layer"></svg>
 
       <div class="card-stack">
 
@@ -674,5 +640,87 @@ body {
     <div class="folio">demismatch.com &nbsp;·&nbsp; № 01</div>
   </div>
 </div>
+
+<script>
+(function() {
+  const svg = document.querySelector('.connector-layer');
+  const area = document.querySelector('.columns-area');
+  const cor = document.querySelector('.cor');
+  const ns = 'http://www.w3.org/2000/svg';
+  if (!svg || !area || !cor) return;
+
+  function draw() {
+    const areaRect = area.getBoundingClientRect();
+    const corRect = cor.getBoundingClientRect();
+
+    svg.setAttribute('viewBox', `0 0 ${areaRect.width} ${areaRect.height}`);
+    svg.setAttribute('width', areaRect.width);
+    svg.setAttribute('height', areaRect.height);
+    svg.innerHTML = '';
+
+    const corLeftX = corRect.left - areaRect.left;
+    const corRightX = corRect.right - areaRect.left;
+    const corCY = corRect.top + corRect.height / 2 - areaRect.top;
+
+    const stacks = document.querySelectorAll('.card-stack');
+    if (stacks.length < 2) return;
+    const leftCards = stacks[0].querySelectorAll('.card:not(.more-card)');
+    const rightCards = stacks[1].querySelectorAll('.card:not(.more-card)');
+
+    const line = (x1, y1, x2, y2) => {
+      const l = document.createElementNS(ns, 'line');
+      l.setAttribute('x1', x1); l.setAttribute('y1', y1);
+      l.setAttribute('x2', x2); l.setAttribute('y2', y2);
+      l.setAttribute('stroke', '#3a1218');
+      l.setAttribute('stroke-width', '1.2');
+      l.setAttribute('opacity', '0.5');
+      svg.appendChild(l);
+    };
+    const dot = (x, y, r, fill) => {
+      const c = document.createElementNS(ns, 'circle');
+      c.setAttribute('cx', x); c.setAttribute('cy', y);
+      c.setAttribute('r', r); c.setAttribute('fill', fill);
+      svg.appendChild(c);
+    };
+
+    leftCards.forEach(card => {
+      const r = card.getBoundingClientRect();
+      const fx = r.right - areaRect.left;
+      const fy = r.top + r.height / 2 - areaRect.top;
+      line(fx, fy, corLeftX, corCY);
+      dot(fx, fy, 4, '#2d6b6b');
+    });
+    rightCards.forEach(card => {
+      const r = card.getBoundingClientRect();
+      const fx = r.left - areaRect.left;
+      const fy = r.top + r.height / 2 - areaRect.top;
+      line(fx, fy, corRightX, corCY);
+      dot(fx, fy, 4, '#2d6b6b');
+    });
+
+    dot(corLeftX, corCY, 5, '#c4962c');
+    dot(corRightX, corCY, 5, '#c4962c');
+  }
+
+  function animateDuring(ms) {
+    const start = performance.now();
+    const tick = () => {
+      draw();
+      if (performance.now() - start < ms) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  }
+
+  window.addEventListener('load', draw);
+  window.addEventListener('resize', draw);
+  document.querySelectorAll('.card').forEach(card => {
+    card.addEventListener('mouseenter', () => animateDuring(500));
+    card.addEventListener('mouseleave', () => animateDuring(500));
+  });
+
+  if (document.readyState === 'complete') draw();
+  else document.addEventListener('DOMContentLoaded', draw);
+})();
+</script>
 </body>
 </html>
