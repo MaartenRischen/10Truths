@@ -459,27 +459,31 @@
       }
 
       .truth-section {
-        margin-bottom: 4rem;
+        margin-bottom: 5.5rem;
       }
 
       .truth-text {
         width: calc(100% - 1rem);
         max-width: calc(100% - 1rem);
         padding: 0.8rem 1rem;
-        bottom: 0.6rem;
         border-width: 1px;
       }
 
-      .truth-text.pos-top {
-        top: 0.6rem;
+      /* Mobile: labels half-overlap the image edge opposite their desktop anchor.
+         Desktop-bottom labels → mobile top half-overlap.
+         Desktop-top / center labels → mobile bottom half-overlap. */
+      .truth-image .truth-text {
+        top: 0;
+        bottom: auto;
+        transform: translate(-50%, calc(-50% + var(--parallax-y, 0px)));
       }
 
-      .truth-text.pos-lower {
-        bottom: 0.6rem;
-      }
-
-      .truth-text.pos-bottom {
-        bottom: 0.3rem;
+      .truth-image .truth-text.pos-top,
+      .truth-image .truth-text.pos-upper,
+      .truth-image .truth-text.pos-center {
+        top: auto;
+        bottom: 0;
+        transform: translate(-50%, calc(50% + var(--parallax-y, 0px)));
       }
 
       .truth-text h2 {
