@@ -293,6 +293,8 @@ body {
   transition: color 0.2s ease;
 }
 .footer a:hover { color: var(--teal); }
+.footer .footer-nav { display: flex; gap: 22px; align-items: baseline; flex-wrap: wrap; }
+.footer .sibling { color: var(--teal); }
 
 @media (max-width: 960px) {
   .page { padding: 48px 28px; }
@@ -449,7 +451,10 @@ body {
   <p class="closer">Four more shapes in development. The series is open — any arrangement of people, place, and rhythm that passes the frame (environment, not tool) qualifies.</p>
 
   <div class="footer">
-    <a href="vision.html">← Back to the vision</a>
+    <div class="footer-nav">
+      <a href="vision.html">← Back to the vision</a>
+      <a href="interpreter.html" class="sibling">The Interpreter →</a>
+    </div>
     <span>demismatch.com · Adaptor / 01</span>
   </div>
 

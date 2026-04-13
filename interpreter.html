@@ -251,6 +251,8 @@ body {
   transition: color 0.2s ease;
 }
 .footer a:hover { color: var(--teal); }
+.footer .footer-nav { display: flex; gap: 22px; align-items: baseline; flex-wrap: wrap; }
+.footer .sibling { color: var(--teal); }
 
 @media (max-width: 900px) {
   .page { padding: 48px 24px; }
@@ -353,7 +355,10 @@ body {
   </div>
 
   <div class="footer">
-    <a href="vision.html">← Back to the vision</a>
+    <div class="footer-nav">
+      <a href="vision.html">← Back to the vision</a>
+      <a href="adaptor.html" class="sibling">The Adaptor →</a>
+    </div>
     <span>demismatch.com · Interpreter / 01</span>
   </div>
 
