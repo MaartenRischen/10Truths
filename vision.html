@@ -230,6 +230,36 @@ body {
   opacity: 1;
 }
 .card .visual svg { width: 62%; height: 62%; }
+.card .visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.card-spec {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(58, 18, 24, 0.18);
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 6px 14px;
+}
+.card-spec dt {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--teal);
+  font-weight: 500;
+  line-height: 1.5;
+}
+.card-spec dd {
+  font-family: 'Spectral', serif;
+  font-size: 13px;
+  color: #5a2a32;
+  font-style: italic;
+  line-height: 1.45;
+}
 .card .name {
   font-family: 'Spectral', serif;
   font-size: 23px;
@@ -247,6 +277,54 @@ body {
   color: #5a2a32;
   line-height: 1.45;
   display: block;
+  padding-right: 98px;
+  transition: padding-right 0.35s ease;
+}
+.card:hover .desc {
+  padding-right: 0;
+}
+.card .preview {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  width: 82px;
+  height: 46px;
+  background: var(--ink);
+  border: 1px solid var(--oxblood);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  z-index: 2;
+  opacity: 1;
+  transition: opacity 0.25s ease;
+  pointer-events: none;
+}
+.card .preview svg {
+  width: 72%;
+  height: 72%;
+}
+.card .preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.card:hover .preview {
+  opacity: 0;
+}
+.card.placeholder .preview {
+  background: var(--parchment);
+  border: 1px dashed rgba(58, 18, 24, 0.4);
+}
+.card.placeholder .preview::before {
+  content: '+';
+  font-family: 'Spectral', serif;
+  font-size: 22px;
+  font-weight: 300;
+  color: rgba(58, 18, 24, 0.45);
+  line-height: 1;
 }
 
 .card.placeholder .visual {
@@ -675,31 +753,76 @@ body {
 
       <div class="card-stack">
 
-        <div class="card placeholder">
+        <div class="card">
           <span class="num">c.1</span>
           <div class="visual">
-            <span class="ph-label"><span class="big">+</span>drop screenshot<br>lens extension</span>
+            <img src="lens-01.png" alt="Lens browser extension annotating a CNN article — the Rory McIlroy Masters headline marked EX·02 with the breakdown 'A prestige in a tribe not yours'">
           </div>
           <span class="name">Lens</span>
           <span class="desc">Browser extension. Every page annotated: mechanism hijacked, proxy sold, real need imitated.</span>
+          <dl class="card-spec">
+            <dt>Form</dt><dd>Chrome extension · v0.4.2</dd>
+            <dt>Targets</dt><dd>Any mechanism, per page element</dd>
+            <dt>Proxy</dt><dd>Manufactured status, threat, urgency, or intimacy</dd>
+            <dt>Real input</dt><dd>The resolution condition the mechanism evolved to process</dd>
+          </dl>
         </div>
 
-        <div class="card placeholder">
+        <div class="card">
           <span class="num">c.2</span>
           <div class="visual">
-            <span class="ph-label"><span class="big">+</span>drop screenshot<br>hud overlay</span>
+            <img src="source-decode-01.png" alt="Source:Decode HUD overlay on a photo of a cobra in defensive posture — biometrics panel showing MAX cortisol and MAX adrenaline, action: FREEZE, threat level: CRITICAL">
           </div>
           <span class="name">Source:Decode</span>
           <span class="desc">Real-world HUD. Point it at a scene — get mechanism, proxy, mismatch, named on the image.</span>
+          <dl class="card-spec">
+            <dt>Form</dt><dd>Scene HUD — image upload, live camera in progress</dd>
+            <dt>Targets</dt><dd>Any mechanism firing in a visual scene</dd>
+            <dt>Proxy</dt><dd>Hyperstimulus pattern when present; named "MATCHED" when real</dd>
+            <dt>Real input</dt><dd>What the organism is actually reading the scene as</dd>
+          </dl>
         </div>
 
-        <div class="card placeholder">
+        <div class="card">
           <span class="num">c.3</span>
           <div class="visual">
-            <span class="ph-label"><span class="big">+</span>drop screenshot<br>interpreter chat</span>
+            <svg viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%;display:block">
+              <rect width="1600" height="900" fill="#120506"/>
+              <text x="60" y="66" font-family="'JetBrains Mono',monospace" font-size="26" fill="#c4962c" letter-spacing="6">INTERPRETER</text>
+              <text x="1540" y="66" font-family="'JetBrains Mono',monospace" font-size="22" fill="#5a4a30" letter-spacing="4" text-anchor="end">SESSION · 01</text>
+              <line x1="60" y1="96" x2="1540" y2="96" stroke="#3a1218" stroke-width="1.5"/>
+
+              <text x="1540" y="148" font-family="'JetBrains Mono',monospace" font-size="18" fill="#6a5a3a" letter-spacing="4" text-anchor="end">YOU</text>
+              <rect x="540" y="170" width="1000" height="130" rx="10" fill="#2a0c11" stroke="#c4962c" stroke-width="1.2"/>
+              <text x="570" y="222" font-family="'Spectral',serif" font-size="32" font-style="italic" fill="#ece0c4">Why do I feel bad when a stranger</text>
+              <text x="570" y="268" font-family="'Spectral',serif" font-size="32" font-style="italic" fill="#ece0c4">wins a championship?</text>
+
+              <text x="60" y="348" font-family="'JetBrains Mono',monospace" font-size="18" fill="#c4962c" letter-spacing="4">INTERPRETER</text>
+              <rect x="60" y="368" width="1320" height="360" rx="10" fill="#1a0608" stroke="#3a1218" stroke-width="2"/>
+              <text x="90" y="428" font-family="'Spectral',serif" font-size="30" fill="#ece0c4">Your rank tracker is firing on someone outside your coalition.</text>
+              <text x="90" y="488" font-family="'Spectral',serif" font-size="26" fill="#c4b894">The circuit reads visible status change and runs the motivation</text>
+              <text x="90" y="524" font-family="'Spectral',serif" font-size="26" fill="#c4b894">to compete — built for 150 people you know by face.</text>
+              <text x="90" y="596" font-family="'Spectral',serif" font-size="26" fill="#c4b894">It does not check whether the ranked-up person is reachable.</text>
+              <text x="90" y="632" font-family="'Spectral',serif" font-size="26" fill="#c4b894">It runs on rank change, delivered by any channel. The circuit</text>
+              <text x="90" y="668" font-family="'Spectral',serif" font-size="26" fill="#c4b894">does not know about media. It treats a Masters winner as a rival.</text>
+
+              <line x1="60" y1="780" x2="1540" y2="780" stroke="#3a1218" stroke-width="1"/>
+              <text x="60" y="820" font-family="'JetBrains Mono',monospace" font-size="16" fill="#c4962c" letter-spacing="3">MECHANISM</text>
+              <text x="60" y="858" font-family="'Spectral',serif" font-size="22" font-style="italic" fill="#c4b894">Social rank tracking</text>
+              <text x="560" y="820" font-family="'JetBrains Mono',monospace" font-size="16" fill="#c4962c" letter-spacing="3">PROXY</text>
+              <text x="560" y="858" font-family="'Spectral',serif" font-size="22" font-style="italic" fill="#c4b894">Stranger's visible win via media</text>
+              <text x="1180" y="820" font-family="'JetBrains Mono',monospace" font-size="16" fill="#c4962c" letter-spacing="3">REAL INPUT</text>
+              <text x="1180" y="858" font-family="'Spectral',serif" font-size="22" font-style="italic" fill="#c4b894">Rank change in your coalition</text>
+            </svg>
           </div>
           <span class="name">Interpreter</span>
           <span class="desc">Situation in, evolutionary read out. Not a companion, not advice — the mechanism story behind what you're feeling.</span>
+          <dl class="card-spec">
+            <dt>Form</dt><dd>Chat — web, grounded in the Cor spec</dd>
+            <dt>Targets</dt><dd>Any mechanism relevant to a described situation</dd>
+            <dt>Proxy</dt><dd>Emotional advice, reassurance, "companion" dynamics</dd>
+            <dt>Real input</dt><dd>The mechanism story — what's firing, why, and what it was built for</dd>
+          </dl>
         </div>
 
         <div class="card placeholder">
@@ -820,6 +943,22 @@ body {
     };
     requestAnimationFrame(tick);
   }
+
+  function buildPreviews() {
+    document.querySelectorAll('.card:not(.more-card)').forEach(card => {
+      if (card.querySelector('.preview')) return;
+      const preview = document.createElement('div');
+      preview.className = 'preview';
+      const visual = card.querySelector('.visual');
+      const svg = visual?.querySelector('svg');
+      const img = visual?.querySelector('img');
+      if (svg) preview.appendChild(svg.cloneNode(true));
+      else if (img) preview.appendChild(img.cloneNode(true));
+      card.appendChild(preview);
+    });
+  }
+
+  buildPreviews();
 
   window.addEventListener('load', draw);
   window.addEventListener('resize', draw);
