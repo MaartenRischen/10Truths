@@ -130,8 +130,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      min-height: 100vh;
-      padding: 6rem 2rem;
+      padding: 2rem 2rem;
       text-align: center;
     }
 
@@ -157,12 +156,12 @@
       color: var(--bone);
       text-transform: uppercase;
       opacity: 0.55;
-      margin-bottom: 2.5rem;
+      margin-bottom: 0.5rem;
     }
 
     .hero-headline {
       font-family: var(--serif);
-      font-size: clamp(2.4rem, 5vw, 3.6rem);
+      font-size: clamp(1.2rem, 2.5vw, 1.8rem);
       font-weight: 400;
       line-height: 1.35;
       color: var(--bone);
@@ -173,7 +172,7 @@
 
     .hero-body {
       max-width: none;
-      margin: 0 auto 3rem;
+      margin: 0 auto;
     }
 
     .hero-body p {
@@ -246,7 +245,7 @@
 
     .truth-section {
       position: relative;
-      margin-bottom: 3rem;
+      margin-bottom: 9rem;
       padding-top: 0;
     }
 
@@ -254,34 +253,43 @@
     .truth-text {
       position: absolute;
       left: 50%;
-      bottom: 3rem;
-      transform: translateX(-50%);
+      top: 72%;
+      transform: translate(-50%, calc(-50% + var(--parallax-y, 0px)));
+      will-change: transform;
       z-index: 2;
-      width: calc(100% - 4rem);
-      max-width: none;
+      width: auto;
+      max-width: calc(100% - 4rem);
       margin: 0;
-      padding: 4.5rem 4rem;
+      padding: 1.25rem 1.75rem;
       text-align: center;
 
       background: rgba(0, 0, 0, 0.55);
       backdrop-filter: blur(24px) saturate(1.3);
       -webkit-backdrop-filter: blur(24px) saturate(1.3);
 
-      border: 6px solid rgba(255, 255, 255, 0.07);
+      border: 2px solid rgba(255, 255, 255, 0.07);
       border-radius: 0px;
       box-shadow:
-        0 1px 0 0 rgba(255, 255, 255, 0.04) inset,
-        0 -1px 0 0 rgba(0, 0, 0, 0.2) inset,
-        0 8px 32px 16px rgba(0, 0, 0, 0.5);
+        0 1px 0 0 rgba(255, 255, 255, 0.06) inset,
+        0 -1px 0 0 rgba(0, 0, 0, 0.25) inset,
+        0 24px 70px -6px rgba(0, 0, 0, 0.9),
+        0 10px 28px -4px rgba(0, 0, 0, 0.7);
     }
+
+    /* Per-truth vertical position overrides */
+    .truth-text.pos-top    { top: 15%; }
+    .truth-text.pos-upper  { top: 40%; }
+    .truth-text.pos-center { top: 50%; }
+    .truth-text.pos-lower  { top: 72%; }
+    .truth-text.pos-bottom { top: 85%; }
 
     /* Subtle top accent line */
     .truth-text::before {
       content: '';
       position: absolute;
       top: 0;
-      left: 2.5rem;
-      right: 2.5rem;
+      left: 1rem;
+      right: 1rem;
       height: 1px;
       background: linear-gradient(
         to right,
@@ -299,7 +307,7 @@
       font-weight: 400;
       letter-spacing: 0.3em;
       color: var(--bone);
-      margin-bottom: 1rem;
+      margin-bottom: 0.5rem;
       opacity: 0.3;
       text-transform: uppercase;
     }
@@ -322,6 +330,27 @@
       color: var(--bone);
       opacity: 0.7;
       text-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+    }
+
+    /* ── Body paragraphs (below frame, full width) ── */
+    .truth-body {
+      width: 100%;
+      padding: 5rem 2rem 0;
+      text-align: center;
+    }
+
+    .truth-body p {
+      font-family: var(--serif);
+      font-size: clamp(1rem, 1.4vw, 1.2rem);
+      line-height: 1.7;
+      font-weight: 300;
+      color: var(--bone);
+      opacity: 0.75;
+      margin-bottom: 1.25rem;
+    }
+
+    .truth-body p:last-child {
+      margin-bottom: 0;
     }
 
     /* ── Image ── */
@@ -374,7 +403,7 @@
       }
 
       .hero-headline {
-        font-size: clamp(1.8rem, 7vw, 2.4rem);
+        font-size: clamp(0.9rem, 3.5vw, 1.2rem);
         margin-bottom: 2rem;
       }
 
@@ -402,6 +431,8 @@
       }
 
       .end-space { display: none; }
+
+      .truth-body { display: none; }
 
       main {
         display: flex;
@@ -454,6 +485,7 @@
 
       .truth-text {
         position: absolute;
+        top: auto;
         bottom: 1rem;
         left: 50%;
         transform: translateX(-50%);
@@ -525,8 +557,8 @@
       <h1 class="site-title">Demismatch</h1>
       <h2 class="hero-headline">You are not broken. You are mismatched.</h2>
       <div class="hero-body">
-        <p>You are a completely functional organism, unable to be human in a world that no longer fits. The exhaustion, the loneliness, the loss of meaning, the sense that something is wrong and you can't name it — these are not symptoms of a disease. They are accurate signals from a body that knows it is in the wrong environment. The organism works. The world it was built for is gone.</p>
-        <p>Tech and AI aren't the enemy — they're the most powerful tools we've ever made. But right now they're owned by people who profit when you stay hungry and confused. This is our last chance to use them to become human again.</p>
+        <p>You are a completely functional organism, unable to be human in a world that no longer fits. The exhaustion, the loneliness, the loss of meaning, the sense that something is wrong and you can't name it - these are not symptoms of a disease. They are accurate signals from a body that knows it is in the wrong environment. The organism works. The world it was built for is gone.</p>
+        <p style="font-weight: 500; opacity: 0.85;">Tech and AI aren't the enemy - they're the most powerful tools we've ever made. But right now they're owned by people who profit when you stay hungry and confused. This is our last chance to use them to become human again.</p>
       </div>
     </div>
   </header>
@@ -534,10 +566,9 @@
   <main id="truths">
 
     <div class="truth-section">
-      <div class="truth-text">
+      <div class="truth-text pos-top">
         <div class="truth-number">01</div>
         <h2>You don't see reality. You see a biological dashboard built to keep you alive and reproducing.</h2>
-        <p>Every living being has their own, attuned to the environment they evolved for and the constraints and strategies they have to act on that environment. We work with the rules of the game like any other evolved biological organism — which is everything alive on this planet.</p>
       </div>
       <div class="truth-image">
         <div class="img-wrapper">
@@ -547,6 +578,9 @@
           </picture>
         </div>
       </div>
+      <div class="truth-body">
+        <p>Every living being has their own, attuned to the environment they evolved for and the constraints and strategies they have to act on that environment. We work with the rules of the game like any other evolved biological organism - which is everything alive on this planet.</p>
+      </div>
     </div>
 
     <div class="section-divider"></div>
@@ -555,7 +589,6 @@
       <div class="truth-text">
         <div class="truth-number">02</div>
         <h2>The dashboard works perfectly.</h2>
-        <p>It always has. It shows you what is most important for survival and reproduction — danger, opportunities, resources — and renders everything else practically invisible. Anything else would just eat up energy and resources.</p>
       </div>
       <div class="truth-image">
         <div class="img-wrapper">
@@ -565,16 +598,17 @@
           </picture>
         </div>
       </div>
+      <div class="truth-body">
+        <p>It always has. It shows you what is most important for survival and reproduction - danger, opportunities, resources - and renders everything else practically invisible. Anything else would just eat up energy and resources.</p>
+      </div>
     </div>
 
     <div class="section-divider"></div>
 
     <div class="truth-section">
-      <div class="truth-text">
+      <div class="truth-text pos-top">
         <div class="truth-number">03</div>
         <h2>Every sensation, including every emotion, is an indicator on the dashboard.</h2>
-        <p>Anything you feel — physically and emotionally — is ordered by what is most important for survival and reproduction, and exists for that exact reason. Each signal is a cost/benefit calculation your body already ran for you, faster and with more data than you could ever do consciously. By the time you feel it, the math is done. Your feelings, emotions and urges tell you exactly whether your environment is good for this or needs to be changed.</p>
-        <p>Burning sensation on your skin? Get out of the sun. Dying is not good for survival. Painful sense of romantic rejection? Change something in your social environment — fix your reputation, take a shower. Romantic rejection is not good for reproduction.</p>
       </div>
       <div class="truth-image">
         <div class="img-wrapper">
@@ -584,6 +618,10 @@
           </picture>
         </div>
       </div>
+      <div class="truth-body">
+        <p>Anything you feel - physically and emotionally - is ordered by what is most important for survival and reproduction, and exists for that exact reason. Each signal is a cost/benefit calculation your body already ran for you, faster and with more data than you could ever do consciously. By the time you feel it, the math is done. Your feelings, emotions and urges tell you exactly whether your environment is good for this or needs to be changed.</p>
+        <p>Burning sensation on your skin? Get out of the sun. Dying is not good for survival. Painful sense of romantic rejection? Change something in your social environment - fix your reputation, take a shower. Romantic rejection is not good for reproduction.</p>
+      </div>
     </div>
 
     <div class="section-divider"></div>
@@ -592,7 +630,6 @@
       <div class="truth-text">
         <div class="truth-number">04</div>
         <h2>The dashboard was calibrated for a world that no longer exists.</h2>
-        <p>Evolution, especially of our most primal instincts, doesn't go fast enough. We're still calibrated for living in a tribe of 150 people max in the savannah.</p>
       </div>
       <div class="truth-image">
         <div class="img-wrapper">
@@ -602,15 +639,17 @@
           </picture>
         </div>
       </div>
+      <div class="truth-body">
+        <p>Evolution, especially of our most primal instincts, doesn't go fast enough. We're still calibrated for living in a tribe of 150 people max in the savannah.</p>
+      </div>
     </div>
 
     <div class="section-divider"></div>
 
     <div class="truth-section">
-      <div class="truth-text">
+      <div class="truth-text pos-top">
         <div class="truth-number">05</div>
         <h2>Modern distress is accurate signaling about a broken environment.</h2>
-        <p>The signals are doing their job. The world they're pointing at is gone. Loneliness is asking you to repair your standing with people whose survival is tied to yours — those people don't exist in your life. Anxiety is scanning a tribe that isn't there. The alarms are correct. The actions they're asking for are impossible. So you sit inside accurate pain with nowhere to put it.</p>
       </div>
       <div class="truth-image">
         <div class="img-wrapper">
@@ -620,6 +659,9 @@
           </picture>
         </div>
       </div>
+      <div class="truth-body">
+        <p>The signals are doing their job. The world they're pointing at is gone. Loneliness is asking you to repair your standing with people whose survival is tied to yours - those people don't exist in your life. Anxiety is scanning a tribe that isn't there. The alarms are correct. The actions they're asking for are impossible. So you sit inside accurate pain with nowhere to put it.</p>
+      </div>
     </div>
 
     <div class="section-divider"></div>
@@ -628,7 +670,6 @@
       <div class="truth-text">
         <div class="truth-number">06</div>
         <h2>When real satisfaction is blocked, you reach for proxies.</h2>
-        <p>The modern world gives you what you think you want, when the real thing you actually need is unattainable. Proxies feel right but never work.</p>
       </div>
       <div class="truth-image">
         <div class="img-wrapper">
@@ -638,15 +679,17 @@
           </picture>
         </div>
       </div>
+      <div class="truth-body">
+        <p>The modern world gives you what you think you want, when the real thing you actually need is unattainable. Proxies feel right but never work.</p>
+      </div>
     </div>
 
     <div class="section-divider"></div>
 
     <div class="truth-section">
-      <div class="truth-text">
+      <div class="truth-text pos-top">
         <div class="truth-number">07</div>
         <h2>A satisfied human is a terrible customer.</h2>
-        <p>Every industry understands this mismatch and profits off it daily. Your urge for dense calories before the inevitable savannah drought is why McDonald's exists. Your urge for reproduction is why Tinder exists. Your urge to explore new lands, new mates, any opportunity, is why the endless scroll exists.</p>
       </div>
       <div class="truth-image">
         <div class="img-wrapper">
@@ -656,6 +699,9 @@
           </picture>
         </div>
       </div>
+      <div class="truth-body">
+        <p>Every industry understands this mismatch and profits off it daily. Your urge for dense calories before the inevitable savannah drought is why McDonald's exists. Your urge for reproduction is why Tinder exists. Your urge to explore new lands, new mates, any opportunity, is why the endless scroll exists.</p>
+      </div>
     </div>
 
     <div class="section-divider"></div>
@@ -664,7 +710,6 @@
       <div class="truth-text">
         <div class="truth-number">08</div>
         <h2>AI companionship is the most dangerous proxy ever built.</h2>
-        <p>Bonding chemistry evolved to bind you to people whose survival depended on yours, and yours on theirs. An AI companion fires every one of those circuits and delivers none of the reciprocal function. Nobody's life gets harder if you disappear. The bond forms anyway. Your biology can't tell the difference — it was never built to.</p>
       </div>
       <div class="truth-image">
         <div class="img-wrapper">
@@ -674,6 +719,9 @@
           </picture>
         </div>
       </div>
+      <div class="truth-body">
+        <p>Bonding chemistry evolved to bind you to people whose survival depended on yours, and yours on theirs. An AI companion fires every one of those circuits and delivers none of the reciprocal function. Nobody's life gets harder if you disappear. The bond forms anyway. Your biology can't tell the difference - it was never built to.</p>
+      </div>
     </div>
 
     <div class="section-divider"></div>
@@ -682,7 +730,6 @@
       <div class="truth-text">
         <div class="truth-number">09</div>
         <h2>Every existing solution adapts you to the broken environment.</h2>
-        <p>Therapy teaches you to tolerate it. Medication dampens the signal. Mindfulness reframes it. Productivity systems help you run faster on the same treadmill. All of it treats the accurate alarm as the malfunction. None of it touches what the alarm is about.</p>
       </div>
       <div class="truth-image">
         <div class="img-wrapper">
@@ -692,17 +739,17 @@
           </picture>
         </div>
       </div>
+      <div class="truth-body">
+        <p>Therapy teaches you to tolerate it. Medication dampens the signal. Mindfulness reframes it. Productivity systems help you run faster on the same treadmill. All of it treats the accurate alarm as the malfunction. None of it touches what the alarm is about.</p>
+      </div>
     </div>
 
     <div class="section-divider"></div>
 
     <div class="truth-section">
-      <div class="truth-text">
+      <div class="truth-text pos-center">
         <div class="truth-number">10</div>
         <h2>The task of a truly aligned AI is to build environments in which you can be human again. And only then, allow you to augment from that baseline.</h2>
-        <p>This is not a call to abandon technology and move to the woods. The woods are not the answer — they're just one environment that happened to match. The answer is to build environments that match, using everything we have. That is the job. It is also exactly what AI should be doing. The same systems currently optimized to exploit the mismatch — to keep you scrolling, swiping, comparing, buying — could instead be optimized to resolve it. To design the room, the schedule, the group, the work, the day, so the signals your body is sending finally have somewhere to land.</p>
-        <p>De-mismatch first. Then augment. The order is not negotiable. Augmenting a mismatched human just makes the mismatch faster and more efficient — a lonelier loneliness, a more optimized scroll, a sharper version of the wrong life. You cannot upgrade a system whose error signals you are still ignoring. Fix the environment until the signals quiet on their own, and then — from a human who is actually okay — extend what that human can do. Anything else is acceleration in the wrong direction.</p>
-        <p>That is what AI is for. That is the only thing that makes the rest of it worth building.</p>
       </div>
       <div class="truth-image">
         <div class="img-wrapper">
@@ -711,6 +758,11 @@
             <img src="10-tuesday-night.jpg" alt="Tuesday night" loading="lazy" decoding="async" width="1376" height="768">
           </picture>
         </div>
+      </div>
+      <div class="truth-body">
+        <p>This is not a call to abandon technology and move to the woods. The woods are not the answer - they're just one environment that happened to match. The answer is to build environments that match, using everything we have. That is the job. It is also exactly what AI should be doing. The same systems currently optimized to exploit the mismatch - to keep you scrolling, swiping, comparing, buying - could instead be optimized to resolve it. To design the room, the schedule, the group, the work, the day, so the signals your body is sending finally have somewhere to land.</p>
+        <p>De-mismatch first. Then augment. The order is not negotiable. Augmenting a mismatched human just makes the mismatch faster and more efficient - a lonelier loneliness, a more optimized scroll, a sharper version of the wrong life. You cannot upgrade a system whose error signals you are still ignoring. Fix the environment until the signals quiet on their own, and then - from a human who is actually okay - extend what that human can do. Anything else is acceleration in the wrong direction.</p>
+        <p>That is what AI is for. That is the only thing that makes the rest of it worth building.</p>
       </div>
     </div>
 
@@ -721,6 +773,35 @@
   <script>
     const sections = document.querySelectorAll('.truth-section');
     sections.forEach(s => s.classList.add('visible'));
+
+    // ── Subtle parallax on text labels (desktop only) ──
+    if (window.innerWidth > 768) {
+      const parallaxLabels = Array.from(document.querySelectorAll('.truth-section'))
+        .map(section => ({ section, label: section.querySelector('.truth-text') }))
+        .filter(p => p.label);
+      let ticking = false;
+      function updateParallax() {
+        const viewportH = window.innerHeight;
+        const viewportCenter = viewportH / 2;
+        parallaxLabels.forEach(({ section, label }) => {
+          const rect = section.getBoundingClientRect();
+          const sectionCenter = rect.top + rect.height / 2;
+          const distance = sectionCenter - viewportCenter;
+          const parallax = -distance * 0.08;
+          label.style.setProperty('--parallax-y', `${parallax}px`);
+        });
+        ticking = false;
+      }
+      function onScroll() {
+        if (!ticking) {
+          requestAnimationFrame(updateParallax);
+          ticking = true;
+        }
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onScroll);
+      updateParallax();
+    }
 
     // ── Mobile Carousel ──
     if (window.innerWidth <= 768) {
