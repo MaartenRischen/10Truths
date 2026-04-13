@@ -469,18 +469,8 @@
         border-width: 1px;
       }
 
-      /* Mobile: labels half-overlap the image edge opposite their desktop anchor.
-         Desktop-bottom labels → mobile top half-overlap.
-         Desktop-top / center labels → mobile bottom half-overlap. */
+      /* Mobile: every label half-overlaps the bottom edge of its image. */
       .truth-image .truth-text {
-        top: 0;
-        bottom: auto;
-        transform: translate(-50%, calc(-50% + var(--parallax-y, 0px)));
-      }
-
-      .truth-image .truth-text.pos-top,
-      .truth-image .truth-text.pos-upper,
-      .truth-image .truth-text.pos-center {
         top: auto;
         bottom: 0;
         transform: translate(-50%, calc(50% + var(--parallax-y, 0px)));
@@ -508,7 +498,7 @@
       }
 
       .truth-body {
-        padding: 2rem 1rem 0;
+        padding: 4rem 1rem 0;
       }
 
       .truth-body p {
