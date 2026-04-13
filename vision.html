@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Demismatch — Full Vision</title>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --oxblood: #3a1218;
+  --oxblood-deep: #2a0c11;
+  --parchment: #ece0c4;
+  --parchment-dark: #ddd0b0;
+  --ink: #1a0608;
+  --teal: #2d6b6b;
+  --teal-bright: #3d8585;
+  --gold: #c4962c;
+}
+body {
+  background: var(--oxblood-deep);
+  font-family: 'Spectral', serif;
+  color: var(--parchment);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+}
+.page {
+  width: 1800px;
+  background: var(--parchment);
+  color: var(--ink);
+  padding: 64px 80px 72px;
+  position: relative;
+  box-shadow: 0 40px 120px rgba(0,0,0,0.8), 0 10px 30px rgba(0,0,0,0.5);
+  background-image:
+    radial-gradient(circle at 20% 20%, rgba(58, 18, 24, 0.04) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(45, 107, 107, 0.04) 0%, transparent 50%);
+}
+
+.masthead {
+  border-bottom: 2px solid var(--oxblood);
+  padding-bottom: 24px;
+  margin-bottom: 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.masthead .left {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--oxblood);
+  font-weight: 500;
+}
+.masthead .right {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--teal);
+  font-weight: 500;
+}
+
+.title-block {
+  text-align: center;
+  margin-bottom: 56px;
+}
+.title-block h1 {
+  font-family: 'Spectral', serif;
+  font-weight: 400;
+  font-size: 148px;
+  letter-spacing: -0.04em;
+  line-height: 0.92;
+  margin-bottom: 22px;
+  font-style: italic;
+  color: var(--oxblood);
+}
+.title-block h1 em {
+  font-style: normal;
+  font-weight: 600;
+  color: var(--teal);
+}
+.title-block .standfirst {
+  font-family: 'Spectral', serif;
+  font-weight: 300;
+  font-size: 21px;
+  font-style: italic;
+  max-width: 840px;
+  margin: 0 auto;
+  line-height: 1.5;
+  color: #4a1e26;
+}
+.rule-ornate {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  margin: 40px auto 0;
+}
+.rule-ornate .line {
+  width: 160px;
+  height: 1px;
+  background: var(--oxblood);
+}
+.rule-ornate .diamond {
+  width: 9px;
+  height: 9px;
+  background: var(--teal);
+  transform: rotate(45deg);
+}
+
+.layout {
+  position: relative;
+  margin-bottom: 64px;
+}
+
+.section-headers {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 48px;
+  margin-bottom: 40px;
+  position: relative;
+  z-index: 5;
+}
+.section-header {
+  text-align: center;
+  padding-bottom: 24px;
+  border-bottom: 2px solid var(--oxblood);
+}
+.section-header.middle {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+.section-header .chapter {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--teal);
+  font-weight: 500;
+  margin-bottom: 14px;
+  display: block;
+}
+.section-header h2 {
+  font-family: 'Spectral', serif;
+  font-size: 54px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  margin-bottom: 10px;
+  font-style: italic;
+  color: var(--oxblood);
+}
+.section-header p {
+  font-family: 'Spectral', serif;
+  font-size: 14px;
+  font-style: italic;
+  color: #5a2a32;
+}
+
+.columns-area {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr 1fr;
+  gap: 48px;
+  align-items: start;
+  position: relative;
+}
+
+.connector-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+}
+
+.card-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: relative;
+  z-index: 2;
+}
+
+.card {
+  background: var(--parchment-dark);
+  border: 1px solid var(--oxblood);
+  padding: 16px 16px 20px;
+  position: relative;
+  box-shadow: 4px 4px 0 var(--teal);
+}
+.card .num {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: var(--teal);
+  font-weight: 500;
+  background: var(--parchment-dark);
+  padding: 2px 6px;
+  z-index: 3;
+}
+.card .visual {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: var(--ink);
+  margin-bottom: 14px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border: 1px solid var(--oxblood);
+}
+.card .visual svg { width: 62%; height: 62%; }
+.card .name {
+  font-family: 'Spectral', serif;
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  display: block;
+  margin-bottom: 5px;
+  padding: 0 6px;
+  color: var(--oxblood);
+}
+.card .desc {
+  font-family: 'Spectral', serif;
+  font-size: 13px;
+  font-style: italic;
+  color: #5a2a32;
+  line-height: 1.5;
+  display: block;
+  padding: 0 6px;
+}
+
+.card.placeholder .visual {
+  background: var(--parchment);
+  border: 1px dashed rgba(58, 18, 24, 0.4);
+}
+.card.placeholder .visual .ph-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(58, 18, 24, 0.55);
+  text-align: center;
+  line-height: 1.7;
+}
+.card.placeholder .visual .ph-label .big {
+  display: block;
+  font-size: 26px;
+  color: rgba(58, 18, 24, 0.3);
+  margin-bottom: 4px;
+  font-family: 'Spectral', serif;
+  font-style: italic;
+  text-transform: none;
+}
+
+.more-card {
+  background: transparent;
+  border: 1px dashed rgba(58, 18, 24, 0.4);
+  padding: 18px;
+  text-align: center;
+  box-shadow: none;
+}
+.more-card .more-text {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--oxblood);
+  opacity: 0.55;
+}
+
+.cor-column {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 120px;
+}
+
+.cor {
+  background: var(--oxblood);
+  color: var(--parchment);
+  padding: 44px 38px 46px;
+  position: relative;
+  width: 100%;
+  box-shadow: 6px 6px 0 var(--teal), 12px 12px 0 var(--gold);
+}
+.cor .cor-title {
+  text-align: center;
+  padding-bottom: 24px;
+  margin-bottom: 28px;
+  border-bottom: 1px solid rgba(236, 224, 196, 0.25);
+}
+.cor .cor-title .chapter {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: block;
+  margin-bottom: 16px;
+}
+.cor .cor-title h2 {
+  font-family: 'Spectral', serif;
+  font-size: 96px;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--parchment);
+  line-height: 1;
+  margin-bottom: 12px;
+}
+.cor .cor-title p {
+  font-family: 'Spectral', serif;
+  font-size: 15px;
+  font-style: italic;
+  color: #c4b894;
+}
+.cor-body {
+  text-align: center;
+}
+.cor-body .quote {
+  font-family: 'Spectral', serif;
+  font-size: 19px;
+  font-style: italic;
+  line-height: 1.65;
+  color: var(--parchment);
+  margin-bottom: 32px;
+  padding: 0 8px;
+}
+.cor-body .quote em {
+  color: var(--gold);
+  font-style: normal;
+  font-weight: 500;
+}
+.cor-attrs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  padding: 24px 0;
+  border-top: 1px solid rgba(236, 224, 196, 0.25);
+  border-bottom: 1px solid rgba(236, 224, 196, 0.25);
+  margin-bottom: 28px;
+}
+.cor-attrs .a {
+  text-align: center;
+}
+.cor-attrs .a .k {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: block;
+  margin-bottom: 8px;
+}
+.cor-attrs .a .v {
+  font-family: 'Spectral', serif;
+  font-size: 14px;
+  font-style: italic;
+  color: #c4b894;
+}
+.cor-tail {
+  font-family: 'Spectral', serif;
+  font-size: 13px;
+  font-style: italic;
+  color: #c4b894;
+  text-align: center;
+  line-height: 1.7;
+}
+
+.footer {
+  border-top: 2px solid var(--oxblood);
+  padding-top: 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.footer .motto {
+  font-family: 'Spectral', serif;
+  font-style: italic;
+  font-size: 24px;
+  letter-spacing: 0.02em;
+  color: var(--oxblood);
+}
+.footer .motto em {
+  color: var(--teal);
+  font-weight: 600;
+  font-style: normal;
+}
+.footer .folio {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--oxblood);
+  opacity: 0.6;
+}
+
+.glyph {
+  stroke: #3d8585;
+  stroke-width: 1.5;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.glyph .fill { fill: #3d8585; stroke: none; }
+.glyph .soft { stroke: #c4962c; }
+.glyph .soft-fill { fill: #c4962c; stroke: none; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="masthead">
+    <div class="left">Demismatch · Full Vision · April 2026</div>
+    <div class="right">Vol. I &nbsp;·&nbsp; № 01</div>
+  </div>
+
+  <div class="title-block">
+    <h1><em>Demismatch</em></h1>
+    <p class="standfirst">You are not broken. You are mismatched. This is the shape of the project that follows from that — one specification at the spine, two classes of work radiating outward.</p>
+    <div class="rule-ornate"><span class="line"></span><span class="diamond"></span><span class="line"></span></div>
+  </div>
+
+  <div class="layout">
+    <div class="section-headers">
+      <div class="section-header">
+        <span class="chapter">Chapter 01 — For Machines</span>
+        <h2>AI Alignment</h2>
+        <p>Humans as ground truth</p>
+      </div>
+      <div class="section-header middle"></div>
+      <div class="section-header">
+        <span class="chapter">Chapter 02 — For Humans</span>
+        <h2>Artifacts</h2>
+        <p>Demismatch first, then augment</p>
+      </div>
+    </div>
+
+    <div class="columns-area">
+
+      <svg class="connector-layer" viewBox="0 0 1640 1680" preserveAspectRatio="none">
+        <line x1="380" y1="140" x2="620" y2="400" stroke="#3a1218" stroke-width="1.2" opacity="0.55"/>
+        <circle cx="380" cy="140" r="4" fill="#2d6b6b"/>
+        <circle cx="620" cy="400" r="4" fill="#2d6b6b"/>
+
+        <line x1="380" y1="440" x2="620" y2="560" stroke="#3a1218" stroke-width="1.2" opacity="0.55"/>
+        <circle cx="380" cy="440" r="4" fill="#2d6b6b"/>
+        <circle cx="620" cy="560" r="4" fill="#2d6b6b"/>
+
+        <line x1="380" y1="740" x2="620" y2="720" stroke="#3a1218" stroke-width="1.2" opacity="0.55"/>
+        <circle cx="380" cy="740" r="4" fill="#2d6b6b"/>
+        <circle cx="620" cy="720" r="4" fill="#2d6b6b"/>
+
+        <line x1="380" y1="1040" x2="620" y2="880" stroke="#3a1218" stroke-width="1.2" opacity="0.55"/>
+        <circle cx="380" cy="1040" r="4" fill="#2d6b6b"/>
+        <circle cx="620" cy="880" r="4" fill="#2d6b6b"/>
+
+        <line x1="380" y1="1340" x2="620" y2="1040" stroke="#3a1218" stroke-width="1.2" opacity="0.55"/>
+        <circle cx="380" cy="1340" r="4" fill="#2d6b6b"/>
+        <circle cx="620" cy="1040" r="4" fill="#2d6b6b"/>
+
+        <line x1="1260" y1="140" x2="1020" y2="400" stroke="#3a1218" stroke-width="1.2" opacity="0.55"/>
+        <circle cx="1260" cy="140" r="4" fill="#2d6b6b"/>
+        <circle cx="1020" cy="400" r="4" fill="#2d6b6b"/>
+
+        <line x1="1260" y1="440" x2="1020" y2="560" stroke="#3a1218" stroke-width="1.2" opacity="0.55"/>
+        <circle cx="1260" cy="440" r="4" fill="#2d6b6b"/>
+        <circle cx="1020" cy="560" r="4" fill="#2d6b6b"/>
+
+        <line x1="1260" y1="740" x2="1020" y2="720" stroke="#3a1218" stroke-width="1.2" opacity="0.55"/>
+        <circle cx="1260" cy="740" r="4" fill="#2d6b6b"/>
+        <circle cx="1020" cy="720" r="4" fill="#2d6b6b"/>
+
+        <line x1="1260" y1="1040" x2="1020" y2="880" stroke="#3a1218" stroke-width="1.2" opacity="0.55"/>
+        <circle cx="1260" cy="1040" r="4" fill="#2d6b6b"/>
+        <circle cx="1020" cy="880" r="4" fill="#2d6b6b"/>
+
+        <line x1="1260" y1="1340" x2="1020" y2="1040" stroke="#3a1218" stroke-width="1.2" opacity="0.55"/>
+        <circle cx="1260" cy="1340" r="4" fill="#2d6b6b"/>
+        <circle cx="1020" cy="1040" r="4" fill="#2d6b6b"/>
+      </svg>
+
+      <div class="card-stack">
+
+        <div class="card">
+          <span class="num">a.1</span>
+          <div class="visual">
+            <svg viewBox="0 0 100 56" class="glyph">
+              <rect x="10" y="10" width="28" height="36" rx="1"/>
+              <rect x="62" y="10" width="28" height="36" rx="1"/>
+              <line x1="38" y1="28" x2="62" y2="28"/>
+              <circle cx="44" cy="28" r="2" class="fill"/>
+              <circle cx="56" cy="28" r="2" class="fill"/>
+              <line x1="16" y1="18" x2="32" y2="18" class="soft"/>
+              <line x1="16" y1="24" x2="32" y2="24" class="soft"/>
+              <line x1="16" y1="30" x2="28" y2="30" class="soft"/>
+              <line x1="16" y1="36" x2="32" y2="36" class="soft"/>
+              <line x1="68" y1="18" x2="84" y2="18" class="soft"/>
+              <line x1="68" y1="24" x2="84" y2="24" class="soft"/>
+              <line x1="68" y1="30" x2="80" y2="30" class="soft"/>
+              <line x1="68" y1="36" x2="84" y2="36" class="soft"/>
+            </svg>
+          </div>
+          <span class="name">MCP server</span>
+          <span class="desc">Any LLM calls Cor, becomes aligned</span>
+        </div>
+
+        <div class="card">
+          <span class="num">a.2</span>
+          <div class="visual">
+            <svg viewBox="0 0 100 56" class="glyph">
+              <line x1="10" y1="46" x2="90" y2="10" stroke-dasharray="2 2" class="soft"/>
+              <line x1="10" y1="46" x2="90" y2="14"/>
+              <polygon points="90,14 82,12 84,20" class="fill"/>
+              <circle cx="10" cy="46" r="3" class="fill"/>
+              <line x1="10" y1="46" x2="30" y2="40" class="soft" stroke-dasharray="1 1"/>
+              <line x1="10" y1="46" x2="50" y2="34" class="soft" stroke-dasharray="1 1"/>
+              <line x1="10" y1="46" x2="70" y2="24" class="soft" stroke-dasharray="1 1"/>
+            </svg>
+          </div>
+          <span class="name">Vector steering</span>
+          <span class="desc">Activation engineering against mismatch</span>
+        </div>
+
+        <div class="card">
+          <span class="num">a.3</span>
+          <div class="visual">
+            <svg viewBox="0 0 100 56" class="glyph">
+              <path d="M 15 10 L 85 10 L 65 28 L 65 46 L 35 46 L 35 28 Z"/>
+              <circle cx="22" cy="14" r="1" class="fill"/>
+              <circle cx="30" cy="14" r="1" class="fill"/>
+              <circle cx="38" cy="14" r="1" class="fill"/>
+              <circle cx="46" cy="14" r="1" class="fill"/>
+              <circle cx="54" cy="14" r="1" class="fill"/>
+              <circle cx="62" cy="14" r="1" class="fill"/>
+              <circle cx="70" cy="14" r="1" class="fill"/>
+              <circle cx="78" cy="14" r="1" class="fill"/>
+              <circle cx="44" cy="34" r="1" class="fill"/>
+              <circle cx="52" cy="34" r="1" class="fill"/>
+              <circle cx="60" cy="34" r="1" class="fill"/>
+              <circle cx="48" cy="42" r="1" class="fill"/>
+              <circle cx="56" cy="42" r="1" class="fill"/>
+            </svg>
+          </div>
+          <span class="name">Training data curation</span>
+          <span class="desc">Corpus filtered through the spec</span>
+        </div>
+
+        <div class="card">
+          <span class="num">a.4</span>
+          <div class="visual">
+            <svg viewBox="0 0 100 56" class="glyph">
+              <rect x="16" y="16" width="24" height="24" rx="1"/>
+              <rect x="60" y="16" width="24" height="24" rx="1"/>
+              <circle cx="28" cy="28" r="3" class="fill"/>
+              <circle cx="72" cy="28" r="3" class="fill"/>
+              <line x1="40" y1="28" x2="60" y2="28" stroke-dasharray="2 2"/>
+              <line x1="22" y1="22" x2="34" y2="22" class="soft"/>
+              <line x1="22" y1="34" x2="34" y2="34" class="soft"/>
+              <line x1="66" y1="22" x2="78" y2="22" class="soft"/>
+              <line x1="66" y1="34" x2="78" y2="34" class="soft"/>
+            </svg>
+          </div>
+          <span class="name">Small models from scratch</span>
+          <span class="desc">Trained on a clean corpus</span>
+        </div>
+
+        <div class="card">
+          <span class="num">a.5</span>
+          <div class="visual">
+            <svg viewBox="0 0 100 56" class="glyph">
+              <rect x="20" y="10" width="60" height="36" rx="1"/>
+              <line x1="28" y1="20" x2="54" y2="20" class="soft"/>
+              <line x1="28" y1="28" x2="62" y2="28" class="soft"/>
+              <line x1="28" y1="36" x2="48" y2="36" class="soft"/>
+              <path d="M 66 18 L 70 22 L 76 14" stroke-width="2"/>
+              <path d="M 66 28 L 70 32 L 76 24" stroke-width="2"/>
+              <path d="M 66 38 L 70 42 L 76 34" stroke-width="2"/>
+            </svg>
+          </div>
+          <span class="name">Evals and constitutions</span>
+          <span class="desc">Benchmarks grounded in real needs</span>
+        </div>
+
+        <div class="more-card"><span class="more-text">… and more</span></div>
+
+      </div>
+
+      <div class="cor-column">
+        <div class="cor">
+          <div class="cor-title">
+            <span class="chapter">— The Spine —</span>
+            <h2>Cor</h2>
+            <p>The human specification</p>
+          </div>
+          <div class="cor-body">
+            <p class="quote">A synthesis of literature, new research, and empirical evidence. <em>Everything downstream is grounded here.</em></p>
+            <div class="cor-attrs">
+              <div class="a"><span class="k">Self-extending</span><span class="v">research</span></div>
+              <div class="a"><span class="k">Peer-reviewed</span><span class="v">rigor</span></div>
+              <div class="a"><span class="k">Open</span><span class="v">infrastructure</span></div>
+            </div>
+            <p class="cor-tail">Not just for AI. Not just for humans.<br>A foundation for both.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-stack">
+
+        <div class="card placeholder">
+          <span class="num">c.1</span>
+          <div class="visual">
+            <span class="ph-label"><span class="big">+</span>drop screenshot<br>adaptor series</span>
+          </div>
+          <span class="name">The Adaptor series</span>
+          <span class="desc">Decode the mismatched world, point home</span>
+        </div>
+
+        <div class="card placeholder">
+          <span class="num">c.2</span>
+          <div class="visual">
+            <span class="ph-label"><span class="big">+</span>drop screenshot<br>lens extension</span>
+          </div>
+          <span class="name">Lens</span>
+          <span class="desc">Browser extension</span>
+        </div>
+
+        <div class="card placeholder">
+          <span class="num">c.3</span>
+          <div class="visual">
+            <span class="ph-label"><span class="big">+</span>drop screenshot<br>hud overlay</span>
+          </div>
+          <span class="name">Source:Decode</span>
+          <span class="desc">Real-world HUD</span>
+        </div>
+
+        <div class="card placeholder">
+          <span class="num">c.4</span>
+          <div class="visual">
+            <span class="ph-label"><span class="big">+</span>drop screenshot<br>VR / AR / MR</span>
+          </div>
+          <span class="name">EEA environment builder</span>
+          <span class="desc">Generative VR/AR/MR habitats</span>
+        </div>
+
+        <div class="card placeholder">
+          <span class="num">c.5</span>
+          <div class="visual">
+            <span class="ph-label"><span class="big">+</span>drop screenshot<br>tribe / role / goal</span>
+          </div>
+          <span class="name">Dunbar / Purpose</span>
+          <span class="desc">Tribe + role + goal</span>
+        </div>
+
+        <div class="more-card"><span class="more-text">… and more</span></div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <div class="footer">
+    <p class="motto"><em>Demismatch</em> the world &nbsp;·&nbsp; <em>then</em> augment</p>
+    <div class="folio">demismatch.com &nbsp;·&nbsp; № 01</div>
+  </div>
+</div>
+</body>
+</html>
