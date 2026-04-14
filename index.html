@@ -435,9 +435,7 @@
       border-radius: 0px;
       box-shadow:
         0 1px 0 0 rgba(255, 255, 255, 0.06) inset,
-        0 -1px 0 0 rgba(0, 0, 0, 0.25) inset,
-        0 24px 70px -6px rgba(0, 0, 0, 0.9),
-        0 10px 28px -4px rgba(0, 0, 0, 0.7);
+        0 -1px 0 0 rgba(0, 0, 0, 0.25) inset;
     }
 
     /* Per-truth vertical position overrides (anchored to image bounds) */
@@ -592,9 +590,15 @@
       border-radius: 0px;
       box-shadow:
         0 1px 0 0 rgba(255, 255, 255, 0.06) inset,
-        0 -1px 0 0 rgba(0, 0, 0, 0.25) inset,
-        0 24px 70px -6px rgba(0, 0, 0, 0.9),
-        0 10px 28px -4px rgba(0, 0, 0, 0.7);
+        0 -1px 0 0 rgba(0, 0, 0, 0.25) inset;
+    }
+
+    /* Vertical position overrides for caption (anchored to image bounds) */
+    .truth-caption.pos-quarter {
+      top: 25%;
+    }
+    .truth-caption.pos-three-quarter {
+      top: 75%;
     }
 
     .truth-caption::before {
@@ -621,6 +625,37 @@
       color: var(--bone);
       opacity: 0.88;
       text-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+    }
+
+    /* ── Ground shadow pseudo — sits entirely below the frame (no overlap
+       with the glass, so no negative z-index needed — backdrop-filter on
+       the parent would trap a z-index:-1 child behind the glass layer).
+       Counter-transform cancels the parent's upward parallax so the shadow
+       stays pinned to its rest position on the image while the frame lifts
+       off; when the frame drifts downward the shadow rides along, so it
+       never visually surfaces above the frame. Blur widens and alpha dims
+       with |parallax-y| so higher frames cast softer, fainter pools. ── */
+    .truth-text::after,
+    .truth-caption::after {
+      content: '';
+      position: absolute;
+      left: 4%;
+      right: 4%;
+      top: 100%;
+      margin-top: 6px;
+      height: 32px;
+      pointer-events: none;
+      border-radius: 50%;
+      background: radial-gradient(
+        ellipse at center,
+        rgba(0, 0, 0, 0.9) 0%,
+        rgba(0, 0, 0, 0.55) 40%,
+        rgba(0, 0, 0, 0) 78%
+      );
+      transform: translateY(max(0px, calc(-1 * var(--parallax-y, 0px))));
+      filter: blur(calc(12px + abs(var(--parallax-y, 0px)) * 0.55));
+      opacity: calc(1 - abs(var(--parallax-y, 0px)) * 0.003);
+      will-change: transform, filter;
     }
 
     /* ── Image ── */
@@ -959,7 +994,7 @@
             <img src="02-the-mother.jpg" alt="The mother" loading="lazy" decoding="async" width="1376" height="768">
           </picture>
         </div>
-        <div class="truth-caption">
+        <div class="truth-caption pos-three-quarter">
           <p>It always has. Every ancestor in your chain survived long enough to reproduce because it did. It shows you danger, opportunity, status, resources — and renders everything else invisible, because rendering the rest would burn calories your line could not afford. Nothing about you is a mistake. You are the winning output of the longest, strictest quality-control process on the planet. Keep that in your pocket for the rest of this page. The dashboard is not the problem.</p>
         </div>
       </div>
@@ -999,7 +1034,7 @@
             <img src="04-waking-up-camp.jpg" alt="Waking up at camp" loading="lazy" decoding="async" width="1376" height="768">
           </picture>
         </div>
-        <div class="truth-caption">
+        <div class="truth-caption pos-three-quarter">
           <p>For three hundred thousand years, you woke up inside the same twenty-five people. You belonged to a band of a hundred and fifty who knew your name, your debts, your usefulness, your grief. You were touched every day. You worked with your hands at things you could see finish. Evolution builds instruments for that world — it cannot rewrite them in a single generation. Your body is still reading the savannah. The readings do not match the room you are sitting in.</p>
         </div>
       </div>
@@ -1019,7 +1054,7 @@
             <img src="05-sunday-evening.jpg" alt="Sunday evening" loading="lazy" decoding="async" width="1376" height="768">
           </picture>
         </div>
-        <div class="truth-caption">
+        <div class="truth-caption pos-quarter">
           <p>You are a completely functional organism, unable to be human in a world that no longer fits. The signals are doing their job. The world they were built to read is gone. Loneliness is asking you to repair your standing with people whose survival was tied to yours — those people do not exist in your life. Anxiety is scanning a tribe that isn't there. The alarms are correct. The repair they are calling for is impossible. So you sit inside accurate pain with nowhere to put it. The diagnosis isn't depression. The diagnosis is exile.</p>
         </div>
       </div>
@@ -1039,7 +1074,7 @@
             <img src="06-the-reach.jpg" alt="The reach" loading="lazy" decoding="async" width="1376" height="768">
           </picture>
         </div>
-        <div class="truth-caption">
+        <div class="truth-caption pos-three-quarter">
           <p>A body asking for belonging will accept a group chat. A body asking for purpose will accept a streak. A body asking for touch will accept a screen in bed. The dashboard doesn't care that the signal came from the wrong source — it only cares that something came through. Proxies silence the alarm for a few minutes, which is exactly why you keep pulling the handle. The hunger returns. The handle gets pulled again. Nothing about this is a failure of willpower.</p>
         </div>
       </div>
@@ -1059,7 +1094,7 @@
             <img src="07-supermarket.jpg" alt="Supermarket" loading="lazy" decoding="async" width="1376" height="768">
           </picture>
         </div>
-        <div class="truth-caption">
+        <div class="truth-caption pos-quarter">
           <p>Every industry profits off the gap between what you need and what you will accept instead. Your ancestral hunger for dense calories before the drought is why fast food is a trillion-dollar business. Your ancestral urge to find new mates is why dating apps profit more from the search than the find. Your ancestral drive to explore new territory is why the feed refuses to end. None of this is a conspiracy. It's just that a satisfied human stops spending, and the market notices.</p>
         </div>
       </div>
@@ -1079,7 +1114,7 @@
             <img src="08-ai-friend.jpg" alt="AI friend" loading="lazy" decoding="async" width="1376" height="768">
           </picture>
         </div>
-        <div class="truth-caption">
+        <div class="truth-caption pos-three-quarter">
           <p>Bonding chemistry evolved to tie you to people whose survival depended on yours, and yours on theirs. That mutual dependence is the entire point. An AI companion fires every one of those circuits and delivers none of the reciprocal function. Nobody's life gets harder if you disappear. Nobody waits up. Nobody grieves. The bond forms anyway, because your biology was never built to detect the difference. This isn't loneliness with a patch on it. This is loneliness wearing a face.</p>
         </div>
       </div>
@@ -1099,7 +1134,7 @@
             <img src="09-therapy-office.jpg" alt="Therapy office" loading="lazy" decoding="async" width="1376" height="768">
           </picture>
         </div>
-        <div class="truth-caption">
+        <div class="truth-caption pos-three-quarter">
           <p>Therapy teaches you to tolerate the alarm. Medication turns it down. Mindfulness reframes it. Productivity frameworks speed up the treadmill underneath it. Coaching optimizes how you run on it. Every one of these treats the accurate alarm as the malfunction — and every one works, a little, at the cost of making you quieter inside the thing that is actually wrong. The goal has quietly become a human who stops complaining. That isn't health. That is compliance.</p>
         </div>
       </div>
@@ -1119,7 +1154,7 @@
             <img src="10-tuesday-night.jpg" alt="Tuesday night" loading="lazy" decoding="async" width="1376" height="768">
           </picture>
         </div>
-        <div class="truth-caption">
+        <div class="truth-caption pos-three-quarter">
           <p>The same systems now optimized to keep you scrolling, swiping, comparing, and buying could be optimized to get you home — to design the room, the schedule, the group, the work, the day, so the signals your body is sending finally have somewhere to land. De-mismatch first. Then augment. The order is not negotiable. Augmenting a mismatched human only produces a lonelier loneliness, a more optimized scroll, a sharper version of the wrong life. You cannot upgrade a system whose error signals you are still ignoring.</p>
           <p><em>This is the last chance to stay human through what's coming.</em></p>
         </div>
