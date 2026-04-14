@@ -9,10 +9,25 @@
   <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;1,400&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #080808;
-      --bone: #E0D8CC;
-      --muted: #6A6258;
+      /* Unified palette — mirrors vision.html + cor.css */
+      --bg: #2a0c11;              /* oxblood-deep (page background) */
+      --parchment: #ece0c4;
+      --parchment-soft: #f2e8cf;
+      --parchment-dark: #ddd0b0;
+      --oxblood: #3a1218;
+      --oxblood-deep: #2a0c11;
+      --oxblood-warm: #5a2a32;
+      --ink: #1a0608;
+      --teal: #2d6b6b;
+      --teal-bright: #3d8585;
+      --gold: #c4962c;
+      --muted-warm: #8a7d5e;
+
+      /* Legacy aliases — preserve launcher's internal references without a sweeping rename */
+      --bone: var(--parchment);
+      --muted: var(--muted-warm);
       --ghost: #151210;
+
       --serif: 'Spectral', Georgia, serif;
       --mono: 'JetBrains Mono', 'Courier New', monospace;
     }
@@ -91,8 +106,8 @@
       align-items: center;
       justify-content: center;
       padding: 0.95rem 1.5rem;
-      border: 1px solid rgba(224, 216, 204, 0.45);
-      background: rgba(224, 216, 204, 0.08);
+      border: 1px solid rgba(236, 224, 196, 0.45);
+      background: rgba(236, 224, 196, 0.08);
       color: var(--bone);
       text-decoration: none;
       text-transform: uppercase;
@@ -105,8 +120,8 @@
 
     .cor-link:hover,
     .cor-link:focus-visible {
-      background: rgba(224, 216, 204, 0.16);
-      border-color: rgba(224, 216, 204, 0.75);
+      background: rgba(236, 224, 196, 0.16);
+      border-color: rgba(236, 224, 196, 0.75);
       transform: translateY(-2px);
     }
 
@@ -123,6 +138,94 @@
     @keyframes cuePulse {
       0%, 100% { opacity: 0.2; transform: scaleY(0.7); }
       50% { opacity: 0.6; transform: scaleY(1); }
+    }
+
+    /* ── Cross-site navbar (top strip; oxblood-deep on all sites, non-sticky) ── */
+    .xsite-nav {
+      background: var(--oxblood-deep, #2a0c11);
+      border-bottom: 1px solid var(--teal);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.5rem clamp(0.9rem, 3vw, 2.5rem);
+      flex-wrap: wrap;
+    }
+    .xsite-nav-brand {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--parchment);
+      font-weight: 500;
+      text-decoration: none;
+      transition: color 140ms ease;
+    }
+    .xsite-nav-brand:hover { color: var(--teal-bright); }
+    .xsite-nav-links {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin: 0;
+      padding: 0;
+    }
+    .xsite-nav-links a {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--parchment);
+      text-decoration: none;
+      transition: color 140ms ease;
+    }
+    .xsite-nav-links a:hover { color: var(--teal-bright); }
+    .xsite-nav-links a[aria-current="page"] {
+      color: var(--teal-bright);
+      font-weight: 500;
+    }
+    .xsite-nav-sep {
+      color: var(--muted-warm);
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      opacity: 0.7;
+    }
+    @media (max-width: 560px) {
+      .xsite-nav { padding: 0.45rem 0.9rem; gap: 0.6rem; }
+      .xsite-nav-brand { font-size: 0.62rem; letter-spacing: 0.22em; }
+      .xsite-nav-links { gap: 0.4rem; }
+      .xsite-nav-links a { font-size: 0.58rem; letter-spacing: 0.15em; }
+    }
+
+    /* ── Masthead (editorial issue strip, mirrors /vision) ── */
+    .masthead {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 28px clamp(20px, 4vw, 60px) 20px;
+      border-bottom: 2px solid var(--oxblood);
+    }
+    .masthead .left,
+    .masthead .right {
+      font-family: var(--mono);
+      font-size: 13px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+    .masthead .left { color: var(--parchment); }
+    .masthead .right { color: var(--teal-bright); }
+    @media (max-width: 768px) {
+      .masthead {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+        padding: 18px 0.9rem 14px;
+      }
+      .masthead .left,
+      .masthead .right { font-size: 11px; letter-spacing: 0.2em; }
     }
 
     /* ── Hero section ── */
@@ -201,8 +304,8 @@
       display: inline-flex;
       align-items: center;
       padding: 0.95rem 1.8rem;
-      border: 1px solid rgba(224, 216, 204, 0.4);
-      background: rgba(224, 216, 204, 0.06);
+      border: 1px solid rgba(236, 224, 196, 0.4);
+      background: rgba(236, 224, 196, 0.06);
       color: var(--bone);
       text-decoration: none;
       text-transform: uppercase;
@@ -214,8 +317,8 @@
 
     .hero-cta:hover,
     .hero-cta:focus-visible {
-      background: rgba(224, 216, 204, 0.14);
-      border-color: rgba(224, 216, 204, 0.7);
+      background: rgba(236, 224, 196, 0.14);
+      border-color: rgba(236, 224, 196, 0.7);
       transform: translateY(-2px);
     }
 
@@ -230,17 +333,78 @@
       color: var(--bone);
       opacity: 0.6;
       text-decoration: none;
-      border-bottom: 1px solid rgba(224, 216, 204, 0.2);
+      border-bottom: 1px solid rgba(236, 224, 196, 0.2);
       transition: opacity 0.2s, border-color 0.2s;
     }
 
     .hero-footnote a:hover {
       opacity: 1;
-      border-color: rgba(224, 216, 204, 0.5);
+      border-color: rgba(236, 224, 196, 0.5);
+    }
+
+    /* ── Hero entry-point block (wayfinding between intro-band and Truth 01) ── */
+    .xsite-entry {
+      max-width: 640px;
+      margin: 1.5rem auto 3rem;
+      padding: 1rem 2rem 1.2rem;
+      border-top: 1px solid rgba(236, 224, 196, 0.22);
+    }
+    .xsite-entry-eyebrow {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--teal-bright);
+      margin-bottom: 0.9rem;
+      font-weight: 500;
+    }
+    .xsite-entry-links {
+      list-style: none;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.6rem 1.5rem;
+      margin: 0;
+      padding: 0;
+    }
+    .xsite-entry-links a {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 0.5rem;
+      text-decoration: none;
+      color: var(--parchment);
+      transition: color 140ms ease;
+      flex-wrap: wrap;
+    }
+    .xsite-entry-links a:hover { color: var(--teal-bright); }
+    .xsite-entry-arrow {
+      font-family: var(--mono);
+      font-size: 0.85rem;
+    }
+    .xsite-entry-label {
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      font-weight: 500;
+    }
+    .xsite-entry-desc {
+      font-family: var(--serif);
+      font-size: 0.88rem;
+      font-style: italic;
+      color: var(--muted-warm);
+      opacity: 0.9;
+    }
+    @media (max-width: 560px) {
+      .xsite-entry { padding: 0.9rem 0.9rem 1rem; margin: 1rem auto 2rem; }
+      .xsite-entry-links { grid-template-columns: 1fr; gap: 0.5rem; }
     }
 
     /* ── Truth sections ── */
-    .section-divider { display: none; }
+    .section-divider {
+      display: block;
+      max-width: 180px;
+      height: 1px;
+      margin: 4rem auto;
+      background: rgba(45, 107, 107, 0.5);
+    }
     .end-space { height: 8rem; display: block; }
 
     .truth-section {
@@ -353,13 +517,16 @@
 
     .truth-number {
       font-family: var(--mono);
-      font-size: 0.6rem;
-      font-weight: 400;
+      font-size: 0.62rem;
+      font-weight: 500;
       letter-spacing: 0.3em;
-      color: var(--bone);
+      color: var(--teal-bright);
       margin-bottom: 0.5rem;
-      opacity: 0.3;
+      opacity: 0.85;
       text-transform: uppercase;
+    }
+    .truth-number::before {
+      content: 'Truth · ';
     }
 
     .truth-text h2 {
@@ -442,7 +609,7 @@
     .outro-panel {
       text-align: center;
       padding: 4rem 2.5rem 3rem;
-      border-top: 1px solid rgba(224, 216, 204, 0.08);
+      border-top: 1px solid rgba(236, 224, 196, 0.08);
     }
 
     .outro-eyebrow {
@@ -487,18 +654,20 @@
       display: flex;
       flex-direction: column;
       padding: 1.75rem 1.75rem 1.9rem;
-      border: 1px solid rgba(224, 216, 204, 0.18);
-      background: rgba(224, 216, 204, 0.025);
+      border: 1px solid rgba(236, 224, 196, 0.18);
+      background: rgba(236, 224, 196, 0.025);
       color: var(--bone);
       text-decoration: none;
-      transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+      box-shadow: 4px 4px 0 var(--teal);
+      transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
     }
 
     .outro-link:hover,
     .outro-link:focus-visible {
-      background: rgba(224, 216, 204, 0.07);
-      border-color: rgba(224, 216, 204, 0.45);
+      background: rgba(236, 224, 196, 0.07);
+      border-color: rgba(236, 224, 196, 0.45);
       transform: translateY(-2px);
+      box-shadow: 6px 6px 0 var(--teal);
     }
 
     .outro-link-label {
@@ -645,6 +814,22 @@
   </style>
 </head>
 <body>
+  <nav class="xsite-nav" aria-label="Demismatch network">
+    <a class="xsite-nav-brand" href="https://demismatch.com/" aria-label="Demismatch home">DEMISMATCH</a>
+    <ul class="xsite-nav-links">
+      <li><a href="https://demismatch.com/" data-xsite-link="truths" aria-current="page">10 Truths</a></li>
+      <li aria-hidden="true" class="xsite-nav-sep">·</li>
+      <li><a href="https://demismatch.com/vision.html" data-xsite-link="vision">Vision</a></li>
+      <li aria-hidden="true" class="xsite-nav-sep">·</li>
+      <li><a href="https://cor.demismatch.com/" data-xsite-link="spec">Spec</a></li>
+    </ul>
+  </nav>
+
+  <div class="masthead">
+    <div class="left">Demismatch · 10 Truths · April 2026</div>
+    <div class="right">Vol. I · № 00</div>
+  </div>
+
   <div class="intro-band">
     <div class="truth-text intro">
       <h2>You are not broken. You are mismatched.</h2>
@@ -660,6 +845,26 @@
       <h1 class="site-title">Demismatch</h1>
     </div>
   </header>
+
+  <aside class="xsite-entry" aria-label="Cross-site navigation">
+    <p class="xsite-entry-eyebrow">The Project</p>
+    <ul class="xsite-entry-links">
+      <li>
+        <a href="vision.html">
+          <span class="xsite-entry-arrow">→</span>
+          <span class="xsite-entry-label">Vision</span>
+          <span class="xsite-entry-desc">full map of the project</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://cor.demismatch.com/">
+          <span class="xsite-entry-arrow">→</span>
+          <span class="xsite-entry-label">Spec</span>
+          <span class="xsite-entry-desc">the research backing</span>
+        </a>
+      </li>
+    </ul>
+  </aside>
 
   <main id="truths">
 
@@ -897,8 +1102,8 @@
   <div class="end-space"></div>
 
   <style>
-    .xsite-footer { max-width: 1200px; margin: 72px auto 56px; padding: 40px clamp(20px, 4vw, 60px) 0; border-top: 1px solid rgba(224, 216, 204, 0.15); }
-    .xsite-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; padding-bottom: 28px; border-bottom: 1px solid rgba(224, 216, 204, 0.12); margin-bottom: 26px; }
+    .xsite-footer { max-width: 1200px; margin: 72px auto 56px; padding: 40px clamp(20px, 4vw, 60px) 0; border-top: 1px solid rgba(236, 224, 196, 0.15); }
+    .xsite-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; padding-bottom: 28px; border-bottom: 1px solid rgba(236, 224, 196, 0.12); margin-bottom: 26px; }
     .xsite-col { display: flex; flex-direction: column; gap: 6px; text-decoration: none; color: var(--bone); transition: color 140ms ease; }
     .xsite-col:hover { color: #ffffff; }
     .xsite-col-head { font-family: var(--mono); font-size: 12px; letter-spacing: 0.28em; font-weight: 400; color: var(--bone); }
