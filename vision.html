@@ -259,6 +259,25 @@ body {
   color: #5a2a32;
   line-height: 1.45;
 }
+.card-tags {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(58, 18, 24, 0.12);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px 6px;
+}
+.card-tags .tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: var(--teal);
+  border: 1px solid rgba(45, 107, 107, 0.32);
+  border-radius: 3px;
+  padding: 2px 6px;
+  line-height: 1.3;
+  text-transform: none;
+}
 .card .name {
   font-family: 'Spectral', serif;
   font-size: 23px;
@@ -440,40 +459,56 @@ body {
 .cor-stats {
   margin-top: 8px;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 26px 16px;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 22px 14px;
 }
 .cor-stats .stat {
   text-align: center;
   position: relative;
 }
-.cor-stats .stat:not(:nth-child(3n))::after {
+.cor-stats .stat:not(:nth-child(5n))::after {
   content: '';
   position: absolute;
   top: 12%;
   bottom: 12%;
-  right: -8px;
+  right: -7px;
   width: 1px;
   background: rgba(236, 224, 196, 0.18);
 }
 .cor-stats .n {
   font-family: 'Spectral', serif;
-  font-size: 40px;
+  font-size: 36px;
   font-weight: 500;
   line-height: 1;
   color: var(--gold);
   display: block;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   letter-spacing: -0.015em;
 }
 .cor-stats .l {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 11px;
-  letter-spacing: 0.22em;
+  font-size: 10px;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   color: #c4b894;
   display: block;
   line-height: 1.35;
+}
+.cor-stats .l small {
+  display: block;
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  opacity: 0.7;
+  margin-top: 4px;
+  text-transform: uppercase;
+}
+@media (max-width: 900px) {
+  .cor-stats { grid-template-columns: repeat(2, 1fr); }
+  .cor-stats .stat:not(:nth-child(5n))::after { display: none; }
+  .cor-stats .stat:not(:nth-child(2n))::after {
+    content: ''; position: absolute; top: 12%; bottom: 12%; right: -7px; width: 1px;
+    background: rgba(236, 224, 196, 0.18);
+  }
 }
 .cor-stats-note {
   font-family: 'Spectral', serif;
@@ -541,13 +576,13 @@ body {
   <div class="layout">
     <div class="section-headers">
       <div class="section-header">
-        <span class="chapter">Chapter 01 — For Machines</span>
+        <span class="chapter">For Machines</span>
         <h2>AI Alignment</h2>
         <p>Humans as ground truth</p>
       </div>
       <div class="section-header middle"></div>
       <div class="section-header">
-        <span class="chapter">Chapter 02 — For Humans</span>
+        <span class="chapter">For Humans</span>
         <h2>Artifacts</h2>
         <p>Demismatch first, then augment</p>
       </div>
@@ -579,7 +614,14 @@ body {
             </svg>
           </div>
           <span class="name">MCP server</span>
-          <span class="desc">Any LLM calls Cor, becomes aligned</span>
+          <span class="desc">Inference-time alignment via tool-use. Any LLM calls Cor at inference and reads mechanism, foundation, convergence, and resolution-condition data for the context at hand.</span>
+          <dl class="card-spec">
+            <dt>Form</dt><dd>MCP (Model Context Protocol) server · tool-call surface for any LLM</dd>
+            <dt>Targets</dt><dd>Inference-time alignment across any mechanism Cor specifies</dd>
+            <dt>Proxy</dt><dd>Preference-only alignment — RLHF responses that maximize user preference without asking whether the response creates resolution or just activates the mechanism</dd>
+            <dt>Real input</dt><dd>Cor-specified resolution conditions per mechanism: "this request engages M3; resolution requires reciprocal human co-regulation, not generic preference-shaped completion"</dd>
+          </dl>
+          <div class="card-tags"><span class="tag">M3</span><span class="tag">M5</span><span class="tag">M14</span><span class="tag">DA4</span><span class="tag">DA9</span></div>
         </div>
 
         <div class="card">
@@ -596,7 +638,14 @@ body {
             </svg>
           </div>
           <span class="name">Vector steering</span>
-          <span class="desc">Activation engineering against mismatch</span>
+          <span class="desc">Activation engineering against mismatch. Steering vectors learned from Cor-grounded contrastive pairs push generation toward mechanism-aware completions at the activation level.</span>
+          <dl class="card-spec">
+            <dt>Form</dt><dd>Steering vectors learned from Cor-grounded contrastive pairs · applied at inference</dd>
+            <dt>Targets</dt><dd>Activation-level alignment — per-mechanism guardrails where prompts alone are unreliable (e.g. DA9 AI-attachment-slot prohibition enforced at activation, not just prompt)</dd>
+            <dt>Proxy</dt><dd>Post-hoc RLHF reward shaping and constitutional filters — operate on preferences not mechanisms, jailbreakable</dd>
+            <dt>Real input</dt><dd>Steering vectors keyed to Cor mechanisms. When an activation reads "this output is a proxy for M3," generation gets pushed toward a matched-state alternative</dd>
+          </dl>
+          <div class="card-tags"><span class="tag">M3</span><span class="tag">DA9</span><span class="tag">any mechanism</span></div>
         </div>
 
         <div class="card">
@@ -620,7 +669,14 @@ body {
             </svg>
           </div>
           <span class="name">Training data curation</span>
-          <span class="desc">Corpus filtered through the spec</span>
+          <span class="desc">Align at the source, not the surface. Pretraining and fine-tuning corpora filtered and re-weighted against Cor's mechanism architecture, with synthetic data generated from mechanism narratives and resolution conditions.</span>
+          <dl class="card-spec">
+            <dt>Form</dt><dd>Pretraining / fine-tuning corpus filter + re-weighting · synthetic data from Cor narratives</dd>
+            <dt>Targets</dt><dd>The training distribution itself — fixes the problem at the source; every AI inherits its model of humans from training data</dd>
+            <dt>Proxy</dt><dd>Broad internet scrape + preference-annotated fine-tuning — bakes mismatch into the base model before alignment work begins</dd>
+            <dt>Real input</dt><dd>A corpus where the Cor specification is ground truth: mechanism outputs, resolution conditions, evolved needs — not the preference-output artifacts modern environments happen to produce</dd>
+          </dl>
+          <div class="card-tags"><span class="tag">all 15 mechanisms</span><span class="tag">OF1</span><span class="tag">OF2</span></div>
         </div>
 
         <div class="card">
@@ -639,7 +695,14 @@ body {
             </svg>
           </div>
           <span class="name">Small models from scratch</span>
-          <span class="desc">Trained on a clean corpus</span>
+          <span class="desc">Domain models with no preference contamination. Purpose-built small models trained from scratch on Cor-grounded corpora, for tasks where ground-truth-aligned outputs matter more than general capability.</span>
+          <dl class="card-spec">
+            <dt>Form</dt><dd>Purpose-built small models · trained from scratch on Cor-grounded corpora</dd>
+            <dt>Targets</dt><dd>Specialized applications — clinical triage, educational scaffolding, environment-design assistants, therapy-adjacent tools — where hallucination about human needs is catastrophic</dd>
+            <dt>Proxy</dt><dd>Fine-tuned general-purpose models with RLHF layers on top — inherit the base model's preference-as-ground-truth mistake; RLHF cannot fully correct what pretraining installed</dd>
+            <dt>Real input</dt><dd>A model whose entire learned distribution is Cor-grounded from pretraining forward — no preference contamination to overcome later</dd>
+          </dl>
+          <div class="card-tags"><span class="tag">domain-specific subsets</span></div>
         </div>
 
         <div class="card">
@@ -656,7 +719,14 @@ body {
             </svg>
           </div>
           <span class="name">Evals and constitutions</span>
-          <span class="desc">Benchmarks grounded in real needs</span>
+          <span class="desc">Benchmarks grounded in what humans actually need. Cor-mechanism benchmarks plus new constitutional frameworks that replace preference-derived rules with mechanism-derived ones.</span>
+          <dl class="card-spec">
+            <dt>Form</dt><dd>Benchmarks grounded in Cor mechanisms, convergences, resolution conditions · constitutions encoding resolution as constraint</dd>
+            <dt>Targets</dt><dd>Every model evaluation surface — current benchmarks grade "did this satisfy user preference?" and miss the core question of resolution vs activation</dd>
+            <dt>Proxy</dt><dd>MT-Bench, HELM, Arena, and preference-derived benchmarks · constitutional AI frameworks that bake preference assumptions into the rules</dd>
+            <dt>Real input</dt><dd>The matched/mismatched fourth evaluation axis (per A1) alongside helpful/harmless/honest · per-mechanism benchmarks · constitutions encoding resolution conditions as constraints</dd>
+          </dl>
+          <div class="card-tags"><span class="tag">matched/mismatched axis</span><span class="tag">all 15 mechanisms</span><span class="tag">DC3</span></div>
         </div>
 
         <div class="more-card"><span class="more-text">… and more</span></div>
@@ -688,14 +758,15 @@ body {
             </div>
             <div class="cor-stats">
               <div class="stat"><span class="n">17</span><span class="l">Foundations</span></div>
-              <div class="stat"><span class="n">15</span><span class="l">Mechanisms</span></div>
+              <div class="stat"><span class="n">15</span><span class="l">Mechanisms<small>14 + R1 Touch</small></span></div>
               <div class="stat"><span class="n">14</span><span class="l">Convergences</span></div>
               <div class="stat"><span class="n">101</span><span class="l">Academic works</span></div>
-              <div class="stat"><span class="n">487</span><span class="l">Primary extractions</span></div>
-              <div class="stat"><span class="n">864</span><span class="l">Mechanism evidence</span></div>
+              <div class="stat"><span class="n">573</span><span class="l">Extractions</span></div>
+              <div class="stat"><span class="n">14</span><span class="l">Gaps</span></div>
               <div class="stat"><span class="n">63</span><span class="l">Researchers</span></div>
               <div class="stat"><span class="n">22</span><span class="l">Domains</span></div>
-              <div class="stat"><span class="n">10</span><span class="l">Gaps</span></div>
+              <div class="stat"><span class="n">10</span><span class="l">Empirical demos</span></div>
+              <div class="stat"><span class="n">8</span><span class="l">Applications</span></div>
             </div>
             <p class="cor-stats-note">All counts from the current proof-of-concept atlas.</p>
           </div>
@@ -779,10 +850,10 @@ body {
         <div class="card">
           <span class="num">c.4</span>
           <div class="visual">
-            <svg viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%;display:block">
-              <rect width="1600" height="900" fill="#120506"/>
+            <svg viewBox="0 0 1600 960" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%;display:block">
+              <rect width="1600" height="960" fill="#120506"/>
               <text x="60" y="66" font-family="'JetBrains Mono',monospace" font-size="26" fill="#c4962c" letter-spacing="6">MISMATCH TRACKER</text>
-              <text x="1540" y="66" font-family="'JetBrains Mono',monospace" font-size="20" fill="#5a4a30" letter-spacing="3" text-anchor="end">BASELINE · 14 MECHANISMS</text>
+              <text x="1540" y="66" font-family="'JetBrains Mono',monospace" font-size="20" fill="#5a4a30" letter-spacing="3" text-anchor="end">BASELINE · 15 MECHANISMS</text>
               <line x1="60" y1="96" x2="1540" y2="96" stroke="#3a1218" stroke-width="1.5"/>
 
               <text x="60" y="158" font-family="'JetBrains Mono',monospace" font-size="14" fill="#6a5a3a" letter-spacing="2">M · 01</text>
@@ -855,14 +926,19 @@ body {
               <rect x="1280" y="790" width="220" height="28" rx="4" fill="#7a4a1e"/>
               <text x="1390" y="810" font-family="'JetBrains Mono',monospace" font-size="12" fill="#ece0c4" letter-spacing="3" text-anchor="middle" font-weight="600">STARVED</text>
 
-              <text x="60" y="870" font-family="'Spectral',serif" font-size="18" font-style="italic" fill="#5a4a30">8 starved · 4 environment fighting · 1 resolved · 1 matched — a typical modern baseline.</text>
+              <text x="60" y="858" font-family="'JetBrains Mono',monospace" font-size="14" fill="#6a5a3a" letter-spacing="2">R · 01</text>
+              <text x="180" y="862" font-family="'Spectral',serif" font-size="26" fill="#ece0c4">Touch<tspan font-size="14" fill="#6a5a3a" font-style="italic" dx="14">C-tactile input to social bonding</tspan></text>
+              <rect x="1280" y="840" width="220" height="28" rx="4" fill="#7a4a1e"/>
+              <text x="1390" y="860" font-family="'JetBrains Mono',monospace" font-size="12" fill="#ece0c4" letter-spacing="3" text-anchor="middle" font-weight="600">STARVED</text>
+
+              <text x="60" y="922" font-family="'Spectral',serif" font-size="18" font-style="italic" fill="#5a4a30">9 starved · 4 environment fighting · 1 resolved · 1 matched — a typical modern baseline.</text>
             </svg>
           </div>
           <span class="name">Mismatch Tracker</span>
           <span class="desc">Per-mechanism readout. Not a wellness score — which systems are starved, which are resolved, which the environment is fighting.</span>
           <dl class="card-spec">
             <dt>Form</dt><dd>Per-mechanism state dashboard · passive measurement + self-report</dd>
-            <dt>Targets</dt><dd>All 14 Cor mechanisms — baseline, not wellness</dd>
+            <dt>Targets</dt><dd>All 15 Cor mechanisms — 14 motivational systems plus R1 Touch — baseline, not wellness</dd>
             <dt>Proxy</dt><dd>Wellness scores, optimization metrics, symptom trackers</dd>
             <dt>Real input</dt><dd>Which mechanisms are receiving their resolution condition</dd>
           </dl>
@@ -874,7 +950,7 @@ body {
             <img src="table-01.png" alt="A scarred wooden dining table seats eight people of mixed ages on a Tuesday evening — candles, torn bread, a shared pot, worn wood, children's drawings pinned to the wall, pure black windows outside">
           </div>
           <span class="name">The Adaptor series</span>
-          <span class="desc">Environment, not tool. Ten shapes — Table, Garden, Fire, Crew, Threshold, Night Watch — that route the organism back toward real inputs. Shown: The Table. <em>"8 people. Tuesday nights. Forever."</em> <a href="adaptor.html" style="color:#2d6b6b;border-bottom:1px solid rgba(45,107,107,0.35);text-decoration:none;white-space:nowrap;">→ Full series</a></span>
+          <span class="desc">Environment, not tool. Six shapes shown — Table, Garden, Fire, Crew, Threshold, Night Watch — that route the organism back toward real inputs. Open series. Shown: The Table. <em>"8 people. Tuesday nights. Forever."</em> <a href="adaptor.html" style="color:#2d6b6b;border-bottom:1px solid rgba(45,107,107,0.35);text-decoration:none;white-space:nowrap;">→ Full series</a></span>
           <dl class="card-spec">
             <dt>Form</dt><dd>Shared physical practice · same people · real rhythm</dd>
             <dt>Targets</dt><dd>Each shape a cluster of mechanisms — food, fire, nature, purpose, 3am, place</dd>
@@ -979,6 +1055,44 @@ body {
     <p class="motto"><em>Demismatch</em> the world &nbsp;·&nbsp; <em>then</em> augment</p>
     <div class="folio">demismatch.com &nbsp;·&nbsp; № 01</div>
   </div>
+
+  <style>
+    .xsite-footer { margin-top: 56px; padding-top: 40px; border-top: 1px solid rgba(58, 18, 24, 0.25); }
+    .xsite-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; padding-bottom: 28px; border-bottom: 1px solid rgba(58, 18, 24, 0.18); margin-bottom: 24px; }
+    .xsite-col { display: flex; flex-direction: column; gap: 6px; text-decoration: none; color: var(--oxblood); transition: color 140ms ease; }
+    .xsite-col:hover { color: var(--teal); }
+    .xsite-col-head { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.28em; font-weight: 600; color: var(--oxblood); }
+    .xsite-col-desc { font-family: 'Spectral', serif; font-style: italic; font-size: 17px; color: var(--oxblood); opacity: 0.85; line-height: 1.4; }
+    .xsite-col-url { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--oxblood); opacity: 0.55; letter-spacing: 0.04em; }
+    .xsite-col.is-current .xsite-col-head { opacity: 0.5; }
+    .xsite-col.is-current .xsite-col-desc { opacity: 0.6; }
+    .xsite-col.is-current .xsite-col-url { opacity: 0.4; }
+    .xsite-col.is-current:hover { color: var(--oxblood); }
+    .xsite-canonical { font-family: 'Spectral', serif; font-size: 16px; line-height: 1.6; color: var(--oxblood); margin: 0 0 14px; max-width: 640px; }
+    .xsite-copy { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--oxblood); opacity: 0.7; margin: 0; }
+    @media (max-width: 720px) { .xsite-cols { grid-template-columns: 1fr; gap: 22px; } }
+  </style>
+  <footer class="xsite-footer">
+    <nav class="xsite-cols" aria-label="Demismatch network">
+      <a class="xsite-col" href="https://demismatch.com/">
+        <span class="xsite-col-head">DEMISMATCH</span>
+        <span class="xsite-col-desc">the front door</span>
+        <span class="xsite-col-url">demismatch.com</span>
+      </a>
+      <a class="xsite-col" href="https://cor.demismatch.com/">
+        <span class="xsite-col-head">COR</span>
+        <span class="xsite-col-desc">the spec</span>
+        <span class="xsite-col-url">cor.demismatch.com</span>
+      </a>
+      <a class="xsite-col is-current" href="vision.html" aria-current="page">
+        <span class="xsite-col-head">VISION</span>
+        <span class="xsite-col-desc">the map</span>
+        <span class="xsite-col-url">demismatch.com/vision</span>
+      </a>
+    </nav>
+    <p class="xsite-canonical">Demismatch is the project. Cor is its central specification. The Artifacts (for humans) and the alignment outputs (for AI systems) are built on Cor.</p>
+    <p class="xsite-copy">Copyright 2026 · Cor / Demismatch</p>
+  </footer>
 </div>
 
 <script>

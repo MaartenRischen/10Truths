@@ -362,6 +362,44 @@ body {
     <span>demismatch.com · Interpreter / 01</span>
   </div>
 
+  <style>
+    .xsite-footer { margin-top: 48px; padding-top: 36px; border-top: 1px solid rgba(58, 18, 24, 0.25); }
+    .xsite-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; padding-bottom: 24px; border-bottom: 1px solid rgba(58, 18, 24, 0.18); margin-bottom: 22px; }
+    .xsite-col { display: flex; flex-direction: column; gap: 6px; text-decoration: none; color: var(--oxblood); transition: color 140ms ease; }
+    .xsite-col:hover { color: var(--teal); }
+    .xsite-col-head { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.28em; font-weight: 600; color: var(--oxblood); }
+    .xsite-col-desc { font-family: 'Spectral', serif; font-style: italic; font-size: 16px; color: var(--oxblood); opacity: 0.85; line-height: 1.4; }
+    .xsite-col-url { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--oxblood); opacity: 0.55; letter-spacing: 0.04em; }
+    .xsite-col.is-current .xsite-col-head { opacity: 0.5; }
+    .xsite-col.is-current .xsite-col-desc { opacity: 0.6; }
+    .xsite-col.is-current .xsite-col-url { opacity: 0.4; }
+    .xsite-col.is-current:hover { color: var(--oxblood); }
+    .xsite-canonical { font-family: 'Spectral', serif; font-size: 15px; line-height: 1.6; color: var(--oxblood); margin: 0 0 12px; max-width: 620px; }
+    .xsite-copy { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--oxblood); opacity: 0.7; margin: 0; }
+    @media (max-width: 720px) { .xsite-cols { grid-template-columns: 1fr; gap: 20px; } }
+  </style>
+  <footer class="xsite-footer">
+    <nav class="xsite-cols" aria-label="Demismatch network">
+      <a class="xsite-col" href="https://demismatch.com/">
+        <span class="xsite-col-head">DEMISMATCH</span>
+        <span class="xsite-col-desc">the front door</span>
+        <span class="xsite-col-url">demismatch.com</span>
+      </a>
+      <a class="xsite-col" href="https://cor.demismatch.com/">
+        <span class="xsite-col-head">COR</span>
+        <span class="xsite-col-desc">the spec</span>
+        <span class="xsite-col-url">cor.demismatch.com</span>
+      </a>
+      <a class="xsite-col is-current" href="vision.html" aria-current="page">
+        <span class="xsite-col-head">VISION</span>
+        <span class="xsite-col-desc">the map</span>
+        <span class="xsite-col-url">demismatch.com/vision</span>
+      </a>
+    </nav>
+    <p class="xsite-canonical">Demismatch is the project. Cor is its central specification. The Artifacts (for humans) and the alignment outputs (for AI systems) are built on Cor.</p>
+    <p class="xsite-copy">Copyright 2026 · Cor / Demismatch</p>
+  </footer>
+
 </div>
 </body>
 </html>

@@ -677,7 +677,7 @@
         </div>
       </div>
       <div class="truth-body">
-        <p>Every living being has their own, attuned to the environment they evolved for and the constraints and strategies they have to act on that environment. We work with the rules of the game like any other evolved biological organism - which is everything alive on this planet.</p>
+        <p>Every living being has one, attuned to the environment they evolved for. We play by the rules of the game like every other evolved organism — which is everything alive on this planet.</p>
       </div>
     </div>
 
@@ -838,7 +838,7 @@
         </div>
       </div>
       <div class="truth-body">
-        <p>Therapy teaches you to tolerate it. Medication dampens the signal. Mindfulness reframes it. Productivity systems help you run faster on the same treadmill. All of it treats the accurate alarm as the malfunction. None of it touches what the alarm is about.</p>
+        <p>Therapy teaches tolerance. Medication dampens the signal. Mindfulness reframes it. Productivity speeds up the treadmill. All treat the accurate alarm as the malfunction. None touch what the alarm is about.</p>
       </div>
     </div>
 
@@ -876,7 +876,7 @@
       <a href="vision.html" class="outro-link">
         <span class="outro-link-label">№ 01</span>
         <span class="outro-link-name">The Vision</span>
-        <span class="outro-link-desc">The full atlas. Ten artifacts, from a browser Lens to an EEA habitat.</span>
+        <span class="outro-link-desc">The full atlas. A suite of artifacts built on the Cor spec — from a browser Lens to an EEA habitat.</span>
         <span class="outro-link-cue">Read →</span>
       </a>
       <a href="interpreter.html" class="outro-link">
@@ -888,13 +888,52 @@
       <a href="adaptor.html" class="outro-link">
         <span class="outro-link-label">№ 03</span>
         <span class="outro-link-name">The Adaptor</span>
-        <span class="outro-link-desc">Six shapes — people, place, rhythm — that route the organism back to real inputs.</span>
+        <span class="outro-link-desc">Six shapes shown — people, place, rhythm. The series is open to any shape that fits the frame.</span>
         <span class="outro-link-cue">Full series →</span>
       </a>
     </div>
   </section>
 
   <div class="end-space"></div>
+
+  <style>
+    .xsite-footer { max-width: 1200px; margin: 72px auto 56px; padding: 40px clamp(20px, 4vw, 60px) 0; border-top: 1px solid rgba(224, 216, 204, 0.15); }
+    .xsite-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; padding-bottom: 28px; border-bottom: 1px solid rgba(224, 216, 204, 0.12); margin-bottom: 26px; }
+    .xsite-col { display: flex; flex-direction: column; gap: 6px; text-decoration: none; color: var(--bone); transition: color 140ms ease; }
+    .xsite-col:hover { color: #ffffff; }
+    .xsite-col-head { font-family: var(--mono); font-size: 12px; letter-spacing: 0.28em; font-weight: 400; color: var(--bone); }
+    .xsite-col-desc { font-family: var(--serif); font-style: italic; font-size: 17px; color: var(--bone); opacity: 0.78; line-height: 1.4; }
+    .xsite-col-url { font-family: var(--mono); font-size: 12px; color: var(--muted); letter-spacing: 0.04em; }
+    .xsite-col.is-current .xsite-col-head { opacity: 0.5; }
+    .xsite-col.is-current .xsite-col-desc { opacity: 0.5; }
+    .xsite-col.is-current .xsite-col-url { opacity: 0.6; }
+    .xsite-col.is-current:hover { color: var(--bone); }
+    .xsite-canonical { font-family: var(--serif); font-size: 16px; line-height: 1.6; color: var(--bone); opacity: 0.82; margin: 0 0 14px; max-width: 640px; }
+    .xsite-copy { font-family: var(--mono); font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); margin: 0; }
+    @media (max-width: 720px) { .xsite-cols { grid-template-columns: 1fr; gap: 22px; } }
+  </style>
+  <footer class="xsite-footer">
+    <nav class="xsite-cols" aria-label="Demismatch network">
+      <a class="xsite-col is-current" href="/" aria-current="page">
+        <span class="xsite-col-head">DEMISMATCH</span>
+        <span class="xsite-col-desc">the front door</span>
+        <span class="xsite-col-url">demismatch.com</span>
+      </a>
+      <a class="xsite-col" href="https://cor.demismatch.com/">
+        <span class="xsite-col-head">COR</span>
+        <span class="xsite-col-desc">the spec</span>
+        <span class="xsite-col-url">cor.demismatch.com</span>
+      </a>
+      <a class="xsite-col" href="vision.html">
+        <span class="xsite-col-head">VISION</span>
+        <span class="xsite-col-desc">the map</span>
+        <span class="xsite-col-url">demismatch.com/vision</span>
+      </a>
+    </nav>
+    <p class="xsite-canonical">Demismatch is the project. Cor is its central specification. The Artifacts (for humans) and the alignment outputs (for AI systems) are built on Cor.</p>
+    <p class="xsite-copy">Copyright 2026 · Cor / Demismatch</p>
+  </footer>
+
   <script>
     const sections = document.querySelectorAll('.truth-section');
     sections.forEach(s => s.classList.add('visible'));
