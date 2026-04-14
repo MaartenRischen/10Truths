@@ -22,15 +22,16 @@ body {
   color: var(--parchment);
   min-height: 100vh;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  padding: 40px 20px;
+  padding: 24px 16px;
 }
 .page {
-  width: 1800px;
+  width: 100%;
+  max-width: 2400px;
   background: var(--parchment);
   color: var(--ink);
-  padding: 72px 88px 80px;
+  padding: 64px 64px 72px;
   position: relative;
   border-radius: 14px;
   box-shadow: 0 40px 120px rgba(0,0,0,0.8), 0 10px 30px rgba(0,0,0,0.5);
@@ -233,21 +234,42 @@ body {
   gap: 18px;
   position: relative;
   z-index: 2;
+  align-items: flex-start;
+}
+.card-stack:last-of-type {
+  align-items: flex-end;
 }
 
 .card {
   background: var(--parchment-dark);
   border: 1px solid var(--oxblood);
-  padding: 22px 24px 24px;
+  padding: 14px 22px 16px;
   position: relative;
   border-radius: 8px;
   box-shadow: 4px 4px 0 var(--teal);
   cursor: pointer;
-  transition: box-shadow 0.3s ease;
+  transition: box-shadow 0.3s ease, padding 0.4s ease, width 0.4s ease;
 }
 .card:hover {
   box-shadow: 6px 6px 0 var(--teal);
+  padding: 22px 24px 24px;
+  width: 100%;
+  align-self: stretch;
 }
+
+/* Subtle fan: middle card closest to COR; top/bottom tilt to point toward COR. */
+.card-stack:first-of-type .card:nth-child(1) { transform: translateX(-16px) rotate(2.2deg); }
+.card-stack:first-of-type .card:nth-child(2) { transform: translateX(-7px) rotate(1.1deg); }
+.card-stack:first-of-type .card:nth-child(3) { transform: translateX(0) rotate(0); }
+.card-stack:first-of-type .card:nth-child(4) { transform: translateX(-7px) rotate(-1.1deg); }
+.card-stack:first-of-type .card:nth-child(5) { transform: translateX(-16px) rotate(-2.2deg); }
+.card-stack:first-of-type .more-card { transform: translateX(-22px) rotate(-2.6deg); }
+
+.card-stack:last-of-type .card:nth-child(1) { transform: translateX(18px) rotate(-2deg); }
+.card-stack:last-of-type .card:nth-child(2) { transform: translateX(6px) rotate(-0.8deg); }
+.card-stack:last-of-type .card:nth-child(3) { transform: translateX(6px) rotate(0.8deg); }
+.card-stack:last-of-type .card:nth-child(4) { transform: translateX(18px) rotate(2deg); }
+.card-stack:last-of-type .more-card { transform: translateX(24px) rotate(2.4deg); }
 .card .num {
   position: absolute;
   top: 14px;
@@ -265,6 +287,7 @@ body {
 .card .visual {
   width: 100%;
   aspect-ratio: 16 / 9;
+  max-width: 150px;
   background: var(--ink);
   position: relative;
   display: flex;
@@ -273,18 +296,14 @@ body {
   overflow: hidden;
   border: 1px solid var(--oxblood);
   border-radius: 6px;
-  max-height: 0;
-  border-width: 0;
-  margin-bottom: 0;
-  opacity: 0;
-  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-              border-width 0.4s ease,
+  margin-bottom: 10px;
+  opacity: 0.92;
+  transition: max-width 0.4s cubic-bezier(0.4, 0, 0.2, 1),
               margin-bottom 0.4s ease,
               opacity 0.35s ease;
 }
 .card:hover .visual {
-  max-height: 340px;
-  border-width: 1px;
+  max-width: 1200px;
   margin-bottom: 18px;
   opacity: 1;
 }
@@ -296,12 +315,30 @@ body {
   display: block;
 }
 .card-spec {
-  margin-top: 14px;
-  padding-top: 12px;
-  border-top: 1px solid rgba(58, 18, 24, 0.18);
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0 solid rgba(58, 18, 24, 0.18);
   display: grid;
   grid-template-columns: max-content 1fr;
   gap: 6px 14px;
+  max-height: 0;
+  max-width: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              max-width 0.4s ease,
+              margin-top 0.4s ease,
+              padding-top 0.4s ease,
+              border-top-width 0.4s ease,
+              opacity 0.35s ease;
+}
+.card:hover .card-spec {
+  max-height: 600px;
+  max-width: 1200px;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top-width: 1px;
+  opacity: 1;
 }
 .card-spec dt {
   font-family: 'JetBrains Mono', monospace;
@@ -319,12 +356,30 @@ body {
   line-height: 1.45;
 }
 .card-tags {
-  margin-top: 12px;
-  padding-top: 10px;
-  border-top: 1px solid rgba(58, 18, 24, 0.12);
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0 solid rgba(58, 18, 24, 0.12);
   display: flex;
   flex-wrap: wrap;
   gap: 5px 6px;
+  max-height: 0;
+  max-width: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              max-width 0.4s ease,
+              margin-top 0.4s ease,
+              padding-top 0.4s ease,
+              border-top-width 0.4s ease,
+              opacity 0.35s ease;
+}
+.card:hover .card-tags {
+  max-height: 200px;
+  max-width: 1200px;
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top-width: 1px;
+  opacity: 1;
 }
 .card-tags .tag {
   font-family: 'JetBrains Mono', monospace;
@@ -354,6 +409,18 @@ body {
   color: #5a2a32;
   line-height: 1.45;
   display: block;
+  max-height: 0;
+  max-width: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              max-width 0.4s ease,
+              opacity 0.35s ease;
+}
+.card:hover .desc {
+  max-height: 300px;
+  max-width: 1200px;
+  opacity: 1;
 }
 
 .card.placeholder .visual {
@@ -653,8 +720,8 @@ body {
       <div class="section-header middle"></div>
       <div class="section-header">
         <span class="chapter">For Humans</span>
-        <h2>Artifacts</h2>
-        <p>Demismatch first, then augment</p>
+        <h2>Reality Tools</h2>
+        <p>Software that shows an organism what it's actually looking at — and what to do about it</p>
       </div>
     </div>
 
@@ -848,39 +915,9 @@ body {
         <div class="card">
           <span class="num">c.1</span>
           <div class="visual">
-            <img src="lens-01.png" alt="Lens browser extension annotating a CNN article — the Rory McIlroy Masters headline marked EX·02 with the breakdown 'A prestige in a tribe not yours'">
-          </div>
-          <span class="name">Lens</span>
-          <span class="desc">Browser extension. Every page annotated: mechanism hijacked, proxy sold, real need imitated.</span>
-          <dl class="card-spec">
-            <dt>Form</dt><dd>Chrome extension · v0.4.2</dd>
-            <dt>Targets</dt><dd>Any mechanism, per page element</dd>
-            <dt>Proxy</dt><dd>Manufactured status, threat, urgency, or intimacy</dd>
-            <dt>Real input</dt><dd>The resolution condition the mechanism evolved to process</dd>
-          </dl>
-        </div>
-
-        <div class="card">
-          <span class="num">c.2</span>
-          <div class="visual">
-            <img src="source-decode-01.png" alt="Source:Decode HUD overlay on a photo of a cobra in defensive posture — biometrics panel showing MAX cortisol and MAX adrenaline, action: FREEZE, threat level: CRITICAL">
-          </div>
-          <span class="name">Source:Decode</span>
-          <span class="desc">Real-world HUD. Point it at a scene — get mechanism, proxy, mismatch, named on the image.</span>
-          <dl class="card-spec">
-            <dt>Form</dt><dd>Scene HUD — image upload, live camera in progress</dd>
-            <dt>Targets</dt><dd>Any mechanism firing in a visual scene</dd>
-            <dt>Proxy</dt><dd>Hyperstimulus pattern when present; named "MATCHED" when real</dd>
-            <dt>Real input</dt><dd>What the organism is actually reading the scene as</dd>
-          </dl>
-        </div>
-
-        <div class="card">
-          <span class="num">c.3</span>
-          <div class="visual">
             <svg viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%;display:block">
               <rect width="1600" height="900" fill="#120506"/>
-              <text x="60" y="66" font-family="'JetBrains Mono',monospace" font-size="26" fill="#c4962c" letter-spacing="6">INTERPRETER</text>
+              <text x="60" y="66" font-family="'JetBrains Mono',monospace" font-size="26" fill="#c4962c" letter-spacing="6">DECODE · TALK</text>
               <text x="1540" y="66" font-family="'JetBrains Mono',monospace" font-size="22" fill="#5a4a30" letter-spacing="4" text-anchor="end">SESSION · 01</text>
               <line x1="60" y1="96" x2="1540" y2="96" stroke="#3a1218" stroke-width="1.5"/>
 
@@ -889,7 +926,7 @@ body {
               <text x="570" y="222" font-family="'Spectral',serif" font-size="32" fill="#ece0c4">Why do I feel bad when a stranger</text>
               <text x="570" y="268" font-family="'Spectral',serif" font-size="32" fill="#ece0c4">wins a championship?</text>
 
-              <text x="60" y="348" font-family="'JetBrains Mono',monospace" font-size="18" fill="#c4962c" letter-spacing="4">INTERPRETER</text>
+              <text x="60" y="348" font-family="'JetBrains Mono',monospace" font-size="18" fill="#c4962c" letter-spacing="4">DECODE · TALK</text>
               <rect x="60" y="368" width="1320" height="360" rx="10" fill="#1a0608" stroke="#3a1218" stroke-width="2"/>
               <text x="90" y="428" font-family="'Spectral',serif" font-size="30" fill="#ece0c4">Your rank tracker is firing on someone outside your coalition.</text>
               <text x="90" y="488" font-family="'Spectral',serif" font-size="26" fill="#c4b894">The circuit reads visible status change and runs the motivation</text>
@@ -907,8 +944,8 @@ body {
               <text x="1180" y="858" font-family="'Spectral',serif" font-size="22" fill="#c4b894">Rank change in your coalition</text>
             </svg>
           </div>
-          <span class="name">Interpreter</span>
-          <span class="desc">Situation in, evolutionary read out. Not a companion, not advice — the mechanism story behind what you're feeling. <a href="interpreter.html" style="color:#2d6b6b;border-bottom:1px solid rgba(45,107,107,0.35);text-decoration:none;white-space:nowrap;">→ Sample exchanges</a></span>
+          <span class="name">Decode Talk</span>
+          <span class="desc">Situation in, evolutionary read out. Not a companion, not advice — the mechanism story behind what you're feeling. <a href="decode-talk.html" style="color:#2d6b6b;border-bottom:1px solid rgba(45,107,107,0.35);text-decoration:none;white-space:nowrap;">→ Sample exchanges</a></span>
           <dl class="card-spec">
             <dt>Form</dt><dd>Chat — web, grounded in the Cor spec</dd>
             <dt>Targets</dt><dd>Any mechanism relevant to a described situation</dd>
@@ -918,199 +955,47 @@ body {
         </div>
 
         <div class="card">
+          <span class="num">c.2</span>
+          <div class="visual">
+            <img src="source-decode-01.png" alt="Decode Camera HUD overlay on a photo of a cobra in defensive posture — biometrics panel showing MAX cortisol and MAX adrenaline, action: FREEZE, threat level: CRITICAL">
+          </div>
+          <span class="name">Decode Camera</span>
+          <span class="desc">Real-world HUD. Point it at a scene — get mechanism, proxy, mismatch, named on the image.</span>
+          <dl class="card-spec">
+            <dt>Form</dt><dd>Scene HUD — image upload, live camera in progress</dd>
+            <dt>Targets</dt><dd>Any mechanism firing in a visual scene</dd>
+            <dt>Proxy</dt><dd>Hyperstimulus pattern when present; named "MATCHED" when real</dd>
+            <dt>Real input</dt><dd>What the organism is actually reading the scene as</dd>
+          </dl>
+        </div>
+
+        <div class="card">
+          <span class="num">c.3</span>
+          <div class="visual">
+            <img src="lens-01.png" alt="Decode Web browser extension annotating a CNN article — the Rory McIlroy Masters headline marked EX·02 with the breakdown 'A prestige in a tribe not yours'">
+          </div>
+          <span class="name">Decode Web</span>
+          <span class="desc">Browser extension. Every page annotated: mechanism hijacked, proxy sold, real need imitated.</span>
+          <dl class="card-spec">
+            <dt>Form</dt><dd>Chrome extension · v0.4.2</dd>
+            <dt>Targets</dt><dd>Any mechanism, per page element</dd>
+            <dt>Proxy</dt><dd>Manufactured status, threat, urgency, or intimacy</dd>
+            <dt>Real input</dt><dd>The resolution condition the mechanism evolved to process</dd>
+          </dl>
+        </div>
+
+        <div class="card">
           <span class="num">c.4</span>
           <div class="visual">
-            <svg viewBox="0 0 1600 960" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%;display:block">
-              <rect width="1600" height="960" fill="#120506"/>
-              <text x="60" y="66" font-family="'JetBrains Mono',monospace" font-size="26" fill="#c4962c" letter-spacing="6">MISMATCH TRACKER</text>
-              <text x="1540" y="66" font-family="'JetBrains Mono',monospace" font-size="20" fill="#5a4a30" letter-spacing="3" text-anchor="end">BASELINE · 15 MECHANISMS</text>
-              <line x1="60" y1="96" x2="1540" y2="96" stroke="#3a1218" stroke-width="1.5"/>
-
-              <text x="60" y="158" font-family="'JetBrains Mono',monospace" font-size="14" fill="#6a5a3a" letter-spacing="2">M · 01</text>
-              <text x="180" y="162" font-family="'Spectral',serif" font-size="26" fill="#ece0c4">Threat Management</text>
-              <rect x="1280" y="140" width="220" height="28" rx="4" fill="#c4962c"/>
-              <text x="1390" y="160" font-family="'JetBrains Mono',monospace" font-size="12" fill="#1a0608" letter-spacing="3" text-anchor="middle" font-weight="600">MATCHED</text>
-
-              <text x="60" y="208" font-family="'JetBrains Mono',monospace" font-size="14" fill="#6a5a3a" letter-spacing="2">M · 02</text>
-              <text x="180" y="212" font-family="'Spectral',serif" font-size="26" fill="#ece0c4">Pursuit / Exploration</text>
-              <rect x="1280" y="190" width="220" height="28" rx="4" fill="#9a1a1a"/>
-              <text x="1390" y="210" font-family="'JetBrains Mono',monospace" font-size="12" fill="#ece0c4" letter-spacing="3" text-anchor="middle" font-weight="600">FIGHTING</text>
-
-              <text x="60" y="258" font-family="'JetBrains Mono',monospace" font-size="14" fill="#6a5a3a" letter-spacing="2">M · 03</text>
-              <text x="180" y="262" font-family="'Spectral',serif" font-size="26" fill="#ece0c4">Social Bonding</text>
-              <rect x="1280" y="240" width="220" height="28" rx="4" fill="#7a4a1e"/>
-              <text x="1390" y="260" font-family="'JetBrains Mono',monospace" font-size="12" fill="#ece0c4" letter-spacing="3" text-anchor="middle" font-weight="600">STARVED</text>
-
-              <text x="60" y="308" font-family="'JetBrains Mono',monospace" font-size="14" fill="#6a5a3a" letter-spacing="2">M · 04</text>
-              <text x="180" y="312" font-family="'Spectral',serif" font-size="26" fill="#ece0c4">Social Calibration / Play</text>
-              <rect x="1280" y="290" width="220" height="28" rx="4" fill="#7a4a1e"/>
-              <text x="1390" y="310" font-family="'JetBrains Mono',monospace" font-size="12" fill="#ece0c4" letter-spacing="3" text-anchor="middle" font-weight="600">STARVED</text>
-
-              <text x="60" y="358" font-family="'JetBrains Mono',monospace" font-size="14" fill="#6a5a3a" letter-spacing="2">M · 05</text>
-              <text x="180" y="362" font-family="'Spectral',serif" font-size="26" fill="#ece0c4">Status Monitoring</text>
-              <rect x="1280" y="340" width="220" height="28" rx="4" fill="#9a1a1a"/>
-              <text x="1390" y="360" font-family="'JetBrains Mono',monospace" font-size="12" fill="#ece0c4" letter-spacing="3" text-anchor="middle" font-weight="600">FIGHTING</text>
-
-              <text x="60" y="408" font-family="'JetBrains Mono',monospace" font-size="14" fill="#6a5a3a" letter-spacing="2">M · 06</text>
-              <text x="180" y="412" font-family="'Spectral',serif" font-size="26" fill="#ece0c4">Controllability / Agency</text>
-              <rect x="1280" y="390" width="220" height="28" rx="4" fill="#7a4a1e"/>
-              <text x="1390" y="410" font-family="'JetBrains Mono',monospace" font-size="12" fill="#ece0c4" letter-spacing="3" text-anchor="middle" font-weight="600">STARVED</text>
-
-              <text x="60" y="458" font-family="'JetBrains Mono',monospace" font-size="14" fill="#6a5a3a" letter-spacing="2">M · 07</text>
-              <text x="180" y="462" font-family="'Spectral',serif" font-size="26" fill="#ece0c4">Circadian Regulation</text>
-              <rect x="1280" y="440" width="220" height="28" rx="4" fill="#9a1a1a"/>
-              <text x="1390" y="460" font-family="'JetBrains Mono',monospace" font-size="12" fill="#ece0c4" letter-spacing="3" text-anchor="middle" font-weight="600">FIGHTING</text>
-
-              <text x="60" y="508" font-family="'JetBrains Mono',monospace" font-size="14" fill="#6a5a3a" letter-spacing="2">M · 08</text>
-              <text x="180" y="512" font-family="'Spectral',serif" font-size="26" fill="#ece0c4">Immune Regulation</text>
-              <rect x="1280" y="490" width="220" height="28" rx="4" fill="#7a4a1e"/>
-              <text x="1390" y="510" font-family="'JetBrains Mono',monospace" font-size="12" fill="#ece0c4" letter-spacing="3" text-anchor="middle" font-weight="600">STARVED</text>
-
-              <text x="60" y="558" font-family="'JetBrains Mono',monospace" font-size="14" fill="#6a5a3a" letter-spacing="2">M · 09</text>
-              <text x="180" y="562" font-family="'Spectral',serif" font-size="26" fill="#ece0c4">Care / Alloparenting</text>
-              <rect x="1280" y="540" width="220" height="28" rx="4" fill="#7a4a1e"/>
-              <text x="1390" y="560" font-family="'JetBrains Mono',monospace" font-size="12" fill="#ece0c4" letter-spacing="3" text-anchor="middle" font-weight="600">STARVED</text>
-
-              <text x="60" y="608" font-family="'JetBrains Mono',monospace" font-size="14" fill="#6a5a3a" letter-spacing="2">M · 10</text>
-              <text x="180" y="612" font-family="'Spectral',serif" font-size="26" fill="#ece0c4">Movement / Regulatory</text>
-              <rect x="1280" y="590" width="220" height="28" rx="4" fill="#2d6b6b"/>
-              <text x="1390" y="610" font-family="'JetBrains Mono',monospace" font-size="12" fill="#ece0c4" letter-spacing="3" text-anchor="middle" font-weight="600">RESOLVED</text>
-
-              <text x="60" y="658" font-family="'JetBrains Mono',monospace" font-size="14" fill="#6a5a3a" letter-spacing="2">M · 11</text>
-              <text x="180" y="662" font-family="'Spectral',serif" font-size="26" fill="#ece0c4">Cooperation / Alliance</text>
-              <rect x="1280" y="640" width="220" height="28" rx="4" fill="#7a4a1e"/>
-              <text x="1390" y="660" font-family="'JetBrains Mono',monospace" font-size="12" fill="#ece0c4" letter-spacing="3" text-anchor="middle" font-weight="600">STARVED</text>
-
-              <text x="60" y="708" font-family="'JetBrains Mono',monospace" font-size="14" fill="#6a5a3a" letter-spacing="2">M · 12</text>
-              <text x="180" y="712" font-family="'Spectral',serif" font-size="26" fill="#ece0c4">Contamination Avoidance</text>
-              <rect x="1280" y="690" width="220" height="28" rx="4" fill="#9a1a1a"/>
-              <text x="1390" y="710" font-family="'JetBrains Mono',monospace" font-size="12" fill="#ece0c4" letter-spacing="3" text-anchor="middle" font-weight="600">FIGHTING</text>
-
-              <text x="60" y="758" font-family="'JetBrains Mono',monospace" font-size="14" fill="#6a5a3a" letter-spacing="2">M · 13</text>
-              <text x="180" y="762" font-family="'Spectral',serif" font-size="26" fill="#ece0c4">Energy Regulation</text>
-              <rect x="1280" y="740" width="220" height="28" rx="4" fill="#7a4a1e"/>
-              <text x="1390" y="760" font-family="'JetBrains Mono',monospace" font-size="12" fill="#ece0c4" letter-spacing="3" text-anchor="middle" font-weight="600">STARVED</text>
-
-              <text x="60" y="808" font-family="'JetBrains Mono',monospace" font-size="14" fill="#6a5a3a" letter-spacing="2">M · 14</text>
-              <text x="180" y="812" font-family="'Spectral',serif" font-size="26" fill="#ece0c4">Reproductive Motivation</text>
-              <rect x="1280" y="790" width="220" height="28" rx="4" fill="#7a4a1e"/>
-              <text x="1390" y="810" font-family="'JetBrains Mono',monospace" font-size="12" fill="#ece0c4" letter-spacing="3" text-anchor="middle" font-weight="600">STARVED</text>
-
-              <text x="60" y="858" font-family="'JetBrains Mono',monospace" font-size="14" fill="#6a5a3a" letter-spacing="2">R · 01</text>
-              <text x="180" y="862" font-family="'Spectral',serif" font-size="26" fill="#ece0c4">Touch<tspan font-size="14" fill="#6a5a3a" font-style="italic" dx="14">C-tactile input to social bonding</tspan></text>
-              <rect x="1280" y="840" width="220" height="28" rx="4" fill="#7a4a1e"/>
-              <text x="1390" y="860" font-family="'JetBrains Mono',monospace" font-size="12" fill="#ece0c4" letter-spacing="3" text-anchor="middle" font-weight="600">STARVED</text>
-
-              <text x="60" y="922" font-family="'Spectral',serif" font-size="18" font-style="italic" fill="#5a4a30">9 starved · 4 environment fighting · 1 resolved · 1 matched — a typical modern baseline.</text>
-            </svg>
+            <img src="table-01.png" alt="Adaptor — Phase 2 research program. Placeholder imagery; the dinner-table visual is a stand-in until Phase 2 visual language is decided.">
           </div>
-          <span class="name">Mismatch Tracker</span>
-          <span class="desc">Per-mechanism readout. Not a wellness score — which systems are starved, which are resolved, which the environment is fighting.</span>
+          <span class="name">Adaptor — Phase 2</span>
+          <span class="desc">Once you can see mismatch, the next question is what to build instead. Adaptor is the research program designing technology that satisfies human mechanisms at their real condition, rather than fake the signal. <a href="adaptor.html" style="color:#2d6b6b;border-bottom:1px solid rgba(45,107,107,0.35);text-decoration:none;white-space:nowrap;">→ Research directions</a></span>
           <dl class="card-spec">
-            <dt>Form</dt><dd>Per-mechanism state dashboard · passive measurement + self-report</dd>
-            <dt>Targets</dt><dd>All 15 Cor mechanisms — 14 motivational systems plus R1 Touch — baseline, not wellness</dd>
-            <dt>Proxy</dt><dd>Wellness scores, optimization metrics, symptom trackers</dd>
-            <dt>Real input</dt><dd>Which mechanisms are receiving their resolution condition</dd>
-          </dl>
-        </div>
-
-        <div class="card">
-          <span class="num">c.5</span>
-          <div class="visual">
-            <img src="table-01.png" alt="A scarred wooden dining table seats eight people of mixed ages on a Tuesday evening — candles, torn bread, a shared pot, worn wood, children's drawings pinned to the wall, pure black windows outside">
-          </div>
-          <span class="name">The Adaptor series</span>
-          <span class="desc">Environment, not tool. Six shapes shown — Table, Garden, Fire, Crew, Threshold, Night Watch — that route the organism back toward real inputs. Open series. Shown: The Table. <em>"8 people. Tuesday nights. Forever."</em> <a href="adaptor.html" style="color:#2d6b6b;border-bottom:1px solid rgba(45,107,107,0.35);text-decoration:none;white-space:nowrap;">→ Full series</a></span>
-          <dl class="card-spec">
-            <dt>Form</dt><dd>Shared physical practice · same people · real rhythm</dd>
-            <dt>Targets</dt><dd>Each shape a cluster of mechanisms — food, fire, nature, purpose, 3am, place</dd>
-            <dt>Proxy</dt><dd>Apps, communities-in-name-only, scheduled events with strangers</dd>
-            <dt>Real input</dt><dd>Repeated presence with known people in a specific place, with a real reason</dd>
-          </dl>
-        </div>
-
-        <div class="card">
-          <span class="num">c.6</span>
-          <div class="visual">
-            <img src="eea-01.png" alt="East African savannah at dusk — a fire circle with eight human silhouettes gathered close around it, acacia tree on the right, tall grass in the foreground, first stars in a deep indigo sky">
-          </div>
-          <span class="name">EEA environment builder</span>
-          <span class="desc">Generative VR/AR/MR habitats. Deliver the sensory environment the organism evolved to expect, to bodies the built world has stranded.</span>
-          <dl class="card-spec">
-            <dt>Form</dt><dd>Real-time rendered VR/AR/MR habitat, multi-sensory</dd>
-            <dt>Targets</dt><dd>Nature contact, circadian, thermoregulation, coalition co-presence</dd>
-            <dt>Proxy</dt><dd>Nature apps, screen savers, meditation visuals, single-user VR escape</dd>
-            <dt>Real input</dt><dd>The sensory envelope the nervous system evolved for — known faces, warm fire, real sky</dd>
-          </dl>
-        </div>
-
-        <div class="card">
-          <span class="num">c.7</span>
-          <div class="visual">
-            <img src="dunbar-01.png" alt="Late afternoon on a covered porch — a long picnic table with twelve people of all ages, the aftermath of a shared harvest. Baskets of just-picked produce, bread, a large enamel pot, pitchers of water and wine. The older man at the head carving bread, a mother nursing a baby mid-conversation, teenagers clearing plates, children running between chairs. Visible roles, no ceremony. Warm golden-hour light.">
-            <svg viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%;display:none">
-              <rect width="1600" height="900" fill="#120506"/>
-              <text x="60" y="66" font-family="'JetBrains Mono',monospace" font-size="26" fill="#c4962c" letter-spacing="6">DUNBAR · PURPOSE</text>
-              <text x="1540" y="66" font-family="'JetBrains Mono',monospace" font-size="20" fill="#5a4a30" letter-spacing="3" text-anchor="end">TRIBE · ROLE · GOAL</text>
-              <line x1="60" y1="96" x2="1540" y2="96" stroke="#3a1218" stroke-width="1.5"/>
-
-              <circle cx="420" cy="500" r="360" fill="none" stroke="#3a1218" stroke-width="1" stroke-dasharray="2 7"/>
-              <circle cx="420" cy="500" r="270" fill="none" stroke="#3a1218" stroke-width="1" stroke-dasharray="2 7"/>
-              <circle cx="420" cy="500" r="180" fill="none" stroke="#3a1218" stroke-width="1.2" stroke-dasharray="3 5"/>
-              <circle cx="420" cy="500" r="90" fill="none" stroke="#2d6b6b" stroke-width="1.4"/>
-
-              <text x="420" y="127" font-family="'JetBrains Mono',monospace" font-size="12" fill="#5a4a30" letter-spacing="3" text-anchor="middle">150 · CLAN</text>
-              <text x="420" y="217" font-family="'JetBrains Mono',monospace" font-size="12" fill="#6a5a3a" letter-spacing="3" text-anchor="middle">50 · BAND</text>
-              <text x="420" y="307" font-family="'JetBrains Mono',monospace" font-size="12" fill="#8a7e58" letter-spacing="3" text-anchor="middle">15 · CLOSE</text>
-              <text x="420" y="397" font-family="'JetBrains Mono',monospace" font-size="12" fill="#2d6b6b" letter-spacing="3" text-anchor="middle">5 · INTIMATE</text>
-
-              <circle cx="457" cy="324" r="3" fill="#8a7e58"/>
-              <circle cx="526" cy="354" r="3" fill="#8a7e58"/>
-              <circle cx="576" cy="410" r="3" fill="#8a7e58"/>
-              <circle cx="599" cy="481" r="3" fill="#8a7e58"/>
-              <circle cx="591" cy="556" r="3" fill="#8a7e58"/>
-              <circle cx="554" cy="620" r="3" fill="#8a7e58"/>
-              <circle cx="493" cy="664" r="3" fill="#8a7e58"/>
-              <circle cx="420" cy="680" r="3" fill="#8a7e58"/>
-              <circle cx="347" cy="664" r="3" fill="#8a7e58"/>
-              <circle cx="286" cy="620" r="3" fill="#8a7e58"/>
-              <circle cx="249" cy="556" r="3" fill="#8a7e58"/>
-              <circle cx="241" cy="481" r="3" fill="#8a7e58"/>
-              <circle cx="264" cy="410" r="3" fill="#8a7e58"/>
-              <circle cx="314" cy="354" r="3" fill="#8a7e58"/>
-              <circle cx="383" cy="324" r="3" fill="#8a7e58"/>
-
-              <circle cx="473" cy="427" r="4.5" fill="#2d6b6b"/>
-              <circle cx="506" cy="528" r="4.5" fill="#2d6b6b"/>
-              <circle cx="420" cy="590" r="4.5" fill="#2d6b6b"/>
-              <circle cx="334" cy="528" r="4.5" fill="#2d6b6b"/>
-              <circle cx="367" cy="427" r="4.5" fill="#2d6b6b"/>
-
-              <circle cx="420" cy="500" r="10" fill="#c4962c"/>
-              <text x="420" y="544" font-family="'JetBrains Mono',monospace" font-size="13" fill="#c4962c" letter-spacing="4" text-anchor="middle">YOU</text>
-
-              <text x="860" y="200" font-family="'JetBrains Mono',monospace" font-size="14" fill="#c4962c" letter-spacing="4">ROLE</text>
-              <text x="860" y="262" font-family="'Spectral',serif" font-size="42" fill="#ece0c4" font-weight="500">The one who cooks</text>
-              <text x="860" y="316" font-family="'Spectral',serif" font-size="22" fill="#c4b894">Called to the fire. Known by hands.</text>
-
-              <line x1="860" y1="372" x2="1540" y2="372" stroke="#3a1218" stroke-width="1"/>
-              <text x="860" y="422" font-family="'JetBrains Mono',monospace" font-size="14" fill="#c4962c" letter-spacing="4">GROUP</text>
-              <text x="860" y="484" font-family="'Spectral',serif" font-size="42" fill="#ece0c4" font-weight="500">The Tuesday Table</text>
-              <text x="860" y="538" font-family="'Spectral',serif" font-size="22" fill="#c4b894">8 seats. 12 months running. Growing toward a band.</text>
-
-              <line x1="860" y1="594" x2="1540" y2="594" stroke="#3a1218" stroke-width="1"/>
-              <text x="860" y="644" font-family="'JetBrains Mono',monospace" font-size="14" fill="#c4962c" letter-spacing="4">GOAL</text>
-              <text x="860" y="706" font-family="'Spectral',serif" font-size="42" fill="#ece0c4" font-weight="500">Hold the shape</text>
-              <text x="860" y="760" font-family="'Spectral',serif" font-size="22" fill="#c4b894">Another six months. Recruit to ten. No more.</text>
-            </svg>
-          </div>
-          <span class="name">Dunbar / Purpose</span>
-          <span class="desc">Tribe + role + goal. 150 slots, honored. No strangers, no parasocial, no AI taking a band member's seat.</span>
-          <dl class="card-spec">
-            <dt>Form</dt><dd>Social software — tribe boundary, role registry, goal line</dd>
-            <dt>Targets</dt><dd>Coalition monitoring, purpose, role identity, loop closure</dd>
-            <dt>Proxy</dt><dd>Followers, feeds, group chats with strangers, AI "companions"</dd>
-            <dt>Real input</dt><dd>Known people in a known shape, doing a known thing, together</dd>
+            <dt>Form</dt><dd>Research program · not a shipping product</dd>
+            <dt>Targets</dt><dd>Mechanisms whose resolution conditions current tech fakes rather than meets</dd>
+            <dt>Proxy</dt><dd>"Touch grass" retreats, digital-detox products, anti-tech framing</dd>
+            <dt>Real input</dt><dd>Technology-delivered conditions the mechanism actually evolved to process</dd>
           </dl>
         </div>
 
@@ -1190,7 +1075,7 @@ body {
         <span class="xsite-col-url">demismatch.com/vision</span>
       </a>
     </nav>
-    <p class="xsite-canonical">Demismatch is the project. Cor is its central specification. The Artifacts (for humans) and the alignment outputs (for AI systems) are built on Cor.</p>
+    <p class="xsite-canonical">Demismatch is the project. Cor is its central specification. The Reality Tools (for humans) and the alignment outputs (for AI systems) are built on Cor.</p>
     <p class="xsite-copy">Copyright 2026 · Cor / Demismatch</p>
   </footer>
 </div>
