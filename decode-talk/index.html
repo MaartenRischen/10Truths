@@ -191,6 +191,29 @@ body {
 }
 @keyframes blink { 50% { opacity: 0; } }
 
+.regen-row {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-right: 10%;
+  margin-top: 10px;
+}
+.regen-btn {
+  padding: 6px 14px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  background: transparent;
+  color: var(--teal);
+  border: 1px solid var(--teal);
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 140ms ease;
+}
+.regen-btn:hover:not(:disabled) { background: var(--teal); color: var(--parchment); }
+.regen-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
 .error {
   background: #fce8e8;
   border: 1px solid #8a1a1a;
@@ -265,13 +288,238 @@ body {
 .footer a { color: inherit; text-decoration: none; transition: color 140ms ease; }
 .footer a:hover { color: var(--teal); }
 
+/* Settings gear */
+.settings-toggle {
+  position: fixed;
+  top: 66px;
+  right: 24px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--oxblood);
+  color: var(--parchment);
+  border: 2px solid var(--teal);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  z-index: 100;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+  transition: transform 240ms ease, background 140ms ease;
+}
+.settings-toggle:hover {
+  transform: rotate(90deg);
+  background: var(--teal);
+  border-color: var(--parchment);
+}
+
+/* Drawer */
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 240ms ease;
+  z-index: 150;
+}
+.backdrop.open { opacity: 1; pointer-events: auto; }
+
+.drawer {
+  position: fixed;
+  top: 0;
+  right: -480px;
+  width: 460px;
+  max-width: 92vw;
+  height: 100vh;
+  background: var(--parchment);
+  color: var(--ink);
+  box-shadow: -20px 0 60px rgba(0,0,0,0.5);
+  overflow-y: auto;
+  transition: right 280ms cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 200;
+  padding: 32px 28px 100px;
+}
+.drawer.open { right: 0; }
+
+.drawer h2 {
+  font-family: 'Spectral', serif;
+  font-weight: 400;
+  font-style: italic;
+  font-size: 32px;
+  color: var(--oxblood);
+  margin-bottom: 20px;
+}
+
+.drawer-section {
+  margin-bottom: 28px;
+  padding-bottom: 20px;
+  border-bottom: 1px dashed rgba(58, 18, 24, 0.25);
+}
+.drawer-section:last-of-type { border-bottom: none; }
+.drawer-section h3 {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 16px;
+  font-weight: 500;
+}
+
+.drawer-row {
+  margin-bottom: 18px;
+}
+.drawer-row:last-child { margin-bottom: 0; }
+.drawer-row label {
+  display: block;
+  font-family: 'Spectral', serif;
+  font-size: 15px;
+  color: var(--ink);
+  margin-bottom: 4px;
+  font-weight: 500;
+}
+.drawer-row .desc {
+  font-family: 'Spectral', serif;
+  font-size: 13px;
+  color: #7a5a60;
+  margin-bottom: 10px;
+  line-height: 1.45;
+}
+
+.pill-group {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+.pill {
+  padding: 6px 12px;
+  background: rgba(58, 18, 24, 0.08);
+  border: 1px solid rgba(58, 18, 24, 0.25);
+  border-radius: 20px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: lowercase;
+  cursor: pointer;
+  transition: all 140ms ease;
+  color: var(--ink);
+  user-select: none;
+}
+.pill:hover { background: rgba(58, 18, 24, 0.15); }
+.pill.active {
+  background: var(--oxblood);
+  color: var(--parchment);
+  border-color: var(--oxblood);
+}
+
+.drawer input[type="text"] {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--oxblood);
+  border-radius: 6px;
+  background: #fbf4df;
+  font-family: 'Spectral', serif;
+  font-size: 14px;
+  color: var(--ink);
+}
+.drawer input[type="text"]:focus {
+  outline: none;
+  border-color: var(--teal);
+  box-shadow: 0 0 0 2px rgba(45, 107, 107, 0.2);
+}
+
+.drawer-actions {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 460px;
+  max-width: 92vw;
+  background: var(--parchment);
+  padding: 16px 28px;
+  border-top: 2px solid var(--oxblood);
+  display: flex;
+  gap: 10px;
+  z-index: 210;
+  transform: translateX(100%);
+  transition: transform 280ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.drawer.open ~ .drawer-actions { transform: translateX(0); }
+.drawer-actions button {
+  flex: 1;
+  padding: 10px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 6px;
+  border: 1px solid var(--oxblood);
+  background: transparent;
+  color: var(--oxblood);
+  transition: all 140ms ease;
+  font-weight: 500;
+}
+.drawer-actions button:hover { background: var(--oxblood); color: var(--parchment); }
+.drawer-actions button.primary {
+  background: var(--oxblood);
+  color: var(--parchment);
+}
+.drawer-actions button.primary:hover { background: var(--teal); border-color: var(--teal); }
+
+/* Debug panel */
+.debug-panel {
+  margin-top: 28px;
+  padding: 20px;
+  background: var(--oxblood-deep);
+  color: var(--parchment);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  line-height: 1.6;
+  border-radius: 8px;
+  max-height: 500px;
+  overflow-y: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+  display: none;
+}
+.debug-panel.visible { display: block; }
+.debug-panel-header {
+  margin-bottom: 12px;
+  color: var(--teal-bright);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-size: 10px;
+  font-weight: 500;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.debug-panel-header button {
+  background: transparent;
+  color: var(--parchment);
+  border: 1px solid var(--teal);
+  padding: 4px 10px;
+  font-family: inherit;
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  cursor: pointer;
+  border-radius: 3px;
+}
+.debug-panel-header button:hover { background: var(--teal); }
+
 @media (max-width: 900px) {
   .page { padding: 32px 20px 24px; }
   .title-block h1 { font-size: 48px; }
   .q { margin-left: 0; font-size: 16px; }
   .a { margin-right: 0; padding: 18px 20px; font-size: 16px; }
+  .regen-row { margin-right: 0; }
   .composer { flex-direction: column; }
   .composer button { padding: 12px; }
+  .settings-toggle { top: 54px; right: 14px; width: 40px; height: 40px; }
+  .drawer { width: 92vw; padding: 28px 22px 110px; }
+  .drawer-actions { width: 92vw; padding: 14px 22px; }
 }
 </style>
 </head>
@@ -289,11 +537,13 @@ body {
   </ul>
 </nav>
 
+<button class="settings-toggle" id="settings-toggle" aria-label="Open settings" title="Settings">⚙</button>
+
 <div class="page">
   <div class="title-block">
     <h1><em>Decode Talk</em></h1>
-    <p class="standfirst">Situation in, evolutionary read out. Not a companion. Not advice. The mechanism story behind what you're feeling.</p>
-    <span class="status">Live · Opus 4.6</span>
+    <p class="standfirst">Situation in, evolutionary read out. Not a companion. The mechanism story behind what you're feeling — plus, if you want it, the nearest achievable next step.</p>
+    <span class="status" id="status-badge">Live · Opus 4.6</span>
   </div>
 
   <div class="conversation" id="conversation" aria-live="polite"></div>
@@ -305,40 +555,287 @@ body {
     <button type="submit" id="submit">Decode</button>
   </form>
 
+  <div class="debug-panel" id="debug-panel">
+    <div class="debug-panel-header">
+      <span>Assembled system prompt</span>
+      <button id="debug-refresh">Refresh</button>
+    </div>
+    <div id="debug-content">Click Refresh to load the current prompt for your settings.</div>
+  </div>
+
   <div class="footer">
     <a href="/decode-talk.html">← Sample exchanges</a>
     <span>demismatch.com/decode-talk · grounded in Cor v4</span>
   </div>
 </div>
 
-<script>
-const API_URL = '/api/decode-talk/chat';
-const messages = [];
+<div class="backdrop" id="backdrop"></div>
+<aside class="drawer" id="drawer" aria-hidden="true">
+  <h2>Settings</h2>
+  <div id="drawer-body"></div>
+</aside>
+<div class="drawer-actions">
+  <button id="reset-settings">Reset defaults</button>
+  <button class="primary" id="close-drawer">Close</button>
+</div>
 
+<script>
+// ─── Settings schema ──────────────────────────────────────────────────────────
+// Must match DEFAULT_SETTINGS in worker/src/toggles.js.
+const DEFAULTS = {
+  helpfulness: 'light',
+  warmth: 'neutral',
+  formality: 'neutral',
+  humor: 'dry',
+  certainty: 'definitive',
+  length: 'medium',
+  eea_contrast: 'implicit',
+  physio: 'medium',
+  vocab: 'both',
+  reframe: 'optional',
+  tag: 'always',
+  density: 'primary',
+  followups: 'forbidden',
+  persona: '',
+  model: 'anthropic/claude-opus-4-6',
+  temperature: 0.7,
+  max_tokens: 2048,
+  debug: false,
+};
+
+const SCHEMA = [
+  {
+    title: 'Voice',
+    rows: [
+      { key: 'helpfulness', label: 'Helpfulness', desc: 'How much guidance follows the read.', options: ['read-only', 'light', 'advisor'] },
+      { key: 'warmth', label: 'Warmth', desc: 'Tone warmth. Sycophancy stays off at every level.', options: ['clinical', 'neutral', 'warm'] },
+      { key: 'formality', label: 'Formality', desc: 'Register.', options: ['casual', 'neutral', 'formal'] },
+      { key: 'humor', label: 'Humor', desc: 'Deadpan latitude.', options: ['off', 'dry', 'sardonic'] },
+      { key: 'certainty', label: 'Certainty', desc: 'How the read is framed.', options: ['definitive', 'hedged', 'hypotheses'] },
+      { key: 'length', label: 'Length', desc: 'Response budget.', options: ['terse', 'medium', 'expansive'] },
+    ],
+  },
+  {
+    title: 'Content shape',
+    rows: [
+      { key: 'eea_contrast', label: 'EEA contrast', desc: 'Ancestral-vs-modern framing.', options: ['explicit', 'implicit', 'skip'] },
+      { key: 'physio', label: 'Physiology', desc: 'Neuroanatomy / neurochemistry density.', options: ['minimal', 'medium', 'heavy'] },
+      { key: 'vocab', label: 'Mechanism vocabulary', desc: 'Codes, plain names, or both.', options: ['codes', 'plain', 'both'] },
+      { key: 'reframe', label: 'Reframe closer', desc: '"It is not X, it is Y" signature.', options: ['required', 'optional', 'off'] },
+    ],
+  },
+  {
+    title: 'Tag',
+    rows: [
+      { key: 'tag', label: 'Tag placement', desc: 'Mechanism / Proxy / Real input block.', options: ['always', 'on-request', 'off'] },
+      { key: 'density', label: 'Mechanism density', desc: 'How many mechanisms in the tag.', options: ['primary', 'interacting', 'cascade'] },
+    ],
+  },
+  {
+    title: 'Conversation',
+    rows: [
+      { key: 'followups', label: 'Follow-up questions', desc: 'Let the model ask you things.', options: ['forbidden', 'allowed', 'encouraged'] },
+    ],
+  },
+  {
+    title: 'Persona',
+    rows: [
+      { key: 'persona', label: 'Voice persona (free text)', desc: 'e.g. "a no-bullshit field biologist", "a tired anthropologist at 2am". Applied inside the hard rules.', text: true },
+    ],
+  },
+  {
+    title: 'Model',
+    rows: [
+      { key: 'model', label: 'Model', desc: 'Through OpenRouter.',
+        options: [
+          { value: 'anthropic/claude-opus-4-6', label: 'opus 4.6' },
+          { value: 'anthropic/claude-sonnet-4-6', label: 'sonnet 4.6' },
+          { value: 'anthropic/claude-haiku-4-5', label: 'haiku 4.5' },
+        ] },
+      { key: 'temperature', label: 'Temperature', desc: 'Sampling entropy.',
+        options: [
+          { value: 0.3, label: '0.3' },
+          { value: 0.7, label: '0.7' },
+          { value: 1.0, label: '1.0' },
+        ] },
+      { key: 'max_tokens', label: 'Max tokens', desc: 'Response budget ceiling.',
+        options: [
+          { value: 1024, label: '1024' },
+          { value: 2048, label: '2048' },
+          { value: 4096, label: '4096' },
+        ] },
+    ],
+  },
+  {
+    title: 'Debug',
+    rows: [
+      { key: 'debug', label: 'Show assembled prompt', desc: 'Reveals the full prompt panel below the composer.',
+        options: [
+          { value: false, label: 'off' },
+          { value: true, label: 'on' },
+        ] },
+    ],
+  },
+];
+
+// ─── State ─────────────────────────────────────────────────────────────────────
+const STORAGE_KEY = 'decode-talk-settings-v1';
+const API_CHAT = '/api/decode-talk/chat';
+const API_PROMPT = '/api/decode-talk/prompt';
+const messages = [];
+let streaming = false;
+
+function loadSettings() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return { ...DEFAULTS };
+    const parsed = JSON.parse(raw);
+    return { ...DEFAULTS, ...parsed };
+  } catch {
+    return { ...DEFAULTS };
+  }
+}
+function saveSettings() {
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(settings)); } catch {}
+}
+let settings = loadSettings();
+
+// ─── DOM refs ──────────────────────────────────────────────────────────────────
 const $conversation = document.getElementById('conversation');
 const $input = document.getElementById('input');
 const $submit = document.getElementById('submit');
 const $form = document.getElementById('composer');
 const $errorSlot = document.getElementById('error-slot');
+const $drawer = document.getElementById('drawer');
+const $drawerBody = document.getElementById('drawer-body');
+const $backdrop = document.getElementById('backdrop');
+const $settingsToggle = document.getElementById('settings-toggle');
+const $closeDrawer = document.getElementById('close-drawer');
+const $resetSettings = document.getElementById('reset-settings');
+const $statusBadge = document.getElementById('status-badge');
+const $debugPanel = document.getElementById('debug-panel');
+const $debugContent = document.getElementById('debug-content');
+const $debugRefresh = document.getElementById('debug-refresh');
 
-let streaming = false;
+// ─── Drawer rendering ──────────────────────────────────────────────────────────
+function renderDrawer() {
+  $drawerBody.innerHTML = '';
+  for (const section of SCHEMA) {
+    const sec = document.createElement('div');
+    sec.className = 'drawer-section';
+    const h3 = document.createElement('h3');
+    h3.textContent = section.title;
+    sec.appendChild(h3);
+    for (const row of section.rows) {
+      sec.appendChild(renderRow(row));
+    }
+    $drawerBody.appendChild(sec);
+  }
+  updateStatusBadge();
+  updateDebugVisibility();
+}
 
+function renderRow(row) {
+  const rowEl = document.createElement('div');
+  rowEl.className = 'drawer-row';
+  const label = document.createElement('label');
+  label.textContent = row.label;
+  rowEl.appendChild(label);
+  const desc = document.createElement('div');
+  desc.className = 'desc';
+  desc.textContent = row.desc;
+  rowEl.appendChild(desc);
+
+  if (row.text) {
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.value = settings[row.key] || '';
+    input.placeholder = 'Leave empty for default voice.';
+    input.addEventListener('input', (e) => {
+      settings[row.key] = e.target.value;
+      saveSettings();
+    });
+    rowEl.appendChild(input);
+    return rowEl;
+  }
+
+  const group = document.createElement('div');
+  group.className = 'pill-group';
+  for (const opt of row.options) {
+    const value = typeof opt === 'object' ? opt.value : opt;
+    const display = typeof opt === 'object' ? opt.label : opt;
+    const pill = document.createElement('span');
+    pill.className = 'pill' + (settings[row.key] === value ? ' active' : '');
+    pill.textContent = display;
+    pill.addEventListener('click', () => {
+      settings[row.key] = value;
+      saveSettings();
+      group.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+      updateStatusBadge();
+      if (row.key === 'debug') updateDebugVisibility();
+    });
+    group.appendChild(pill);
+  }
+  rowEl.appendChild(group);
+  return rowEl;
+}
+
+function updateStatusBadge() {
+  const modelLabel =
+    settings.model === 'anthropic/claude-opus-4-6' ? 'Opus 4.6' :
+    settings.model === 'anthropic/claude-sonnet-4-6' ? 'Sonnet 4.6' :
+    settings.model === 'anthropic/claude-haiku-4-5' ? 'Haiku 4.5' :
+    settings.model.split('/').pop();
+  $statusBadge.textContent = `Live · ${modelLabel} · ${settings.helpfulness}`;
+}
+
+function updateDebugVisibility() {
+  $debugPanel.classList.toggle('visible', !!settings.debug);
+}
+
+// ─── Drawer open/close ─────────────────────────────────────────────────────────
+function openDrawer() {
+  $drawer.classList.add('open');
+  $backdrop.classList.add('open');
+  $drawer.setAttribute('aria-hidden', 'false');
+}
+function closeDrawer() {
+  $drawer.classList.remove('open');
+  $backdrop.classList.remove('open');
+  $drawer.setAttribute('aria-hidden', 'true');
+}
+$settingsToggle.addEventListener('click', openDrawer);
+$closeDrawer.addEventListener('click', closeDrawer);
+$backdrop.addEventListener('click', closeDrawer);
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && $drawer.classList.contains('open')) closeDrawer();
+});
+
+$resetSettings.addEventListener('click', () => {
+  settings = { ...DEFAULTS };
+  saveSettings();
+  renderDrawer();
+});
+
+// ─── Chat flow ─────────────────────────────────────────────────────────────────
 $form.addEventListener('submit', async (e) => {
   e.preventDefault();
   if (streaming) return;
-
   const text = $input.value.trim();
   if (!text) return;
-
   $errorSlot.innerHTML = '';
   messages.push({ role: 'user', content: text });
   renderUser(text);
-
   $input.value = '';
   $input.focus();
+  await runInference();
+});
 
+async function runInference() {
   streaming = true;
   $submit.disabled = true;
+  removeAllRegenButtons();
 
   const $turn = appendTurn();
   const $a = createAssistantBubble();
@@ -347,15 +844,15 @@ $form.addEventListener('submit', async (e) => {
   scroll();
 
   try {
-    const res = await fetch(API_URL, {
+    const res = await fetch(API_CHAT, {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
-      body: JSON.stringify({ messages }),
+      body: JSON.stringify({ messages, settings }),
     });
 
     if (!res.ok) {
       let detail = res.statusText;
-      try { detail = (await res.json()).error?.message || detail; } catch { /* ignore */ }
+      try { detail = (await res.json()).error?.message || detail; } catch {}
       throw new Error(`${res.status}: ${detail}`);
     }
 
@@ -368,10 +865,8 @@ $form.addEventListener('submit', async (e) => {
       const { value, done } = await reader.read();
       if (done) break;
       buffer += decoder.decode(value, { stream: true });
-
       const events = buffer.split('\n\n');
       buffer = events.pop() || '';
-
       for (const evt of events) {
         const dataLine = evt.split('\n').find(l => l.startsWith('data: '));
         if (!dataLine) continue;
@@ -385,12 +880,13 @@ $form.addEventListener('submit', async (e) => {
             $a.textContent = fullText;
             scroll();
           }
-        } catch { /* skip unparseable frame */ }
+        } catch {}
       }
     }
 
     $a.classList.remove('streaming');
     messages.push({ role: 'assistant', content: fullText });
+    appendRegenButton($turn);
   } catch (err) {
     $a.classList.remove('streaming');
     $a.remove();
@@ -400,7 +896,19 @@ $form.addEventListener('submit', async (e) => {
     streaming = false;
     $submit.disabled = false;
   }
-});
+}
+
+async function regenerate() {
+  if (streaming) return;
+  if (messages.length < 2) return;
+  const last = messages[messages.length - 1];
+  if (last.role !== 'assistant') return;
+  messages.pop();
+  const turns = $conversation.querySelectorAll('.turn');
+  if (turns.length) turns[turns.length - 1].remove();
+  $errorSlot.innerHTML = '';
+  await runInference();
+}
 
 function renderUser(text) {
   const turn = appendTurn();
@@ -410,20 +918,31 @@ function renderUser(text) {
   turn.appendChild(q);
   scroll();
 }
-
 function appendTurn() {
   const turn = document.createElement('div');
   turn.className = 'turn';
   $conversation.appendChild(turn);
   return turn;
 }
-
 function createAssistantBubble() {
   const a = document.createElement('div');
   a.className = 'a';
   return a;
 }
-
+function appendRegenButton(turnEl) {
+  const row = document.createElement('div');
+  row.className = 'regen-row';
+  const btn = document.createElement('button');
+  btn.type = 'button';
+  btn.className = 'regen-btn';
+  btn.textContent = 'Regenerate';
+  btn.addEventListener('click', regenerate);
+  row.appendChild(btn);
+  turnEl.appendChild(row);
+}
+function removeAllRegenButtons() {
+  $conversation.querySelectorAll('.regen-row').forEach(r => r.remove());
+}
 function showError(msg) {
   const div = document.createElement('div');
   div.className = 'error';
@@ -431,17 +950,34 @@ function showError(msg) {
   $errorSlot.appendChild(div);
   scroll();
 }
-
 function scroll() {
   window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
 }
-
 $input.addEventListener('keydown', (e) => {
   if (e.key === 'Enter' && !e.shiftKey) {
     e.preventDefault();
     $form.requestSubmit();
   }
 });
+
+// ─── Debug panel ───────────────────────────────────────────────────────────────
+$debugRefresh.addEventListener('click', async () => {
+  $debugContent.textContent = 'Loading…';
+  try {
+    const res = await fetch(API_PROMPT, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ settings }),
+    });
+    if (!res.ok) throw new Error(`${res.status}: ${res.statusText}`);
+    $debugContent.textContent = await res.text();
+  } catch (err) {
+    $debugContent.textContent = 'Error: ' + (err.message || 'Unknown');
+  }
+});
+
+// ─── Init ──────────────────────────────────────────────────────────────────────
+renderDrawer();
 </script>
 </body>
 </html>
