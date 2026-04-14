@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Demismatch — Full Vision</title>
 <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -125,7 +126,7 @@ body {
 .title-block h1 {
   font-family: 'Spectral', serif;
   font-weight: 400;
-  font-size: 156px;
+  font-size: clamp(58px, 17vw, 156px);
   letter-spacing: -0.02em;
   line-height: 0.92;
   margin-bottom: 28px;
@@ -199,7 +200,7 @@ body {
 }
 .section-header h2 {
   font-family: 'Spectral', serif;
-  font-size: 56px;
+  font-size: clamp(34px, 5.2vw, 56px);
   font-weight: 500;
   letter-spacing: -0.02em;
   line-height: 1;
@@ -536,7 +537,7 @@ body {
 }
 .cor .cor-title h2 {
   font-family: 'Spectral', serif;
-  font-size: 104px;
+  font-size: clamp(56px, 11vw, 104px);
   font-weight: 400;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -747,7 +748,7 @@ body {
 }
 .roadmap-header h2 {
   font-family: 'Spectral', serif;
-  font-size: 56px;
+  font-size: clamp(34px, 5.2vw, 56px);
   font-weight: 500;
   letter-spacing: -0.02em;
   line-height: 1;
@@ -910,7 +911,64 @@ body {
 }
 @media (max-width: 560px) {
   .roadmap-grid { grid-template-columns: 1fr; gap: 24px; }
-  .roadmap-header h2 { font-size: 40px; }
+}
+
+/* ── Mobile: stack the 3-column spine, disable connectors and card fan ── */
+@media (max-width: 720px) {
+  body { padding: 12px 6px; }
+  .page { padding: 28px 22px 36px; border-radius: 8px; }
+
+  .masthead {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    padding-bottom: 20px;
+    margin-bottom: 36px;
+  }
+  .masthead .left,
+  .masthead .right { font-size: 11px; letter-spacing: 0.22em; }
+
+  .title-block { margin-bottom: 40px; }
+  .title-block .standfirst { font-size: 18px; padding: 0 4px; }
+  .rule-ornate { margin-top: 28px; }
+  .rule-ornate .line { width: 80px; }
+
+  .section-headers,
+  .columns-area {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .section-headers { margin-bottom: 28px; }
+  .section-header.middle { display: none; }
+  .section-header { padding-bottom: 20px; }
+
+  .connector-layer { display: none; }
+
+  .card-stack,
+  .card-stack:last-of-type { align-items: stretch; }
+  .card-stack .card,
+  .card-stack:first-of-type .card,
+  .card-stack:last-of-type .card,
+  .card-stack:first-of-type .more-card,
+  .card-stack:last-of-type .more-card {
+    transform: none;
+  }
+  .card .visual { max-width: 100%; }
+  .card .name { font-size: 20px; padding-right: 52px; }
+  .card .desc { font-size: 15px; }
+
+  .cor { padding: 36px 24px 40px; box-shadow: 4px 4px 0 var(--teal), 8px 8px 0 var(--gold); }
+  .cor .cor-title { padding-bottom: 22px; margin-bottom: 24px; }
+  .cor-body .quote { font-size: 19px; margin-bottom: 28px; }
+  .cor-attrs { grid-template-columns: 1fr; gap: 18px; padding: 22px 0; margin-bottom: 24px; }
+  .cor-attrs .a { text-align: left; }
+
+  .roadmap { padding-top: 40px; margin: 16px 0 48px; }
+  .roadmap-header { margin-bottom: 36px; }
+  .roadmap-phase h3 { font-size: 26px; }
+
+  .footer { flex-direction: column; align-items: flex-start; gap: 14px; padding-top: 24px; }
+  .footer .motto { font-size: 20px; line-height: 1.4; }
 }
 </style>
 </head>
