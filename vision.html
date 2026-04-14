@@ -126,12 +126,13 @@ body {
 .title-block h1 {
   font-family: 'Spectral', serif;
   font-weight: 400;
-  font-size: clamp(58px, 17vw, 156px);
+  font-size: clamp(40px, 12vw, 156px);
   letter-spacing: -0.02em;
   line-height: 0.92;
   margin-bottom: 28px;
   color: var(--oxblood);
   text-transform: uppercase;
+  overflow-wrap: break-word;
 }
 .title-block h1 em {
   font-style: normal;
@@ -537,7 +538,7 @@ body {
 }
 .cor .cor-title h2 {
   font-family: 'Spectral', serif;
-  font-size: clamp(56px, 11vw, 104px);
+  font-size: clamp(44px, 9.5vw, 104px);
   font-weight: 400;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -916,7 +917,7 @@ body {
 /* ── Mobile: stack the 3-column spine, disable connectors and card fan ── */
 @media (max-width: 720px) {
   body { padding: 12px 6px; }
-  .page { padding: 28px 22px 36px; border-radius: 8px; }
+  .page { padding: 28px 18px 36px; border-radius: 8px; }
 
   .masthead {
     flex-direction: column;
