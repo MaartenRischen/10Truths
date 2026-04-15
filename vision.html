@@ -95,6 +95,55 @@ body {
   .xsite-nav-links a { font-size: 0.58rem; letter-spacing: 0.15em; }
 }
 
+.hero-masthead {
+  display: flex;
+  align-items: flex-end;
+  gap: 18px;
+  max-width: 820px;
+  margin: 0 auto 40px;
+  padding-bottom: 14px;
+  border-bottom: 2px solid var(--oxblood);
+}
+.hero-masthead .label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--teal);
+  font-weight: 500;
+  white-space: nowrap;
+}
+.hero-masthead .rule {
+  flex: 1;
+  height: 1px;
+  background: var(--oxblood);
+  opacity: 0.25;
+  margin-bottom: 4px;
+}
+
+.hero-block {
+  max-width: 820px;
+  margin: 0 auto 48px;
+}
+.hero-block h1 {
+  font-family: 'Spectral', serif;
+  font-weight: 500;
+  font-size: clamp(44px, 7.2vw, 80px);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  color: var(--teal);
+  margin: 0 0 22px;
+}
+.hero-block .hero-sub {
+  font-family: 'Spectral', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(22px, 2.6vw, 28px);
+  line-height: 1.35;
+  color: #5a2a32;
+  margin: 0;
+}
+
 .intro {
   max-width: 820px;
   margin: 0 auto 64px;
@@ -913,8 +962,15 @@ body {
 </nav>
 
 <div class="page">
+  <div class="hero-masthead">
+    <span class="label">Demismatch · Vision · April 2026</span>
+    <span class="rule" aria-hidden="true"></span>
+  </div>
+  <div class="hero-block">
+    <h1>Aligning AI to what humans actually are.</h1>
+    <p class="hero-sub">Not to what they say they want. Not to what they click on. To the organism doing the saying and the clicking.</p>
+  </div>
   <div class="intro">
-    <p>Aligning AI to what humans actually are. Not to what they say they want. Not to what they click on. To the organism doing the saying and the clicking.</p>
     <p>AI alignment is the highest-stakes application of a larger problem. Every system built for humans, including markets, medicine, education, and now AI, assumes the organism was made for the world it lives in. It was not. Demismatch is the project of specifying what it actually is, then redesigning around that specification. AI alignment goes first because the cost of getting it wrong is largest.</p>
   </div>
 
