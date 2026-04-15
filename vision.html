@@ -95,91 +95,17 @@ body {
   .xsite-nav-links a { font-size: 0.58rem; letter-spacing: 0.15em; }
 }
 
-.masthead {
-  border-bottom: 2px solid var(--oxblood);
-  padding-bottom: 28px;
-  margin-bottom: 56px;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-}
-.masthead .left,
-.masthead .right {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 13px;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  font-weight: 500;
-}
-.masthead .left { color: var(--oxblood); }
-.masthead .right { color: var(--teal); }
-
-.title-block {
-  text-align: center;
-  margin-bottom: 64px;
-}
-.title-block h1 {
+.intro {
+  max-width: 820px;
+  margin: 0 auto 64px;
   font-family: 'Spectral', serif;
   font-weight: 400;
-  font-size: clamp(40px, 12vw, 156px);
-  letter-spacing: -0.02em;
-  line-height: 0.92;
-  margin-bottom: 28px;
-  color: var(--oxblood);
-  text-transform: uppercase;
-  overflow-wrap: break-word;
-}
-.title-block h1 em {
-  font-style: normal;
-  font-weight: 600;
-  color: var(--teal);
-}
-.title-block h1.vision-hero-title {
-  text-transform: none;
-  color: var(--teal);
-  font-weight: 600;
-  font-size: clamp(36px, 6.5vw, 88px);
-  letter-spacing: -0.015em;
-  line-height: 1.05;
-  max-width: 1400px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 28px;
-}
-.title-block .standfirst {
-  font-family: 'Spectral', serif;
-  font-weight: 300;
-  font-size: 24px;
-  max-width: 920px;
-  margin: 0 auto;
-  line-height: 1.5;
-  color: #4a1e26;
-}
-.title-block .standfirst-sub {
   font-size: 20px;
-  margin-top: 14px;
-  opacity: 0.88;
+  line-height: 1.55;
+  color: var(--ink);
 }
-.title-block .standfirst em {
-  font-style: italic;
-}
-.rule-ornate {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 18px;
-  margin: 44px auto 0;
-}
-.rule-ornate .line {
-  width: 180px;
-  height: 1px;
-  background: var(--oxblood);
-}
-.rule-ornate .diamond {
-  width: 10px;
-  height: 10px;
-  background: var(--teal);
-  transform: rotate(45deg);
+.intro p + p {
+  margin-top: 18px;
 }
 
 .layout {
@@ -931,20 +857,10 @@ body {
   body { padding: 12px 6px; }
   .page { padding: 28px 18px 36px; border-radius: 8px; }
 
-  .masthead {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 6px;
-    padding-bottom: 20px;
-    margin-bottom: 36px;
+  .intro {
+    font-size: 17px;
+    margin-bottom: 40px;
   }
-  .masthead .left,
-  .masthead .right { font-size: 11px; letter-spacing: 0.22em; }
-
-  .title-block { margin-bottom: 40px; }
-  .title-block .standfirst { font-size: 18px; padding: 0 4px; }
-  .rule-ornate { margin-top: 28px; }
-  .rule-ornate .line { width: 80px; }
 
   .section-headers,
   .columns-area {
@@ -992,21 +908,14 @@ body {
     <li aria-hidden="true" class="xsite-nav-sep">·</li>
     <li><a href="https://demismatch.com/vision.html" data-xsite-link="vision" aria-current="page">Vision</a></li>
     <li aria-hidden="true" class="xsite-nav-sep">·</li>
-    <li><a href="https://cor.demismatch.com/" data-xsite-link="atlas">Atlas</a></li>
+    <li><a href="https://cor.demismatch.com/" data-xsite-link="atlas">Cor</a></li>
   </ul>
 </nav>
 
 <div class="page">
-  <div class="masthead">
-    <div class="left">Demismatch · Vision · April 2026</div>
-    <div class="right"></div>
-  </div>
-
-  <div class="title-block">
-    <h1 class="vision-hero-title">Aligning AI to what humans actually are.</h1>
-    <p class="standfirst"><em>Not to what they say they want. Not to what they click on. To the organism doing the saying and the clicking.</em></p>
-    <p class="standfirst standfirst-sub">AI alignment is the highest-stakes application of a larger problem. Every system built for humans, including markets, medicine, education, and now AI, assumes the organism was made for the world it lives in. It was not. Demismatch is the project of specifying what it actually is, then redesigning around that specification. AI alignment goes first because the cost of getting it wrong is largest.</p>
-    <div class="rule-ornate"><span class="line"></span><span class="diamond"></span><span class="line"></span></div>
+  <div class="intro">
+    <p>Aligning AI to what humans actually are. Not to what they say they want. Not to what they click on. To the organism doing the saying and the clicking.</p>
+    <p>AI alignment is the highest-stakes application of a larger problem. Every system built for humans, including markets, medicine, education, and now AI, assumes the organism was made for the world it lives in. It was not. Demismatch is the project of specifying what it actually is, then redesigning around that specification. AI alignment goes first because the cost of getting it wrong is largest.</p>
   </div>
 
   <div class="layout">
@@ -1279,7 +1188,7 @@ body {
             <img src="10-tuesday-night.jpg" alt="Adaptor - Phase 2: a multigenerational outdoor dinner table at dusk with HUD overlays naming the resolution conditions being satisfied - OXYTOCIN HIGH, SEROTONIN HIGH, CORTISOL LOW, CIRCADIAN CALIBRATED - and the social analysis: communal meal, all bonded, no app built this.">
           </div>
           <span class="name">Adaptor - Phase 2</span>
-          <span class="desc">Once mismatch is visible, the next question is what to build instead. Adaptor is the research program designing technology that meets human mechanisms at their real resolution condition, rather than faking the signal. The work is in early specification. Four opening directions: <a href="adaptor.html" style="color:#2d6b6b;border-bottom:1px solid rgba(45,107,107,0.35);text-decoration:none;white-space:nowrap;">→ Research directions</a></span>
+          <span class="desc">Once mismatch is visible, the next question is what to build instead. Adaptor is the research program designing technology that meets human mechanisms at their real resolution condition, rather than faking the signal. The work is in early specification.</span>
           <dl class="card-strands">
             <dt>Immune systems</dt><dd>Band-level infrastructure against designed addiction</dd>
             <dt>Return protocols</dt><dd>Graduated, supported return from parasocial capture</dd>
@@ -1412,7 +1321,7 @@ body {
       <li>
         <a href="https://cor.demismatch.com/">
           <span class="xsite-entry-arrow">→</span>
-          <span class="xsite-entry-label">Atlas</span>
+          <span class="xsite-entry-label">COR</span>
           <span class="xsite-entry-desc">the research backing</span>
         </a>
       </li>
