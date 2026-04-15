@@ -928,11 +928,11 @@
         border-width: 1px;
       }
 
-      /* Mobile: every label half-overlaps the bottom edge of its image. */
+      /* Mobile: titles sit at the top of their image. */
       .truth-image .truth-text {
-        top: auto;
-        bottom: 0;
-        transform: translate(-50%, calc(50% + var(--parallax-y, 0px)));
+        top: 0.5rem;
+        bottom: auto;
+        transform: translate(-50%, var(--parallax-y, 0px));
       }
 
       .truth-text h2 {
@@ -980,9 +980,9 @@
         will-change: auto;
         width: 100%;
         max-width: 100%;
-        /* Clear the title frame's half-below-image overlap (~30px) +
-           breathing room before the body copy begins. */
-        padding: 3.75rem 1rem 0;
+        /* Title sits at the top of the image now, so caption just needs
+           normal breathing room below the picture. */
+        padding: 1.75rem 1rem 0;
         text-align: center;
         background: transparent;
         backdrop-filter: none;
@@ -1026,11 +1026,6 @@
       <li><a href="https://cor.demismatch.com/" data-xsite-link="atlas">Atlas</a></li>
     </ul>
   </nav>
-
-  <div class="masthead">
-    <div class="left">Demismatch · 10 Truths · April 2026</div>
-    <div class="right">Vol. I · № 00</div>
-  </div>
 
   <header class="hero">
     <div class="hero-content">
