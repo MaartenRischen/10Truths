@@ -2,7 +2,16 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta id="vp" name="viewport" content="width=device-width, initial-scale=1">
+<script>
+  // Mobile: render the desktop bird's-eye layout scaled to fit the screen.
+  // This page is a diagram — pinch-zoom to read any card, like a subway
+  // map. width=1200 forces the mobile browser to lay the page out at
+  // desktop width and then auto-fit it to the physical screen.
+  if (screen.width < 720) {
+    document.getElementById('vp').content = 'width=1200';
+  }
+</script>
 <title>Demismatch — Full Vision</title>
 <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -939,101 +948,29 @@ body {
   .rule-ornate { margin-top: 28px; }
   .rule-ornate .line { width: 80px; }
 
-  /* Mobile: bird's-eye radial preserved — Cor sits at the top (immediately
-     visible), then project families radiate out below in two compact text
-     columns (FOR MACHINES | FOR HUMANS). Cards lose their SVG visuals and
-     hover expansions here — they become scannable rows, just label + name.
-     Desktop layout is fully untouched. */
-  .layout {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    column-gap: 10px;
-    row-gap: 22px;
-  }
   .section-headers,
   .columns-area {
-    display: contents;
+    grid-template-columns: 1fr;
+    gap: 32px;
   }
-  /* Cor: full width, top of the page */
-  .columns-area > .cor-column {
-    grid-column: 1 / -1;
-    grid-row: 1;
-  }
-  /* Headers: 2 columns below Cor */
-  .section-headers > .section-header:nth-child(1) {
-    grid-column: 1;
-    grid-row: 2;
-  }
-  .section-headers > .section-header:nth-child(3) {
-    grid-column: 2;
-    grid-row: 2;
-  }
+  .section-headers { margin-bottom: 28px; }
   .section-header.middle { display: none; }
-  .section-header {
-    padding-bottom: 10px;
-    margin: 0;
-  }
-  .section-header .chapter { font-size: 10px; letter-spacing: 0.22em; }
-  .section-header h2 { font-size: 20px; margin: 4px 0 6px; }
-  .section-header p { font-size: 12px; line-height: 1.35; }
-  /* Card stacks: below headers, 2 columns */
-  .columns-area > .card-stack:first-of-type {
-    grid-column: 1;
-    grid-row: 3;
-  }
-  .columns-area > .card-stack:last-of-type {
-    grid-column: 2;
-    grid-row: 3;
-  }
+  .section-header { padding-bottom: 20px; }
 
   .connector-layer { display: none; }
 
   .card-stack,
-  .card-stack:first-of-type,
-  .card-stack:last-of-type {
-    align-items: stretch;
-    gap: 10px;
-  }
-  /* Compact mobile cards: text-only rows. Hide visuals, inline the
-     number label, collapse all hover-only content. !important needed
-     on transform to override desktop per-card :nth-child fan rotations. */
+  .card-stack:last-of-type { align-items: stretch; }
   .card-stack .card,
   .card-stack:first-of-type .card,
   .card-stack:last-of-type .card,
   .card-stack:first-of-type .more-card,
   .card-stack:last-of-type .more-card {
-    transform: none !important;
+    transform: none;
   }
-  .card {
-    padding: 10px 12px;
-    text-align: left;
-    box-shadow: 3px 3px 0 var(--teal);
-  }
-  .card .num {
-    position: static;
-    display: block;
-    background: transparent;
-    padding: 0;
-    margin-bottom: 4px;
-    font-size: 10px;
-  }
-  .card .visual,
-  .card .card-spec,
-  .card .card-tags,
-  .card .card-strands,
-  .card .desc {
-    display: none;
-  }
-  .card .name {
-    font-size: 15px;
-    padding-right: 0;
-    margin-bottom: 0;
-    line-height: 1.2;
-  }
-  .more-card {
-    padding: 10px 12px;
-    min-height: 0;
-  }
+  .card .visual { max-width: 100%; }
+  .card .name { font-size: 20px; padding-right: 52px; }
+  .card .desc { font-size: 15px; }
 
   .cor { padding: 36px 24px 40px; box-shadow: 4px 4px 0 var(--teal), 8px 8px 0 var(--gold); }
   .cor .cor-title { padding-bottom: 22px; margin-bottom: 24px; }
