@@ -660,12 +660,13 @@
       padding: 0.95rem 1.4rem;
       text-align: center;
 
-      /* Lower alpha than .truth-text — captions sit over darker image
-         regions (desk/floor areas vs. the pillow/sky that titles sit over),
-         so we need less dark tint to read as equally "transparent". */
-      background: rgba(0, 0, 0, 0.22);
-      backdrop-filter: blur(72px) saturate(1.4);
-      -webkit-backdrop-filter: blur(72px) saturate(1.4);
+      /* Desaturate + darken the backdrop so warm-dominant images (skin,
+         brake lights, fire glow) don't defeat the cream text. saturate(0.3)
+         kills warm dominance; brightness(0.55) drops luminance. Bg alpha
+         drops to 0.15 since the backdrop-filter now does the darkening. */
+      background: rgba(0, 0, 0, 0.15);
+      backdrop-filter: blur(72px) saturate(0.3) brightness(0.55);
+      -webkit-backdrop-filter: blur(72px) saturate(0.3) brightness(0.55);
 
       border: 2px solid rgba(255, 255, 255, 0.07);
       border-radius: 0px;
@@ -705,8 +706,13 @@
       line-height: 1.55;
       font-weight: 300;
       color: var(--bone);
-      opacity: 0.88;
-      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+      opacity: 0.92;
+      /* Layered halo: tight inner for crispness, broader outer for contrast
+         on any backdrop color. Kept subtle so it doesn't read as a glow. */
+      text-shadow:
+        0 1px 3px rgba(0, 0, 0, 0.9),
+        0 2px 10px rgba(0, 0, 0, 0.6),
+        0 0 2px rgba(0, 0, 0, 0.7);
     }
 
     /* ── Ground shadow pseudo — sits below the frame.
@@ -1008,7 +1014,7 @@
       <li aria-hidden="true" class="xsite-nav-sep">·</li>
       <li><a href="https://demismatch.com/vision.html" data-xsite-link="vision">Vision</a></li>
       <li aria-hidden="true" class="xsite-nav-sep">·</li>
-      <li><a href="https://cor.demismatch.com/" data-xsite-link="spec">Spec</a></li>
+      <li><a href="https://cor.demismatch.com/" data-xsite-link="atlas">Atlas</a></li>
     </ul>
   </nav>
 
