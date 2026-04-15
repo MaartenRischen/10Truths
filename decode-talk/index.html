@@ -28,23 +28,12 @@ body {
   background: var(--oxblood-deep);
   border-bottom: 1px solid var(--teal);
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   gap: 1rem;
   padding: 0.5rem clamp(0.9rem, 3vw, 2.5rem);
   flex-wrap: wrap;
 }
-.xsite-nav-brand {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.72rem;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: var(--parchment);
-  font-weight: 500;
-  text-decoration: none;
-  transition: color 140ms ease;
-}
-.xsite-nav-brand:hover { color: var(--teal-bright); }
 .xsite-nav-links {
   list-style: none;
   display: flex;
@@ -63,6 +52,11 @@ body {
 .xsite-nav-links a:hover { color: var(--teal-bright); }
 .xsite-nav-links a[aria-current="page"] { color: var(--teal-bright); font-weight: 500; }
 .xsite-nav-sep { color: #8a7d5e; font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; opacity: 0.7; }
+@media (max-width: 560px) {
+  .xsite-nav { padding: 0.45rem 0.9rem; gap: 0.6rem; }
+  .xsite-nav-links { gap: 0.4rem; }
+  .xsite-nav-links a { font-size: 0.58rem; letter-spacing: 0.15em; }
+}
 
 .page {
   width: 1200px;
@@ -526,15 +520,12 @@ body {
 </head>
 <body>
 <nav class="xsite-nav" aria-label="Demismatch network">
-  <a class="xsite-nav-brand" href="https://demismatch.com/">DEMISMATCH</a>
   <ul class="xsite-nav-links">
-    <li><a href="https://demismatch.com/">10 Truths</a></li>
+    <li><a href="https://demismatch.com/" data-xsite-link="truths">DEMISMATCH</a></li>
     <li aria-hidden="true" class="xsite-nav-sep">·</li>
-    <li><a href="https://demismatch.com/vision.html">Vision</a></li>
+    <li><a href="https://demismatch.com/vision.html" data-xsite-link="vision">Vision</a></li>
     <li aria-hidden="true" class="xsite-nav-sep">·</li>
-    <li><a href="https://demismatch.com/decode-talk.html">Samples</a></li>
-    <li aria-hidden="true" class="xsite-nav-sep">·</li>
-    <li><a href="https://cor.demismatch.com/">Atlas</a></li>
+    <li><a href="https://cor.demismatch.com/" data-xsite-link="atlas">Atlas</a></li>
   </ul>
 </nav>
 

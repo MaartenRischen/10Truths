@@ -44,23 +44,12 @@ body {
   background: var(--oxblood-deep);
   border-bottom: 1px solid var(--teal);
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   gap: 1rem;
   padding: 0.5rem clamp(0.9rem, 3vw, 2.5rem);
   flex-wrap: wrap;
 }
-.xsite-nav-brand {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.72rem;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: var(--parchment);
-  font-weight: 500;
-  text-decoration: none;
-  transition: color 140ms ease;
-}
-.xsite-nav-brand:hover { color: var(--teal-bright); }
 .xsite-nav-links {
   list-style: none;
   display: flex;
@@ -91,7 +80,6 @@ body {
 }
 @media (max-width: 560px) {
   .xsite-nav { padding: 0.45rem 0.9rem; gap: 0.6rem; }
-  .xsite-nav-brand { font-size: 0.62rem; letter-spacing: 0.22em; }
   .xsite-nav-links { gap: 0.4rem; }
   .xsite-nav-links a { font-size: 0.58rem; letter-spacing: 0.15em; }
 }
@@ -379,9 +367,8 @@ body {
 </head>
 <body>
 <nav class="xsite-nav" aria-label="Demismatch network">
-  <a class="xsite-nav-brand" href="https://demismatch.com/" aria-label="Demismatch home">DEMISMATCH</a>
   <ul class="xsite-nav-links">
-    <li><a href="https://demismatch.com/" data-xsite-link="truths">10 Truths</a></li>
+    <li><a href="https://demismatch.com/" data-xsite-link="truths">DEMISMATCH</a></li>
     <li aria-hidden="true" class="xsite-nav-sep">·</li>
     <li><a href="https://demismatch.com/vision.html" data-xsite-link="vision" aria-current="page">Vision</a></li>
     <li aria-hidden="true" class="xsite-nav-sep">·</li>
