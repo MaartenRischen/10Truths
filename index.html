@@ -242,21 +242,24 @@
 
     .site-title {
       font-family: var(--serif);
-      font-size: clamp(2rem, 6vw, 4rem);
+      font-size: clamp(4.8rem, 16vw, 9.5rem);
       font-weight: 400;
-      line-height: 1.15;
-      letter-spacing: -0.01em;
+      letter-spacing: 0.12em;
       color: var(--bone);
-      opacity: 0.92;
-      margin: 0;
+      text-transform: uppercase;
+      opacity: 0.55;
+      margin-bottom: 0.5rem;
     }
 
-    .site-title-line {
-      display: block;
-    }
-
-    .site-title-line + .site-title-line {
-      margin-top: 0.1em;
+    .site-tagline {
+      font-family: var(--serif);
+      font-size: clamp(0.95rem, 1.6vw, 1.3rem);
+      font-weight: 400;
+      color: var(--bone);
+      opacity: 0.85;
+      letter-spacing: 0.015em;
+      line-height: 1.4;
+      margin: 0.5rem auto 0;
     }
 
     .hero-headline {
@@ -856,7 +859,12 @@
       }
 
       .site-title {
-        font-size: clamp(1.5rem, 7.5vw, 2.8rem);
+        font-size: clamp(1.8rem, 11vw, 5rem);
+        letter-spacing: 0.06em;
+      }
+
+      .site-tagline {
+        font-size: clamp(0.85rem, 3.5vw, 1.05rem);
       }
 
       .truth-section {
@@ -970,11 +978,8 @@
 
   <header class="hero">
     <div class="hero-content">
-      <h1 class="site-title">
-        <span class="site-title-line">What a human is.</span>
-        <span class="site-title-line">What a human needs.</span>
-        <span class="site-title-line">What to build from that.</span>
-      </h1>
+      <h1 class="site-title">Demismatch</h1>
+      <p class="site-tagline">What a human is. What a human needs. What to build from that.</p>
     </div>
   </header>
 
