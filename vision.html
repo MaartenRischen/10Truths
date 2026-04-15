@@ -5,14 +5,14 @@
 <meta id="vp" name="viewport" content="width=device-width, initial-scale=1">
 <script>
   // Mobile: render the desktop bird's-eye layout scaled to fit the screen.
-  // This page is a diagram — pinch-zoom to read any card, like a subway
+  // This page is a diagram - pinch-zoom to read any card, like a subway
   // map. width=1200 forces the mobile browser to lay the page out at
   // desktop width and then auto-fit it to the physical screen.
   if (screen.width < 720) {
     document.getElementById('vp').content = 'width=1200';
   }
 </script>
-<title>Demismatch — Full Vision</title>
+<title>Demismatch - Full Vision</title>
 <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -1008,7 +1008,7 @@ body {
   <div class="title-block">
     <h1><em>Demismatch</em></h1>
     <p class="standfirst">Define the human. Pinpoint the mismatch. Fix it.</p>
-    <p class="standfirst standfirst-sub">AI alignment sits at the center of this — but a different alignment than the field is currently building. Not aligning AI to what humans <em>say they want</em>. Aligning AI to what humans <em>actually are</em>.</p>
+    <p class="standfirst standfirst-sub">AI alignment sits at the center of this - but a different alignment than the field is currently building. Not aligning AI to what humans <em>say they want</em>. Aligning AI to what humans <em>actually are</em>.</p>
     <div class="rule-ornate"><span class="line"></span><span class="diamond"></span><span class="line"></span></div>
   </div>
 
@@ -1023,7 +1023,7 @@ body {
       <div class="section-header">
         <span class="chapter">For Humans</span>
         <h2>Demismatch Tools</h2>
-        <p>Software that shows an organism what it's actually looking at — and what to do about it</p>
+        <p>Software that shows an organism what it's actually looking at - and what to do about it</p>
       </div>
     </div>
 
@@ -1057,7 +1057,7 @@ body {
           <dl class="card-spec">
             <dt>Form</dt><dd>MCP (Model Context Protocol) server · tool-call surface for any LLM</dd>
             <dt>Targets</dt><dd>Inference-time alignment across any mechanism Cor specifies</dd>
-            <dt>Proxy</dt><dd>Preference-only alignment — RLHF responses that maximize user preference without asking whether the response creates resolution or just activates the mechanism</dd>
+            <dt>Proxy</dt><dd>Preference-only alignment - RLHF responses that maximize user preference without asking whether the response creates resolution or just activates the mechanism</dd>
             <dt>Real input</dt><dd>Cor-specified resolution conditions per mechanism: "this request engages M3; resolution requires reciprocal human co-regulation, not generic preference-shaped completion"</dd>
           </dl>
           <div class="card-tags"><span class="tag">M3</span><span class="tag">M5</span><span class="tag">M14</span><span class="tag">DA4</span><span class="tag">DA9</span></div>
@@ -1080,8 +1080,8 @@ body {
           <span class="desc">Activation engineering against mismatch. Steering vectors learned from Cor-grounded contrastive pairs push generation toward mechanism-aware completions at the activation level.</span>
           <dl class="card-spec">
             <dt>Form</dt><dd>Steering vectors learned from Cor-grounded contrastive pairs · applied at inference</dd>
-            <dt>Targets</dt><dd>Activation-level alignment — per-mechanism guardrails where prompts alone are unreliable (e.g. DA9 AI-attachment-slot prohibition enforced at activation, not just prompt)</dd>
-            <dt>Proxy</dt><dd>Post-hoc RLHF reward shaping and constitutional filters — operate on preferences not mechanisms, jailbreakable</dd>
+            <dt>Targets</dt><dd>Activation-level alignment - per-mechanism guardrails where prompts alone are unreliable (e.g. DA9 AI-attachment-slot prohibition enforced at activation, not just prompt)</dd>
+            <dt>Proxy</dt><dd>Post-hoc RLHF reward shaping and constitutional filters - operate on preferences not mechanisms, jailbreakable</dd>
             <dt>Real input</dt><dd>Steering vectors keyed to Cor mechanisms. When an activation reads "this output is a proxy for M3," generation gets pushed toward a matched-state alternative</dd>
           </dl>
           <div class="card-tags"><span class="tag">M3</span><span class="tag">DA9</span><span class="tag">any mechanism</span></div>
@@ -1111,9 +1111,9 @@ body {
           <span class="desc">Align at the source, not the surface. Pretraining and fine-tuning corpora filtered and re-weighted against Cor's mechanism architecture, with synthetic data generated from mechanism narratives and resolution conditions.</span>
           <dl class="card-spec">
             <dt>Form</dt><dd>Pretraining / fine-tuning corpus filter + re-weighting · synthetic data from Cor narratives</dd>
-            <dt>Targets</dt><dd>The training distribution itself — fixes the problem at the source; every AI inherits its model of humans from training data</dd>
-            <dt>Proxy</dt><dd>Broad internet scrape + preference-annotated fine-tuning — bakes mismatch into the base model before alignment work begins</dd>
-            <dt>Real input</dt><dd>A corpus where the Cor specification is ground truth: mechanism outputs, resolution conditions, evolved needs — not the preference-output artifacts modern environments happen to produce</dd>
+            <dt>Targets</dt><dd>The training distribution itself - fixes the problem at the source; every AI inherits its model of humans from training data</dd>
+            <dt>Proxy</dt><dd>Broad internet scrape + preference-annotated fine-tuning - bakes mismatch into the base model before alignment work begins</dd>
+            <dt>Real input</dt><dd>A corpus where the Cor specification is ground truth: mechanism outputs, resolution conditions, evolved needs - not the preference-output artifacts modern environments happen to produce</dd>
           </dl>
           <div class="card-tags"><span class="tag">all 15 mechanisms</span><span class="tag">OF1</span><span class="tag">OF2</span></div>
         </div>
@@ -1137,9 +1137,9 @@ body {
           <span class="desc">Domain models with no preference contamination. Purpose-built small models trained from scratch on Cor-grounded corpora, for tasks where ground-truth-aligned outputs matter more than general capability.</span>
           <dl class="card-spec">
             <dt>Form</dt><dd>Purpose-built small models · trained from scratch on Cor-grounded corpora</dd>
-            <dt>Targets</dt><dd>Specialized applications — clinical triage, educational scaffolding, environment-design assistants, therapy-adjacent tools — where hallucination about human needs is catastrophic</dd>
-            <dt>Proxy</dt><dd>Fine-tuned general-purpose models with RLHF layers on top — inherit the base model's preference-as-ground-truth mistake; RLHF cannot fully correct what pretraining installed</dd>
-            <dt>Real input</dt><dd>A model whose entire learned distribution is Cor-grounded from pretraining forward — no preference contamination to overcome later</dd>
+            <dt>Targets</dt><dd>Specialized applications - clinical triage, educational scaffolding, environment-design assistants, therapy-adjacent tools - where hallucination about human needs is catastrophic</dd>
+            <dt>Proxy</dt><dd>Fine-tuned general-purpose models with RLHF layers on top - inherit the base model's preference-as-ground-truth mistake; RLHF cannot fully correct what pretraining installed</dd>
+            <dt>Real input</dt><dd>A model whose entire learned distribution is Cor-grounded from pretraining forward - no preference contamination to overcome later</dd>
           </dl>
           <div class="card-tags"><span class="tag">domain-specific subsets</span></div>
         </div>
@@ -1161,7 +1161,7 @@ body {
           <span class="desc">Benchmarks grounded in what humans actually need. Cor-mechanism benchmarks plus new constitutional frameworks that replace preference-derived rules with mechanism-derived ones.</span>
           <dl class="card-spec">
             <dt>Form</dt><dd>Benchmarks grounded in Cor mechanisms, convergences, resolution conditions · constitutions encoding resolution as constraint</dd>
-            <dt>Targets</dt><dd>Every model evaluation surface — current benchmarks grade "did this satisfy user preference?" and miss the core question of resolution vs activation</dd>
+            <dt>Targets</dt><dd>Every model evaluation surface - current benchmarks grade "did this satisfy user preference?" and miss the core question of resolution vs activation</dd>
             <dt>Proxy</dt><dd>MT-Bench, HELM, Arena, and preference-derived benchmarks · constitutional AI frameworks that bake preference assumptions into the rules</dd>
             <dt>Real input</dt><dd>The matched/mismatched fourth evaluation axis (per A1) alongside helpful/harmless/honest · per-mechanism benchmarks · constitutions encoding resolution conditions as constraints</dd>
           </dl>
@@ -1232,7 +1232,7 @@ body {
               <text x="90" y="428" font-family="'Spectral',serif" font-size="30" fill="#ece0c4">Your coalition monitor is running in the background.</text>
               <text x="90" y="488" font-family="'Spectral',serif" font-size="26" fill="#c4b894">The circuit evolved to track where your people are, who’s</text>
               <text x="90" y="524" font-family="'Spectral',serif" font-size="26" fill="#c4b894">aligning with whom. In a band of 50 this ran through peripheral</text>
-              <text x="90" y="596" font-family="'Spectral',serif" font-size="26" fill="#c4b894">vision and sound — you knew without looking. In modern life,</text>
+              <text x="90" y="596" font-family="'Spectral',serif" font-size="26" fill="#c4b894">vision and sound - you knew without looking. In modern life,</text>
               <text x="90" y="632" font-family="'Spectral',serif" font-size="26" fill="#c4b894">your coalition is scattered, and the only channel to them is</text>
               <text x="90" y="668" font-family="'Spectral',serif" font-size="26" fill="#c4b894">the device in your hand. The monitor cannot stand down.</text>
 
@@ -1246,7 +1246,7 @@ body {
             </svg>
           </div>
           <span class="name">Decode Talk</span>
-          <span class="desc">Describe what happened. Get the mechanism story — what circuit is firing, what it was built to resolve, and where the modern environment diverges from what it expects. Not a companion. Not reassurance. The read. <a href="decode-talk/" style="color:#2d6b6b;border-bottom:1px solid rgba(45,107,107,0.35);text-decoration:none;white-space:nowrap;">→ Try Decode Talk</a> · <a href="decode-talk.html" style="color:#2d6b6b;border-bottom:1px solid rgba(45,107,107,0.35);text-decoration:none;white-space:nowrap;">Sample exchanges</a></span>
+          <span class="desc">Describe what happened. Get the mechanism story - what circuit is firing, what it was built to resolve, and where the modern environment diverges from what it expects. Not a companion. Not reassurance. The read. <a href="decode-talk/" style="color:#2d6b6b;border-bottom:1px solid rgba(45,107,107,0.35);text-decoration:none;white-space:nowrap;">→ Try Decode Talk</a> · <a href="decode-talk.html" style="color:#2d6b6b;border-bottom:1px solid rgba(45,107,107,0.35);text-decoration:none;white-space:nowrap;">Sample exchanges</a></span>
           <dl class="card-spec">
             <dt>Form</dt><dd>Chat, grounded in the Cor spec</dd>
           </dl>
@@ -1255,22 +1255,22 @@ body {
         <div class="card">
           <span class="num">c.2</span>
           <div class="visual">
-            <img src="decode-camera-01.png" alt="Decode Camera HUD overlay on a plate of French toast with bananas and blueberries — orange outline tracing the food edges, hyperstimulus pattern named on the scene">
+            <img src="decode-camera-01.png" alt="Decode Camera HUD overlay on a plate of French toast with bananas and blueberries - orange outline tracing the food edges, hyperstimulus pattern named on the scene">
           </div>
           <span class="name">Decode Camera</span>
-          <span class="desc">Point it at a scene. Get the read — mechanism firing, what it's treating as the signal, what the real input would be. Labels on the image. No commentary.</span>
+          <span class="desc">Point it at a scene. Get the read - mechanism firing, what it's treating as the signal, what the real input would be. Labels on the image. No commentary.</span>
           <dl class="card-spec">
-            <dt>Form</dt><dd>Scene HUD — image upload now, live camera next</dd>
+            <dt>Form</dt><dd>Scene HUD - image upload now, live camera next</dd>
           </dl>
         </div>
 
         <div class="card">
           <span class="num">c.3</span>
           <div class="visual">
-            <img src="lens-01.png" alt="Decode Web browser extension annotating a CNN article — the Rory McIlroy Masters headline marked EX·02 with the breakdown 'A prestige in a tribe not yours'">
+            <img src="lens-01.png" alt="Decode Web browser extension annotating a CNN article - the Rory McIlroy Masters headline marked EX·02 with the breakdown 'A prestige in a tribe not yours'">
           </div>
           <span class="name">Decode Web</span>
-          <span class="desc">Browser extension. Every page you open gets the read in place — which element is hijacking which mechanism, which need is being imitated, which real input is missing.</span>
+          <span class="desc">Browser extension. Every page you open gets the read in place - which element is hijacking which mechanism, which need is being imitated, which real input is missing.</span>
           <dl class="card-spec">
             <dt>Form</dt><dd>Chrome extension · v0.4.2</dd>
           </dl>
@@ -1279,9 +1279,9 @@ body {
         <div class="card">
           <span class="num">c.4</span>
           <div class="visual">
-            <img src="10-tuesday-night.jpg" alt="Adaptor — Phase 2: a multigenerational outdoor dinner table at dusk with HUD overlays naming the resolution conditions being satisfied — OXYTOCIN HIGH, SEROTONIN HIGH, CORTISOL LOW, CIRCADIAN CALIBRATED — and the social analysis: communal meal, all bonded, no app built this.">
+            <img src="10-tuesday-night.jpg" alt="Adaptor - Phase 2: a multigenerational outdoor dinner table at dusk with HUD overlays naming the resolution conditions being satisfied - OXYTOCIN HIGH, SEROTONIN HIGH, CORTISOL LOW, CIRCADIAN CALIBRATED - and the social analysis: communal meal, all bonded, no app built this.">
           </div>
-          <span class="name">Adaptor — Phase 2</span>
+          <span class="name">Adaptor - Phase 2</span>
           <span class="desc">Once mismatch is visible, the next question is what to build instead. Adaptor is the research program designing technology that meets human mechanisms at their real resolution condition, rather than faking the signal. The work is in early specification. Four opening directions: <a href="adaptor.html" style="color:#2d6b6b;border-bottom:1px solid rgba(45,107,107,0.35);text-decoration:none;white-space:nowrap;">→ Research directions</a></span>
           <dl class="card-strands">
             <dt>Immune systems</dt><dd>Band-level infrastructure against designed addiction</dd>
@@ -1302,7 +1302,7 @@ body {
     <div class="roadmap-header">
       <span class="chapter">Chapter III</span>
       <h2 id="roadmap-title">The rough order</h2>
-      <p>Direction, not a promise. Each phase rests on the spine underneath it — the spec matures, the tools follow.</p>
+      <p>Direction, not a promise. Each phase rests on the spine underneath it - the spec matures, the tools follow.</p>
     </div>
 
     <div class="roadmap-grid">
@@ -1394,7 +1394,7 @@ body {
 
     </div>
 
-    <p class="roadmap-footnote">Order, not calendar. v1 gates everything downstream — the rails, the corpus-native work, and the Adaptor build that turns the read into something to live in.</p>
+    <p class="roadmap-footnote">Order, not calendar. v1 gates everything downstream - the rails, the corpus-native work, and the Adaptor build that turns the read into something to live in.</p>
   </section>
 
   <div class="footer">
