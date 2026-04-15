@@ -148,6 +148,14 @@ body {
   line-height: 1.5;
   color: #4a1e26;
 }
+.title-block .standfirst-sub {
+  font-size: 20px;
+  margin-top: 14px;
+  opacity: 0.88;
+}
+.title-block .standfirst em {
+  font-style: italic;
+}
 .rule-ornate {
   display: flex;
   align-items: center;
@@ -536,15 +544,12 @@ body {
   display: block;
   margin-bottom: 18px;
 }
-.cor .cor-title h2 {
-  font-family: 'Spectral', serif;
-  font-size: clamp(44px, 9.5vw, 104px);
-  font-weight: 400;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--parchment);
-  line-height: 1;
-  margin-bottom: 14px;
+.cor .cor-title .cor-mark-img {
+  display: block;
+  width: clamp(160px, 28vw, 280px);
+  height: auto;
+  margin: 0 auto 14px;
+  filter: invert(1) hue-rotate(180deg);
 }
 .cor .cor-title p {
   font-family: 'Spectral', serif;
@@ -993,7 +998,8 @@ body {
 
   <div class="title-block">
     <h1><em>Demismatch</em></h1>
-    <p class="standfirst">You are not broken. You are mismatched. This is the shape of the project that follows from that — one specification at the spine, two classes of work radiating outward.</p>
+    <p class="standfirst">Define the human. Pinpoint the mismatch. Fix it.</p>
+    <p class="standfirst standfirst-sub">AI alignment sits at the center of this — but a different alignment than the field is currently building. Not aligning AI to what humans <em>say they want</em>. Aligning AI to what humans <em>actually are</em>.</p>
     <div class="rule-ornate"><span class="line"></span><span class="diamond"></span><span class="line"></span></div>
   </div>
 
@@ -1002,7 +1008,7 @@ body {
       <div class="section-header">
         <span class="chapter">For Machines</span>
         <h2>AI Alignment</h2>
-        <p>Humans as ground truth</p>
+        <p>The specification as ground truth</p>
       </div>
       <div class="section-header middle"></div>
       <div class="section-header">
@@ -1160,8 +1166,7 @@ body {
       <div class="cor-column">
         <div class="cor">
           <div class="cor-title">
-            <span class="chapter">— The Spine —</span>
-            <h2>Cor</h2>
+            <img class="cor-mark-img" src="../img/cor-mark.png" alt="Cor" />
             <p>The human specification</p>
             <div class="cor-answers">
               <span class="label">Answers:</span>

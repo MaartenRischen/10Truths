@@ -397,6 +397,83 @@
       .xsite-entry-links { grid-template-columns: 1fr; gap: 0.5rem; }
     }
 
+    /* ── What we do ── */
+    .what-we-do {
+      max-width: 960px;
+      margin: 1rem auto 3.5rem;
+      padding: 2rem 2rem 2.4rem;
+      text-align: center;
+    }
+    .wwd-eyebrow {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--teal-bright);
+      margin-bottom: 1rem;
+      font-weight: 500;
+    }
+    .wwd-hook {
+      font-family: var(--serif);
+      font-size: clamp(1.3rem, 2.6vw, 1.8rem);
+      line-height: 1.35;
+      color: var(--bone);
+      opacity: 0.92;
+      margin: 0 auto 2rem;
+      max-width: 36ch;
+    }
+    .wwd-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.1rem;
+    }
+    .wwd-card {
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+      padding: 1.4rem 1.5rem 1.5rem;
+      border: 1px solid rgba(236, 224, 196, 0.4);
+      background: rgba(236, 224, 196, 0.06);
+      color: var(--bone);
+      text-decoration: none;
+      text-align: left;
+      transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+    }
+    .wwd-card:hover,
+    .wwd-card:focus-visible {
+      background: rgba(236, 224, 196, 0.14);
+      border-color: rgba(236, 224, 196, 0.7);
+      transform: translateY(-2px);
+    }
+    .wwd-label {
+      font-family: var(--mono);
+      font-size: clamp(0.78rem, 1.2vw, 0.92rem);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--teal-bright);
+      font-weight: 500;
+    }
+    .wwd-desc {
+      font-family: var(--serif);
+      font-size: 1rem;
+      line-height: 1.55;
+      color: var(--bone);
+      opacity: 0.85;
+      font-weight: 300;
+    }
+    .wwd-arrow {
+      margin-top: auto;
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      color: var(--muted-warm);
+      opacity: 0.85;
+    }
+    @media (max-width: 720px) {
+      .what-we-do { padding: 1.4rem 1rem 2rem; }
+      .wwd-grid { grid-template-columns: 1fr; }
+    }
+
     /* ── Truth sections ── */
     .section-divider {
       display: block;
@@ -427,15 +504,16 @@
       padding: 1.25rem 1.75rem;
       text-align: center;
 
-      background: rgba(0, 0, 0, 0.55);
-      backdrop-filter: blur(24px) saturate(1.3);
-      -webkit-backdrop-filter: blur(24px) saturate(1.3);
+      background: rgba(0, 0, 0, 0.38);
+      backdrop-filter: blur(72px) saturate(1.4);
+      -webkit-backdrop-filter: blur(72px) saturate(1.4);
 
       border: 2px solid rgba(255, 255, 255, 0.07);
       border-radius: 0px;
       box-shadow:
         0 1px 0 0 rgba(255, 255, 255, 0.06) inset,
-        0 -1px 0 0 rgba(0, 0, 0, 0.25) inset;
+        0 -1px 0 0 rgba(0, 0, 0, 0.25) inset,
+        0 14px 36px -6px rgba(0, 0, 0, 0.75);
     }
 
     /* Per-truth vertical position overrides (anchored to image bounds) */
@@ -582,15 +660,19 @@
       padding: 0.95rem 1.4rem;
       text-align: center;
 
-      background: rgba(0, 0, 0, 0.55);
-      backdrop-filter: blur(24px) saturate(1.3);
-      -webkit-backdrop-filter: blur(24px) saturate(1.3);
+      /* Lower alpha than .truth-text — captions sit over darker image
+         regions (desk/floor areas vs. the pillow/sky that titles sit over),
+         so we need less dark tint to read as equally "transparent". */
+      background: rgba(0, 0, 0, 0.22);
+      backdrop-filter: blur(72px) saturate(1.4);
+      -webkit-backdrop-filter: blur(72px) saturate(1.4);
 
       border: 2px solid rgba(255, 255, 255, 0.07);
       border-radius: 0px;
       box-shadow:
         0 1px 0 0 rgba(255, 255, 255, 0.06) inset,
-        0 -1px 0 0 rgba(0, 0, 0, 0.25) inset;
+        0 -1px 0 0 rgba(0, 0, 0, 0.25) inset,
+        0 14px 36px -6px rgba(0, 0, 0, 0.75);
     }
 
     /* Vertical position overrides for caption (anchored to image bounds) */
@@ -627,35 +709,24 @@
       text-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
     }
 
-    /* ── Ground shadow pseudo — sits entirely below the frame (no overlap
-       with the glass, so no negative z-index needed — backdrop-filter on
-       the parent would trap a z-index:-1 child behind the glass layer).
+    /* ── Ground shadow pseudo — sits below the frame.
        Counter-transform cancels the parent's upward parallax so the shadow
-       stays pinned to its rest position on the image while the frame lifts
-       off; when the frame drifts downward the shadow rides along, so it
-       never visually surfaces above the frame. Blur widens and alpha dims
-       with |parallax-y| so higher frames cast softer, fainter pools. ── */
+       stays pinned to the image while the frame lifts off; when the frame
+       drifts downward the shadow rides along so it never surfaces above. ── */
     .truth-text::after,
     .truth-caption::after {
       content: '';
       position: absolute;
-      left: 4%;
-      right: 4%;
-      top: 100%;
-      margin-top: 6px;
+      left: 0;
+      right: 0;
+      bottom: -44px;
       height: 32px;
       pointer-events: none;
       border-radius: 50%;
-      background: radial-gradient(
-        ellipse at center,
-        rgba(0, 0, 0, 0.9) 0%,
-        rgba(0, 0, 0, 0.55) 40%,
-        rgba(0, 0, 0, 0) 78%
-      );
+      background: rgba(0, 0, 0, 0.7);
+      filter: blur(18px);
       transform: translateY(max(0px, calc(-1 * var(--parallax-y, 0px))));
-      filter: blur(calc(12px + abs(var(--parallax-y, 0px)) * 0.55));
-      opacity: calc(1 - abs(var(--parallax-y, 0px)) * 0.003);
-      will-change: transform, filter;
+      will-change: transform;
     }
 
     /* ── Image ── */
@@ -674,6 +745,19 @@
     .truth-image .img-wrapper {
       overflow: hidden;
       line-height: 0;
+      position: relative;
+    }
+
+    /* Darkening overlay — replaces filter:brightness on <img>.
+       Filter on a sibling promotes it to its own composite layer in Chrome,
+       which prevents the frame's backdrop-filter from sampling through it.
+       An overlay div doesn't have that side-effect. */
+    .truth-image .img-wrapper::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.08);
+      pointer-events: none;
     }
 
     .truth-image picture {
@@ -684,7 +768,6 @@
       width: 100%;
       height: auto;
       display: block;
-      filter: brightness(0.92) saturate(0.85);
     }
 
     /* ── Outro band (forward links) ── */
@@ -940,25 +1023,22 @@
     </div>
   </header>
 
-  <aside class="xsite-entry" aria-label="Cross-site navigation">
-    <p class="xsite-entry-eyebrow">The Project</p>
-    <ul class="xsite-entry-links">
-      <li>
-        <a href="vision.html">
-          <span class="xsite-entry-arrow">→</span>
-          <span class="xsite-entry-label">Vision</span>
-          <span class="xsite-entry-desc">full map of the project</span>
-        </a>
-      </li>
-      <li>
-        <a href="https://cor.demismatch.com/">
-          <span class="xsite-entry-arrow">→</span>
-          <span class="xsite-entry-label">Spec</span>
-          <span class="xsite-entry-desc">the research backing</span>
-        </a>
-      </li>
-    </ul>
-  </aside>
+  <section class="what-we-do" aria-label="What we do">
+    <p class="wwd-eyebrow">What We Do</p>
+    <p class="wwd-hook">Define the human. Pinpoint the mismatch. Fix it.</p>
+    <div class="wwd-grid">
+      <a class="wwd-card" href="https://cor.demismatch.com/">
+        <span class="wwd-label">Define the Human</span>
+        <span class="wwd-desc">The specification: what a human being actually is, evidence-first. The organism, its mechanisms, and the environments they were built for.</span>
+        <span class="wwd-arrow" aria-hidden="true">cor.demismatch.com →</span>
+      </a>
+      <a class="wwd-card" href="vision.html">
+        <span class="wwd-label">Build Everything Else Around It</span>
+        <span class="wwd-desc">Starting with AI that understands the spec, then the technology, environments, education, and care it helps design.</span>
+        <span class="wwd-arrow" aria-hidden="true">demismatch.com/vision →</span>
+      </a>
+    </div>
+  </section>
 
   <main id="truths">
 
