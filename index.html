@@ -413,65 +413,47 @@
       margin-bottom: 1rem;
       font-weight: 500;
     }
-    .wwd-hook {
+    .wwd-steps {
+      list-style: none;
+      margin: 1.4rem auto 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .wwd-step {
+      display: inline-flex;
+      align-items: baseline;
+      justify-content: center;
+      gap: 0.55rem;
       font-family: var(--serif);
       font-size: clamp(1.3rem, 2.6vw, 1.8rem);
       line-height: 1.35;
       color: var(--bone);
       opacity: 0.92;
-      margin: 0 auto 2rem;
-      max-width: 36ch;
-    }
-    .wwd-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.1rem;
-    }
-    .wwd-card {
-      display: flex;
-      flex-direction: column;
-      gap: 0.7rem;
-      padding: 1.4rem 1.5rem 1.5rem;
-      border: 1px solid rgba(236, 224, 196, 0.4);
-      background: rgba(236, 224, 196, 0.06);
-      color: var(--bone);
       text-decoration: none;
-      text-align: left;
-      transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+      transition: color 180ms ease, opacity 180ms ease;
     }
-    .wwd-card:hover,
-    .wwd-card:focus-visible {
-      background: rgba(236, 224, 196, 0.14);
-      border-color: rgba(236, 224, 196, 0.7);
-      transform: translateY(-2px);
-    }
-    .wwd-label {
-      font-family: var(--mono);
-      font-size: clamp(0.78rem, 1.2vw, 0.92rem);
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
+    .wwd-step:hover,
+    .wwd-step:focus-visible {
       color: var(--teal-bright);
-      font-weight: 500;
+      opacity: 1;
+      outline: none;
     }
-    .wwd-desc {
-      font-family: var(--serif);
-      font-size: 1rem;
-      line-height: 1.55;
-      color: var(--bone);
-      opacity: 0.85;
-      font-weight: 300;
-    }
-    .wwd-arrow {
-      margin-top: auto;
+    .wwd-step-arrow {
       font-family: var(--mono);
-      font-size: 0.72rem;
-      letter-spacing: 0.12em;
-      color: var(--muted-warm);
-      opacity: 0.85;
+      font-size: 0.75em;
+      color: var(--teal-bright);
+      opacity: 0.75;
+      transition: transform 180ms ease, opacity 180ms ease;
+    }
+    .wwd-step:hover .wwd-step-arrow,
+    .wwd-step:focus-visible .wwd-step-arrow {
+      opacity: 1;
+      transform: translateX(4px);
     }
     @media (max-width: 720px) {
       .what-we-do { padding: 1.4rem 1rem 2rem; }
-      .wwd-grid { grid-template-columns: 1fr; }
     }
 
     /* ── Truth sections ── */
@@ -1031,19 +1013,20 @@
 
   <section class="what-we-do" aria-label="What we do">
     <p class="wwd-eyebrow">What We Do</p>
-    <p class="wwd-hook">Define the human. Pinpoint the mismatch. Fix it.</p>
-    <div class="wwd-grid">
-      <a class="wwd-card" href="https://cor.demismatch.com/">
-        <span class="wwd-label">Define the Human</span>
-        <span class="wwd-desc">The specification: what a human being actually is, evidence-first. The organism, its mechanisms, and the environments they were built for.</span>
-        <span class="wwd-arrow" aria-hidden="true">cor.demismatch.com →</span>
-      </a>
-      <a class="wwd-card" href="vision.html">
-        <span class="wwd-label">Build Everything Else Around It</span>
-        <span class="wwd-desc">Starting with AI that understands the spec, then the technology, environments, education, and care it helps design.</span>
-        <span class="wwd-arrow" aria-hidden="true">demismatch.com/vision →</span>
-      </a>
-    </div>
+    <ul class="wwd-steps">
+      <li><a class="wwd-step" href="https://cor.demismatch.com/">
+        <span class="wwd-step-text">Define the human.</span>
+        <span class="wwd-step-arrow" aria-hidden="true">→</span>
+      </a></li>
+      <li><a class="wwd-step" href="https://cor.demismatch.com/">
+        <span class="wwd-step-text">Pinpoint the mismatch.</span>
+        <span class="wwd-step-arrow" aria-hidden="true">→</span>
+      </a></li>
+      <li><a class="wwd-step" href="vision.html">
+        <span class="wwd-step-text">Fix it.</span>
+        <span class="wwd-step-arrow" aria-hidden="true">→</span>
+      </a></li>
+    </ul>
   </section>
 
   <main id="truths">
