@@ -966,20 +966,47 @@
         margin-bottom: 1rem;
       }
 
-      .truth-caption {
-        max-width: calc(100% - 2rem);
-        padding: 0.7rem 0.95rem;
-        border-width: 1px;
+      /* Mobile: paragraphs leave the glass frame entirely — render as plain
+         body text below each image. Titles still float on the image edge
+         (.truth-image .truth-text override above); captions become a
+         readable block under the picture. */
+      .truth-caption,
+      .truth-caption.pos-quarter,
+      .truth-caption.pos-three-quarter {
+        position: static;
+        top: auto;
+        left: auto;
+        transform: none;
+        will-change: auto;
+        width: 100%;
+        max-width: 100%;
+        /* Clear the title frame's half-below-image overlap (~30px) +
+           breathing room before the body copy begins. */
+        padding: 3.75rem 1rem 0;
+        text-align: center;
+        background: transparent;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        border: none;
+        box-shadow: none;
       }
-
-      .truth-caption::before {
-        left: 0.6rem;
-        right: 0.6rem;
+      .truth-caption::before,
+      .truth-caption::after {
+        display: none;
       }
-
       .truth-caption p {
-        font-size: 0.78rem;
-        line-height: 1.45;
+        font-family: var(--serif);
+        font-size: 0.95rem;
+        line-height: 1.6;
+        font-weight: 300;
+        color: var(--bone);
+        opacity: 0.82;
+        text-shadow: none;
+        margin: 0 auto 1rem;
+        max-width: 36rem;
+      }
+      .truth-caption p:last-child {
+        margin-bottom: 0;
       }
 
       .end-space {
