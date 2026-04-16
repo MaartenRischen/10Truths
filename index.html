@@ -909,6 +909,35 @@
       opacity: 0.85;
     }
 
+    .outro-link-multi {
+      cursor: default;
+    }
+    .outro-link-multi:hover,
+    .outro-link-multi:focus-within {
+      background: rgba(236, 224, 196, 0.07);
+      border-color: rgba(236, 224, 196, 0.45);
+      transform: translateY(-2px);
+      box-shadow: 6px 6px 0 var(--teal);
+    }
+    .outro-link-cues {
+      margin-top: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .outro-link-cues .outro-link-cue {
+      margin-top: 0;
+      text-decoration: none;
+      opacity: 0.7;
+      transition: opacity 0.2s ease, color 0.2s ease;
+    }
+    .outro-link-cues .outro-link-cue-secondary { opacity: 0.45; }
+    .outro-link-cues .outro-link-cue:hover,
+    .outro-link-cues .outro-link-cue:focus-visible {
+      opacity: 1;
+      color: var(--teal-bright);
+    }
+
     /* ── Responsive / Mobile ── */
     @media (max-width: 768px) {
       .outro-band {
@@ -1306,18 +1335,27 @@
       <p class="outro-body">Three surfaces of a single thing. The real Cor will be a ground-up academic build; what follows is the shape the work is pointing at.</p>
     </div>
     <div class="outro-grid">
-      <a href="vision.html" class="outro-link">
+      <a href="https://cor.demismatch.com/" class="outro-link">
         <span class="outro-link-label">№ 01</span>
+        <span class="outro-link-name">Cor</span>
+        <span class="outro-link-desc">The atlas. Foundations, mechanisms, diagnosis, intervention — the literature synthesis everything downstream is grounded in.</span>
+        <span class="outro-link-cue">See the atlas →</span>
+      </a>
+      <a href="vision.html" class="outro-link">
+        <span class="outro-link-label">№ 02</span>
         <span class="outro-link-name">The Vision</span>
         <span class="outro-link-desc">The full vision. Decode tools (Talk, Camera, Web) for seeing the mismatch, plus the Adaptor research program.</span>
         <span class="outro-link-cue">Read →</span>
       </a>
-      <a href="decode-talk.html" class="outro-link">
-        <span class="outro-link-label">№ 02</span>
+      <div class="outro-link outro-link-multi">
+        <span class="outro-link-label">№ 03</span>
         <span class="outro-link-name">Decode Talk</span>
         <span class="outro-link-desc">Situation in. Evolutionary read out. Not a companion.</span>
-        <span class="outro-link-cue">Sample exchanges →</span>
-      </a>
+        <span class="outro-link-cues">
+          <a class="outro-link-cue" href="decode-talk/">Try the demo →</a>
+          <a class="outro-link-cue outro-link-cue-secondary" href="decode-talk.html">Sample exchanges →</a>
+        </span>
+      </div>
     </div>
   </section>
 
