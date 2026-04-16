@@ -121,23 +121,9 @@ body {
   margin-bottom: 4px;
 }
 
-.hero-top {
-  max-width: 820px;
-  margin: 0 auto 48px;
-}
 .hero-block {
   max-width: 820px;
-}
-@media (min-width: 1100px) {
-  .hero-top {
-    max-width: 1380px;
-    display: grid;
-    grid-template-columns: minmax(0, 820px) minmax(320px, 460px);
-    column-gap: 48px;
-    align-items: center;
-    justify-content: center;
-  }
-  .hero-block { max-width: none; margin: 0; }
+  margin: 0 auto 48px;
 }
 .hero-block h1 {
   font-family: 'Spectral', serif;
@@ -218,72 +204,6 @@ body {
 }
 .hero-onramp-meta {
   color: #8a7d5e;
-}
-
-.hero-quote-card {
-  position: relative;
-  max-width: 460px;
-  margin: 32px auto 0;
-  padding: 22px 26px 22px 64px;
-  background: var(--parchment-dark);
-  border: 1px solid var(--oxblood);
-  border-radius: 6px;
-  box-shadow: 6px 6px 0 var(--teal), 12px 12px 0 var(--gold);
-  text-align: left;
-  transition: box-shadow 0.22s ease, transform 0.22s ease;
-}
-@media (min-width: 1100px) {
-  .hero-quote-card { margin: 0; }
-}
-.hero-quote-card:hover {
-  box-shadow: 8px 8px 0 var(--teal), 16px 16px 0 var(--gold);
-  transform: translate(-1px, -1px);
-}
-.hero-quote-card::before {
-  content: "\201C";
-  position: absolute;
-  left: 10px;
-  top: -4px;
-  font-family: 'Spectral', serif;
-  font-size: 72px;
-  line-height: 1;
-  color: var(--teal);
-  opacity: 0.85;
-}
-.hero-quote-card blockquote {
-  margin: 0 0 14px;
-  padding: 0;
-  border: 0;
-  color: var(--ink);
-  font-family: 'Spectral', serif;
-  font-style: italic;
-  font-size: 17px;
-  line-height: 1.55;
-}
-.hero-quote-card cite {
-  display: flex;
-  align-items: center;
-  padding-top: 11px;
-  border-top: 1px solid rgba(58, 18, 24, 0.2);
-  color: #5a2a32;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 11px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  font-style: normal;
-}
-.hero-quote-card cite strong {
-  color: var(--teal);
-  font-weight: 600;
-}
-.hero-quote-card .quote-avatar {
-  width: 44px;
-  height: 44px;
-  object-fit: cover;
-  border-radius: 50%;
-  border: 1px solid var(--oxblood);
-  filter: grayscale(0.3) sepia(0.15);
-  margin-right: 11px;
 }
 
 .intro {
@@ -1142,22 +1062,16 @@ body {
     <span class="label">Demismatch · Vision · April 2026</span>
     <span class="rule" aria-hidden="true"></span>
   </div>
-  <div class="hero-top">
-    <div class="hero-block">
-      <h1>What a human is. What a human needs. What to build from that.</h1>
-      <p class="hero-note">The evolutionary motivational-emotional reality of humans, specified before our tech finishes optimizing against it. Everything on this page to be built from that spec: alignment rails for machines, demismatch tools for humans.</p>
-      <div class="hero-actions">
-        <a class="btn-primary" href="https://cor.demismatch.com/">See the Atlas</a>
-      </div>
-      <p class="hero-onramp">Read:<br>
-        <a href="https://cor.demismatch.com/bridge-paper.html">What Alignment Misses</a> <span class="hero-onramp-meta">(working paper)</span><br>
-        <a href="https://cor.demismatch.com/constitutional.html">What You Are Talking To</a> <span class="hero-onramp-meta">(explaining humans to AI)</span>
-      </p>
+  <div class="hero-block">
+    <h1>What a human is. What a human needs. What to build from that.</h1>
+    <p class="hero-note">The evolutionary motivational-emotional reality of humans, specified before our tech finishes optimizing against it. Everything on this page to be built from that spec: alignment rails for machines, demismatch tools for humans.</p>
+    <div class="hero-actions">
+      <a class="btn-primary" href="https://cor.demismatch.com/">See the Atlas</a>
     </div>
-    <div class="hero-quote-card">
-      <blockquote>There is an arms race for human attention, and whichever company is willing to go lower on the brainstem to manipulate human psychology will win.</blockquote>
-      <cite><img class="quote-avatar" src="https://cor.demismatch.com/img/quotes/tristan-harris.jpg" alt="Tristan Harris" width="44" height="44"><span><strong>Tristan Harris</strong> · Modern Wisdom, April 2026</span></cite>
-    </div>
+    <p class="hero-onramp">Read:<br>
+      <a href="https://cor.demismatch.com/bridge-paper.html">What Alignment Misses</a> <span class="hero-onramp-meta">(working paper)</span><br>
+      <a href="https://cor.demismatch.com/constitutional.html">What You Are Talking To</a> <span class="hero-onramp-meta">(explaining humans to AI)</span>
+    </p>
   </div>
 
   <div class="layout">
