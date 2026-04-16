@@ -300,7 +300,8 @@
       gap: 1rem;
       justify-content: center;
       flex-wrap: wrap;
-      margin-bottom: 2.5rem;
+      margin-top: 2.5rem;
+      margin-bottom: 1.25rem;
     }
 
     .hero-cta {
@@ -323,6 +324,35 @@
       background: rgba(236, 224, 196, 0.14);
       border-color: rgba(236, 224, 196, 0.7);
       transform: translateY(-2px);
+    }
+
+    .hero-onramp {
+      margin: 1.1rem auto 0;
+      font-family: var(--mono);
+      font-size: clamp(0.7rem, 1.2vw, 0.82rem);
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      line-height: 2.2;
+      color: var(--bone);
+      opacity: 0.85;
+    }
+
+    .hero-onramp a {
+      color: var(--teal-bright);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(61, 133, 133, 0.55);
+      transition: color 140ms ease, border-color 140ms ease;
+    }
+
+    .hero-onramp a:hover,
+    .hero-onramp a:focus-visible {
+      color: var(--parchment);
+      border-bottom-color: var(--parchment);
+    }
+
+    .hero-onramp-meta {
+      color: var(--muted-warm);
+      opacity: 0.9;
     }
 
     .hero-footnote {
@@ -966,6 +996,13 @@
     <div class="hero-content">
       <p class="site-tagline">Specify the human. Rebuild everything around it.</p>
       <h1 class="site-title">Demismatch</h1>
+      <div class="hero-ctas">
+        <a class="hero-cta" href="https://cor.demismatch.com/">See the Atlas</a>
+      </div>
+      <p class="hero-onramp">Read:<br>
+        <a href="https://cor.demismatch.com/bridge-paper.html">What Alignment Misses</a> <span class="hero-onramp-meta">(working paper)</span><br>
+        <a href="https://cor.demismatch.com/constitutional.html">What You Are Talking To</a> <span class="hero-onramp-meta">(explaining humans to AI)</span>
+      </p>
     </div>
   </header>
 
