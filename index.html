@@ -438,7 +438,7 @@
       margin: 4rem auto;
       background: rgba(45, 107, 107, 0.5);
     }
-    .end-space { height: 8rem; display: block; }
+    .end-space { height: 24rem; display: block; }
 
     main#truths {
       padding-top: clamp(4rem, 7vw, 8rem);
@@ -1241,7 +1241,7 @@
             <img src="10-tuesday-night.jpg" alt="Tuesday night" loading="lazy" decoding="async" width="1376" height="768">
           </picture>
         </div>
-        <div class="truth-caption pos-three-quarter">
+        <div class="truth-caption pos-three-quarter" style="top: 125%;">
           <p>The same systems keeping you scrolling, swiping, comparing, buying &mdash; could be building the world on the other side of the mismatch. Not a better version of the room you&rsquo;re in. A different room entirely.</p>
           <p>What a world that fits you looks like is not mysterious. The organism has been telling us for three hundred thousand years. You wake up inside a group the size your brain evolved to track. You have a role in it that would be missed if you were gone. You do work that matters to specific named people. Status is earned and reversible and visible. Your survival is tied to theirs and theirs to yours. Where you live &mdash; physical, virtual, mixed &mdash; matters less than whether the signals coming in resolve the signals going out.</p>
           <p>That world is not smaller than the one you&rsquo;re in. It is the larger one. The nation-state is coordination infrastructure, not a place you can be human. The group you belong to is.</p>
@@ -1258,9 +1258,9 @@
   <div class="end-space"></div>
 
   <style>
-    .xsite-footer { max-width: 1200px; margin: 72px auto 56px; padding: 40px clamp(20px, 4vw, 60px) 0; border-top: 1px solid rgba(236, 224, 196, 0.15); }
+    .xsite-footer { max-width: 1200px; margin: 72px auto 56px; padding: 40px clamp(20px, 4vw, 60px) 0; border-top: 1px solid rgba(236, 224, 196, 0.15); text-align: center; }
     .xsite-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; padding-bottom: 28px; border-bottom: 1px solid rgba(236, 224, 196, 0.12); margin-bottom: 26px; }
-    .xsite-col { display: flex; flex-direction: column; gap: 6px; text-decoration: none; color: var(--bone); transition: color 140ms ease; }
+    .xsite-col { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 6px; text-decoration: none; color: var(--bone); transition: color 140ms ease; }
     .xsite-col:hover { color: #ffffff; }
     .xsite-col-head { font-family: var(--mono); font-size: 12px; letter-spacing: 0.28em; font-weight: 400; color: var(--bone); }
     .xsite-col-desc { font-family: var(--serif); font-style: italic; font-size: 17px; color: var(--bone); opacity: 0.78; line-height: 1.4; }
@@ -1269,8 +1269,8 @@
     .xsite-col.is-current .xsite-col-desc { opacity: 0.5; }
     .xsite-col.is-current .xsite-col-url { opacity: 0.6; }
     .xsite-col.is-current:hover { color: var(--bone); }
-    .xsite-canonical { font-family: var(--serif); font-size: 16px; line-height: 1.6; color: var(--bone); opacity: 0.82; margin: 0 0 14px; max-width: 640px; }
-    .xsite-copy { font-family: var(--mono); font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); margin: 0; }
+    .xsite-canonical { font-family: var(--serif); font-size: 16px; line-height: 1.6; color: var(--bone); opacity: 0.82; margin: 0 auto 14px; max-width: 640px; text-align: center; }
+    .xsite-copy { font-family: var(--mono); font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); margin: 0; text-align: center; }
     @media (max-width: 720px) { .xsite-cols { grid-template-columns: 1fr; gap: 22px; } }
   </style>
   <footer class="xsite-footer">
