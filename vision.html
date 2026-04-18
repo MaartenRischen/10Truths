@@ -266,6 +266,13 @@ body {
   font-size: 17px;
   color: #5a2a32;
 }
+.section-header .tagline {
+  font-family: 'Spectral', serif;
+  font-style: italic;
+  font-size: 18px;
+  color: var(--teal);
+  margin-bottom: 10px;
+}
 
 .columns-area {
   display: grid;
@@ -313,18 +320,15 @@ body {
 }
 
 /* Subtle fan: middle card closest to COR; top/bottom tilt to point toward COR. */
-.card-stack:first-of-type .card:nth-child(1) { transform: translateX(-16px) rotate(2.2deg); }
-.card-stack:first-of-type .card:nth-child(2) { transform: translateX(-7px) rotate(1.1deg); }
-.card-stack:first-of-type .card:nth-child(3) { transform: translateX(0) rotate(0); }
-.card-stack:first-of-type .card:nth-child(4) { transform: translateX(-7px) rotate(-1.1deg); }
-.card-stack:first-of-type .card:nth-child(5) { transform: translateX(-16px) rotate(-2.2deg); }
-.card-stack:first-of-type .more-card { transform: translateX(-22px) rotate(-2.6deg); }
+.card-stack:first-of-type .card:nth-child(1) { transform: translateX(-12px) rotate(1.8deg); }
+.card-stack:first-of-type .card:nth-child(2) { transform: translateX(0) rotate(0); }
+.card-stack:first-of-type .card:nth-child(3) { transform: translateX(-12px) rotate(-1.8deg); }
+.card-stack:first-of-type .more-card { transform: translateX(-20px) rotate(-2.4deg); }
 
-.card-stack:last-of-type .card:nth-child(1) { transform: translateX(18px) rotate(-2deg); }
-.card-stack:last-of-type .card:nth-child(2) { transform: translateX(6px) rotate(-0.8deg); }
-.card-stack:last-of-type .card:nth-child(3) { transform: translateX(6px) rotate(0.8deg); }
-.card-stack:last-of-type .card:nth-child(4) { transform: translateX(18px) rotate(2deg); }
-.card-stack:last-of-type .more-card { transform: translateX(24px) rotate(2.4deg); }
+.card-stack:last-of-type .card:nth-child(1) { transform: translateX(14px) rotate(-1.8deg); }
+.card-stack:last-of-type .card:nth-child(2) { transform: translateX(2px) rotate(0); }
+.card-stack:last-of-type .card:nth-child(3) { transform: translateX(14px) rotate(1.8deg); }
+.card-stack:last-of-type .more-card { transform: translateX(22px) rotate(2.4deg); }
 .card .num {
   position: absolute;
   top: 14px;
@@ -997,6 +1001,119 @@ body {
   .roadmap-grid { grid-template-columns: 1fr; gap: 24px; }
 }
 
+/* ── Stack footer (HSEE caption under right card group) ─────────── */
+.card-stack .stack-footer {
+  align-self: stretch;
+  margin-top: 28px;
+  font-family: 'Spectral', serif;
+  font-style: italic;
+  font-size: 14px;
+  color: #8a7d5e;
+  text-align: center;
+  line-height: 1.5;
+  transform: none;
+}
+
+/* ── Cor → Horizon spine (the line that connects the center to the destination) ── */
+.cor-horizon-spine {
+  position: relative;
+  height: 110px;
+  margin: -16px auto 0;
+}
+.cor-horizon-spine::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1px;
+  background: repeating-linear-gradient(
+    to bottom,
+    var(--gold) 0,
+    var(--gold) 4px,
+    transparent 4px,
+    transparent 10px
+  );
+  opacity: 0.6;
+}
+.cor-horizon-spine::after {
+  content: '';
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--gold);
+  box-shadow: 0 0 0 3px var(--parchment), 0 0 0 4px rgba(58, 18, 24, 0.18);
+}
+
+/* ── Horizon section (what comes after mismatch) ─────────────── */
+.horizon {
+  max-width: 840px;
+  margin: 0 auto 96px;
+  padding: 0 8px;
+  color: var(--ink);
+}
+.horizon-header {
+  text-align: center;
+  margin-bottom: 56px;
+}
+.horizon-header .chapter {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--teal);
+  font-weight: 500;
+  margin-bottom: 18px;
+  display: block;
+}
+.horizon-header h2 {
+  font-family: 'Spectral', serif;
+  font-size: clamp(32px, 4.8vw, 52px);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.04;
+  margin-bottom: 18px;
+  font-style: italic;
+  color: var(--oxblood);
+}
+.horizon-header .horizon-lede {
+  font-family: 'Spectral', serif;
+  font-style: italic;
+  font-size: clamp(17px, 1.6vw, 20px);
+  color: #5a2a32;
+}
+.horizon-bullets {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+.horizon-bullets .h-item {
+  font-family: 'Spectral', serif;
+  font-size: clamp(17px, 1.55vw, 19px);
+  line-height: 1.6;
+  color: var(--ink);
+  margin: 0;
+}
+.horizon-bullets .h-item strong {
+  color: var(--oxblood);
+  font-weight: 600;
+  letter-spacing: 0.005em;
+}
+.horizon-close {
+  margin: 72px 0 0;
+  font-family: 'Spectral', serif;
+  font-style: italic;
+  font-size: clamp(17px, 1.55vw, 19px);
+  line-height: 1.6;
+  color: #5a2a32;
+  text-align: left;
+}
+
 /* ── Mobile: stack the 3-column spine, disable connectors and card fan ── */
 @media (max-width: 720px) {
   body { padding: 12px 6px; }
@@ -1036,6 +1153,15 @@ body {
   .cor-body .quote { font-size: 19px; margin-bottom: 28px; }
   .cor-attrs { grid-template-columns: 1fr; gap: 18px; padding: 22px 0; margin-bottom: 24px; }
   .cor-attrs .a { text-align: left; }
+
+  .cor-horizon-spine { height: 60px; margin-top: 8px; }
+
+  .horizon { margin-bottom: 56px; padding: 0 4px; }
+  .horizon-header { margin-bottom: 36px; }
+  .horizon-bullets { gap: 24px; }
+  .horizon-close { margin-top: 48px; }
+
+  .card-stack .stack-footer { margin-top: 22px; font-size: 13px; }
 
   .roadmap { padding-top: 40px; margin: 16px 0 48px; }
   .roadmap-header { margin-bottom: 36px; }
@@ -1084,8 +1210,9 @@ body {
       <div class="section-header middle"></div>
       <div class="section-header">
         <span class="chapter">For Humans</span>
-        <h2>Demismatch Tools</h2>
-        <p>Software that shows an organism what it's actually looking at - and what to do about it</p>
+        <h2>Diagnostic Demismatch Tools</h2>
+        <p class="tagline"><em>The first step is seeing clearly.</em></p>
+        <p>Software that shows an organism what it is actually looking at. Names the mismatch behind the behavior.</p>
       </div>
     </div>
 
@@ -1114,15 +1241,15 @@ body {
               <line x1="68" y1="36" x2="84" y2="36" class="soft"/>
             </svg>
           </div>
-          <span class="name">MCP server</span>
-          <span class="desc">Inference-time alignment via tool-use. Any LLM calls Cor at inference and reads mechanism, foundation, convergence, and resolution-condition data for the context at hand.</span>
+          <span class="name">The specification, machine-readable</span>
+          <span class="desc">MCP server and tooling that let models query the spec directly. Any LLM reads the foundations, mechanisms, convergences, and resolution conditions at inference time through a standard tool-call surface.</span>
           <dl class="card-spec">
             <dt>Form</dt><dd>MCP (Model Context Protocol) server · tool-call surface for any LLM</dd>
-            <dt>Targets</dt><dd>Inference-time alignment across any mechanism Cor specifies</dd>
-            <dt>Proxy</dt><dd>Preference-only alignment - RLHF responses that maximize user preference without asking whether the response creates resolution or just activates the mechanism</dd>
-            <dt>Real input</dt><dd>Cor-specified resolution conditions per mechanism: "this request engages M3; resolution requires reciprocal human co-regulation, not generic preference-shaped completion"</dd>
+            <dt>Targets</dt><dd>Inference-time access to the spec from any model that speaks MCP</dd>
+            <dt>Proxy</dt><dd>Models reasoning about humans from preference-annotated training data alone — no canonical source to check against</dd>
+            <dt>Real input</dt><dd>The spec itself, machine-readable, queryable per mechanism at the moment of inference: "this request engages M3; resolution requires reciprocal human co-regulation"</dd>
           </dl>
-          <div class="card-tags"><span class="tag">M3</span><span class="tag">M5</span><span class="tag">M14</span><span class="tag">DA4</span><span class="tag">DA9</span></div>
+          <div class="card-tags"><span class="tag">M3</span><span class="tag">M5</span><span class="tag">M14</span><span class="tag">DA4</span><span class="tag">all mechanisms</span></div>
         </div>
 
         <div class="card">
@@ -1138,50 +1265,19 @@ body {
               <line x1="10" y1="46" x2="70" y2="24" class="soft" stroke-dasharray="1 1"/>
             </svg>
           </div>
-          <span class="name">Vector steering</span>
-          <span class="desc">Activation engineering against mismatch. Steering vectors learned from Cor-grounded contrastive pairs push generation toward mechanism-aware completions at the activation level.</span>
+          <span class="name">Alignment through the spec</span>
+          <span class="desc">Vector steering, training-data curation, and evaluation against the spec as ground truth. Three lines of alignment work sharing one source of correction — the activation path, the training distribution, and the evaluation surface.</span>
           <dl class="card-spec">
-            <dt>Form</dt><dd>Steering vectors learned from Cor-grounded contrastive pairs · applied at inference</dd>
-            <dt>Targets</dt><dd>Activation-level alignment - per-mechanism guardrails where prompts alone are unreliable (e.g. DA9 AI-attachment-slot prohibition enforced at activation, not just prompt)</dd>
-            <dt>Proxy</dt><dd>Post-hoc RLHF reward shaping and constitutional filters - operate on preferences not mechanisms, jailbreakable</dd>
-            <dt>Real input</dt><dd>Steering vectors keyed to Cor mechanisms. When an activation reads "this output is a proxy for M3," generation gets pushed toward a matched-state alternative</dd>
+            <dt>Form</dt><dd>Steering vectors from spec-grounded contrastive pairs · corpus filter and re-weighting · spec-grounded benchmarks</dd>
+            <dt>Targets</dt><dd>The three places alignment has to hold — activations at inference, the training distribution itself, and the evaluation surface that grades the result</dd>
+            <dt>Proxy</dt><dd>Preference-maximizing RLHF and preference-derived benchmarks (MT-Bench, HELM, Arena) — operate on preferences, not mechanisms</dd>
+            <dt>Real input</dt><dd>The spec as ground truth at each layer: contrastive pairs from named mechanisms, corpora filtered against the architecture, benchmarks that grade resolution versus activation</dd>
           </dl>
-          <div class="card-tags"><span class="tag">M3</span><span class="tag">DA9</span><span class="tag">any mechanism</span></div>
+          <div class="card-tags"><span class="tag">all mechanisms</span><span class="tag">DA4</span><span class="tag">DC3</span><span class="tag">matched/mismatched axis</span></div>
         </div>
 
         <div class="card">
           <span class="num">a.3</span>
-          <div class="visual">
-            <svg viewBox="0 0 100 56" class="glyph">
-              <path d="M 15 10 L 85 10 L 65 28 L 65 46 L 35 46 L 35 28 Z"/>
-              <circle cx="22" cy="14" r="1" class="fill"/>
-              <circle cx="30" cy="14" r="1" class="fill"/>
-              <circle cx="38" cy="14" r="1" class="fill"/>
-              <circle cx="46" cy="14" r="1" class="fill"/>
-              <circle cx="54" cy="14" r="1" class="fill"/>
-              <circle cx="62" cy="14" r="1" class="fill"/>
-              <circle cx="70" cy="14" r="1" class="fill"/>
-              <circle cx="78" cy="14" r="1" class="fill"/>
-              <circle cx="44" cy="34" r="1" class="fill"/>
-              <circle cx="52" cy="34" r="1" class="fill"/>
-              <circle cx="60" cy="34" r="1" class="fill"/>
-              <circle cx="48" cy="42" r="1" class="fill"/>
-              <circle cx="56" cy="42" r="1" class="fill"/>
-            </svg>
-          </div>
-          <span class="name">Training data curation</span>
-          <span class="desc">Align at the source, not the surface. Pretraining and fine-tuning corpora filtered and re-weighted against Cor's mechanism architecture, with synthetic data generated from mechanism narratives and resolution conditions.</span>
-          <dl class="card-spec">
-            <dt>Form</dt><dd>Pretraining / fine-tuning corpus filter + re-weighting · synthetic data from Cor narratives</dd>
-            <dt>Targets</dt><dd>The training distribution itself - fixes the problem at the source; every AI inherits its model of humans from training data</dd>
-            <dt>Proxy</dt><dd>Broad internet scrape + preference-annotated fine-tuning - bakes mismatch into the base model before alignment work begins</dd>
-            <dt>Real input</dt><dd>A corpus where the Cor specification is ground truth: mechanism outputs, resolution conditions, evolved needs - not the preference-output artifacts modern environments happen to produce</dd>
-          </dl>
-          <div class="card-tags"><span class="tag">all 15 mechanisms</span><span class="tag">OF1</span><span class="tag">OF2</span></div>
-        </div>
-
-        <div class="card">
-          <span class="num">a.4</span>
           <div class="visual">
             <svg viewBox="0 0 100 56" class="glyph">
               <rect x="16" y="16" width="24" height="24" rx="1"/>
@@ -1195,39 +1291,15 @@ body {
               <line x1="66" y1="34" x2="78" y2="34" class="soft"/>
             </svg>
           </div>
-          <span class="name">Small models from scratch</span>
-          <span class="desc">Domain models with no preference contamination. Purpose-built small models trained from scratch on Cor-grounded corpora, for tasks where ground-truth-aligned outputs matter more than general capability.</span>
+          <span class="name">Models built on the spec</span>
+          <span class="desc">Small models trained from scratch on spec-grounded corpora. Constitutions derived from the spec. No preference contamination to correct later — the entire learned distribution is spec-grounded from pretraining forward.</span>
           <dl class="card-spec">
-            <dt>Form</dt><dd>Purpose-built small models · trained from scratch on Cor-grounded corpora</dd>
-            <dt>Targets</dt><dd>Specialized applications - clinical triage, educational scaffolding, environment-design assistants, therapy-adjacent tools - where hallucination about human needs is catastrophic</dd>
-            <dt>Proxy</dt><dd>Fine-tuned general-purpose models with RLHF layers on top - inherit the base model's preference-as-ground-truth mistake; RLHF cannot fully correct what pretraining installed</dd>
-            <dt>Real input</dt><dd>A model whose entire learned distribution is Cor-grounded from pretraining forward - no preference contamination to overcome later</dd>
+            <dt>Form</dt><dd>Purpose-built small models · pretraining on spec-grounded corpora · constitutions encoding resolution conditions</dd>
+            <dt>Targets</dt><dd>Specialized applications where hallucination about human needs is catastrophic — clinical triage, educational scaffolding, therapy-adjacent tools</dd>
+            <dt>Proxy</dt><dd>Fine-tuned general-purpose models with RLHF on top — they carry the base model's preference-as-ground-truth mistake</dd>
+            <dt>Real input</dt><dd>A model whose entire learned distribution is spec-grounded from pretraining forward, with constitutional rules encoded as resolution conditions</dd>
           </dl>
-          <div class="card-tags"><span class="tag">domain-specific subsets</span></div>
-        </div>
-
-        <div class="card">
-          <span class="num">a.5</span>
-          <div class="visual">
-            <svg viewBox="0 0 100 56" class="glyph">
-              <rect x="20" y="10" width="60" height="36" rx="1"/>
-              <line x1="28" y1="20" x2="54" y2="20" class="soft"/>
-              <line x1="28" y1="28" x2="62" y2="28" class="soft"/>
-              <line x1="28" y1="36" x2="48" y2="36" class="soft"/>
-              <path d="M 66 18 L 70 22 L 76 14" stroke-width="2"/>
-              <path d="M 66 28 L 70 32 L 76 24" stroke-width="2"/>
-              <path d="M 66 38 L 70 42 L 76 34" stroke-width="2"/>
-            </svg>
-          </div>
-          <span class="name">Evals and constitutions</span>
-          <span class="desc">Benchmarks grounded in what humans actually need. Cor-mechanism benchmarks plus new constitutional frameworks that replace preference-derived rules with mechanism-derived ones.</span>
-          <dl class="card-spec">
-            <dt>Form</dt><dd>Benchmarks grounded in Cor mechanisms, convergences, resolution conditions · constitutions encoding resolution as constraint</dd>
-            <dt>Targets</dt><dd>Every model evaluation surface - current benchmarks grade "did this satisfy user preference?" and miss the core question of resolution vs activation</dd>
-            <dt>Proxy</dt><dd>MT-Bench, HELM, Arena, and preference-derived benchmarks · constitutional AI frameworks that bake preference assumptions into the rules</dd>
-            <dt>Real input</dt><dd>The matched/mismatched fourth evaluation axis (per A1) alongside helpful/harmless/honest · per-mechanism benchmarks · constitutions encoding resolution conditions as constraints</dd>
-          </dl>
-          <div class="card-tags"><span class="tag">matched/mismatched axis</span><span class="tag">all 15 mechanisms</span><span class="tag">DC3</span></div>
+          <div class="card-tags"><span class="tag">domain-specific subsets</span><span class="tag">constitutional AI</span><span class="tag">OF1</span><span class="tag">OF2</span></div>
         </div>
 
         <div class="more-card"><span class="more-text">… and more</span></div>
@@ -1340,31 +1412,46 @@ body {
           </dl>
         </div>
 
-        <div class="card">
-          <span class="num">c.4</span>
-          <div class="visual">
-            <img src="10-tuesday-night.jpg" alt="Adaptor - Phase 2: a multigenerational outdoor dinner table at dusk with HUD overlays naming the resolution conditions being satisfied - OXYTOCIN HIGH, SEROTONIN HIGH, CORTISOL LOW, CIRCADIAN CALIBRATED - and the social analysis: communal meal, all bonded, no app built this.">
-          </div>
-          <span class="name">Environment building (phase 2, Adaptor, the real work)</span>
-          <span class="desc">Once mismatch is visible, the next question is what to build instead — from band-scale social infrastructure (also to inform VR/AR and mixed reality environments) to Neuralink-scale interfaces. Adaptor is the research program designing all of it to meet human mechanisms at their real resolution condition, rather than faking the signal. The work is in early specification.</span>
-          <dl class="card-strands">
-            <dt>Immune systems</dt><dd>Band-level infrastructure against designed addiction</dd>
-            <dt>Return protocols</dt><dd>Graduated, supported return from parasocial capture</dd>
-            <dt>Distributed presence</dt><dd>Spatial co-location for bands separated by geography</dd>
-            <dt>Mechanism-aware architecture</dt><dd>Physical and digital environments built to the Cor spec sheet</dd>
-            <dt>Immersive environments</dt><dd>VR, AR, mixed reality held to the same mechanism spec as physical rooms</dd>
-            <dt>Ambient spaces</dt><dd>Sensor-rich environments calibrated to circadian, proximity, and social mechanisms</dd>
-            <dt>Neural interfaces</dt><dd>BCIs read the organism; they do not override its regulatory loops</dd>
-            <dt>Embodied agents</dt><dd>Robots and avatars that meet humans on reciprocity conditions, not mimicry</dd>
-          </dl>
-        </div>
-
         <div class="more-card"><span class="more-text">… and more</span></div>
+
+        <p class="stack-footer"><em>Built on Cor. Shipped as HSEE deliverables.</em></p>
 
       </div>
 
     </div>
   </div>
+
+  <div class="cor-horizon-spine" aria-hidden="true"></div>
+
+  <section class="horizon" aria-labelledby="horizon-title">
+    <div class="horizon-header">
+      <span class="chapter">Horizon</span>
+      <h2 id="horizon-title">Post-Mismatch: Human Environments</h2>
+      <p class="horizon-lede">What comes after mismatch.</p>
+    </div>
+
+    <div class="horizon-bullets">
+      <p class="h-item"><strong>Scale.</strong> Social units at the size the organism is specified for — roughly Dunbar. Primary identity, primary dependence, and primary governance at the scale a human brain evolved to track. The nation-state is coordination infrastructure. It was never a habitable identity unit.</p>
+
+      <p class="h-item"><strong>Role, not job.</strong> A role is legible to the group, tied to its flourishing, irreplaceable in the short term. A job is an interchangeable labor input sold into an anonymous market. Humans are specified for roles.</p>
+
+      <p class="h-item"><strong>Purpose as infrastructure.</strong> Waking up needed by specific named people for consequential work. Not recovered on weekends. Not discovered at forty. The organizing fact of the day — or the organism signals its absence. The meaning crisis is a mismatch readout. Under the right conditions it dissolves.</p>
+
+      <p class="h-item"><strong>Dynamic egalitarianism.</strong> Status that the organism recognizes as legitimate: prestige-based, earned in-group, reversible, visible. Reverse-dominance coalitions as the default political form. Not flat — dynamic. Hierarchy that responds to contribution and can be withdrawn.</p>
+
+      <p class="h-item"><strong>Economic substrate.</strong> UBI or functional equivalent. Not welfare — the precondition. The current system forces people to sell time in anonymous markets to afford to exist, which mismatches almost everything else. Remove that constraint and the rest becomes possible.</p>
+
+      <p class="h-item"><strong>Sovereign groups.</strong> Legal recognition of Dunbar-scale units as the substantive social and governance layer. This is not secession. It is moving the unit of belonging to the scale the organism is specified for.</p>
+
+      <p class="h-item"><strong>Medium is not the constraint.</strong> Resolution conditions are. A VR, AR, or mixed-reality environment that satisfies the evolved mechanisms — embodied presence, named others, consequential stakes, shared work, mortality that matters to the group — is not a lesser environment. Physical retrofitting of cities takes generations. Matched environments in software can ship in years. Both are real.</p>
+
+      <p class="h-item"><strong>Aligned AI as builder.</strong> The machines that design, coordinate, and operate environments at scale will be AI. AI aligned to current preferences builds perfect proxies and deepens the mismatch. AI aligned to the specification builds environments that match. This is why the alignment track and the environment track are the same project.</p>
+
+      <p class="h-item"><strong>Transition, not rupture.</strong> Intentional communities → legally-recognized sovereign-ish groups → networks of such groups → reorganization of governance around them. VR-native versions running in parallel for people who cannot physically relocate. No revolution, no retreat. A pathway.</p>
+    </div>
+
+    <p class="horizon-close"><em>Demismatch succeeds when people wake up in environments that match their biology — with a role, in a group they actually belong to, with work that matters to specific named people, at a scale the organism is specified for. Everything above this section exists to build this.</em></p>
+  </section>
 
   <section class="roadmap" aria-labelledby="roadmap-title">
     <div class="roadmap-header">
@@ -1384,7 +1471,7 @@ body {
         <div class="roadmap-track track-machines">
           <span class="track-label">For Machines</span>
           <ul>
-            <li><span class="ref">a.1</span><span>MCP server <span class="note">v0 surface, live</span></span></li>
+            <li><span class="ref">a.1</span><span>Spec queryable via MCP <span class="note">v0 surface, live</span></span></li>
           </ul>
         </div>
         <div class="roadmap-track track-humans">
@@ -1406,8 +1493,7 @@ body {
         <div class="roadmap-track track-machines">
           <span class="track-label">For Machines</span>
           <ul>
-            <li><span class="ref">a.1</span><span>MCP server <span class="note">full surface</span></span></li>
-            <li><span class="ref">a.5</span><span>Evals and constitutions</span></li>
+            <li><span class="ref">a.1</span><span>Spec-query surface <span class="note">full coverage</span></span></li>
           </ul>
         </div>
         <div class="roadmap-track track-humans">
@@ -1428,14 +1514,13 @@ body {
         <div class="roadmap-track track-machines">
           <span class="track-label">For Machines</span>
           <ul>
-            <li><span class="ref">a.2</span><span>Vector steering</span></li>
-            <li><span class="ref">a.3</span><span>Training data curation</span></li>
+            <li><span class="ref">a.2</span><span>Alignment through the spec <span class="note">steering, data, eval</span></span></li>
           </ul>
         </div>
         <div class="roadmap-track track-humans">
           <span class="track-label">For Humans</span>
           <ul>
-            <li><span class="ref">c.4</span><span>Adaptor <span class="note">research specification</span></span></li>
+            <li><span class="ref">c.n</span><span>Next diagnostic tools <span class="note">to be defined</span></span></li>
           </ul>
         </div>
       </div>
@@ -1449,20 +1534,20 @@ body {
         <div class="roadmap-track track-machines">
           <span class="track-label">For Machines</span>
           <ul>
-            <li><span class="ref">a.4</span><span>Small models from scratch</span></li>
+            <li><span class="ref">a.3</span><span>Models built on the spec <span class="note">pretraining + constitutions</span></span></li>
           </ul>
         </div>
         <div class="roadmap-track track-humans">
           <span class="track-label">For Humans</span>
           <ul>
-            <li><span class="ref">c.4</span><span>Adaptor <span class="note">first deployments</span></span></li>
+            <li><span class="ref">c.n</span><span>Diagnostic suite matures</span></li>
           </ul>
         </div>
       </div>
 
     </div>
 
-    <p class="roadmap-footnote">Order, not calendar. v1 gates everything downstream - the rails, the corpus-native work, and the Adaptor build that turns the read into something to live in.</p>
+    <p class="roadmap-footnote">Order, not calendar. v1 gates everything downstream — the alignment rails, the corpus-native systems, and the diagnostic tools that get us reading clearly before we build from it.</p>
   </section>
 
   <div class="footer">
