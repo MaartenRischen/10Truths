@@ -861,193 +861,6 @@ body {
 .glyph .soft { stroke: #c4962c; }
 .glyph .soft-fill { fill: #c4962c; stroke: none; }
 
-/* ── Roadmap ─────────────────────────────────────────────── */
-.roadmap {
-  margin: 24px 0 72px;
-  padding-top: 56px;
-  border-top: 2px solid var(--oxblood);
-}
-.roadmap-header {
-  text-align: center;
-  margin-bottom: 56px;
-}
-.roadmap-header .chapter {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 13px;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: var(--teal);
-  font-weight: 500;
-  margin-bottom: 18px;
-  display: block;
-}
-.roadmap-header h2 {
-  font-family: 'Spectral', serif;
-  font-size: clamp(34px, 5.2vw, 56px);
-  font-weight: 500;
-  letter-spacing: -0.02em;
-  line-height: 1;
-  margin-bottom: 14px;
-  font-style: italic;
-  color: var(--oxblood);
-}
-.roadmap-header p {
-  font-family: 'Spectral', serif;
-  font-size: 17px;
-  color: #5a2a32;
-  max-width: 620px;
-  margin: 0 auto;
-}
-.roadmap-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 28px;
-  position: relative;
-}
-.roadmap-grid::before {
-  content: '';
-  position: absolute;
-  top: 34px;
-  left: calc(12.5% + 14px);
-  right: calc(12.5% + 14px);
-  height: 1px;
-  background: repeating-linear-gradient(
-    to right,
-    var(--teal) 0,
-    var(--teal) 5px,
-    transparent 5px,
-    transparent 11px
-  );
-  opacity: 0.55;
-  z-index: 0;
-}
-.roadmap-col {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-}
-.roadmap-phase {
-  text-align: center;
-  position: relative;
-  padding-bottom: 4px;
-}
-.roadmap-phase::after {
-  content: '';
-  position: absolute;
-  left: 50%;
-  top: 28px;
-  transform: translate(-50%, -50%);
-  width: 14px;
-  height: 14px;
-  background: var(--gold);
-  border: 3px solid var(--parchment);
-  border-radius: 50%;
-  box-shadow: 0 0 0 1px var(--oxblood);
-  z-index: 2;
-}
-.roadmap-phase .phase-n {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 11px;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  color: var(--teal);
-  font-weight: 500;
-  display: block;
-  margin-bottom: 28px;
-}
-.roadmap-phase h3 {
-  font-family: 'Spectral', serif;
-  font-size: 30px;
-  font-weight: 500;
-  letter-spacing: -0.01em;
-  color: var(--oxblood);
-  line-height: 1;
-  margin: 0 0 8px;
-}
-.roadmap-phase .phase-subtitle {
-  font-family: 'Spectral', serif;
-  font-style: italic;
-  font-size: 14px;
-  color: #5a2a32;
-  line-height: 1.35;
-}
-.roadmap-track {
-  background: var(--parchment-dark);
-  border: 1px solid rgba(58, 18, 24, 0.3);
-  border-radius: 6px;
-  padding: 13px 15px 15px;
-}
-.roadmap-track.track-humans {
-  border-color: rgba(45, 107, 107, 0.45);
-  box-shadow: 2px 2px 0 rgba(45, 107, 107, 0.18);
-}
-.roadmap-track.track-machines {
-  box-shadow: 2px 2px 0 rgba(58, 18, 24, 0.15);
-}
-.roadmap-track .track-label {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--teal);
-  font-weight: 500;
-  display: block;
-  margin-bottom: 9px;
-  padding-bottom: 7px;
-  border-bottom: 1px solid rgba(58, 18, 24, 0.18);
-}
-.roadmap-track ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 7px;
-}
-.roadmap-track li {
-  font-family: 'Spectral', serif;
-  font-size: 14px;
-  line-height: 1.35;
-  color: var(--oxblood);
-  display: flex;
-  gap: 8px;
-  align-items: baseline;
-}
-.roadmap-track .ref {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  color: var(--teal);
-  font-weight: 500;
-  flex-shrink: 0;
-  padding-top: 1px;
-  min-width: 22px;
-}
-.roadmap-track .note {
-  font-style: italic;
-  font-size: 12px;
-  color: #8a7d5e;
-}
-.roadmap-footnote {
-  margin-top: 36px;
-  text-align: center;
-  font-family: 'Spectral', serif;
-  font-size: 14px;
-  font-style: italic;
-  color: #8a7d5e;
-  line-height: 1.5;
-}
-@media (max-width: 1100px) {
-  .roadmap-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
-  .roadmap-grid::before { display: none; }
-  .roadmap-phase::after { display: none; }
-}
-@media (max-width: 560px) {
-  .roadmap-grid { grid-template-columns: 1fr; gap: 24px; }
-}
-
 /* ── Stack footer (HSEE caption under right card group) ─────────── */
 .card-stack .stack-footer {
   align-self: stretch;
@@ -1209,10 +1022,6 @@ body {
   .horizon-close { margin-top: 48px; }
 
   .card-stack .stack-footer { margin-top: 22px; font-size: 13px; }
-
-  .roadmap { padding-top: 40px; margin: 16px 0 48px; }
-  .roadmap-header { margin-bottom: 36px; }
-  .roadmap-phase h3 { font-size: 26px; }
 
   .footer { flex-direction: column; align-items: flex-start; gap: 14px; padding-top: 24px; }
   .footer .motto { font-size: 20px; line-height: 1.4; }
@@ -1478,6 +1287,10 @@ body {
     </div>
 
     <div class="horizon-bullets">
+      <p class="h-item"><strong>Aligned AI as builder.</strong> The machines that design, coordinate, and operate environments at scale will be AI. AI aligned to current preferences builds perfect proxies and deepens the mismatch. AI aligned to the specification builds environments that match. This is why the alignment track and the environment track are the same project.</p>
+
+      <p class="h-item"><strong>Medium is not the constraint.</strong> Resolution conditions are. A VR, AR, or mixed-reality environment that satisfies the evolved mechanisms — embodied presence, named others, consequential stakes, shared work, mortality that matters to the group — is not a lesser environment. Physical retrofitting of cities takes generations. Matched environments in software can ship in years. Both are real.</p>
+
       <p class="h-item"><strong>Scale.</strong> Social units at the size the organism is specified for — roughly Dunbar. Primary identity, primary dependence, and primary governance at the scale a human brain evolved to track. The nation-state is coordination infrastructure. It was never a habitable identity unit.</p>
 
       <p class="h-item"><strong>Role, not job.</strong> A role is legible to the group, tied to its flourishing, irreplaceable in the short term. A job is an interchangeable labor input sold into an anonymous market. Humans are specified for roles.</p>
@@ -1490,111 +1303,10 @@ body {
 
       <p class="h-item"><strong>Sovereign groups.</strong> Legal recognition of Dunbar-scale units as the substantive social and governance layer. This is not secession. It is moving the unit of belonging to the scale the organism is specified for.</p>
 
-      <p class="h-item"><strong>Medium is not the constraint.</strong> Resolution conditions are. A VR, AR, or mixed-reality environment that satisfies the evolved mechanisms — embodied presence, named others, consequential stakes, shared work, mortality that matters to the group — is not a lesser environment. Physical retrofitting of cities takes generations. Matched environments in software can ship in years. Both are real.</p>
-
-      <p class="h-item"><strong>Aligned AI as builder.</strong> The machines that design, coordinate, and operate environments at scale will be AI. AI aligned to current preferences builds perfect proxies and deepens the mismatch. AI aligned to the specification builds environments that match. This is why the alignment track and the environment track are the same project.</p>
-
-      <p class="h-item"><strong>Transition, not rupture.</strong> Intentional communities → legally-recognized sovereign-ish groups → networks of such groups → reorganization of governance around them. VR-native versions running in parallel for people who cannot physically relocate. No revolution, no retreat. A pathway.</p>
+      <p class="h-item"><strong>Augment from the baseline.</strong> Once environments match the specification, technology extends human flourishing instead of displacing it. Augmentation inside a mismatched environment deepens the mismatch — the proxy gets smoother, the signal stays unmet. Augmentation from a matched baseline is what this whole project is building toward. <em>Demismatch the world — then augment.</em></p>
     </div>
 
     <p class="horizon-close"><em>Demismatch succeeds when people wake up in environments that match their biology — with a role, in a group they actually belong to, with work that matters to specific named people, at a scale the organism is specified for. Everything above this section exists to build this.</em></p>
-  </section>
-
-  <section class="roadmap" aria-labelledby="roadmap-title">
-    <div class="roadmap-header">
-      <span class="chapter">Chapter III</span>
-      <h2 id="roadmap-title">The rough order</h2>
-      <p>Direction, not a promise. Each phase rests on the spine underneath it - the spec matures, the tools follow.</p>
-    </div>
-
-    <div class="roadmap-grid">
-
-      <div class="roadmap-col">
-        <div class="roadmap-phase">
-          <span class="phase-n">Phase 0 · Now</span>
-          <h3>Prototype</h3>
-          <p class="phase-subtitle">v0 atlas · shipping</p>
-        </div>
-        <div class="roadmap-track track-machines">
-          <span class="track-label">For Machines</span>
-          <ul>
-            <li><span class="ref">a.1</span><span>Spec queryable via MCP <span class="note">v0 surface, live</span></span></li>
-          </ul>
-        </div>
-        <div class="roadmap-track track-humans">
-          <span class="track-label">For Humans</span>
-          <ul>
-            <li><span class="ref">c.1</span><span>Decode Talk</span></li>
-            <li><span class="ref">c.2</span><span>Decode Web <span class="note">v0.4.2 extension</span></span></li>
-            <li><span class="ref">c.3</span><span>Decode Camera <span class="note">image upload</span></span></li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="roadmap-col">
-        <div class="roadmap-phase">
-          <span class="phase-n">Phase 1 · Next</span>
-          <h3>Ground truth</h3>
-          <p class="phase-subtitle">Cor v1 academic build lands</p>
-        </div>
-        <div class="roadmap-track track-machines">
-          <span class="track-label">For Machines</span>
-          <ul>
-            <li><span class="ref">a.1</span><span>Spec-query surface <span class="note">full coverage</span></span></li>
-          </ul>
-        </div>
-        <div class="roadmap-track track-humans">
-          <span class="track-label">For Humans</span>
-          <ul>
-            <li><span class="ref">c.2</span><span>Decode Web <span class="note">stable release</span></span></li>
-            <li><span class="ref">c.3</span><span>Decode Camera <span class="note">live capture</span></span></li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="roadmap-col">
-        <div class="roadmap-phase">
-          <span class="phase-n">Phase 2 · Then</span>
-          <h3>Alignment rails</h3>
-          <p class="phase-subtitle">Built on v1</p>
-        </div>
-        <div class="roadmap-track track-machines">
-          <span class="track-label">For Machines</span>
-          <ul>
-            <li><span class="ref">a.2</span><span>Alignment through the spec <span class="note">steering, data, eval</span></span></li>
-          </ul>
-        </div>
-        <div class="roadmap-track track-humans">
-          <span class="track-label">For Humans</span>
-          <ul>
-            <li><span class="ref">c.n</span><span>Next diagnostic tools <span class="note">to be defined</span></span></li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="roadmap-col">
-        <div class="roadmap-phase">
-          <span class="phase-n">Phase 3 · Later</span>
-          <h3>Ground-up</h3>
-          <p class="phase-subtitle">Corpus-native systems</p>
-        </div>
-        <div class="roadmap-track track-machines">
-          <span class="track-label">For Machines</span>
-          <ul>
-            <li><span class="ref">a.3</span><span>Models built on the spec <span class="note">pretraining + constitutions</span></span></li>
-          </ul>
-        </div>
-        <div class="roadmap-track track-humans">
-          <span class="track-label">For Humans</span>
-          <ul>
-            <li><span class="ref">c.n</span><span>Diagnostic suite matures</span></li>
-          </ul>
-        </div>
-      </div>
-
-    </div>
-
-    <p class="roadmap-footnote">Order, not calendar. v1 gates everything downstream — the alignment rails, the corpus-native systems, and the diagnostic tools that get us reading clearly before we build from it.</p>
   </section>
 
   <div class="xsite-footer">
