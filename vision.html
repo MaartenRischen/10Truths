@@ -776,6 +776,53 @@ body {
   line-height: 1.5;
 }
 
+.xsite-footer {
+  margin: 56px 0 36px;
+  padding-top: 28px;
+  border-top: 1px solid rgba(58, 18, 24, 0.18);
+}
+.xsite-cols {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+.xsite-col {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  text-decoration: none;
+  color: var(--ink);
+  transition: color 140ms ease;
+}
+.xsite-col:hover { color: var(--teal); }
+.xsite-col-head {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.28em;
+  font-weight: 500;
+  color: var(--oxblood);
+}
+.xsite-col-desc {
+  font-family: 'Spectral', serif;
+  font-style: italic;
+  font-size: 17px;
+  color: #5a2a32;
+  line-height: 1.4;
+}
+.xsite-col-url {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: #8a7d5e;
+  letter-spacing: 0.04em;
+}
+.xsite-col.is-current .xsite-col-head { opacity: 0.55; }
+.xsite-col.is-current .xsite-col-desc,
+.xsite-col.is-current .xsite-col-url { opacity: 0.55; }
+.xsite-col.is-current:hover { color: var(--ink); }
+@media (max-width: 720px) {
+  .xsite-cols { grid-template-columns: 1fr; gap: 22px; }
+}
+
 .footer {
   border-top: 2px solid var(--oxblood);
   padding-top: 32px;
@@ -1423,7 +1470,7 @@ body {
 
   <div class="cor-horizon-spine" aria-hidden="true"></div>
 
-  <section class="horizon" aria-labelledby="horizon-title">
+  <section class="horizon" id="horizon" aria-labelledby="horizon-title">
     <div class="horizon-header">
       <span class="chapter">Horizon</span>
       <h2 id="horizon-title">Post-Mismatch: Human Environments</h2>
@@ -1549,6 +1596,26 @@ body {
 
     <p class="roadmap-footnote">Order, not calendar. v1 gates everything downstream — the alignment rails, the corpus-native systems, and the diagnostic tools that get us reading clearly before we build from it.</p>
   </section>
+
+  <div class="xsite-footer">
+    <nav class="xsite-cols" aria-label="Demismatch network">
+      <a class="xsite-col" href="https://demismatch.com/">
+        <span class="xsite-col-head">DEMISMATCH</span>
+        <span class="xsite-col-desc">the front door</span>
+        <span class="xsite-col-url">demismatch.com</span>
+      </a>
+      <a class="xsite-col" href="https://cor.demismatch.com/">
+        <span class="xsite-col-head">COR</span>
+        <span class="xsite-col-desc">the spec</span>
+        <span class="xsite-col-url">cor.demismatch.com</span>
+      </a>
+      <a class="xsite-col is-current" href="vision.html" aria-current="page">
+        <span class="xsite-col-head">VISION</span>
+        <span class="xsite-col-desc">the map</span>
+        <span class="xsite-col-url">demismatch.com/vision</span>
+      </a>
+    </nav>
+  </div>
 
   <div class="footer">
     <p class="motto"><em>Demismatch</em> the world &nbsp;·&nbsp; <em>then</em> augment</p>
