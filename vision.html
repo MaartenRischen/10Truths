@@ -1102,7 +1102,7 @@ body {
           <dl class="card-spec">
             <dt>Form</dt><dd>MCP (Model Context Protocol) server · tool-call surface for any LLM</dd>
             <dt>Targets</dt><dd>Inference-time access to the spec from any model that speaks MCP</dd>
-            <dt>Proxy</dt><dd>Models reasoning about humans from preference-annotated training data alone — no canonical source to check against</dd>
+            <dt>Proxy</dt><dd>Models reasoning about humans from preference-annotated training data alone - no canonical source to check against</dd>
             <dt>Real input</dt><dd>The spec itself, machine-readable, queryable per mechanism at the moment of inference: "this request engages M3; resolution requires reciprocal human co-regulation"</dd>
           </dl>
           <div class="card-tags"><span class="tag">M3</span><span class="tag">M5</span><span class="tag">M14</span><span class="tag">DA4</span><span class="tag">all mechanisms</span></div>
@@ -1122,11 +1122,11 @@ body {
             </svg>
           </div>
           <span class="name">Alignment through the spec</span>
-          <span class="desc">Vector steering, training-data curation, and evaluation against the spec as ground truth. Three lines of alignment work sharing one source of correction — the activation path, the training distribution, and the evaluation surface.</span>
+          <span class="desc">Vector steering, training-data curation, and evaluation against the spec as ground truth. Three lines of alignment work sharing one source of correction - the activation path, the training distribution, and the evaluation surface.</span>
           <dl class="card-spec">
             <dt>Form</dt><dd>Steering vectors from spec-grounded contrastive pairs · corpus filter and re-weighting · spec-grounded benchmarks</dd>
-            <dt>Targets</dt><dd>The three places alignment has to hold — activations at inference, the training distribution itself, and the evaluation surface that grades the result</dd>
-            <dt>Proxy</dt><dd>Preference-maximizing RLHF and preference-derived benchmarks (MT-Bench, HELM, Arena) — operate on preferences, not mechanisms</dd>
+            <dt>Targets</dt><dd>The three places alignment has to hold - activations at inference, the training distribution itself, and the evaluation surface that grades the result</dd>
+            <dt>Proxy</dt><dd>Preference-maximizing RLHF and preference-derived benchmarks (MT-Bench, HELM, Arena) - operate on preferences, not mechanisms</dd>
             <dt>Real input</dt><dd>The spec as ground truth at each layer: contrastive pairs from named mechanisms, corpora filtered against the architecture, benchmarks that grade resolution versus activation</dd>
           </dl>
           <div class="card-tags"><span class="tag">all mechanisms</span><span class="tag">DA4</span><span class="tag">DC3</span><span class="tag">matched/mismatched axis</span></div>
@@ -1148,11 +1148,11 @@ body {
             </svg>
           </div>
           <span class="name">Models built on the spec</span>
-          <span class="desc">Small models trained from scratch on spec-grounded corpora. Constitutions derived from the spec. No preference contamination to correct later — the entire learned distribution is spec-grounded from pretraining forward.</span>
+          <span class="desc">Small models trained from scratch on spec-grounded corpora. Constitutions derived from the spec. No preference contamination to correct later - the entire learned distribution is spec-grounded from pretraining forward.</span>
           <dl class="card-spec">
             <dt>Form</dt><dd>Purpose-built small models · pretraining on spec-grounded corpora · constitutions encoding resolution conditions</dd>
-            <dt>Targets</dt><dd>Specialized applications where hallucination about human needs is catastrophic — clinical triage, educational scaffolding, therapy-adjacent tools</dd>
-            <dt>Proxy</dt><dd>Fine-tuned general-purpose models with RLHF on top — they carry the base model's preference-as-ground-truth mistake</dd>
+            <dt>Targets</dt><dd>Specialized applications where hallucination about human needs is catastrophic - clinical triage, educational scaffolding, therapy-adjacent tools</dd>
+            <dt>Proxy</dt><dd>Fine-tuned general-purpose models with RLHF on top - they carry the base model's preference-as-ground-truth mistake</dd>
             <dt>Real input</dt><dd>A model whose entire learned distribution is spec-grounded from pretraining forward, with constitutional rules encoded as resolution conditions</dd>
           </dl>
           <div class="card-tags"><span class="tag">domain-specific subsets</span><span class="tag">constitutional AI</span><span class="tag">OF1</span><span class="tag">OF2</span></div>
@@ -1235,7 +1235,7 @@ body {
             </svg>
           </div>
           <span class="name">Decode Talk <span class="try-now">Try now!</span></span>
-          <span class="desc">Type a situation — the argument, the 3am scroll, the ache you can't name. It returns the named mechanism firing, what that circuit evolved to resolve in the ancestral environment, the proxy modern life is feeding it, and the real input that would actually land. Not a companion. Not advice. The read. <a href="decode-talk/" style="color:#2d6b6b;border-bottom:1px solid rgba(45,107,107,0.35);text-decoration:none;white-space:nowrap;">→ Open Decode Talk</a> · <a href="decode-talk.html" style="color:#2d6b6b;border-bottom:1px solid rgba(45,107,107,0.35);text-decoration:none;white-space:nowrap;">Sample exchanges</a></span>
+          <span class="desc">Type a situation - the argument, the 3am scroll, the ache you can't name. It returns the named mechanism firing, what that circuit evolved to resolve in the ancestral environment, the proxy modern life is feeding it, and the real input that would actually land. Not a companion. Not advice. The read. <a href="decode-talk/" style="color:#2d6b6b;border-bottom:1px solid rgba(45,107,107,0.35);text-decoration:none;white-space:nowrap;">→ Open Decode Talk</a> · <a href="decode-talk.html" style="color:#2d6b6b;border-bottom:1px solid rgba(45,107,107,0.35);text-decoration:none;white-space:nowrap;">Sample exchanges</a></span>
           <dl class="card-spec">
             <dt>Form</dt><dd>Chat, grounded in the Cor spec</dd>
           </dl>
@@ -1248,7 +1248,7 @@ body {
             <img src="lens-02.png" class="gallery-img" alt="Decode Web annotating a celebrity news article about a suspect charged in the Rihanna stalking case - the EX·01 panel reads 'She has never heard of you', naming the threat-system mechanism firing for a stranger five thousand miles away">
           </div>
           <span class="name">Decode Web <span class="try-now">Try now!</span></span>
-          <span class="desc">Chrome extension. On any page you open — news feed, social stream, product listing — each flagged element gets the read in place: which mechanism it's firing, which evolved need it's imitating, and why the page can't resolve what it's activating. Every annotation traces back to a named mechanism in the atlas. <a href="decode-web.zip" style="color:#2d6b6b;border-bottom:1px solid rgba(45,107,107,0.35);text-decoration:none;white-space:nowrap;" download>↓ Download extension</a></span>
+          <span class="desc">Chrome extension. On any page you open - news feed, social stream, product listing - each flagged element gets the read in place: which mechanism it's firing, which evolved need it's imitating, and why the page can't resolve what it's activating. Every annotation traces back to a named mechanism in the atlas. <a href="decode-web.zip" style="color:#2d6b6b;border-bottom:1px solid rgba(45,107,107,0.35);text-decoration:none;white-space:nowrap;" download>↓ Download extension</a></span>
           <dl class="card-spec">
             <dt>Form</dt><dd>Chrome extension · v0.4.2</dd>
             <dt>Install</dt><dd>Unzip → chrome://extensions → Developer mode → Load unpacked → select the <code style="font-family:'JetBrains Mono',monospace;font-size:0.9em;background:rgba(45,107,107,0.08);padding:0.05em 0.3em;border-radius:2px;">decode-web</code> folder</dd>
@@ -1262,7 +1262,7 @@ body {
             <img src="decode-camera-01.png" alt="Decode Camera HUD overlay on a plate of French toast with bananas and blueberries - orange outline tracing the food edges, hyperstimulus pattern named on the scene">
           </div>
           <span class="name">Decode Camera</span>
-          <span class="desc">Upload a photo of a scene — your plate, your desk, the room you woke up in. Each object in frame gets outlined and read: the mechanism it's activating, the evolved stimulus it's imitating, the real input it's standing in for. Full mechanism commentary on the image, not just labels. Image upload now; live capture next.</span>
+          <span class="desc">Upload a photo of a scene - your plate, your desk, the room you woke up in. Each object in frame gets outlined and read: the mechanism it's activating, the evolved stimulus it's imitating, the real input it's standing in for. Full mechanism commentary on the image, not just labels. Image upload now; live capture next.</span>
           <dl class="card-spec">
             <dt>Form</dt><dd>Scene HUD - image upload now, live camera next</dd>
           </dl>
@@ -1289,24 +1289,24 @@ body {
     <div class="horizon-bullets">
       <p class="h-item"><strong>Aligned AI as builder.</strong> The machines that design, coordinate, and operate environments at scale will be AI. AI aligned to current preferences builds perfect proxies and deepens the mismatch. AI aligned to the specification builds environments that match. This is why the alignment track and the environment track are the same project.</p>
 
-      <p class="h-item"><strong>Medium is not the constraint.</strong> Resolution conditions are. A VR, AR, or mixed-reality environment that satisfies the evolved mechanisms — embodied presence, named others, consequential stakes, shared work, mortality that matters to the group — is not a lesser environment. Physical retrofitting of cities takes generations. Matched environments in software can ship in years. Both are real.</p>
+      <p class="h-item"><strong>Medium is not the constraint.</strong> Resolution conditions are. A VR, AR, or mixed-reality environment that satisfies the evolved mechanisms - embodied presence, named others, consequential stakes, shared work, mortality that matters to the group - is not a lesser environment. Physical retrofitting of cities takes generations. Matched environments in software can ship in years. Both are real.</p>
 
-      <p class="h-item"><strong>Scale.</strong> Social units at the size the organism is specified for — roughly Dunbar. Primary identity, primary dependence, and primary governance at the scale a human brain evolved to track. The nation-state is coordination infrastructure. It was never a habitable identity unit.</p>
+      <p class="h-item"><strong>Scale.</strong> Social units at the size the organism is specified for - roughly Dunbar. Primary identity, primary dependence, and primary governance at the scale a human brain evolved to track. The nation-state is coordination infrastructure. It was never a habitable identity unit.</p>
 
       <p class="h-item"><strong>Role, not job.</strong> A role is legible to the group, tied to its flourishing, irreplaceable in the short term. A job is an interchangeable labor input sold into an anonymous market. Humans are specified for roles.</p>
 
-      <p class="h-item"><strong>Purpose as infrastructure.</strong> Waking up needed by specific named people for consequential work. Not recovered on weekends. Not discovered at forty. The organizing fact of the day — or the organism signals its absence. The meaning crisis is a mismatch readout. Under the right conditions it dissolves.</p>
+      <p class="h-item"><strong>Purpose as infrastructure.</strong> Waking up needed by specific named people for consequential work. Not recovered on weekends. Not discovered at forty. The organizing fact of the day - or the organism signals its absence. The meaning crisis is a mismatch readout. Under the right conditions it dissolves.</p>
 
-      <p class="h-item"><strong>Dynamic egalitarianism.</strong> Status that the organism recognizes as legitimate: prestige-based, earned in-group, reversible, visible. Reverse-dominance coalitions as the default political form. Not flat — dynamic. Hierarchy that responds to contribution and can be withdrawn.</p>
+      <p class="h-item"><strong>Dynamic egalitarianism.</strong> Status that the organism recognizes as legitimate: prestige-based, earned in-group, reversible, visible. Reverse-dominance coalitions as the default political form. Not flat - dynamic. Hierarchy that responds to contribution and can be withdrawn.</p>
 
-      <p class="h-item"><strong>Economic substrate.</strong> UBI or functional equivalent. Not welfare — the precondition. The current system forces people to sell time in anonymous markets to afford to exist, which mismatches almost everything else. Remove that constraint and the rest becomes possible.</p>
+      <p class="h-item"><strong>Economic substrate.</strong> UBI or functional equivalent. Not welfare - the precondition. The current system forces people to sell time in anonymous markets to afford to exist, which mismatches almost everything else. Remove that constraint and the rest becomes possible.</p>
 
       <p class="h-item"><strong>Sovereign groups.</strong> Legal recognition of Dunbar-scale units as the substantive social and governance layer. This is not secession. It is moving the unit of belonging to the scale the organism is specified for.</p>
 
-      <p class="h-item"><strong>Augment from the baseline.</strong> Once environments match the specification, technology extends human flourishing instead of displacing it. Augmentation inside a mismatched environment deepens the mismatch — the proxy gets smoother, the signal stays unmet. Augmentation from a matched baseline is what this whole project is building toward. <em>Demismatch the world — then augment.</em></p>
+      <p class="h-item"><strong>Augment from the baseline.</strong> Once environments match the specification, technology extends human flourishing instead of displacing it. Augmentation inside a mismatched environment deepens the mismatch - the proxy gets smoother, the signal stays unmet. Augmentation from a matched baseline is what this whole project is building toward. <em>Demismatch the world - then augment.</em></p>
     </div>
 
-    <p class="horizon-close"><em>Demismatch succeeds when people wake up in environments that match their biology — with a role, in a group they actually belong to, with work that matters to specific named people, at a scale the organism is specified for. Everything above this section exists to build this.</em></p>
+    <p class="horizon-close"><em>Demismatch succeeds when people wake up in environments that match their biology - with a role, in a group they actually belong to, with work that matters to specific named people, at a scale the organism is specified for. Everything above this section exists to build this.</em></p>
   </section>
 
   <div class="xsite-footer">
