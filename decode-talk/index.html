@@ -55,10 +55,12 @@ body {
 .xsite-nav-links a:hover { color: var(--teal-bright); }
 .xsite-nav-links a[aria-current="page"] { color: var(--teal-bright); font-weight: 500; }
 .xsite-nav-sep { color: #8a7d5e; font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; opacity: 0.7; }
+.xsite-nav-slogan { font-family: 'Spectral', Georgia, serif; font-size: 0.88rem; font-style: italic; color: var(--parchment); opacity: 0.82; letter-spacing: 0.005em; line-height: 1.2; margin: 0; }
 @media (max-width: 560px) {
   .xsite-nav { padding: 0.45rem 0.9rem; gap: 0.6rem; }
   .xsite-nav-links { gap: 0.4rem; }
   .xsite-nav-links a { font-size: 0.58rem; letter-spacing: 0.15em; }
+  .xsite-nav-slogan { font-size: 0.78rem; }
 }
 
 .page {
@@ -523,6 +525,7 @@ body {
 </head>
 <body>
 <nav class="xsite-nav" aria-label="Demismatch network">
+  <p class="xsite-nav-slogan">Aligning the world to what humans are.</p>
   <ul class="xsite-nav-links">
     <li><a href="https://demismatch.com/" data-xsite-link="truths">DEMISMATCH (The Why)</a></li>
     <li aria-hidden="true" class="xsite-nav-sep">·</li>
