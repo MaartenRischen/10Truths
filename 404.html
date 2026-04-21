@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Not Found &middot; Demismatch</title>
+<meta name="description" content="That page doesn't exist on demismatch.com. Here are the entry points that do.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --oxblood: #3a1218;
+  --oxblood-deep: #2a0c11;
+  --parchment: #ece0c4;
+  --parchment-dark: #ddd0b0;
+  --ink: #1a0608;
+  --teal: #2d6b6b;
+  --teal-bright: #3d8585;
+  --gold: #c4962c;
+}
+body {
+  background: var(--oxblood-deep);
+  font-family: 'Spectral', serif;
+  color: var(--parchment);
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+.xsite-nav {
+  background: var(--oxblood-deep);
+  border-bottom: 1px solid var(--teal);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.5rem clamp(0.9rem, 3vw, 2.5rem);
+  flex-wrap: wrap;
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.xsite-nav a {
+  color: var(--gold);
+  text-decoration: none;
+}
+.xsite-nav a[aria-current="page"] { color: var(--teal-bright); }
+.xsite-nav .sep { color: var(--teal); opacity: 0.7; }
+.xsite-nav .tag {
+  color: var(--parchment);
+  opacity: 0.55;
+  font-style: italic;
+  text-transform: none;
+  letter-spacing: 0;
+  font-family: 'Spectral', serif;
+  font-size: 0.85rem;
+}
+
+.wrap {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: clamp(3rem, 8vw, 6rem) clamp(1.25rem, 5vw, 3rem);
+}
+.eyebrow {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--teal-bright);
+  display: block;
+  margin-bottom: 1.25rem;
+}
+h1 {
+  font-family: 'Spectral', serif;
+  font-weight: 500;
+  font-size: clamp(2.75rem, 6vw, 4.5rem);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  color: var(--parchment);
+  margin-bottom: 1.25rem;
+}
+.lede {
+  font-size: 1.15rem;
+  line-height: 1.55;
+  color: var(--parchment-dark);
+  max-width: 60ch;
+  margin-bottom: 3rem;
+}
+.lede em { color: var(--teal-bright); font-style: italic; }
+.card {
+  background: var(--oxblood);
+  border: 1px solid rgba(236, 224, 196, 0.18);
+  border-left: 3px solid var(--teal);
+  padding: 1.5rem 1.75rem;
+  margin-bottom: 1rem;
+  border-radius: 4px;
+}
+.card h2 {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 500;
+  margin-bottom: 0.75rem;
+}
+.card ul { list-style: none; }
+.card li {
+  padding: 0.35rem 0;
+  line-height: 1.45;
+}
+.card a {
+  color: var(--parchment);
+  text-decoration: none;
+  border-bottom: 1px solid var(--teal);
+  padding-bottom: 1px;
+}
+.card a:hover { color: var(--teal-bright); border-bottom-color: var(--teal-bright); }
+.card li span { color: var(--parchment-dark); opacity: 0.7; font-size: 0.95em; }
+</style>
+</head>
+<body>
+<nav class="xsite-nav" aria-label="Cross-site">
+  <span class="tag">Aligning the world to what humans are.</span>
+  <span class="sep">&middot;</span>
+  <a href="/">Demismatch (The Why)</a>
+  <span class="sep">&middot;</span>
+  <a href="/vision.html">Vision (The What)</a>
+  <span class="sep">&middot;</span>
+  <a href="https://cor.demismatch.com/">Cor (The How)</a>
+</nav>
+
+<div class="wrap">
+  <span class="eyebrow">404 &middot; Not Found</span>
+  <h1>That page isn't here.</h1>
+  <p class="lede">The URL you requested doesn't exist on demismatch.com. Below are the real entry points.</p>
+
+  <div class="card">
+    <h2>This site</h2>
+    <ul>
+      <li><a href="/">Home</a> <span>&mdash; the ten truths.</span></li>
+      <li><a href="/vision.html">Vision</a> <span>&mdash; the map: alignment, the spec, human tools.</span></li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>Cor &mdash; the specification</h2>
+    <ul>
+      <li><a href="https://cor.demismatch.com/">cor.demismatch.com</a> <span>&mdash; the atlas of the human motivational-emotional architecture.</span></li>
+      <li><a href="https://cor.demismatch.com/how-to-read.html">How to Read Cor</a> <span>&mdash; ten-minute reader's guide.</span></li>
+      <li><a href="https://cor.demismatch.com/atlas.html">The Atlas</a> <span>&mdash; foundations, mechanisms, convergences.</span></li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>Working papers</h2>
+    <ul>
+      <li><a href="https://cor.demismatch.com/bridge-paper.html">What Alignment Misses</a> <span>&mdash; alignment framing and failure modes.</span></li>
+      <li><a href="https://cor.demismatch.com/constitutional.html">What You Are Talking To</a> <span>&mdash; the human-facing articulation.</span></li>
+    </ul>
+  </div>
+</div>
+</body>
+</html>
