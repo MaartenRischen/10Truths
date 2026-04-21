@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About | Demismatch</title>
+<meta name="description" content="Who built Cor v0, how, and what it is. Plus the numbers, the working papers, and how to reach me.">
+<meta property="og:title" content="About | Demismatch">
+<meta property="og:description" content="Who built Cor v0, and what it is.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --oxblood: #3a1218;
+  --oxblood-deep: #2a0c11;
+  --oxblood-warm: #5a2a32;
+  --parchment: #ece0c4;
+  --parchment-dark: #ddd0b0;
+  --ink: #1a0608;
+  --teal: #2d6b6b;
+  --teal-bright: #3d8585;
+  --gold: #c4962c;
+  --muted-warm: #8a7d5e;
+  --serif: 'Spectral', Georgia, serif;
+  --mono: 'JetBrains Mono', 'Courier New', monospace;
+}
+body {
+  background: var(--oxblood-deep);
+  font-family: var(--serif);
+  color: var(--parchment);
+  min-height: 100vh;
+  margin: 0;
+  padding: 24px 16px;
+}
+a { color: inherit; }
+
+/* ── Cross-site navbar ── */
+.xsite-nav {
+  background: var(--oxblood-deep);
+  border-bottom: 1px solid var(--teal);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.5rem clamp(0.9rem, 3vw, 2.5rem);
+  flex-wrap: wrap;
+  margin: -24px -16px 40px;
+  line-height: 1.2;
+}
+.xsite-nav-links {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0;
+  padding: 0;
+}
+.xsite-nav-links a {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--parchment);
+  text-decoration: none;
+  transition: color 140ms ease;
+}
+.xsite-nav-links a:hover { color: var(--teal-bright); }
+.xsite-nav-links a[aria-current="page"] {
+  color: var(--teal-bright);
+  font-weight: 500;
+}
+.xsite-nav-sep {
+  color: var(--muted-warm);
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  opacity: 0.7;
+}
+.xsite-nav-slogan {
+  font-family: var(--serif);
+  font-size: 0.88rem;
+  font-style: italic;
+  color: var(--parchment);
+  opacity: 0.82;
+  letter-spacing: 0.005em;
+  line-height: 1.2;
+  margin: 0;
+}
+@media (max-width: 560px) {
+  .xsite-nav { padding: 0.45rem 0.9rem; gap: 0.6rem; margin: -12px -6px 32px; }
+  .xsite-nav-links { gap: 0.4rem; }
+  .xsite-nav-links a { font-size: 0.58rem; letter-spacing: 0.15em; }
+  .xsite-nav-slogan { font-size: 0.78rem; }
+}
+
+/* ── Parchment page ── */
+.page {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  background: var(--parchment);
+  color: var(--ink);
+  padding: 56px clamp(28px, 5vw, 72px) 64px;
+  border-radius: 14px;
+  box-shadow: 0 40px 120px rgba(0,0,0,0.8), 0 10px 30px rgba(0,0,0,0.5);
+  background-image:
+    radial-gradient(circle at 20% 20%, rgba(58, 18, 24, 0.04) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(45, 107, 107, 0.04) 0%, transparent 50%);
+}
+
+.masthead {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  padding-bottom: 14px;
+  border-bottom: 2px solid var(--oxblood);
+  margin-bottom: 36px;
+  flex-wrap: wrap;
+}
+.masthead .label {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--teal);
+  font-weight: 500;
+}
+.masthead .back {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--teal);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(45, 107, 107, 0.45);
+  transition: color 140ms ease, border-color 140ms ease;
+}
+.masthead .back:hover,
+.masthead .back:focus-visible {
+  color: var(--oxblood);
+  border-bottom-color: var(--oxblood);
+}
+
+.hero {
+  text-align: left;
+  margin: 0 0 56px;
+}
+.hero .eyebrow {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--teal);
+  font-weight: 500;
+  display: block;
+  margin-bottom: 16px;
+}
+.hero h1 {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-style: italic;
+  font-size: clamp(40px, 6vw, 64px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--oxblood);
+  margin-bottom: 24px;
+}
+.hero .lede {
+  font-family: var(--serif);
+  font-size: clamp(18px, 1.9vw, 21px);
+  line-height: 1.55;
+  color: var(--oxblood-warm);
+  max-width: 720px;
+}
+
+section {
+  margin-bottom: 56px;
+}
+section .eyebrow {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--teal);
+  font-weight: 500;
+  display: block;
+  margin-bottom: 12px;
+}
+section h2 {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-style: italic;
+  font-size: clamp(28px, 3.6vw, 38px);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  color: var(--oxblood);
+  margin-bottom: 20px;
+}
+section .section-lede {
+  font-family: var(--serif);
+  font-size: 18px;
+  line-height: 1.55;
+  color: var(--oxblood-warm);
+  max-width: 720px;
+  margin-bottom: 28px;
+}
+section .section-lede + .section-lede {
+  margin-top: -10px;
+}
+
+.surface {
+  background: rgba(221, 208, 176, 0.45);
+  border: 1px solid rgba(58, 18, 24, 0.12);
+  border-radius: 10px;
+  padding: 24px 28px;
+  margin-bottom: 20px;
+}
+.surface h2,
+.surface h3 {
+  font-family: var(--serif);
+  font-weight: 500;
+  color: var(--oxblood);
+  margin-bottom: 14px;
+}
+.surface h2 {
+  font-style: italic;
+  font-size: 26px;
+  line-height: 1.15;
+}
+.surface h3 {
+  font-size: 19px;
+  line-height: 1.2;
+}
+.surface p,
+.surface ul {
+  font-family: var(--serif);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--ink);
+}
+.surface p + p {
+  margin-top: 12px;
+}
+.surface ul {
+  list-style: disc;
+  padding-left: 1.3rem;
+  margin: 10px 0 14px;
+}
+.surface ul li + li {
+  margin-top: 6px;
+}
+.surface a {
+  color: var(--teal);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(45, 107, 107, 0.45);
+  transition: color 140ms ease, border-color 140ms ease;
+}
+.surface a:hover,
+.surface a:focus-visible {
+  color: var(--oxblood);
+  border-bottom-color: var(--oxblood);
+}
+
+.simple-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+@media (min-width: 720px) {
+  .simple-grid.two-col { grid-template-columns: 1fr 1fr; }
+}
+
+.video-wrap {
+  position: relative;
+  padding-top: 56.25%;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 14px 0 12px;
+  border: 1px solid rgba(58, 18, 24, 0.2);
+}
+.video-wrap iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+.video-cap {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 14px;
+  color: var(--muted-warm);
+}
+
+.paper-card {
+  background: rgba(221, 208, 176, 0.45);
+  border: 1px solid rgba(58, 18, 24, 0.12);
+  border-radius: 10px;
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.paper-card strong a {
+  font-family: var(--serif);
+  font-size: 19px;
+  font-weight: 500;
+  color: var(--oxblood);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(58, 18, 24, 0.3);
+}
+.paper-card strong a:hover,
+.paper-card strong a:focus-visible {
+  color: var(--teal);
+  border-bottom-color: var(--teal);
+}
+.paper-card small {
+  font-family: var(--serif);
+  font-size: 15px;
+  font-style: italic;
+  color: var(--muted-warm);
+}
+
+.contact-surface p {
+  font-family: var(--serif);
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--ink);
+}
+.contact-surface p + p { margin-top: 8px; }
+.contact-surface a {
+  color: var(--teal);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(45, 107, 107, 0.45);
+}
+.contact-surface a:hover,
+.contact-surface a:focus-visible {
+  color: var(--oxblood);
+  border-bottom-color: var(--oxblood);
+}
+
+/* ── Footer cross-links ── */
+.xsite-footer {
+  margin: 56px 0 0;
+  padding-top: 28px;
+  border-top: 1px solid rgba(58, 18, 24, 0.18);
+}
+.xsite-cols {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.xsite-cols a {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  text-decoration: none;
+  color: var(--ink);
+  transition: color 140ms ease;
+}
+.xsite-cols a:hover { color: var(--teal); }
+.xsite-col-head {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.28em;
+  font-weight: 500;
+  color: var(--oxblood);
+}
+.xsite-col-desc {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 16px;
+  color: var(--oxblood-warm);
+  line-height: 1.4;
+}
+.xsite-col-url {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--muted-warm);
+  letter-spacing: 0.04em;
+}
+@media (max-width: 720px) {
+  .xsite-cols { grid-template-columns: 1fr; gap: 20px; }
+}
+
+.page-footer {
+  border-top: 2px solid var(--oxblood);
+  margin-top: 28px;
+  padding-top: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.page-footer .motto {
+  font-family: var(--serif);
+  font-size: 20px;
+  letter-spacing: 0.02em;
+  color: var(--oxblood);
+}
+.page-footer .motto em {
+  color: var(--teal);
+  font-weight: 600;
+  font-style: normal;
+}
+.page-footer .folio {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--oxblood);
+  opacity: 0.6;
+}
+</style>
+</head>
+<body>
+<nav class="xsite-nav" aria-label="Demismatch network">
+  <p class="xsite-nav-slogan">Aligning the world to what humans are.</p>
+  <ul class="xsite-nav-links">
+    <li><a href="https://demismatch.com/" data-xsite-link="truths">DEMISMATCH (The Why)</a></li>
+    <li aria-hidden="true" class="xsite-nav-sep">·</li>
+    <li><a href="https://demismatch.com/vision.html" data-xsite-link="vision">VISION (The What)</a></li>
+    <li aria-hidden="true" class="xsite-nav-sep">·</li>
+    <li><a href="https://cor.demismatch.com/" data-xsite-link="atlas">COR (The How)</a></li>
+  </ul>
+</nav>
+
+<div class="page">
+  <div class="masthead">
+    <span class="label">Demismatch · About · April 2026</span>
+    <a class="back" href="vision.html">&larr; Back to Vision</a>
+  </div>
+
+  <header class="hero">
+    <span class="eyebrow">About</span>
+    <h1>About.</h1>
+    <p class="lede">I'm Maarten Rischen. I built Cor v0 between April 2025 and April 2026, full-time, out of Pai, Thailand. This page is for anyone who wants to check there's a person behind the work before reading the atlas.</p>
+  </header>
+
+  <section>
+    <div class="simple-grid two-col">
+      <div class="surface">
+        <h2>What I'm building</h2>
+        <p>Cor is an atlas of the human motivational-emotional architecture. What each evolved need is, what mechanism produces its signal, what the signal is for, and what stops it once it's met. Every claim traces to primary literature.</p>
+        <p>v0 is the prototype. v1 is the rebuild that makes it academically rigorous. I direct. The 12-month plan pairs me with one academic hire at postdoc level in evolutionary psychiatry or behavioral ecology, who carries the domain rigor and builds v1.</p>
+      </div>
+      <div class="surface">
+        <h2>How I got here</h2>
+        <p>My background is music. MA from Royal University Groningen, residencies at Banff Centre (2016) and Trinity College Dublin (2017). In 2024 I did a musical theatre production called <em>Most Human Post-Human</em> at Adelaide Fringe with director Gavin Robins (King Kong on Broadway).</p>
+        <p>That production is where Cor took its current shape. The question I was writing music around - what happens when exponential technology meets an organism that hasn't changed in 200,000 years? - stopped working as an artistic prompt and started demanding an evidence base. After Adelaide I went full-time on building one.</p>
+        <p>I came at this sideways. I'm not a domain academic. The plan accounts for that: the academic hire and external review carry the rigor, not me.</p>
+      </div>
+    </div>
+
+    <div class="surface" style="margin-top:20px">
+      <h2>Most Human Post-Human</h2>
+      <div class="video-wrap">
+        <iframe src="https://www.youtube.com/embed/MRVdtc45TPk" title="Most Human Post-Human trailer" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div>
+      <p class="video-cap">The theatre production where the Cor framework took its current shape. Adelaide Fringe 2024, directed by Gavin Robins.</p>
+    </div>
+  </section>
+
+  <section id="what-v0-is">
+    <span class="eyebrow">What v0 is</span>
+    <h2>What v0 is.</h2>
+    <p class="section-lede">v0 is an atlas of 15 motivational mechanisms and 17 foundations, built on 573 extractions from 101 works, structured as a derivation chain. It runs from two operating frames through three premises, nine design affordances, and three design consequences, into the 15 mechanisms and 14 convergences between them. M3 (attachment-based co-regulation) is operationalized to coding-criteria level as the worked example.</p>
+    <p class="section-lede">Each step is a move a reader can check, and each claim traces to a primary source. An atlas of the human motivational-emotional architecture does not exist until someone builds one. v0 is the first pass at what one looks like.</p>
+    <div class="simple-grid two-col">
+      <div class="surface">
+        <h3>How it was built</h3>
+        <p>Sources are books from my personal library and papers harvested via PubMed and bibliographic chains. Full-text access for journals I couldn't reach came through Groningen's university library, courtesy of Han-Thomas Adriaenssen. All primary sources. No textbooks, no secondary summaries.</p>
+        <p>Three rules ran the build. Every work carries a DOI or PMID, or sits in physical collection and is marked as such. Every extraction draws from full text; no snippet-only sourcing. Every author quote is verbatim, not stitched or paraphrased into one.</p>
+        <p>Grading runs at three layers. Works are tiered pillar (59), key (39), or supporting (3). Foundations carry epistemic grades that distinguish convergent evidence from single-source claims. Mechanisms carry tier ratings for evidential strength: 10 Tier 1, 4 Tier 2, 1 Tier 3.</p>
+        <p>The extraction and linking ran through a multi-agent AI pipeline. I set the spec, chose the foundations and mechanisms, wrote the derivation chain, and ran review on what came out. The pipeline did corpus work at scale, which is how v0 exists at this coverage after a year of full-time work. It is also the source of the data-quality problems that v1 rebuilds. 13 extractions are currently quarantined for snippet-only sourcing. That is the discipline in practice: audit catches things and the quarantine holds them out.</p>
+      </div>
+      <div class="surface">
+        <h3>v0 vs v1</h3>
+        <p>v1 is a ground-up rebuild by a postdoc in evolutionary psychiatry or behavioral ecology. They are not hired to ratify v0. They are hired to rebuild it rigorously, with full latitude to change, downgrade, or delete any part of v0 that does not survive stronger review. I orchestrate. They build. That's what the SFF Main Track funds.</p>
+        <p>v0 gets published now because the hardest thing to prove about a new kind of research object is that the object can exist. v0 proves it can. The format is the contribution: the derivation chain from OF1 and OF2 through the foundations and convergences to M3 as the worked mechanism. That's what the v1 rebuild inherits. The data is what v1 redoes under domain-expert methodology.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="numbers">
+    <span class="eyebrow">The numbers</span>
+    <h2>What the canonical counts mean.</h2>
+    <p class="section-lede">The public stats panel reports ten numbers. Here's what lives inside each, and which carry honest caveats. As of 14 April 2026.</p>
+    <div class="simple-grid two-col">
+      <div class="surface">
+        <h3>573 Extractions</h3>
+        <p>The extraction total adds up four kinds, not only the primary ones:</p>
+        <ul>
+          <li><strong>487</strong> primary - direct claims from pillar and key works</li>
+          <li><strong>77</strong> propagation - downstream claims forced by an already-extracted primary</li>
+          <li><strong>5</strong> challenge - claims that contest or qualify an extraction elsewhere</li>
+          <li><strong>4</strong> empirical - demonstrations whose evidential structure is itself an extraction</li>
+        </ul>
+        <p>Earlier surfaces reported "487 Primary extractions." That number is still correct for the primary layer alone. I report 573 on the canonical panel so the primary layer doesn't look like the whole evidence base.</p>
+      </div>
+      <div class="surface">
+        <h3>14 Gaps - two kinds</h3>
+        <p>The gap inventory splits into two categories with different remediation paths.</p>
+        <ul>
+          <li><strong>G1-G10 · Framework-level</strong> - holes in the specification itself. Questions the atlas cannot answer because the primary literature hasn't converged, or because the evolutionary explanation is under-specified. These are the questions v1's academic program is organized around.</li>
+          <li><strong>G11-G14 · Corpus-engineering</strong> - known coverage limits in the works selection, ingestion pipeline, or extraction process. They don't require new research. They require the v1 rebuild under proper methodology.</li>
+        </ul>
+        <p>The public <a href="https://cor.demismatch.com/atlas.html#gaps">atlas gap section</a> shows all 14 grouped by category.</p>
+      </div>
+      <div class="surface">
+        <h3>15 Mechanisms (14 + R1 Touch)</h3>
+        <p>The mechanism inventory is M1-M14 plus R1 Touch. R1 is a Tier 3 regulatory input to M3 Social Bonding (C-tactile afferents), not a standalone motivational system. I count it in the panel and keep the "(14 + R1 Touch)" parenthetical so a reader sees the total without losing the distinction. Tier breakdown: 10 Tier-1 (forced), 4 Tier-2 (strongly supported), 1 Tier-3 (moderate).</p>
+      </div>
+      <div class="surface">
+        <h3>17 Foundations - by layer</h3>
+        <p>The foundation stack has four layers: 2 frames (OF1 Fitness Interface, OF2 Signal-Default Epistemology), 3 premises (P1 Inclusive Fitness, P2 Domain-Sensitive Interacting Adaptations, P3 Systematic Mismatch), 9 properties (DA1-DA9), 3 consequences (DC1-DC3).</p>
+      </div>
+      <div class="surface">
+        <h3>101 Works - by importance</h3>
+        <p>The bibliography holds 59 pillar works (load-bearing for a specific foundation or mechanism), 39 key works (strong empirical or synthetic contributions), and 3 supporting works (historical precedents and adjuncts).</p>
+      </div>
+      <div class="surface">
+        <h3>63 Researchers - by tier</h3>
+        <p>The researcher list holds 34 foundational (primary spec contributors), 21 empirical (evidence-layer), and 8 adjacent (complementary frameworks and benchmarks).</p>
+      </div>
+      <div class="surface" style="grid-column:1 / -1">
+        <h3>864 extraction × mechanism links</h3>
+        <p>The density number, surfaced separately on the cor home page. The 573 extractions collectively carry 864 mechanism-linking edges. On average, each linked extraction grounds about 1.66 mechanisms. I keep this separate from the headline extraction count so the two can't be mistaken for inconsistent versions of the same thing.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="working-papers">
+    <span class="eyebrow">Working papers</span>
+    <h2>Two working papers. Both updated April 2026.</h2>
+    <p class="section-lede">Both papers are mine, written alongside v0. They argue the framing and its human-facing articulation in long form.</p>
+    <div class="simple-grid two-col">
+      <article class="paper-card">
+        <strong><a href="https://cor.demismatch.com/bridge-paper.html">What Alignment Misses</a></strong>
+        <small>Working paper. Alignment framing and six failure modes.</small>
+      </article>
+      <article class="paper-card">
+        <strong><a href="https://cor.demismatch.com/constitutional.html">What You Are Talking To</a></strong>
+        <small>Working paper. Human-facing articulation of the architecture.</small>
+      </article>
+    </div>
+  </section>
+
+  <section id="contact">
+    <span class="eyebrow">Contact</span>
+    <h2>Reach me directly.</h2>
+    <div class="surface contact-surface">
+      <p><strong>Maarten Rischen</strong></p>
+      <p><a href="mailto:maartenrischen@protonmail.com">maartenrischen@protonmail.com</a></p>
+      <p>For grant inquiries, researcher outreach, and everything else, write. I read every message.</p>
+    </div>
+  </section>
+
+  <div class="xsite-footer">
+    <ul class="xsite-cols" aria-label="Demismatch network">
+      <li><a href="https://demismatch.com/">
+        <span class="xsite-col-head">DEMISMATCH</span>
+        <span class="xsite-col-desc">the front door</span>
+        <span class="xsite-col-url">demismatch.com</span>
+      </a></li>
+      <li><a href="https://demismatch.com/vision.html">
+        <span class="xsite-col-head">VISION</span>
+        <span class="xsite-col-desc">the map</span>
+        <span class="xsite-col-url">demismatch.com/vision</span>
+      </a></li>
+      <li><a href="https://cor.demismatch.com/">
+        <span class="xsite-col-head">COR</span>
+        <span class="xsite-col-desc">the spec</span>
+        <span class="xsite-col-url">cor.demismatch.com</span>
+      </a></li>
+    </ul>
+  </div>
+
+  <div class="page-footer">
+    <p class="motto"><em>Demismatch</em> the world &nbsp;·&nbsp; <em>then</em> augment</p>
+    <div class="folio">demismatch.com / about</div>
+  </div>
+</div>
+</body>
+</html>
