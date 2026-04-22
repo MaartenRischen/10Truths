@@ -330,10 +330,9 @@ body {
 .card-stack:first-of-type .card:nth-child(3) { transform: translateX(-12px) rotate(-1.8deg); }
 .card-stack:first-of-type .more-card { transform: translateX(-20px) rotate(-2.4deg); }
 
-.card-stack:last-of-type .card:nth-child(1) { transform: translateX(14px) rotate(-1.8deg); }
-.card-stack:last-of-type .card:nth-child(2) { transform: translateX(2px) rotate(0); }
-.card-stack:last-of-type .card:nth-child(3) { transform: translateX(14px) rotate(1.8deg); }
-.card-stack:last-of-type .more-card { transform: translateX(22px) rotate(2.4deg); }
+.card-stack:last-of-type .card:nth-child(2) { transform: translateX(14px) rotate(-1.8deg); }
+.card-stack:last-of-type .card:nth-child(3) { transform: translateX(2px) rotate(0); }
+.card-stack:last-of-type .card:nth-child(4) { transform: translateX(14px) rotate(1.8deg); }
 .card .num {
   position: absolute;
   top: 14px;
@@ -598,6 +597,86 @@ body {
   text-transform: uppercase;
   color: var(--oxblood);
   opacity: 0.55;
+}
+
+/* Two-family intro block (Decode / Adaptor) at top of the right stack */
+.family-intro {
+  align-self: stretch;
+  background: rgba(45, 107, 107, 0.05);
+  border: 1px solid rgba(45, 107, 107, 0.3);
+  border-left: 3px solid var(--teal);
+  border-radius: 8px;
+  padding: 22px 24px 20px;
+  box-shadow: 4px 4px 0 var(--gold);
+  margin-bottom: 6px;
+}
+.family-intro-head {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--teal);
+  font-weight: 500;
+  margin-bottom: 16px;
+}
+.family-intro-p {
+  font-family: 'Spectral', serif;
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--ink);
+  margin-bottom: 12px;
+}
+.family-intro-p:last-child { margin-bottom: 0; }
+.family-intro-p strong {
+  color: var(--oxblood);
+  font-weight: 600;
+  letter-spacing: 0.005em;
+}
+
+/* Small family/status badge on each Decode card */
+.card-badge {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  color: var(--teal);
+  background: rgba(45, 107, 107, 0.09);
+  border: 1px solid rgba(45, 107, 107, 0.32);
+  padding: 3px 9px;
+  border-radius: 3px;
+  margin-top: 10px;
+}
+
+/* Trajectory block at tail of the right stack */
+.trajectory {
+  align-self: stretch;
+  background: var(--parchment);
+  border: 1px solid var(--oxblood);
+  border-radius: 8px;
+  padding: 22px 24px 20px;
+  box-shadow: 4px 4px 0 var(--teal);
+  margin-top: 6px;
+}
+.trajectory-lead,
+.trajectory-body {
+  font-family: 'Spectral', serif;
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--ink);
+  margin-bottom: 12px;
+}
+.trajectory-body {
+  color: #5a2a32;
+}
+.trajectory-foot {
+  font-family: 'Spectral', serif;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #5a2a32;
+  margin: 4px 0 0;
+  padding-top: 14px;
+  border-top: 1px solid rgba(58, 18, 24, 0.18);
+  letter-spacing: 0.005em;
 }
 
 .cor-column {
@@ -1081,9 +1160,9 @@ body {
       </div>
       <div class="section-header">
         <span class="chapter">For Humans</span>
-        <h2>Diagnostic Demismatch Tools</h2>
-        <p class="tagline"><em>The first step is seeing clearly.</em></p>
-        <p>Software that shows an organism what it is actually looking at. Names the mismatch behind the behavior.</p>
+        <h2>Demismatch Tools</h2>
+        <p class="tagline"><em>See the mismatch. Build the matched.</em></p>
+        <p>Software that reads an environment against the spec, names what is firing and what is being starved, and points at what would resolve. The first real-world applications of Cor. Two of the v1 tools are live and usable right now; a third is in build. The suite is the HSEE track and it is scoped to grow.</p>
       </div>
     </div>
 
@@ -1217,6 +1296,12 @@ body {
 
       <div class="card-stack">
 
+        <div class="family-intro">
+          <p class="family-intro-head">Two families inside it.</p>
+          <p class="family-intro-p"><strong>Decode.</strong> Read what the environment is doing to you. Take a situation, a page, a scene, a feed, a day, a relationship, a product, a room. Get back the read: which mechanism is firing, which proxy is hitting it, which real input would actually resolve. Every call traces to a named mechanism in Cor.</p>
+          <p class="family-intro-p"><strong>Adaptor.</strong> Build matched conditions back. Assembly, not annotation. Lens is next: a morning tool that puts a role, a group, and a consequential goal back in front of the organism. Further out: ritual architects, group-formation tooling, VR and AR environment scripts that satisfy the resolution conditions physical cities take generations to retrofit.</p>
+        </div>
+
         <div class="card">
           <span class="num">c.1</span>
           <div class="visual">
@@ -1251,6 +1336,7 @@ body {
           </div>
           <span class="name">Decode Talk <span class="try-now">Try now!</span></span>
           <span class="desc">Type a situation - the argument, the 3am scroll, the ache you can't name. It returns the named mechanism firing, what that circuit evolved to resolve in the ancestral environment, the proxy modern life is feeding it, and the real input that would actually land. Not a companion. Not advice. The read. <a href="decode-talk/" style="color:#2d6b6b;border-bottom:1px solid rgba(45,107,107,0.35);text-decoration:none;white-space:nowrap;">→ Open Decode Talk</a> · <a href="decode-talk.html" style="color:#2d6b6b;border-bottom:1px solid rgba(45,107,107,0.35);text-decoration:none;white-space:nowrap;">Sample exchanges</a></span>
+          <span class="card-badge">Decode &middot; v1 live</span>
           <dl class="card-spec">
             <dt>Form</dt><dd>Chat, grounded in the Cor spec</dd>
           </dl>
@@ -1264,6 +1350,7 @@ body {
           </div>
           <span class="name">Decode Web <span class="try-now">Try now!</span></span>
           <span class="desc">Chrome extension. On any page you open - news feed, social stream, product listing - each flagged element gets the read in place: which mechanism it's firing, which evolved need it's imitating, and why the page can't resolve what it's activating. Every annotation traces back to a named mechanism in the atlas. <a href="decode-web.zip" style="color:#2d6b6b;border-bottom:1px solid rgba(45,107,107,0.35);text-decoration:none;white-space:nowrap;" download>↓ Download extension</a></span>
+          <span class="card-badge">Decode &middot; v1 live</span>
           <dl class="card-spec">
             <dt>Form</dt><dd>Chrome extension · v0.4.2</dd>
             <dt>Install</dt><dd>Unzip → chrome://extensions → Developer mode → Load unpacked → select the <code style="font-family:'JetBrains Mono',monospace;font-size:0.9em;background:rgba(45,107,107,0.08);padding:0.05em 0.3em;border-radius:2px;">decode-web</code> folder</dd>
@@ -1278,14 +1365,17 @@ body {
           </div>
           <span class="name">Decode Camera</span>
           <span class="desc">Upload a photo of a scene - your plate, your desk, the room you woke up in. Each object in frame gets outlined and read: the mechanism it's activating, the evolved stimulus it's imitating, the real input it's standing in for. Full mechanism commentary on the image, not just labels. Image upload now; live capture next.</span>
+          <span class="card-badge">Decode &middot; in build</span>
           <dl class="card-spec">
             <dt>Form</dt><dd>Scene HUD - image upload now, live camera next</dd>
           </dl>
         </div>
 
-        <div class="more-card"><span class="more-text">… and more</span></div>
-
-        <p class="stack-footer"><em>Built on Cor. Shipped as HSEE deliverables.</em></p>
+        <div class="trajectory">
+          <p class="trajectory-lead">Scoped for v2 and beyond: Decode Feed, Space, Day, Relationship, Work, Product, City. Adaptor starting with Lens. Spec-grounded applications for clinical assessment, educational environments, product-design audit, and population-scale policy readouts, built by us where we are the right builder, licensed where we are not.</p>
+          <p class="trajectory-body">Every tool reads from the spec. Every claim traces to a named mechanism. This is what it looks like when the specification ships as software.</p>
+          <p class="trajectory-foot"><em>HSEE track. v1 shipping; suite build-out scoped against the July 8 Theme Round.</em></p>
+        </div>
 
       </div>
 
