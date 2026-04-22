@@ -615,8 +615,13 @@
       position: absolute;
       top: 50%;
       left: 50%;
-      transform: translate(-50%, calc(-50% + var(--parallax-y, 0px)));
-      will-change: transform, scale;
+      /* Centering uses the individual `translate` property (not `transform`)
+         so that scale:2 on hover composes correctly around the caption's
+         centre instead of drifting to the upper-left. Per CSS Transforms L2,
+         individual `translate` is applied AFTER `scale`, which correctly
+         pulls the scaled element back to its intended position. */
+      translate: -50% calc(-50% + var(--parallax-y, 0px));
+      will-change: translate, scale;
       z-index: 2;
       width: auto;
       max-width: min(560px, calc(100% - 4rem));
@@ -634,6 +639,7 @@
         0 14px 36px -6px rgba(0, 0, 0, 0.75);
 
       scale: 1;
+      transform-origin: center center;
       transition: scale 0.45s cubic-bezier(0.22, 1, 0.36, 1),
                   box-shadow 0.45s cubic-bezier(0.22, 1, 0.36, 1);
     }
@@ -1016,7 +1022,9 @@
         position: static;
         top: auto;
         left: auto;
+        translate: none;
         transform: none;
+        scale: 1;
         will-change: auto;
         width: 100%;
         max-width: 100%;
