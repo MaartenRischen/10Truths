@@ -64,6 +64,7 @@ body {
 }
 
 .page {
+  position: relative;
   width: 1200px;
   max-width: calc(100% - 40px);
   margin: 40px auto;
@@ -150,6 +151,14 @@ body {
   background: var(--teal-bright);
   border-radius: 50%;
   box-shadow: 0 0 8px var(--teal-bright);
+  animation: cor-dot-pulse 1.6s ease-in-out infinite;
+}
+@keyframes cor-dot-pulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 8px var(--teal-bright); transform: scale(1); }
+  50%      { opacity: 0.35; box-shadow: 0 0 2px var(--teal-bright); transform: scale(0.75); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cor-link .cor-dot { animation: none; }
 }
 .cor-link .cor-arrow {
   color: var(--gold);
@@ -318,28 +327,30 @@ body {
 
 /* Settings gear */
 .settings-toggle {
-  position: fixed;
-  top: 66px;
-  right: 24px;
-  width: 44px;
-  height: 44px;
+  position: absolute;
+  top: 22px;
+  right: 22px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   background: var(--oxblood);
   color: var(--parchment);
-  border: 2px solid var(--teal);
+  border: 1px solid var(--oxblood);
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 20px;
-  z-index: 100;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.4);
-  transition: transform 240ms ease, background 140ms ease;
+  font-size: 17px;
+  line-height: 1;
+  z-index: 40;
+  box-shadow: 2px 2px 0 var(--teal), 4px 4px 0 var(--gold);
+  transition: transform 240ms ease, background 140ms ease, box-shadow 140ms ease;
 }
 .settings-toggle:hover {
-  transform: rotate(90deg);
+  transform: rotate(90deg) translate(-1px, 1px);
   background: var(--teal);
-  border-color: var(--parchment);
+  border-color: var(--teal);
+  box-shadow: 3px 3px 0 var(--teal), 5px 5px 0 var(--gold);
 }
 
 /* Drawer */
@@ -546,7 +557,7 @@ body {
   .regen-row { margin-right: 0; }
   .composer { flex-direction: column; }
   .composer button { padding: 12px; }
-  .settings-toggle { top: 54px; right: 14px; width: 40px; height: 40px; }
+  .settings-toggle { top: 14px; right: 14px; width: 34px; height: 34px; font-size: 15px; }
   .drawer { width: 92vw; padding: 28px 22px 110px; }
   .drawer-actions { width: 92vw; padding: 14px 22px; }
 }
@@ -564,9 +575,8 @@ body {
   </ul>
 </nav>
 
-<button class="settings-toggle" id="settings-toggle" aria-label="Open settings" title="Settings">⚙</button>
-
 <div class="page">
+  <button class="settings-toggle" id="settings-toggle" aria-label="Open settings" title="Settings">⚙</button>
   <div class="title-block">
     <h1><em>Decode Talk</em></h1>
     <p class="standfirst">Situation in, evolutionary read out. Not a companion. The mechanism story behind what you're feeling - plus, if you want it, the nearest achievable next step.</p>
