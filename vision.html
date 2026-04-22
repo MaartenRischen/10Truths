@@ -333,6 +333,7 @@ body {
 .card-stack:last-of-type .card:nth-child(2) { transform: translateX(14px) rotate(-1.8deg); }
 .card-stack:last-of-type .card:nth-child(3) { transform: translateX(2px) rotate(0); }
 .card-stack:last-of-type .card:nth-child(4) { transform: translateX(14px) rotate(1.8deg); }
+.card-stack:last-of-type .card:nth-child(5) { transform: translateX(22px) rotate(2.4deg); }
 .card .num {
   position: absolute;
   top: 14px;
@@ -641,27 +642,19 @@ body {
   margin-top: 10px;
 }
 
-/* Trajectory footer at tail of the right stack - small text, no card chrome */
-.trajectory {
-  align-self: stretch;
-  padding: 14px 4px 0;
-  margin-top: 10px;
-  border-top: 1px solid rgba(58, 18, 24, 0.18);
-}
-.trajectory-lead {
+/* "next" card - same container as c.1/c.2/c.3, paragraph-only body */
+.next-body {
   font-family: 'Spectral', serif;
-  font-size: 13px;
-  line-height: 1.55;
-  color: #5a2a32;
-  margin: 0 0 10px;
-}
-.trajectory-foot {
-  font-family: 'Spectral', serif;
-  font-size: 12px;
+  font-size: 15px;
   line-height: 1.5;
-  color: #8a7d5e;
+  color: var(--ink);
   margin: 0;
-  letter-spacing: 0.005em;
+  padding-right: 44px;
+  max-width: 180px;
+  transition: max-width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.card.card-next:hover .next-body {
+  max-width: 1200px;
 }
 
 .cor-column {
@@ -1356,9 +1349,9 @@ body {
           </dl>
         </div>
 
-        <div class="trajectory">
-          <p class="trajectory-lead">Scoped for v2: Decode Feed, Space, Day, Relationship, Work, Product, City. Adaptor after Lens: ritual architects, group-formation tooling, VR and AR environment scripts. Plus applications built for clinicians, educators, designers, and policy analysts.</p>
-          <p class="trajectory-foot"><em>HSEE track. v1 shipping; suite build-out scoped against the July 8 Theme Round.</em></p>
+        <div class="card card-next">
+          <span class="num">next</span>
+          <p class="next-body">Scoped for v2: Decode Feed, Space, Day, Relationship, Work, Product, City. Adaptor starting with Lens: ritual architects, group-formation tooling, VR and AR environment scripts that satisfy the resolution conditions physical cities take generations to retrofit. Plus applications built for clinicians, educators, designers, and policy analysts.</p>
         </div>
 
       </div>
