@@ -167,7 +167,7 @@ body {
 
 .intro {
   max-width: 780px;
-  margin: 0 auto 80px;
+  margin: 0 auto 40px;
   font-size: 18px;
   line-height: 1.7;
   color: #3a1a22;
@@ -177,6 +177,34 @@ body {
 .intro strong {
   color: var(--oxblood);
   font-weight: 600;
+}
+
+.try-cta-wrap {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto 72px;
+}
+.try-cta {
+  display: inline-flex;
+  align-items: center;
+  padding: 20px 42px;
+  background: var(--oxblood);
+  color: var(--parchment);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 1px solid var(--oxblood);
+  border-radius: 2px;
+  box-shadow: 5px 5px 0 var(--teal), 10px 10px 0 var(--gold);
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+.try-cta:hover,
+.try-cta:focus-visible {
+  transform: translate(-2px, -2px);
+  box-shadow: 7px 7px 0 var(--teal), 13px 13px 0 var(--gold);
 }
 
 .exchange {
@@ -352,6 +380,10 @@ body {
     <p>Decode Talk is the dialogue surface of the Demismatch Tools suite. You describe a situation - something you're feeling, something that happened, a pattern you can't name - and it responds with the evolutionary read: <strong>what circuit is firing, why, what it was built to resolve, and where the modern environment diverges from what it expects.</strong></p>
     <p>It is not a companion. It is not an advisor. It does not validate, reassure, or recommend. It names the mechanism and returns the reading to you. What you do with it is your business.</p>
     <p>Below: four representative exchanges, drafted in the voice the live version will use. Grounded in the Cor spec (v4 - fourteen mechanisms plus R1 Touch).</p>
+  </div>
+
+  <div class="try-cta-wrap">
+    <a class="try-cta" href="https://demismatch.com/decode-talk/">Try Decode Talk</a>
   </div>
 
   <section class="exchange">
