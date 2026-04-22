@@ -643,6 +643,7 @@ body {
 }
 
 /* "next" card - same container as c.1/c.2/c.3, paragraph-only body */
+.card.card-next { align-self: stretch; }
 .next-body {
   font-family: 'Spectral', serif;
   font-size: 15px;
@@ -650,11 +651,6 @@ body {
   color: var(--ink);
   margin: 0;
   padding-right: 44px;
-  max-width: 180px;
-  transition: max-width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-.card.card-next:hover .next-body {
-  max-width: 1200px;
 }
 
 .cor-column {
