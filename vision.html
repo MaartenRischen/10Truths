@@ -599,38 +599,32 @@ body {
   opacity: 0.55;
 }
 
-/* Two-family intro block (Decode / Adaptor) at top of the right stack */
+/* Two-family intro (Decode / Adaptor) - lighter than any product card */
 .family-intro {
   align-self: stretch;
-  background: rgba(45, 107, 107, 0.05);
-  border: 1px solid rgba(45, 107, 107, 0.3);
-  border-left: 3px solid var(--teal);
-  border-radius: 8px;
-  padding: 22px 24px 20px;
-  box-shadow: 4px 4px 0 var(--gold);
-  margin-bottom: 6px;
+  padding: 4px 4px 6px;
+  margin-bottom: 2px;
 }
 .family-intro-head {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 12px;
+  font-size: 11px;
   letter-spacing: 0.28em;
   text-transform: uppercase;
   color: var(--teal);
   font-weight: 500;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 }
 .family-intro-p {
   font-family: 'Spectral', serif;
-  font-size: 16px;
+  font-size: 14.5px;
   line-height: 1.55;
   color: var(--ink);
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 .family-intro-p:last-child { margin-bottom: 0; }
 .family-intro-p strong {
   color: var(--oxblood);
   font-weight: 600;
-  letter-spacing: 0.005em;
 }
 
 /* Small family/status badge on each Decode card */
@@ -647,35 +641,26 @@ body {
   margin-top: 10px;
 }
 
-/* Trajectory block at tail of the right stack */
+/* Trajectory footer at tail of the right stack - small text, no card chrome */
 .trajectory {
   align-self: stretch;
-  background: var(--parchment);
-  border: 1px solid var(--oxblood);
-  border-radius: 8px;
-  padding: 22px 24px 20px;
-  box-shadow: 4px 4px 0 var(--teal);
-  margin-top: 6px;
+  padding: 14px 4px 0;
+  margin-top: 10px;
+  border-top: 1px solid rgba(58, 18, 24, 0.18);
 }
-.trajectory-lead,
-.trajectory-body {
+.trajectory-lead {
   font-family: 'Spectral', serif;
-  font-size: 15px;
+  font-size: 13px;
   line-height: 1.55;
-  color: var(--ink);
-  margin-bottom: 12px;
-}
-.trajectory-body {
   color: #5a2a32;
+  margin: 0 0 10px;
 }
 .trajectory-foot {
   font-family: 'Spectral', serif;
-  font-size: 14px;
+  font-size: 12px;
   line-height: 1.5;
-  color: #5a2a32;
-  margin: 4px 0 0;
-  padding-top: 14px;
-  border-top: 1px solid rgba(58, 18, 24, 0.18);
+  color: #8a7d5e;
+  margin: 0;
   letter-spacing: 0.005em;
 }
 
@@ -1162,7 +1147,7 @@ body {
         <span class="chapter">For Humans</span>
         <h2>Demismatch Tools</h2>
         <p class="tagline"><em>See the mismatch. Build the matched.</em></p>
-        <p>Software that reads an environment against the spec, names what is firing and what is being starved, and points at what would resolve. The first real-world applications of Cor. Two of the v1 tools are live and usable right now; a third is in build. The suite is the HSEE track and it is scoped to grow.</p>
+        <p>Software that shows you what your environment is doing to your biology, and points at what would actually help. Two tools live now. One in build. A program scoped to grow.</p>
       </div>
     </div>
 
@@ -1297,9 +1282,9 @@ body {
       <div class="card-stack">
 
         <div class="family-intro">
-          <p class="family-intro-head">Two families inside it.</p>
-          <p class="family-intro-p"><strong>Decode.</strong> Read what the environment is doing to you. Take a situation, a page, a scene, a feed, a day, a relationship, a product, a room. Get back the read: which mechanism is firing, which proxy is hitting it, which real input would actually resolve. Every call traces to a named mechanism in Cor.</p>
-          <p class="family-intro-p"><strong>Adaptor.</strong> Build matched conditions back. Assembly, not annotation. Lens is next: a morning tool that puts a role, a group, and a consequential goal back in front of the organism. Further out: ritual architects, group-formation tooling, VR and AR environment scripts that satisfy the resolution conditions physical cities take generations to retrofit.</p>
+          <p class="family-intro-head">Two families.</p>
+          <p class="family-intro-p"><strong>Decode.</strong> Read what your environment is doing to you. Point it at a situation, a page, a scene, a room. Get back the mechanism firing, the proxy hitting it, and what would actually resolve.</p>
+          <p class="family-intro-p"><strong>Adaptor.</strong> Build matched conditions back. Assembly, not commentary. Lens is next: a morning tool that puts a role, a group, and a consequential goal back in front of you.</p>
         </div>
 
         <div class="card">
@@ -1372,8 +1357,7 @@ body {
         </div>
 
         <div class="trajectory">
-          <p class="trajectory-lead">Scoped for v2 and beyond: Decode Feed, Space, Day, Relationship, Work, Product, City. Adaptor starting with Lens. Spec-grounded applications for clinical assessment, educational environments, product-design audit, and population-scale policy readouts, built by us where we are the right builder, licensed where we are not.</p>
-          <p class="trajectory-body">Every tool reads from the spec. Every claim traces to a named mechanism. This is what it looks like when the specification ships as software.</p>
+          <p class="trajectory-lead">Scoped for v2: Decode Feed, Space, Day, Relationship, Work, Product, City. Adaptor after Lens: ritual architects, group-formation tooling, VR and AR environment scripts. Plus applications built for clinicians, educators, designers, and policy analysts.</p>
           <p class="trajectory-foot"><em>HSEE track. v1 shipping; suite build-out scoped against the July 8 Theme Round.</em></p>
         </div>
 
