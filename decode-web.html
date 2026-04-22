@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Decode Talk - Demismatch</title>
+<title>Decode Web - Demismatch</title>
 <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -39,7 +39,7 @@ body {
     radial-gradient(circle at 80% 80%, rgba(45, 107, 107, 0.04) 0%, transparent 50%);
 }
 
-/* ── Cross-site navbar (top strip; oxblood-deep, non-sticky) ── */
+/* ── Cross-site navbar ── */
 .xsite-nav {
   background: var(--oxblood-deep);
   border-bottom: 1px solid var(--teal);
@@ -69,26 +69,9 @@ body {
   transition: color 140ms ease;
 }
 .xsite-nav-links a:hover { color: var(--teal-bright); }
-.xsite-nav-links a[aria-current="page"] {
-  color: var(--teal-bright);
-  font-weight: 500;
-}
-.xsite-nav-sep {
-  color: #8a7d5e;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.68rem;
-  opacity: 0.7;
-}
-.xsite-nav-slogan {
-  font-family: 'Spectral', Georgia, serif;
-  font-size: 0.88rem;
-  font-style: italic;
-  color: var(--parchment);
-  opacity: 0.82;
-  letter-spacing: 0.005em;
-  line-height: 1.2;
-  margin: 0;
-}
+.xsite-nav-links a[aria-current="page"] { color: var(--teal-bright); font-weight: 500; }
+.xsite-nav-sep { color: #8a7d5e; font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; opacity: 0.7; }
+.xsite-nav-slogan { font-family: 'Spectral', Georgia, serif; font-size: 0.88rem; font-style: italic; color: var(--parchment); opacity: 0.82; letter-spacing: 0.005em; line-height: 1.2; margin: 0; }
 @media (max-width: 560px) {
   .xsite-nav { padding: 0.45rem 0.9rem; gap: 0.6rem; }
   .xsite-nav-links { gap: 0.4rem; }
@@ -110,11 +93,7 @@ body {
 }
 .nav .left { color: var(--oxblood); }
 .nav .right { color: var(--teal); }
-.nav a {
-  color: inherit;
-  text-decoration: none;
-  transition: color 0.2s ease;
-}
+.nav a { color: inherit; text-decoration: none; transition: color 0.2s ease; }
 .nav a:hover { color: var(--teal-bright); }
 
 .title-block {
@@ -153,17 +132,8 @@ body {
   gap: 18px;
   margin: 40px auto 0;
 }
-.rule-ornate .line {
-  width: 180px;
-  height: 1px;
-  background: var(--oxblood);
-}
-.rule-ornate .diamond {
-  width: 10px;
-  height: 10px;
-  background: var(--teal);
-  transform: rotate(45deg);
-}
+.rule-ornate .line { width: 180px; height: 1px; background: var(--oxblood); }
+.rule-ornate .diamond { width: 10px; height: 10px; background: var(--teal); transform: rotate(45deg); }
 
 .intro {
   max-width: 780px;
@@ -174,10 +144,7 @@ body {
   font-weight: 300;
 }
 .intro p + p { margin-top: 16px; }
-.intro strong {
-  color: var(--oxblood);
-  font-weight: 600;
-}
+.intro strong { color: var(--oxblood); font-weight: 600; }
 
 .try-cta-wrap {
   display: flex;
@@ -207,10 +174,10 @@ body {
   box-shadow: 7px 7px 0 var(--teal), 13px 13px 0 var(--gold);
 }
 
-.exchange {
+.sample {
   margin-bottom: 80px;
 }
-.exchange-label {
+.sample-label {
   font-family: 'JetBrains Mono', monospace;
   font-size: 12px;
   letter-spacing: 0.32em;
@@ -222,65 +189,55 @@ body {
   padding-bottom: 20px;
   border-bottom: 1px dashed rgba(58, 18, 24, 0.25);
 }
-
-.q {
-  background: var(--oxblood);
-  color: var(--parchment);
-  padding: 24px 32px;
+.sample-figure {
+  background: #0f0709;
+  border: 1px solid var(--oxblood);
   border-radius: 10px;
-  margin-left: 22%;
+  padding: 24px;
+  box-shadow: 6px 6px 0 var(--teal);
+  display: flex;
+  justify-content: center;
   margin-bottom: 24px;
+}
+.sample-figure img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 4px;
+}
+.sample-caption {
+  background: var(--parchment-dark);
+  color: var(--ink);
+  padding: 28px 36px;
+  border: 1px solid var(--oxblood);
+  border-radius: 10px;
   font-family: 'Spectral', serif;
-  font-size: 22px;
-  line-height: 1.45;
+  font-size: 17px;
+  line-height: 1.65;
   box-shadow: 4px 4px 0 var(--gold);
   position: relative;
 }
-.q::before {
-  content: 'YOU';
-  position: absolute;
-  top: -22px;
-  right: 8px;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.3em;
-  color: var(--gold);
-}
-
-.a {
-  background: var(--parchment-dark);
-  color: var(--ink);
-  padding: 32px 40px;
-  border: 1px solid var(--oxblood);
-  border-radius: 10px;
-  margin-right: 12%;
-  font-family: 'Spectral', serif;
-  font-size: 18px;
-  line-height: 1.65;
-  box-shadow: 6px 6px 0 var(--teal);
-  position: relative;
-}
-.a::before {
-  content: 'DECODE · TALK';
+.sample-caption::before {
+  content: 'LENS · READ';
   position: absolute;
   top: -22px;
   left: 8px;
   font-family: 'JetBrains Mono', monospace;
   font-size: 10px;
   letter-spacing: 0.3em;
-  color: var(--teal);
+  color: var(--gold);
 }
-.a p + p { margin-top: 14px; }
-
-.a-spec {
-  margin-top: 24px;
+.sample-caption p + p { margin-top: 12px; }
+.sample-caption strong { color: var(--oxblood); font-weight: 600; }
+.sample-spec {
+  margin-top: 22px;
   padding-top: 18px;
   border-top: 1px solid rgba(58, 18, 24, 0.2);
   display: grid;
   grid-template-columns: max-content 1fr;
   gap: 7px 18px;
 }
-.a-spec dt {
+.sample-spec dt {
   font-family: 'JetBrains Mono', monospace;
   font-size: 10px;
   letter-spacing: 0.22em;
@@ -288,12 +245,94 @@ body {
   color: var(--teal);
   padding-top: 3px;
 }
-.a-spec dd {
+.sample-spec dd {
   font-family: 'Spectral', serif;
   font-size: 14px;
   color: #3a1a22;
   line-height: 1.5;
 }
+
+.install-block {
+  margin-top: 72px;
+  padding: 44px 52px;
+  border: 2px solid var(--oxblood);
+  border-radius: 10px;
+  background: rgba(58, 18, 24, 0.03);
+  box-shadow: 6px 6px 0 var(--teal);
+}
+.install-block .label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--teal);
+  display: block;
+  margin-bottom: 20px;
+}
+.install-block h2 {
+  font-family: 'Spectral', serif;
+  font-size: 32px;
+  font-style: italic;
+  font-weight: 500;
+  color: var(--oxblood);
+  margin-bottom: 18px;
+  letter-spacing: -0.01em;
+}
+.install-block p {
+  font-family: 'Spectral', serif;
+  font-size: 16px;
+  line-height: 1.65;
+  color: #3a1a22;
+  margin-bottom: 14px;
+}
+.install-steps {
+  counter-reset: step;
+  list-style: none;
+  padding: 0;
+  margin: 24px 0 0;
+}
+.install-steps li {
+  counter-increment: step;
+  position: relative;
+  padding: 16px 0 16px 54px;
+  border-bottom: 1px dashed rgba(58, 18, 24, 0.2);
+  font-family: 'Spectral', serif;
+  font-size: 16px;
+  line-height: 1.55;
+  color: #3a1a22;
+}
+.install-steps li:last-child { border-bottom: none; }
+.install-steps li::before {
+  content: counter(step, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: 18px;
+  width: 38px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  letter-spacing: 0.15em;
+  color: var(--parchment);
+  background: var(--oxblood);
+  border-radius: 3px;
+}
+.install-steps code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.9em;
+  background: rgba(45, 107, 107, 0.1);
+  padding: 2px 6px;
+  border-radius: 3px;
+  color: var(--oxblood);
+}
+.install-steps a {
+  color: var(--teal);
+  text-decoration: underline;
+  text-decoration-color: rgba(45, 107, 107, 0.5);
+}
+.install-steps a:hover { color: var(--teal-bright); }
 
 .proto-note {
   margin-top: 72px;
@@ -316,6 +355,7 @@ body {
   margin-bottom: 14px;
 }
 .proto-note p + p { margin-top: 10px; }
+.proto-note a { color: var(--teal); border-bottom: 1px solid var(--teal); text-decoration: none; }
 
 .footer {
   border-top: 2px solid var(--oxblood);
@@ -330,11 +370,7 @@ body {
   text-transform: uppercase;
   color: var(--oxblood);
 }
-.footer a {
-  color: inherit;
-  text-decoration: none;
-  transition: color 0.2s ease;
-}
+.footer a { color: inherit; text-decoration: none; transition: color 0.2s ease; }
 .footer a:hover { color: var(--teal); }
 .footer .footer-nav { display: flex; gap: 22px; align-items: baseline; flex-wrap: wrap; }
 .footer .sibling { color: var(--teal); }
@@ -343,10 +379,11 @@ body {
   .page { padding: 48px 24px; }
   .title-block h1 { font-size: 80px; }
   .title-block .standfirst { font-size: 19px; }
-  .q { margin-left: 0; font-size: 19px; padding: 20px 24px; }
-  .a { margin-right: 0; padding: 24px 28px; font-size: 17px; }
-  .a-spec { grid-template-columns: 1fr; gap: 2px 0; }
-  .a-spec dt { margin-top: 6px; }
+  .sample-caption { padding: 22px 24px; font-size: 16px; }
+  .sample-spec { grid-template-columns: 1fr; gap: 2px 0; }
+  .sample-spec dt { margin-top: 6px; }
+  .install-block { padding: 28px 22px; }
+  .install-steps li { padding-left: 46px; font-size: 15px; }
   .footer { flex-direction: column; gap: 12px; align-items: flex-start; }
 }
 </style>
@@ -367,105 +404,85 @@ body {
 
   <div class="nav">
     <div class="left"><a href="vision.html">← Vision</a></div>
-    <div class="right">Decode Talk · No 01</div>
+    <div class="right">Decode Web · No 02</div>
   </div>
 
   <div class="title-block">
-    <h1><em>Decode Talk</em></h1>
-    <p class="standfirst">Situation in, evolutionary read out. Not a companion, not advice - the mechanism story behind what you're feeling.</p>
+    <h1><em>Decode Web</em></h1>
+    <p class="standfirst">The read in place. Chrome extension. Any page you open, each flagged element tagged with the mechanism firing and the real input it is imitating.</p>
     <div class="rule-ornate"><span class="line"></span><span class="diamond"></span><span class="line"></span></div>
   </div>
 
   <div class="intro">
-    <p>Decode Talk is the dialogue surface of the Demismatch Tools suite. You describe a situation - something you're feeling, something that happened, a pattern you can't name - and it responds with the evolutionary read: <strong>what circuit is firing, why, what it was built to resolve, and where the modern environment diverges from what it expects.</strong></p>
-    <p>It is not a companion. It is not an advisor. It does not validate, reassure, or recommend. It names the mechanism and returns the reading to you. What you do with it is your business.</p>
-    <p>Below: four representative exchanges, drafted in the voice the live version will use. Grounded in the Cor spec (v4 - fourteen mechanisms plus R1 Touch).</p>
+    <p>Decode Web is the browser surface of the Demismatch Tools suite. It sits as a side panel in Chrome. You browse the web the way you already browse it - news feeds, social streams, product listings, articles - and it annotates what is on the page in place: <strong>which mechanism is firing, which evolved need the page is imitating, and why this page cannot resolve what it is activating.</strong></p>
+    <p>Every annotation traces back to a named mechanism in the atlas. Decode Web does not invent a reading. It does not tell you how to feel about the page. It names the circuit, names the proxy, names the real input, and hands the reading back to you.</p>
+    <p>It runs on your own <a href="https://openrouter.ai/keys" style="color:var(--teal);border-bottom:1px solid var(--teal);text-decoration:none;">OpenRouter API key</a>, pasted once into the side panel on first open. BYOK. Your traffic, your keys, your rate limit. No subscription, no server in the middle, no account.</p>
+    <p>Two example annotations below - captured against live news pages. Then the download and install steps.</p>
   </div>
 
   <div class="try-cta-wrap">
-    <a class="try-cta" href="https://demismatch.com/decode-talk/">Try Decode Talk</a>
+    <a class="try-cta" href="decode-web.zip" download>↓ Download Extension</a>
   </div>
 
-  <section class="exchange">
-    <span class="exchange-label">EX · 01 / Status monitoring on feeds</span>
-    <div class="q">Why do I feel so inadequate scrolling through my friends' lives?</div>
-    <div class="a">
-      <p>Your status monitor is firing on the compressed highlight reel of two hundred people, delivered to you as if each of them occupied a slot in your band.</p>
-      <p>The circuit that produces this feeling - envy, inadequacy, quiet defeat - was built to track relative rank in a group of about 150 you see face-to-face. It runs continuously and silently; you cannot switch it off. It is not a defect. It is a signal: <em>"they have what you want, do something about it."</em></p>
-      <p>In the EEA that signal drove you toward a goal you could actually reach - your rivals were in your camp, their wins within your grasp. On a feed, the "rivals" are strangers whose achievements have no causal relationship to yours. The circuit does not know that. It just reads visible rank change and runs the defeat subroutine.</p>
-      <p>You are not shallow. You are running a 300,000-year-old calibrator against a stream it was never built for.</p>
-      <dl class="a-spec">
+  <section class="sample">
+    <span class="sample-label">EX · 02 / Prestige in a tribe not yours</span>
+    <div class="sample-figure">
+      <img src="lens-01.png" alt="Decode Web browser extension annotating a CNN article - the Rory McIlroy Masters headline marked EX·02 with the breakdown 'A prestige in a tribe not yours'">
+    </div>
+    <div class="sample-caption">
+      <p><strong>A prestige in a tribe not yours.</strong></p>
+      <p>Your status monitor is processing deference paid to a man inside a ranked hierarchy whose members are all strangers to you. The system is running; nothing is closing.</p>
+      <p>You are not shallow for feeling something when a champion wins. You feel it because a circuit built to track rank among people who know your face is firing on a stranger in a hierarchy you cannot enter.</p>
+      <dl class="sample-spec">
         <dt>Mechanism</dt><dd>M5 Status Monitoring</dd>
-        <dt>Proxy</dt><dd>Compressed highlight reel delivered as band data</dd>
-        <dt>Real input</dt><dd>Rank position within a ~150-person reference group you actually co-exist with</dd>
+        <dt>Proxy</dt><dd>Mass-media prestige signal delivered as local-band rank data</dd>
+        <dt>Real input</dt><dd>Rank change among the ~150 people whose faces you actually know</dd>
       </dl>
     </div>
   </section>
 
-  <section class="exchange">
-    <span class="exchange-label">EX · 02 / 3 am dread</span>
-    <div class="q">Why do I wake up at 3 am with dread about nothing specific?</div>
-    <div class="a">
-      <p>Two systems in conspiracy: your threat detector and your social co-regulator.</p>
-      <p>The prefrontal cortex - the part that suppresses rumination - is at its weakest between two and five in the morning. Open loops your daytime self keeps locked surface without inhibition. Add one more signal: your social co-regulator is reading "alone." In the EEA, 3 am was not solitary - the camp was present, someone was stirring, someone was breathing next to you. Your threat system is calibrated to treat the proximity of trusted others as <em>safe.</em></p>
-      <p>Without that signal, your threat detector runs at a higher baseline. Anything ambiguous becomes a threat. The dread attaches to nothing specific because everything is specific - your brain is just offering candidates.</p>
-      <dl class="a-spec">
-        <dt>Mechanism</dt><dd>M1 Threat Management × M3 Social Bonding (Coan, Social Baseline)</dd>
-        <dt>Proxy</dt><dd>Silent room, solitary bed, no ambient band presence</dd>
-        <dt>Real input</dt><dd>Proximity of a trusted body - even sleeping, even silent</dd>
+  <section class="sample">
+    <span class="sample-label">EX · 01 / Threat alarm on a stranger</span>
+    <div class="sample-figure">
+      <img src="lens-02.png" alt="Decode Web annotating a celebrity news article about a suspect charged in the Rihanna stalking case - the EX·01 panel reads 'She has never heard of you', naming the threat-system mechanism firing for a stranger five thousand miles away">
+    </div>
+    <div class="sample-caption">
+      <p><strong>She has never heard of you.</strong></p>
+      <p>Your threat system is running full protection protocol for a woman who does not know your name, in a city you are not in, against a man already in custody. The alarm has no action it can take. It is just on.</p>
+      <p>You are not weak for caring. You are caring because a protection circuit built for people within arm's reach just got handed a famous stranger five thousand miles away.</p>
+      <dl class="sample-spec">
+        <dt>Mechanism</dt><dd>M1 Threat Management</dd>
+        <dt>Proxy</dt><dd>Parasocial proximity via photographed faces and continuous news stream</dd>
+        <dt>Real input</dt><dd>A threat within your local band that you can act on, warn against, or escape</dd>
       </dl>
     </div>
   </section>
 
-  <section class="exchange">
-    <span class="exchange-label">EX · 03 / Grief taking too long</span>
-    <div class="q">It's been two months since my father died. People are telling me I should be getting better. Why am I not?</div>
-    <div class="a">
-      <p>Grief is not a mood problem to recover from. It is a physiological and cognitive re-calibration that rewrites your predictive model of the world. Your daily routines, expectations, attentional habits - all tuned to a world that included your father. Each time one of those habits fires and he is not there, the model updates. Painfully.</p>
-      <p>In the EEA that re-calibration happened inside a band that absorbed it. People covered your tasks, held witness, sat with you. Grief was long <strong>and</strong> distributed. Modern structures give you a few days off and return you to a system that cannot hold it.</p>
-      <p><em>"You should be getting better"</em> is a cultural proxy, not a signal from your organism. Your organism is on the correct timeline. The mismatch is the system around you, not you.</p>
-      <dl class="a-spec">
-        <dt>Mechanism</dt><dd>M3 Social Bonding (grief mode)</dd>
-        <dt>Proxy</dt><dd>Staged-grief timelines, bereavement leave, medicalization of ordinary loss</dd>
-        <dt>Real input</dt><dd>A band that absorbs the bereaved's tasks and witnesses the re-calibration, for as long as it takes</dd>
-      </dl>
-    </div>
-  </section>
-
-  <section class="exchange">
-    <span class="exchange-label">EX · 04 / Productive and worthless</span>
-    <div class="q">I'm productive by every measure at work and I feel worthless. What?</div>
-    <div class="a">
-      <p>Productivity and purpose are different readouts.</p>
-      <p>Your Controllability/Agency mechanism tracks whether your actions produce tangible results you can see. Your Pursuit mechanism fires when it closes loops - when an effort lands visibly in the world. Both are offline in most knowledge work: results are abstract, loops don't close, and your contribution disappears into a system where you cannot point at what you made.</p>
-      <p>"Productive by every measure" usually means: the metrics say you closed things. Your organism says: <em>"I saw no loops close."</em> Different measurement systems. Your metrics are reading a proxy; your worthlessness is the real signal - the mechanism is not getting what it was built for.</p>
-      <p>It's not that you're ungrateful or broken. It's that 300,000 years of evolution did not produce a system that registers tangible contribution by receiving a calendar invite.</p>
-      <dl class="a-spec">
-        <dt>Mechanism</dt><dd>M6 Controllability / Agency × M2 Pursuit / Exploration</dd>
-        <dt>Proxy</dt><dd>Productivity metrics, tickets closed, calendar fullness</dd>
-        <dt>Real input</dt><dd>Visible closed loops - effort landing in the world in a form the organism can see</dd>
-      </dl>
-    </div>
-  </section>
-
-  <div class="proto-note">
-    <span class="label">The live version</span>
-    <p>These four exchanges are drafts of the voice. The live interactive version - a chat interface grounded in the Cor spec (v4 mechanisms, cascade rules, WYATT) - is now running at <a href="decode-talk/" style="color:var(--teal);border-bottom:1px solid var(--teal);text-decoration:none;white-space:nowrap;">demismatch.com/decode-talk/</a>.</p>
-    <p>Honest is slower than comforting. We made the honest one.</p>
+  <div class="install-block">
+    <span class="label">Install · v0.4.2 · unpacked extension</span>
+    <h2>Load it in Chrome</h2>
+    <p>Decode Web is not yet published to the Chrome Web Store. It ships as an unpacked developer extension - a folder you load directly. Two minutes.</p>
+    <ol class="install-steps">
+      <li>Download <code>decode-web.zip</code> (via the button above) and unzip it anywhere on your machine. You will end up with a folder named <code>decode-web</code>.</li>
+      <li>In Chrome, open <code>chrome://extensions</code> and toggle <strong>Developer mode</strong> on (top-right of that page).</li>
+      <li>Click <strong>Load unpacked</strong> and select the unzipped <code>decode-web</code> folder.</li>
+      <li>Open any page. Click the Decode Web icon in the Chrome toolbar to open the side panel.</li>
+      <li>First run only: paste your <a href="https://openrouter.ai/keys" target="_blank" rel="noopener">OpenRouter API key</a> into the side panel. The key is stored locally in the extension and never sent to a Demismatch server.</li>
+    </ol>
   </div>
 
   <div class="proto-note">
     <span class="label">Sibling surface</span>
-    <p>Decode Talk takes a situation you type. <a href="decode-web.html" style="color:var(--teal);border-bottom:1px solid var(--teal);text-decoration:none;">Decode Web</a> takes what is already on your screen - a Chrome side panel that annotates live pages with the same read, grounded in the same atlas. If you want the read on the feed you are already reading, install Decode Web.</p>
+    <p>Decode Web and <a href="decode-talk.html">Decode Talk</a> are the same read on different surfaces. Decode Talk takes a situation you type; Decode Web takes what is already on your screen. Same spec underneath - the atlas at <a href="https://cor.demismatch.com/" target="_blank" rel="noopener">cor.demismatch.com</a>, v4 mechanisms, cascade rules, WYATT.</p>
+    <p>If you want to see what the read sounds like in dialogue form first, try <a href="decode-talk/">Decode Talk live</a>. If you want the annotations on the page you are already reading, install Decode Web.</p>
   </div>
 
   <div class="footer">
     <div class="footer-nav">
       <a href="vision.html">← Back to the vision</a>
-      <a href="decode-talk/" class="sibling">Try Decode Talk live →</a>
-      <a href="decode-web.html" class="sibling">See Decode Web →</a>
+      <a href="decode-talk.html" class="sibling">See Decode Talk →</a>
     </div>
-    <span>demismatch.com · Decode Talk / 01</span>
+    <span>demismatch.com · Decode Web / 02</span>
   </div>
 
   <style>
