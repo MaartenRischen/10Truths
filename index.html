@@ -192,11 +192,33 @@
       line-height: 1.2;
       margin: 0;
     }
+    .xsite-nav-about {
+      position: absolute;
+      top: 50%;
+      right: clamp(0.9rem, 3vw, 2.5rem);
+      transform: translateY(-50%);
+      font-family: var(--mono);
+      font-size: 0.58rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--parchment);
+      text-decoration: none;
+      opacity: 0.6;
+      transition: opacity 140ms ease, color 140ms ease;
+    }
+    .xsite-nav-about:hover,
+    .xsite-nav-about:focus-visible { opacity: 1; color: var(--teal-bright); }
     @media (max-width: 560px) {
       .xsite-nav { padding: 0.45rem 0.9rem; gap: 0.6rem; }
       .xsite-nav-links { gap: 0.4rem; }
       .xsite-nav-links a { font-size: 0.58rem; letter-spacing: 0.15em; }
       .xsite-nav-slogan { font-size: 0.78rem; }
+      .xsite-nav-about {
+        position: static;
+        transform: none;
+        font-size: 0.52rem;
+        opacity: 0.7;
+      }
     }
 
     /* ── Masthead (editorial issue strip, mirrors /vision) ── */
@@ -1221,6 +1243,7 @@
       <li aria-hidden="true" class="xsite-nav-sep">·</li>
       <li><a href="https://cor.demismatch.com/" data-xsite-link="atlas">COR (The How)</a></li>
     </ul>
+    <a class="xsite-nav-about" href="about.html">About</a>
   </nav>
 
   <header class="hero">
@@ -1230,7 +1253,6 @@
       <div class="hero-ctas">
         <a class="hero-cta" href="vision.html">Full Vision</a>
         <a class="hero-cta" href="https://cor.demismatch.com/">See the Atlas</a>
-        <a class="hero-cta" href="about.html">About</a>
       </div>
       <div class="hero-reads">
         <p class="hero-reads-label">Read</p>
