@@ -32,16 +32,21 @@ body {
 .xsite-nav {
   background: var(--oxblood-deep);
   border-bottom: 1px solid var(--teal);
-  display: flex;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
   gap: 1rem;
   padding: 0.5rem clamp(0.9rem, 3vw, 2.5rem);
-  flex-wrap: wrap;
   font-family: 'JetBrains Mono', ui-monospace, monospace;
   font-size: 0.575rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
+}
+.xsite-nav-links {
+  display: flex;
+  align-items: center;
+  justify-self: center;
+  gap: 0.6rem;
 }
 .xsite-nav a {
   color: var(--gold);
@@ -57,6 +62,11 @@ body {
   letter-spacing: 0;
   font-family: 'Spectral', serif;
   font-size: 0.725rem;
+  justify-self: start;
+  text-align: left;
+}
+@media (max-width: 560px) {
+  .xsite-nav { grid-template-columns: 1fr; }
 }
 
 .wrap {
@@ -125,12 +135,13 @@ h1 {
 <body>
 <nav class="xsite-nav" aria-label="Cross-site">
   <span class="tag">Aligning the world to what humans are.</span>
-  <span class="sep">&middot;</span>
-  <a href="/">Demismatch (The Why)</a>
-  <span class="sep">&middot;</span>
-  <a href="/vision.html">Vision (The What)</a>
-  <span class="sep">&middot;</span>
-  <a href="https://cor.demismatch.com/">Cor (The How)</a>
+  <span class="xsite-nav-links">
+    <a href="/">Demismatch (The Why)</a>
+    <span class="sep">&middot;</span>
+    <a href="/vision.html">Vision (The What)</a>
+    <span class="sep">&middot;</span>
+    <a href="https://cor.demismatch.com/">Cor (The How)</a>
+  </span>
 </nav>
 
 <div class="wrap">
