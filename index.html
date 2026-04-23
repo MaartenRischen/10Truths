@@ -355,98 +355,6 @@
       opacity: 0.9;
     }
 
-    .hero-reads {
-      margin-top: 2.25rem;
-      text-align: center;
-    }
-
-    .hero-reads-label {
-      font-family: var(--mono);
-      font-size: 0.72rem;
-      letter-spacing: 0.32em;
-      text-transform: uppercase;
-      color: var(--muted-warm);
-      margin-bottom: 1.1rem;
-    }
-
-    .hero-reads-label::before,
-    .hero-reads-label::after {
-      content: "";
-      display: inline-block;
-      width: 1.6rem;
-      height: 1px;
-      background: rgba(196, 150, 44, 0.45);
-      vertical-align: middle;
-      margin: 0 0.85rem;
-      transform: translateY(-1px);
-    }
-
-    .hero-reads-list {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .hero-read-card {
-      display: flex;
-      flex-direction: column;
-      gap: 0.45rem;
-      padding: 1.05rem 3rem 1.05rem 1.4rem;
-      border: 1px solid rgba(196, 150, 44, 0.45);
-      background: rgba(196, 150, 44, 0.06);
-      color: var(--parchment);
-      text-decoration: none;
-      min-width: 17rem;
-      max-width: 22rem;
-      text-align: left;
-      transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
-      position: relative;
-    }
-
-    .hero-read-card::after {
-      content: "→";
-      position: absolute;
-      top: 50%;
-      right: 1.2rem;
-      transform: translateY(-50%);
-      color: var(--gold);
-      font-family: var(--mono);
-      font-size: 1.05rem;
-      transition: transform 0.25s ease, color 0.25s ease;
-    }
-
-    .hero-read-card:hover,
-    .hero-read-card:focus-visible {
-      background: rgba(196, 150, 44, 0.16);
-      border-color: var(--gold);
-      transform: translateY(-2px);
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
-      outline: none;
-    }
-
-    .hero-read-card:hover::after,
-    .hero-read-card:focus-visible::after {
-      transform: translate(4px, -50%);
-      color: var(--parchment-soft);
-    }
-
-    .hero-read-title {
-      font-family: var(--serif);
-      font-size: 1.08rem;
-      color: var(--parchment-soft);
-      font-weight: 500;
-      letter-spacing: 0.005em;
-    }
-
-    .hero-read-meta {
-      font-family: var(--mono);
-      font-size: 0.66rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--muted-warm);
-    }
-
     .hero-footnote {
       font-family: var(--mono);
       font-size: 0.7rem;
@@ -1227,15 +1135,6 @@
         <a class="hero-cta" href="https://cor.demismatch.com/">See the Atlas</a>
         <a class="hero-cta" href="about.html">About</a>
         <a class="hero-cta" href="https://demismatch.com/decode-talk.html">Try Decode Talk</a>
-      </div>
-      <div class="hero-reads">
-        <p class="hero-reads-label">Read</p>
-        <div class="hero-reads-list">
-          <a class="hero-read-card" href="https://cor.demismatch.com/bridge-paper.html">
-            <span class="hero-read-title">The Optimizer Without a Target</span>
-            <span class="hero-read-meta">what alignment misses · working paper</span>
-          </a>
-        </div>
       </div>
     </div>
   </header>

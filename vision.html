@@ -174,6 +174,88 @@ body {
   transform: translate(-1px, -1px);
   box-shadow: 5px 5px 0 var(--teal), 10px 10px 0 var(--gold);
 }
+.hero-reads {
+  margin-top: 36px;
+  text-align: center;
+}
+.hero-reads-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: #8a7d5e;
+  margin: 0 0 18px;
+}
+.hero-reads-label::before,
+.hero-reads-label::after {
+  content: "";
+  display: inline-block;
+  width: 26px;
+  height: 1px;
+  background: rgba(196, 150, 44, 0.55);
+  vertical-align: middle;
+  margin: 0 14px;
+  transform: translateY(-1px);
+}
+.hero-reads-list {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.hero-read-card {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  padding: 17px 52px 17px 22px;
+  border: 1px solid rgba(196, 150, 44, 0.6);
+  background: rgba(196, 150, 44, 0.08);
+  color: var(--ink);
+  text-decoration: none;
+  min-width: 272px;
+  max-width: 360px;
+  text-align: left;
+  position: relative;
+  transition: background 160ms ease, border-color 160ms ease, transform 160ms ease, box-shadow 160ms ease;
+}
+.hero-read-card::after {
+  content: "→";
+  position: absolute;
+  top: 50%;
+  right: 19px;
+  transform: translateY(-50%);
+  color: var(--gold);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 17px;
+  transition: transform 160ms ease, color 160ms ease;
+}
+.hero-read-card:hover,
+.hero-read-card:focus-visible {
+  background: rgba(196, 150, 44, 0.18);
+  border-color: var(--gold);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(58, 18, 24, 0.18);
+  outline: none;
+}
+.hero-read-card:hover::after,
+.hero-read-card:focus-visible::after {
+  transform: translate(4px, -50%);
+  color: var(--oxblood);
+}
+.hero-read-title {
+  font-family: 'Spectral', serif;
+  font-size: 17px;
+  color: var(--oxblood);
+  font-weight: 500;
+  letter-spacing: 0.005em;
+}
+.hero-read-meta {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #8a7d5e;
+}
 .hero-onramp {
   margin: 0;
   font-family: 'JetBrains Mono', monospace;
@@ -1102,6 +1184,15 @@ body {
       <a class="btn-primary" href="https://cor.demismatch.com/">See the Atlas</a>
       <a class="btn-primary" href="about.html">About</a>
       <a class="btn-primary" href="https://demismatch.com/decode-talk.html">Try Decode Talk</a>
+    </div>
+    <div class="hero-reads">
+      <p class="hero-reads-label">Read</p>
+      <div class="hero-reads-list">
+        <a class="hero-read-card" href="https://cor.demismatch.com/bridge-paper.html">
+          <span class="hero-read-title">The Optimizer Without a Target</span>
+          <span class="hero-read-meta">what alignment misses · working paper</span>
+        </a>
+      </div>
     </div>
   </div>
 
