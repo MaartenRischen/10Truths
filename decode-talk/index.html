@@ -546,6 +546,23 @@ body {
 }
 .debug-panel-header button:hover { background: var(--teal); }
 
+/* TEMP NOTICE: high-demand model downgrade. Remove with the matching markup. */
+.demand-notice {
+  margin: 18px auto 0;
+  max-width: 640px;
+  padding: 12px 16px;
+  border: 1px solid rgba(196, 150, 44, 0.45);
+  border-left: 3px solid var(--gold);
+  border-radius: 4px;
+  background: rgba(196, 150, 44, 0.08);
+  color: var(--parchment);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12.5px;
+  line-height: 1.55;
+  letter-spacing: 0.01em;
+}
+.demand-notice strong { color: var(--gold); letter-spacing: 0.04em; }
+
 @media (max-width: 900px) {
   .page { padding: 32px 20px 24px; }
   .title-block h1 { font-size: 48px; }
@@ -576,7 +593,14 @@ body {
   <div class="title-block">
     <h1><em>Decode Talk</em></h1>
     <p class="standfirst">Situation in, evolutionary read out. Not a companion. The mechanism story behind what you're feeling - plus, if you want it, the nearest achievable next step.</p>
-    <span class="status" id="status-badge">Live · Opus 4.6</span>
+    <span class="status" id="status-badge">Live · Haiku 4.5</span>
+  </div>
+
+  <!-- TEMP NOTICE: high-demand model downgrade. Remove to restore Opus. -->
+  <div class="demand-notice" id="demand-notice" role="status">
+    <strong>Heads up:</strong> due to unusually high demand we've temporarily switched
+    the model from Opus to Haiku. Decodes will run, but results won't be as sharp as
+    they can be. We'll switch back to Opus once load settles.
   </div>
 
   <div class="cor-link-wrap">
@@ -638,7 +662,8 @@ const DEFAULTS = {
   density: 'primary',
   followups: 'forbidden',
   persona: '',
-  model: 'anthropic/claude-opus-4-6',
+  // TEMP: high demand — downgraded from 'anthropic/claude-opus-4-6' to spare OpenRouter quota.
+  model: 'anthropic/claude-haiku-4-5',
   temperature: 0.7,
   max_tokens: 2048,
   debug: false,
@@ -726,12 +751,15 @@ const API_PROMPT = '/api/decode-talk/prompt';
 const messages = [];
 let streaming = false;
 
+// TEMP: high demand — pin every session to Haiku regardless of saved/selected model.
+// Remove this constant and its uses to restore user model choice.
+const PINNED_MODEL = 'anthropic/claude-haiku-4-5';
 function loadSettings() {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (!raw) return { ...DEFAULTS };
     const parsed = JSON.parse(raw);
-    return { ...DEFAULTS, ...parsed };
+    return { ...DEFAULTS, ...parsed, model: PINNED_MODEL };
   } catch {
     return { ...DEFAULTS };
   }
@@ -888,7 +916,8 @@ async function runInference() {
     const res = await fetch(API_CHAT, {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
-      body: JSON.stringify({ messages, settings }),
+      // TEMP: high demand — force Haiku on the wire regardless of selected model.
+      body: JSON.stringify({ messages, settings: { ...settings, model: PINNED_MODEL } }),
     });
 
     if (!res.ok) {
