@@ -112,6 +112,26 @@
       max-width: 60ch;
     }
 
+    /* Quiet under-lede link to the plain-words page - site's mono/teal affordance */
+    .bd-plainlink {
+      display: inline-block;
+      margin-top: clamp(1.1rem, 2vw, 1.5rem);
+      font-family: var(--mono);
+      font-size: 0.74rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: var(--teal);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(45, 107, 107, 0.4);
+      transition: color 0.16s ease, border-color 0.16s ease;
+    }
+    .bd-plainlink:hover,
+    .bd-plainlink:focus-visible {
+      color: var(--oxblood);
+      border-bottom-color: var(--oxblood);
+    }
+
     /* ── Section eyebrow inside the panel ── */
     .bd-eyebrow {
       display: block;
@@ -320,6 +340,8 @@
       </div>
       <p class="bd-lede">Modern distress is accurate signaling about a world that no longer fits you, not a disorder in you. We can specify what you are actually built to need. Then build to it.</p>
 
+      <a class="bd-plainlink" href="how-humans-work.html">How humans work, what humans need →</a>
+
       <!-- Skeleton — four parts, Cor leads -->
       <span class="bd-eyebrow">What this is</span>
 
@@ -373,6 +395,8 @@
         <span><a class="name" href="https://demismatch.com/vision.html">Vision</a> the map</span>
         <span class="sep" aria-hidden="true">·</span>
         <span><a class="name" href="the-mismatch.html">Ten truths</a> the original story</span>
+        <span class="sep" aria-hidden="true">·</span>
+        <span><a class="name" href="how-humans-work.html">In plain words</a> how you work, what you need</span>
       </p>
 
     </section>
