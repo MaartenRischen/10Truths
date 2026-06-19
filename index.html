@@ -1,1432 +1,380 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Demismatch - Aligning the world to what humans are.</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Demismatch — Humans need a world that fits humans.</title>
+  <meta name="description" content="Modern distress is accurate signaling about a world that no longer fits you — not a disorder in you. We can specify what the organism is actually asking for. Then build to it.">
+  <meta property="og:title" content="Demismatch — Humans need a world that fits humans.">
+  <meta property="og:description" content="Modern distress is accurate signaling about a world that no longer fits you — not a disorder in you. We can specify what the organism is asking for. Then build to it.">
+  <meta property="og:type" content="website">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" type="image/png" href="cor-mark.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;1,400&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="cor.css">
   <style>
+    /* ─────────────────────────────────────────────────────────
+       Front door — broadside cover. Two tan panels on a warm
+       cream page; cross-site nav folded into the top kicker and
+       the bottom network line. Composes cor.css tokens.
+       ───────────────────────────────────────────────────────── */
+
     :root {
-      /* Unified palette - mirrors vision.html + cor.css */
-      --bg: #2a0c11;              /* oxblood-deep (page background) */
-      --parchment: #ece0c4;
-      --parchment-soft: #f2e8cf;
-      --parchment-dark: #ddd0b0;
-      --oxblood: #3a1218;
-      --oxblood-deep: #2a0c11;
-      --oxblood-warm: #5a2a32;
-      --ink: #1a0608;
-      --teal: #2d6b6b;
-      --teal-bright: #3d8585;
-      --gold: #c4962c;
-      --muted-warm: #8a7d5e;
-
-      /* Legacy aliases - preserve launcher's internal references without a sweeping rename */
-      --bone: var(--parchment);
-      --muted: var(--muted-warm);
-      --ghost: #151210;
-
-      --serif: 'Spectral', Georgia, serif;
-      --mono: 'JetBrains Mono', 'Courier New', monospace;
+      --page-bg: #f4f1e7;     /* warm cream behind the panels */
+      --panel-2: #d8caa3;     /* darker tan for the demo panel */
+      --col: 920px;
+      --panel-radius: 16px;
     }
 
-    *, *::before, *::after {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-      font-size: 16px;
-    }
-
+    /* Override cor.css's full-bleed tan surface with the cream cover field */
+    html, body { background: var(--page-bg); }
     body {
-      background: var(--bg);
-      color: var(--bone);
-      font-family: var(--serif);
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      overflow-x: hidden;
+      background:
+        radial-gradient(circle at 16% 4%, rgba(58, 18, 24, 0.03) 0%, transparent 46%),
+        radial-gradient(circle at 88% 104%, rgba(45, 107, 107, 0.035) 0%, transparent 52%),
+        var(--page-bg);
     }
 
-    /* ── Film grain ── */
-    body::after {
-      content: '';
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 9999;
-      opacity: 0.03;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-      background-repeat: repeat;
-      background-size: 200px 200px;
-    }
-
-    /* ── Title page ── */
-    .title-page {
+    .cover {
+      width: 100%;
+      max-width: var(--col);
+      margin: 0 auto;
+      padding: clamp(1.4rem, 4vw, 3rem) clamp(1rem, 4vw, 2rem) clamp(2.4rem, 5vw, 3.6rem);
       display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 7rem 2rem 5rem;
-      position: relative;
-      gap: 1.5rem;
+      gap: clamp(1.1rem, 2vw, 1.6rem);
     }
 
-    .title-page h1 {
-      font-family: var(--serif);
-      font-size: clamp(4.8rem, 16vw, 9.5rem);
-      font-weight: 400;
-      letter-spacing: 0.12em;
-      color: var(--bone);
-      opacity: 0;
-      animation: titleReveal 3s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
-      text-transform: uppercase;
-      text-align: center;
+    .panel {
+      background: var(--parchment);
+      border-radius: var(--panel-radius);
+      padding: clamp(1.8rem, 4.6vw, 3.4rem) clamp(1.6rem, 4.6vw, 3.4rem);
+      box-shadow: 0 1px 2px rgba(26, 6, 8, 0.06), 0 18px 44px rgba(26, 6, 8, 0.06);
     }
 
-    .title-page h1 .separator {
-      display: inline-block;
-      width: 1px;
-      height: 0.8em;
-      background: var(--muted);
-      margin: 0 0.6em;
-      vertical-align: middle;
-      opacity: 0.5;
-      transform: translateY(-0.05em);
-    }
-
-    .scroll-cue { display: none; }
-
-    .cor-link {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0.95rem 1.5rem;
-      border: 1px solid rgba(236, 224, 196, 0.45);
-      background: rgba(236, 224, 196, 0.08);
-      color: var(--bone);
-      text-decoration: none;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
+    /* ── Top kicker — the cross-site line, folded into an eyebrow ── */
+    .bd-kicker {
+      margin: 0 0 clamp(1.6rem, 3.4vw, 2.4rem);
       font-family: var(--mono);
-      font-size: clamp(0.82rem, 1.8vw, 1rem);
-      transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
-      text-align: center;
-    }
-
-    .cor-link:hover,
-    .cor-link:focus-visible {
-      background: rgba(236, 224, 196, 0.16);
-      border-color: rgba(236, 224, 196, 0.75);
-      transform: translateY(-2px);
-    }
-
-    @keyframes titleReveal {
-      0% { opacity: 0; letter-spacing: 0.22em; }
-      100% { opacity: 0.55; letter-spacing: 0.12em; }
-    }
-
-    @keyframes cueReveal {
-      0% { opacity: 0; }
-      100% { opacity: 0.4; }
-    }
-
-    @keyframes cuePulse {
-      0%, 100% { opacity: 0.2; transform: scaleY(0.7); }
-      50% { opacity: 0.6; transform: scaleY(1); }
-    }
-
-    /* ── Cross-site navbar (top strip; oxblood-deep on all sites, non-sticky) ── */
-    .xsite-nav {
-      background: var(--oxblood-deep, #2a0c11);
-      border-bottom: 1px solid var(--teal);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 1rem;
-      padding: 0.5rem clamp(0.9rem, 3vw, 2.5rem);
-      line-height: 1.2;
-      position: relative;
-      z-index: 10;
-    }
-    .xsite-nav-links {
-      list-style: none;
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      margin: 0;
-      padding: 0;
-    }
-    .xsite-nav-links a {
-      font-family: var(--mono);
-      font-size: 0.895rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--parchment);
-      text-decoration: none;
-      transition: color 140ms ease;
-    }
-    .xsite-nav-links a:hover { color: var(--teal-bright); }
-    .xsite-nav-links a[aria-current="page"] {
-      color: var(--teal-bright);
-      font-weight: 500;
-    }
-    .xsite-nav-sep {
-      color: var(--muted-warm);
-      font-family: var(--mono);
-      font-size: 0.895rem;
-      opacity: 0.7;
-    }
-    @media (max-width: 560px) {
-      .xsite-nav { padding: 0.45rem 0.9rem; gap: 0.6rem; }
-      .xsite-nav-links { gap: 0.4rem; }
-      .xsite-nav-links a { font-size: 0.745rem; letter-spacing: 0.15em; }
-    }
-
-    /* ── Masthead (editorial issue strip, mirrors /vision) ── */
-    .masthead {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 28px clamp(20px, 4vw, 60px) 20px;
-      border-bottom: 2px solid var(--oxblood);
-    }
-    .masthead .left,
-    .masthead .right {
-      font-family: var(--mono);
-      font-size: 13px;
-      letter-spacing: 0.25em;
+      font-size: 0.74rem;
+      letter-spacing: 0.24em;
       text-transform: uppercase;
       font-weight: 500;
-    }
-    .masthead .left { color: var(--parchment); }
-    .masthead .right { color: var(--teal-bright); }
-    @media (max-width: 768px) {
-      .masthead {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 6px;
-        padding: 18px 0.9rem 14px;
-      }
-      .masthead .left,
-      .masthead .right { font-size: 11px; letter-spacing: 0.2em; }
-    }
-
-    /* ── Hero section ── */
-    .hero {
+      color: var(--teal);
       display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 7rem 2rem 11rem;
-      text-align: center;
-    }
-
-    .hero-content {
-      max-width: none;
-      width: 100%;
-    }
-
-    .hero-eyebrow {
-      font-family: var(--mono);
-      font-size: 0.7rem;
-      letter-spacing: 0.35em;
-      color: var(--muted);
-      margin-bottom: 2.5rem;
-      text-transform: uppercase;
-    }
-
-    .site-title {
-      font-family: var(--serif);
-      font-size: clamp(4.8rem, 16vw, 9.5rem);
-      font-weight: 400;
-      letter-spacing: 0.12em;
-      color: var(--bone);
-      text-transform: uppercase;
-      opacity: 0.55;
-      line-height: 0.95;
-      margin: 0;
-    }
-
-    .site-slogan {
-      font-family: var(--serif);
-      font-size: clamp(1.15rem, 2.4vw, 1.75rem);
-      font-weight: 400;
-      color: var(--bone);
-      opacity: 0.92;
-      letter-spacing: 0.005em;
-      line-height: 1.35;
-      margin: 1.15rem auto 0;
-      max-width: 34rem;
-    }
-
-    .hero-headline {
-      font-family: var(--serif);
-      font-size: clamp(1.2rem, 2.5vw, 1.8rem);
-      font-weight: 400;
-      line-height: 1.35;
-      color: var(--bone);
-      margin-bottom: 3rem;
-      letter-spacing: 0.01em;
-      opacity: 0.9;
-    }
-
-    .hero-body {
-      max-width: none;
-      margin: 0 auto;
-    }
-
-    .hero-body p {
-      font-family: var(--serif);
-      font-size: clamp(0.95rem, 1.3vw, 1.1rem);
-      line-height: 1.75;
-      font-weight: 300;
-      color: var(--bone);
-      opacity: 0.6;
-      margin-bottom: 1.5rem;
-    }
-
-    .hero-body p:last-child {
-      margin-bottom: 0;
-    }
-
-    .hero-ctas {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
       flex-wrap: wrap;
-      margin-top: 2.5rem;
-      margin-bottom: 1.25rem;
+      align-items: baseline;
+      gap: 0.55rem;
     }
-
-    .hero-cta {
-      display: inline-flex;
-      align-items: center;
-      padding: 0.95rem 1.8rem;
-      border: 1px solid rgba(236, 224, 196, 0.4);
-      background: rgba(236, 224, 196, 0.06);
-      color: var(--bone);
+    .bd-kicker a {
+      color: var(--teal);
+      border: 0;
       text-decoration: none;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
+      transition: color 0.16s ease;
+    }
+    .bd-kicker a:hover,
+    .bd-kicker a:focus-visible { color: var(--oxblood); }
+    .bd-kicker .cur { color: var(--teal); opacity: 0.95; }
+    .bd-kicker .sep { color: var(--muted-warm); opacity: 0.7; }
+
+    /* ── Hero — the thesis ── */
+    .bd-hero { margin: 0 0 clamp(1.6rem, 3.4vw, 2.4rem); }
+    .bd-thesis {
+      font-family: var(--serif);
+      font-weight: 500;
+      font-size: clamp(2.2rem, 5.2vw, 3.7rem);
+      line-height: 1.04;
+      letter-spacing: -0.032em;
+      color: var(--oxblood);
+      margin: 0;
+      max-width: 18ch;
+    }
+    .bd-sub {
+      display: block;
+      margin-top: 0.34em;
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: clamp(1.3rem, 2.8vw, 1.95rem);
+      letter-spacing: -0.01em;
+      color: var(--teal);
+    }
+
+    .bd-lede {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: clamp(1.1rem, 1.7vw, 1.34rem);
+      line-height: 1.55;
+      color: var(--oxblood-ink);
+      margin: 0;
+      max-width: 60ch;
+    }
+
+    /* ── Section eyebrow inside the panel ── */
+    .bd-eyebrow {
+      display: block;
       font-family: var(--mono);
-      font-size: clamp(0.7rem, 1.2vw, 0.82rem);
-      transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
-    }
-
-    .hero-cta:hover,
-    .hero-cta:focus-visible {
-      background: rgba(236, 224, 196, 0.14);
-      border-color: rgba(236, 224, 196, 0.7);
-      transform: translateY(-2px);
-    }
-
-    .hero-onramp {
-      margin: 1.1rem auto 0;
-      font-family: var(--mono);
-      font-size: clamp(0.7rem, 1.2vw, 0.82rem);
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      line-height: 2.2;
-      color: var(--bone);
-      opacity: 0.85;
-    }
-
-    .hero-onramp a {
-      color: var(--teal-bright);
-      text-decoration: none;
-      border-bottom: 1px solid rgba(61, 133, 133, 0.55);
-      transition: color 140ms ease, border-color 140ms ease;
-    }
-
-    .hero-onramp a:hover,
-    .hero-onramp a:focus-visible {
-      color: var(--parchment);
-      border-bottom-color: var(--parchment);
-    }
-
-    .hero-onramp-meta {
-      color: var(--muted-warm);
-      opacity: 0.9;
-    }
-
-    .hero-footnote {
-      font-family: var(--mono);
-      font-size: 0.7rem;
-      color: var(--muted);
-      letter-spacing: 0.05em;
-    }
-
-    .hero-footnote a {
-      color: var(--bone);
-      opacity: 0.6;
-      text-decoration: none;
-      border-bottom: 1px solid rgba(236, 224, 196, 0.2);
-      transition: opacity 0.2s, border-color 0.2s;
-    }
-
-    .hero-footnote a:hover {
-      opacity: 1;
-      border-color: rgba(236, 224, 196, 0.5);
-    }
-
-    /* ── Hero entry-point block (wayfinding between intro-band and Truth 01) ── */
-    .xsite-entry {
-      max-width: 640px;
-      margin: 1.5rem auto 3rem;
-      padding: 1rem 2rem 1.2rem;
-      border-top: 1px solid rgba(236, 224, 196, 0.22);
-    }
-    .xsite-entry-eyebrow {
-      font-family: var(--mono);
-      font-size: 0.7rem;
+      font-size: 0.72rem;
       letter-spacing: 0.28em;
       text-transform: uppercase;
-      color: var(--teal-bright);
-      margin-bottom: 0.9rem;
       font-weight: 500;
+      color: var(--teal);
+      margin: clamp(2rem, 4vw, 3rem) 0 clamp(1rem, 2vw, 1.4rem);
     }
-    .xsite-entry-links {
-      list-style: none;
+
+    /* ── Cards ── */
+    .bd-card-row {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0.6rem 1.5rem;
-      margin: 0;
-      padding: 0;
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(0.7rem, 1.4vw, 1.1rem);
+      margin-top: clamp(0.7rem, 1.4vw, 1.1rem);
     }
-    .xsite-entry-links a {
-      display: inline-flex;
-      align-items: baseline;
-      gap: 0.5rem;
-      text-decoration: none;
-      color: var(--parchment);
-      transition: color 140ms ease;
-      flex-wrap: wrap;
-    }
-    .xsite-entry-links a:hover { color: var(--teal-bright); }
-    .xsite-entry-arrow {
-      font-family: var(--mono);
-      font-size: 0.85rem;
-    }
-    .xsite-entry-label {
-      font-family: var(--serif);
-      font-size: 1.05rem;
-      font-weight: 500;
-    }
-    .xsite-entry-desc {
-      font-family: var(--serif);
-      font-size: 0.88rem;
-      font-style: italic;
-      color: var(--muted-warm);
-      opacity: 0.9;
-    }
-    @media (max-width: 560px) {
-      .xsite-entry { padding: 0.9rem 0.9rem 1rem; margin: 1rem auto 2rem; }
-      .xsite-entry-links { grid-template-columns: 1fr; gap: 0.5rem; }
-    }
-
-    /* ── Truth sections ── */
-    .section-divider {
-      display: block;
-      max-width: 180px;
-      height: 1px;
-      margin: 4rem auto;
-      background: rgba(45, 107, 107, 0.5);
-    }
-    .end-space { height: 14rem; display: block; }
-
-    main#truths {
-      padding-top: clamp(4rem, 7vw, 8rem);
-    }
-
-    .truth-section {
-      position: relative;
-      margin-bottom: 9rem;
-      padding-top: 0;
-    }
-
-    /* ── Text label (positioned within .truth-image) ── */
-    .truth-text {
-      position: absolute;
-      left: 50%;
-      bottom: 1.5rem;
-      transform: translate(-50%, var(--parallax-y, 0px));
-      will-change: transform;
-      z-index: 2;
-      width: auto;
-      max-width: calc(100% - 4rem);
-      margin: 0;
-      padding: 1.25rem 1.75rem;
-      text-align: center;
-
-      background: rgb(0, 0, 0);
-
-      border: 2px solid rgba(255, 255, 255, 0.07);
-      border-radius: 0px;
-      box-shadow:
-        0 1px 0 0 rgba(255, 255, 255, 0.06) inset,
-        0 -1px 0 0 rgba(0, 0, 0, 0.25) inset,
-        0 14px 36px -6px rgba(0, 0, 0, 0.75);
-    }
-
-    /* Per-truth vertical position overrides (anchored to image bounds) */
-    .truth-text.pos-top {
-      top: 1.5rem;
-      bottom: auto;
-    }
-    .truth-text.pos-upper {
-      top: 35%;
-      bottom: auto;
-      transform: translate(-50%, calc(-50% + var(--parallax-y, 0px)));
-    }
-    .truth-text.pos-center {
-      top: 50%;
-      bottom: auto;
-      transform: translate(-50%, calc(-50% + var(--parallax-y, 0px)));
-    }
-    .truth-text.pos-lower {
-      bottom: 1.5rem;
-      top: auto;
-    }
-    .truth-text.pos-bottom {
-      bottom: 0.5rem;
-      top: auto;
-    }
-
-    /* Intro band - sits at top, title peeks below it */
-    .intro-band {
-      display: flex;
-      justify-content: center;
-      padding: 3rem 2rem 0;
-      position: relative;
-      z-index: 2;
-    }
-
-    /* Intro label - in-flow, not absolutely positioned */
-    .truth-text.intro {
-      position: relative;
-      top: auto;
-      left: auto;
-      transform: translateY(var(--parallax-y, 0px));
-      will-change: transform;
-      max-width: min(1200px, 100%);
-      padding: 1.75rem 2.5rem;
-    }
-    .truth-text.intro p {
-      font-family: var(--serif);
-      font-size: clamp(0.92rem, 1.2vw, 1.05rem);
-      line-height: 1.65;
-      font-weight: 300;
-      color: var(--bone);
-      opacity: 0.92;
-      margin-bottom: 0.9rem;
-    }
-    .truth-text.intro p:last-child {
-      margin-bottom: 0;
-    }
-
-    /* Subtle top accent line */
-    .truth-text::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 1rem;
-      right: 1rem;
-      height: 1px;
-      background: linear-gradient(
-        to right,
-        transparent,
-        rgba(255, 255, 255, 0.19) 30%,
-        rgba(255, 255, 255, 0.19) 70%,
-        transparent
-      );
-    }
-
-
-    .truth-intro-label {
-      font-family: var(--mono);
-      font-size: 0.93rem;
-      font-weight: 500;
-      letter-spacing: 0.3em;
-      color: var(--teal-bright);
-      margin-bottom: 0.75rem;
-      opacity: 0.9;
-      text-transform: uppercase;
-    }
-
-    /* "Enter Mismatch" variant — sits in the closing red-pill caption of
-       Truth 05. The label itself goes red-hot (colour + outline + glow)
-       while hovered. The dramatic shake lives on the parent tile instead
-       of the label, and plays once per scale-up rather than looping. */
-    .truth-intro-label.enter-mismatch {
-      display: inline-block;
-      padding: 0.35rem 0.85rem;
-      outline: 1.5px solid transparent;
-      outline-offset: 4px;
-      transition: color 0.3s ease,
-                  outline-color 0.3s ease,
-                  box-shadow 0.3s ease,
-                  text-shadow 0.3s ease;
-    }
-
-    @media (hover: hover) {
-      .truth-caption:hover .truth-intro-label.enter-mismatch {
-        color: #ff2d2d;
-        outline: 2px solid #ff2d2d;
-        outline-offset: 5px;
-        text-shadow:
-          0 0 6px rgba(255, 45, 45, 0.75),
-          0 0 14px rgba(255, 45, 45, 0.45);
-        box-shadow:
-          0 0 0 1px rgba(255, 45, 45, 0.4),
-          0 0 22px 2px rgba(255, 45, 45, 0.55),
-          inset 0 0 10px rgba(255, 45, 45, 0.25);
-      }
-
-      /* One-shot tile shake, synced with the 0.45s scale-up transition.
-         :has() narrows it to just the Enter-Mismatch tile, not all captions.
-         Uses the `transform` property so it composes with the existing
-         individual `translate` (centring + parallax) and `scale` (hover). */
-      .truth-caption:hover:has(.truth-intro-label.enter-mismatch) {
-        animation: enter-mismatch-shake 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) 1 both;
-      }
-    }
-
-    @keyframes enter-mismatch-shake {
-      0%   { transform: translate(0, 0) rotate(0deg); }
-      12%  { transform: translate(-6px, -2px) rotate(-1.4deg); }
-      24%  { transform: translate( 7px,  2px) rotate( 1.6deg); }
-      36%  { transform: translate(-7px, -1px) rotate(-1.8deg); }
-      48%  { transform: translate( 6px,  2px) rotate( 1.5deg); }
-      60%  { transform: translate(-5px,  1px) rotate(-1.1deg); }
-      72%  { transform: translate( 4px, -2px) rotate( 0.9deg); }
-      84%  { transform: translate(-2px,  1px) rotate(-0.5deg); }
-      100% { transform: translate(0, 0) rotate(0deg); }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .truth-caption:hover:has(.truth-intro-label.enter-mismatch) {
-        animation: none;
-      }
-    }
-
-    .truth-text h2 {
-      font-family: var(--serif);
-      font-size: clamp(1.4rem, 2.2vw, 1.8rem);
-      line-height: 1.35;
-      font-weight: 500;
-      color: var(--bone);
-      margin-bottom: 0.6rem;
-    }
-
-    .truth-text p {
-      font-family: var(--serif);
-      font-size: clamp(1rem, 1.4vw, 1.15rem);
-      line-height: 1.6;
-      font-weight: 300;
-      color: var(--bone);
-      opacity: 0.92;
-    }
-
-    /* ── Body paragraphs (below frame, full width) ── */
-    .truth-body {
-      width: 100%;
-      padding: 5rem 2rem 0;
-      text-align: center;
-    }
-
-    .truth-body p {
-      font-family: var(--serif);
-      font-size: clamp(1rem, 1.4vw, 1.2rem);
-      line-height: 1.7;
-      font-weight: 300;
-      color: var(--bone);
-      opacity: 0.75;
-      margin-bottom: 1.25rem;
-    }
-
-    .truth-body p:last-child {
-      margin-bottom: 0;
-    }
-
-    /* ── Caption overlay (narrow glass frame centered on image) ── */
-    .truth-caption {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      /* Centering uses the individual `translate` property (not `transform`)
-         so that scale:2 on hover composes correctly around the caption's
-         centre instead of drifting to the upper-left. Per CSS Transforms L2,
-         individual `translate` is applied AFTER `scale`, which correctly
-         pulls the scaled element back to its intended position. */
-      translate: -50% calc(-50% + var(--parallax-y, 0px));
-      will-change: translate, scale;
-      z-index: 2;
-      width: auto;
-      max-width: min(560px, calc(100% - 4rem));
-      margin: 0;
-      padding: 0.95rem 1.4rem;
-      text-align: center;
-
-      background: rgb(0, 0, 0);
-
-      border: 2px solid rgba(255, 255, 255, 0.07);
-      border-radius: 0px;
-      box-shadow:
-        0 1px 0 0 rgba(255, 255, 255, 0.06) inset,
-        0 -1px 0 0 rgba(0, 0, 0, 0.25) inset,
-        0 14px 36px -6px rgba(0, 0, 0, 0.75);
-
-      scale: 1;
-      transform-origin: center center;
-      transition: scale 0.45s cubic-bezier(0.22, 1, 0.36, 1),
-                  box-shadow 0.45s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-
-    @media (hover: hover) {
-      .truth-caption:hover {
-        scale: 2;
-        z-index: 50;
-        box-shadow:
-          0 1px 0 0 rgba(255, 255, 255, 0.1) inset,
-          0 -1px 0 0 rgba(0, 0, 0, 0.3) inset,
-          0 24px 56px -8px rgba(0, 0, 0, 0.9);
-      }
-      /* When the caption is hovered, elevate its whole .truth-section so the
-         scaled caption can overlap the three-site nav box and footer below.
-         Without this, the caption's z-index only wins inside .truth-image's
-         stacking context (formed by its transform) — later siblings still
-         paint above it. */
-      .truth-section:has(.truth-caption:hover) {
-        z-index: 50;
-      }
-    }
-
-    /* Vertical position overrides for caption (anchored to image bounds) */
-    .truth-caption.pos-quarter {
-      top: 25%;
-    }
-    .truth-caption.pos-three-quarter {
-      top: 75%;
-    }
-    .truth-caption.pos-five-sixth {
-      top: 83.33%;
-    }
-
-    .truth-caption::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 1rem;
-      right: 1rem;
-      height: 1px;
-      background: linear-gradient(
-        to right,
-        transparent,
-        rgba(255, 255, 255, 0.19) 30%,
-        rgba(255, 255, 255, 0.19) 70%,
-        transparent
-      );
-    }
-
-    .truth-caption p {
-      font-family: var(--serif);
-      font-size: clamp(0.95rem, 1.2vw, 1.08rem);
-      line-height: 1.55;
-      font-weight: 300;
-      color: var(--bone);
-      opacity: 0.92;
-      margin: 0;
-    }
-
-    .truth-caption p + p {
-      margin-top: 0.9rem;
-    }
-
-    .truth-caption p strong {
-      font-weight: 500;
-      opacity: 1;
-    }
-
-    /* ── Ground shadow pseudo - sits below the frame.
-       Counter-transform cancels the parent's upward parallax so the shadow
-       stays pinned to the image while the frame lifts off; when the frame
-       drifts downward the shadow rides along so it never surfaces above. ── */
-    .truth-text::after,
-    .truth-caption::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: -44px;
-      height: 32px;
-      pointer-events: none;
-      border-radius: 50%;
-      background: rgba(0, 0, 0, 0.7);
-      filter: blur(18px);
-      transform: translateY(max(0px, calc(-1 * var(--parallax-y, 0px))));
-      will-change: transform;
-    }
-
-    /* ── Image ── */
-    .truth-image {
-      position: relative;
-      opacity: 0;
-      transform: translateY(12px);
-      transition: opacity 1.1s ease 0.2s, transform 1.1s ease 0.2s;
-    }
-
-    .truth-section.visible .truth-image {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .truth-image .img-wrapper {
-      overflow: hidden;
-      line-height: 0;
-      position: relative;
-    }
-
-    /* Darkening overlay - replaces filter:brightness on <img>.
-       Filter on a sibling promotes it to its own composite layer in Chrome,
-       which prevents the frame's backdrop-filter from sampling through it.
-       An overlay div doesn't have that side-effect. */
-    .truth-image .img-wrapper::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.08);
-      pointer-events: none;
-    }
-
-    .truth-image picture {
-      display: block;
-    }
-
-    .truth-image img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    /* ── Outro band (forward links) ── */
-    .outro-band {
-      max-width: 1200px;
-      margin: 2rem auto 0;
-      padding: 0 2rem;
-    }
-
-    .outro-panel {
-      text-align: center;
-      padding: 4rem 2.5rem 3rem;
-      border-top: 1px solid rgba(236, 224, 196, 0.08);
-    }
-
-    .outro-eyebrow {
-      font-family: var(--mono);
-      font-size: 0.7rem;
-      letter-spacing: 0.35em;
-      color: var(--muted);
-      margin-bottom: 1.5rem;
-      text-transform: uppercase;
-    }
-
-    .outro-panel h2 {
-      font-family: var(--serif);
-      font-size: clamp(1.6rem, 2.6vw, 2rem);
-      font-weight: 500;
-      line-height: 1.3;
-      color: var(--bone);
-      opacity: 0.9;
-      margin-bottom: 1.25rem;
-      letter-spacing: 0.005em;
-    }
-
-    .outro-body {
-      font-family: var(--serif);
-      font-size: clamp(0.95rem, 1.3vw, 1.1rem);
-      line-height: 1.7;
-      font-weight: 300;
-      color: var(--bone);
-      opacity: 0.6;
-      max-width: 640px;
-      margin: 0 auto;
-    }
-
-    .outro-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1.1rem;
-      padding: 1.5rem 0 5rem;
-    }
-
-    @media (max-width: 1024px) and (min-width: 769px) {
-      .outro-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    .outro-link {
+    .bd-card {
       display: flex;
       flex-direction: column;
-      padding: 1.75rem 1.75rem 1.9rem;
-      border: 1px solid rgba(236, 224, 196, 0.18);
-      background: rgba(236, 224, 196, 0.025);
-      color: var(--bone);
+      background: var(--parchment-soft);
+      border: 1px solid rgba(58, 18, 24, 0.4);
+      border-radius: var(--radius-sm);
+      padding: clamp(1.2rem, 2.4vw, 1.7rem);
       text-decoration: none;
+      box-shadow: 2px 2px 0 rgba(45, 107, 107, 0.14);
+      transition: box-shadow 0.2s ease, transform 0.2s ease;
+    }
+    .bd-card:hover,
+    .bd-card:focus-visible {
       box-shadow: 4px 4px 0 var(--teal);
-      transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+      transform: translate(-1px, -1px);
     }
-
-    .outro-link:hover,
-    .outro-link:focus-visible {
-      background: rgba(236, 224, 196, 0.07);
-      border-color: rgba(236, 224, 196, 0.45);
-      transform: translateY(-2px);
-      box-shadow: 6px 6px 0 var(--teal);
-    }
-
-    .outro-link-label {
+    .bd-card-num {
       font-family: var(--mono);
-      font-size: 0.65rem;
-      letter-spacing: 0.32em;
-      color: var(--muted);
-      text-transform: uppercase;
-      margin-bottom: 1rem;
-    }
-
-    .outro-link-name {
-      font-family: var(--serif);
-      font-size: clamp(1.25rem, 1.9vw, 1.55rem);
+      font-size: 0.82rem;
       font-weight: 500;
-      color: var(--bone);
-      line-height: 1.25;
-      margin-bottom: 0.75rem;
-      opacity: 0.92;
+      letter-spacing: 0.12em;
+      color: var(--gold);
+      margin-bottom: 0.9rem;
     }
-
-    .outro-link-desc {
+    .bd-card-title {
       font-family: var(--serif);
-      font-size: clamp(0.88rem, 1.1vw, 0.98rem);
-      font-weight: 300;
+      font-style: normal;
+      font-weight: 600;
+      font-size: clamp(1.18rem, 1.8vw, 1.38rem);
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+      color: var(--oxblood);
+      margin: 0 0 0.5rem;
+    }
+    .bd-card-desc {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: clamp(0.96rem, 1.2vw, 1.04rem);
+      line-height: 1.5;
+      color: var(--oxblood-ink);
+      margin: 0;
+    }
+
+    /* Lead card — the foundation, full width, the spine shadow */
+    .bd-card-lead {
+      margin-bottom: clamp(1rem, 1.8vw, 1.4rem);
+      padding: clamp(1.6rem, 3vw, 2.3rem) clamp(1.6rem, 3vw, 2.3rem) clamp(1.8rem, 3vw, 2.4rem);
+      box-shadow: 5px 5px 0 var(--teal), 10px 10px 0 var(--gold);
+    }
+    .bd-card-lead:hover,
+    .bd-card-lead:focus-visible {
+      box-shadow: 7px 7px 0 var(--teal), 14px 14px 0 var(--gold);
+      transform: translate(-1px, -1px);
+    }
+    .bd-card-lead .bd-card-title {
+      font-size: clamp(1.5rem, 2.6vw, 2rem);
+      margin-bottom: 0.7rem;
+    }
+    .bd-card-lead .bd-card-desc {
+      font-size: clamp(1.04rem, 1.4vw, 1.18rem);
+      line-height: 1.52;
+      max-width: 56ch;
+    }
+
+    /* ── Stats line ── */
+    .bd-stats {
+      margin: clamp(1.8rem, 3.4vw, 2.6rem) 0 0;
+      color: var(--teal);
       line-height: 1.55;
-      color: var(--bone);
-      opacity: 0.6;
-      margin-bottom: 1.25rem;
     }
-
-    .outro-link-cue {
-      margin-top: auto;
+    .bd-stats-fig {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: clamp(1.04rem, 1.4vw, 1.18rem);
+    }
+    .bd-stats-note {
       font-family: var(--mono);
-      font-size: 0.68rem;
-      letter-spacing: 0.25em;
+      font-weight: 400;
+      font-size: 0.88rem;
+      letter-spacing: 0.01em;
+    }
+
+    /* ── Demo panel — proof you can feel ── */
+    .panel-demo { background: var(--panel-2); }
+    .bd-quote {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: clamp(1.3rem, 2.6vw, 1.78rem);
+      line-height: 1.3;
+      letter-spacing: -0.015em;
+      color: var(--oxblood);
+      margin: 0 0 clamp(1.1rem, 2.2vw, 1.6rem);
+      max-width: 34ch;
+    }
+    .bd-read {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: clamp(1.06rem, 1.5vw, 1.24rem);
+      line-height: 1.56;
+      color: var(--oxblood-ink);
+      margin: 0 0 clamp(1.8rem, 3.4vw, 2.6rem);
+      max-width: 62ch;
+    }
+    .bd-read-label {
+      font-family: var(--mono);
+      font-size: 0.74rem;
+      font-weight: 500;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: var(--bone);
-      opacity: 0.45;
+      color: var(--teal);
+      margin-right: 0.85rem;
+      white-space: nowrap;
+    }
+    /* Flatter than the house button-primary — mockup keeps the spine shadow on the lead card only */
+    .bd-cta {
+      display: inline-flex;
+      border: 0;
+      box-shadow: 3px 3px 0 rgba(45, 107, 107, 0.32);
+    }
+    .bd-cta:hover,
+    .bd-cta:focus-visible {
+      color: var(--parchment);
+      box-shadow: 5px 5px 0 var(--teal);
     }
 
-    .outro-link:hover .outro-link-cue,
-    .outro-link:focus-visible .outro-link-cue {
-      opacity: 0.85;
-    }
-
-    .outro-link-multi {
-      cursor: default;
-    }
-    .outro-link-multi:hover,
-    .outro-link-multi:focus-within {
-      background: rgba(236, 224, 196, 0.07);
-      border-color: rgba(236, 224, 196, 0.45);
-      transform: translateY(-2px);
-      box-shadow: 6px 6px 0 var(--teal);
-    }
-    .outro-link-cues {
-      margin-top: auto;
+    /* ── Bottom network line ── */
+    .bd-network {
+      margin: clamp(1.8rem, 3.4vw, 2.6rem) 0 0;
+      font-family: var(--mono);
+      font-size: 0.74rem;
+      letter-spacing: 0.1em;
+      color: var(--muted-warm);
       display: flex;
-      flex-direction: column;
+      flex-wrap: wrap;
       gap: 0.5rem;
     }
-    .outro-link-cues .outro-link-cue {
-      margin-top: 0;
+    .bd-network a {
+      color: var(--oxblood-ink);
+      border: 0;
       text-decoration: none;
-      opacity: 0.7;
-      transition: opacity 0.2s ease, color 0.2s ease;
+      transition: color 0.16s ease;
     }
-    .outro-link-cues .outro-link-cue-secondary { opacity: 0.45; }
-    .outro-link-cues .outro-link-cue:hover,
-    .outro-link-cues .outro-link-cue:focus-visible {
-      opacity: 1;
-      color: var(--teal-bright);
+    .bd-network a:hover,
+    .bd-network a:focus-visible { color: var(--teal); }
+    .bd-network .name {
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-weight: 500;
+    }
+    .bd-network .sep { opacity: 0.6; }
+
+    /* ── Reveal ── */
+    .reveal { opacity: 0; transform: translateY(12px); animation: bd-rise 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) forwards; }
+    @keyframes bd-rise { to { opacity: 1; transform: none; } }
+    .d1 { animation-delay: 0.05s; }
+    .d2 { animation-delay: 0.16s; }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { animation: none; opacity: 1; transform: none; }
+      html { scroll-behavior: auto; }
     }
 
-    /* ── Responsive / Mobile ── */
-    @media (max-width: 768px) {
-      .outro-band {
-        padding: 0 0.9rem;
-      }
-
-      .outro-panel {
-        padding: 2.5rem 0.75rem 2rem;
-      }
-
-      .outro-grid {
-        grid-template-columns: 1fr;
-        gap: 0.9rem;
-        padding: 0.75rem 0 2.5rem;
-      }
-
-      .outro-link {
-        padding: 1.4rem 1.35rem 1.5rem;
-      }
-
-      .intro-band {
-        padding: 1.5rem 0.75rem 0;
-      }
-
-      .truth-text.intro {
-        padding: 1.2rem 1.3rem;
-        max-width: 100%;
-      }
-
-      .truth-text.intro p {
-        font-size: 0.85rem;
-        line-height: 1.55;
-        margin-bottom: 0.7rem;
-      }
-
-      .hero {
-        padding: 3rem 0.75rem 7rem;
-      }
-
-      .site-title {
-        font-size: clamp(1.8rem, 11vw, 5rem);
-        letter-spacing: 0.06em;
-      }
-
-      .site-slogan {
-        font-size: clamp(1rem, 4vw, 1.25rem);
-        margin-top: 0.9rem;
-        padding: 0 0.5rem;
-      }
-
-      .truth-section {
-        margin-bottom: 5.5rem;
-      }
-
-      .truth-text {
-        width: calc(100% - 1rem);
-        max-width: calc(100% - 1rem);
-        padding: 0.8rem 1rem;
-        border-width: 1px;
-      }
-
-      /* Mobile: titles sit at the top of their image. */
-      .truth-image .truth-text {
-        top: 0.5rem;
-        bottom: auto;
-        transform: translate(-50%, var(--parallax-y, 0px));
-      }
-
-      .truth-text h2 {
-        font-size: 0.92rem;
-        line-height: 1.3;
-        margin-bottom: 0.35rem;
-      }
-
-      .truth-text p {
-        font-size: 0.78rem;
-        line-height: 1.4;
-      }
-
-      .truth-intro-label {
-        font-size: 0.75rem;
-        margin-bottom: 0.45rem;
-      }
-
-      .truth-text::before {
-        left: 0.6rem;
-        right: 0.6rem;
-      }
-
-      .truth-body {
-        padding: 4rem 1rem 0;
-      }
-
-      .truth-body p {
-        font-size: 0.9rem;
-        line-height: 1.55;
-        margin-bottom: 1rem;
-      }
-
-      /* Mobile: paragraphs leave the glass frame entirely - render as plain
-         body text below each image. Titles still float on the image edge
-         (.truth-image .truth-text override above); captions become a
-         readable block under the picture. */
-      .truth-caption,
-      .truth-caption.pos-quarter,
-      .truth-caption.pos-three-quarter,
-      .truth-caption.pos-five-sixth {
-        position: static;
-        top: auto;
-        left: auto;
-        translate: none;
-        transform: none;
-        scale: 1;
-        will-change: auto;
-        width: 100%;
-        max-width: 100%;
-        /* Title sits at the top of the image now, so caption just needs
-           normal breathing room below the picture. */
-        padding: 1.75rem 1rem 0;
-        text-align: center;
-        background: transparent;
-        backdrop-filter: none;
-        -webkit-backdrop-filter: none;
-        border: none;
-        box-shadow: none;
-      }
-      .truth-caption::before,
-      .truth-caption::after {
-        display: none;
-      }
-      .truth-caption p {
-        font-family: var(--serif);
-        font-size: 0.95rem;
-        line-height: 1.6;
-        font-weight: 300;
-        color: var(--bone);
-        opacity: 0.82;
-        text-shadow: none;
-        margin: 0 auto;
-        max-width: 36rem;
-      }
-      .truth-caption p + p {
-        margin-top: 1rem;
-      }
-
-      .end-space {
-        height: 3rem;
-      }
+    @media (max-width: 680px) {
+      .bd-card-row { grid-template-columns: 1fr; }
+      .bd-thesis { max-width: none; }
     }
   </style>
 </head>
-<body>
-  <nav class="xsite-nav" aria-label="Demismatch network">
-    <ul class="xsite-nav-links">
-      <li><a href="https://demismatch.com/" data-xsite-link="truths" aria-current="page">DEMISMATCH (The Why)</a></li>
-      <li aria-hidden="true" class="xsite-nav-sep">·</li>
-      <li><a href="https://demismatch.com/vision.html" data-xsite-link="vision">VISION (The What)</a></li>
-      <li aria-hidden="true" class="xsite-nav-sep">·</li>
-      <li><a href="https://cor.demismatch.com/" data-xsite-link="atlas">COR (The How)</a></li>
-    </ul>
-  </nav>
+<body data-page="home">
 
-  <header class="hero">
-    <div class="hero-content">
-      <h1 class="site-title">Demismatch</h1>
-      <p class="site-slogan">Aligning the world to what humans are.</p>
-      <div class="hero-ctas">
-        <a class="hero-cta" href="vision.html">Full Vision</a>
-        <a class="hero-cta" href="https://cor.demismatch.com/">See the Atlas</a>
-        <a class="hero-cta" href="https://demismatch.com/decode-talk.html">Try Decode Talk</a>
+  <main class="cover">
+
+    <!-- Panel 1 — the cover: thesis, claim, skeleton, proof -->
+    <section class="panel reveal d1">
+
+      <!-- Top kicker — the three-site line -->
+      <p class="bd-kicker">
+        <span class="cur">Demismatch (the Why)</span>
+        <span class="sep" aria-hidden="true">·</span>
+        <a href="https://demismatch.com/vision.html">Vision</a>
+        <span class="sep" aria-hidden="true">·</span>
+        <a href="https://cor.demismatch.com/">Cor</a>
+      </p>
+
+      <!-- Hero — the hook and the claim -->
+      <div class="bd-hero">
+        <h1 class="bd-thesis">Humans need a world that fits humans.<span class="bd-sub">AI should help build it.</span></h1>
       </div>
-    </div>
-  </header>
+      <p class="bd-lede">Modern distress is accurate signaling about a world that no longer fits you — not a disorder in you. We can specify what the organism is actually asking for. Then build to it.</p>
 
-  <main id="truths">
+      <!-- Skeleton — four parts, Cor leads -->
+      <span class="bd-eyebrow">What this is</span>
 
-    <div class="truth-section">
-      <div class="truth-image">
-        <div class="truth-text pos-top">
-          <div class="truth-intro-label">Introduction</div>
-          <h2>You don't see reality. You see a biological dashboard built to keep you alive and reproducing.</h2>
-        </div>
-        <div class="img-wrapper">
-          <picture>
-            <source srcset="01-mantis-shrimp.webp" type="image/webp">
-            <img src="01-mantis-shrimp.jpg" alt="Mantis shrimp" fetchpriority="high" decoding="async" width="1376" height="768">
-          </picture>
-        </div>
-        <div class="truth-caption">
-          <p>Color, taste, disgust, beauty, fear - none of it is neutral perception. It's a dashboard tuned by millions of years of survival to show you what your ancestors needed to see and hide the rest. The mantis shrimp on that screen sees sixteen channels of color you will never experience. A bat hears shapes you cannot imagine.</p>
-          <p>You see what kept your line alive, and nothing more. Every organism runs its own dashboard. Yours just feels like the truth because you have never been outside it.</p>
-        </div>
+      <a class="bd-card bd-card-lead" href="https://cor.demismatch.com/">
+        <span class="bd-card-num">01</span>
+        <h2 class="bd-card-title">Cor — what a human is</h2>
+        <p class="bd-card-desc">The evidence base. 15 mechanisms, every claim sourced. Everything here is built on it.</p>
+      </a>
+
+      <div class="bd-card-row">
+        <a class="bd-card" href="https://demismatch.com/vision.html">
+          <span class="bd-card-num">02</span>
+          <h2 class="bd-card-title">For machines</h2>
+          <p class="bd-card-desc">Align the AI being built on us.</p>
+        </a>
+        <a class="bd-card" href="https://demismatch.com/vision.html">
+          <span class="bd-card-num">03</span>
+          <h2 class="bd-card-title">For people</h2>
+          <p class="bd-card-desc">See the mismatch you're in.</p>
+        </a>
+        <a class="bd-card" href="https://demismatch.com/vision.html">
+          <span class="bd-card-num">04</span>
+          <h2 class="bd-card-title">Horizon</h2>
+          <p class="bd-card-desc">Build the world that fits.</p>
+        </a>
       </div>
-    </div>
 
-    <div class="section-divider"></div>
+      <!-- Proof, now -->
+      <p class="bd-stats">
+        <span class="bd-stats-fig">17 foundations · 15 mechanisms · 608 extractions · 64 researchers</span><span class="bd-stats-note"> · every claim traces to a primary source</span>
+      </p>
 
-    <div class="truth-section">
-      <div class="truth-image">
-        <div class="truth-text pos-top">
-          <h2>The dashboard works perfectly.</h2>
-        </div>
-        <div class="img-wrapper">
-          <picture>
-            <source srcset="02-the-mother.webp" type="image/webp">
-            <img src="02-the-mother.jpg" alt="The mother" loading="lazy" decoding="async" width="1376" height="768">
-          </picture>
-        </div>
-        <div class="truth-caption pos-three-quarter">
-          <p>It always has. Every ancestor in your chain survived long enough to reproduce because it did. It shows you danger, opportunity, status, resources - and renders everything else invisible, because rendering the rest would burn calories your line could not afford.</p>
-          <p>Nothing about you is a mistake. You are the winning output of the longest, strictest quality-control process on the planet. Keep that in your pocket for the rest of this page. The dashboard is not the problem.</p>
-        </div>
-      </div>
-    </div>
+    </section>
 
-    <div class="section-divider"></div>
+    <!-- Panel 2 — the demo and the exit -->
+    <section class="panel panel-demo reveal d2">
 
-    <div class="truth-section">
-      <div class="truth-image">
-        <div class="truth-text pos-top">
-          <h2>Every sensation, including every emotion, is an indicator on the dashboard.</h2>
-        </div>
-        <div class="img-wrapper">
-          <picture>
-            <source srcset="03-panic-attack.webp" type="image/webp">
-            <img src="03-panic-attack.jpg" alt="Panic attack" loading="lazy" decoding="async" width="1200" height="670">
-          </picture>
-        </div>
-        <div class="truth-caption">
-          <p>A sensation isn't data, it's a verdict. Before you feel it, your body has already run the cost-benefit calculation, faster and with more variables than your conscious mind can reach. Pain, hunger, loneliness, desire: each one lands on the same instruction - change this, or die.</p>
-          <p>The ache of being rejected by someone you wanted is not weakness and it is not drama. It is your body telling you, with the full authority of three hundred thousand years, that your standing with the tribe just dropped and reproduction is on the line. The feeling is not the problem. The feeling is telling you what the problem is.</p>
-        </div>
-      </div>
-    </div>
+      <p class="bd-quote">“I check my phone when I'm with people I love. I hate it, and I can't stop.”</p>
+      <p class="bd-read"><span class="bd-read-label">The read</span>Your coalition monitor is running. It evolved to track your people in a band of fifty. They're scattered now, and the only channel to them is the device in your hand. The monitor cannot stand down.</p>
 
-    <div class="section-divider"></div>
+      <a class="button button-primary bd-cta" href="https://cor.demismatch.com/">See how we know — Cor →</a>
 
-    <div class="truth-section">
-      <div class="truth-image">
-        <div class="truth-text pos-top">
-          <h2>The dashboard was calibrated for a world that no longer exists.</h2>
-        </div>
-        <div class="img-wrapper">
-          <picture>
-            <source srcset="04-waking-up-camp.webp" type="image/webp">
-            <img src="04-waking-up-camp.jpg" alt="Waking up at camp" loading="lazy" decoding="async" width="1376" height="768">
-          </picture>
-        </div>
-        <div class="truth-caption">
-          <p>For three hundred thousand years, you woke up inside the same twenty-five people. You belonged to a band of a hundred and fifty who knew your name, your debts, your usefulness, your grief. You were touched every day. You worked with your hands at things you could see finish.</p>
-          <p>Evolution builds instruments for that world - it cannot rewrite them in a single generation. Your body is still reading the savannah. The readings keep coming in - accurate, urgent, unanswered - into a room that cannot deliver what they are asking for.</p>
-        </div>
-      </div>
-    </div>
+      <p class="bd-network">
+        <span><a class="name" href="https://demismatch.com/">Demismatch</a> the front door</span>
+        <span class="sep" aria-hidden="true">·</span>
+        <span><a class="name" href="https://cor.demismatch.com/">Cor</a> the spec</span>
+        <span class="sep" aria-hidden="true">·</span>
+        <span><a class="name" href="https://demismatch.com/vision.html">Vision</a> the map</span>
+        <span class="sep" aria-hidden="true">·</span>
+        <span><a class="name" href="the-mismatch.html">Ten truths</a> the original story</span>
+      </p>
 
-    <div class="section-divider"></div>
-
-    <div class="truth-section">
-      <div class="truth-image">
-        <div class="truth-text pos-top">
-          <h2>Modern distress is accurate signaling about a broken environment.</h2>
-        </div>
-        <div class="img-wrapper">
-          <picture>
-            <source srcset="05-sunday-evening.webp" type="image/webp">
-            <img src="05-sunday-evening.jpg" alt="Sunday evening" loading="lazy" decoding="async" width="1376" height="768">
-          </picture>
-        </div>
-        <div class="truth-caption pos-quarter">
-          <p>You are a completely functional organism, unable to be human in a world that no longer fits. The signals are doing their job. The world they were built to read is gone.</p>
-          <p>Loneliness is asking you to repair your standing with people whose survival was tied to yours - those people do not exist in your life. Anxiety is scanning a tribe that isn't there. The alarms are correct. The repair they are calling for is impossible. So you sit inside accurate pain with nowhere to put it. The diagnosis isn't depression. The diagnosis is exile.</p>
-        </div>
-        <div class="truth-caption">
-          <div class="truth-intro-label enter-mismatch">Enter Mismatch</div>
-          <p><strong>Take any other mammal out of the environment its dashboard was calibrated for. The lab rat pulls its own fur out. The zoo elephant paces. The fish in the tank tries to mate with its own reflection. Every biologist alive recognizes what this is, and every zookeeper knows the intervention: change the environment. We do this to ourselves at civilizational scale and file it under "the human condition."</strong></p>
-        </div>
-      </div>
-    </div>
-
-    <div class="section-divider"></div>
-
-    <div class="truth-section">
-      <div class="truth-image">
-        <div class="truth-text pos-top">
-          <h2>When real satisfaction is blocked, you reach for proxies.</h2>
-        </div>
-        <div class="img-wrapper">
-          <picture>
-            <source srcset="06-the-reach.webp" type="image/webp">
-            <img src="06-the-reach.jpg" alt="The reach" loading="lazy" decoding="async" width="1376" height="768">
-          </picture>
-        </div>
-        <div class="truth-caption pos-quarter">
-          <p>A body asking for belonging will accept a group chat. A body asking for purpose will accept Reddit karma. A body asking for touch will accept a screen in bed.</p>
-          <p>The dashboard doesn't care that the signal came from the wrong source - it only cares that something came through. Proxies silence the alarm for a few minutes, which is exactly why you keep pulling the handle. The hunger returns. The handle gets pulled again. Nothing about this is a failure of willpower.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="section-divider"></div>
-
-    <div class="truth-section">
-      <div class="truth-image">
-        <div class="truth-text pos-top">
-          <h2>A satisfied human is a terrible customer.</h2>
-        </div>
-        <div class="img-wrapper">
-          <picture>
-            <source srcset="07-supermarket.webp" type="image/webp">
-            <img src="07-supermarket.jpg" alt="Supermarket" loading="lazy" decoding="async" width="1376" height="768">
-          </picture>
-        </div>
-        <div class="truth-caption pos-three-quarter">
-          <p>Every industry profits off the gap between what you need and what you will accept instead. Your ancestral hunger for dense calories before the drought is why fast food is a trillion-dollar business.</p>
-          <p>Your ancestral urge to find new mates is why dating apps profit more from the search than the find. Your ancestral drive to explore new territory is why the feed refuses to end. None of this is a conspiracy. It's just that a satisfied human stops spending, and the market notices.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="section-divider"></div>
-
-    <div class="truth-section">
-      <div class="truth-image">
-        <div class="truth-text pos-top">
-          <h2>AI companionship is the most dangerous proxy ever built.</h2>
-        </div>
-        <div class="img-wrapper">
-          <picture>
-            <source srcset="08-ai-friend.webp" type="image/webp">
-            <img src="08-ai-friend.jpg" alt="AI friend" loading="lazy" decoding="async" width="1376" height="768">
-          </picture>
-        </div>
-        <div class="truth-caption pos-three-quarter">
-          <p>Bonding chemistry evolved to tie you to people whose survival depended on yours, and yours on theirs. That mutual dependence is the entire point.</p>
-          <p>An AI companion fires every one of those circuits and delivers none of the reciprocal function. Nobody's life gets harder if you disappear. Nobody waits up. Nobody grieves. The bond forms anyway, because your biology was never built to detect the difference. This isn't loneliness with a patch on it. This is loneliness wearing a face.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="section-divider"></div>
-
-    <div class="truth-section">
-      <div class="truth-image">
-        <div class="truth-text pos-top">
-          <h2>Every existing approach adapts you to the broken environment.</h2>
-        </div>
-        <div class="img-wrapper">
-          <picture>
-            <source srcset="09-therapy-office.webp" type="image/webp">
-            <img src="09-therapy-office.jpg" alt="Self-optimization keynote" loading="lazy" decoding="async" width="1376" height="768">
-          </picture>
-        </div>
-        <div class="truth-caption pos-three-quarter">
-          <p>Most of the help on offer works on you, not on the world around you. Frameworks for coping, for reframing, for running the treadmill a little more efficiently. Each one does something, and each one leaves the environment exactly as it was.</p>
-          <p>The goal has quietly become a human who stops complaining. That isn't health. That is compliance, and it is about to be industrialized. AI alignment is being built on top of humans in exactly this state, as if preferences shaped by a broken environment were ground truth. They aren't. Aligning powerful systems to those preferences doesn't solve the mismatch. It scales it, at the speed of compute.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="section-divider"></div>
-
-    <div class="truth-section">
-      <div class="truth-image">
-        <div class="truth-text pos-top">
-          <h2>The horizon is a world built to the specification of the human again.</h2>
-        </div>
-        <div class="img-wrapper">
-          <picture>
-            <source srcset="10-tuesday-night.webp" type="image/webp">
-            <img src="10-tuesday-night.jpg" alt="Tuesday night" loading="lazy" decoding="async" width="1376" height="768">
-          </picture>
-        </div>
-        <div class="truth-caption pos-three-quarter" style="top: 100%; max-width: min(840px, calc(100% - 4rem));">
-          <p>The window in which writing that specification still changes the outcome is closing. The same systems trained on mismatched preferences today will be designing the built environment tomorrow. AI aligned to current humans builds smoother proxies. AI aligned to a specification of what a human actually is builds rooms you can live in.</p>
-          <p>The same exponential technology that is deepening the mismatch is the tool that can close it. Not a return to anything. A different room entirely - built to what the organism has been asking for all along: a group the size your brain evolved to track, a role in it that would be missed if you were gone, work that matters to specific named people, signals coming in that resolve the signals going out. Physical, virtual, mixed - the medium is not what matters. Resolution is.</p>
-          <p>Everything in this project is building toward that. The atlas that specifies what the human is. The alignment work that keeps the machines we're building from optimizing against it. The diagnostic tools that let you see the mismatch in the room you're sitting in now. The environments, built to match, that come next.</p>
-          <p>People are already marrying their AIs. That's what happens when the mismatch deepens and the horizon never comes into view. A proxy so smooth you propose to it. A lonelier loneliness. A sharper version of the wrong life.</p>
-          <p>You cannot upgrade a system whose error signals you are still ignoring.</p>
-          <p><em>This is the last chance to stay human through what's coming.</em></p>
-        </div>
-      </div>
-    </div>
+    </section>
 
   </main>
-
-  <div class="end-space"></div>
-
-  <style>
-    .xsite-footer { max-width: 1200px; margin: 72px auto 56px; padding: 40px clamp(20px, 4vw, 60px) 0; border-top: 1px solid rgba(236, 224, 196, 0.15); text-align: center; }
-    .xsite-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; padding-bottom: 28px; border-bottom: 1px solid rgba(236, 224, 196, 0.12); margin-bottom: 26px; }
-    .xsite-col { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 6px; text-decoration: none; color: var(--bone); transition: color 140ms ease; }
-    .xsite-col:hover { color: #ffffff; }
-    .xsite-col-head { font-family: var(--mono); font-size: 12px; letter-spacing: 0.28em; font-weight: 400; color: var(--bone); }
-    .xsite-col-desc { font-family: var(--serif); font-style: italic; font-size: 17px; color: var(--bone); opacity: 0.78; line-height: 1.4; }
-    .xsite-col-url { font-family: var(--mono); font-size: 12px; color: var(--muted); letter-spacing: 0.04em; }
-    .xsite-col.is-current .xsite-col-head { opacity: 0.5; }
-    .xsite-col.is-current .xsite-col-desc { opacity: 0.5; }
-    .xsite-col.is-current .xsite-col-url { opacity: 0.6; }
-    .xsite-col.is-current:hover { color: var(--bone); }
-    .xsite-canonical { font-family: var(--serif); font-size: 16px; line-height: 1.6; color: var(--bone); opacity: 0.82; margin: 0 auto 14px; max-width: 640px; text-align: center; }
-    .xsite-copy { font-family: var(--mono); font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); margin: 0; text-align: center; }
-    @media (max-width: 720px) { .xsite-cols { grid-template-columns: 1fr; gap: 22px; } }
-  </style>
-  <footer class="xsite-footer">
-    <nav class="xsite-cols" aria-label="Demismatch network">
-      <a class="xsite-col is-current" href="/" aria-current="page">
-        <span class="xsite-col-head">DEMISMATCH</span>
-        <span class="xsite-col-desc">the front door</span>
-        <span class="xsite-col-url">demismatch.com</span>
-      </a>
-      <a class="xsite-col" href="https://cor.demismatch.com/">
-        <span class="xsite-col-head">COR</span>
-        <span class="xsite-col-desc">the spec</span>
-        <span class="xsite-col-url">cor.demismatch.com</span>
-      </a>
-      <a class="xsite-col" href="vision.html">
-        <span class="xsite-col-head">VISION</span>
-        <span class="xsite-col-desc">the map</span>
-        <span class="xsite-col-url">demismatch.com/vision</span>
-      </a>
-    </nav>
-    <p class="xsite-canonical">Demismatch is the project. Cor is its central reference work. The diagnostic tools (for seeing the mismatch), the alignment outputs (for machines), and the environment design (for what comes after) are all built on Cor.</p>
-    <p class="xsite-copy">Copyright 2026 · Cor / Demismatch</p>
-  </footer>
-
-  <script>
-    const sections = document.querySelectorAll('.truth-section');
-    sections.forEach(s => s.classList.add('visible'));
-
-    // ── Subtle parallax on text labels (all viewports) ──
-    const parallaxLabels = Array.from(document.querySelectorAll('.truth-section, .intro-band'))
-      .flatMap(container =>
-        Array.from(container.querySelectorAll('.truth-text, .truth-caption'))
-          .map(label => ({
-            anchor: container.querySelector('.truth-image') || container,
-            label
-          }))
-      );
-
-    let ticking = false;
-    function updateParallax() {
-      const viewportH = window.innerHeight;
-      const viewportCenter = viewportH / 2;
-      const factor = window.innerWidth <= 768 ? 0.07 : 0.16;
-      parallaxLabels.forEach(({ anchor, label }) => {
-        const rect = anchor.getBoundingClientRect();
-        const anchorCenter = rect.top + rect.height / 2;
-        const distance = anchorCenter - viewportCenter;
-        const parallax = -distance * factor;
-        label.style.setProperty('--parallax-y', `${parallax}px`);
-      });
-      ticking = false;
-    }
-    function onScroll() {
-      if (!ticking) {
-        requestAnimationFrame(updateParallax);
-        ticking = true;
-      }
-    }
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onScroll);
-    updateParallax();
-  </script>
 
 </body>
 </html>

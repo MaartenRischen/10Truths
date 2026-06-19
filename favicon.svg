@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="120 50 560 560" fill="none">
+  <!-- Favicon: rings + teal dot only (the wordmark is illegible at favicon size).
+       Rings adapt to the browser tab theme via prefers-color-scheme. -->
+  <style>
+    .ring { stroke: #3a1218; }
+    @media (prefers-color-scheme: dark) { .ring { stroke: #ece0c4; } }
+  </style>
+  <g class="ring" stroke-width="24" fill="none">
+    <circle cx="399.5" cy="329" r="271"/>
+    <circle cx="446.5" cy="376.5" r="200"/>
+    <circle cx="488" cy="418" r="129"/>
+  </g>
+  <circle cx="523" cy="453" r="59" fill="#2d6b6b"/>
+</svg>

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="104 34 592 592" role="img" aria-label="Cor" fill="none">
+  <!-- Cor mark: three rings rippling from the teal "O", with the COR wordmark.
+       Authored in the original PNG coordinate space; viewBox windows to a tight square.
+       Standalone/light-background version. Wordmark renders in Spectral where the font is
+       available (the site loads it), falling back to a serif otherwise. -->
+  <g stroke="#3a1218" stroke-width="5" fill="none">
+    <circle cx="399.5" cy="329" r="271"/>
+    <circle cx="446.5" cy="376.5" r="200"/>
+    <circle cx="488" cy="418" r="129"/>
+  </g>
+  <circle cx="523" cy="453" r="59" fill="#2d6b6b"/>
+  <g fill="#3a1218" font-family="Spectral, Georgia, serif" font-weight="500" font-size="116" text-anchor="middle">
+    <text x="424" y="492">C</text>
+    <text x="624" y="492">R</text>
+  </g>
+</svg>
