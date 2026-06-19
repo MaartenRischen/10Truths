@@ -196,9 +196,18 @@
 
     /* Lead card — the foundation, full width, the spine shadow */
     .bd-card-lead {
+      position: relative;
       margin-bottom: clamp(1rem, 1.8vw, 1.4rem);
       padding: clamp(1.6rem, 3vw, 2.3rem) clamp(1.6rem, 3vw, 2.3rem) clamp(1.8rem, 3vw, 2.4rem);
       box-shadow: 5px 5px 0 var(--teal), 10px 10px 0 var(--gold);
+    }
+    /* Cor mark - emblem in the lead card's top-right (light-bg SVG, no filter) */
+    .bd-cor-mark {
+      position: absolute;
+      top: clamp(1.4rem, 2.8vw, 2.1rem);
+      right: clamp(1.4rem, 2.8vw, 2.1rem);
+      width: clamp(54px, 8vw, 84px);
+      height: auto;
     }
     .bd-card-lead:hover,
     .bd-card-lead:focus-visible {
@@ -346,6 +355,7 @@
       <span class="bd-eyebrow">What this is</span>
 
       <a class="bd-card bd-card-lead" href="https://cor.demismatch.com/">
+        <img class="bd-cor-mark" src="cor-mark.svg" alt="" aria-hidden="true" />
         <span class="bd-card-num">01</span>
         <h2 class="bd-card-title">Cor - what a human is</h2>
         <p class="bd-card-desc">A complete account of what your systems need, and why. Everything here is built on it.</p>
@@ -378,6 +388,10 @@
 
     <!-- Panel 2 — the demo and the exit -->
     <section class="panel panel-demo reveal d2">
+
+      <div style="margin-bottom: clamp(1.8rem, 3.4vw, 2.6rem);">
+        <a class="button button-secondary" href="decode-talk.html">Try Decode Talk →</a>
+      </div>
 
       <p class="bd-quote">“I check my phone when I'm with people I love. I hate it, and I can't stop.”</p>
       <p class="bd-read"><span class="bd-read-label">The read</span>Your coalition monitor is running. It evolved to track your people in a band of fifty. They're scattered now, and the only channel to them is the device in your hand. The monitor cannot stand down.</p>
