@@ -194,21 +194,22 @@
       margin: 0;
     }
 
-    /* Lead card — the foundation, full width, the spine shadow */
+    /* Lead card - the foundation, full width, the spine shadow. Cor mark on the left. */
     .bd-card-lead {
-      position: relative;
+      flex-direction: row;
+      align-items: center;
+      gap: clamp(1.3rem, 4vw, 3rem);
       margin-bottom: clamp(1rem, 1.8vw, 1.4rem);
       padding: clamp(1.6rem, 3vw, 2.3rem) clamp(1.6rem, 3vw, 2.3rem) clamp(1.8rem, 3vw, 2.4rem);
       box-shadow: 5px 5px 0 var(--teal), 10px 10px 0 var(--gold);
     }
-    /* Cor mark - emblem in the lead card's top-right (light-bg SVG, no filter) */
+    /* Cor mark - emblem on the left of the lead card (light-bg SVG, no filter) */
     .bd-cor-mark {
-      position: absolute;
-      top: clamp(1.4rem, 2.8vw, 2.1rem);
-      right: clamp(1.4rem, 2.8vw, 2.1rem);
-      width: clamp(54px, 8vw, 84px);
+      flex: 0 0 auto;
+      width: clamp(68px, 12vw, 128px);
       height: auto;
     }
+    .bd-card-lead-body { display: flex; flex-direction: column; min-width: 0; }
     .bd-card-lead:hover,
     .bd-card-lead:focus-visible {
       box-shadow: 7px 7px 0 var(--teal), 14px 14px 0 var(--gold);
@@ -285,6 +286,76 @@
       box-shadow: 5px 5px 0 var(--teal);
     }
 
+    /* ── Decode Talk style conversations (mirrors decode-talk.html) ── */
+    .dt-exchange { margin: 0 0 clamp(2.4rem, 4.4vw, 3.4rem); }
+    .dt-label {
+      display: block;
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin: 0 0 clamp(1rem, 2vw, 1.4rem);
+      padding-bottom: 0.8rem;
+      border-bottom: 1px dashed rgba(58, 18, 24, 0.3);
+    }
+    .dt-q {
+      background: var(--oxblood);
+      color: var(--parchment);
+      padding: clamp(1rem, 2.2vw, 1.4rem) clamp(1.2rem, 2.6vw, 1.8rem);
+      border-radius: 10px;
+      margin: 0 0 clamp(1.1rem, 2.2vw, 1.5rem) clamp(1.4rem, 14%, 7rem);
+      font-family: var(--serif);
+      font-size: clamp(1.18rem, 2.2vw, 1.5rem);
+      line-height: 1.4;
+      box-shadow: 4px 4px 0 var(--gold);
+    }
+    .dt-a {
+      background: var(--parchment-soft);
+      border: 1px solid var(--oxblood);
+      border-radius: 10px;
+      padding: clamp(1.3rem, 2.8vw, 1.9rem) clamp(1.4rem, 3vw, 2.1rem);
+      margin-right: clamp(0px, 8%, 4rem);
+      box-shadow: 6px 6px 0 var(--teal);
+    }
+    .dt-a p {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: clamp(1.04rem, 1.5vw, 1.2rem);
+      line-height: 1.6;
+      color: var(--oxblood-ink);
+      margin: 0;
+    }
+    .dt-spec {
+      margin: 1.2rem 0 0;
+      padding-top: 0.9rem;
+      border-top: 1px solid rgba(58, 18, 24, 0.2);
+      display: grid;
+      grid-template-columns: max-content 1fr;
+      gap: 0.4rem 1rem;
+    }
+    .dt-spec dt {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--teal);
+      padding-top: 0.2rem;
+    }
+    .dt-spec dd {
+      font-family: var(--serif);
+      font-size: 0.98rem;
+      color: var(--oxblood);
+      line-height: 1.5;
+      margin: 0;
+    }
+    @media (max-width: 680px) {
+      .dt-q { margin-left: 0; }
+      .dt-a { margin-right: 0; }
+      .dt-spec { grid-template-columns: 1fr; gap: 0.15rem 0; }
+      .dt-spec dt { margin-top: 0.4rem; }
+    }
+
     /* ── Bottom network line ── */
     .bd-network {
       margin: clamp(1.8rem, 3.4vw, 2.6rem) 0 0;
@@ -356,9 +427,11 @@
 
       <a class="bd-card bd-card-lead" href="https://cor.demismatch.com/">
         <img class="bd-cor-mark" src="cor-mark.svg" alt="" aria-hidden="true" />
-        <span class="bd-card-num">01</span>
-        <h2 class="bd-card-title">Cor - what a human is</h2>
-        <p class="bd-card-desc">A complete account of what your systems need, and why. Everything here is built on it.</p>
+        <div class="bd-card-lead-body">
+          <span class="bd-card-num">01</span>
+          <h2 class="bd-card-title">Cor - what a human is</h2>
+          <p class="bd-card-desc">A complete account of what your systems need, and why. Everything here is built on it.</p>
+        </div>
       </a>
 
       <div class="bd-card-row">
@@ -393,11 +466,27 @@
         <a class="button button-secondary" href="decode-talk.html">Try Decode Talk →</a>
       </div>
 
-      <p class="bd-quote">“I check my phone when I'm with people I love. I hate it, and I can't stop.”</p>
-      <p class="bd-read"><span class="bd-read-label">The read</span>Your coalition monitor is running. It evolved to track your people in a band of fifty. They're scattered now, and the only channel to them is the device in your hand. The monitor cannot stand down.</p>
+      <div class="dt-exchange">
+        <span class="dt-label">EX · 01 / The phone you can't put down</span>
+        <p class="dt-q">“I check my phone when I'm with people I love. I hate it, and I can't stop.”</p>
+        <div class="dt-a">
+          <p>Your coalition monitor is running. It evolved to track your people in a band of fifty. They're scattered now, and the only channel to them is the device in your hand. The monitor cannot stand down.</p>
+          <dl class="dt-spec">
+            <dt>Mechanism</dt><dd>M3 Social Bonding</dd>
+          </dl>
+        </div>
+      </div>
 
-      <p class="bd-quote">“I have more than I ever wanted, and I still feel behind.”</p>
-      <p class="bd-read"><span class="bd-read-label">The read</span>Your status sense is calibrated to a few dozen people you'd meet in a lifetime. It now measures you against millions, each showing their best day. The gauge was never built to read a crowd this size. It reads "behind" because the input is impossible, not because you fell short.</p>
+      <div class="dt-exchange">
+        <span class="dt-label">EX · 02 / Behind on the feed</span>
+        <p class="dt-q">“I have more than I ever wanted, and I still feel behind.”</p>
+        <div class="dt-a">
+          <p>Your status sense is calibrated to a few dozen people you'd meet in a lifetime. It now measures you against millions, each showing their best day. The gauge was never built to read a crowd this size. It reads "behind" because the input is impossible, not because you fell short.</p>
+          <dl class="dt-spec">
+            <dt>Mechanism</dt><dd>M5 Status Monitoring</dd>
+          </dl>
+        </div>
+      </div>
 
       <a class="button button-primary bd-cta" href="https://cor.demismatch.com/">See how we know - Cor →</a>
 
