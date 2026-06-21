@@ -593,13 +593,13 @@ body {
   <div class="title-block">
     <h1><em>Decode Talk</em></h1>
     <p class="standfirst">Situation in, evolutionary read out. Not a companion. The mechanism story behind what you're feeling - plus, if you want it, the nearest achievable next step.</p>
-    <span class="status" id="status-badge">Live · Haiku 4.5</span>
+    <span class="status" id="status-badge">Live · Sonnet 4.6</span>
   </div>
 
   <!-- TEMP NOTICE: high-demand model downgrade. Remove to restore Opus. -->
   <div class="demand-notice" id="demand-notice" role="status">
     <strong>Heads up:</strong> due to unusually high demand we've temporarily switched
-    the model from Opus to Haiku. Decodes will run, but results won't be as sharp as
+    the model from Opus to Sonnet. Decodes will run, but results won't be as sharp as
     they can be. We'll switch back to Opus once load settles.
   </div>
 
@@ -663,7 +663,7 @@ const DEFAULTS = {
   followups: 'forbidden',
   persona: '',
   // TEMP: high demand — downgraded from 'anthropic/claude-opus-4-6' to spare OpenRouter quota.
-  model: 'anthropic/claude-haiku-4-5',
+  model: 'anthropic/claude-sonnet-4-6',
   temperature: 0.7,
   max_tokens: 2048,
   debug: false,
@@ -751,9 +751,9 @@ const API_PROMPT = '/api/decode-talk/prompt';
 const messages = [];
 let streaming = false;
 
-// TEMP: high demand — pin every session to Haiku regardless of saved/selected model.
+// TEMP: high demand — pin every session to Sonnet regardless of saved/selected model.
 // Remove this constant and its uses to restore user model choice.
-const PINNED_MODEL = 'anthropic/claude-haiku-4-5';
+const PINNED_MODEL = 'anthropic/claude-sonnet-4-6';
 function loadSettings() {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
@@ -916,7 +916,7 @@ async function runInference() {
     const res = await fetch(API_CHAT, {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
-      // TEMP: high demand — force Haiku on the wire regardless of selected model.
+      // TEMP: high demand — force Sonnet on the wire regardless of selected model.
       body: JSON.stringify({ messages, settings: { ...settings, model: PINNED_MODEL } }),
     });
 
