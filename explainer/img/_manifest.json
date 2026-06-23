@@ -1,0 +1,186 @@
+{
+  "1": [
+    {
+      "slug": "b1-hero",
+      "file": "b1-hero.webp",
+      "orig": "01-belonging-held-vs-alone-in-crowd.png",
+      "category": "diptych",
+      "kb": 112
+    },
+    {
+      "slug": "b1-alt-touch",
+      "file": "b1-alt-touch.webp",
+      "orig": "09-adult-touch-vs-bodies-apart.jpeg",
+      "category": "diptych",
+      "kb": 101
+    },
+    {
+      "slug": "b1-alt-landscape",
+      "file": "b1-alt-landscape.webp",
+      "orig": "33-living-landscape-vs-concrete-and-glass.jpeg",
+      "category": "diptych",
+      "kb": 215
+    }
+  ],
+  "2": [
+    {
+      "slug": "b2-hero",
+      "file": "b2-hero.webp",
+      "orig": "97-decode-see-the-mismatch.jpeg",
+      "category": "state",
+      "kb": 50
+    },
+    {
+      "slug": "b2-loop",
+      "file": "b2-loop.webp",
+      "orig": "57-closed-loop.png",
+      "category": "state",
+      "kb": 58
+    },
+    {
+      "slug": "b2-measure",
+      "file": "b2-measure.webp",
+      "orig": "19-C2-domain-sensitive-architecture.png",
+      "category": "showcase",
+      "kb": 94
+    }
+  ],
+  "3": [
+    {
+      "slug": "b3-hero",
+      "file": "b3-hero.webp",
+      "orig": "112-the-hand-on-the-screen.png",
+      "category": "emotional",
+      "kb": 41
+    },
+    {
+      "slug": "b3-companion",
+      "file": "b3-companion.webp",
+      "orig": "03-ai-companion-vs-real-people.jpeg",
+      "category": "among-humans",
+      "kb": 64
+    },
+    {
+      "slug": "b3-alt-companion",
+      "file": "b3-alt-companion.webp",
+      "orig": "198-the-companion-that-never-has-a-bad-day.jpeg",
+      "category": "proxies",
+      "kb": 47
+    }
+  ],
+  "4": [
+    {
+      "slug": "b4-hero",
+      "file": "b4-hero.webp",
+      "orig": "58-open-loop.png",
+      "category": "state",
+      "kb": 38
+    },
+    {
+      "slug": "b4-alt-episode",
+      "file": "b4-alt-episode.webp",
+      "orig": "204-one-more-episode.jpeg",
+      "category": "proxies",
+      "kb": 58
+    },
+    {
+      "slug": "b4-alt-loop",
+      "file": "b4-alt-loop.webp",
+      "orig": "66-the-proxy-cannot-close-the-loop.jpeg",
+      "category": "state",
+      "kb": 74
+    }
+  ],
+  "5": [
+    {
+      "slug": "b5-hero",
+      "file": "b5-hero.webp",
+      "orig": "62-the-reach.jpeg",
+      "category": "state",
+      "kb": 45
+    },
+    {
+      "slug": "b5-alt-slot",
+      "file": "b5-alt-slot.webp",
+      "orig": "215-the-slot-machine.png",
+      "category": "proxies",
+      "kb": 91
+    },
+    {
+      "slug": "b5-alt-split",
+      "file": "b5-alt-split.webp",
+      "orig": "23-C6-wanting-liking-split.jpeg",
+      "category": "showcase",
+      "kb": 50
+    }
+  ],
+  "6": [
+    {
+      "slug": "b6-hero",
+      "file": "b6-hero.webp",
+      "orig": "99-cor-under-both-arms.png",
+      "category": "state",
+      "kb": 177
+    },
+    {
+      "slug": "b6-alt-scale",
+      "file": "b6-alt-scale.webp",
+      "orig": "90-alignment-scales-the-mismatch.png",
+      "category": "state",
+      "kb": 120
+    },
+    {
+      "slug": "b6-alt-pref",
+      "file": "b6-alt-pref.webp",
+      "orig": "68-preferences-are-mechanism-outputs.jpeg",
+      "category": "state",
+      "kb": 50
+    }
+  ],
+  "7": [
+    {
+      "slug": "b7-hero",
+      "file": "b7-hero.webp",
+      "orig": "96-fix-the-room-not-the-person.png",
+      "category": "state",
+      "kb": 63
+    },
+    {
+      "slug": "b7-alt-resolve",
+      "file": "b7-alt-resolve.webp",
+      "orig": "95-signals-that-resolve.png",
+      "category": "state",
+      "kb": 68
+    },
+    {
+      "slug": "b7-alt-room",
+      "file": "b7-alt-room.webp",
+      "orig": "149-toward-the-room.png",
+      "category": "emotional",
+      "kb": 41
+    }
+  ],
+  "8": [
+    {
+      "slug": "b8-hero",
+      "file": "b8-hero.webp",
+      "orig": "179-under-the-stars.png",
+      "category": "savanna",
+      "kb": 141
+    },
+    {
+      "slug": "b8-alt-dawn",
+      "file": "b8-alt-dawn.webp",
+      "orig": "151-dawn-over-the-camp.png",
+      "category": "savanna",
+      "kb": 147
+    },
+    {
+      "slug": "b8-alt-firelight",
+      "file": "b8-alt-firelight.webp",
+      "orig": "34-firelight-dark-night-vs-blue-light-no-night.png",
+      "category": "diptych",
+      "kb": 66
+    }
+  ]
+}

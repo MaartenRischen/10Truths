@@ -132,6 +132,119 @@
       border-bottom-color: var(--oxblood);
     }
 
+    /* Plain-words disclosure - a native <details> whose summary reuses the
+       quiet plainlink affordance; the open body reveals the two needs lists
+       under the page's section-eyebrow headers. No JS. */
+    .bd-disclosure { margin-top: clamp(1.1rem, 2vw, 1.5rem); }
+    .bd-disclosure > summary {
+      display: inline-block;
+      list-style: none;
+      cursor: pointer;
+      font-family: var(--mono);
+      font-size: 0.74rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: var(--teal);
+      border-bottom: 1px solid rgba(45, 107, 107, 0.4);
+      transition: color 0.16s ease, border-color 0.16s ease;
+    }
+    .bd-disclosure > summary::-webkit-details-marker { display: none; }
+    .bd-disclosure > summary::marker { content: ""; }
+    .bd-disclosure > summary:hover,
+    .bd-disclosure > summary:focus-visible,
+    .bd-disclosure[open] > summary {
+      color: var(--oxblood);
+      border-bottom-color: var(--oxblood);
+    }
+    /* Plain-words reveal: two feature cards side by side (need | don't need),
+       built on the house card system - parchment-soft fill, oxblood hairline,
+       the signature offset spine shadow (teal for need, gold for don't-need). */
+    .bd-disclosure-body {
+      margin-top: clamp(1.3rem, 2.6vw, 2rem);
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: clamp(1rem, 2.2vw, 1.7rem);
+      align-items: stretch;
+    }
+    .bd-needs {
+      background: var(--parchment-soft);
+      border: 1px solid rgba(58, 18, 24, 0.4);
+      border-radius: var(--radius-sm);
+      padding: clamp(1.4rem, 2.6vw, 2.1rem) clamp(1.3rem, 2.4vw, 1.9rem) clamp(1.5rem, 2.8vw, 2.2rem);
+      box-shadow: var(--shadow-card);
+    }
+    .bd-needs-no { box-shadow: var(--shadow-gold); }
+    /* Card title - the most prominent element in the reveal */
+    .bd-need-head {
+      display: block;
+      font-family: var(--serif);
+      font-weight: 600;
+      font-size: clamp(1.42rem, 2.5vw, 1.95rem);
+      line-height: 1.04;
+      letter-spacing: -0.02em;
+      color: var(--oxblood);
+      margin: 0 0 clamp(0.9rem, 1.8vw, 1.3rem);
+      padding-bottom: clamp(0.7rem, 1.4vw, 1rem);
+      border-bottom: 1px solid rgba(58, 18, 24, 0.2);
+    }
+    .bd-need-list { list-style: none; margin: 0; padding: 0; }
+    .bd-need-item {
+      padding: clamp(0.55rem, 1.1vw, 0.78rem) 0;
+      border-top: 1px solid rgba(58, 18, 24, 0.1);
+    }
+    .bd-need-item:first-child { border-top: 0; padding-top: 0; }
+    .bd-need-title {
+      display: block;
+      font-family: var(--serif);
+      font-weight: 600;
+      font-size: clamp(1rem, 1.3vw, 1.12rem);
+      line-height: 1.2;
+      letter-spacing: -0.008em;
+      color: var(--oxblood);
+    }
+    .bd-need-desc {
+      display: block;
+      margin-top: 0.16rem;
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: clamp(0.85rem, 1vw, 0.93rem);
+      line-height: 1.4;
+      color: var(--oxblood-ink);
+      opacity: 0.78;
+    }
+    .bd-need-link {
+      grid-column: 1 / -1;
+      justify-self: start;
+      display: inline-block;
+      margin-top: clamp(0.8rem, 1.8vw, 1.4rem);
+    }
+    @media (max-width: 680px) {
+      .bd-disclosure-body { grid-template-columns: 1fr; }
+    }
+
+    /* Primary on-ramp: the autoplay explainer. A "watch" affordance carrying the
+       signature teal offset shadow - more prominent than the quiet plain link. */
+    .bd-watch {
+      display: inline-flex; align-items: center; gap: 0.7rem;
+      margin-top: clamp(1.2rem, 2.2vw, 1.7rem);
+      padding: 0.55rem 1.15rem 0.55rem 0.65rem;
+      font-family: var(--mono); font-size: 0.74rem; letter-spacing: 0.14em;
+      text-transform: uppercase; font-weight: 500; color: var(--oxblood);
+      text-decoration: none; background: var(--parchment-soft);
+      border: 1px solid rgba(58, 18, 24, 0.4); border-radius: 999px;
+      box-shadow: 3px 3px 0 var(--teal);
+      transition: box-shadow 0.18s ease, transform 0.18s ease, color 0.18s ease;
+    }
+    .bd-watch:hover, .bd-watch:focus-visible {
+      transform: translate(-1px, -1px); box-shadow: 5px 5px 0 var(--teal); color: var(--teal-deep);
+    }
+    .bd-watch .play {
+      display: inline-flex; align-items: center; justify-content: center; flex: 0 0 auto;
+      width: 24px; height: 24px; border-radius: 50%; background: var(--oxblood); color: var(--parchment);
+    }
+    .bd-watch .play svg { width: 10px; height: 10px; fill: currentColor; margin-left: 1px; display: block; }
+
     /* ── Section eyebrow inside the panel ── */
     .bd-eyebrow {
       display: block;
@@ -396,6 +509,10 @@
       .bd-card-row { grid-template-columns: 1fr; }
       .bd-thesis { max-width: none; }
     }
+    @media (max-width: 560px) {
+      .bd-watch-suffix { display: none; }
+      .bd-watch { letter-spacing: 0.1em; max-width: 100%; }
+    }
   </style>
 </head>
 <body data-page="home">
@@ -420,7 +537,61 @@
       </div>
       <p class="bd-lede">Modern distress is accurate signaling about a world that no longer fits you, not a disorder in you. We can specify what you are actually built to need. Then build to it.</p>
 
-      <a class="bd-plainlink" href="how-humans-work.html">How humans work, what humans need →</a>
+      <p style="margin:0;">
+        <a class="bd-watch" href="explainer/">
+          <span class="play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+          <span>Watch the argument<span class="bd-watch-suffix">, in eight beats</span></span>
+        </a>
+      </p>
+
+      <details class="bd-disclosure">
+        <summary>How humans work, what humans need</summary>
+        <div class="bd-disclosure-body">
+
+          <div class="bd-needs">
+            <span class="bd-need-head">Humans need</span>
+            <ul class="bd-need-list">
+              <li class="bd-need-item"><span class="bd-need-title">A reason to get up.</span><span class="bd-need-desc">Something pulling you out of bed before anyone asks.</span></li>
+              <li class="bd-need-item"><span class="bd-need-title">People who'd notice if you vanished.</span><span class="bd-need-desc">A few who'd come looking.</span></li>
+              <li class="bd-need-item"><span class="bd-need-title">A role only you can fill.</span><span class="bd-need-desc">The one who's missed when you're gone.</span></li>
+              <li class="bd-need-item"><span class="bd-need-title">Real stakes.</span><span class="bd-need-desc">Things that go worse if you don't show up.</span></li>
+              <li class="bd-need-item"><span class="bd-need-title">To be touched.</span><span class="bd-need-desc">Skin, warmth, another body in the room.</span></li>
+              <li class="bd-need-item"><span class="bd-need-title">Respect from people who know you.</span><span class="bd-need-desc">Earned from faces you'll see again.</span></li>
+              <li class="bd-need-item"><span class="bd-need-title">Work that leaves a mark.</span><span class="bd-need-desc">Effort that changed something, and you can point at what.</span></li>
+              <li class="bd-need-item"><span class="bd-need-title">Effort that costs something.</span><span class="bd-need-desc">The hard part is the point. Take it away and the reward disappears with it.</span></li>
+              <li class="bd-need-item"><span class="bd-need-title">People who knew you before.</span><span class="bd-need-desc">Someone who remembers you, and will still be around later.</span></li>
+              <li class="bd-need-item"><span class="bd-need-title">Someone smaller to protect.</span><span class="bd-need-desc">A life that depends on you.</span></li>
+              <li class="bd-need-item"><span class="bd-need-title">A village around your kid.</span><span class="bd-need-desc">One person doing a five-person job is not a parenting style. It's a disaster.</span></li>
+              <li class="bd-need-item"><span class="bd-need-title">A future worth working toward.</span><span class="bd-need-desc">A tomorrow your effort actually changes.</span></li>
+            </ul>
+          </div>
+
+          <div class="bd-needs bd-needs-no">
+            <span class="bd-need-head">Humans don't need</span>
+            <ul class="bd-need-list">
+              <li class="bd-need-item"><span class="bd-need-title">Robot waifus.</span><span class="bd-need-desc">A fake partner your brain bonds to that gives nothing back.</span></li>
+              <li class="bd-need-item"><span class="bd-need-title">Worlds full of fake people.</span><span class="bd-need-desc">Crowds of NPCs, zero actual humans.</span></li>
+              <li class="bd-need-item"><span class="bd-need-title">An AI that knows your name.</span><span class="bd-need-desc">A chatbot pretending to be the friend you need.</span></li>
+              <li class="bd-need-item"><span class="bd-need-title">More followers.</span><span class="bd-need-desc">A bigger number, still no one who'd notice you gone.</span></li>
+              <li class="bd-need-item"><span class="bd-need-title">An audience.</span><span class="bd-need-desc">Watched by thousands, known by none.</span></li>
+              <li class="bd-need-item"><span class="bd-need-title">A feed that never ends.</span><span class="bd-need-desc">Endless scroll, dopamine-drip, doomscroll till 2am.</span></li>
+              <li class="bd-need-item"><span class="bd-need-title">A screen built to keep you watching.</span><span class="bd-need-desc">Apps engineered to hold you, not help you.</span></li>
+              <li class="bd-need-item"><span class="bd-need-title">A job sold as your identity.</span><span class="bd-need-desc">Purpose that depends on someone else's spreadsheet.</span></li>
+              <li class="bd-need-item"><span class="bd-need-title">Everything made easy.</span><span class="bd-need-desc">All friction removed, until nothing you do can fail or matter.</span></li>
+              <li class="bd-need-item"><span class="bd-need-title">Points and streaks.</span><span class="bd-need-desc">Fake progress bars standing in for real consequences.</span></li>
+              <li class="bd-need-item"><span class="bd-need-title">Care from something that can't die.</span><span class="bd-need-desc">Comfort from an AI that acts like it cares and doesn't.</span></li>
+              <li class="bd-need-item"><span class="bd-need-title">A gym.</span><span class="bd-need-desc">Movement stripped of purpose. Your body was built for carrying, building, walking somewhere real.</span></li>
+              <li class="bd-need-item"><span class="bd-need-title">A prescription for a correct signal.</span><span class="bd-need-desc">The alarm works. Taping over it doesn't fix the fire.</span></li>
+              <li class="bd-need-item"><span class="bd-need-title">Your loneliness monetized.</span><span class="bd-need-desc">Every unmet need is someone's revenue model. The product is your return visit.</span></li>
+              <li class="bd-need-item"><span class="bd-need-title">Understanding as a substitute for living.</span><span class="bd-need-desc">Knowing everything about connection. Still eating dinner alone.</span></li>
+              <li class="bd-need-item"><span class="bd-need-title">To be upgraded.</span><span class="bd-need-desc">The hardware works. The world is wrong.</span></li>
+            </ul>
+          </div>
+
+          <a class="bd-plainlink bd-need-link" href="https://cor.demismatch.com/">See how we know - Cor →</a>
+
+        </div>
+      </details>
 
       <!-- Skeleton — four parts, Cor leads -->
       <span class="bd-eyebrow">What this is</span>
@@ -498,8 +669,6 @@
         <span><a class="name" href="https://demismatch.com/vision.html">Vision</a> the map</span>
         <span class="sep" aria-hidden="true">·</span>
         <span><a class="name" href="the-mismatch.html">Ten truths</a> the original story</span>
-        <span class="sep" aria-hidden="true">·</span>
-        <span><a class="name" href="how-humans-work.html">In plain words</a> how you work, what you need</span>
       </p>
 
     </section>
