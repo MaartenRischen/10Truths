@@ -248,13 +248,14 @@
     /* ── Section eyebrow inside the panel ── */
     .bd-eyebrow {
       display: block;
+      text-align: center;
       font-family: var(--mono);
-      font-size: 0.72rem;
-      letter-spacing: 0.28em;
+      font-size: clamp(0.9rem, 1.5vw, 1.08rem);
+      letter-spacing: 0.3em;
       text-transform: uppercase;
       font-weight: 500;
       color: var(--teal);
-      margin: clamp(2rem, 4vw, 3rem) 0 clamp(1rem, 2vw, 1.4rem);
+      margin: clamp(2rem, 4vw, 3rem) 0 clamp(1.2rem, 2.4vw, 1.7rem);
     }
 
     /* ── Cards ── */
@@ -495,6 +496,164 @@
     }
     .bd-network .sep { opacity: 0.6; }
 
+    /* ════ The argument — the eight-beat slideshow, lifted from /explainer/ and
+       embedded below the hero. Scoped under .cx; inherits cor.css tokens, with
+       the per-beat accent palette + compact embed sizing supplied here. ════ */
+    .cx { box-sizing: border-box; color: var(--ink); font-family: var(--serif);
+          margin-top: clamp(1.6rem, 3.2vw, 2.6rem);
+          --accent: var(--teal); --teal-deep: #1f4f4f; --cue: #b5702a;
+          --state-full: #2d6b6b; --state-mixed: #c4962c; --state-zero: #8a2f2a; }
+    .cx *, .cx *::before, .cx *::after { box-sizing: border-box; }
+    /* fill the panel content width — the panel supplies the frame + padding */
+    .cx-shell { width: 100%; max-width: none; margin: 0; padding: 0; }
+
+    .cx-head { display: flex; align-items: center; justify-content: center; gap: .7rem; margin: 0 0 clamp(1.2rem,2.6vw,1.7rem); }
+    .cx-head .cx-rule { display: none; }
+    .cx-seal { flex: 0 0 auto; width: 30px; height: 30px; display: block; color: var(--oxblood); }
+    .cx-seal svg { width: 100%; height: 100%; display: block; }
+    .cx-seal .dot { fill: var(--teal); transform-origin: center; animation: cx-pulse 4.6s var(--ease, cubic-bezier(.22,.61,.36,1)) infinite; }
+    @keyframes cx-pulse { 0%,100%{opacity:.95} 50%{opacity:.55} }
+    .cx-eyebrow { font-family: var(--mono); font-size: clamp(.9rem, 1.5vw, 1.08rem); letter-spacing: .3em;
+                  text-transform: uppercase; font-weight: 500; color: var(--teal); }
+    .cx-rule { flex: 1; height: 1px; background: rgba(58,18,24,.22); }
+
+    .cx-stage { position: relative; border-radius: 14px;
+                background: linear-gradient(180deg, var(--parchment-soft), var(--parchment-dark));
+                border: 1px solid rgba(58,18,24,.22);
+                box-shadow: 4px 4px 0 var(--teal), 8px 8px 0 var(--gold);
+                overflow: hidden;
+                transition: box-shadow .4s ease; }
+    .cx-stage::before { content:""; position:absolute; top:0; left:0; right:0; height:3px;
+                        background: var(--accent); z-index: 3; transition: background .6s ease; }
+
+    /* Dynamic height: only the active beat is in normal flow, so the stage
+       grows or shrinks to fit the current beat. The new beat fades in; JS sets
+       the stage height to the active beat so the change animates smoothly. */
+    .cx-beat { display: none; grid-template-columns: 1fr; }
+    .cx-beat.is-active { display: grid; animation: cx-fade .5s ease both; }
+    @keyframes cx-fade { from { opacity: 0; } to { opacity: 1; } }
+    @media (min-width: 760px) {
+      .cx-beat { grid-template-columns: 1.08fr 0.92fr; }
+    }
+
+    .cx-text { padding: clamp(1.4rem, 2.8vw, 2.4rem); display: flex; flex-direction: column;
+               justify-content: center; gap: clamp(.6rem,1.3vw,.95rem); min-width: 0; }
+    .cx-kicker { font-family: var(--mono); font-size: .66rem; letter-spacing: .26em;
+                 text-transform: uppercase; font-weight: 500; color: var(--accent);
+                 display: flex; align-items: baseline; gap: .7rem; }
+    .cx-kicker .num { color: var(--gold); }
+    .cx-h { font-family: var(--serif); font-weight: 600; line-height: 1.04;
+            letter-spacing: -.022em; color: var(--oxblood); margin: 0;
+            font-size: clamp(1.55rem, 3.2vw, 2.3rem); text-wrap: balance; }
+    .cx-body { font-family: var(--serif); font-weight: 400; line-height: 1.5;
+               color: var(--oxblood-ink); margin: 0; max-width: 42ch;
+               font-size: clamp(.98rem, 1.4vw, 1.12rem); }
+
+    .cx-rigor { margin-top: .4rem; display: flex; flex-direction: column; gap: .7rem; }
+    .cx-figs { display: flex; flex-wrap: wrap; gap: .35rem 1.1rem; font-family: var(--serif);
+               color: var(--teal-deep); font-size: clamp(.92rem,1.3vw,1.04rem); }
+    .cx-figs b { font-weight: 600; color: var(--oxblood); font-variant-numeric: tabular-nums; }
+    .cx-grades { display: flex; flex-wrap: wrap; gap: .5rem; }
+    .cx-grade { font-family: var(--mono); font-size: .58rem; letter-spacing: .14em;
+                text-transform: uppercase; padding: .26rem .6rem; border-radius: 999px;
+                border: 1px solid currentColor; display: inline-flex; align-items: center; gap: .4rem; }
+    .cx-grade::before { content:""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+    .cx-grade.est { color: var(--teal); }
+    .cx-grade.theo { color: var(--gold-dim); }
+    .cx-grade.cont { color: var(--state-zero); }
+
+    .cx-examples { margin-top: clamp(.4rem,1vw,.7rem); display: flex; flex-direction: column; }
+    .cx-ex { display: flex; align-items: baseline; gap: .5rem; line-height: 1.25; padding: .22rem 0;
+             border-bottom: 1px solid rgba(58,18,24,.10); font-size: clamp(.8rem, 1vw, .94rem); }
+    .cx-ex:last-child { border-bottom: 0; }
+    .cx-ex .fake { font-family: var(--serif); font-weight: 600; color: var(--oxblood); }
+    .cx-ex .arr { color: var(--accent); flex: 0 0 auto; font-family: var(--mono); font-size: .82em; }
+    .cx-ex .need { font-family: var(--serif); font-style: italic; color: var(--oxblood-warm); }
+    .cx-beat--list .cx-text { gap: .35rem; padding-top: clamp(1rem,2vw,1.4rem); padding-bottom: clamp(1rem,2vw,1.4rem); }
+    .cx-beat--list .cx-h { font-size: clamp(1.35rem, 2.6vw, 1.85rem); }
+    .cx-beat--list .cx-body { font-size: clamp(.9rem,1.2vw,1rem); }
+    .cx-beat--list .cx-ex { padding: .14rem 0; }
+
+    .cx-figure { position: relative; margin: 0; min-width: 0; min-height: clamp(160px, 22vh, 210px);
+                 background:
+                   radial-gradient(circle at 50% 40%, rgba(26,6,8,.05), transparent 70%),
+                   linear-gradient(180deg, rgba(42,12,17,.06), rgba(42,12,17,.12)); }
+    .cx-figure img { position: absolute; inset: 0; width: 100%; height: 100%;
+                     object-fit: contain; object-position: center;
+                     padding: clamp(.6rem, 1.6vw, 1.4rem); }
+    .cx-beat.is-active .cx-figure img { animation: cx-settle 7s ease-out both; }
+    @keyframes cx-settle { from { transform: scale(1.045); } to { transform: scale(1); } }
+
+    .cx-controls { display: flex; align-items: center; gap: clamp(.8rem,2vw,1.3rem);
+                   margin-top: clamp(.9rem,1.8vw,1.3rem); }
+    .cx-play { flex: 0 0 auto; width: 42px; height: 42px; border-radius: 50%;
+               border: 1px solid var(--oxblood); background: var(--oxblood); color: var(--parchment);
+               cursor: pointer; display: inline-flex; align-items: center; justify-content: center;
+               box-shadow: 3px 3px 0 var(--teal); transition: box-shadow .18s ease, transform .18s ease; }
+    .cx-play:hover, .cx-play:focus-visible { transform: translate(-1px,-1px); box-shadow: 5px 5px 0 var(--teal); outline: none; }
+    .cx-play svg { width: 16px; height: 16px; fill: currentColor; display:block; }
+    .cx-counter { font-family: var(--mono); font-size: .68rem; letter-spacing: .16em;
+                  text-transform: uppercase; color: var(--muted-warm); flex: 0 0 auto;
+                  font-variant-numeric: tabular-nums; }
+    .cx-counter b { color: var(--oxblood); }
+
+    .cx-spine { flex: 1; display: grid; grid-auto-flow: column; grid-auto-columns: 1fr;
+                gap: clamp(4px, .8vw, 8px); min-width: 0; }
+    .cx-seg { appearance: none; border: 0; background: none; padding: 8px 0 0; margin: 0;
+              cursor: pointer; display: flex; flex-direction: column; gap: 6px; min-width: 0; text-align: left; }
+    .cx-seg-bar { height: 4px; border-radius: 3px; background: rgba(58,18,24,.16); overflow: hidden; }
+    .cx-seg-bar i { display: block; height: 100%; width: 0; background: var(--accent); border-radius: 3px; }
+    .cx-seg.done .cx-seg-bar i { width: 100% !important; }
+    .cx-seg-lbl { font-family: var(--mono); font-size: .5rem; letter-spacing: .12em;
+                  text-transform: uppercase; color: var(--muted-warm); white-space: nowrap;
+                  overflow: hidden; text-overflow: ellipsis; transition: color .2s ease; }
+    .cx-seg.active .cx-seg-lbl { color: var(--oxblood); }
+    .cx-seg:hover .cx-seg-lbl, .cx-seg:focus-visible .cx-seg-lbl { color: var(--teal); outline: none; }
+
+    .cx-foot { margin-top: clamp(.8rem,1.6vw,1.1rem); display:flex; justify-content: space-between;
+               align-items:center; gap:1rem; flex-wrap: wrap; }
+    .cx-hint { font-family: var(--mono); font-size: .6rem; letter-spacing: .1em;
+               text-transform: uppercase; color: var(--muted-warm); }
+    .cx-more { font-family: var(--mono); font-size: .68rem; letter-spacing: .14em;
+               text-transform: uppercase; color: var(--teal); text-decoration: none;
+               border-bottom: 1px solid rgba(45,107,107,.4); transition: color .16s, border-color .16s; }
+    .cx-more:hover, .cx-more:focus-visible { color: var(--oxblood); border-bottom-color: var(--oxblood); }
+
+    .cx-end { position: absolute; inset: 0; z-index: 4; display: none;
+              align-items: center; justify-content: center; flex-direction: column; gap: 1rem;
+              background: rgba(42,12,17,.78); color: var(--parchment); text-align: center; padding: 2rem; }
+    .cx.is-ended .cx-end { display: flex; }
+    .cx-end p { font-family: var(--serif); font-style: italic; font-size: clamp(1.1rem,2.4vw,1.5rem);
+                margin: 0; max-width: 24ch; line-height: 1.3; }
+    .cx-replay { font-family: var(--mono); font-size: .72rem; letter-spacing: .18em; text-transform: uppercase;
+                 color: var(--parchment); background: none; border: 1px solid var(--parchment-tan);
+                 padding: .7rem 1.3rem; border-radius: 4px; cursor: pointer; display:inline-flex; gap:.6rem; align-items:center; }
+    .cx-replay:hover, .cx-replay:focus-visible { border-color: var(--gold); color: var(--gold); outline: none; }
+    .cx-replay svg { width: 14px; height: 14px; fill: currentColor; }
+
+    @media (max-width: 620px) {
+      .cx-seg-lbl { display: none; } .cx-seg-bar { height: 5px; }
+      .cx-eyebrow { font-size: .58rem; letter-spacing: .14em; }
+      .cx-head { flex-wrap: wrap; gap: .6rem; }
+      .cx-rule { display: none; }
+      .cx-foot { flex-direction: column; align-items: flex-start; gap: .55rem; }
+      .cx-hint { font-size: .55rem; }
+    }
+    @media (max-width: 759px) {
+      .cx-figure { order: -1; min-height: 38vh; }
+      .cx-figure img { padding: .7rem; }
+      .cx-text { padding: clamp(1.3rem,5vw,1.8rem); }
+    }
+    /* reduced motion / no-JS: every beat shown, stacked and ruled off */
+    .cx:not(.is-player) .cx-stage { box-shadow: 4px 4px 0 var(--teal), 8px 8px 0 var(--gold); }
+    .cx:not(.is-player) .cx-beat { display: grid; border-bottom: 1px solid rgba(58,18,24,.14); }
+    .cx:not(.is-player) .cx-beat:last-child { border-bottom: 0; }
+    .cx:not(.is-player) .cx-beat .cx-figure { min-height: 280px; }
+    .cx:not(.is-player) .cx-controls, .cx:not(.is-player) .cx-end { display: none; }
+    @media (prefers-reduced-motion: reduce) {
+      .cx-seal .dot, .cx-beat.is-active .cx-figure img { animation: none; }
+    }
+
     /* ── Reveal ── */
     .reveal { opacity: 0; transform: translateY(12px); animation: bd-rise 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) forwards; }
     @keyframes bd-rise { to { opacity: 1; transform: none; } }
@@ -536,13 +695,6 @@
         <h1 class="bd-thesis">Humans need a world that fits humans.<span class="bd-sub">AI should help build it.</span></h1>
       </div>
       <p class="bd-lede">Modern distress is accurate signaling about a world that no longer fits you, not a disorder in you. We can specify what you are actually built to need. Then build to it.</p>
-
-      <p style="margin:0;">
-        <a class="bd-watch" href="explainer/">
-          <span class="play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
-          <span>Watch the argument<span class="bd-watch-suffix">, in eight beats</span></span>
-        </a>
-      </p>
 
       <details class="bd-disclosure">
         <summary>How humans work, what humans need</summary>
@@ -630,7 +782,167 @@
 
     </section>
 
-    <!-- Panel 2 — the demo and the exit -->
+    <!-- Panel — the argument (eight-beat slideshow) -->
+    <section class="panel panel-demo reveal d2">
+
+      <!-- The argument — the eight-beat slideshow, embedded from /explainer/ -->
+      <section class="cx" aria-label="Demismatch - the argument in eight beats">
+        <div class="cx-shell">
+
+          <div class="cx-head">
+            <span class="cx-seal" aria-hidden="true">
+              <svg viewBox="120 50 560 560" fill="none">
+                <g stroke="currentColor" stroke-width="22" fill="none">
+                  <circle cx="399.5" cy="329" r="271"/>
+                  <circle cx="446.5" cy="376.5" r="200"/>
+                  <circle cx="488" cy="418" r="129"/>
+                </g>
+                <circle class="dot" cx="523" cy="453" r="59"/>
+              </svg>
+            </span>
+            <span class="cx-eyebrow">The argument, in short</span>
+            <span class="cx-rule"></span>
+          </div>
+
+          <div class="cx-stage" id="cx-stage">
+
+            <article class="cx-beat is-active" data-accent="var(--oxblood)" data-dur="7000">
+              <div class="cx-text">
+                <p class="cx-kicker"><span class="num">01 / 08</span> The claim</p>
+                <h2 class="cx-h">You're not broken.</h2>
+                <p class="cx-body">What you feel is a healthy body reacting to a world it was never built for. The problem is the world, not you.</p>
+              </div>
+              <figure class="cx-figure">
+                <img src="explainer/img/n1.webp" alt="A family at a warm dinner table, each lit by their own phone instead of by each other." loading="lazy" decoding="async">
+              </figure>
+            </article>
+
+            <article class="cx-beat" data-accent="var(--cue)" data-dur="9000">
+              <div class="cx-text">
+                <p class="cx-kicker"><span class="num">02 / 08</span> The mismatch</p>
+                <h2 class="cx-h">Your body is running old code.</h2>
+                <p class="cx-body">Every system you run on - alarm, appetite, status, bonding - was tuned for a world that vanished ten thousand years ago. The programs still work. The world they expect is gone.</p>
+              </div>
+              <figure class="cx-figure">
+                <img src="explainer/img/b1-alt-landscape.webp" alt="A wooden figure among others in a green river landscape on the left; the same figure alone in a glass-and-concrete city on the right - built for a world that has vanished." loading="lazy" decoding="async">
+              </figure>
+            </article>
+
+            <article class="cx-beat cx-beat--list" data-accent="var(--state-zero)" data-dur="11000">
+              <div class="cx-text">
+                <p class="cx-kicker"><span class="num">03 / 08</span> The hijack</p>
+                <h2 class="cx-h">Every need has a counterfeit.</h2>
+                <p class="cx-body">The modern world is full of things that fire the right signal but do none of the job. They feel like the real thing. They aren't.</p>
+                <div class="cx-examples">
+                  <span class="cx-ex"><span class="fake">AI companions</span><span class="arr" aria-hidden="true">&rarr;</span><span class="need">to be known</span></span>
+                  <span class="cx-ex"><span class="fake">The endless feed</span><span class="arr" aria-hidden="true">&rarr;</span><span class="need">to seek and find</span></span>
+                  <span class="cx-ex"><span class="fake">Doomscrolling</span><span class="arr" aria-hidden="true">&rarr;</span><span class="need">to watch for danger</span></span>
+                  <span class="cx-ex"><span class="fake">Likes and followers</span><span class="arr" aria-hidden="true">&rarr;</span><span class="need">to matter</span></span>
+                  <span class="cx-ex"><span class="fake">Junk food</span><span class="arr" aria-hidden="true">&rarr;</span><span class="need">to eat your fill</span></span>
+                  <span class="cx-ex"><span class="fake">Dating apps</span><span class="arr" aria-hidden="true">&rarr;</span><span class="need">to find your person</span></span>
+                  <span class="cx-ex"><span class="fake">Outrage feeds</span><span class="arr" aria-hidden="true">&rarr;</span><span class="need">a side to belong to</span></span>
+                  <span class="cx-ex"><span class="fake">Parasocial streamers</span><span class="arr" aria-hidden="true">&rarr;</span><span class="need">a real friend</span></span>
+                </div>
+              </div>
+              <figure class="cx-figure">
+                <img src="explainer/img/n3.webp" alt="A figure leans toward a glowing companion device in a warm lamplit room, alone." loading="lazy" decoding="async">
+              </figure>
+            </article>
+
+            <article class="cx-beat" data-accent="var(--state-zero)" data-dur="8500">
+              <div class="cx-text">
+                <p class="cx-kicker"><span class="num">04 / 08</span> The trap</p>
+                <h2 class="cx-h">The loop never closes.</h2>
+                <p class="cx-body">A counterfeit fires the signal but never meets the need, so the need stays open and the signal fires again. That's not a habit. That's a trap.</p>
+              </div>
+              <figure class="cx-figure">
+                <img src="explainer/img/b4-alt-loop.webp" alt="A wooden figure in four frames - the red alarm fires, a phone lights a green flash of relief, it fades, then the red returns - a loop that never closes." loading="lazy" decoding="async">
+              </figure>
+            </article>
+
+            <article class="cx-beat" data-accent="var(--gold)" data-dur="8500">
+              <div class="cx-text">
+                <p class="cx-kicker"><span class="num">05 / 08</span> Wanting</p>
+                <h2 class="cx-h">You can't trust what you want.</h2>
+                <p class="cx-body">Wanting is a signal, and signals can be gamed. The lonely person doesn't crave a friend. They crave the app. Preferences are the last thing you should build on.</p>
+              </div>
+              <figure class="cx-figure">
+                <img src="explainer/img/n4.webp" alt="A figure transfixed at a slot machine lit in saturated neon gold and red." loading="lazy" decoding="async">
+              </figure>
+            </article>
+
+            <article class="cx-beat" data-accent="var(--teal)" data-dur="11000">
+              <div class="cx-text">
+                <p class="cx-kicker"><span class="num">06 / 08</span> What Cor is</p>
+                <h2 class="cx-h">So we mapped what humans actually need.</h2>
+                <p class="cx-body">Cor is the first formal specification of human motivational architecture. Every survival system, what each one evolved to do, and how the evidence holds up - structured so machines can read it, not just people.</p>
+                <div class="cx-rigor">
+                  <p class="cx-figs"><span><b>17</b> foundations</span><span><b>15</b> mechanisms</span><span><b>608</b> extractions</span><span><b>64</b> researchers</span></p>
+                  <div class="cx-grades">
+                    <span class="cx-grade est">Established</span>
+                    <span class="cx-grade theo">Theoretical</span>
+                    <span class="cx-grade cont">Contested</span>
+                  </div>
+                </div>
+              </div>
+              <figure class="cx-figure">
+                <img src="explainer/img/n2.webp" alt="A hand holds a lens over the wooden figure, revealing a structured signal inside it that is invisible to the naked eye." loading="lazy" decoding="async">
+              </figure>
+            </article>
+
+            <article class="cx-beat" data-accent="var(--teal-deep)" data-dur="12000">
+              <div class="cx-text">
+                <p class="cx-kicker"><span class="num">07 / 08</span> The AI argument</p>
+                <h2 class="cx-h">AI is about to personalize the trap.</h2>
+                <p class="cx-body">Right now, AI is trained on what people want - which means it's optimizing for proxies at scale. Feed it Cor instead and it has a real target: not what you reach for, but what would actually satisfy the need underneath. That's the difference between an engine that keeps loops open and one that closes them.</p>
+              </div>
+              <figure class="cx-figure">
+                <img src="explainer/img/n5.webp" alt="One stone foundation carries two things at once: a machine on the left, a room full of people on the right." loading="lazy" decoding="async">
+              </figure>
+            </article>
+
+            <article class="cx-beat" data-accent="var(--teal-bright)" data-dur="7500">
+              <div class="cx-text">
+                <p class="cx-kicker"><span class="num">08 / 08</span> The fix</p>
+                <h2 class="cx-h">Fix the world, not the person.</h2>
+                <p class="cx-body">Give your systems what they were built for and the alarms switch off on their own. No willpower. No self-improvement. A world that fits.</p>
+              </div>
+              <figure class="cx-figure">
+                <img src="explainer/img/n6.webp" alt="A full modern table of people sharing a meal together in warm candlelight." loading="lazy" decoding="async">
+              </figure>
+            </article>
+
+            <!-- end veil -->
+            <div class="cx-end" aria-hidden="true">
+              <p>Humans need a world that fits humans.</p>
+              <button type="button" class="cx-replay" id="cx-replay">
+                <svg viewBox="0 0 24 24"><path d="M12 5V1L7 6l5 5V7a5 5 0 1 1-5 5H5a7 7 0 1 0 7-7z"/></svg>
+                Watch again
+              </button>
+            </div>
+
+          </div><!-- /.cx-stage -->
+
+          <div class="cx-controls">
+            <button type="button" class="cx-play" id="cx-play" aria-label="Pause">
+              <svg class="ic-pause" viewBox="0 0 24 24"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
+              <svg class="ic-play" viewBox="0 0 24 24" style="display:none"><path d="M8 5v14l11-7z"/></svg>
+            </button>
+            <span class="cx-counter"><b id="cx-cur">01</b> / 08</span>
+            <div class="cx-spine" id="cx-spine" role="tablist" aria-label="Jump to a beat"></div>
+          </div>
+
+          <div class="cx-foot">
+            <span class="cx-hint">Click a beat to jump &middot; space to pause</span>
+            <a class="cx-more" href="https://cor.demismatch.com/">See how we know &rarr; Cor</a>
+          </div>
+
+        </div><!-- /.cx-shell -->
+      </section>
+
+    </section><!-- /Panel: the argument -->
+
+    <!-- Panel — the Decode Talk demo and the exit -->
     <section class="panel panel-demo reveal d2">
 
       <div style="margin-bottom: clamp(1.8rem, 3.4vw, 2.6rem);">
@@ -674,6 +986,131 @@
     </section>
 
   </main>
+
+  <!-- Player for the embedded eight-beat argument slideshow (.cx unit) -->
+  <script>
+  (function () {
+    var root = document.querySelector('.cx');
+    if (!root) return;
+    var stage = document.getElementById('cx-stage');
+    var beats = Array.prototype.slice.call(stage.querySelectorAll('.cx-beat'));
+    var playBtn = document.getElementById('cx-play');
+    var icPause = playBtn.querySelector('.ic-pause');
+    var icPlay = playBtn.querySelector('.ic-play');
+    var curEl = document.getElementById('cx-cur');
+    var spine = document.getElementById('cx-spine');
+    var replayBtn = document.getElementById('cx-replay');
+
+    var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduced) { return; } // leave the static stacked read in place, no player
+
+    root.classList.add('is-player');
+
+    var LABELS = ['Claim','Mismatch','Hijack','Loop','Wanting','Cor','AI','Fix'];
+    var durs = beats.map(function (b) { return parseInt(b.getAttribute('data-dur'), 10) || 8000; });
+
+    // build the scrub spine
+    var segs = beats.map(function (b, i) {
+      var btn = document.createElement('button');
+      btn.type = 'button'; btn.className = 'cx-seg'; btn.setAttribute('role', 'tab');
+      btn.setAttribute('aria-label', 'Beat ' + (i + 1) + ': ' + LABELS[i]);
+      btn.innerHTML = '<span class="cx-seg-bar"><i></i></span><span class="cx-seg-lbl">' + LABELS[i] + '</span>';
+      btn.addEventListener('click', function () { gotoBeat(i, true); });
+      spine.appendChild(btn);
+      return btn;
+    });
+    var fills = segs.map(function (s) { return s.querySelector('i'); });
+
+    var idx = 0, elapsed = 0, playing = false, userPaused = false, ended = false, lastT = null;
+
+    function setAccent(b) { root.style.setProperty('--accent', b.getAttribute('data-accent') || 'var(--teal)'); }
+
+    function render() {
+      beats.forEach(function (b, i) { b.classList.toggle('is-active', i === idx); });
+      setAccent(beats[idx]);
+      curEl.textContent = ('0' + (idx + 1)).slice(-2);
+      segs.forEach(function (s, i) {
+        s.classList.toggle('active', i === idx);
+        s.classList.toggle('done', i < idx);
+        if (i > idx) fills[i].style.width = '0%';
+        if (i < idx) fills[i].style.width = '100%';
+      });
+      fills[idx].style.width = '0%';
+    }
+
+    function setPlaying(p) {
+      playing = p;
+      icPause.style.display = p ? 'block' : 'none';
+      icPlay.style.display = p ? 'none' : 'block';
+      playBtn.setAttribute('aria-label', p ? 'Pause' : 'Play');
+    }
+
+    function gotoBeat(i, byUser) {
+      ended = false; root.classList.remove('is-ended');
+      idx = Math.max(0, Math.min(beats.length - 1, i));
+      elapsed = 0; render();
+      if (byUser) { userPaused = true; setPlaying(false); }
+    }
+
+    function play() { if (ended) { idx = 0; elapsed = 0; render(); } ended = false; root.classList.remove('is-ended'); userPaused = false; setPlaying(true); }
+    function pause(byUser) { setPlaying(false); if (byUser) userPaused = true; }
+
+    function finish() { setPlaying(false); ended = true; root.classList.add('is-ended'); fills[idx].style.width = '100%'; }
+
+    function tick(t) {
+      if (lastT == null) lastT = t;
+      var dt = t - lastT; lastT = t;
+      if (playing && !ended) {
+        elapsed += dt;
+        var dur = durs[idx];
+        fills[idx].style.width = Math.min(100, (elapsed / dur) * 100) + '%';
+        if (elapsed >= dur) {
+          if (idx < beats.length - 1) { idx++; elapsed = 0; render(); }
+          else { finish(); }
+        }
+      }
+      requestAnimationFrame(tick);
+    }
+
+    // controls
+    playBtn.addEventListener('click', function () { playing ? pause(true) : play(); });
+    replayBtn.addEventListener('click', function () { gotoBeat(0); play(); });
+    stage.addEventListener('click', function (e) {
+      if (e.target.closest('.cx-replay')) return;
+      playing ? pause(true) : play();
+    });
+    document.addEventListener('keydown', function (e) {
+      if (!isInView()) return;
+      if (e.key === ' ') { e.preventDefault(); playing ? pause(true) : play(); }
+      else if (e.key === 'ArrowRight') { gotoBeat(idx + 1, true); }
+      else if (e.key === 'ArrowLeft') { gotoBeat(idx - 1, true); }
+    });
+
+    // autoplay while in view; never fight a manual pause
+    var inView = false;
+    function isInView() { return inView; }
+    function inViewport(el) {
+      var r = el.getBoundingClientRect();
+      var vh = window.innerHeight || document.documentElement.clientHeight;
+      return r.top < vh * 0.85 && r.bottom > vh * 0.15;
+    }
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          inView = en.isIntersecting && en.intersectionRatio >= 0.4;
+          if (inView && !userPaused && !ended) play();
+          else if (!inView && playing) setPlaying(false); // soft pause, not a user pause
+        });
+      }, { threshold: [0, 0.4, 1] });
+      io.observe(stage);
+    }
+
+    render();
+    requestAnimationFrame(tick);
+    // kick off immediately if the stage is already on screen at load
+    if (inViewport(stage)) { inView = true; play(); }
+  })();
+  </script>
 
 </body>
 </html>
