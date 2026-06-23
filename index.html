@@ -324,6 +324,14 @@
       height: auto;
     }
     .bd-card-lead-body { display: flex; flex-direction: column; min-width: 0; }
+    /* the proof line, folded into the Cor lead card under its description */
+    .bd-card-lead-body .bd-stats {
+      margin: clamp(0.9rem, 1.8vw, 1.25rem) 0 0;
+      padding-top: clamp(0.7rem, 1.4vw, 1rem);
+      border-top: 1px solid rgba(45, 107, 107, 0.28);
+    }
+    .bd-card-lead-body .bd-stats-fig { font-size: clamp(0.94rem, 1.2vw, 1.04rem); }
+    .bd-card-lead-body .bd-stats-note { font-size: 0.78rem; }
     .bd-card-lead:hover,
     .bd-card-lead:focus-visible {
       box-shadow: 7px 7px 0 var(--teal), 14px 14px 0 var(--gold);
@@ -754,6 +762,9 @@
           <span class="bd-card-num">01</span>
           <h2 class="bd-card-title">Cor - what a human is</h2>
           <p class="bd-card-desc">A complete account of what your systems need, and why. Everything here is built on it.</p>
+          <p class="bd-stats">
+            <span class="bd-stats-fig">17 foundations · 15 mechanisms · 608 extractions · 64 researchers</span><span class="bd-stats-note"> · every claim traces to a primary source</span>
+          </p>
         </div>
       </a>
 
@@ -775,10 +786,38 @@
         </a>
       </div>
 
-      <!-- Proof, now -->
-      <p class="bd-stats">
-        <span class="bd-stats-fig">17 foundations · 15 mechanisms · 608 extractions · 64 researchers</span><span class="bd-stats-note"> · every claim traces to a primary source</span>
-      </p>
+    </section>
+
+    <!-- Panel — the Decode Talk demo -->
+    <section class="panel panel-demo reveal d2">
+
+      <div style="margin-bottom: clamp(1.8rem, 3.4vw, 2.6rem);">
+        <a class="button button-secondary" href="decode-talk.html">Try Decode Talk →</a>
+      </div>
+
+      <div class="dt-exchange">
+        <span class="dt-label">EX · 01 / The phone you can't put down</span>
+        <p class="dt-q">“I check my phone when I'm with people I love. I hate it, and I can't stop.”</p>
+        <div class="dt-a">
+          <p>Your coalition monitor is running. It evolved to track your people in a band of fifty. They're scattered now, and the only channel to them is the device in your hand. The monitor cannot stand down.</p>
+          <dl class="dt-spec">
+            <dt>Mechanism</dt><dd>M3 Social Bonding</dd>
+          </dl>
+        </div>
+      </div>
+
+      <div class="dt-exchange">
+        <span class="dt-label">EX · 02 / Behind on the feed</span>
+        <p class="dt-q">“I have more than I ever wanted, and I still feel behind.”</p>
+        <div class="dt-a">
+          <p>Your status sense is calibrated to a few dozen people you'd meet in a lifetime. It now measures you against millions, each showing their best day. The gauge was never built to read a crowd this size. It reads "behind" because the input is impossible, not because you fell short.</p>
+          <dl class="dt-spec">
+            <dt>Mechanism</dt><dd>M5 Status Monitoring</dd>
+          </dl>
+        </div>
+      </div>
+
+      <a class="button button-primary bd-cta" href="https://cor.demismatch.com/">See how we know - Cor →</a>
 
     </section>
 
@@ -940,39 +979,6 @@
         </div><!-- /.cx-shell -->
       </section>
 
-    </section><!-- /Panel: the argument -->
-
-    <!-- Panel — the Decode Talk demo and the exit -->
-    <section class="panel panel-demo reveal d2">
-
-      <div style="margin-bottom: clamp(1.8rem, 3.4vw, 2.6rem);">
-        <a class="button button-secondary" href="decode-talk.html">Try Decode Talk →</a>
-      </div>
-
-      <div class="dt-exchange">
-        <span class="dt-label">EX · 01 / The phone you can't put down</span>
-        <p class="dt-q">“I check my phone when I'm with people I love. I hate it, and I can't stop.”</p>
-        <div class="dt-a">
-          <p>Your coalition monitor is running. It evolved to track your people in a band of fifty. They're scattered now, and the only channel to them is the device in your hand. The monitor cannot stand down.</p>
-          <dl class="dt-spec">
-            <dt>Mechanism</dt><dd>M3 Social Bonding</dd>
-          </dl>
-        </div>
-      </div>
-
-      <div class="dt-exchange">
-        <span class="dt-label">EX · 02 / Behind on the feed</span>
-        <p class="dt-q">“I have more than I ever wanted, and I still feel behind.”</p>
-        <div class="dt-a">
-          <p>Your status sense is calibrated to a few dozen people you'd meet in a lifetime. It now measures you against millions, each showing their best day. The gauge was never built to read a crowd this size. It reads "behind" because the input is impossible, not because you fell short.</p>
-          <dl class="dt-spec">
-            <dt>Mechanism</dt><dd>M5 Status Monitoring</dd>
-          </dl>
-        </div>
-      </div>
-
-      <a class="button button-primary bd-cta" href="https://cor.demismatch.com/">See how we know - Cor →</a>
-
       <p class="bd-network">
         <span><a class="name" href="https://demismatch.com/">Demismatch</a> the front door</span>
         <span class="sep" aria-hidden="true">·</span>
@@ -983,7 +989,7 @@
         <span><a class="name" href="the-mismatch.html">Ten truths</a> the original story</span>
       </p>
 
-    </section>
+    </section><!-- /Panel: the argument -->
 
   </main>
 
