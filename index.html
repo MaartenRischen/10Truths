@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="cor.css">
   <style>
     /* ─────────────────────────────────────────────────────────
-       Front door — broadside cover. Two tan panels on a warm
+       Front door - broadside cover. Two tan panels on a warm
        cream page; cross-site nav folded into the top kicker and
        the bottom network line. Composes cor.css tokens.
        ───────────────────────────────────────────────────────── */
@@ -54,7 +54,7 @@
       box-shadow: 0 1px 2px rgba(26, 6, 8, 0.06), 0 18px 44px rgba(26, 6, 8, 0.06);
     }
 
-    /* ── Top kicker — the cross-site line, folded into an eyebrow ── */
+    /* ── Top kicker - the cross-site line, folded into an eyebrow ── */
     .bd-kicker {
       margin: 0 0 clamp(1.6rem, 3.4vw, 2.4rem);
       font-family: var(--mono);
@@ -79,7 +79,7 @@
     .bd-kicker .cur { color: var(--teal); opacity: 0.95; }
     .bd-kicker .sep { color: var(--muted-warm); opacity: 0.7; }
 
-    /* ── Hero — the thesis ── */
+    /* ── Hero - the thesis ── */
     .bd-hero { margin: 0 0 clamp(1.6rem, 3.4vw, 2.4rem); }
     .bd-thesis {
       font-family: var(--serif);
@@ -365,7 +365,7 @@
       letter-spacing: 0.01em;
     }
 
-    /* ── Demo panel — proof you can feel ── */
+    /* ── Demo panel - proof you can feel ── */
     .panel-demo { background: var(--panel-2); }
     .bd-quote {
       font-family: var(--serif);
@@ -396,7 +396,7 @@
       margin-right: 0.85rem;
       white-space: nowrap;
     }
-    /* Flatter than the house button-primary — mockup keeps the spine shadow on the lead card only */
+    /* Flatter than the house button-primary - mockup keeps the spine shadow on the lead card only */
     .bd-cta {
       display: inline-flex;
       border: 0;
@@ -512,7 +512,7 @@
           --accent: var(--teal); --teal-deep: #1f4f4f; --cue: #b5702a;
           --state-full: #2d6b6b; --state-mixed: #c4962c; --state-zero: #8a2f2a; }
     .cx *, .cx *::before, .cx *::after { box-sizing: border-box; }
-    /* fill the panel content width — the panel supplies the frame + padding */
+    /* fill the panel content width - the panel supplies the frame + padding */
     .cx-shell { width: 100%; max-width: none; margin: 0; padding: 0; }
 
     .cx-head { display: flex; align-items: center; justify-content: center; gap: .7rem; margin: 0 0 clamp(1.2rem,2.6vw,1.7rem); }
@@ -680,16 +680,81 @@
       .bd-watch-suffix { display: none; }
       .bd-watch { letter-spacing: 0.1em; max-width: 100%; }
     }
+
+    /* ── FAQ accordion ── */
+    .faq-list { display: flex; flex-direction: column; }
+
+    .faq-item {
+      border-top: 1px solid rgba(58, 18, 24, 0.13);
+    }
+    .faq-item:last-child {
+      border-bottom: 1px solid rgba(58, 18, 24, 0.13);
+    }
+
+    .faq-item summary {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 1.4rem;
+      padding: clamp(0.9rem, 1.6vw, 1.25rem) 0;
+      cursor: pointer;
+      list-style: none;
+      font-family: var(--serif);
+      font-weight: 500;
+      font-size: clamp(1.04rem, 1.4vw, 1.18rem);
+      line-height: 1.35;
+      color: var(--oxblood);
+      user-select: none;
+    }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary::after {
+      content: '+';
+      font-family: var(--mono);
+      font-weight: 400;
+      font-size: 1.15rem;
+      color: var(--teal);
+      flex-shrink: 0;
+      opacity: 0.75;
+      transition: opacity 0.15s ease;
+    }
+    .faq-item[open] summary::after { content: '−'; opacity: 1; }
+    .faq-item summary:hover { color: var(--teal); }
+    .faq-item summary:hover::after { opacity: 1; }
+
+    .faq-a {
+      padding: 0 0 clamp(1rem, 1.8vw, 1.4rem);
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: clamp(1rem, 1.3vw, 1.1rem);
+      line-height: 1.62;
+      color: var(--oxblood-ink);
+      max-width: 68ch;
+    }
+
+    .faq-group-label {
+      display: block;
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: var(--teal);
+      opacity: 0.7;
+      margin: clamp(1.4rem, 2.4vw, 1.9rem) 0 clamp(0.3rem, 0.6vw, 0.5rem);
+    }
+    .faq-group-label:first-child { margin-top: 0; }
+
+    .d3 { animation-delay: 0.28s; }
   </style>
 </head>
 <body data-page="home">
 
   <main class="cover">
 
-    <!-- Panel 1 — the cover: thesis, claim, skeleton, proof -->
+    <!-- Panel 1 - the cover: thesis, claim, skeleton, proof -->
     <section class="panel reveal d1">
 
-      <!-- Top kicker — the three-site line -->
+      <!-- Top kicker - the three-site line -->
       <p class="bd-kicker">
         <span class="cur">Demismatch (the Why)</span>
         <span class="sep" aria-hidden="true">·</span>
@@ -698,7 +763,7 @@
         <a href="https://cor.demismatch.com/">Cor</a>
       </p>
 
-      <!-- Hero — the hook and the claim -->
+      <!-- Hero - the hook and the claim -->
       <div class="bd-hero">
         <h1 class="bd-thesis">Humans need a world that fits humans.<span class="bd-sub">AI should help build it.</span></h1>
       </div>
@@ -753,7 +818,7 @@
         </div>
       </details>
 
-      <!-- Skeleton — four parts, Cor leads -->
+      <!-- Skeleton - four parts, Cor leads -->
       <span class="bd-eyebrow">What this is</span>
 
       <a class="bd-card bd-card-lead" href="https://cor.demismatch.com/">
@@ -788,7 +853,7 @@
 
     </section>
 
-    <!-- Panel — the Decode Talk demo -->
+    <!-- Panel - the Decode Talk demo -->
     <section class="panel panel-demo reveal d2">
 
       <div style="margin-bottom: clamp(1.8rem, 3.4vw, 2.6rem);">
@@ -821,7 +886,7 @@
 
     </section>
 
-    <!-- Panel — the argument (eight-beat slideshow) -->
+    <!-- Panel - the argument (eight-beat slideshow) -->
     <section class="panel panel-demo reveal d2">
 
       <!-- The argument - the eight-beat slideshow (images in explainer/img/) -->
@@ -990,6 +1055,108 @@
       </p>
 
     </section><!-- /Panel: the argument -->
+
+    <!-- Panel - FAQ about Cor -->
+    <section class="panel reveal d3">
+
+      <span class="bd-eyebrow">Frequently asked</span>
+
+      <div class="faq-list">
+
+        <span class="faq-group-label">What it is</span>
+
+        <details class="faq-item">
+          <summary>What is Cor, in one sentence?</summary>
+          <p class="faq-a">Cor is an evidence-graded atlas of the complete human motivational and emotional architecture: a map of the systems that drive what humans want, feel, fear, and pursue, and what each of those systems was built to need.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>What does "atlas" mean here? I've also seen the word "specification."</summary>
+          <p class="faq-a">Cor is currently an atlas. It maps the territory. The specification is the operational layer it is being built toward, and that word is reserved for that future layer. The precedent is the Allen Brain Atlas or the Human Cell Atlas: open foundational infrastructure that describes what a thing is, built so that anyone can build on top of it.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>What is the core idea behind it?</summary>
+          <p class="faq-a">That modern human suffering is, in most cases, accurate signaling from a sound organism in a mismatched environment. The hardware works. The environment is wrong. Anxiety, low mood, chronic stress, loneliness, restlessness - these are usually intelligible outputs of systems doing their job, responding to conditions they were never built for. The problem is the gap between the world a human is built for and the world a human lives in. The fix is to change the world, not to locate a defect in the person.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>Why does that matter beyond psychology?</summary>
+          <p class="faq-a">Because it points at a blind spot in how we build technology, and especially how we try to align AI. The standard assumption is that what a person wants, clicks, or prefers reveals what is good for them. Cor's position is that preferences are outputs of evolved mechanisms, not ground truth. A lonely person can genuinely want an AI companion. A person caught in a feed can genuinely want the next video. The wanting is real. It is also not reliable evidence that the thing is good for them. Any system that optimizes for stated or revealed preference without a model of the architecture underneath is optimizing against the person it claims to serve. Cor is the model of that architecture. AI alignment is one application built on it. It is not the frame around it.</p>
+        </details>
+
+        <span class="faq-group-label">How it's built</span>
+
+        <details class="faq-item">
+          <summary>How was a source chosen for inclusion?</summary>
+          <p class="faq-a">A work has to clear three hard gates. First: it needs a verifiable identifier - a DOI or PubMed ID - or it has to be physically in the collection. Second: anything taken from it has to come from the full text. Claims sourced from an abstract, a snippet, or an aggregator summary are rejected outright. An internal audit found a complete failure rate on a batch of claims pulled from snippets: fabricated quotes, drifted paraphrases, invented findings. The full-text gate makes that class of error impossible. Third: any direct quote stored against a work has to be word-for-word. A quote stitched from fragments or smoothed into a paraphrase counts as fabrication.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>How is the material actually turned into findings?</summary>
+          <p class="faq-a">The process runs from the bottom up, from evidence to conclusions, never the other way around. A work is read, and individual findings are pulled from its full text. Each finding is recorded and graded for how strong the evidence is. These findings accumulate against the human systems they bear on. Where several independent lines of research - different labs, different methods, different decades - point at the same structural fact, that agreement is recorded as a convergence. A system only earns its place because the evidence underneath it converges on it. Nothing is reverse-engineered to fit a theory decided in advance.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>What does the finished structure look like?</summary>
+          <p class="faq-a">A pyramid, derived once and now locked. Reading from the foundation up: two framing premises about how organisms relate to the world. Then three core premises: that survival and reproduction are what evolution optimizes for, that the organism is a set of specialized interacting systems, and that modern environments systematically push those systems outside the range they were built for. From those, a set of derived properties. From those, the consequences - chief among them that unresolved stress accumulates as bodily wear, and that markets will industrialize the exploitation of unmet needs. Then fourteen convergences. Then, at the top, fifteen mechanisms. This structure is final.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>What are the fifteen mechanisms?</summary>
+          <p class="faq-a">Threat management · Pursuit and exploration · Social bonding · Social calibration through play · Status monitoring · Agency · Circadian regulation · Immune regulation · Care and alloparenting · Movement · Cooperation and alliance · Contamination avoidance · Energy regulation · Reproductive motivation · Touch. Each is a distinct evolved system with its own environmental inputs, ancestral baseline, and mismatch signature.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>How big is the atlas right now?</summary>
+          <p class="faq-a">The live counts are at <a href="https://cor.demismatch.com/" style="color:var(--teal);border:0;">cor.demismatch.com</a> - they move as the work continues. At the time of writing: 120 works, 608 individual findings, 64 researchers, 17 foundational premises, 14 convergences, 15 mechanisms, over 900 evidence connections, across 22 research domains, with 14 identified gaps. A baseline layer separately records 32 environmental parameters - ancestral baseline, modern default, and the gap between them for each.</p>
+        </details>
+
+        <span class="faq-group-label">Quality &amp; philosophy</span>
+
+        <details class="faq-item">
+          <summary>What is the quality philosophy? How do you keep this honest?</summary>
+          <p class="faq-a">One commitment organizes everything: the evidence has to earn its place, and when it cannot, it gets downgraded rather than defended. A finding is tested by whether it would survive someone actively trying to break it. When there is doubt about strength, it is graded down, not up. "Replicated" is reserved for genuine agreement across multiple studies. The framework's own interpretations stay marked as theoretical unless directly tested. Known failures from psychology's replication crisis - ego depletion, social priming, power posing, the facial-feedback hypothesis - are flagged and excluded rather than quietly used.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>Books or papers - which does Cor rely on?</summary>
+          <p class="faq-a">Papers. Books are treated as the map; papers are the territory. A book describes research; a paper is research. A claim traced to a popular synthesis is treated as a pointer toward the primary literature, not as the evidence itself. The book tells you where to look. The paper is what gets cited.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>Doesn't this framework just explain away anything that challenges it?</summary>
+          <p class="faq-a">It is built specifically not to. When mainstream psychiatry fails - diagnostic categories that don't hold together, treatments that underperform - Cor counts that as support, because the framework predicts it. But findings from addiction neuroscience showing substance-specific neural mechanisms are treated as genuine challenges, not threats to be absorbed. The question asked is whether the framework needs to adjust, not how to explain the finding away. A framework that nothing could challenge would not be a framework.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>What is the EEA, and aren't you just saying "the caveman life was better"?</summary>
+          <p class="faq-a">No, and this distinction is load-bearing. The EEA - the environment a human's systems were shaped in - is used as a diagnostic baseline, a reference point for measuring the gap between what a system expects and what it gets. It is not a prescription, a destination, or a romanticized past. The goal is never to restore the ancestral form of anything. It is to deliver the function the system is actually checking for. A bonding system needs the function of trusted co-regulation; it does not need you to live in a hut. Reading the baseline as a set of rules to live by would turn a measuring instrument into a naturalistic fallacy.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>"Mismatch" - does that mean evolution broke us, or that we're badly designed?</summary>
+          <p class="faq-a">The opposite. The systems work. They are doing precisely what they were built to do. What has changed is the input. A smoke detector that goes off because the room is full of smoke is not broken. The architecture is sound; it is being fed conditions outside the range it was built for. Cor never locates the problem in the person. The villain is always the gap, and the normalization of that gap - never the human's wanting.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>How does Cor fit into the larger project?</summary>
+          <p class="faq-a">Cor is the central reference work of Demismatch. Demismatch is the project; Cor is its spine. The atlas is the shared source, and the applied work sits on top of it. For machines: aligning systems to the architecture as ground truth. For humans: two tools - reading where the mismatch is, and building environments that match. The horizon the whole thing points at is matched environments. Demismatch the world first, then augment.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>Can other people build on Cor?</summary>
+          <p class="faq-a">Yes. That is the point of building it as open foundational infrastructure rather than a proprietary product. The atlas describes what a human being is at the level of evolved mechanism. Any team - in technology, policy, education, clinical practice, or design - can build on that. AI alignment is one such application. It is not the limit of what the atlas is for.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>Where do I find the current data?</summary>
+          <p class="faq-a">The dashboard at <a href="https://cor.demismatch.com/" style="color:var(--teal);border:0;">cor.demismatch.com</a> carries the canonical, live counts and the full structure: every foundation, convergence, mechanism, and the evidence linking them. Any specific figures quoted elsewhere - in older write-ups or summaries - are superseded by what the dashboard shows.</p>
+        </details>
+
+      </div>
+
+    </section>
 
   </main>
 
