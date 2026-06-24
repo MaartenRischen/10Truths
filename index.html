@@ -744,6 +744,29 @@
     }
     .faq-group-label:first-child { margin-top: 0; }
 
+    .faq-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(2rem, 5vw, 4rem);
+      align-items: start;
+    }
+    @media (max-width: 680px) {
+      .faq-cols { grid-template-columns: 1fr; }
+    }
+
+    .faq-col-head {
+      display: block;
+      font-family: var(--mono);
+      font-size: 0.74rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: var(--oxblood);
+      margin-bottom: clamp(0.6rem, 1.2vw, 0.9rem);
+      padding-bottom: clamp(0.55rem, 1vw, 0.75rem);
+      border-bottom: 1px solid rgba(58, 18, 24, 0.35);
+    }
+
     .d3 { animation-delay: 0.28s; }
   </style>
 </head>
@@ -1056,103 +1079,193 @@
 
     </section><!-- /Panel: the argument -->
 
-    <!-- Panel - FAQ about Cor -->
+    <!-- Panel - FAQ: Demismatch (left) + Cor (right) -->
     <section class="panel reveal d3">
 
       <span class="bd-eyebrow">Frequently asked</span>
 
-      <div class="faq-list">
+      <div class="faq-cols">
 
-        <span class="faq-group-label">What it is</span>
+        <!-- Left: Demismatch FAQ -->
+        <div class="faq-col">
+          <span class="faq-col-head">Demismatch</span>
+          <div class="faq-list">
 
-        <details class="faq-item">
-          <summary>What is Cor, in one sentence?</summary>
-          <p class="faq-a">Cor is an evidence-graded atlas of the complete human motivational and emotional architecture: a map of the systems that drive what humans want, feel, fear, and pursue, and what each of those systems was built to need.</p>
-        </details>
+            <details class="faq-item">
+              <summary>What is Demismatch?</summary>
+              <p class="faq-a">Demismatch is the whole project. It starts from a single claim: modern human distress is, in most cases, accurate signaling about a world that no longer fits the people in it, not a disorder inside those people. The systems that produce human wanting, fear, and feeling are working. The environment they are running in is wrong. Demismatch sets out to specify what humans are actually built to need, and then to build to it.</p>
+            </details>
 
-        <details class="faq-item">
-          <summary>What does "atlas" mean here? I've also seen the word "specification."</summary>
-          <p class="faq-a">Cor is currently an atlas. It maps the territory. The specification is the operational layer it is being built toward, and that word is reserved for that future layer. The precedent is the Allen Brain Atlas or the Human Cell Atlas: open foundational infrastructure that describes what a thing is, built so that anyone can build on top of it.</p>
-        </details>
+            <details class="faq-item">
+              <summary>So what is Cor, and how is it different from Demismatch?</summary>
+              <p class="faq-a">Cor is the central reference work inside Demismatch. It is the spine, not the whole animal. Demismatch is the project; Cor is the atlas at the center of it that describes what a human being is at the level of evolved mechanism. Everything else in the project is built on top of Cor.</p>
+            </details>
 
-        <details class="faq-item">
-          <summary>What is the core idea behind it?</summary>
-          <p class="faq-a">That modern human suffering is, in most cases, accurate signaling from a sound organism in a mismatched environment. The hardware works. The environment is wrong. Anxiety, low mood, chronic stress, loneliness, restlessness - these are usually intelligible outputs of systems doing their job, responding to conditions they were never built for. The problem is the gap between the world a human is built for and the world a human lives in. The fix is to change the world, not to locate a defect in the person.</p>
-        </details>
+            <details class="faq-item">
+              <summary>How is the project structured?</summary>
+              <p class="faq-a">Four parts. There is the Why - the case that the problem is mismatch, that suffering is signal, that the fix is the world rather than the person. There is Cor, the source - the evidence-graded account of what humans need and how those needs operate. Then two arms built on Cor: one pointing at machines (aligning AI to the specification of what humans are), one pointing at people (tools that let a person see the mismatch they are in). And there is the Horizon - what comes after, when environments are built to fit human biology rather than against it.</p>
+            </details>
 
-        <details class="faq-item">
-          <summary>Why does that matter beyond psychology?</summary>
-          <p class="faq-a">Because it points at a blind spot in how we build technology, and especially how we try to align AI. The standard assumption is that what a person wants, clicks, or prefers reveals what is good for them. Cor's position is that preferences are outputs of evolved mechanisms, not ground truth. A lonely person can genuinely want an AI companion. A person caught in a feed can genuinely want the next video. The wanting is real. It is also not reliable evidence that the thing is good for them. Any system that optimizes for stated or revealed preference without a model of the architecture underneath is optimizing against the person it claims to serve. Cor is the model of that architecture. AI alignment is one application built on it. It is not the frame around it.</p>
-        </details>
+            <details class="faq-item">
+              <summary>Why does a project about human suffering care so much about AI?</summary>
+              <p class="faq-a">Because the machines that will design, coordinate, and operate human environments at scale are being built right now against an unexamined assumption: that what a person clicks, says, or prefers is reliable evidence of what is good for them. AI aligned to current preferences builds perfect proxies and deepens the mismatch. AI aligned to the specification of what humans actually need can build environments that match. The alignment work and the environment work are not two projects. They are the same project.</p>
+            </details>
 
-        <span class="faq-group-label">How it's built</span>
+            <span class="faq-group-label">The two arms</span>
 
-        <details class="faq-item">
-          <summary>How was a source chosen for inclusion?</summary>
-          <p class="faq-a">A work has to clear three hard gates. First: it needs a verifiable identifier - a DOI or PubMed ID - or it has to be physically in the collection. Second: anything taken from it has to come from the full text. Claims sourced from an abstract, a snippet, or an aggregator summary are rejected outright. An internal audit found a complete failure rate on a batch of claims pulled from snippets: fabricated quotes, drifted paraphrases, invented findings. The full-text gate makes that class of error impossible. Third: any direct quote stored against a work has to be word-for-word. A quote stitched from fragments or smoothed into a paraphrase counts as fabrication.</p>
-        </details>
+            <details class="faq-item">
+              <summary>What is the machine-facing arm?</summary>
+              <p class="faq-a">Alignment to Cor as ground truth - giving machines something to read about what humans are, underneath the layer of what humans say they want. Three lines: a machine-readable specification any model can query live; correction through contrastive pairs drawn from named mechanisms; and models built on the specification from the start, aimed at the places where hallucinating about human needs is most costly - clinical triage, educational scaffolding, therapy-adjacent tools.</p>
+            </details>
 
-        <details class="faq-item">
-          <summary>How is the material actually turned into findings?</summary>
-          <p class="faq-a">The process runs from the bottom up, from evidence to conclusions, never the other way around. A work is read, and individual findings are pulled from its full text. Each finding is recorded and graded for how strong the evidence is. These findings accumulate against the human systems they bear on. Where several independent lines of research - different labs, different methods, different decades - point at the same structural fact, that agreement is recorded as a convergence. A system only earns its place because the evidence underneath it converges on it. Nothing is reverse-engineered to fit a theory decided in advance.</p>
-        </details>
+            <details class="faq-item">
+              <summary>What is the human-facing arm?</summary>
+              <p class="faq-a">Software that shows a person what their environment is doing to their biology. Two families: Decode reads the mismatch - you point it at something and it returns the mechanism firing, the proxy modern life is using to hit it, and the real input that would resolve it. Adaptor builds the matched conditions back - tools that help put the missing inputs in front of you, starting with Lens, a morning tool that puts a role, a group, and a goal that matters back in your field of view.</p>
+            </details>
 
-        <details class="faq-item">
-          <summary>What does the finished structure look like?</summary>
-          <p class="faq-a">A pyramid, derived once and now locked. Reading from the foundation up: two framing premises about how organisms relate to the world. Then three core premises: that survival and reproduction are what evolution optimizes for, that the organism is a set of specialized interacting systems, and that modern environments systematically push those systems outside the range they were built for. From those, a set of derived properties. From those, the consequences - chief among them that unresolved stress accumulates as bodily wear, and that markets will industrialize the exploitation of unmet needs. Then fourteen convergences. Then, at the top, fifteen mechanisms. This structure is final.</p>
-        </details>
+            <details class="faq-item">
+              <summary>Which of these tools actually exist right now?</summary>
+              <p class="faq-a">Decode Talk is live - the chat version, where you type a situation and get the read back. Decode Web (a browser extension that annotates pages) and Decode Camera (which reads a photo of a scene) are in build. Adaptor, starting with Lens, is next. There are openable, working public tools today.</p>
+            </details>
 
-        <details class="faq-item">
-          <summary>What are the fifteen mechanisms?</summary>
-          <p class="faq-a">Threat management · Pursuit and exploration · Social bonding · Social calibration through play · Status monitoring · Agency · Circadian regulation · Immune regulation · Care and alloparenting · Movement · Cooperation and alliance · Contamination avoidance · Energy regulation · Reproductive motivation · Touch. Each is a distinct evolved system with its own environmental inputs, ancestral baseline, and mismatch signature.</p>
-        </details>
+            <details class="faq-item">
+              <summary>What does Decode give me that a wellness app doesn't?</summary>
+              <p class="faq-a">A wellness app tells you to feel better. An AI companion sits in the place of a relationship and returns none of the thing a relationship delivers - the most dangerous proxy of all, because it fires the bonding response while supplying nothing that resolves it. Decode does neither. It names what is happening: which evolved system is sounding, what cheap modern stand-in is setting it off, and what the real thing would be. The aim is to make the mismatch legible so you can act on the world.</p>
+            </details>
 
-        <details class="faq-item">
-          <summary>How big is the atlas right now?</summary>
-          <p class="faq-a">The live counts are at <a href="https://cor.demismatch.com/" style="color:var(--teal);border:0;">cor.demismatch.com</a> - they move as the work continues. At the time of writing: 120 works, 608 individual findings, 64 researchers, 17 foundational premises, 14 convergences, 15 mechanisms, over 900 evidence connections, across 22 research domains, with 14 identified gaps. A baseline layer separately records 32 environmental parameters - ancestral baseline, modern default, and the gap between them for each.</p>
-        </details>
+            <span class="faq-group-label">The horizon</span>
 
-        <span class="faq-group-label">Quality &amp; philosophy</span>
+            <details class="faq-item">
+              <summary>What is the project actually building toward?</summary>
+              <p class="faq-a">Environments that fit human biology. Concretely: people waking up inside conditions matched to what they are built for - a role the group depends on, a group at roughly the scale the human brain evolved to track, work that matters to specific named people, and a basis for living that does not require selling time into an anonymous market just to afford to exist. The claim is that when the environment is right, much of what now reads as individual pathology dissolves, because it was a readout of the gap all along.</p>
+            </details>
 
-        <details class="faq-item">
-          <summary>What is the quality philosophy? How do you keep this honest?</summary>
-          <p class="faq-a">One commitment organizes everything: the evidence has to earn its place, and when it cannot, it gets downgraded rather than defended. A finding is tested by whether it would survive someone actively trying to break it. When there is doubt about strength, it is graded down, not up. "Replicated" is reserved for genuine agreement across multiple studies. The framework's own interpretations stay marked as theoretical unless directly tested. Known failures from psychology's replication crisis - ego depletion, social priming, power posing, the facial-feedback hypothesis - are flagged and excluded rather than quietly used.</p>
-        </details>
+            <details class="faq-item">
+              <summary>Isn't this just nostalgia for tribal life? Are you telling people to go live in the woods?</summary>
+              <p class="faq-a">No. The ancestral environment is used as a measuring instrument, not a destination. What matters is the function a system is built to receive, never its ancient form. A bonding system needs the function of trusted people close by; it does not need you to live in a hut. An environment built in software that delivers embodied presence, named others, real stakes, and shared work is a real match. Matched environments in software can ship in years.</p>
+            </details>
 
-        <details class="faq-item">
-          <summary>Books or papers - which does Cor rely on?</summary>
-          <p class="faq-a">Papers. Books are treated as the map; papers are the territory. A book describes research; a paper is research. A claim traced to a popular synthesis is treated as a pointer toward the primary literature, not as the evidence itself. The book tells you where to look. The paper is what gets cited.</p>
-        </details>
+            <details class="faq-item">
+              <summary>Where does technology fit in all this? Is the project anti-tech?</summary>
+              <p class="faq-a">No. Technology is neutral - what matters is whether it delivers the function a mechanism is checking for. The problem is not the tools. It is aiming them at preferences instead of needs, inside an environment that is already mismatched, where every improvement just makes the proxy smoother while the signal stays unmet.</p>
+            </details>
 
-        <details class="faq-item">
-          <summary>Doesn't this framework just explain away anything that challenges it?</summary>
-          <p class="faq-a">It is built specifically not to. When mainstream psychiatry fails - diagnostic categories that don't hold together, treatments that underperform - Cor counts that as support, because the framework predicts it. But findings from addiction neuroscience showing substance-specific neural mechanisms are treated as genuine challenges, not threats to be absorbed. The question asked is whether the framework needs to adjust, not how to explain the finding away. A framework that nothing could challenge would not be a framework.</p>
-        </details>
+            <details class="faq-item">
+              <summary>What is "demismatch first, then augment"?</summary>
+              <p class="faq-a">It is the test the whole project applies. Before adding any new capability - to a person, a tool, an environment - ask whether the underlying environment matches what humans need. If it does not, augmentation deepens the mismatch rather than helping. Fix the fit first, then augment from that baseline. It is the sentence the whole horizon is organized around.</p>
+            </details>
 
-        <details class="faq-item">
-          <summary>What is the EEA, and aren't you just saying "the caveman life was better"?</summary>
-          <p class="faq-a">No, and this distinction is load-bearing. The EEA - the environment a human's systems were shaped in - is used as a diagnostic baseline, a reference point for measuring the gap between what a system expects and what it gets. It is not a prescription, a destination, or a romanticized past. The goal is never to restore the ancestral form of anything. It is to deliver the function the system is actually checking for. A bonding system needs the function of trusted co-regulation; it does not need you to live in a hut. Reading the baseline as a set of rules to live by would turn a measuring instrument into a naturalistic fallacy.</p>
-        </details>
+            <span class="faq-group-label">Standing back</span>
 
-        <details class="faq-item">
-          <summary>"Mismatch" - does that mean evolution broke us, or that we're badly designed?</summary>
-          <p class="faq-a">The opposite. The systems work. They are doing precisely what they were built to do. What has changed is the input. A smoke detector that goes off because the room is full of smoke is not broken. The architecture is sound; it is being fed conditions outside the range it was built for. Cor never locates the problem in the person. The villain is always the gap, and the normalization of that gap - never the human's wanting.</p>
-        </details>
+            <details class="faq-item">
+              <summary>Who is this for?</summary>
+              <p class="faq-a">Several audiences. People trying to understand their own distress without being told the fault is in them. AI labs and alignment researchers who need a model of the human that sits underneath stated preference. Clinicians, educators, designers, and policy people who work with human environments. And funders and researchers interested in foundational infrastructure for understanding what a human being is.</p>
+            </details>
 
-        <details class="faq-item">
-          <summary>How does Cor fit into the larger project?</summary>
-          <p class="faq-a">Cor is the central reference work of Demismatch. Demismatch is the project; Cor is its spine. The atlas is the shared source, and the applied work sits on top of it. For machines: aligning systems to the architecture as ground truth. For humans: two tools - reading where the mismatch is, and building environments that match. The horizon the whole thing points at is matched environments. Demismatch the world first, then augment.</p>
-        </details>
+            <details class="faq-item">
+              <summary>Is this proprietary? Can other people build on it?</summary>
+              <p class="faq-a">The atlas at the center is built as open foundational infrastructure, on purpose. It describes what a human is at the level of evolved mechanism, and any team can build on that - in technology, policy, education, clinical practice, or design. The alignment work is one application. The human-facing tools are another. Neither is the limit of what the source is for.</p>
+            </details>
 
-        <details class="faq-item">
-          <summary>Can other people build on Cor?</summary>
-          <p class="faq-a">Yes. That is the point of building it as open foundational infrastructure rather than a proprietary product. The atlas describes what a human being is at the level of evolved mechanism. Any team - in technology, policy, education, clinical practice, or design - can build on that. AI alignment is one such application. It is not the limit of what the atlas is for.</p>
-        </details>
+            <details class="faq-item">
+              <summary>Where do I start?</summary>
+              <p class="faq-a">Start with the Why if you want the case for why the problem is mismatch. Start with Cor if you want to see the evidence and the structure underneath everything. Try <a href="decode-talk.html" style="color:var(--teal);border:0;">Decode Talk</a> if you want to point the lens at something in your own life. And read the Horizon if you want to know what the whole thing is being built toward.</p>
+            </details>
 
-        <details class="faq-item">
-          <summary>Where do I find the current data?</summary>
-          <p class="faq-a">The dashboard at <a href="https://cor.demismatch.com/" style="color:var(--teal);border:0;">cor.demismatch.com</a> carries the canonical, live counts and the full structure: every foundation, convergence, mechanism, and the evidence linking them. Any specific figures quoted elsewhere - in older write-ups or summaries - are superseded by what the dashboard shows.</p>
-        </details>
+          </div>
+        </div>
+
+        <!-- Right: Cor FAQ -->
+        <div class="faq-col">
+          <span class="faq-col-head">Cor</span>
+          <div class="faq-list">
+
+            <details class="faq-item">
+              <summary>What is Cor, in one sentence?</summary>
+              <p class="faq-a">Cor is an evidence-graded atlas of the complete human motivational and emotional architecture: a map of the systems that drive what humans want, feel, fear, and pursue, and what each of those systems was built to need.</p>
+            </details>
+
+            <details class="faq-item">
+              <summary>What does "atlas" mean here? I've also seen the word "specification."</summary>
+              <p class="faq-a">Cor is currently an atlas. It maps the territory. The specification is the operational layer it is being built toward, and that word is reserved for that future layer. The precedent is the Allen Brain Atlas or the Human Cell Atlas: open foundational infrastructure that describes what a thing is, built so that anyone can build on top of it.</p>
+            </details>
+
+            <details class="faq-item">
+              <summary>What is the core idea behind it?</summary>
+              <p class="faq-a">That modern human suffering is, in most cases, accurate signaling from a sound organism in a mismatched environment. The hardware works. The environment is wrong. Anxiety, low mood, chronic stress, loneliness, restlessness - these are usually intelligible outputs of systems doing their job, responding to conditions they were never built for. The problem is the gap between the world a human is built for and the world a human lives in. The fix is to change the world, not to locate a defect in the person.</p>
+            </details>
+
+            <details class="faq-item">
+              <summary>Why does that matter beyond psychology?</summary>
+              <p class="faq-a">Because it points at a blind spot in how we build technology, and especially how we try to align AI. The standard assumption is that what a person wants, clicks, or prefers reveals what is good for them. Cor's position is that preferences are outputs of evolved mechanisms, not ground truth. A lonely person can genuinely want an AI companion. A person caught in a feed can genuinely want the next video. The wanting is real. It is also not reliable evidence that the thing is good for them. Any system that optimizes for stated or revealed preference without a model of the architecture underneath is optimizing against the person it claims to serve. Cor is the model of that architecture.</p>
+            </details>
+
+            <span class="faq-group-label">How it's built</span>
+
+            <details class="faq-item">
+              <summary>How was a source chosen for inclusion?</summary>
+              <p class="faq-a">A work has to clear three hard gates. First: it needs a verifiable identifier - a DOI or PubMed ID - or it has to be physically in the collection. Second: anything taken from it has to come from the full text. Claims sourced from an abstract, a snippet, or an aggregator summary are rejected outright. An internal audit found a complete failure rate on a batch of claims pulled from snippets: fabricated quotes, drifted paraphrases, invented findings. Third: any direct quote stored against a work has to be word-for-word. A quote stitched from fragments or smoothed into a paraphrase counts as fabrication.</p>
+            </details>
+
+            <details class="faq-item">
+              <summary>How is the material actually turned into findings?</summary>
+              <p class="faq-a">The process runs from the bottom up, from evidence to conclusions, never the other way around. A work is read and individual findings are pulled from its full text. Each finding is graded for how strong the evidence is. Where several independent lines of research - different labs, different methods, different decades - point at the same structural fact, that agreement is recorded as a convergence. A system only earns its place because the evidence underneath it converges on it. Nothing is reverse-engineered to fit a theory decided in advance.</p>
+            </details>
+
+            <details class="faq-item">
+              <summary>What does the finished structure look like?</summary>
+              <p class="faq-a">A pyramid, derived once and now locked. Reading from the foundation up: two framing premises, then three core premises, then derived properties, then consequences - chief among them that unresolved stress accumulates as bodily wear, and that markets will industrialize the exploitation of unmet needs. Then fourteen convergences. Then, at the top, fifteen mechanisms. This structure is final.</p>
+            </details>
+
+            <details class="faq-item">
+              <summary>What are the fifteen mechanisms?</summary>
+              <p class="faq-a">Threat management · Pursuit and exploration · Social bonding · Social calibration through play · Status monitoring · Agency · Circadian regulation · Immune regulation · Care and alloparenting · Movement · Cooperation and alliance · Contamination avoidance · Energy regulation · Reproductive motivation · Touch. Each is a distinct evolved system with its own environmental inputs, ancestral baseline, and mismatch signature.</p>
+            </details>
+
+            <details class="faq-item">
+              <summary>How big is the atlas right now?</summary>
+              <p class="faq-a">The live counts are at <a href="https://cor.demismatch.com/" style="color:var(--teal);border:0;">cor.demismatch.com</a> - they move as the work continues. At the time of writing: 120 works, 608 individual findings, 64 researchers, 17 foundational premises, 14 convergences, 15 mechanisms, over 900 evidence connections, across 22 research domains, with 14 identified gaps.</p>
+            </details>
+
+            <span class="faq-group-label">Quality &amp; philosophy</span>
+
+            <details class="faq-item">
+              <summary>What is the quality philosophy? How do you keep this honest?</summary>
+              <p class="faq-a">One commitment organizes everything: the evidence has to earn its place, and when it cannot, it gets downgraded rather than defended. A finding is tested by whether it would survive someone actively trying to break it. When there is doubt about strength, it is graded down, not up. "Replicated" is reserved for genuine agreement across multiple studies. Known failures from psychology's replication crisis - ego depletion, social priming, power posing, the facial-feedback hypothesis - are flagged and excluded rather than quietly used.</p>
+            </details>
+
+            <details class="faq-item">
+              <summary>Books or papers - which does Cor rely on?</summary>
+              <p class="faq-a">Papers. Books are treated as the map; papers are the territory. A book describes research; a paper is research. A claim traced to a popular synthesis is treated as a pointer toward the primary literature, not as the evidence itself. The book tells you where to look. The paper is what gets cited.</p>
+            </details>
+
+            <details class="faq-item">
+              <summary>Doesn't this framework just explain away anything that challenges it?</summary>
+              <p class="faq-a">It is built specifically not to. When mainstream psychiatry fails - diagnostic categories that don't hold together, treatments that underperform - Cor counts that as support, because the framework predicts it. But findings from addiction neuroscience showing substance-specific neural mechanisms are treated as genuine challenges, not threats to be absorbed. A framework that nothing could challenge would not be a framework.</p>
+            </details>
+
+            <details class="faq-item">
+              <summary>What is the EEA, and aren't you just saying "the caveman life was better"?</summary>
+              <p class="faq-a">No, and this distinction is load-bearing. The EEA - the environment a human's systems were shaped in - is used as a diagnostic baseline, a reference point for measuring the gap between what a system expects and what it gets. It is not a prescription, a destination, or a romanticized past. The goal is to deliver the function the system is actually checking for. A bonding system needs the function of trusted co-regulation; it does not need you to live in a hut.</p>
+            </details>
+
+            <details class="faq-item">
+              <summary>"Mismatch" - does that mean evolution broke us, or that we're badly designed?</summary>
+              <p class="faq-a">The opposite. The systems work. They are doing precisely what they were built to do. What has changed is the input. A smoke detector that goes off because the room is full of smoke is not broken. The architecture is sound; it is being fed conditions outside the range it was built for. Cor never locates the problem in the person. The villain is always the gap - never the human's wanting.</p>
+            </details>
+
+            <details class="faq-item">
+              <summary>Can other people build on Cor?</summary>
+              <p class="faq-a">Yes. That is the point of building it as open foundational infrastructure rather than a proprietary product. The atlas describes what a human being is at the level of evolved mechanism. Any team - in technology, policy, education, clinical practice, or design - can build on that. AI alignment is one such application. It is not the limit of what the atlas is for.</p>
+            </details>
+
+            <details class="faq-item">
+              <summary>Where do I find the current data?</summary>
+              <p class="faq-a">The dashboard at <a href="https://cor.demismatch.com/" style="color:var(--teal);border:0;">cor.demismatch.com</a> carries the canonical, live counts and the full structure: every foundation, convergence, mechanism, and the evidence linking them. Any specific figures quoted elsewhere are superseded by what the dashboard shows.</p>
+            </details>
+
+          </div>
+        </div>
 
       </div>
 
