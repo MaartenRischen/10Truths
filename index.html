@@ -258,6 +258,19 @@
       margin: clamp(2rem, 4vw, 3rem) 0 clamp(1.2rem, 2.4vw, 1.7rem);
     }
 
+    /* Cross-link to the Cor FAQ (the science-level questions live there;
+       this panel answers Demismatch-level ones). Sits above the FAQ list. */
+    .faq-cor-xref {
+      text-align: center;
+      margin: 0 0 clamp(1.6rem, 3vw, 2.4rem);
+      font-family: var(--mono);
+      font-size: clamp(0.74rem, 1.2vw, 0.82rem);
+      letter-spacing: 0.08em;
+      line-height: 1.7;
+      color: var(--oxblood);
+    }
+    .faq-cor-xref .lead { display: block; margin-bottom: 0.7rem; opacity: 0.85; }
+
     /* ── Cards ── */
     .bd-card-row {
       display: grid;
@@ -1062,6 +1075,11 @@
     <section class="panel reveal d3">
 
       <span class="bd-eyebrow">Frequently asked about Demismatch</span>
+
+      <p class="faq-cor-xref">
+        <span class="lead">Looking for questions about the science itself?</span>
+        <a class="bd-watch" href="https://cor.demismatch.com/faq.html">Read the Cor FAQ <span aria-hidden="true">&rarr;</span></a>
+      </p>
 
       <div class="faq-list">
 
