@@ -769,6 +769,96 @@ function saveSettings() {
 }
 let settings = loadSettings();
 
+// ─── Satiation session (client-side, privacy-preserving) ────────────────────────
+// decode:talk can become its own M2 (open-loop) proxy: chasing reads for hours. A satiation
+// interrupt (server-side, currently SHADOW only) needs to see a sustained loop-chasing pattern
+// that spans MANY short conversations (the server caps a single conversation at 3 reads, then
+// the user starts fresh, so a server that is stateless across conversations cannot see it).
+// The server stays STATELESS - it stores nothing cross-session and keys nothing to IP or cookie.
+// Instead the BROWSER keeps a rolling session here and sends it with each request, the same way
+// it already sends conversation history. We send only non-content signals: per-turn timestamp +
+// abstraction score, plus any captured real-input commitment. Defeatable by clearing storage -
+// accepted; that population is not who this protects. The at-risk user this protects must not
+// become the most-tracked user to deliver it.
+const SESSION_KEY = 'decode_talk_session_v1';
+const SESSION_MAX_AGE_MS = 6 * 60 * 60 * 1000; // a sitting, not a life history
+const SESSION_MAX_TURNS = 60;
+
+function loadSession() {
+  try {
+    const s = JSON.parse(localStorage.getItem(SESSION_KEY) || 'null');
+    if (!s || typeof s !== 'object') return { turns: [], commitment: null };
+    return { turns: Array.isArray(s.turns) ? s.turns : [], commitment: s.commitment || null };
+  } catch { return { turns: [], commitment: null }; }
+}
+function saveSession(s) {
+  try { localStorage.setItem(SESSION_KEY, JSON.stringify(s)); } catch {}
+}
+function pruneSession(s, now) {
+  s.turns = (s.turns || []).filter(t => t && typeof t.ts === 'number' && now - t.ts <= SESSION_MAX_AGE_MS);
+  if (s.turns.length > SESSION_MAX_TURNS) s.turns = s.turns.slice(-SESSION_MAX_TURNS);
+  return s;
+}
+
+// MIRROR of worker/src/satiation.mjs abstractionScore + extractCommitment - keep in sync. We
+// score the abstraction signal HERE so the turn TEXT never has to be sent for past conversations;
+// only the resulting number travels. The distress gates stay server-side, on the live turn.
+const SAT_META_TOKENS = [
+  'mechanism','mechanisms','rank','priority','order them','the order','right order','first',
+  'complete','exhaustive','framework','heuristic','practitioner','the tool','this tool',
+  'this method','the system','the list','taxonomy','the model','version',' meta ',
+  'am i doing this right','can i be my own','be my own','do i need you','is this all',
+  'the whole set','all 14','14 mechanisms','am i missing','is this complete','is this version',
+];
+const SAT_SITUATIONAL_TOKENS = [
+  'my boss','my partner','my wife','my husband','my girlfriend','my boyfriend','my mom',
+  'my mother','my dad','my father','my friend','my kid','my son','my daughter','at work',
+  'today','yesterday','this morning','tonight','last night','she said','he said','they said',
+  'happened','i went','i saw','i told','my manager','my ex','this week',
+];
+function clientAbstractionScore(text) {
+  if (typeof text !== 'string') return 0;
+  const padded = ' ' + text.toLowerCase() + ' ';
+  const meta = SAT_META_TOKENS.reduce((n, tk) => n + (padded.includes(tk) ? 1 : 0), 0);
+  const situ = SAT_SITUATIONAL_TOKENS.reduce((n, tk) => n + (padded.includes(tk) ? 1 : 0), 0);
+  const raw = meta - situ;
+  if (raw <= 0) return 0;
+  return raw >= 2 ? 1 : 0.5;
+}
+const SAT_COMMIT_MARKERS = [
+  "i'm going to",'i am going to','im going to',"i'll ",'i will ','i plan to','my plan is',
+  "i said i'd",'i said i would','i promised',"i'm meeting",'i am meeting',"i'm seeing",
+  'i am seeing','i committed to','i signed up',"i'm supposed to",'i am supposed to',
+  'i told myself',"i'm meant to",
+];
+function clientExtractCommitment(text) {
+  const sentences = String(text).split(/(?<=[.!?\n])\s+|[\n;]+/).map(s => s.trim()).filter(Boolean);
+  for (const sentence of sentences) {
+    const low = sentence.toLowerCase();
+    if (SAT_COMMIT_MARKERS.some(m => low.includes(m))) return sentence.replace(/\s+/g, ' ').trim();
+  }
+  return null;
+}
+
+let session = pruneSession(loadSession(), Date.now());
+saveSession(session);
+
+// Record a user turn into the rolling session: timestamp + abstraction score (NO text stored),
+// and refresh the captured commitment if this turn states one. Lives in localStorage, so it
+// survives the per-conversation reset that the in-memory `messages` array does not.
+function recordUserTurn(text) {
+  const now = Date.now();
+  session.turns.push({ ts: now, abs: clientAbstractionScore(text) });
+  const commit = clientExtractCommitment(text);
+  if (commit) session.commitment = commit;
+  pruneSession(session, now);
+  saveSession(session);
+}
+// Sent to the worker alongside history. Signals only; never past-turn text.
+function sessionPayload() {
+  return { turns: session.turns, commitment: session.commitment || null };
+}
+
 // ─── DOM refs ──────────────────────────────────────────────────────────────────
 const $conversation = document.getElementById('conversation');
 const $input = document.getElementById('input');
@@ -895,6 +985,7 @@ $form.addEventListener('submit', async (e) => {
   if (!text) return;
   $errorSlot.innerHTML = '';
   messages.push({ role: 'user', content: text });
+  recordUserTurn(text); // rolling cross-conversation session (signals only; see above)
   renderUser(text);
   $input.value = '';
   $input.focus();
@@ -917,7 +1008,9 @@ async function runInference() {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
       // TEMP: high demand — force Sonnet on the wire regardless of selected model.
-      body: JSON.stringify({ messages, settings: { ...settings, model: PINNED_MODEL } }),
+      // session = rolling cross-conversation signals (timestamps + abstraction scores +
+      // captured commitment); consumed server-side in SHADOW mode only. No server-side state.
+      body: JSON.stringify({ messages, settings: { ...settings, model: PINNED_MODEL }, session: sessionPayload() }),
     });
 
     if (!res.ok) {
