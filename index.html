@@ -1031,7 +1031,7 @@
     .bd-source-mark .wm { fill: var(--parchment); font-family: var(--serif); font-weight: 500; }
     .bd-source-mark .wm text { font-size: 116px; text-anchor: middle; }
     .bd-source-title { font-family: var(--serif); font-weight: 500; font-style: italic; font-size: clamp(1.5rem, 2.3vw, 2.05rem); line-height: 1.05; letter-spacing: -0.015em; color: var(--parchment); margin: 0 0 0.3rem; }
-    .bd-source-spec { font-family: var(--serif); font-size: 1rem; color: #c4b894; margin: 0 0 1.15rem; }
+    .bd-source-spec { font-family: var(--serif); font-size: 1rem; color: #c4b894; margin: 0 0 0.55rem; }
 
     .bd-source-answers { width: 100%; margin: 0 0 1.2rem; padding: 1.1rem 0 0; border-top: 1px solid rgba(236,224,196,0.22); }
     .bd-source-answers-label { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 0.7rem; }
@@ -1131,6 +1131,14 @@
       cursor: pointer; padding: 0 0 2px; font: inherit;
     }
     .bd-map-expand[aria-expanded="true"] { color: var(--muted-warm); border-bottom-color: rgba(138,125,94,0.5); }
+
+    
+
+    /* Built on the work of - compact credit inside the Cor placard */
+    .bd-source-credit { width: 100%; margin: 0 0 1.2rem; }
+    .bd-source-credit-label { display: block; font-family: var(--mono); font-size: 0.56rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem; }
+    .bd-source-credit-names { display: block; font-family: var(--serif); font-size: 0.82rem; line-height: 1.55; color: var(--parchment); }
+    .bd-source-credit-names .more { color: #c4b894; font-style: italic; white-space: nowrap; }
   </style>
 </head>
 <body data-page="home">
@@ -1152,7 +1160,7 @@
       <!-- Hero - the hook and the claim, centred. -->
       <div class="bd-herocenter">
         <h1 class="bd-thesis">Humans need a world that fits humans.<span class="bd-sub">AI should help build it.</span></h1>
-        <p class="bd-lede">Modern distress is accurate signaling about a world that no longer fits you. Not a disorder in you. The science of what you're built to need already exists, scattered and never assembled. Cor assembles it, so you can hold any environment, policy, or technology up against what you actually require. Then build the ones that fit.</p>
+        <p class="bd-lede">Modern distress is accurate signaling about a world that no longer fits you. The science of what you're built to need already exists, scattered and never assembled. Cor assembles it, so you can hold any environment or technology up against what you actually require. Then build the ones that fit.</p>
         <div class="bd-needs-row">
           <button type="button" id="needs-toggle" class="bd-needs-toggle" aria-expanded="false" aria-controls="needs-fold">What humans need <span class="bd-needs-toggle-icon" aria-hidden="true"></span></button>
           <a class="bd-needs-cor" href="https://cor.demismatch.com/">See how we know - Cor →</a>
@@ -1299,6 +1307,10 @@
             </svg>
             <h2 class="bd-source-title">Cor — what a human is</h2>
             <p class="bd-source-spec">A spec of the human.</p>
+            <div class="bd-source-credit">
+              <span class="bd-source-credit-label">Built on the work of</span>
+              <span class="bd-source-credit-names">Darwin &middot; Bowlby &middot; Trivers &middot; Tooby &amp; Cosmides &middot; Nesse &middot; Panksepp &middot; Dunbar &middot; Hrdy &middot; Sapolsky &middot; de Waal <span class="more">+ more</span></span>
+            </div>
             <div class="bd-source-answers">
               <span class="bd-source-answers-label">It answers</span>
               <ul>
@@ -1420,6 +1432,7 @@
       </section>
 
     </section>
+
 
     <!-- Panel - the Decode Talk demo -->
     <section class="panel panel-demo reveal d2">
