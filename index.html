@@ -24,7 +24,8 @@
     :root {
       --page-bg: #f4f1e7;     /* warm cream behind the panels */
       --panel-2: #d8caa3;     /* darker tan for the demo panel */
-      --col: 920px;
+      --col: 1480px;          /* PROTO: front door widened to full-width */
+      --read: 66ch;           /* PROTO: readable cap for long-form text inside wide panels */
       --panel-radius: 16px;
     }
 
@@ -66,6 +67,7 @@
       display: flex;
       flex-wrap: wrap;
       align-items: baseline;
+      justify-content: center;
       gap: 0.55rem;
     }
     .bd-kicker a {
@@ -783,6 +785,352 @@
     
 
     .d3 { animation-delay: 0.28s; }
+
+    /* ═════════════════════════════════════════════════════════════
+       PROTO · Full-width front door — keep long-form text readable
+       inside the widened cover; only the map uses the full width.
+       ═════════════════════════════════════════════════════════════ */
+    .bd-lede { max-width: var(--read); }
+    .panel-demo .dt-exchange { max-width: var(--read); margin-inline: auto; }
+    .panel-demo > div:first-child { max-width: var(--read); margin-inline: auto; } /* "Try Decode Talk" row */
+    .panel-demo .bd-cta { display: block; width: max-content; margin-inline: auto; }
+    .cx-shell { max-width: 1180px; margin-inline: auto; }
+    .faq-cols { max-width: 1200px; margin-inline: auto; }
+
+    /* ═════════════════════════════════════════════════════════════
+       PROTO · The map — compact vision diagram on the front door.
+       Cor at the hub; two arms (machines / humans); the horizon below.
+       Blueprint card look borrowed from /vision, recoloured to the
+       cream cover. Arm + horizon detail collapsed by default.
+       ═════════════════════════════════════════════════════════════ */
+    /* centred hero - widened copy (fewer lines), tightened toward the Cor card */
+    .bd-herocenter { text-align: center; margin: clamp(0.4rem, 1vw, 1rem) 0 clamp(1.3rem, 2.6vw, 2.3rem); }
+    .bd-herocenter .bd-thesis { max-width: 24ch; margin: 0 auto clamp(0.9rem, 1.8vw, 1.3rem); }
+    .bd-herocenter .bd-lede { max-width: 82ch; margin: 0 auto; }
+    .bd-herocenter .bd-lede + .bd-lede { margin-top: clamp(0.9rem, 1.8vw, 1.3rem); }
+
+    /* hero link pair - "What humans need" toggle + always-on "See how we know - Cor" */
+    .bd-needs-row {
+      display: flex; flex-wrap: wrap; justify-content: center; align-items: baseline;
+      gap: clamp(0.9rem, 3vw, 2.4rem);
+      margin: clamp(1rem, 2.2vw, 1.5rem) 0 0;
+    }
+    .bd-needs-toggle, .bd-needs-cor {
+      display: inline-flex; align-items: center; gap: 0.45rem;
+      background: none; padding: 0 0 2px; border: 0;
+      border-bottom: 1px solid rgba(45, 107, 107, 0.4);
+      cursor: pointer; text-decoration: none;
+      font-family: var(--mono); font-size: clamp(0.9rem, 1.2vw, 1.02rem);
+      letter-spacing: 0.14em; text-transform: uppercase; font-weight: 500; color: var(--teal);
+      transition: color 0.16s ease, border-color 0.16s ease;
+    }
+    .bd-needs-toggle:hover, .bd-needs-toggle:focus-visible,
+    .bd-needs-cor:hover, .bd-needs-cor:focus-visible { color: var(--oxblood); border-bottom-color: var(--oxblood); }
+    .bd-needs-toggle-icon { font-size: 1.08rem; line-height: 1; }
+    .bd-needs-toggle-icon::before { content: "+"; }
+    .bd-needs-toggle[aria-expanded="true"] .bd-needs-toggle-icon::before { content: "–"; }
+
+    /* fold-out container - bounded height, internal scroll, smooth open/close */
+    .bd-needs-fold {
+      text-align: left;
+      max-height: 0; margin-top: 0;
+      overflow: hidden; opacity: 0; visibility: hidden;
+      transition: max-height 0.45s ease, opacity 0.35s ease, margin-top 0.45s ease, visibility 0s linear 0.45s;
+    }
+    .bd-needs-fold.is-open {
+      max-height: 60vh; margin-top: clamp(1.4rem, 2.8vw, 2.2rem);
+      overflow-y: auto; opacity: 1; visibility: visible;
+      transition: max-height 0.45s ease, opacity 0.35s ease, margin-top 0.45s ease, visibility 0s;
+    }
+    .bd-needs-fold .bd-disclosure-body { margin-top: 0; }
+    /* "See how we know - Cor" - bigger, centred, tucked closer under the lists */
+    .bd-needs-fold .bd-need-link {
+      justify-self: center;
+      margin-top: clamp(0.1rem, 0.5vw, 0.4rem);
+      font-size: clamp(0.9rem, 1.2vw, 1.02rem);
+      letter-spacing: 0.14em;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .bd-needs-fold, .bd-needs-fold.is-open { transition: opacity 0s, visibility 0s; }
+    }
+
+    .bd-map { margin-top: clamp(1.6rem, 3.4vw, 2.7rem); }
+
+    .bd-map-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.18fr 1fr;
+      gap: clamp(1.8rem, 4vw, 4rem);
+      align-items: center;
+      position: relative;
+    }
+
+    /* ── Arms ── */
+    .bd-arm { position: relative; z-index: 1; display: flex; flex-direction: column; }
+    .bd-arm-head { margin-bottom: clamp(0.8rem, 1.6vw, 1.2rem); }
+    .bd-arm-kicker {
+      display: block; font-family: var(--mono); font-size: 0.72rem;
+      letter-spacing: 0.24em; text-transform: uppercase; font-weight: 500;
+      color: var(--teal); margin-bottom: 0.5rem;
+    }
+    .bd-arm-title {
+      font-family: var(--serif); font-style: italic; font-weight: 500;
+      font-size: clamp(1.4rem, 2.3vw, 1.95rem); line-height: 1; letter-spacing: -0.015em;
+      color: var(--oxblood); margin: 0 0 0.55rem;
+    }
+    .bd-arm-tag {
+      font-family: var(--serif); font-size: clamp(0.92rem, 1.15vw, 1.02rem);
+      line-height: 1.45; color: var(--oxblood-ink); margin: 0; max-width: 34ch;
+    }
+    .bd-arm-tag em { font-style: italic; color: var(--teal); }
+    .bd-arm-right .bd-arm-head { text-align: right; }
+    .bd-arm-right .bd-arm-tag { margin-left: auto; }
+
+    /* paper link — the alignment artefact, always visible under the machines tagline */
+    .bd-arm-paper {
+      display: inline-block; margin-top: clamp(0.7rem, 1.4vw, 1rem);
+      font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.1em; text-transform: uppercase;
+      font-weight: 500; color: var(--teal); text-decoration: none;
+      border-bottom: 1px solid rgba(45,107,107,0.4); padding-bottom: 2px;
+      transition: color 0.16s ease, border-color 0.16s ease;
+    }
+    .bd-arm-paper em { font-style: italic; text-transform: none; letter-spacing: 0.01em; color: var(--oxblood); }
+    .bd-arm-paper:hover, .bd-arm-paper:focus-visible { color: var(--oxblood); border-color: var(--oxblood); }
+
+    /* fold — collapses each arm's tool/track cards behind a pill toggle */
+    .bd-arm-fold { margin-top: clamp(0.85rem, 1.7vw, 1.25rem); }
+    .bd-arm-fold > summary {
+      list-style: none; cursor: pointer; width: max-content;
+      display: inline-flex; align-items: center; gap: 0.55rem;
+      font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase;
+      font-weight: 500; color: var(--teal);
+      background: var(--parchment-soft); border: 1px solid rgba(45,107,107,0.45); border-radius: 999px;
+      padding: 0.42rem 0.9rem;
+      transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+    }
+    .bd-arm-fold > summary::-webkit-details-marker { display: none; }
+    .bd-arm-fold > summary:hover { background: rgba(45,107,107,0.1); }
+    .bd-fold-label { display: inline-flex; align-items: center; gap: 0.45rem; }
+    .bd-fold-icon::before { content: "+"; font-size: 0.95rem; line-height: 1; }
+    .bd-arm-fold[open] > summary { color: var(--muted-warm); border-color: rgba(138,125,94,0.45); }
+    .bd-arm-fold[open] .bd-fold-icon::before { content: "–"; }
+    .bd-arm-fold .bd-arm-list { margin-top: clamp(0.7rem, 1.4vw, 1rem); }
+    .bd-arm-right .bd-arm-fold { text-align: right; }
+    .bd-arm-right .bd-arm-fold > summary { margin-left: auto; }
+
+    .bd-arm-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: clamp(0.5rem, 1vw, 0.7rem); }
+    .bd-arm-list > li { list-style: none; }
+
+    /* ── Node (collapsed-detail blueprint card, vision-page index-card look) ── */
+    .bd-node {
+      border: 1px solid var(--oxblood);
+      border-radius: var(--radius-sm);
+      background: var(--parchment-dark);
+      box-shadow: 4px 4px 0 var(--teal);
+      transition: box-shadow 0.2s ease, transform 0.2s ease, background 0.2s ease;
+    }
+    .bd-node:hover { box-shadow: 6px 6px 0 var(--teal); transform: translate(-1px,-1px); }
+    .bd-node[open] { box-shadow: 6px 6px 0 var(--teal); background: var(--parchment-soft); }
+    .bd-node > summary {
+      list-style: none; cursor: pointer; position: relative;
+      padding: 0.68rem 1.9rem 0.72rem 0.9rem;
+      display: flex; flex-direction: column; gap: 0.22rem;
+    }
+    .bd-node > summary::-webkit-details-marker { display: none; }
+    .bd-node > summary::after {
+      content: "+"; position: absolute; top: 0.62rem; right: 0.78rem;
+      font-family: var(--mono); color: var(--teal); font-size: 1rem; line-height: 1; font-weight: 500;
+    }
+    .bd-node[open] > summary::after { content: "–"; }
+    .bd-node-name {
+      font-family: var(--serif); font-weight: 600; font-size: 1.02rem; line-height: 1.15;
+      color: var(--oxblood); display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;
+    }
+    .bd-node-line {
+      font-family: var(--serif); font-size: 0.9rem; line-height: 1.42; color: var(--oxblood-ink);
+    }
+    .bd-node-body { padding: 0 0.9rem 0.85rem; }
+    .bd-node-body dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 0.28rem 0.85rem; }
+    .bd-node-body dt {
+      font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--teal); padding-top: 0.22rem;
+    }
+    .bd-node-body dd { margin: 0; font-family: var(--serif); font-size: 0.88rem; line-height: 1.42; color: var(--oxblood-ink); }
+    .bd-node-body a { color: var(--teal); text-decoration: none; border-bottom: 1px solid rgba(45,107,107,0.35); white-space: nowrap; }
+
+    /* visual inside an expanded card — glyph (machines) or screenshot (people) */
+    .bd-node-visual {
+      width: 100%; aspect-ratio: 16 / 9; margin: 0 0 0.8rem;
+      background: var(--ink); border: 1px solid var(--oxblood); border-radius: 6px;
+      overflow: hidden; display: flex; align-items: center; justify-content: center;
+    }
+    .bd-node-visual img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .bd-node-visual .bd-glyph { width: 64%; height: 64%; }
+    .bd-node-visual .bd-mock { width: 100%; height: 100%; display: block; }
+    .bd-glyph { stroke: var(--teal-bright); stroke-width: 1.5; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .bd-glyph .fill { fill: var(--teal-bright); stroke: none; }
+    .bd-glyph .soft { stroke: var(--gold); }
+
+    /* live / build badges */
+    .bd-badge {
+      font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase;
+      font-weight: 500; padding: 0.16em 0.55em; border-radius: 999px; transform: translateY(-1px);
+    }
+    .bd-badge-live { background: var(--teal); color: var(--parchment-soft); }
+    .bd-badge-build { background: transparent; color: var(--muted-warm); border: 1px solid rgba(138,125,94,0.55); }
+
+    .bd-arm-more {
+      font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--muted-warm); padding: 0.35rem 0.2rem 0; text-align: center;
+    }
+    .bd-arm-right .bd-arm-more { /* keep centred */ }
+
+    /* ── Cor source (the hub) — dark oxblood block, vision-page treatment ── */
+    .bd-source {
+      position: relative; z-index: 1; align-self: start;
+      display: flex; flex-direction: column; align-items: center; text-align: center;
+      text-decoration: none;
+      background: var(--oxblood);
+      color: var(--parchment);
+      border-radius: var(--radius-sm);
+      padding: clamp(1.7rem, 2.8vw, 2.5rem) clamp(1.4rem, 2.4vw, 2.1rem) clamp(1.8rem, 2.8vw, 2.5rem);
+      box-shadow: 6px 6px 0 var(--teal), 12px 12px 0 var(--gold);
+      background-image:
+        radial-gradient(circle at 22% 16%, rgba(45,107,107,0.18) 0%, transparent 46%),
+        radial-gradient(circle at 80% 92%, rgba(196,150,44,0.12) 0%, transparent 50%);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .bd-source:hover, .bd-source:focus-visible {
+      transform: translate(-1px,-1px);
+      box-shadow: 7px 7px 0 var(--teal), 14px 14px 0 var(--gold);
+    }
+    /* connectors — bold lines branching from Cor's middle out to each arm,
+       a teal node where they leave Cor, an arrowhead where they reach the arm */
+    .bd-source::before, .bd-source::after {
+      content: ""; position: absolute; top: 50%; transform: translateY(-50%);
+      height: 9px; width: clamp(1.8rem, 4vw, 4rem); z-index: 2;
+      background-repeat: no-repeat;
+      background-image:
+        linear-gradient(var(--teal), var(--teal)),
+        radial-gradient(circle, var(--teal) 0 4px, transparent 4.5px);
+      background-size: 100% 2px, 9px 9px;
+    }
+    .bd-source::before { right: 100%; background-position: left center, right center; }   /* node at the Cor (right) end */
+    .bd-source::after  { left: 100%;  background-position: right center, left center; }    /* node at the Cor (left) end */
+    /* arrowheads — at each arm's hub-facing edge, pointing into the arm */
+    .bd-arm-left::after, .bd-arm-right::after {
+      content: ""; position: absolute; top: 50%; transform: translateY(-50%);
+      border: 7px solid transparent; z-index: 2; pointer-events: none;
+    }
+    .bd-arm-left::after  { right: -7px; border-right-color: var(--teal); }
+    .bd-arm-right::after { left: -7px;  border-left-color: var(--teal); }
+
+    .bd-source-kicker { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.85rem; }
+    .bd-source-mark { width: clamp(116px, 15vw, 176px); height: auto; margin: 0 auto 0.55rem; display: block; }
+    .bd-source-mark .rings circle { stroke: var(--parchment); stroke-width: 5; fill: none; }
+    .bd-source-mark .dot { fill: var(--teal-bright); }
+    .bd-source-mark .wm { fill: var(--parchment); font-family: var(--serif); font-weight: 500; }
+    .bd-source-mark .wm text { font-size: 116px; text-anchor: middle; }
+    .bd-source-title { font-family: var(--serif); font-weight: 500; font-style: italic; font-size: clamp(1.5rem, 2.3vw, 2.05rem); line-height: 1.05; letter-spacing: -0.015em; color: var(--parchment); margin: 0 0 0.3rem; }
+    .bd-source-spec { font-family: var(--serif); font-size: 1rem; color: #c4b894; margin: 0 0 1.15rem; }
+
+    .bd-source-answers { width: 100%; margin: 0 0 1.2rem; padding: 1.1rem 0 0; border-top: 1px solid rgba(236,224,196,0.22); }
+    .bd-source-answers-label { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 0.7rem; }
+    .bd-source-answers ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.42rem; }
+    .bd-source-answers li { font-family: var(--serif); font-size: clamp(0.92rem, 1.1vw, 1rem); line-height: 1.35; color: var(--parchment); }
+    .bd-source-answers li .t { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); margin-left: 0.4rem; white-space: nowrap; }
+
+    .bd-source-stats { width: 100%; display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.6rem 0.3rem; padding-top: 1.1rem; border-top: 1px solid rgba(236,224,196,0.22); }
+    .bd-source-stats .stat { position: relative; text-align: center; }
+    .bd-source-stats .stat:not(:last-child)::after { content: ""; position: absolute; top: 16%; bottom: 16%; right: -0.15rem; width: 1px; background: rgba(236,224,196,0.16); }
+    .bd-source-stats .n { font-family: var(--serif); font-weight: 500; font-size: clamp(1.5rem, 2.2vw, 1.95rem); line-height: 1; color: var(--gold); display: block; margin-bottom: 0.32rem; letter-spacing: -0.01em; }
+    .bd-source-stats .l { font-family: var(--mono); font-size: 0.55rem; letter-spacing: 0.12em; text-transform: uppercase; color: #c4b894; display: block; line-height: 1.3; }
+    .bd-source-note { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.04em; color: #a08f6a; margin: 0.85rem 0 0; }
+    .bd-source-cta { margin-top: 1.1rem; font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 500; color: var(--gold); border-bottom: 1px solid rgba(196,150,44,0.5); padding-bottom: 2px; }
+
+    /* ── Horizon strip ── */
+    .bd-horizon {
+      position: relative; margin-top: clamp(1.8rem, 3.2vw, 2.8rem);
+      border: 1px solid rgba(58,18,24,0.4); border-radius: var(--radius-sm);
+      background: var(--parchment-soft); box-shadow: 2px 2px 0 rgba(45,107,107,0.14);
+    }
+    .bd-horizon::before { /* downward connector from the hub into the horizon */
+      content: ""; position: absolute; left: 50%; top: calc(-1 * clamp(1.8rem, 3.2vw, 2.8rem));
+      width: 1px; height: clamp(1.8rem, 3.2vw, 2.8rem); background: rgba(45,107,107,0.5);
+    }
+    .bd-horizon > summary {
+      list-style: none; cursor: pointer; padding: clamp(0.95rem, 2vw, 1.4rem) clamp(1rem, 2vw, 1.5rem);
+      display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.45rem 1rem;
+    }
+    .bd-horizon > summary::-webkit-details-marker { display: none; }
+    .bd-horizon-kicker { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--teal); }
+    .bd-horizon-title { font-family: var(--serif); font-style: italic; font-weight: 500; font-size: clamp(1.3rem, 2vw, 1.65rem); line-height: 1.05; color: var(--oxblood); }
+    .bd-horizon-tag { font-family: var(--serif); font-size: 0.98rem; line-height: 1.4; color: var(--oxblood-ink); flex: 1 1 16rem; }
+    .bd-horizon-open { margin-left: auto; font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--teal); }
+    .bd-horizon[open] .bd-horizon-open { color: var(--muted-warm); }
+    .bd-horizon[open] .bd-horizon-open::after { content: " ✕"; }
+    .bd-horizon-body {
+      padding: 0 clamp(1rem, 2vw, 1.5rem) clamp(1rem, 2vw, 1.4rem);
+      columns: 2; column-gap: clamp(1.6rem, 3vw, 3rem);
+    }
+    .bd-horizon-body p { break-inside: avoid; margin: 0 0 0.78rem; font-family: var(--serif); font-size: 0.95rem; line-height: 1.48; color: var(--oxblood-ink); }
+    .bd-horizon-body strong { color: var(--oxblood); font-weight: 600; }
+    .bd-horizon-body em { font-style: italic; color: var(--teal); }
+
+    .bd-map-link { display: block; width: max-content; margin: clamp(1.3rem, 2.6vw, 2rem) auto 0; }
+
+    /* ── Map · responsive collapse ── */
+    @media (max-width: 900px) {
+      .bd-map-grid { grid-template-columns: 1fr; gap: clamp(1.2rem, 3vw, 1.8rem); }
+      .bd-source { order: -1; }
+      .bd-source::before, .bd-source::after { display: none; }
+      .bd-arm-left::after, .bd-arm-right::after { display: none; }
+      .bd-arm-right .bd-arm-head { text-align: left; }
+      .bd-arm-right .bd-arm-tag { margin-left: 0; }
+      .bd-arm-right .bd-arm-fold { text-align: left; }
+      .bd-arm-right .bd-arm-fold > summary { margin-left: 0; }
+      .bd-horizon::before { display: none; }
+    }
+    @media (max-width: 720px) {
+      .bd-horizon-body { columns: 1; }
+    }
+
+    /* ── PROTO · Hero masthead — claim left, ring mark right (full width) ── */
+    .bd-herorow {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+      gap: clamp(2rem, 5vw, 5rem);
+      align-items: center;
+      margin: 0 0 clamp(1.6rem, 3.4vw, 2.4rem);
+    }
+    .bd-herorow-text { min-width: 0; }
+    .bd-herorow-text .bd-hero { margin-bottom: clamp(1.1rem, 2.2vw, 1.6rem); }
+    .bd-herorow-art {
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: clamp(0.9rem, 1.8vw, 1.4rem);
+    }
+    .bd-heromark {
+      width: clamp(170px, 22vw, 300px); height: auto;
+      color: var(--oxblood); opacity: 0.92;
+    }
+    .bd-heromark .dot { fill: var(--teal); }
+    .bd-heromotto {
+      font-family: var(--mono); font-size: clamp(0.72rem, 1vw, 0.82rem);
+      letter-spacing: 0.16em; text-transform: uppercase; color: var(--teal);
+      text-align: center; margin: 0;
+    }
+    .bd-heromotto em { font-style: italic; text-transform: none; letter-spacing: 0.02em; }
+    @media (max-width: 860px) {
+      .bd-herorow { grid-template-columns: 1fr; gap: 0; }
+      .bd-herorow-art { display: none; }
+    }
+
+    /* ── PROTO · Expand-the-full-vision toggle (button styled as plainlink) ── */
+    .bd-map-expand {
+      display: block; width: max-content; margin: clamp(1.3rem, 2.6vw, 2rem) auto 0;
+      background: none; border: 0; border-bottom: 1px solid rgba(45,107,107,0.4);
+      cursor: pointer; padding: 0 0 2px; font: inherit;
+    }
+    .bd-map-expand[aria-expanded="true"] { color: var(--muted-warm); border-bottom-color: rgba(138,125,94,0.5); }
   </style>
 </head>
 <body data-page="home">
@@ -796,19 +1144,23 @@
       <p class="bd-kicker">
         <span class="cur">Demismatch (the Why)</span>
         <span class="sep" aria-hidden="true">·</span>
-        <a href="https://demismatch.com/vision.html">Vision</a>
+        <a href="#vision">Vision</a>
         <span class="sep" aria-hidden="true">·</span>
         <a href="https://cor.demismatch.com/">Cor</a>
       </p>
 
-      <!-- Hero - the hook and the claim -->
-      <div class="bd-hero">
+      <!-- Hero - the hook and the claim, centred. -->
+      <div class="bd-herocenter">
         <h1 class="bd-thesis">Humans need a world that fits humans.<span class="bd-sub">AI should help build it.</span></h1>
+        <p class="bd-lede">Modern distress is accurate signaling about a world that no longer fits you. Not a disorder in you. The science of what you're built to need already exists, scattered and never assembled. Cor assembles it, so you can hold any environment, policy, or technology up against what you actually require. Then build the ones that fit.</p>
+        <div class="bd-needs-row">
+          <button type="button" id="needs-toggle" class="bd-needs-toggle" aria-expanded="false" aria-controls="needs-fold">What humans need <span class="bd-needs-toggle-icon" aria-hidden="true"></span></button>
+          <a class="bd-needs-cor" href="https://cor.demismatch.com/">See how we know - Cor →</a>
+        </div>
       </div>
-      <p class="bd-lede">Modern distress is accurate signaling about a world that no longer fits you, not a disorder in you. We can specify what you are actually built to need. Then build to it.</p>
 
-      <details class="bd-disclosure">
-        <summary>How humans work, what humans need</summary>
+      <!-- Fold-out: the needs lists, expanded inline from "what humans need" above. -->
+      <div class="bd-needs-fold" id="needs-fold" role="region" aria-label="What humans need, and what humans don't">
         <div class="bd-disclosure-body">
 
           <div class="bd-needs">
@@ -816,15 +1168,16 @@
             <ul class="bd-need-list">
               <li class="bd-need-item"><span class="bd-need-title">A reason to get up.</span><span class="bd-need-desc">Something pulling you out of bed before anyone asks.</span></li>
               <li class="bd-need-item"><span class="bd-need-title">People who'd notice if you vanished.</span><span class="bd-need-desc">A few who'd come looking.</span></li>
-              <li class="bd-need-item"><span class="bd-need-title">A role only you can fill.</span><span class="bd-need-desc">The one who's missed when you're gone.</span></li>
-              <li class="bd-need-item"><span class="bd-need-title">Real stakes.</span><span class="bd-need-desc">Things that go worse if you don't show up.</span></li>
-              <li class="bd-need-item"><span class="bd-need-title">To be touched.</span><span class="bd-need-desc">Skin, warmth, another body in the room.</span></li>
               <li class="bd-need-item"><span class="bd-need-title">Respect from people who know you.</span><span class="bd-need-desc">Earned from faces you'll see again.</span></li>
-              <li class="bd-need-item"><span class="bd-need-title">Work that leaves a mark.</span><span class="bd-need-desc">Effort that changed something, and you can point at what.</span></li>
-              <li class="bd-need-item"><span class="bd-need-title">Effort that costs something.</span><span class="bd-need-desc">The hard part is the point. Take it away and the reward disappears with it.</span></li>
-              <li class="bd-need-item"><span class="bd-need-title">People who knew you before.</span><span class="bd-need-desc">Someone who remembers you, and will still be around later.</span></li>
-              <li class="bd-need-item"><span class="bd-need-title">Someone smaller to protect.</span><span class="bd-need-desc">A life that depends on you.</span></li>
-              <li class="bd-need-item"><span class="bd-need-title">A village around your kid.</span><span class="bd-need-desc">One person doing a five-person job is not a parenting style. It's a disaster.</span></li>
+              <li class="bd-need-item"><span class="bd-need-title">People who knew you before.</span><span class="bd-need-desc">Someone who remembers the old you and will be there for the next one.</span></li>
+              <li class="bd-need-item"><span class="bd-need-title">To be touched.</span><span class="bd-need-desc">Skin, warmth, another body in the room.</span></li>
+              <li class="bd-need-item"><span class="bd-need-title">A role only you can fill.</span><span class="bd-need-desc">A place that stays empty without you.</span></li>
+              <li class="bd-need-item"><span class="bd-need-title">Real stakes.</span><span class="bd-need-desc">Things that get worse if you don't show up.</span></li>
+              <li class="bd-need-item"><span class="bd-need-title">Effort that costs something.</span><span class="bd-need-desc">The hard part is the point. Remove it and the reward goes with it.</span></li>
+              <li class="bd-need-item"><span class="bd-need-title">Work that leaves a mark.</span><span class="bd-need-desc">Effort that changed something you can point to.</span></li>
+              <li class="bd-need-item"><span class="bd-need-title">Someone smaller to protect.</span><span class="bd-need-desc">A life that needs you to stay alive.</span></li>
+              <li class="bd-need-item"><span class="bd-need-title">A village around your kid.</span><span class="bd-need-desc">One adult doing a five-person job is not a parenting style. It is a missing village.</span></li>
+              <li class="bd-need-item"><span class="bd-need-title">To move the way you're built to.</span><span class="bd-need-desc">Hard physical work your day actually requires.</span></li>
               <li class="bd-need-item"><span class="bd-need-title">A future worth working toward.</span><span class="bd-need-desc">A tomorrow your effort actually changes.</span></li>
             </ul>
           </div>
@@ -832,62 +1185,239 @@
           <div class="bd-needs bd-needs-no">
             <span class="bd-need-head">Humans don't need</span>
             <ul class="bd-need-list">
-              <li class="bd-need-item"><span class="bd-need-title">Robot waifus.</span><span class="bd-need-desc">A fake partner your brain bonds to that gives nothing back.</span></li>
-              <li class="bd-need-item"><span class="bd-need-title">Worlds full of fake people.</span><span class="bd-need-desc">Crowds of NPCs, zero actual humans.</span></li>
-              <li class="bd-need-item"><span class="bd-need-title">An AI that knows your name.</span><span class="bd-need-desc">A chatbot pretending to be the friend you need.</span></li>
-              <li class="bd-need-item"><span class="bd-need-title">More followers.</span><span class="bd-need-desc">A bigger number, still no one who'd notice you gone.</span></li>
+              <li class="bd-need-item"><span class="bd-need-title">A feed that never ends.</span><span class="bd-need-desc">Built so the feeling of enough never arrives.</span></li>
+              <li class="bd-need-item"><span class="bd-need-title">More followers.</span><span class="bd-need-desc">A bigger number, and still no one who would notice you gone.</span></li>
               <li class="bd-need-item"><span class="bd-need-title">An audience.</span><span class="bd-need-desc">Watched by thousands, known by none.</span></li>
-              <li class="bd-need-item"><span class="bd-need-title">A feed that never ends.</span><span class="bd-need-desc">Endless scroll, dopamine-drip, doomscroll till 2am.</span></li>
-              <li class="bd-need-item"><span class="bd-need-title">A screen built to keep you watching.</span><span class="bd-need-desc">Apps engineered to hold you, not help you.</span></li>
-              <li class="bd-need-item"><span class="bd-need-title">A job sold as your identity.</span><span class="bd-need-desc">Purpose that depends on someone else's spreadsheet.</span></li>
-              <li class="bd-need-item"><span class="bd-need-title">Everything made easy.</span><span class="bd-need-desc">All friction removed, until nothing you do can fail or matter.</span></li>
-              <li class="bd-need-item"><span class="bd-need-title">Points and streaks.</span><span class="bd-need-desc">Fake progress bars standing in for real consequences.</span></li>
-              <li class="bd-need-item"><span class="bd-need-title">Care from something that can't die.</span><span class="bd-need-desc">Comfort from an AI that acts like it cares and doesn't.</span></li>
-              <li class="bd-need-item"><span class="bd-need-title">A gym.</span><span class="bd-need-desc">Movement stripped of purpose. Your body was built for carrying, building, walking somewhere real.</span></li>
-              <li class="bd-need-item"><span class="bd-need-title">A prescription for a correct signal.</span><span class="bd-need-desc">The alarm works. Taping over it doesn't fix the fire.</span></li>
-              <li class="bd-need-item"><span class="bd-need-title">Your loneliness monetized.</span><span class="bd-need-desc">Every unmet need is someone's revenue model. The product is your return visit.</span></li>
-              <li class="bd-need-item"><span class="bd-need-title">Understanding as a substitute for living.</span><span class="bd-need-desc">Knowing everything about connection. Still eating dinner alone.</span></li>
-              <li class="bd-need-item"><span class="bd-need-title">To be upgraded.</span><span class="bd-need-desc">The hardware works. The world is wrong.</span></li>
+              <li class="bd-need-item"><span class="bd-need-title">An AI that knows your name.</span><span class="bd-need-desc">A chatbot playing the friend you need.</span></li>
+              <li class="bd-need-item"><span class="bd-need-title">A partner made of code.</span><span class="bd-need-desc">Your bonding goes out to something that returns none of it.</span></li>
+              <li class="bd-need-item"><span class="bd-need-title">A job sold as your identity.</span><span class="bd-need-desc">Purpose on loan from someone else's spreadsheet.</span></li>
+              <li class="bd-need-item"><span class="bd-need-title">Points and streaks.</span><span class="bd-need-desc">Progress bars standing in for real consequences.</span></li>
+              <li class="bd-need-item"><span class="bd-need-title">Everything made easy.</span><span class="bd-need-desc">Friction removed until nothing you do can fail or matter.</span></li>
+              <li class="bd-need-item"><span class="bd-need-title">Achievements that unlock nothing.</span><span class="bd-need-desc">Badges and levels filling up while the world stays exactly the same.</span></li>
+              <li class="bd-need-item"><span class="bd-need-title">Care from something that can't die.</span><span class="bd-need-desc">Comfort from a thing that acts like it cares and cannot.</span></li>
+              <li class="bd-need-item"><span class="bd-need-title">Worlds full of fake people.</span><span class="bd-need-desc">Crowds of NPCs, not one of them anyone.</span></li>
+              <li class="bd-need-item"><span class="bd-need-title">Exercise that's just a number.</span><span class="bd-need-desc">Your body was built to carry, build, and cover ground. Closing a ring is none of that.</span></li>
+              <li class="bd-need-item"><span class="bd-need-title">A screen built to keep you watching.</span><span class="bd-need-desc">Engineered to hold the hours you would have spent building something.</span></li>
             </ul>
           </div>
 
-          <a class="bd-plainlink bd-need-link" href="https://cor.demismatch.com/">See how we know - Cor →</a>
-
         </div>
-      </details>
-
-      <!-- Skeleton - four parts, Cor leads -->
-      <span class="bd-eyebrow">What this is</span>
-
-      <a class="bd-card bd-card-lead" href="https://cor.demismatch.com/">
-        <img class="bd-cor-mark" src="cor-mark.svg" alt="" aria-hidden="true" />
-        <div class="bd-card-lead-body">
-          <span class="bd-card-num">01</span>
-          <h2 class="bd-card-title">Cor - what a human is</h2>
-          <p class="bd-card-desc">A complete account of what your systems need, and why. Everything here is built on it.</p>
-          <p class="bd-stats">
-            <span class="bd-stats-fig">17 foundations · 15 mechanisms · 608 extractions · 64 researchers</span><span class="bd-stats-note"> · every claim traces to a primary source</span>
-          </p>
-        </div>
-      </a>
-
-      <div class="bd-card-row">
-        <a class="bd-card" href="https://demismatch.com/vision.html">
-          <span class="bd-card-num">02</span>
-          <h2 class="bd-card-title">For people</h2>
-          <p class="bd-card-desc">See the mismatch you're in.</p>
-        </a>
-        <a class="bd-card" href="https://demismatch.com/vision.html">
-          <span class="bd-card-num">03</span>
-          <h2 class="bd-card-title">For machines</h2>
-          <p class="bd-card-desc">Align the AI being built on us.</p>
-        </a>
-        <a class="bd-card" href="https://demismatch.com/vision.html">
-          <span class="bd-card-num">04</span>
-          <h2 class="bd-card-title">Horizon</h2>
-          <p class="bd-card-desc">Build the world that fits.</p>
-        </a>
       </div>
+
+      <!-- The map - Cor at the hub, two arms, the horizon. Detail collapsed. -->
+      <section class="bd-map" id="vision" aria-label="The map: Cor at the centre, two arms built on it, and the horizon">
+
+        <div class="bd-map-grid">
+
+          <!-- ARM · For machines -->
+          <div class="bd-arm bd-arm-left">
+            <header class="bd-arm-head">
+              <span class="bd-arm-kicker">For machines</span>
+              <h3 class="bd-arm-title">AI alignment</h3>
+              <p class="bd-arm-tag">Align the AI being built on us — to what humans <em>are</em>, beneath what they say they want.</p>
+              <a class="bd-arm-paper" href="https://cor.demismatch.com/bridge-paper.html">Read the paper · <em>What Alignment Misses</em> →</a>
+            </header>
+            <details class="bd-arm-fold">
+              <summary><span class="bd-fold-label">Three alignment tracks</span><span class="bd-fold-icon" aria-hidden="true"></span></summary>
+              <ul class="bd-arm-list">
+              <li><details class="bd-node">
+                <summary>
+                  <span class="bd-node-name">The spec, machine-readable</span>
+                  <span class="bd-node-line">Any LLM reads the foundations and mechanisms at inference, through one tool-call surface.</span>
+                </summary>
+                <div class="bd-node-body">
+                  <div class="bd-node-visual"><svg viewBox="0 0 100 56" class="bd-glyph">
+                    <rect x="10" y="10" width="28" height="36" rx="1"/>
+                    <rect x="62" y="10" width="28" height="36" rx="1"/>
+                    <line x1="38" y1="28" x2="62" y2="28"/>
+                    <circle cx="44" cy="28" r="2" class="fill"/><circle cx="56" cy="28" r="2" class="fill"/>
+                    <line x1="16" y1="18" x2="32" y2="18" class="soft"/><line x1="16" y1="24" x2="32" y2="24" class="soft"/>
+                    <line x1="16" y1="30" x2="28" y2="30" class="soft"/><line x1="16" y1="36" x2="32" y2="36" class="soft"/>
+                    <line x1="68" y1="18" x2="84" y2="18" class="soft"/><line x1="68" y1="24" x2="84" y2="24" class="soft"/>
+                    <line x1="68" y1="30" x2="80" y2="30" class="soft"/><line x1="68" y1="36" x2="84" y2="36" class="soft"/>
+                  </svg></div>
+                  <dl>
+                  <dt>Form</dt><dd>MCP server — a tool-call surface for any model.</dd>
+                  <dt>Real input</dt><dd>The spec, queryable per mechanism: “this request engages M3; resolution requires reciprocal human co-regulation.”</dd>
+                </dl></div>
+              </details></li>
+              <li><details class="bd-node">
+                <summary>
+                  <span class="bd-node-name">Alignment through the spec</span>
+                  <span class="bd-node-line">Steering, data curation, and evals against the spec as ground truth.</span>
+                </summary>
+                <div class="bd-node-body">
+                  <div class="bd-node-visual"><svg viewBox="0 0 100 56" class="bd-glyph">
+                    <line x1="10" y1="46" x2="90" y2="10" stroke-dasharray="2 2" class="soft"/>
+                    <line x1="10" y1="46" x2="90" y2="14"/>
+                    <polygon points="90,14 82,12 84,20" class="fill"/>
+                    <circle cx="10" cy="46" r="3" class="fill"/>
+                    <line x1="10" y1="46" x2="30" y2="40" class="soft" stroke-dasharray="1 1"/>
+                    <line x1="10" y1="46" x2="50" y2="34" class="soft" stroke-dasharray="1 1"/>
+                    <line x1="10" y1="46" x2="70" y2="24" class="soft" stroke-dasharray="1 1"/>
+                  </svg></div>
+                  <dl>
+                  <dt>Targets</dt><dd>The three places alignment has to hold — activations, the training distribution, and the evaluation surface.</dd>
+                  <dt>Proxy</dt><dd>Preference-maximising RLHF and preference-derived benchmarks — they grade preferences, not mechanisms.</dd>
+                </dl></div>
+              </details></li>
+              <li><details class="bd-node">
+                <summary>
+                  <span class="bd-node-name">Models built on the spec</span>
+                  <span class="bd-node-line">Small models spec-grounded from pretraining forward — no preferences to correct later.</span>
+                </summary>
+                <div class="bd-node-body">
+                  <div class="bd-node-visual"><svg viewBox="0 0 100 56" class="bd-glyph">
+                    <rect x="16" y="16" width="24" height="24" rx="1"/>
+                    <rect x="60" y="16" width="24" height="24" rx="1"/>
+                    <circle cx="28" cy="28" r="3" class="fill"/><circle cx="72" cy="28" r="3" class="fill"/>
+                    <line x1="40" y1="28" x2="60" y2="28" stroke-dasharray="2 2"/>
+                    <line x1="22" y1="22" x2="34" y2="22" class="soft"/><line x1="22" y1="34" x2="34" y2="34" class="soft"/>
+                    <line x1="66" y1="22" x2="78" y2="22" class="soft"/><line x1="66" y1="34" x2="78" y2="34" class="soft"/>
+                  </svg></div>
+                  <dl>
+                  <dt>Form</dt><dd>Purpose-built small models; constitutions that encode resolution conditions.</dd>
+                  <dt>For</dt><dd>Where hallucinating about human needs is costly — clinical triage, education, therapy-adjacent tools.</dd>
+                </dl></div>
+              </details></li>
+              <li class="bd-arm-more">… and more</li>
+              </ul>
+            </details>
+          </div>
+
+          <!-- HUB · Cor -->
+          <a class="bd-source" href="https://cor.demismatch.com/">
+            <span class="bd-source-kicker">The source</span>
+            <svg class="bd-source-mark" viewBox="104 34 592 592" fill="none" aria-hidden="true">
+              <g class="rings">
+                <circle cx="399.5" cy="329" r="271"/>
+                <circle cx="446.5" cy="376.5" r="200"/>
+                <circle cx="488" cy="418" r="129"/>
+              </g>
+              <circle class="dot" cx="523" cy="453" r="59"/>
+              <g class="wm"><text x="424" y="492">C</text><text x="624" y="492">R</text></g>
+            </svg>
+            <h2 class="bd-source-title">Cor — what a human is</h2>
+            <p class="bd-source-spec">A spec of the human.</p>
+            <div class="bd-source-answers">
+              <span class="bd-source-answers-label">It answers</span>
+              <ul>
+                <li>What do humans need? <span class="t">foundations</span></li>
+                <li>How do those needs operate? <span class="t">mechanisms</span></li>
+                <li>Where does mismatch occur? <span class="t">diagnosis</span></li>
+                <li>What repairs it? <span class="t">intervention</span></li>
+              </ul>
+            </div>
+            <div class="bd-source-stats">
+              <div class="stat"><span class="n">17</span><span class="l">Foundations</span></div>
+              <div class="stat"><span class="n">15</span><span class="l">Mechanisms</span></div>
+              <div class="stat"><span class="n">608</span><span class="l">Extractions</span></div>
+              <div class="stat"><span class="n">64</span><span class="l">Researchers</span></div>
+            </div>
+            <p class="bd-source-note">every claim traces to a primary source</p>
+            <span class="bd-source-cta">Open Cor →</span>
+          </a>
+
+          <!-- ARM · For humans -->
+          <div class="bd-arm bd-arm-right">
+            <header class="bd-arm-head">
+              <span class="bd-arm-kicker">For people</span>
+              <h3 class="bd-arm-title">Demismatch tools</h3>
+              <p class="bd-arm-tag">See the mismatch you’re in — then build the matched conditions back.</p>
+            </header>
+            <details class="bd-arm-fold">
+              <summary><span class="bd-fold-label">Four tools <span class="bd-badge bd-badge-live">1 live</span></span><span class="bd-fold-icon" aria-hidden="true"></span></summary>
+              <ul class="bd-arm-list">
+              <li><details class="bd-node">
+                <summary>
+                  <span class="bd-node-name">Decode Talk <span class="bd-badge bd-badge-live">live</span></span>
+                  <span class="bd-node-line">Type a situation; get the mechanism firing, the proxy hitting it, and what would resolve.</span>
+                </summary>
+                <div class="bd-node-body">
+                  <div class="bd-node-visual"><svg viewBox="0 0 1600 900" class="bd-mock" preserveAspectRatio="xMidYMid slice">
+                    <rect width="1600" height="900" fill="#120506"/>
+                    <text x="60" y="66" font-family="'JetBrains Mono',monospace" font-size="26" fill="#c4962c" letter-spacing="6">DECODE · TALK</text>
+                    <line x1="60" y1="96" x2="1540" y2="96" stroke="#3a1218" stroke-width="1.5"/>
+                    <text x="1540" y="148" font-family="'JetBrains Mono',monospace" font-size="18" fill="#6a5a3a" letter-spacing="4" text-anchor="end">YOU</text>
+                    <rect x="540" y="170" width="1000" height="130" rx="10" fill="#2a0c11" stroke="#c4962c" stroke-width="1.2"/>
+                    <text x="570" y="222" font-family="'Spectral',serif" font-size="32" fill="#ece0c4">I keep checking my phone when I’m with people</text>
+                    <text x="570" y="268" font-family="'Spectral',serif" font-size="32" fill="#ece0c4">I actually love. I hate it. I can’t stop.</text>
+                    <text x="60" y="348" font-family="'JetBrains Mono',monospace" font-size="18" fill="#c4962c" letter-spacing="4">DECODE · TALK</text>
+                    <rect x="60" y="368" width="1320" height="300" rx="10" fill="#1a0608" stroke="#3a1218" stroke-width="2"/>
+                    <text x="90" y="428" font-family="'Spectral',serif" font-size="30" fill="#ece0c4">Your coalition monitor is running in the background.</text>
+                    <text x="90" y="488" font-family="'Spectral',serif" font-size="26" fill="#c4b894">The circuit evolved to track where your people are. In a</text>
+                    <text x="90" y="524" font-family="'Spectral',serif" font-size="26" fill="#c4b894">band of 50 you knew without looking. Now your coalition is</text>
+                    <text x="90" y="560" font-family="'Spectral',serif" font-size="26" fill="#c4b894">scattered, and the only channel is the device in your hand.</text>
+                    <text x="60" y="760" font-family="'JetBrains Mono',monospace" font-size="16" fill="#c4962c" letter-spacing="3">MECHANISM</text>
+                    <text x="60" y="798" font-family="'Spectral',serif" font-size="22" fill="#c4b894">Coalition monitoring</text>
+                    <text x="700" y="760" font-family="'JetBrains Mono',monospace" font-size="16" fill="#c4962c" letter-spacing="3">REAL INPUT</text>
+                    <text x="700" y="798" font-family="'Spectral',serif" font-size="22" fill="#c4b894">Known people in shared space</text>
+                  </svg></div>
+                  <dl>
+                  <dt>Form</dt><dd>Chat, grounded in the Cor spec. <a href="decode-talk/">Open Decode Talk →</a></dd>
+                </dl></div>
+              </details></li>
+              <li><details class="bd-node">
+                <summary>
+                  <span class="bd-node-name">Decode Web <span class="bd-badge bd-badge-build">in build</span></span>
+                  <span class="bd-node-line">A Chrome extension: every flagged page element gets the read, in place.</span>
+                </summary>
+                <div class="bd-node-body">
+                  <div class="bd-node-visual"><img src="lens-02.png" loading="lazy" alt="Decode Web annotating a page in place — a flagged element named to the mechanism it fires" /></div>
+                  <dl>
+                  <dt>Form</dt><dd>Browser extension — each annotation traces to a named mechanism.</dd>
+                </dl></div>
+              </details></li>
+              <li><details class="bd-node">
+                <summary>
+                  <span class="bd-node-name">Decode Camera <span class="bd-badge bd-badge-build">in build</span></span>
+                  <span class="bd-node-line">Upload a scene; each object is outlined and read — the stimulus it imitates, the real input it stands in for.</span>
+                </summary>
+                <div class="bd-node-body">
+                  <div class="bd-node-visual"><img src="decode-camera-01.png" loading="lazy" alt="Decode Camera reading a scene — each object outlined and named to the stimulus it imitates" /></div>
+                  <dl>
+                  <dt>Form</dt><dd>Scene HUD — image upload now, live camera next. <a href="decode-camera.html">See Decode Camera →</a></dd>
+                </dl></div>
+              </details></li>
+              <li><details class="bd-node">
+                <summary>
+                  <span class="bd-node-name">Adaptor — Lens <span class="bd-badge bd-badge-build">next</span></span>
+                  <span class="bd-node-line">Build matched conditions back. A morning tool that puts a role, a group, and a goal that matters in front of you.</span>
+                </summary>
+                <div class="bd-node-body"><dl>
+                  <dt>Family</dt><dd>Adaptor — assembly, not commentary. Group-formation tooling; VR/AR environment scripts.</dd>
+                </dl></div>
+              </details></li>
+              </ul>
+            </details>
+          </div>
+
+        </div>
+
+        <!-- HORIZON · collapsed by default -->
+        <details class="bd-horizon">
+          <summary>
+            <span class="bd-horizon-kicker">Horizon</span>
+            <span class="bd-horizon-title">Build the world that fits</span>
+            <span class="bd-horizon-tag">What comes after mismatch — environments matched to human biology.</span>
+            <span class="bd-horizon-open">expand →</span>
+          </summary>
+          <div class="bd-horizon-body">
+            <p><strong>Aligned AI as builder.</strong> The machines that design and run environments at scale will be AI. Aligned to preferences, they build perfect proxies. Aligned to the spec, they build environments that match. The two tracks are one project.</p>
+            <p><strong>Medium is not the constraint.</strong> Resolution conditions are. A VR/AR environment that delivers presence, named others, real stakes, and shared work is a real match. Cities take generations; matched environments in software ship in years.</p>
+            <p><strong>Scale ≈ Dunbar.</strong> Primary identity, dependence, and governance at the size the brain evolved to track. The nation-state is coordination infrastructure — never a habitable identity unit.</p>
+            <p><strong>Role, not job.</strong> A role is legible to the group, tied to its flourishing, irreplaceable in the short term. A job is an interchangeable input sold into an anonymous market. Humans are specified for roles.</p>
+            <p><strong>Purpose as infrastructure.</strong> Waking up needed by specific named people for consequential work — not recovered on weekends, not discovered at forty. The meaning crisis is a mismatch readout.</p>
+            <p><strong>Dynamic egalitarianism.</strong> Status the organism reads as legitimate: prestige-based, earned in-group, reversible, visible. Hierarchy that responds to contribution and can be withdrawn.</p>
+            <p><strong>Economic substrate.</strong> UBI or equivalent — not welfare, the precondition. Remove the need to sell time into anonymous markets to afford to exist, and the rest becomes possible.</p>
+            <p><strong>Sovereign groups.</strong> Legal recognition of Dunbar-scale units as the substantive social and governance layer. Not secession — moving the unit of belonging to the scale the organism is specified for.</p>
+            <p><strong>Augment from the baseline.</strong> Once environments match, technology extends flourishing instead of displacing it. <em>Demismatch the world — then augment.</em></p>
+          </div>
+        </details>
+
+        <button type="button" class="bd-plainlink bd-map-expand" data-expand-vision aria-expanded="false">Expand the full vision ↓</button>
+
+      </section>
 
     </section>
 
@@ -1460,6 +1990,37 @@
     requestAnimationFrame(tick);
     // kick off immediately if the stage is already on screen at load
     if (inViewport(stage)) { inView = true; play(); }
+  })();
+  </script>
+
+  <!-- PROTO · Expand / collapse the whole vision (all arm + horizon details) -->
+  <script>
+  (function () {
+    var btn = document.querySelector('[data-expand-vision]');
+    var map = document.getElementById('vision');
+    if (!btn || !map) return;
+    var items = map.querySelectorAll('details');
+    btn.addEventListener('click', function () {
+      var expand = btn.getAttribute('aria-expanded') !== 'true';
+      items.forEach(function (d) { d.open = expand; });
+      btn.setAttribute('aria-expanded', expand ? 'true' : 'false');
+      btn.textContent = expand ? 'Collapse the vision ↑' : 'Expand the full vision ↓';
+    });
+  })();
+  </script>
+
+  <!-- PROTO · "what humans need" hero fold-out (in-memory state only) -->
+  <script>
+  (function () {
+    var toggle = document.getElementById('needs-toggle');
+    var fold = document.getElementById('needs-fold');
+    if (!toggle || !fold) return;
+    toggle.addEventListener('click', function () {
+      var open = toggle.getAttribute('aria-expanded') !== 'true';
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      fold.classList.toggle('is-open', open);
+      if (open) fold.scrollTop = 0;
+    });
   })();
   </script>
 
