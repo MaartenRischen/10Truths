@@ -1139,7 +1139,21 @@
     .bd-source-credit-label { display: block; font-family: var(--mono); font-size: 0.56rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem; }
     .bd-source-credit-names { display: block; font-family: var(--serif); font-size: 0.82rem; line-height: 1.55; color: var(--parchment); }
     .bd-source-credit-names .more { color: #c4b894; font-style: italic; white-space: nowrap; }
-  </style>
+  
+    /* ===== Mobile-only optimisations ===== */
+    @media (max-width: 480px) {
+      /* cross-site nav fits cleanly */
+      .bd-kicker { font-size: 0.62rem; letter-spacing: 0.12em; gap: 0.4rem; }
+      /* Cor placard stats: 2x2 instead of cramped 4-up */
+      .bd-source-stats { grid-template-columns: repeat(2, 1fr); gap: 1.1rem 0.5rem; }
+      .bd-source-stats .stat::after { display: none; }
+    }
+    @media (max-width: 620px) {
+      /* slideshow figure: match the landscape image, kill the letterbox bands */
+      .cx-figure,
+      .cx:not(.is-player) .cx-beat .cx-figure { min-height: 0; height: auto; aspect-ratio: 16 / 9; }
+    }
+</style>
 </head>
 <body data-page="home">
 
@@ -1222,7 +1236,7 @@
             <header class="bd-arm-head">
               <span class="bd-arm-kicker">For machines</span>
               <h3 class="bd-arm-title">AI alignment</h3>
-              <p class="bd-arm-tag">Align the AI being built on us — to what humans <em>are</em>, beneath what they say they want.</p>
+              <p class="bd-arm-tag">Align the AI being built on us - to what humans <em>are</em>, beneath what they say they want.</p>
               <a class="bd-arm-paper" href="https://cor.demismatch.com/bridge-paper.html">Read the paper · <em>What Alignment Misses</em> →</a>
             </header>
             <details class="bd-arm-fold">
@@ -1245,7 +1259,7 @@
                     <line x1="68" y1="30" x2="80" y2="30" class="soft"/><line x1="68" y1="36" x2="84" y2="36" class="soft"/>
                   </svg></div>
                   <dl>
-                  <dt>Form</dt><dd>MCP server — a tool-call surface for any model.</dd>
+                  <dt>Form</dt><dd>MCP server - a tool-call surface for any model.</dd>
                   <dt>Real input</dt><dd>The spec, queryable per mechanism: “this request engages M3; resolution requires reciprocal human co-regulation.”</dd>
                 </dl></div>
               </details></li>
@@ -1265,14 +1279,14 @@
                     <line x1="10" y1="46" x2="70" y2="24" class="soft" stroke-dasharray="1 1"/>
                   </svg></div>
                   <dl>
-                  <dt>Targets</dt><dd>The three places alignment has to hold — activations, the training distribution, and the evaluation surface.</dd>
-                  <dt>Proxy</dt><dd>Preference-maximising RLHF and preference-derived benchmarks — they grade preferences, not mechanisms.</dd>
+                  <dt>Targets</dt><dd>The three places alignment has to hold - activations, the training distribution, and the evaluation surface.</dd>
+                  <dt>Proxy</dt><dd>Preference-maximising RLHF and preference-derived benchmarks - they grade preferences, not mechanisms.</dd>
                 </dl></div>
               </details></li>
               <li><details class="bd-node">
                 <summary>
                   <span class="bd-node-name">Models built on the spec</span>
-                  <span class="bd-node-line">Small models spec-grounded from pretraining forward — no preferences to correct later.</span>
+                  <span class="bd-node-line">Small models spec-grounded from pretraining forward - no preferences to correct later.</span>
                 </summary>
                 <div class="bd-node-body">
                   <div class="bd-node-visual"><svg viewBox="0 0 100 56" class="bd-glyph">
@@ -1285,7 +1299,7 @@
                   </svg></div>
                   <dl>
                   <dt>Form</dt><dd>Purpose-built small models; constitutions that encode resolution conditions.</dd>
-                  <dt>For</dt><dd>Where hallucinating about human needs is costly — clinical triage, education, therapy-adjacent tools.</dd>
+                  <dt>For</dt><dd>Where hallucinating about human needs is costly - clinical triage, education, therapy-adjacent tools.</dd>
                 </dl></div>
               </details></li>
               <li class="bd-arm-more">… and more</li>
@@ -1305,11 +1319,11 @@
               <circle class="dot" cx="523" cy="453" r="59"/>
               <g class="wm"><text x="424" y="492">C</text><text x="624" y="492">R</text></g>
             </svg>
-            <h2 class="bd-source-title">Cor — what a human is</h2>
+            <h2 class="bd-source-title">Cor - what a human is</h2>
             <p class="bd-source-spec">A spec of the human.</p>
             <div class="bd-source-credit">
               <span class="bd-source-credit-label">Built on the work of</span>
-              <span class="bd-source-credit-names">Darwin &middot; Bowlby &middot; Trivers &middot; Tooby &amp; Cosmides &middot; Nesse &middot; Panksepp &middot; Dunbar &middot; Hrdy &middot; Sapolsky &middot; de Waal <span class="more">+ more</span></span>
+              <span class="bd-source-credit-names">Darwin &middot; Bowlby &middot; Trivers &middot; Tooby&nbsp;&amp;&nbsp;Cosmides &middot; Nesse &middot; Panksepp &middot; Dunbar &middot; Hrdy &middot; Sapolsky &middot; de&nbsp;Waal <span class="more">+ more</span></span>
             </div>
             <div class="bd-source-answers">
               <span class="bd-source-answers-label">It answers</span>
@@ -1335,7 +1349,7 @@
             <header class="bd-arm-head">
               <span class="bd-arm-kicker">For people</span>
               <h3 class="bd-arm-title">Demismatch tools</h3>
-              <p class="bd-arm-tag">See the mismatch you’re in — then build the matched conditions back.</p>
+              <p class="bd-arm-tag">See the mismatch you’re in - then build the matched conditions back.</p>
             </header>
             <details class="bd-arm-fold">
               <summary><span class="bd-fold-label">Four tools <span class="bd-badge bd-badge-live">1 live</span></span><span class="bd-fold-icon" aria-hidden="true"></span></summary>
@@ -1375,29 +1389,29 @@
                   <span class="bd-node-line">A Chrome extension: every flagged page element gets the read, in place.</span>
                 </summary>
                 <div class="bd-node-body">
-                  <div class="bd-node-visual"><img src="lens-02.png" loading="lazy" alt="Decode Web annotating a page in place — a flagged element named to the mechanism it fires" /></div>
+                  <div class="bd-node-visual"><img src="lens-02.png" loading="lazy" alt="Decode Web annotating a page in place - a flagged element named to the mechanism it fires" /></div>
                   <dl>
-                  <dt>Form</dt><dd>Browser extension — each annotation traces to a named mechanism.</dd>
+                  <dt>Form</dt><dd>Browser extension - each annotation traces to a named mechanism.</dd>
                 </dl></div>
               </details></li>
               <li><details class="bd-node">
                 <summary>
                   <span class="bd-node-name">Decode Camera <span class="bd-badge bd-badge-build">in build</span></span>
-                  <span class="bd-node-line">Upload a scene; each object is outlined and read — the stimulus it imitates, the real input it stands in for.</span>
+                  <span class="bd-node-line">Upload a scene; each object is outlined and read - the stimulus it imitates, the real input it stands in for.</span>
                 </summary>
                 <div class="bd-node-body">
-                  <div class="bd-node-visual"><img src="decode-camera-01.png" loading="lazy" alt="Decode Camera reading a scene — each object outlined and named to the stimulus it imitates" /></div>
+                  <div class="bd-node-visual"><img src="decode-camera-01.png" loading="lazy" alt="Decode Camera reading a scene - each object outlined and named to the stimulus it imitates" /></div>
                   <dl>
-                  <dt>Form</dt><dd>Scene HUD — image upload now, live camera next. <a href="decode-camera.html">See Decode Camera →</a></dd>
+                  <dt>Form</dt><dd>Scene HUD - image upload now, live camera next. <a href="decode-camera.html">See Decode Camera →</a></dd>
                 </dl></div>
               </details></li>
               <li><details class="bd-node">
                 <summary>
-                  <span class="bd-node-name">Adaptor — Lens <span class="bd-badge bd-badge-build">next</span></span>
+                  <span class="bd-node-name">Adaptor - Lens <span class="bd-badge bd-badge-build">next</span></span>
                   <span class="bd-node-line">Build matched conditions back. A morning tool that puts a role, a group, and a goal that matters in front of you.</span>
                 </summary>
                 <div class="bd-node-body"><dl>
-                  <dt>Family</dt><dd>Adaptor — assembly, not commentary. Group-formation tooling; VR/AR environment scripts.</dd>
+                  <dt>Family</dt><dd>Adaptor - assembly, not commentary. Group-formation tooling; VR/AR environment scripts.</dd>
                 </dl></div>
               </details></li>
               </ul>
@@ -1411,19 +1425,19 @@
           <summary>
             <span class="bd-horizon-kicker">Horizon</span>
             <span class="bd-horizon-title">Build the world that fits</span>
-            <span class="bd-horizon-tag">What comes after mismatch — environments matched to human biology.</span>
+            <span class="bd-horizon-tag">What comes after mismatch - environments matched to human biology.</span>
             <span class="bd-horizon-open">expand →</span>
           </summary>
           <div class="bd-horizon-body">
             <p><strong>Aligned AI as builder.</strong> The machines that design and run environments at scale will be AI. Aligned to preferences, they build perfect proxies. Aligned to the spec, they build environments that match. The two tracks are one project.</p>
             <p><strong>Medium is not the constraint.</strong> Resolution conditions are. A VR/AR environment that delivers presence, named others, real stakes, and shared work is a real match. Cities take generations; matched environments in software ship in years.</p>
-            <p><strong>Scale ≈ Dunbar.</strong> Primary identity, dependence, and governance at the size the brain evolved to track. The nation-state is coordination infrastructure — never a habitable identity unit.</p>
+            <p><strong>Scale ≈ Dunbar.</strong> Primary identity, dependence, and governance at the size the brain evolved to track. The nation-state is coordination infrastructure - never a habitable identity unit.</p>
             <p><strong>Role, not job.</strong> A role is legible to the group, tied to its flourishing, irreplaceable in the short term. A job is an interchangeable input sold into an anonymous market. Humans are specified for roles.</p>
-            <p><strong>Purpose as infrastructure.</strong> Waking up needed by specific named people for consequential work — not recovered on weekends, not discovered at forty. The meaning crisis is a mismatch readout.</p>
+            <p><strong>Purpose as infrastructure.</strong> Waking up needed by specific named people for consequential work - not recovered on weekends, not discovered at forty. The meaning crisis is a mismatch readout.</p>
             <p><strong>Dynamic egalitarianism.</strong> Status the organism reads as legitimate: prestige-based, earned in-group, reversible, visible. Hierarchy that responds to contribution and can be withdrawn.</p>
-            <p><strong>Economic substrate.</strong> UBI or equivalent — not welfare, the precondition. Remove the need to sell time into anonymous markets to afford to exist, and the rest becomes possible.</p>
-            <p><strong>Sovereign groups.</strong> Legal recognition of Dunbar-scale units as the substantive social and governance layer. Not secession — moving the unit of belonging to the scale the organism is specified for.</p>
-            <p><strong>Augment from the baseline.</strong> Once environments match, technology extends flourishing instead of displacing it. <em>Demismatch the world — then augment.</em></p>
+            <p><strong>Economic substrate.</strong> UBI or equivalent - not welfare, the precondition. Remove the need to sell time into anonymous markets to afford to exist, and the rest becomes possible.</p>
+            <p><strong>Sovereign groups.</strong> Legal recognition of Dunbar-scale units as the substantive social and governance layer. Not secession - moving the unit of belonging to the scale the organism is specified for.</p>
+            <p><strong>Augment from the baseline.</strong> Once environments match, technology extends flourishing instead of displacing it. <em>Demismatch the world - then augment.</em></p>
           </div>
         </details>
 
