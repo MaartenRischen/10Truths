@@ -54,10 +54,12 @@
       padding: clamp(1.8rem, 4.6vw, 3.4rem) clamp(1.6rem, 4.6vw, 3.4rem);
       box-shadow: 0 1px 2px rgba(26, 6, 8, 0.06), 0 18px 44px rgba(26, 6, 8, 0.06);
     }
+    /* shorter top band on the hero panel — trim the kicker-bar height ~⅓ */
+    .panel:has(.bd-kicker) { padding-top: clamp(1.1rem, 2.8vw, 2.05rem); }
 
     /* ── Top kicker - the cross-site line, folded into an eyebrow ── */
     .bd-kicker {
-      margin: 0 0 clamp(1.6rem, 3.4vw, 2.4rem);
+      margin: 0 0 clamp(1rem, 2.1vw, 1.45rem);
       font-family: var(--mono);
       font-size: 0.74rem;
       letter-spacing: 0.24em;
@@ -854,6 +856,42 @@
       .bd-needs-fold, .bd-needs-fold.is-open { transition: opacity 0s, visibility 0s; }
     }
 
+    /* ── Mannequin backdrop — the dystopia↔eden split behind the hero + map.
+       Fills the empty side gutters: both edge mannequins hug the very edges of
+       the parchment (full image width, never cropped). The busy centre + the
+       bottom fade out so the hero copy stays legible and the oxblood Cor placard
+       overlays it fully opaque. ── */
+    .bd-stage { position: relative; }
+    .bd-stage > .bd-herocenter,
+    .bd-stage > .bd-needs-fold,
+    .bd-stage > .bd-map { position: relative; z-index: 1; }
+
+    .bd-backdrop {
+      /* strong at the outer edges (mannequins) → calm across the centre (hero copy) */
+      --m-h: linear-gradient(to right,
+          rgba(0,0,0,.92) 0%, rgba(0,0,0,.86) 12%, rgba(0,0,0,.22) 17%,
+          rgba(0,0,0,.045) 33%, rgba(0,0,0,.03) 50%, rgba(0,0,0,.045) 67%,
+          rgba(0,0,0,.22) 83%, rgba(0,0,0,.86) 88%, rgba(0,0,0,.92) 100%);
+      --m-v: linear-gradient(to bottom,
+          rgba(0,0,0,0) 0%, rgba(0,0,0,1) 5.5%, rgba(0,0,0,1) 56%, rgba(0,0,0,0) 93%);
+      position: absolute;
+      top: clamp(-2.2rem, -1.6vw, -0.6rem);
+      /* bleed past the panel padding so the mannequins lean on the parchment edges */
+      left: calc(-1 * clamp(1.6rem, 4.6vw, 3.4rem));
+      right: calc(-1 * clamp(1.6rem, 4.6vw, 3.4rem));
+      aspect-ratio: 1900 / 1061;
+      z-index: 0;
+      pointer-events: none;
+      background: url("hero-mannequins.webp") center top / 100% auto no-repeat;
+      /* nudge the figures up ~half a head without moving the box into the kicker */
+      background-position-y: clamp(-3.6rem, -3vw, -1.8rem);
+      -webkit-mask-image: var(--m-h), var(--m-v);
+      -webkit-mask-composite: source-in;
+      mask-image: var(--m-h), var(--m-v);
+      mask-composite: intersect;
+    }
+    @media (max-width: 900px) { .bd-backdrop { display: none; } }
+
     .bd-map { margin-top: clamp(1.6rem, 3.4vw, 2.7rem); }
 
     .bd-map-grid {
@@ -1171,6 +1209,11 @@
         <a href="https://cor.demismatch.com/">Cor</a>
       </p>
 
+      <!-- Stage: hero + map, over the dystopia↔eden mannequin backdrop -->
+      <div class="bd-stage">
+
+      <div class="bd-backdrop" aria-hidden="true"></div>
+
       <!-- Hero - the hook and the claim, centred. -->
       <div class="bd-herocenter">
         <h1 class="bd-thesis">Humans need a world that fits humans.<span class="bd-sub">AI should help build it.</span></h1>
@@ -1444,6 +1487,8 @@
         <button type="button" class="bd-plainlink bd-map-expand" data-expand-vision aria-expanded="false">Expand the full vision ↓</button>
 
       </section>
+
+      </div><!-- /.bd-stage -->
 
     </section>
 
