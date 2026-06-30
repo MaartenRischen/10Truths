@@ -88,7 +88,7 @@
     .bd-thesis {
       font-family: var(--serif);
       font-weight: 500;
-      font-size: clamp(2.2rem, 5.2vw, 3.7rem);
+      font-size: clamp(1.8rem, 4.25vw, 3.0rem);
       line-height: 1.04;
       letter-spacing: -0.032em;
       color: var(--oxblood);
@@ -109,7 +109,7 @@
     .bd-lede {
       font-family: var(--serif);
       font-weight: 400;
-      font-size: clamp(1.1rem, 1.7vw, 1.34rem);
+      font-size: clamp(0.9rem, 1.4vw, 1.1rem);
       line-height: 1.55;
       color: var(--oxblood-ink);
       margin: 0;
@@ -808,7 +808,7 @@
     /* centred hero - widened copy (fewer lines), tightened toward the Cor card */
     .bd-herocenter { text-align: center; margin: clamp(0.4rem, 1vw, 1rem) 0 clamp(1.3rem, 2.6vw, 2.3rem); }
     .bd-herocenter .bd-thesis { max-width: 24ch; margin: 0 auto clamp(0.9rem, 1.8vw, 1.3rem); }
-    .bd-herocenter .bd-lede { max-width: 82ch; margin: 0 auto; }
+    .bd-herocenter .bd-lede { max-width: var(--read); margin: 0 auto; }
     .bd-herocenter .bd-lede + .bd-lede { margin-top: clamp(0.9rem, 1.8vw, 1.3rem); }
 
     /* hero link pair - "What humans need" toggle + always-on "See how we know - Cor" */
@@ -831,6 +831,20 @@
     .bd-needs-toggle-icon { font-size: 1.08rem; line-height: 1; }
     .bd-needs-toggle-icon::before { content: "+"; }
     .bd-needs-toggle[aria-expanded="true"] .bd-needs-toggle-icon::before { content: "–"; }
+
+    /* centred "try decode:talk!" CTA, a row below the needs links */
+    .bd-decode-row { text-align: center; margin: clamp(0.75rem, 1.7vw, 1.2rem) 0 0; }
+    .bd-decode-link {
+      display: inline-flex; align-items: center;
+      padding: 0 0 2px; border: 0;
+      border-bottom: 1px solid rgba(45, 107, 107, 0.4);
+      text-decoration: none;
+      font-family: var(--mono); font-size: clamp(0.9rem, 1.2vw, 1.02rem);
+      letter-spacing: 0.14em; text-transform: uppercase; font-weight: 600;
+      color: var(--teal);
+      transition: color 0.16s ease, border-color 0.16s ease;
+    }
+    .bd-decode-link:hover, .bd-decode-link:focus-visible { color: var(--oxblood); border-bottom-color: var(--oxblood); }
 
     /* fold-out container - bounded height, internal scroll, smooth open/close */
     .bd-needs-fold {
@@ -856,6 +870,75 @@
       .bd-needs-fold, .bd-needs-fold.is-open { transition: opacity 0s, visibility 0s; }
     }
 
+    /* ── Hero film — the V1 mismatch film, mounted as a blueprint plate under
+       the thesis. Click-to-play facade: a local poster + on-brand play button,
+       swapped for the privacy embed only on click so the hero stays fast. ── */
+    .bd-film {
+      position: relative; z-index: 1; /* sits above the mannequin backdrop */
+      width: min(100%, 528px);
+      margin: clamp(1.3rem, 2.8vw, 2.1rem) auto clamp(0.2rem, 0.8vw, 0.5rem);
+      background: var(--parchment-soft);
+      padding: clamp(9px, 1.3vw, 13px);
+      border: 1px solid rgba(58, 18, 24, 0.14);
+      box-shadow: 8px 8px 0 var(--teal);
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+    }
+    .bd-film:hover,
+    .bd-film:focus-within {
+      transform: translate(-2px, -2px);
+      box-shadow: 12px 12px 0 var(--teal);
+    }
+    .bd-film-trigger {
+      display: block; position: relative; width: 100%;
+      aspect-ratio: 16 / 9;
+      padding: 0; margin: 0; border: 0; cursor: pointer; overflow: hidden;
+      background: var(--oxblood);
+    }
+    .bd-film-trigger picture { position: absolute; inset: 0; display: block; }
+    .bd-film-poster {
+      display: block; width: 100%; height: 100%;
+      object-fit: cover; object-position: center;
+    }
+    .bd-film-trigger::after { /* light vignette - seats the still, keeps it legible */
+      content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+      background: radial-gradient(135% 120% at 50% 45%, transparent 48%, rgba(28, 12, 16, 0.32) 100%);
+      transition: opacity 0.2s ease;
+    }
+    .bd-film:hover .bd-film-trigger::after { opacity: 0.55; }
+    .bd-film-play {
+      position: absolute; z-index: 2; left: 50%; top: 50%;
+      transform: translate(-50%, -50%);
+      width: clamp(54px, 8.5vw, 80px); aspect-ratio: 1; border-radius: 50%;
+      display: grid; place-items: center;
+      background: var(--oxblood);
+      box-shadow: 0 0 0 5px rgba(242, 232, 207, 0.82), 0 10px 26px rgba(20, 8, 10, 0.45);
+      transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+    }
+    .bd-film:hover .bd-film-play,
+    .bd-film-trigger:focus-visible .bd-film-play {
+      background: var(--teal);
+      transform: translate(-50%, -50%) scale(1.06);
+      box-shadow: 0 0 0 5px rgba(242, 232, 207, 0.92), 0 12px 30px rgba(20, 8, 10, 0.5);
+    }
+    .bd-film-play::before { /* the triangle */
+      content: ""; margin-left: clamp(3px, 0.5vw, 5px);
+      border-style: solid;
+      border-width: clamp(9px, 1.4vw, 13px) 0 clamp(9px, 1.4vw, 13px) clamp(15px, 2.3vw, 22px);
+      border-color: transparent transparent transparent var(--parchment);
+    }
+    .bd-film-frame { /* the self-hosted <video> after click - same footprint, seamless swap */
+      display: block; width: 100%; aspect-ratio: 16 / 9; border: 0;
+      background: #000; object-fit: cover;
+    }
+    @media (max-width: 560px) {
+      .bd-film { box-shadow: 5px 5px 0 var(--teal); }
+      .bd-film:hover, .bd-film:focus-within { box-shadow: 8px 8px 0 var(--teal); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .bd-film, .bd-film-play { transition: none; }
+      .bd-film:hover, .bd-film:focus-within { transform: none; }
+    }
+
     /* ── Mannequin backdrop — the dystopia↔eden split behind the hero + map.
        Fills the empty side gutters: both edge mannequins hug the very edges of
        the parchment (full image width, never cropped). The busy centre + the
@@ -866,29 +949,47 @@
     .bd-stage > .bd-needs-fold,
     .bd-stage > .bd-map { position: relative; z-index: 1; }
 
+    /* Split mannequin backdrop — the source is cut down its (transparent)
+       middle into two halves; each is pinned to its parchment edge and scaled
+       up on its own, so the edge mannequins grow and take more vertical space
+       while staying snug to the sides. The halves overlap across the masked-out
+       centre, so the seam never shows. Tune size with --half-w. */
     .bd-backdrop {
-      /* strong at the outer edges (mannequins) → calm across the centre (hero copy) */
-      --m-h: linear-gradient(to right,
-          rgba(0,0,0,.92) 0%, rgba(0,0,0,.86) 12%, rgba(0,0,0,.30) 17%,
-          rgba(0,0,0,.13) 33%, rgba(0,0,0,.10) 50%, rgba(0,0,0,.13) 67%,
-          rgba(0,0,0,.30) 83%, rgba(0,0,0,.86) 88%, rgba(0,0,0,.92) 100%);
+      --half-w: 70%;
+      --bleed: clamp(1.6rem, 4.6vw, 3.4rem);
+      /* top + bottom fade, shared by both halves */
       --m-v: linear-gradient(to bottom,
-          rgba(0,0,0,0) 0%, rgba(0,0,0,1) 5.5%, rgba(0,0,0,1) 56%, rgba(0,0,0,0) 93%);
+          rgba(0,0,0,0) 0%, rgba(0,0,0,1) 5%, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 96%);
       position: absolute;
-      top: clamp(-2.2rem, -1.6vw, -0.6rem);
-      /* bleed past the panel padding so the mannequins lean on the parchment edges */
-      left: calc(-1 * clamp(1.6rem, 4.6vw, 3.4rem));
-      right: calc(-1 * clamp(1.6rem, 4.6vw, 3.4rem));
-      aspect-ratio: 1900 / 1061;
+      top: clamp(-3rem, -2.4vw, -1rem);
+      width: var(--half-w);
+      aspect-ratio: 600 / 670;
       z-index: 0;
       pointer-events: none;
-      background: url("hero-mannequins.webp") center top / 100% auto no-repeat;
-      /* nudge the figures up ~half a head without moving the box into the kicker */
-      background-position-y: clamp(-3.6rem, -3vw, -1.8rem);
+      background-repeat: no-repeat;
+      background-size: 100% auto;
       -webkit-mask-image: var(--m-h), var(--m-v);
       -webkit-mask-composite: source-in;
       mask-image: var(--m-h), var(--m-v);
       mask-composite: intersect;
+    }
+    /* LEFT half: opaque at the left edge (mannequin), fading into the centre */
+    .bd-backdrop-l {
+      left: calc(-1 * var(--bleed));
+      background-image: url("hero-mannequins-left.webp");
+      background-position: left top;
+      --m-h: linear-gradient(to right,
+          rgba(0,0,0,1) 0%, rgba(0,0,0,1) 11%, rgba(0,0,0,.9) 23%,
+          rgba(0,0,0,.42) 43%, rgba(0,0,0,.14) 63%, rgba(0,0,0,0) 83%);
+    }
+    /* RIGHT half: mirror — opaque at the right edge, fading into the centre */
+    .bd-backdrop-r {
+      right: calc(-1 * var(--bleed));
+      background-image: url("hero-mannequins-right.webp");
+      background-position: right top;
+      --m-h: linear-gradient(to left,
+          rgba(0,0,0,1) 0%, rgba(0,0,0,1) 11%, rgba(0,0,0,.9) 23%,
+          rgba(0,0,0,.42) 43%, rgba(0,0,0,.14) 63%, rgba(0,0,0,0) 83%);
     }
     @media (max-width: 900px) { .bd-backdrop { display: none; } }
 
@@ -1202,9 +1303,7 @@
 
       <!-- Top kicker - the three-site line -->
       <p class="bd-kicker">
-        <span class="cur">Demismatch (the Why)</span>
-        <span class="sep" aria-hidden="true">·</span>
-        <a href="#vision">Vision</a>
+        <span class="cur">Demismatch</span>
         <span class="sep" aria-hidden="true">·</span>
         <a href="https://cor.demismatch.com/">Cor</a>
       </p>
@@ -1212,15 +1311,34 @@
       <!-- Stage: hero + map, over the dystopia↔eden mannequin backdrop -->
       <div class="bd-stage">
 
-      <div class="bd-backdrop" aria-hidden="true"></div>
+      <div class="bd-backdrop bd-backdrop-l" aria-hidden="true"></div>
+      <div class="bd-backdrop bd-backdrop-r" aria-hidden="true"></div>
 
       <!-- Hero - the hook and the claim, centred. -->
       <div class="bd-herocenter">
         <h1 class="bd-thesis">Humans need a world that fits humans.<span class="bd-sub">AI should help build it.</span></h1>
+
         <p class="bd-lede">Modern distress is accurate signaling about a world that no longer fits you. The science of what you're built to need already exists, scattered and never assembled. Cor assembles it, so you can hold any environment or technology up against what you actually require. Then build the ones that fit.</p>
+
+        <!-- Hero film: the V1 mismatch film. Click-to-play facade -> self-hosted <video> (no YouTube chrome). -->
+        <figure class="bd-film" id="bd-film">
+          <button type="button" class="bd-film-trigger" id="film-trigger"
+                  data-src="film.mp4"
+                  aria-label="Play the film">
+            <picture>
+              <source srcset="film-poster.webp" type="image/webp">
+              <img class="bd-film-poster" src="film-poster.jpg" alt="A wooden figure facing a single hanging electric light in a dark workshop." width="1280" height="720" loading="eager" fetchpriority="high" decoding="async">
+            </picture>
+            <span class="bd-film-play" aria-hidden="true"></span>
+          </button>
+        </figure>
+
         <div class="bd-needs-row">
           <button type="button" id="needs-toggle" class="bd-needs-toggle" aria-expanded="false" aria-controls="needs-fold">What humans need <span class="bd-needs-toggle-icon" aria-hidden="true"></span></button>
           <a class="bd-needs-cor" href="https://cor.demismatch.com/">See how we know - Cor →</a>
+        </div>
+        <div class="bd-decode-row">
+          <a class="bd-decode-link" href="decode-talk.html">Try decode:talk!</a>
         </div>
       </div>
 
@@ -1269,7 +1387,7 @@
         </div>
       </div>
 
-      <!-- The map - Cor at the hub, two arms, the horizon. Detail collapsed. -->
+      <!-- The map - Cor at the hub, two arms (open by default), the horizon (collapsed). -->
       <section class="bd-map" id="vision" aria-label="The map: Cor at the centre, two arms built on it, and the horizon">
 
         <div class="bd-map-grid">
@@ -1282,7 +1400,7 @@
               <p class="bd-arm-tag">Align the AI being built on us - to what humans <em>are</em>, beneath what they say they want.</p>
               <a class="bd-arm-paper" href="https://cor.demismatch.com/bridge-paper.html">Read the paper · <em>What Alignment Misses</em> →</a>
             </header>
-            <details class="bd-arm-fold">
+            <details class="bd-arm-fold" open>
               <summary><span class="bd-fold-label">Three alignment tracks</span><span class="bd-fold-icon" aria-hidden="true"></span></summary>
               <ul class="bd-arm-list">
               <li><details class="bd-node">
@@ -1394,7 +1512,7 @@
               <h3 class="bd-arm-title">Demismatch tools</h3>
               <p class="bd-arm-tag">See the mismatch you’re in - then build the matched conditions back.</p>
             </header>
-            <details class="bd-arm-fold">
+            <details class="bd-arm-fold" open>
               <summary><span class="bd-fold-label">Four tools <span class="bd-badge bd-badge-live">1 live</span></span><span class="bd-fold-icon" aria-hidden="true"></span></summary>
               <ul class="bd-arm-list">
               <li><details class="bd-node">
@@ -2093,6 +2211,28 @@
       fold.classList.toggle('is-open', open);
       if (open) fold.scrollTop = 0;
     });
+  })();
+  </script>
+
+  <script>
+  (function () {
+    var trigger = document.getElementById('film-trigger');
+    if (!trigger) return;
+    trigger.addEventListener('click', function () {
+      // self-hosted player: clean native controls, no YouTube branding/overlays
+      var video = document.createElement('video');
+      video.className = 'bd-film-frame';
+      video.src = trigger.getAttribute('data-src');
+      video.poster = 'film-poster.jpg';
+      video.controls = true;
+      video.playsInline = true;
+      video.preload = 'auto';
+      video.setAttribute('controlslist', 'nodownload');
+      trigger.replaceWith(video);
+      // the click is the user gesture, so play() with sound is allowed
+      var p = video.play();
+      if (p && p.catch) p.catch(function () { /* user can press the native play button */ });
+    }, { once: true });
   })();
   </script>
 
