@@ -640,6 +640,13 @@
                box-shadow: 3px 3px 0 var(--teal); transition: box-shadow .18s ease, transform .18s ease; }
     .cx-play:hover, .cx-play:focus-visible { transform: translate(-1px,-1px); box-shadow: 5px 5px 0 var(--teal); outline: none; }
     .cx-play svg { width: 16px; height: 16px; fill: currentColor; display:block; }
+    .cx-nav { flex: 0 0 auto; width: 38px; height: 38px; border-radius: 50%;
+              border: 1px solid var(--oxblood); background: var(--parchment-soft); color: var(--oxblood);
+              cursor: pointer; display: inline-flex; align-items: center; justify-content: center;
+              box-shadow: 3px 3px 0 var(--teal); transition: box-shadow .18s ease, transform .18s ease; }
+    .cx-nav:hover, .cx-nav:focus-visible { transform: translate(-1px,-1px); box-shadow: 5px 5px 0 var(--teal); outline: none; }
+    .cx-nav svg { width: 15px; height: 15px; fill: currentColor; display: block; }
+    .cx-nav:disabled { opacity: .3; cursor: default; box-shadow: 2px 2px 0 rgba(45,107,107,.35); transform: none; }
     .cx-counter { font-family: var(--mono); font-size: .68rem; letter-spacing: .16em;
                   text-transform: uppercase; color: var(--muted-warm); flex: 0 0 auto;
                   font-variant-numeric: tabular-nums; }
@@ -794,7 +801,14 @@
        ═════════════════════════════════════════════════════════════ */
     .bd-lede { max-width: var(--read); }
     .panel-demo .dt-exchange { max-width: var(--read); margin-inline: auto; }
-    .panel-demo > div:first-child { max-width: var(--read); margin-inline: auto; } /* "Try Decode Talk" row */
+    .panel-demo > div:first-child { max-width: var(--read); margin-inline: auto; text-align: center; } /* "Try Decode Talk" row - centred */
+    .panel-demo > div:first-child .button { /* enlarged CTA, scoped to this one button */
+      padding: clamp(1.2rem, 2.4vw, 1.7rem) clamp(2rem, 4vw, 3rem);
+      font-size: clamp(0.95rem, 1.4vw, 1.2rem); gap: 0.7rem;
+      box-shadow: 5px 5px 0 var(--teal);
+    }
+    .panel-demo > div:first-child .button:hover,
+    .panel-demo > div:first-child .button:focus-visible { box-shadow: 8px 8px 0 var(--teal); }
     .panel-demo .bd-cta { display: block; width: max-content; margin-inline: auto; }
     .cx-shell { max-width: 1180px; margin-inline: auto; }
     .faq-cols { max-width: 1200px; margin-inline: auto; }
@@ -1015,7 +1029,7 @@
     }
     @media (max-width: 900px) { .bd-backdrop { display: none; } }
 
-    .bd-map { margin-top: clamp(1.6rem, 3.4vw, 2.7rem); }
+    .bd-map { margin-top: clamp(3.6rem, 6.5vw, 5.2rem); }
 
     .bd-map-grid {
       display: grid;
@@ -1206,7 +1220,10 @@
     .bd-source-stats .n { font-family: var(--serif); font-weight: 500; font-size: clamp(1.5rem, 2.2vw, 1.95rem); line-height: 1; color: var(--gold); display: block; margin-bottom: 0.32rem; letter-spacing: -0.01em; }
     .bd-source-stats .l { font-family: var(--mono); font-size: 0.55rem; letter-spacing: 0.12em; text-transform: uppercase; color: #c4b894; display: block; line-height: 1.3; }
     .bd-source-note { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.04em; color: #a08f6a; margin: 0.85rem 0 0; }
-    .bd-source-cta { margin-top: 1.1rem; font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 500; color: var(--gold); border-bottom: 1px solid rgba(196,150,44,0.5); padding-bottom: 2px; }
+    .bd-source-cta { display: inline-block; margin-top: clamp(1.1rem, 2vw, 1.5rem); font-family: var(--mono); font-size: clamp(0.78rem, 1vw, 0.9rem); letter-spacing: 0.16em; text-transform: uppercase; font-weight: 600; color: #a08f6a; text-decoration: none; transition: color 0.16s ease; }
+    .bd-source-cta:hover, .bd-source-cta:focus-visible { color: var(--parchment); }
+    .bd-source-vid { display: inline-block; margin-top: clamp(0.6rem, 1.2vw, 0.85rem); font-family: var(--mono); font-size: clamp(0.66rem, 0.86vw, 0.76rem); letter-spacing: 0.16em; text-transform: uppercase; font-weight: 500; color: #a08f6a; text-decoration: none; transition: color 0.16s ease; }
+    .bd-source-vid:hover, .bd-source-vid:focus-visible { color: var(--parchment); }
 
     /* ── Horizon strip ── */
     .bd-horizon {
@@ -1296,10 +1313,18 @@
     
 
     /* Built on the work of - compact credit inside the Cor placard */
-    .bd-source-credit { width: 100%; margin: 0 0 1.2rem; }
+    .bd-source-credit { width: 100%; margin: clamp(1.3rem, 2.6vw, 1.9rem) 0 1.2rem; padding-top: clamp(1rem, 2vw, 1.3rem); border-top: 1px solid rgba(236,224,196,0.22); }
     .bd-source-credit-label { display: block; font-family: var(--mono); font-size: 0.56rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem; }
-    .bd-source-credit-names { display: block; font-family: var(--serif); font-size: 0.82rem; line-height: 1.55; color: var(--parchment); }
-    .bd-source-credit-names .more { color: #c4b894; font-style: italic; white-space: nowrap; }
+    .bd-source-credit-names { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: clamp(0.32rem, 0.8vw, 0.45rem); }
+    .cr-pill { /* credit pill tuned for the dark card - warm gold outline, cream text */
+      display: inline-flex; align-items: center; padding: 0.26rem 0.58rem;
+      border: 1px solid rgba(196, 150, 44, 0.5);
+      background: rgba(196, 150, 44, 0.08);
+      color: var(--parchment); font-family: var(--mono);
+      font-size: clamp(0.6rem, 0.82vw, 0.7rem); letter-spacing: 0.04em;
+      border-radius: 0; box-shadow: 2px 2px 0 rgba(196, 150, 44, 0.28); white-space: nowrap;
+    }
+    .bd-source-credit-names .more { color: #c4b894; font-style: italic; white-space: nowrap; font-size: 0.72rem; margin-left: 0.2rem; }
   
     /* ===== Mobile-only optimisations ===== */
     @media (max-width: 480px) {
@@ -1493,7 +1518,7 @@
           </div>
 
           <!-- HUB · Cor -->
-          <a class="bd-source" href="https://cor.demismatch.com/">
+          <div class="bd-source">
             <span class="bd-source-kicker">The source</span>
             <svg class="bd-source-mark" viewBox="104 34 592 592" fill="none" aria-hidden="true">
               <g class="rings">
@@ -1506,9 +1531,23 @@
             </svg>
             <h2 class="bd-source-title">Cor - what a human is</h2>
             <p class="bd-source-spec">A spec of the human.</p>
+            <a class="bd-source-cta" href="https://cor.demismatch.com/">Open Cor →</a>
+            <a class="bd-source-vid" href="https://youtu.be/XJmftDvWSCY" target="_blank" rel="noopener">Academic breakdown (video) →</a>
             <div class="bd-source-credit">
               <span class="bd-source-credit-label">Built on the work of</span>
-              <span class="bd-source-credit-names">Darwin &middot; Bowlby &middot; Trivers &middot; Tooby&nbsp;&amp;&nbsp;Cosmides &middot; Nesse &middot; Panksepp &middot; Dunbar &middot; Hrdy &middot; Sapolsky &middot; de&nbsp;Waal <span class="more">+ more</span></span>
+              <span class="bd-source-credit-names">
+                <span class="cr-pill">Darwin</span>
+                <span class="cr-pill">Bowlby</span>
+                <span class="cr-pill">Trivers</span>
+                <span class="cr-pill">Tooby &amp; Cosmides</span>
+                <span class="cr-pill">Nesse</span>
+                <span class="cr-pill">Panksepp</span>
+                <span class="cr-pill">Dunbar</span>
+                <span class="cr-pill">Hrdy</span>
+                <span class="cr-pill">Sapolsky</span>
+                <span class="cr-pill">de Waal</span>
+                <span class="more">+ more</span>
+              </span>
             </div>
             <div class="bd-source-answers">
               <span class="bd-source-answers-label">It answers</span>
@@ -1526,8 +1565,7 @@
               <div class="stat"><span class="n">64</span><span class="l">Researchers</span></div>
             </div>
             <p class="bd-source-note">every claim traces to a primary source</p>
-            <span class="bd-source-cta">Open Cor →</span>
-          </a>
+          </div>
 
           <!-- ARM · For humans -->
           <div class="bd-arm bd-arm-right">
@@ -1686,7 +1724,7 @@
                 <circle class="dot" cx="523" cy="453" r="59"/>
               </svg>
             </span>
-            <span class="cx-eyebrow">The argument, in short</span>
+            <span class="cx-eyebrow">TL;DR</span>
             <span class="cx-rule"></span>
           </div>
 
@@ -1810,9 +1848,15 @@
           </div><!-- /.cx-stage -->
 
           <div class="cx-controls">
+            <button type="button" class="cx-nav" id="cx-prev" aria-label="Previous beat">
+              <svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6z"/></svg>
+            </button>
             <button type="button" class="cx-play" id="cx-play" aria-label="Pause">
               <svg class="ic-pause" viewBox="0 0 24 24"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
               <svg class="ic-play" viewBox="0 0 24 24" style="display:none"><path d="M8 5v14l11-7z"/></svg>
+            </button>
+            <button type="button" class="cx-nav" id="cx-next" aria-label="Next beat">
+              <svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6z"/></svg>
             </button>
             <span class="cx-counter"><b id="cx-cur">01</b> / 08</span>
             <div class="cx-spine" id="cx-spine" role="tablist" aria-label="Jump to a beat"></div>
@@ -1825,16 +1869,6 @@
 
         </div><!-- /.cx-shell -->
       </section>
-
-      <p class="bd-network">
-        <span><a class="name" href="https://demismatch.com/">Demismatch</a> the front door</span>
-        <span class="sep" aria-hidden="true">·</span>
-        <span><a class="name" href="https://cor.demismatch.com/">Cor</a> the spec</span>
-        <span class="sep" aria-hidden="true">·</span>
-        <span><a class="name" href="https://demismatch.com/vision.html">Vision</a> the map</span>
-        <span class="sep" aria-hidden="true">·</span>
-        <span><a class="name" href="the-mismatch.html">Ten truths</a> the original story</span>
-      </p>
 
     </section><!-- /Panel: the argument -->
 
@@ -2090,6 +2124,8 @@
     var stage = document.getElementById('cx-stage');
     var beats = Array.prototype.slice.call(stage.querySelectorAll('.cx-beat'));
     var playBtn = document.getElementById('cx-play');
+    var prevBtn = document.getElementById('cx-prev');
+    var nextBtn = document.getElementById('cx-next');
     var icPause = playBtn.querySelector('.ic-pause');
     var icPlay = playBtn.querySelector('.ic-play');
     var curEl = document.getElementById('cx-cur');
@@ -2124,6 +2160,8 @@
       beats.forEach(function (b, i) { b.classList.toggle('is-active', i === idx); });
       setAccent(beats[idx]);
       curEl.textContent = ('0' + (idx + 1)).slice(-2);
+      if (prevBtn) prevBtn.disabled = (idx === 0);
+      if (nextBtn) nextBtn.disabled = (idx === beats.length - 1);
       segs.forEach(function (s, i) {
         s.classList.toggle('active', i === idx);
         s.classList.toggle('done', i < idx);
@@ -2169,6 +2207,8 @@
 
     // controls
     playBtn.addEventListener('click', function () { playing ? pause(true) : play(); });
+    if (prevBtn) prevBtn.addEventListener('click', function () { gotoBeat(idx - 1, true); });
+    if (nextBtn) nextBtn.addEventListener('click', function () { gotoBeat(idx + 1, true); });
     replayBtn.addEventListener('click', function () { gotoBeat(0); play(); });
     stage.addEventListener('click', function (e) {
       if (e.target.closest('.cx-replay')) return;
