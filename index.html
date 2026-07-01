@@ -833,7 +833,7 @@
     .bd-needs-toggle[aria-expanded="true"] .bd-needs-toggle-icon::before { content: "–"; }
 
     /* centred "try decode:talk!" CTA, a row below the needs links */
-    .bd-decode-row { text-align: center; margin: clamp(0.75rem, 1.7vw, 1.2rem) 0 0; }
+    .bd-decode-row { text-align: center; margin: clamp(2rem, 4.5vw, 3.2rem) 0 0; }
     .bd-decode-link {
       display: inline-flex; align-items: center;
       padding: 0 0 2px; border: 0;
@@ -925,6 +925,28 @@
       border-style: solid;
       border-width: clamp(9px, 1.4vw, 13px) 0 clamp(9px, 1.4vw, 13px) clamp(15px, 2.3vw, 22px);
       border-color: transparent transparent transparent var(--parchment);
+    }
+    .bd-film-tag { /* the film's message, top of frame, a touch larger than the caption */
+      position: absolute; z-index: 3; left: 0; right: 0; top: 0;
+      padding: clamp(0.55rem, 1.3vw, 0.85rem) clamp(0.6rem, 1.5vw, 1rem) clamp(1.6rem, 4vw, 2.4rem);
+      pointer-events: none; text-align: center;
+      font-family: var(--mono);
+      font-size: clamp(0.8rem, 1.05vw, 0.95rem);
+      letter-spacing: 0.2em; text-transform: uppercase; font-weight: 500;
+      color: var(--muted-warm);
+      text-shadow: 0 1px 10px rgba(0, 0, 0, 0.75);
+      background: linear-gradient(to bottom, rgba(24, 10, 14, 0.82) 0%, rgba(24, 10, 14, 0.4) 50%, rgba(24, 10, 14, 0) 100%);
+    }
+    .bd-film-cap { /* quiet caption overlaid on the frame bottom, over a soft scrim */
+      position: absolute; z-index: 3; left: 0; right: 0; bottom: 0;
+      padding: clamp(1.6rem, 4vw, 2.4rem) clamp(0.6rem, 1.5vw, 1rem) clamp(0.55rem, 1.3vw, 0.85rem);
+      pointer-events: none; text-align: center;
+      font-family: var(--mono);
+      font-size: clamp(0.62rem, 0.82vw, 0.72rem);
+      letter-spacing: 0.2em; text-transform: uppercase; font-weight: 500;
+      color: var(--muted-warm);
+      text-shadow: 0 1px 8px rgba(0, 0, 0, 0.7);
+      background: linear-gradient(to top, rgba(24, 10, 14, 0.82) 0%, rgba(24, 10, 14, 0.4) 50%, rgba(24, 10, 14, 0) 100%);
     }
     .bd-film-frame { /* the self-hosted <video> after click - same footprint, seamless swap */
       display: block; width: 100%; aspect-ratio: 16 / 9; border: 0;
@@ -1329,16 +1351,18 @@
               <source srcset="film-poster.webp" type="image/webp">
               <img class="bd-film-poster" src="film-poster.jpg" alt="A wooden figure facing a single hanging electric light in a dark workshop." width="1280" height="720" loading="eager" fetchpriority="high" decoding="async">
             </picture>
+            <span class="bd-film-tag" aria-hidden="true">You are not broken</span>
             <span class="bd-film-play" aria-hidden="true"></span>
+            <span class="bd-film-cap" aria-hidden="true">Demismatch · The Film · 5 min</span>
           </button>
         </figure>
 
+        <div class="bd-decode-row">
+          <a class="bd-decode-link" href="decode-talk.html">Try decode:talk!</a>
+        </div>
         <div class="bd-needs-row">
           <button type="button" id="needs-toggle" class="bd-needs-toggle" aria-expanded="false" aria-controls="needs-fold">What humans need <span class="bd-needs-toggle-icon" aria-hidden="true"></span></button>
           <a class="bd-needs-cor" href="https://cor.demismatch.com/">See how we know - Cor →</a>
-        </div>
-        <div class="bd-decode-row">
-          <a class="bd-decode-link" href="decode-talk.html">Try decode:talk!</a>
         </div>
       </div>
 
