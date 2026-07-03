@@ -14,6 +14,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="cor.css">
+  <!-- EXPERIMENT: scroll-reveal layer (arm before paint to avoid flash; self-disables under reduced-motion) -->
+  <script>(function(){try{if(!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches))document.documentElement.className+=' sfx-armed';}catch(e){}})();</script>
+  <link rel="stylesheet" href="scroll-fx.css">
   <style>
     /* ─────────────────────────────────────────────────────────
        Front door - broadside cover. Two tan panels on a warm
@@ -801,6 +804,27 @@
        ═════════════════════════════════════════════════════════════ */
     .bd-lede { max-width: var(--read); }
     .panel-demo .dt-exchange { max-width: var(--read); margin-inline: auto; }
+    /* Two examples side by side to halve the section's height. */
+    .dt-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(1.2rem, 3vw, 2.6rem);
+      align-items: stretch;               /* both columns equal height */
+      max-width: 1180px;
+      margin-inline: auto;
+    }
+    /* each example fills its cell; the answer card grows so both bottoms
+       line up and the mechanism line sits at a shared baseline. */
+    .panel-demo .dt-grid .dt-exchange {
+      max-width: none; margin: 0;
+      display: flex; flex-direction: column;
+    }
+    .panel-demo .dt-grid .dt-a { flex: 1 1 auto; display: flex; flex-direction: column; }
+    .panel-demo .dt-grid .dt-a .dt-spec { margin-top: auto; }
+    @media (max-width: 820px) {
+      .dt-grid { grid-template-columns: 1fr; }
+      .panel-demo .dt-grid .dt-a { display: block; }   /* stacked: no need to stretch */
+    }
     .panel-demo > div:first-child { max-width: var(--read); margin-inline: auto; text-align: center; } /* "Try Decode Talk" row - centred */
     .panel-demo > div:first-child .button { /* enlarged CTA, scoped to this one button */
       padding: clamp(1.2rem, 2.4vw, 1.7rem) clamp(2rem, 4vw, 3rem);
@@ -809,7 +833,7 @@
     }
     .panel-demo > div:first-child .button:hover,
     .panel-demo > div:first-child .button:focus-visible { box-shadow: 8px 8px 0 var(--teal); }
-    .panel-demo .bd-cta { display: block; width: max-content; margin-inline: auto; }
+    .panel-demo .bd-cta { display: block; width: max-content; margin-inline: auto; margin-top: clamp(1.8rem, 3.4vw, 2.8rem); }
     .cx-shell { max-width: 1180px; margin-inline: auto; }
     .faq-cols { max-width: 1200px; margin-inline: auto; }
 
@@ -1339,6 +1363,76 @@
       .cx-figure,
       .cx:not(.is-player) .cx-beat .cx-figure { min-height: 0; height: auto; aspect-ratio: 16 / 9; }
     }
+
+    /* ════ Videos - the @Demismatch YouTube films. Click-to-play facade
+       (thumbnail + play) swaps to a nocookie embed. House print-shadow. ════ */
+    .vids-shell { max-width: 1180px; margin-inline: auto; }
+    .vid-head { display: flex; align-items: center; gap: .8rem; margin: 0 0 clamp(1.4rem, 3vw, 2.2rem); }
+    .vid-seal { flex: 0 0 auto; width: 30px; height: 30px; display: block; color: var(--oxblood); }
+    .vid-seal svg { width: 100%; height: 100%; display: block; }
+    .vid-seal .dot { fill: var(--teal); }
+    .vid-eyebrow { font-family: var(--mono); font-size: clamp(.9rem, 1.5vw, 1.08rem); letter-spacing: .3em;
+                   text-transform: uppercase; font-weight: 500; color: var(--teal); }
+    .vid-rule { flex: 1; height: 1px; background: rgba(58,18,24,.22); }
+
+    .vid-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1.4rem, 3.4vw, 2.8rem); align-items: start; }
+    @media (max-width: 760px) { .vid-grid { grid-template-columns: 1fr; } }
+
+    .vid-card { margin: 0; display: flex; flex-direction: column; min-width: 0; }
+    /* facade / embed share the 16:9 frame + the teal+gold offset spine */
+    .vid-facade, .vid-embed {
+      display: block; width: 100%; aspect-ratio: 16 / 9; border-radius: 14px;
+      border: 1px solid rgba(58,18,24,.22);
+      box-shadow: 5px 5px 0 var(--teal), 10px 10px 0 var(--gold);
+    }
+    .vid-facade {
+      position: relative; overflow: hidden; padding: 0; cursor: pointer; background: var(--oxblood-deep);
+      transition: box-shadow .2s ease, transform .2s ease;
+    }
+    .vid-facade:hover, .vid-facade:focus-visible {
+      box-shadow: 7px 7px 0 var(--teal), 14px 14px 0 var(--gold);
+      transform: translate(-1px,-1px); outline: none;
+    }
+    .vid-thumb { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+    .vid-facade::after { /* warm scrim so the play button reads */
+      content: ""; position: absolute; inset: 0;
+      background: radial-gradient(circle at 50% 50%, rgba(26,6,8,.12), rgba(26,6,8,.42));
+      transition: background .2s ease;
+    }
+    .vid-facade:hover::after { background: radial-gradient(circle at 50% 50%, rgba(26,6,8,.05), rgba(26,6,8,.3)); }
+    .vid-play {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+      width: clamp(54px, 7vw, 74px); height: clamp(54px, 7vw, 74px); border-radius: 50%;
+      background: var(--oxblood); border: 2px solid var(--parchment);
+      box-shadow: 0 6px 20px rgba(26,6,8,.4); z-index: 2;
+      transition: transform .2s ease, background .2s ease;
+    }
+    .vid-play::before {
+      content: ""; position: absolute; top: 50%; left: 54%; transform: translate(-50%,-50%);
+      border-style: solid; border-width: 11px 0 11px 18px;
+      border-color: transparent transparent transparent var(--parchment);
+    }
+    .vid-facade:hover .vid-play { transform: translate(-50%,-50%) scale(1.08); background: var(--teal); }
+    .vid-dur {
+      position: absolute; right: 10px; bottom: 10px; z-index: 2;
+      font-family: var(--mono); font-size: .72rem; letter-spacing: .04em; color: var(--parchment);
+      background: rgba(26,6,8,.78); padding: .2rem .5rem; border-radius: 5px;
+    }
+    .vid-embed { border: 0; }
+
+    .vid-meta { margin-top: clamp(.9rem, 1.8vw, 1.3rem); display: flex; flex-direction: column; gap: .35rem; }
+    .vid-title { font-family: var(--serif); font-weight: 600; font-size: clamp(1.1rem, 1.7vw, 1.34rem);
+                 line-height: 1.15; letter-spacing: -.01em; color: var(--oxblood); }
+    .vid-yt { align-self: flex-start; font-family: var(--mono); font-size: .72rem; letter-spacing: .14em;
+              text-transform: uppercase; font-weight: 500; color: var(--teal); text-decoration: none;
+              border-bottom: 1px solid rgba(45,107,107,.4); transition: color .16s, border-color .16s; }
+    .vid-yt:hover, .vid-yt:focus-visible { color: var(--oxblood); border-bottom-color: var(--oxblood); }
+
+    .vid-channel { display: block; width: max-content; margin: clamp(1.8rem, 3.6vw, 3rem) auto 0;
+                   font-family: var(--mono); font-size: clamp(.82rem, 1.1vw, .95rem); letter-spacing: .16em;
+                   text-transform: uppercase; font-weight: 600; color: var(--teal); text-decoration: none;
+                   border-bottom: 1px solid rgba(45,107,107,.4); transition: color .16s, border-color .16s; }
+    .vid-channel:hover, .vid-channel:focus-visible { color: var(--oxblood); border-bottom-color: var(--oxblood); }
 </style>
 </head>
 <body data-page="home">
@@ -1452,7 +1546,7 @@
             <details class="bd-arm-fold" open>
               <summary><span class="bd-fold-label">Three alignment tracks</span><span class="bd-fold-icon" aria-hidden="true"></span></summary>
               <ul class="bd-arm-list">
-              <li><details class="bd-node">
+              <li><details class="bd-node" open>
                 <summary>
                   <span class="bd-node-name">The spec, machine-readable</span>
                   <span class="bd-node-line">Any LLM reads the foundations and mechanisms at inference, through one tool-call surface.</span>
@@ -1577,7 +1671,7 @@
             <details class="bd-arm-fold" open>
               <summary><span class="bd-fold-label">Four tools <span class="bd-badge bd-badge-live">1 live</span></span><span class="bd-fold-icon" aria-hidden="true"></span></summary>
               <ul class="bd-arm-list">
-              <li><details class="bd-node">
+              <li><details class="bd-node" open>
                 <summary>
                   <span class="bd-node-name">Decode Talk <span class="bd-badge bd-badge-live">live</span></span>
                   <span class="bd-node-line">Type a situation; get the mechanism firing, the proxy hitting it, and what would resolve.</span>
@@ -1664,8 +1758,6 @@
           </div>
         </details>
 
-        <button type="button" class="bd-plainlink bd-map-expand" data-expand-vision aria-expanded="false">Expand the full vision ↓</button>
-
       </section>
 
       </div><!-- /.bd-stage -->
@@ -1680,6 +1772,7 @@
         <a class="button button-secondary" href="decode-talk.html">Try Decode Talk →</a>
       </div>
 
+      <div class="dt-grid">
       <div class="dt-exchange">
         <span class="dt-label">EX · 01 / The phone you can't put down</span>
         <p class="dt-q">“I check my phone when I'm with people I love. I hate it, and I can't stop.”</p>
@@ -1701,20 +1794,20 @@
           </dl>
         </div>
       </div>
+      </div><!-- /.dt-grid -->
 
       <a class="button button-primary bd-cta" href="https://cor.demismatch.com/">See how we know - Cor →</a>
 
     </section>
 
-    <!-- Panel - the argument (eight-beat slideshow) -->
+    <!-- Panel - Videos (YouTube @Demismatch) -->
     <section class="panel panel-demo reveal d2">
 
-      <!-- The argument - the eight-beat slideshow (images in explainer/img/) -->
-      <section class="cx" aria-label="Demismatch - the argument in eight beats">
-        <div class="cx-shell">
+      <section class="vids" aria-label="Demismatch - videos">
+        <div class="vids-shell">
 
-          <div class="cx-head">
-            <span class="cx-seal" aria-hidden="true">
+          <div class="vid-head">
+            <span class="vid-seal" aria-hidden="true">
               <svg viewBox="120 50 560 560" fill="none">
                 <g stroke="currentColor" stroke-width="22" fill="none">
                   <circle cx="399.5" cy="329" r="271"/>
@@ -1724,153 +1817,54 @@
                 <circle class="dot" cx="523" cy="453" r="59"/>
               </svg>
             </span>
-            <span class="cx-eyebrow">TL;DR</span>
-            <span class="cx-rule"></span>
+            <span class="vid-eyebrow">Videos</span>
+            <span class="vid-rule"></span>
           </div>
 
-          <div class="cx-stage" id="cx-stage">
+          <div class="vid-grid">
 
-            <article class="cx-beat is-active" data-accent="var(--oxblood)" data-dur="7000">
-              <div class="cx-text">
-                <p class="cx-kicker"><span class="num">01 / 08</span> The claim</p>
-                <h2 class="cx-h">You're not broken.</h2>
-                <p class="cx-body">What you feel is a healthy body reacting to a world it was never built for. The problem is the world, not you.</p>
-              </div>
-              <figure class="cx-figure">
-                <img src="explainer/img/n1.webp" alt="A family at a warm dinner table, each lit by their own phone instead of by each other." loading="lazy" decoding="async">
-              </figure>
-            </article>
-
-            <article class="cx-beat" data-accent="var(--cue)" data-dur="9000">
-              <div class="cx-text">
-                <p class="cx-kicker"><span class="num">02 / 08</span> The mismatch</p>
-                <h2 class="cx-h">Your body is running old code.</h2>
-                <p class="cx-body">Every system you run on - alarm, appetite, status, bonding - was tuned for a world that vanished ten thousand years ago. The programs still work. The world they expect is gone.</p>
-              </div>
-              <figure class="cx-figure">
-                <img src="explainer/img/b1-alt-landscape.webp" alt="A wooden figure among others in a green river landscape on the left; the same figure alone in a glass-and-concrete city on the right - built for a world that has vanished." loading="lazy" decoding="async">
-              </figure>
-            </article>
-
-            <article class="cx-beat cx-beat--list" data-accent="var(--state-zero)" data-dur="11000">
-              <div class="cx-text">
-                <p class="cx-kicker"><span class="num">03 / 08</span> The hijack</p>
-                <h2 class="cx-h">Every need has a counterfeit.</h2>
-                <p class="cx-body">The modern world is full of things that fire the right signal but do none of the job. They feel like the real thing. They aren't.</p>
-                <div class="cx-examples">
-                  <span class="cx-ex"><span class="fake">AI companions</span><span class="arr" aria-hidden="true">&rarr;</span><span class="need">to be known</span></span>
-                  <span class="cx-ex"><span class="fake">The endless feed</span><span class="arr" aria-hidden="true">&rarr;</span><span class="need">to seek and find</span></span>
-                  <span class="cx-ex"><span class="fake">Doomscrolling</span><span class="arr" aria-hidden="true">&rarr;</span><span class="need">to watch for danger</span></span>
-                  <span class="cx-ex"><span class="fake">Likes and followers</span><span class="arr" aria-hidden="true">&rarr;</span><span class="need">to matter</span></span>
-                  <span class="cx-ex"><span class="fake">Junk food</span><span class="arr" aria-hidden="true">&rarr;</span><span class="need">to eat your fill</span></span>
-                  <span class="cx-ex"><span class="fake">Dating apps</span><span class="arr" aria-hidden="true">&rarr;</span><span class="need">to find your person</span></span>
-                  <span class="cx-ex"><span class="fake">Outrage feeds</span><span class="arr" aria-hidden="true">&rarr;</span><span class="need">a side to belong to</span></span>
-                  <span class="cx-ex"><span class="fake">Parasocial streamers</span><span class="arr" aria-hidden="true">&rarr;</span><span class="need">a real friend</span></span>
-                </div>
-              </div>
-              <figure class="cx-figure">
-                <img src="explainer/img/n3.webp" alt="A figure leans toward a glowing companion device in a warm lamplit room, alone." loading="lazy" decoding="async">
-              </figure>
-            </article>
-
-            <article class="cx-beat" data-accent="var(--state-zero)" data-dur="8500">
-              <div class="cx-text">
-                <p class="cx-kicker"><span class="num">04 / 08</span> The trap</p>
-                <h2 class="cx-h">The loop never closes.</h2>
-                <p class="cx-body">A counterfeit fires the signal but never meets the need, so the need stays open and the signal fires again. That's not a habit. That's a trap.</p>
-              </div>
-              <figure class="cx-figure">
-                <img src="explainer/img/b4-alt-loop.webp" alt="A wooden figure in four frames - the red alarm fires, a phone lights a green flash of relief, it fades, then the red returns - a loop that never closes." loading="lazy" decoding="async">
-              </figure>
-            </article>
-
-            <article class="cx-beat" data-accent="var(--gold)" data-dur="8500">
-              <div class="cx-text">
-                <p class="cx-kicker"><span class="num">05 / 08</span> Wanting</p>
-                <h2 class="cx-h">You can't trust what you want.</h2>
-                <p class="cx-body">Wanting is a signal, and signals can be gamed. The lonely person doesn't crave a friend. They crave the app. Preferences are the last thing you should build on.</p>
-              </div>
-              <figure class="cx-figure">
-                <img src="explainer/img/n4.webp" alt="A figure transfixed at a slot machine lit in saturated neon gold and red." loading="lazy" decoding="async">
-              </figure>
-            </article>
-
-            <article class="cx-beat" data-accent="var(--teal)" data-dur="11000">
-              <div class="cx-text">
-                <p class="cx-kicker"><span class="num">06 / 08</span> What Cor is</p>
-                <h2 class="cx-h">So we mapped what humans actually need.</h2>
-                <p class="cx-body">Cor is the first formal specification of human motivational architecture. Every survival system, what each one evolved to do, and how the evidence holds up - structured so machines can read it, not just people.</p>
-                <div class="cx-rigor">
-                  <p class="cx-figs"><span><b>17</b> foundations</span><span><b>15</b> mechanisms</span><span><b>608</b> extractions</span><span><b>64</b> researchers</span></p>
-                  <div class="cx-grades">
-                    <span class="cx-grade est">Established</span>
-                    <span class="cx-grade theo">Theoretical</span>
-                    <span class="cx-grade cont">Contested</span>
-                  </div>
-                </div>
-              </div>
-              <figure class="cx-figure">
-                <img src="explainer/img/n2.webp" alt="A hand holds a lens over the wooden figure, revealing a structured signal inside it that is invisible to the naked eye." loading="lazy" decoding="async">
-              </figure>
-            </article>
-
-            <article class="cx-beat" data-accent="var(--teal-deep)" data-dur="12000">
-              <div class="cx-text">
-                <p class="cx-kicker"><span class="num">07 / 08</span> The AI argument</p>
-                <h2 class="cx-h">AI is about to personalize the trap.</h2>
-                <p class="cx-body">Right now, AI is trained on what people want - which means it's optimizing for proxies at scale. Feed it Cor instead and it has a real target: not what you reach for, but what would actually satisfy the need underneath. That's the difference between an engine that keeps loops open and one that closes them.</p>
-              </div>
-              <figure class="cx-figure">
-                <img src="explainer/img/n5.webp" alt="One stone foundation carries two things at once: a machine on the left, a room full of people on the right." loading="lazy" decoding="async">
-              </figure>
-            </article>
-
-            <article class="cx-beat" data-accent="var(--teal-bright)" data-dur="7500">
-              <div class="cx-text">
-                <p class="cx-kicker"><span class="num">08 / 08</span> The fix</p>
-                <h2 class="cx-h">Fix the world, not the person.</h2>
-                <p class="cx-body">Give your systems what they were built for and the alarms switch off on their own. No willpower. No self-improvement. A world that fits.</p>
-              </div>
-              <figure class="cx-figure">
-                <img src="explainer/img/n6.webp" alt="A full modern table of people sharing a meal together in warm candlelight." loading="lazy" decoding="async">
-              </figure>
-            </article>
-
-            <!-- end veil -->
-            <div class="cx-end" aria-hidden="true">
-              <p>Humans need a world that fits humans.</p>
-              <button type="button" class="cx-replay" id="cx-replay">
-                <svg viewBox="0 0 24 24"><path d="M12 5V1L7 6l5 5V7a5 5 0 1 1-5 5H5a7 7 0 1 0 7-7z"/></svg>
-                Watch again
+            <figure class="vid-card">
+              <button type="button" class="vid-facade"
+                      data-embed="https://www.youtube-nocookie.com/embed/GyNi2ZUSsuk?rel=0&amp;modestbranding=1"
+                      aria-label="Play: You Are Not Broken - Demismatch - The Film">
+                <img class="vid-thumb" src="https://i.ytimg.com/vi/GyNi2ZUSsuk/maxresdefault.jpg"
+                     alt="You Are Not Broken - Demismatch - The Film" width="1280" height="720"
+                     loading="lazy" decoding="async"
+                     onload="if(this.naturalWidth<=121){this.onload=null;this.src='https://i.ytimg.com/vi/GyNi2ZUSsuk/sddefault.jpg';}"
+                     onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/GyNi2ZUSsuk/sddefault.jpg';">
+                <span class="vid-play" aria-hidden="true"></span>
+                <span class="vid-dur" aria-hidden="true">5:27</span>
               </button>
-            </div>
+              <figcaption class="vid-meta">
+                <span class="vid-title">You Are Not Broken - The Film</span>
+                <a class="vid-yt" href="https://www.youtube.com/watch?v=GyNi2ZUSsuk" target="_blank" rel="noopener">Watch on YouTube &#8594;</a>
+              </figcaption>
+            </figure>
 
-          </div><!-- /.cx-stage -->
+            <figure class="vid-card">
+              <button type="button" class="vid-facade"
+                      data-embed="https://www.youtube-nocookie.com/embed/XJmftDvWSCY?rel=0&amp;modestbranding=1"
+                      aria-label="Play: Demismatch - Cor - Academic breakdown">
+                <img class="vid-thumb" src="https://i.ytimg.com/vi/XJmftDvWSCY/maxresdefault.jpg"
+                     alt="Demismatch - Cor - Academic breakdown" width="1280" height="720"
+                     loading="lazy" decoding="async"
+                     onload="if(this.naturalWidth<=121){this.onload=null;this.src='https://i.ytimg.com/vi/XJmftDvWSCY/sddefault.jpg';}"
+                     onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/XJmftDvWSCY/sddefault.jpg';">
+                <span class="vid-play" aria-hidden="true"></span>
+                <span class="vid-dur" aria-hidden="true">5:46</span>
+              </button>
+              <figcaption class="vid-meta">
+                <span class="vid-title">Cor - Academic Breakdown</span>
+                <a class="vid-yt" href="https://www.youtube.com/watch?v=XJmftDvWSCY" target="_blank" rel="noopener">Watch on YouTube &#8594;</a>
+              </figcaption>
+            </figure>
 
-          <div class="cx-controls">
-            <button type="button" class="cx-nav" id="cx-prev" aria-label="Previous beat">
-              <svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6z"/></svg>
-            </button>
-            <button type="button" class="cx-play" id="cx-play" aria-label="Pause">
-              <svg class="ic-pause" viewBox="0 0 24 24"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
-              <svg class="ic-play" viewBox="0 0 24 24" style="display:none"><path d="M8 5v14l11-7z"/></svg>
-            </button>
-            <button type="button" class="cx-nav" id="cx-next" aria-label="Next beat">
-              <svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6z"/></svg>
-            </button>
-            <span class="cx-counter"><b id="cx-cur">01</b> / 08</span>
-            <div class="cx-spine" id="cx-spine" role="tablist" aria-label="Jump to a beat"></div>
           </div>
 
-          <div class="cx-foot">
-            <span class="cx-hint">Click a beat to jump &middot; space to pause</span>
-            <a class="cx-more" href="https://cor.demismatch.com/">See how we know &rarr; Cor</a>
-          </div>
-
-        </div><!-- /.cx-shell -->
+        </div>
       </section>
 
-    </section><!-- /Panel: the argument -->
+    </section><!-- /Panel: Videos -->
 
     <!-- Panel - Demismatch FAQ -->
     <section class="panel reveal d3">
@@ -2300,5 +2294,24 @@
   })();
   </script>
 
+  <!-- EXPERIMENT: scroll-reveal engine (drop-in; remove this line + the head block to revert) -->
+  <!-- Videos: click-to-play facade -> nocookie embed (no iframes until asked for) -->
+  <script>
+  (function () {
+    document.querySelectorAll('.vid-facade').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var frame = document.createElement('iframe');
+        frame.className = 'vid-embed';
+        frame.src = btn.getAttribute('data-embed');
+        frame.title = btn.getAttribute('aria-label') || 'Video';
+        frame.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
+        frame.allowFullscreen = true;
+        btn.replaceWith(frame);
+      }, { once: true });
+    });
+  })();
+  </script>
+
+  <script src="scroll-fx.js"></script>
 </body>
 </html>

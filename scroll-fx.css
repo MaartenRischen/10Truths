@@ -1,0 +1,138 @@
+/* ════════════════════════════════════════════════════════════════════
+   scroll-fx.css  ·  EXPERIMENT  ·  drop-in scroll-reveal layer  (v2)
+   Enhances the existing demismatch.com front door in place - targets the
+   page's own classes, adds nothing to the markup's meaning. Remove the two
+   include lines + the head arm-script and the page is exactly as before.
+   Composes cor.css tokens (oxblood / teal / gold / parchment, Spectral).
+
+   v2: GRANULAR. Reveals at leaf level - every kicker, tag, list item, node,
+   chip, answer line, FAQ row and stat rises on scroll, so the page assembles
+   itself piece by piece. Section titles get word-brightening (handled in JS),
+   so they are excluded from the fade set below to avoid double-animating.
+
+   The master list lives in --SFX-MASTER (mirrored in scroll-fx.js). All of it
+   is gated on html.sfx-armed, which the head arm-script only sets when motion
+   is allowed - so if JS never runs, or reduced-motion is on, nothing hides.
+   ════════════════════════════════════════════════════════════════════ */
+
+/* ── Initial hidden state for every reveal target (CSS-only, no flash) ── */
+html.sfx-armed :is(
+  .bd-kicker, .bd-lede, .bd-film, .bd-decode-row, .bd-needs-row,
+  .bd-arm-kicker, .bd-arm-tag, .bd-arm-paper, .bd-arm-fold > summary, .bd-arm-list > li,
+  .bd-source-kicker, .bd-source-mark, .bd-source-spec, .bd-source-cta, .bd-source-vid,
+  .bd-source-credit-label, .bd-source-credit-names .cr-pill, .bd-source-credit-names .more,
+  .bd-source-answers-label, .bd-source-answers li,
+  .bd-source-stats .stat, .bd-source-note,
+  .bd-horizon, .bd-map-expand,
+  .panel-demo > div:first-child, .panel-demo .dt-label, .panel-demo .dt-q, .panel-demo .dt-a,
+  .bd-quote, .bd-read, .bd-cta,
+  .cx-head, .cx-stage,
+  .bd-eyebrow, .faq-group-label, .faq-item,
+  .bd-network, .bd-horizon-body p,
+  .vid-head, .vid-card, .vid-channel
+){
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity .8s cubic-bezier(.2,.7,.2,1),
+              transform .8s cubic-bezier(.2,.7,.2,1);
+  transition-delay: var(--sfx-delay, 0s);
+  will-change: opacity, transform;
+}
+html.sfx-armed :is(
+  .bd-kicker, .bd-lede, .bd-film, .bd-decode-row, .bd-needs-row,
+  .bd-arm-kicker, .bd-arm-tag, .bd-arm-paper, .bd-arm-fold > summary, .bd-arm-list > li,
+  .bd-source-kicker, .bd-source-mark, .bd-source-spec, .bd-source-cta, .bd-source-vid,
+  .bd-source-credit-label, .bd-source-credit-names .cr-pill, .bd-source-credit-names .more,
+  .bd-source-answers-label, .bd-source-answers li,
+  .bd-source-stats .stat, .bd-source-note,
+  .bd-horizon, .bd-map-expand,
+  .panel-demo > div:first-child, .panel-demo .dt-label, .panel-demo .dt-q, .panel-demo .dt-a,
+  .bd-quote, .bd-read, .bd-cta,
+  .cx-head, .cx-stage,
+  .bd-eyebrow, .faq-group-label, .faq-item,
+  .bd-network, .bd-horizon-body p,
+  .vid-head, .vid-card, .vid-channel
+).sfx-in{
+  opacity: 1;
+  transform: none;
+}
+
+/* chips ride in slightly from the left - reads as a name ticker filling up */
+html.sfx-armed .cr-pill{ transform: translateY(0) translateX(-9px); }
+html.sfx-armed .cr-pill.sfx-in{ transform: none; }
+/* the concentric Cor mark eases in a touch larger - it settles into place */
+html.sfx-armed .bd-source-mark{ transform: translateY(14px) scale(.965); transform-origin: center; }
+html.sfx-armed .bd-source-mark.sfx-in{ transform: none; }
+
+/* ── Word-brightening ───────────────────────────────────────────────── */
+.sfx-w{
+  display: inline-block;
+  color: inherit;
+  opacity: .12;
+  filter: blur(6px);
+  will-change: opacity, filter;
+}
+/* hero thesis brightens word-by-word on load (it sits above the fold) */
+html.sfx-armed .bd-thesis .sfx-w{
+  animation: sfx-word .7s cubic-bezier(.2,.7,.2,1) forwards;
+  animation-delay: calc(.15s + var(--i) * .052s);
+}
+@keyframes sfx-word{ to{ opacity: 1; filter: none; } }
+/* section titles brighten on scroll - JS drives opacity/blur directly */
+
+/* ── Cor stat count-up: hold tabular so the width doesn't jitter ─────── */
+html.sfx-armed .bd-source-stats .stat .n{ font-variant-numeric: tabular-nums; }
+
+/* ── Parallax backdrops: transform only, never touches layout ────────── */
+html.sfx-armed .bd-backdrop{ will-change: transform; }
+
+/* ── Scroll-progress spine (fixed left rail) ────────────────────────── */
+.sfx-spine{
+  position: fixed;
+  left: clamp(14px, 3vw, 46px);
+  top: 16vh; height: 68vh; width: 2px;
+  background: rgba(58,18,24,.14);
+  z-index: 60; pointer-events: none;
+  opacity: 0; transition: opacity .6s ease;
+}
+html.sfx-ready .sfx-spine{ opacity: 1; }
+.sfx-spine__fill{
+  position: absolute; left: 0; top: 0; width: 100%; height: 0%;
+  background: linear-gradient(var(--teal, #2d6b6b), var(--oxblood, #3a1218));
+}
+.sfx-node{
+  position: absolute; left: 50%;
+  width: 11px; height: 11px; margin-left: -5.5px;
+  border-radius: 50%;
+  background: var(--page-bg, #f4f1e7);
+  border: 2px solid rgba(58,18,24,.28);
+  transform: translateY(-50%);
+  transition: border-color .35s ease, background .35s ease,
+              box-shadow .35s ease, transform .35s ease;
+}
+.sfx-node.reached{ border-color: var(--teal, #2d6b6b); }
+.sfx-node.active{
+  background: var(--oxblood, #3a1218);
+  border-color: var(--gold, #c4962c);
+  box-shadow: 0 0 0 4px rgba(196,150,44,.18);
+  transform: translateY(-50%) scale(1.25);
+}
+.sfx-spine__label{
+  position: fixed;
+  left: calc(clamp(14px, 3vw, 46px) + 20px);
+  top: calc(16vh + 68vh + 8px);
+  font-family: var(--mono, monospace);
+  font-size: 10px; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--muted-warm, #8a7d5e);
+  z-index: 60; pointer-events: none;
+  opacity: 0; transition: opacity .35s ease;
+}
+html.sfx-ready .sfx-spine__label{ opacity: 1; }
+@media (max-width: 900px){ .sfx-spine, .sfx-spine__label{ display: none; } }
+
+/* ── Reduced motion: sfx-armed is never set by the arm-script, so nothing
+      hides. These are belt-and-suspenders for the word spans + spine. ─── */
+@media (prefers-reduced-motion: reduce){
+  .sfx-w{ opacity: 1 !important; filter: none !important; }
+  .sfx-spine, .sfx-spine__label{ display: none; }
+}
