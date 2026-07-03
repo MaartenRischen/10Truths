@@ -505,47 +505,6 @@ body {
 }
 .drawer-actions button.primary:hover { background: var(--teal); border-color: var(--teal); }
 
-/* Debug panel */
-.debug-panel {
-  margin-top: 28px;
-  padding: 20px;
-  background: var(--oxblood-deep);
-  color: var(--parchment);
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 11px;
-  line-height: 1.6;
-  border-radius: 8px;
-  max-height: 500px;
-  overflow-y: auto;
-  white-space: pre-wrap;
-  word-break: break-word;
-  display: none;
-}
-.debug-panel.visible { display: block; }
-.debug-panel-header {
-  margin-bottom: 12px;
-  color: var(--teal-bright);
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  font-size: 10px;
-  font-weight: 500;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.debug-panel-header button {
-  background: transparent;
-  color: var(--parchment);
-  border: 1px solid var(--teal);
-  padding: 4px 10px;
-  font-family: inherit;
-  font-size: 9px;
-  letter-spacing: 0.15em;
-  cursor: pointer;
-  border-radius: 3px;
-}
-.debug-panel-header button:hover { background: var(--teal); }
-
 /* TEMP NOTICE: high-demand model downgrade. Remove with the matching markup. */
 .demand-notice {
   margin: 18px auto 0;
@@ -619,14 +578,6 @@ body {
     <textarea id="input" placeholder="Describe the situation…" autofocus></textarea>
     <button type="submit" id="submit">Decode</button>
   </form>
-
-  <div class="debug-panel" id="debug-panel">
-    <div class="debug-panel-header">
-      <span>Assembled system prompt</span>
-      <button id="debug-refresh">Refresh</button>
-    </div>
-    <div id="debug-content">Click Refresh to load the current prompt for your settings.</div>
-  </div>
 
   <div class="footer">
     <a href="/decode-talk.html">← Sample exchanges</a>
@@ -709,45 +660,11 @@ const SCHEMA = [
       { key: 'persona', label: 'Voice persona (free text)', desc: 'e.g. "a no-bullshit field biologist", "a tired anthropologist at 2am". Applied inside the hard rules.', text: true },
     ],
   },
-  {
-    title: 'Model',
-    rows: [
-      { key: 'model', label: 'Model', desc: 'Through OpenRouter.',
-        options: [
-          { value: 'anthropic/claude-opus-4-6', label: 'opus 4.6' },
-          { value: 'anthropic/claude-sonnet-4-6', label: 'sonnet 4.6' },
-          { value: 'anthropic/claude-haiku-4-5', label: 'haiku 4.5' },
-        ] },
-      { key: 'temperature', label: 'Temperature', desc: 'Sampling entropy.',
-        options: [
-          { value: 0.3, label: '0.3' },
-          { value: 0.7, label: '0.7' },
-          { value: 1.0, label: '1.0' },
-        ] },
-      { key: 'max_tokens', label: 'Max tokens', desc: 'Response budget ceiling.',
-        options: [
-          { value: 1024, label: '1024' },
-          { value: 2048, label: '2048' },
-          { value: 4096, label: '4096' },
-        ] },
-    ],
-  },
-  {
-    title: 'Debug',
-    rows: [
-      { key: 'debug', label: 'Show assembled prompt', desc: 'Reveals the full prompt panel below the composer.',
-        options: [
-          { value: false, label: 'off' },
-          { value: true, label: 'on' },
-        ] },
-    ],
-  },
 ];
 
 // ─── State ─────────────────────────────────────────────────────────────────────
 const STORAGE_KEY = 'decode-talk-settings-v1';
 const API_CHAT = '/api/decode-talk/chat';
-const API_PROMPT = '/api/decode-talk/prompt';
 const messages = [];
 let streaming = false;
 
@@ -872,9 +789,6 @@ const $settingsToggle = document.getElementById('settings-toggle');
 const $closeDrawer = document.getElementById('close-drawer');
 const $resetSettings = document.getElementById('reset-settings');
 const $statusBadge = document.getElementById('status-badge');
-const $debugPanel = document.getElementById('debug-panel');
-const $debugContent = document.getElementById('debug-content');
-const $debugRefresh = document.getElementById('debug-refresh');
 
 // ─── Drawer rendering ──────────────────────────────────────────────────────────
 function renderDrawer() {
@@ -891,7 +805,6 @@ function renderDrawer() {
     $drawerBody.appendChild(sec);
   }
   updateStatusBadge();
-  updateDebugVisibility();
 }
 
 function renderRow(row) {
@@ -932,7 +845,6 @@ function renderRow(row) {
       group.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
       pill.classList.add('active');
       updateStatusBadge();
-      if (row.key === 'debug') updateDebugVisibility();
     });
     group.appendChild(pill);
   }
@@ -947,10 +859,6 @@ function updateStatusBadge() {
     settings.model === 'anthropic/claude-haiku-4-5' ? 'Haiku 4.5' :
     settings.model.split('/').pop();
   $statusBadge.textContent = `Live · ${modelLabel} · ${settings.helpfulness}`;
-}
-
-function updateDebugVisibility() {
-  $debugPanel.classList.toggle('visible', !!settings.debug);
 }
 
 // ─── Drawer open/close ─────────────────────────────────────────────────────────
@@ -1120,22 +1028,6 @@ $input.addEventListener('keydown', (e) => {
   if (e.key === 'Enter' && !e.shiftKey) {
     e.preventDefault();
     $form.requestSubmit();
-  }
-});
-
-// ─── Debug panel ───────────────────────────────────────────────────────────────
-$debugRefresh.addEventListener('click', async () => {
-  $debugContent.textContent = 'Loading…';
-  try {
-    const res = await fetch(API_PROMPT, {
-      method: 'POST',
-      headers: { 'content-type': 'application/json' },
-      body: JSON.stringify({ settings }),
-    });
-    if (!res.ok) throw new Error(`${res.status}: ${res.statusText}`);
-    $debugContent.textContent = await res.text();
-  } catch (err) {
-    $debugContent.textContent = 'Error: ' + (err.message || 'Unknown');
   }
 });
 
