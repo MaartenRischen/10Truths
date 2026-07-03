@@ -552,14 +552,13 @@ body {
   <div class="title-block">
     <h1><em>Decode Talk</em></h1>
     <p class="standfirst">Situation in, evolutionary read out. Not a companion. The mechanism story behind what you're feeling - plus, if you want it, the nearest achievable next step.</p>
-    <span class="status" id="status-badge">Live · Sonnet 4.6</span>
+    <span class="status" id="status-badge">Live</span>
   </div>
 
-  <!-- TEMP NOTICE: high-demand model downgrade. Remove to restore Opus. -->
+  <!-- TEMP NOTICE: high-demand quality downgrade. -->
   <div class="demand-notice" id="demand-notice" role="status">
-    <strong>Heads up:</strong> due to unusually high demand we've temporarily switched
-    the model from Opus to Sonnet. Decodes will run, but results won't be as sharp as
-    they can be. We'll switch back to Opus once load settles.
+    <strong>Heads up:</strong> due to unusually high demand, decodes may be a little
+    less sharp than usual right now. We'll be back to full strength once load settles.
   </div>
 
   <div class="cor-link-wrap">
@@ -853,12 +852,7 @@ function renderRow(row) {
 }
 
 function updateStatusBadge() {
-  const modelLabel =
-    settings.model === 'anthropic/claude-opus-4-6' ? 'Opus 4.6' :
-    settings.model === 'anthropic/claude-sonnet-4-6' ? 'Sonnet 4.6' :
-    settings.model === 'anthropic/claude-haiku-4-5' ? 'Haiku 4.5' :
-    settings.model.split('/').pop();
-  $statusBadge.textContent = `Live · ${modelLabel} · ${settings.helpfulness}`;
+  $statusBadge.textContent = 'Live';
 }
 
 // ─── Drawer open/close ─────────────────────────────────────────────────────────
