@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="cor.css">
   <!-- EXPERIMENT: scroll-reveal layer (arm before paint to avoid flash; self-disables under reduced-motion) -->
   <script>(function(){try{if(!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches))document.documentElement.className+=' sfx-armed';}catch(e){}})();</script>
-  <link rel="stylesheet" href="scroll-fx.css?v=1">
+  <link rel="stylesheet" href="scroll-fx.css?v=5">
   <style>
     /* ─────────────────────────────────────────────────────────
        Front door - broadside cover. Two tan panels on a warm
@@ -1202,11 +1202,13 @@
       transform: translate(-1px,-1px);
       box-shadow: 7px 7px 0 var(--teal), 14px 14px 0 var(--gold);
     }
-    /* connectors — bold lines branching from Cor's middle out to each arm,
-       a teal node where they leave Cor, an arrowhead where they reach the arm */
+    /* connectors — FALLBACK (no-JS / reduced-motion): a teal node + short stub
+       emitting from each side of the hub. Self-contained, so it can never fall
+       out of alignment with the (differently-tall) arms. When scroll-fx.js boots
+       the live SVG connector layer it sets html.sfx-links, hiding these. */
     .bd-source::before, .bd-source::after {
       content: ""; position: absolute; top: 50%; transform: translateY(-50%);
-      height: 9px; width: clamp(1.8rem, 4vw, 4rem); z-index: 2;
+      height: 9px; width: clamp(1.4rem, 3vw, 2.6rem); z-index: 2; pointer-events: none;
       background-repeat: no-repeat;
       background-image:
         linear-gradient(var(--teal), var(--teal)),
@@ -1215,13 +1217,26 @@
     }
     .bd-source::before { right: 100%; background-position: left center, right center; }   /* node at the Cor (right) end */
     .bd-source::after  { left: 100%;  background-position: right center, left center; }    /* node at the Cor (left) end */
-    /* arrowheads — at each arm's hub-facing edge, pointing into the arm */
-    .bd-arm-left::after, .bd-arm-right::after {
-      content: ""; position: absolute; top: 50%; transform: translateY(-50%);
-      border: 7px solid transparent; z-index: 2; pointer-events: none;
+    html.sfx-links .bd-source::before, html.sfx-links .bd-source::after { display: none; }
+
+    /* 3D parallax stage — the map folds like a triptych as it scrolls through.
+       scroll-fx.js drives the per-element transforms; these establish the depth
+       context and hint the compositor. All gated on html.sfx-links so the static
+       fallback layout is never touched. */
+    html.sfx-links .bd-map-grid { perspective: 1200px; }
+    html.sfx-links .bd-source { will-change: translate; }
+    html.sfx-links .bd-arm { will-change: transform; transform-origin: center center; }
+
+    /* live connector layer — teal signal lines drawn hub → each arm, redrawn
+       each frame so they always meet the cards and flex with the parallax. */
+    .bd-links {
+      position: absolute; inset: 0; z-index: 2; pointer-events: none;
+      overflow: visible; opacity: 0; transition: opacity 0.7s ease;
     }
-    .bd-arm-left::after  { right: -7px; border-right-color: var(--teal); }
-    .bd-arm-right::after { left: -7px;  border-left-color: var(--teal); }
+    .bd-links.is-in { opacity: 1; }
+    .bd-links path.line { fill: none; stroke: var(--teal); stroke-width: 2; stroke-linecap: round; }
+    .bd-links .node { fill: var(--teal-bright); stroke: var(--parchment-soft); stroke-width: 1.5; }
+    .bd-links .head { fill: var(--teal); }
 
     .bd-source-kicker { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.85rem; }
     .bd-source-mark { width: clamp(116px, 15vw, 176px); height: auto; margin: 0 auto 0.55rem; display: block; }
@@ -1285,7 +1300,6 @@
       .bd-map-grid { grid-template-columns: 1fr; gap: clamp(1.2rem, 3vw, 1.8rem); }
       .bd-source { order: -1; }
       .bd-source::before, .bd-source::after { display: none; }
-      .bd-arm-left::after, .bd-arm-right::after { display: none; }
       .bd-arm-right .bd-arm-head { text-align: left; }
       .bd-arm-right .bd-arm-tag { margin-left: 0; }
       .bd-arm-right .bd-arm-fold { text-align: left; }
@@ -2312,6 +2326,6 @@
   })();
   </script>
 
-  <script src="scroll-fx.js?v=1" onerror="document.documentElement.classList.remove('sfx-armed')"></script>
+  <script src="scroll-fx.js?v=5" onerror="document.documentElement.classList.remove('sfx-armed')"></script>
 </body>
 </html>

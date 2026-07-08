@@ -142,37 +142,108 @@
     cio.observe(statsWrap);
   }
 
-  /* ── 5. Scroll-progress spine, built from real section anchors ─────── */
+  /* ── 5. Scroll-progress spine — a mini contents map built from the real,
+        current sections. Each node sits at its section's true place in the
+        scroll with an always-legible label; the active section is emphasised
+        and the fill tracks progress. (Decorative indicator, not a link set —
+        the page's scroll-reveal would land a jump on hidden content.) ──────── */
   var spineSpec = [
-    { sel: '.bd-herocenter', label: 'the thesis' },
-    { sel: '#vision', label: 'the map' },
-    { sel: '.cx', label: 'the argument' },
-    { sel: '.faq-cols', label: 'questions' }
-  ].map(function (s) { return { el: $(s.sel), label: s.label }; })
+    { sel: '.bd-herocenter', label: 'Thesis' },
+    { sel: '#vision',        label: 'The map' },
+    { sel: '.dt-grid',       label: 'Decode Talk' },
+    { sel: '.vids',          label: 'Videos' },
+    { sel: '.faq-cols',      label: 'Questions' }
+  ].map(function (s) { return { el: $(s.sel), label: s.label, frac: 0 }; })
    .filter(function (s) { return s.el; });
 
-  var nodes = [], fill = null, spineLabel = null;
+  var nodes = [], fill = null;
   if (spineSpec.length > 1) {
     var spine = document.createElement('div');
     spine.className = 'sfx-spine'; spine.setAttribute('aria-hidden', 'true');
     fill = document.createElement('div'); fill.className = 'sfx-spine__fill';
     spine.appendChild(fill);
-    spineSpec.forEach(function (s, i) {
-      var d = document.createElement('div');
-      d.className = 'sfx-node';
-      d.style.top = (i / (spineSpec.length - 1)) * 100 + '%';
+    spineSpec.forEach(function (s) {
+      var d = document.createElement('div'); d.className = 'sfx-node';
+      var lab = document.createElement('span'); lab.className = 'sfx-nodelabel'; lab.textContent = s.label;
+      d.appendChild(lab);
       spine.appendChild(d); nodes.push(d);
     });
-    spineLabel = document.createElement('div');
-    spineLabel.className = 'sfx-spine__label';
-    spineLabel.textContent = spineSpec[0].label;
     document.body.appendChild(spine);
-    document.body.appendChild(spineLabel);
     requestAnimationFrame(function () { docEl.classList.add('sfx-ready'); });
   }
 
   /* ── 6. Parallax backdrops (transform only) ────────────────────────── */
   var bgL = $('.bd-backdrop-l'), bgR = $('.bd-backdrop-r');
+
+  /* ── 7. The map — 3D triptych parallax + live hub→arm connectors ─────
+        The map card row (arms flanking the Cor hub) folds in perspective as
+        it scrolls through: the hub floats forward on a near plane while the
+        two arms recede in Z, part sideways and tilt — tightest when centred.
+        Teal connectors are drawn to the LIVE (transformed) card positions, so
+        they always meet the cards and flex with the fold. Measuring real rects
+        sidesteps all 3D math: getBoundingClientRect already returns the
+        projected screen box. ─────────────────────────────────────────────── */
+  var SVGNS = 'http://www.w3.org/2000/svg';
+  var mapGrid = $('.bd-map-grid');
+  var hub = $('.bd-source'), mark = $('.bd-source-mark');
+  var armL = $('.bd-arm-left'), armR = $('.bd-arm-right');
+  var mapReady = false, mapMobile = null;
+  var links = null, lineL, lineR, nodeL, nodeR, headL, headR;
+
+  function mkConn() {
+    var line = document.createElementNS(SVGNS, 'path'); line.setAttribute('class', 'line');
+    var node = document.createElementNS(SVGNS, 'circle'); node.setAttribute('class', 'node'); node.setAttribute('r', '4.5');
+    var head = document.createElementNS(SVGNS, 'path'); head.setAttribute('class', 'head');
+    links.appendChild(line); links.appendChild(head); links.appendChild(node);
+    return { line: line, node: node, head: head };
+  }
+
+  if (mapGrid && hub && mark && armL && armR) {
+    links = document.createElementNS(SVGNS, 'svg');
+    links.setAttribute('class', 'bd-links');
+    links.setAttribute('aria-hidden', 'true');
+    var cL = mkConn(), cR = mkConn();
+    lineL = cL.line; nodeL = cL.node; headL = cL.head;
+    lineR = cR.line; nodeR = cR.node; headR = cR.head;
+    mapGrid.appendChild(links);
+    docEl.classList.add('sfx-links');
+    mapReady = true;
+    if ('IntersectionObserver' in window) {
+      var lio = new IntersectionObserver(function (es) {
+        es.forEach(function (e) { if (e.isIntersecting) { links.classList.add('is-in'); lio.disconnect(); } });
+      }, { threshold: 0.18 });
+      lio.observe(mapGrid);
+    } else { links.classList.add('is-in'); }
+  }
+
+  // one connector: node at the hub end, arrowhead driven into the arm.
+  // dir = -1 points left (left arm), +1 points right (right arm).
+  function drawConn(line, node, head, hx, hy, ax, ay, dir) {
+    line.setAttribute('d', 'M ' + hx + ' ' + hy + ' L ' + ax + ' ' + ay);
+    node.setAttribute('cx', hx); node.setAttribute('cy', hy);
+    var back = ax - dir * 9;
+    head.setAttribute('d', 'M ' + ax + ' ' + ay + ' L ' + back + ' ' + (ay - 6) + ' L ' + back + ' ' + (ay + 6) + ' Z');
+  }
+
+  function drawLinks(gr) {
+    var h = hub.getBoundingClientRect();
+    var lr = armL.getBoundingClientRect(), rr = armR.getBoundingClientRect();
+    // emit from the hub's vertical centre — the one height where the (tallest)
+    // hub and the centre-aligned arms all line up, so the lines cross the gap
+    // level and land on the card bodies, not the whitespace above them.
+    var y = (h.top + h.height / 2) - gr.top;
+    var hxL = h.left - gr.left, hxR = h.right - gr.left;
+    var axL = lr.right - gr.left - 2;               // left arm inner edge
+    var axR = rr.left - gr.left + 2;                // right arm inner edge
+    drawConn(lineL, nodeL, headL, hxL, y, axL, y, -1);
+    drawConn(lineR, nodeR, headR, hxR, y, axR, y, 1);
+  }
+
+  function mapReset() {
+    hub.style.translate = '';
+    armL.style.transform = ''; armR.style.transform = '';
+    if (links) links.style.display = 'none';
+  }
 
   /* ── Scroll driver (rAF-throttled) ─────────────────────────────────── */
   function update() {
@@ -196,7 +267,34 @@
     if (bgL) bgL.style.transform = 'translate3d(0,' + Math.max(-60, Math.min(60, sy * 0.06)).toFixed(1) + 'px,0)';
     if (bgR) bgR.style.transform = 'translate3d(0,' + Math.max(-60, Math.min(60, sy * 0.10)).toFixed(1) + 'px,0)';
 
-    // spine
+    // the map — 3D triptych parallax + live connectors
+    if (mapReady) {
+      var mob = window.innerWidth < 901;
+      if (mob) {
+        if (mapMobile !== true) { mapReset(); mapMobile = true; }
+      } else {
+        if (mapMobile !== false) { if (links) links.style.display = ''; mapMobile = false; }
+        var gr = mapGrid.getBoundingClientRect();
+        var center = gr.top + gr.height / 2;
+        var d = Math.max(-1, Math.min(1, (center - vh / 2) / (vh * 0.9)));  // signed distance from viewport centre
+        var ad = Math.abs(d);
+        // hub: gentle vertical float + push toward the viewer (individual
+        // `translate` prop so it composes with the CSS hover `transform`).
+        hub.style.translate = '0px ' + (d * 14).toFixed(1) + 'px ' + (ad * 26).toFixed(1) + 'px';
+        // arms: part sideways + recede in Z + tilt toward the hub as the section
+        // leaves centre. ad*ad keeps the centre tight, then opens out at the edges.
+        var partX = (ad * ad * 26).toFixed(1);
+        var backZ = (-ad * 72).toFixed(1);
+        var tilt = (ad * 6).toFixed(2);
+        armL.style.transform = 'translate3d(-' + partX + 'px,0,' + backZ + 'px) rotateY(' + tilt + 'deg)';
+        armR.style.transform = 'translate3d(' + partX + 'px,0,' + backZ + 'px) rotateY(-' + tilt + 'deg)';
+        drawLinks(gr);
+      }
+    }
+
+    // spine — fill = scroll progress; each node sits at its section's true
+    // position (recomputed each frame, so it self-heals as folds/accordions
+    // reflow the page); active = the section nearest the viewport centre.
     if (nodes.length) {
       var max = docEl.scrollHeight - vh;
       var prog = max > 0 ? clamp01(sy / max) : 0;
@@ -206,11 +304,12 @@
         var br = spineSpec[s].el.getBoundingClientRect();
         var dist = Math.abs(br.top + br.height / 2 - mid);
         if (dist < bestDist) { bestDist = dist; best = s; }
-        var np = s / (spineSpec.length - 1);
-        nodes[s].classList.toggle('reached', prog >= np - 0.001);
+        var frac = max > 0 ? clamp01((br.top + sy + br.height / 2 - vh / 2) / max) : (s / (spineSpec.length - 1));
+        spineSpec[s].frac = frac;
+        nodes[s].style.top = (frac * 100) + '%';
+        nodes[s].classList.toggle('reached', prog >= frac - 0.004);
       }
       for (var n = 0; n < nodes.length; n++) nodes[n].classList.toggle('active', n === best);
-      spineLabel.textContent = spineSpec[best].label;
     }
   }
 
