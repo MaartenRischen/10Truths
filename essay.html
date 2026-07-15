@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Demismatch the world, then augment the human.</title>
+  <meta name="description" content="Modern distress is accurate signaling about a world that no longer fits you. An essay on evolutionary mismatch, what humans actually need, and the role AI should play.">
+  <meta property="og:title" content="Demismatch the world, then augment the human.">
+  <meta property="og:description" content="Modern distress is accurate signaling about a world that no longer fits you. An essay on evolutionary mismatch, what humans actually need, and the role AI should play.">
+  <meta property="og:type" content="article">
+  <meta name="author" content="Maarten Rischen">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" type="image/png" href="cor-mark.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="cor.css">
+  <style>
+    /* ─────────────────────────────────────────────────────────
+       Founder's essay - a reading page. Cream field, a single
+       parchment sheet, Spectral long-form. Calm over density.
+       Composes cor.css tokens (oxblood / teal / serif / mono).
+       ───────────────────────────────────────────────────────── */
+
+    :root {
+      --page-bg: #f4f1e7;   /* warm cream, matches the front door */
+      --sheet: var(--parchment);
+      --body-ink: #241217;  /* warm near-black for long-form reading */
+    }
+
+    html, body { background: var(--page-bg); }
+    body {
+      background:
+        radial-gradient(circle at 16% 4%, rgba(58, 18, 24, 0.03) 0%, transparent 46%),
+        radial-gradient(circle at 88% 104%, rgba(45, 107, 107, 0.035) 0%, transparent 52%),
+        var(--page-bg);
+      color: var(--body-ink);
+      font-family: var(--serif);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .wrap {
+      width: 100%;
+      max-width: 47rem;
+      margin: 0 auto;
+      padding: clamp(1.4rem, 4vw, 2.8rem) clamp(1rem, 4vw, 1.6rem) clamp(3.2rem, 7vw, 5.5rem);
+    }
+
+    /* ── Back-link - the front door's cross-site kicker, reused ── */
+    .essay-kicker {
+      margin: 0 0 clamp(1.2rem, 2.6vw, 1.9rem);
+      font-family: var(--mono);
+      font-size: 0.74rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: var(--teal);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 0.5rem;
+    }
+    .essay-kicker a {
+      color: var(--teal);
+      border: 0;
+      text-decoration: none;
+      transition: color 0.16s ease;
+    }
+    .essay-kicker a:hover,
+    .essay-kicker a:focus-visible { color: var(--oxblood); }
+    .essay-kicker .sep { color: var(--muted-warm); opacity: 0.7; }
+
+    /* ── The sheet - a page of parchment on the cream desk ── */
+    .sheet {
+      background: var(--sheet);
+      border-radius: 16px;
+      padding: clamp(1.9rem, 5.4vw, 3.8rem) clamp(1.5rem, 5.4vw, 3.4rem) clamp(2.4rem, 6vw, 4rem);
+      box-shadow: 0 1px 2px rgba(26, 6, 8, 0.06), 0 18px 44px rgba(26, 6, 8, 0.07);
+    }
+
+    /* ── Title block ── */
+    .essay-head {
+      margin: 0 0 clamp(1.9rem, 4vw, 2.8rem);
+      padding-bottom: clamp(1.2rem, 2.6vw, 1.8rem);
+      border-bottom: 1px solid rgba(58, 18, 24, 0.16);
+    }
+    .essay-title {
+      font-family: var(--serif);
+      font-weight: 600;
+      font-size: clamp(2rem, 5.4vw, 3.1rem);
+      line-height: 1.05;
+      letter-spacing: -0.032em;
+      color: var(--oxblood);
+      margin: 0;
+      max-width: 20ch;
+    }
+    .essay-byline {
+      margin: clamp(0.8rem, 1.6vw, 1.1rem) 0 0;
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: clamp(1.02rem, 1.4vw, 1.18rem);
+      letter-spacing: -0.006em;
+      color: var(--teal);
+    }
+
+    /* ── Section headers - display serif, clearly below the H1 ── */
+    .essay-body h2 {
+      font-family: var(--serif);
+      font-weight: 600;
+      font-size: clamp(1.42rem, 3vw, 1.95rem);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: var(--oxblood);
+      margin: clamp(2.6rem, 5.2vw, 3.6rem) 0 clamp(0.9rem, 1.8vw, 1.25rem);
+      max-width: 24ch;
+    }
+
+    /* ── Body - comfortable long-form measure, generous leading ── */
+    .essay-body p {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: clamp(1.06rem, 1.35vw, 1.19rem);
+      line-height: 1.72;
+      letter-spacing: 0.002em;
+      color: var(--body-ink);
+      max-width: 40rem;   /* ~66-72ch reading width */
+      margin: 0 0 clamp(1.05rem, 2vw, 1.45rem);
+      text-wrap: pretty;
+    }
+    .essay-body p:last-child { margin-bottom: 0; }
+
+    /* The bold beats - a deliberate skim-path through the argument.
+       Lifted into oxblood so they read as their own line above the ink. */
+    .essay-body strong {
+      font-weight: 600;
+      color: var(--oxblood);
+    }
+    .essay-body em { font-style: italic; }
+
+    /* ── Foot - quiet return ── */
+    .essay-foot {
+      margin: clamp(2.4rem, 5vw, 3.6rem) 0 0;
+      text-align: center;
+    }
+    .essay-foot a {
+      font-family: var(--mono);
+      font-size: 0.76rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: var(--teal);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(45, 107, 107, 0.4);
+      padding-bottom: 2px;
+      transition: color 0.16s ease, border-color 0.16s ease;
+    }
+    .essay-foot a:hover,
+    .essay-foot a:focus-visible { color: var(--oxblood); border-bottom-color: var(--oxblood); }
+
+    @media (max-width: 560px) {
+      .essay-kicker { font-size: 0.66rem; letter-spacing: 0.16em; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <p class="essay-kicker">
+      <a href="/">← Demismatch</a>
+      <span class="sep" aria-hidden="true">·</span>
+      <a href="https://cor.demismatch.com/">Cor</a>
+    </p>
+
+    <article class="sheet">
+      <header class="essay-head">
+        <h1 class="essay-title">Demismatch the world, then augment the human.</h1>
+        <p class="essay-byline"><em>By Maarten Rischen</em></p>
+      </header>
+
+      <div class="essay-body">
+
+        <h2>You don’t belong here</h2>
+
+        <p><strong>And I mean that in the kindest way possible. Almost nothing that reaches our senses in modern life, and in turn colors our experience, is what we were evolved to handle.</strong></p>
+
+        <p>Most of it is in fact either a grotesque, overwhelming version of what we actually need or a complete deprivation of it - leading to a dependency on “even more”, a helpless numbness, and often both. Entire industries are based on providing these proxies for good profits, technology first in line. But apart from giving us AI girlfriends, ultra-processed foods and the most addictive of addictive in porn experiences, that same technology can - finally, after millennia of mismatch - help us get the real human thing. And then, only then, when we found our real baseline again, should we talk about augmenting ourselves to any post/ transhuman future.</p>
+
+        <p>We have a tendency to feel bad for other mismatched animals - dogs alone in a cage, cows going a lifetime without seeing grass, rainforest animals with barely any rainforest left, lost sea turtle babies mistaking artificial lights for the moon - but to downplay our own mismatched experience as “well, that’s just life”. It isn’t, and it hasn’t been for the vast, vast majority of Homo Sapiens history. Of course there was always misery, and plenty of it, but in a form that had a way out, and was ultimately always temporary in nature and within the locus of control for the average human. No never-ending deadlines, taxes, bosses or war threats in far away countries with nothing to do about it. For 99% of humans who ever lived, stress would resolve into something. The human, if still alive, would return to baseline. Moreover, the positive emotions also came about because of truly positive readings of the environment, not fabricated hyperstimuli like - let’s say - porn, or Pringles, designed to keep you in a never-ending loop once again.</p>
+
+        <p>And here is a mismatch almost nobody names, because we’ve stopped noticing it entirely. We are trying to operate on scales we are simply unable to deal with. You are trying to comprehend the world news with the exact same equipment evolved to comprehend the small-scale tribal politics of maybe 150 people you’ve known from birth. Every day you can encounter more strangers in an hour than your ancestors met in an entire lifetime. You hold opinions on wars on other continents you can do precisely nothing about, and your threat system lights up all the same. Take politicians. Politicians will never really care about you - and not because they’re evil, but because nobody can - biologically. The hardware to care simply doesn’t stretch that far to cover millions of people. It was built for 150. So all in all we spend our days emotionally invested in a scale of world that our bodies and minds have no way to hold, and then wonder why we feel permanently overwhelmed.</p>
+
+        <h2>A decade of this</h2>
+
+        <p>The idea of evolutionary mismatch is far from new, and neither is my obsession with it. I see it seep through literally every crack in any human currently breathing on earth, and in turn induce a truly devastating amount of suffering. All the while said human gets blamed for it (they’re “broken” somehow) and the environment getting another pass as being normal. I have thought, talked and written more about this than anything else. I have in turn been called a lot of names, including a depressing fatalist and an anarcho-primitivist. The latter is completely wrong: I believe tool-making and tool-using is about as human as it gets, and our technology is just the latest tools we made - can be used for good, can be used for bad. And I don’t want to “go back to nature”. Nature is full of mosquitoes.</p>
+
+        <p>The former was completely right: I could pinpoint the problem of our innate human urges and itches being hijacked and leaving us spiraling out of control, but I couldn’t see a way out either. But after going as far as writing and performing a massive theatre piece (<em>Most Human Post-Human</em>) circling the question “how can we de-mismatch through our technology instead of letting it hijack us through those mismatches” - finally some answers started to emerge.</p>
+
+        <p>Step 1: now that our tools seem to be able to at least somewhat “think for themselves”, give them this exact problem to think about. And give them a coherent - and as objective as possible - dataset to work with. Because the general internet as a training set seems to have one category of questions dramatically underrepresented: <strong>what does the human organism really need, in what form and in what quantity</strong>? The answer has been circled for decades in all strands of humanities research, but never really compiled.</p>
+
+        <h2>So we built Cor</h2>
+
+        <p>That’s how Cor came to be: a big open collection of what we actually seem to need as an organism, put together from all the fields that have been circling it - evolutionary biology, anthropology, neuroscience, all of it - and graded by how solid the evidence for each bit actually is. Just so it isn’t my personal opinion on human nature (god knows there’s enough of those already), but as close to the actual mechanisms as we can currently get: what we’re built to want, how much of it, and what goes wrong when we get the cheap knock-off proxy version instead. It’s organized by mechanism, deepest brain systems first, and the goal is eventually to quantize it - literally how many hours of what kind of work, how many people - even if that looks blunt. Also the understanding how any nodes on any layer are possibly connected should always grow, not just set in stone, and ultimately anything should be able to call in and be built on Cor - from software to policy to dare I say it actual great life advice.</p>
+
+        <h2>Handing it to the machines</h2>
+
+        <p>Looking at this problem has always been an urgent necessity, but the urgency is getting - there is that word - exponentially more important by the day. Up until now the mismatched world got built by us, mostly by us not seeing the problem and just making it worse, but also completely deliberately by those who profit off of every little proxy: <strong>endless scroll for the seeking mechanism, Tinder for the mate acquisition mechanism, follower counts and parasocial streamer feeds for the status/ bonding systems, outrage content for the threat system, and of course AI companions for pretty much all of the above</strong>. All of them feel like they deliver something biologically important for the human but really don’t.</p>
+
+        <p>The list quite literally goes on and on, and now we’re handing those jobs and roles over to machines that can actually scale it. And those machines are learning what a human is from the messiest source imaginable - the internet’s giant steaming contradictory pile of psychology and self-help and marketing, most of which - once again - downstream of the mismatch anyway. <strong>So they’re about to build for a human that doesn’t exist.</strong> Cor is basically an attempt to hand them a better description before they do.</p>
+
+        <p>We spent a very long time trying to fix the human - therapy, pills, productivity hacks, self-improvement, the whole industry of it - and mostly it just... doesn’t work. And that is because <strong>the human was never the broken part of it</strong>. The signal is fine. The alarm is doing exactly what it’s supposed to. What’s wrong is the thing it’s warning us about. So maybe let’s <strong>stop trying to change the animal, and start building a world it can actually live in</strong>. And now, for the first time since we walked out of the one we were built for, we’ve got tools that might actually help us do that - if we point them at the right problem.</p>
+
+        <p>Cor is fully open, and it’s meant to stay that way. Anyone can look at it, poke holes in it, use it, argue with it. If you think a piece of it is wrong, the evidence grading is right there - come at it with all you got. And if you don’t trust the whole thing, fork it and start your own.</p>
+
+        <p>Cor is the reference, the map if you will. But the point of a map is to use it. AI should analyze humans and optimize environments, not try to come across as human. So with a tool like Decode:talk we’re helping a person actually see their own mismatch, and ultimately we are going to move on to the bigger, harder one: actually building environments that fit the animal. Dunbar-sized, real roles, real feedback, tech that serves instead of replaces. A human-sized life.</p>
+
+        <h2>A human-sized life</h2>
+
+        <p>So what does the fixed version even look like? Not bliss, let’s get that out of the way first. You’re not supposed to always feel good - a demismatched life still has plenty of bad days, that’s the whole point of a working alarm. But roughly, it looks like this. You wake up with a role, in a group, with a goal. You live among maybe 25 people you actually interact with daily, 150 tops in the wider circle. Everyone knows everyone. Your work directly benefits those specific people, and it takes a few hours, not your whole waking life. You share the surplus. You decide things together. You raise the kids together. You get real feedback instead of a phantom audience of strangers. You let your emotions complete their actions instead of leaving them open and screaming. That there is your purpose, that there is your meaning of life - not some airy-fairy thing you have to go find, but the shape of the animal you already are. You are nature, not separate from it.</p>
+
+        <p>That’s the end goal Demismatch / Cor is for. But as I said before: none of this should be read as anti-tech, primitivist or fatalist. As much as we are nature, our tools are part of our nature, and merging with our tech is inevitable and definitely not necessarily a bad thing. But if you interpret transhumanism as the crowd racing to merge us with our machines, to upload us, to augment the human into something post-human, I do think they’ve got the order exactly backwards. <strong>You do not augment a mismatched animal - because then all you do is augment the mismatch.</strong> Bolt god-tier tech onto a nervous system that’s already spiraling on proxies and hyperstimuli and you don’t get transcendence, you get the same horror traps but now with more horsepower. Overwhelmed, purposeless, maybe not even sure the people around you are people, screaming into an exponentially shinier void. So augmentation, sure - but only after. First you get the animal back to some kind of baseline, some kind of homeostasis it hasn’t felt in centuries. Then, from there, you talk about what comes next. If you want to call what we’re doing transhumanism, then fine: but it’s the human version of it. Fix the human’s world first. Augment second. Anything else is just building the dystopia faster.</p>
+
+        <p>So there it is: demismatch the world before we augment it (or ourselves), not the other way around. Give both the humans and the machines a real picture of what humans are before we scale up an ever faker world. Because you were never the thing that needed fixing. <strong>You are not broken. You are not lazy. You are mismatched</strong> - a completely functional human, unable to be human in a progressively alien world. You don’t need to change. The environment does.</p>
+
+      </div>
+
+      <footer class="essay-foot">
+        <a href="/">← Back to Demismatch</a>
+      </footer>
+    </article>
+
+  </div>
+</body>
+</html>

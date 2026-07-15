@@ -884,6 +884,26 @@
     }
     .bd-decode-link:hover, .bd-decode-link:focus-visible { color: var(--oxblood); border-bottom-color: var(--oxblood); }
 
+    /* essay link - its own centred line under the decode CTA, with a muted subline */
+    .bd-essay-row { text-align: center; margin: clamp(1rem, 2.2vw, 1.5rem) 0 0; }
+    .bd-essay-link {
+      display: inline-block;
+      padding: 0 0 2px; border: 0;
+      border-bottom: 1px solid rgba(45, 107, 107, 0.4);
+      text-decoration: none;
+      font-family: var(--mono); font-size: clamp(0.86rem, 1.1vw, 0.96rem);
+      letter-spacing: 0.14em; text-transform: uppercase; font-weight: 500;
+      color: var(--teal);
+      transition: color 0.16s ease, border-color 0.16s ease;
+    }
+    .bd-essay-link:hover, .bd-essay-link:focus-visible { color: var(--oxblood); border-bottom-color: var(--oxblood); }
+    .bd-essay-sub {
+      display: block; margin-top: 0.45rem;
+      font-family: var(--mono); font-size: 0.72rem;
+      letter-spacing: 0.04em; font-weight: 400;
+      color: var(--muted-warm);
+    }
+
     /* fold-out container - bounded height, internal scroll, smooth open/close */
     .bd-needs-fold {
       text-align: left;
@@ -1492,6 +1512,10 @@
 
         <div class="bd-decode-row">
           <a class="bd-decode-link" href="decode-talk.html">Try decode:talk!</a>
+        </div>
+        <div class="bd-essay-row">
+          <a class="bd-essay-link" href="essay.html">Read the essay →</a>
+          <span class="bd-essay-sub">written by hand, by the founder</span>
         </div>
         <div class="bd-needs-row">
           <button type="button" id="needs-toggle" class="bd-needs-toggle" aria-expanded="false" aria-controls="needs-fold">What humans need <span class="bd-needs-toggle-icon" aria-hidden="true"></span></button>
