@@ -58,7 +58,28 @@
       box-shadow: 0 1px 2px rgba(26, 6, 8, 0.06), 0 18px 44px rgba(26, 6, 8, 0.06);
     }
     /* shorter top band on the hero panel — trim the kicker-bar height ~⅓ */
-    .panel:has(.bd-kicker) { padding-top: clamp(1.1rem, 2.8vw, 2.05rem); }
+    .panel:has(.bd-kicker) { padding-top: clamp(1.1rem, 2.8vw, 2.05rem); position: relative; }
+
+    /* quiet About affordance, tucked into the hero panel's upper-right corner */
+    .bd-about-link {
+      position: absolute;
+      top: clamp(0.85rem, 2vw, 1.45rem);
+      right: clamp(1.1rem, 3.4vw, 2.4rem);
+      z-index: 4;
+      font-family: var(--mono);
+      font-size: 0.66rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: var(--teal);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(45, 107, 107, 0.35);
+      transition: color 0.16s ease, border-color 0.16s ease;
+    }
+    .bd-about-link:hover, .bd-about-link:focus-visible { color: var(--oxblood); border-bottom-color: var(--oxblood); }
+    @media (max-width: 560px) {
+      .bd-about-link { font-size: 0.58rem; letter-spacing: 0.14em; top: 0.7rem; right: 0.9rem; }
+    }
 
     /* ── Top kicker - the cross-site line, folded into an eyebrow ── */
     .bd-kicker {
@@ -870,8 +891,8 @@
     .bd-needs-toggle-icon::before { content: "+"; }
     .bd-needs-toggle[aria-expanded="true"] .bd-needs-toggle-icon::before { content: "–"; }
 
-    /* centred "try decode:talk!" CTA, a row below the needs links */
-    .bd-decode-row { text-align: center; margin: clamp(2rem, 4.5vw, 3.2rem) 0 0; }
+    /* centred "try decode:talk!" CTA - now the second line, tucked under the essay link */
+    .bd-decode-row { text-align: center; margin: clamp(1rem, 2.2vw, 1.5rem) 0 0; }
     .bd-decode-link {
       display: inline-flex; align-items: center;
       padding: 0 0 2px; border: 0;
@@ -884,8 +905,8 @@
     }
     .bd-decode-link:hover, .bd-decode-link:focus-visible { color: var(--oxblood); border-bottom-color: var(--oxblood); }
 
-    /* essay link - its own centred line under the decode CTA, with a muted subline */
-    .bd-essay-row { text-align: center; margin: clamp(1rem, 2.2vw, 1.5rem) 0 0; }
+    /* essay link - the first CTA line under the film, with a muted subline */
+    .bd-essay-row { text-align: center; margin: clamp(2rem, 4.5vw, 3.2rem) 0 0; }
     .bd-essay-link {
       display: inline-block;
       padding: 0 0 2px; border: 0;
@@ -1476,6 +1497,9 @@
     <!-- Panel 1 - the cover: thesis, claim, skeleton, proof -->
     <section class="panel reveal d1">
 
+      <!-- Quiet corner link to the about page -->
+      <a class="bd-about-link" href="about.html">About</a>
+
       <!-- Top kicker - the three-site line -->
       <p class="bd-kicker">
         <span class="cur">Demismatch</span>
@@ -1510,12 +1534,12 @@
           </button>
         </figure>
 
-        <div class="bd-decode-row">
-          <a class="bd-decode-link" href="decode-talk.html">Try decode:talk!</a>
-        </div>
         <div class="bd-essay-row">
           <a class="bd-essay-link" href="essay.html">Read the essay →</a>
           <span class="bd-essay-sub">written by hand, by the founder</span>
+        </div>
+        <div class="bd-decode-row">
+          <a class="bd-decode-link" href="decode-talk.html">Try decode:talk!</a>
         </div>
         <div class="bd-needs-row">
           <button type="button" id="needs-toggle" class="bd-needs-toggle" aria-expanded="false" aria-controls="needs-fold">What humans need <span class="bd-needs-toggle-icon" aria-hidden="true"></span></button>
@@ -2031,7 +2055,7 @@
 
         <details class="faq-item">
           <summary>Is a lot of this written by AI? Some of it reads that way.</summary>
-          <p class="faq-a">Yes, this answer included - and that's the honest place to start. The thinking came first, by hand: Maarten Rischen wrote hundreds of pages before any AI touched the project, and a lot of what's on this site is still his words, unchanged. An AI pipeline built out from there under his direction, finding the evidence, grading it, checking the sources, and assembling it into something systematic. That was deliberate. A framework meant to be checked line by line shouldn't rest on one person's conviction, however hard he holds it. The passion started it; it was never meant to be the proof. So don't read "AI-assembled" as a reason to trust it - read it as a reason to check it. Every claim opens onto its source: a DOI or a PMID and a word-for-word quote. Where the pipeline turned up junk, that work is quarantined and flagged, not shipped as evidence. What matters isn't who or what wrote the sentence. It's whether the claim underneath it holds - and that you can check yourself.</p>
+          <p class="faq-a">Yes, this answer included - and that's the honest place to start. The thinking came first, by hand: Maarten Rischen wrote hundreds of pages before any AI touched the project, and a lot of what's on this site is still his words, unchanged. An AI pipeline built out from there under his direction, finding the evidence, grading it, checking the sources, and assembling it into something systematic. That was deliberate. A framework meant to be checked line by line shouldn't rest on one person's conviction, however hard he holds it. The passion started it; it was never meant to be the proof. So don't read "AI-assembled" as a reason to trust it - read it as a reason to check it. Every claim opens onto its source: a DOI or a PMID and a word-for-word quote. Where the pipeline turned up junk, that work is quarantined and flagged, not shipped as evidence. What matters isn't who or what wrote the sentence. It's whether the claim underneath it holds - and that you can check yourself. And if you want the pure human voice, with no pipeline anywhere near it, <a href="essay.html" style="color:var(--teal);border:0;">the essay</a> is Maarten's, written by hand from start to finish.</p>
         </details>
 
         <details class="faq-item">

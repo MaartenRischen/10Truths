@@ -163,6 +163,35 @@ a { color: inherit; }
   color: var(--oxblood-warm);
   max-width: 720px;
 }
+.hero .hero-essay {
+  margin-top: 26px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px 16px;
+}
+.hero .hero-essay a {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--teal);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(45, 107, 107, 0.45);
+  transition: color 140ms ease, border-color 140ms ease;
+}
+.hero .hero-essay a:hover,
+.hero .hero-essay a:focus-visible {
+  color: var(--oxblood);
+  border-bottom-color: var(--oxblood);
+}
+.hero .hero-essay-note {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 15px;
+  color: var(--muted-warm);
+}
 
 section {
   margin-bottom: 56px;
@@ -427,6 +456,7 @@ section .section-lede + .section-lede {
     <span class="eyebrow">About</span>
     <h1>About.</h1>
     <p class="lede">I'm Maarten Rischen. The thinking behind Cor goes back about a decade; the atlas is what happened when I went full-time on it for a year, from April 2025 to April 2026, unfunded, out of Pai, Thailand. This page is for anyone who wants to check there's a person behind the work before reading the spec.</p>
+    <p class="hero-essay"><a href="essay.html">Read the essay &rarr;</a><span class="hero-essay-note">the whole argument, written by hand</span></p>
   </header>
 
   <section>
