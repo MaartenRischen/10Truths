@@ -163,6 +163,14 @@ a { color: inherit; }
   color: var(--oxblood-warm);
   max-width: 720px;
 }
+.hero .hero-body {
+  font-family: var(--serif);
+  font-size: 17px;
+  line-height: 1.62;
+  color: var(--ink);
+  max-width: 720px;
+  margin-top: 16px;
+}
 .hero .hero-essay {
   margin-top: 26px;
   display: flex;
@@ -191,6 +199,71 @@ a { color: inherit; }
   font-style: italic;
   font-size: 15px;
   color: var(--muted-warm);
+}
+
+/* ── About + How I got here — one clean frame ── */
+.person {
+  border: 1px solid rgba(58, 18, 24, 0.16);
+  border-radius: 14px;
+  padding: clamp(28px, 3.6vw, 48px);
+  margin: 0 0 60px;
+}
+.person::after { content: ""; display: block; clear: both; }
+.person-photo {
+  float: right;
+  width: 220px;
+  max-width: 40%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 1px solid rgba(58, 18, 24, 0.2);
+  box-shadow: 2px 2px 0 var(--teal), 4px 4px 0 var(--gold);
+  margin: 6px 0 16px 32px;
+}
+.person-title {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-style: italic;
+  font-size: clamp(28px, 3.4vw, 36px);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  color: var(--oxblood);
+  margin: 0 0 18px;
+}
+.person-subtitle {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-style: italic;
+  font-size: 25px;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  color: var(--oxblood);
+  clear: both;
+  margin: clamp(30px, 3.4vw, 42px) 0 14px;
+}
+.person p {
+  font-family: var(--serif);
+  font-size: 17px;
+  line-height: 1.62;
+  color: var(--ink);
+}
+.person p + p { margin-top: 14px; }
+.person a {
+  color: var(--teal);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(45, 107, 107, 0.45);
+  transition: color 140ms ease, border-color 140ms ease;
+}
+.person a:hover,
+.person a:focus-visible {
+  color: var(--oxblood);
+  border-bottom-color: var(--oxblood);
+}
+.person .essay-cta { margin-top: 22px; }
+.person .cta-note { border-bottom: 0; }
+@media (max-width: 640px) {
+  .person-photo { float: none; width: 100%; max-width: 260px; margin: 0 0 18px; }
 }
 
 section {
@@ -282,6 +355,11 @@ section .section-lede + .section-lede {
 }
 .essay-cta {
   margin-top: 18px;
+  clear: both;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 14px;
 }
 .essay-cta a {
   font-family: var(--mono);
@@ -289,6 +367,13 @@ section .section-lede + .section-lede {
   letter-spacing: 0.2em;
   text-transform: uppercase;
   font-weight: 500;
+}
+.essay-cta .cta-note {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 14px;
+  color: var(--muted-warm);
+  border-bottom: 0;
 }
 
 .simple-grid {
@@ -305,7 +390,46 @@ section .section-lede + .section-lede {
   font-style: italic;
   font-size: 14px;
   color: var(--muted-warm);
+  margin-top: 8px;
 }
+
+/* ── MHPH click-to-play mini embed ── */
+.mhph-embed { float: left; width: 300px; max-width: 48%; margin: 4px 30px 12px 0; }
+.mhph-facade, .mhph-frame {
+  display: block; width: 100%; aspect-ratio: 16 / 9;
+  border-radius: 8px; border: 1px solid rgba(58, 18, 24, 0.2);
+}
+.mhph-facade {
+  position: relative; overflow: hidden; padding: 0; cursor: pointer;
+  background: var(--oxblood-deep);
+  box-shadow: 2px 2px 0 var(--teal), 4px 4px 0 var(--gold);
+  transition: box-shadow .2s ease, transform .2s ease;
+}
+.mhph-facade:hover, .mhph-facade:focus-visible {
+  box-shadow: 3px 3px 0 var(--teal), 6px 6px 0 var(--gold);
+  transform: translate(-1px, -1px); outline: none;
+}
+.mhph-facade img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+.mhph-facade::after {
+  content: ""; position: absolute; inset: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(26, 6, 8, .12), rgba(26, 6, 8, .44));
+  transition: background .2s ease;
+}
+.mhph-facade:hover::after { background: radial-gradient(circle at 50% 50%, rgba(26, 6, 8, .05), rgba(26, 6, 8, .32)); }
+.mhph-play {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  width: 38px; height: 38px; border-radius: 50%; z-index: 2;
+  background: var(--oxblood); border: 2px solid var(--parchment);
+  box-shadow: 0 4px 12px rgba(26, 6, 8, .4);
+  transition: transform .2s ease, background .2s ease;
+}
+.mhph-play::before {
+  content: ""; position: absolute; top: 50%; left: 55%; transform: translate(-50%, -50%);
+  border-style: solid; border-width: 7px 0 7px 12px;
+  border-color: transparent transparent transparent var(--parchment);
+}
+.mhph-facade:hover .mhph-play { transform: translate(-50%, -50%) scale(1.08); background: var(--teal); }
+.mhph-frame { border: 0; }
 
 .paper-card {
   background: rgba(221, 208, 176, 0.45);
@@ -447,34 +571,36 @@ section .section-lede + .section-lede {
     <a class="back" href="https://demismatch.com/">&larr; Home</a>
   </div>
 
-  <header class="hero">
-    <span class="eyebrow">About</span>
-    <h1>About.</h1>
-    <p class="lede">I'm Maarten Rischen. The thinking behind Cor goes back about a decade; the atlas is what happened when I went full-time on it for a year, from April 2025 to April 2026, unfunded, out of Pai, Thailand. This page is for anyone who wants to check there's a person behind the work before reading the spec.</p>
-    <p class="hero-essay"><a href="essay.html">Read the essay &rarr;</a><span class="hero-essay-note">the whole argument, written by hand</span></p>
-  </header>
+  <section class="person">
+    <h1 class="person-title">About</h1>
+    <img class="person-photo" src="images/maarten-portrait.jpg"
+         alt="Maarten Rischen" width="800" height="800" loading="lazy" decoding="async">
+    <p>I'm Maarten Rischen. For more than a decade I've been unable to leave one idea alone: that we've got the diagnosis backwards about almost all modern suffering. When a modern human is anxious, exhausted, numb, hooked on something that isn't feeding them, the standard move is to look for what's broken inside the person. It's the wrong place to look. Most of the time the person is working fine. What they're reacting to is what's broken.</p>
+    <p>For a long time I could only describe the problem, not solve it. I could see clearly how modern life pulls human drives toward things that never satisfy them, and I had nothing to offer as a way out. Cor is the way out. It is what came of going at this full-time for a year, unfunded.</p>
+    <p class="essay-cta"><a href="essay.html">Read the essay &rarr;</a><span class="cta-note">the whole argument, written by hand</span></p>
 
-  <section>
-    <div class="simple-grid two-col">
-      <div class="surface">
-        <h2>What I'm building</h2>
-        <p>Cor is an evidence-graded atlas of the human motivational-emotional architecture, built toward a specification. What each evolved need is, what mechanism produces its signal, what the signal is for, and what stops it once it's met. Every evidential claim carries explicit provenance: a DOI or a PMID and a verbatim quote. Where provenance is incomplete or quarantined, the atlas says so.</p>
-        <p>The atlas is what stands today. The next phase of work is the reliability and evidence pass that makes it independently applicable. I direct. The 12-month plan pairs me with one academic hire at postdoc level in evolutionary psychiatry or behavioral ecology, who carries the domain rigor and leads that work.</p>
-      </div>
-      <div class="surface">
-        <h2>How I got here</h2>
-        <p>My background is music. MA from Royal University Groningen, residencies at Banff Centre (2016) and Trinity College Dublin (2017). I've also worked as a journalist for over a decade. In 2024 I did a musical theatre production called <a href="https://www.youtube.com/watch?v=MRVdtc45TPk&t=2s" target="_blank" rel="noopener"><em>Most Human Post-Human</em></a> at Adelaide Fringe with director Gavin Robins (King Kong on Broadway).</p>
-        <p>That production is where Cor took its current shape. The question I was writing music around - what happens when exponential technology meets an organism that hasn't changed in 200,000 years? - stopped working as an artistic prompt and started demanding an evidence base. After Adelaide I went full-time on building one.</p>
-        <p>I came at this sideways. I'm not a domain academic. The plan accounts for that: the academic hire and external review carry the rigor, not me.</p>
-        <p class="essay-cta"><a href="essay.html">Read the essay &rarr;</a></p>
-      </div>
-    </div>
-
+    <h2 class="person-subtitle">How I got here</h2>
+    <figure class="mhph-embed">
+      <button type="button" class="mhph-facade"
+              data-embed="https://www.youtube-nocookie.com/embed/MRVdtc45TPk?rel=0&amp;modestbranding=1&amp;start=2&amp;autoplay=1"
+              aria-label="Play: Most Human Post-Human - Adelaide Fringe 2024">
+        <img src="https://i.ytimg.com/vi/MRVdtc45TPk/maxresdefault.jpg"
+             alt="Most Human Post-Human - musical theatre production, Adelaide Fringe 2024"
+             width="1280" height="720" loading="lazy" decoding="async"
+             onload="if(this.naturalWidth<=121){this.onload=null;this.src='https://i.ytimg.com/vi/MRVdtc45TPk/sddefault.jpg';}"
+             onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/MRVdtc45TPk/sddefault.jpg';">
+        <span class="mhph-play" aria-hidden="true"></span>
+      </button>
+      <figcaption class="video-cap"><em>Most Human Post-Human</em> - Adelaide Fringe, 2024</figcaption>
+    </figure>
+    <p>Sideways, mostly. I'm a musician by training, with an MA from the University of Groningen and residencies at Banff Centre and Trinity College Dublin, and I worked as a journalist for over a decade alongside all of it. Not the obvious runway for building an evidence atlas of human needs, and I'd rather be honest about that than dress it up.</p>
+    <p>What forced the turn was theatre. In 2024 I wrote and staged a musical production, <a href="https://www.youtube.com/watch?v=MRVdtc45TPk&t=2s" target="_blank" rel="noopener"><em>Most Human Post-Human</em></a>, at Adelaide Fringe, directed by Gavin Robins (King Kong on Broadway). I was writing music around one question, roughly what happens when technology moving this fast collides with an animal that hasn't been redesigned in two hundred thousand years, and at some point the question outgrew the show. It stopped being something I could answer with a song and started needing real evidence underneath it. After Adelaide I dropped everything else and went to build it.</p>
+    <p>I'm not a domain academic. The atlas is evidence-graded and sourced, but I don't expect you to take that on my word. I'm raising funds to bring in academic researchers and outside review to test it and carry its standing.</p>
   </section>
 
   <section id="what-this-is">
-    <span class="eyebrow">What this is</span>
     <h2>What this is.</h2>
+    <p class="section-lede">Cor is an evidence-graded atlas of the human motivational-emotional architecture, built toward a specification: what each evolved need is, what mechanism produces its signal, what the signal is for, and what stops it once it's met. It is what stands today; the next phase of work is the reliability and evidence pass that makes it independently applicable.</p>
     <p class="section-lede">The atlas covers 15 motivational mechanisms and 17 foundations, built on graded extractions from primary works, structured as a derivation chain. It runs from two operating frames through three premises, nine design affordances, and three design consequences, into the 15 mechanisms and 14 convergences between them. M3 (attachment-based co-regulation) is operationalized to coding-criteria level as the worked example.</p>
     <p class="section-lede">Each step is a move a reader can check, and each evidential claim carries explicit provenance. A spec of the human motivational-emotional architecture does not exist until someone builds one. This is the first pass at what one looks like.</p>
     <div class="simple-grid two-col">
@@ -587,5 +713,22 @@ section .section-lede + .section-lede {
     <div class="folio">demismatch.com / about</div>
   </div>
 </div>
+
+<!-- MHPH: click-to-play facade -> nocookie embed (no iframe until asked for) -->
+<script>
+(function () {
+  document.querySelectorAll('.mhph-facade').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var frame = document.createElement('iframe');
+      frame.className = 'mhph-frame';
+      frame.src = btn.getAttribute('data-embed');
+      frame.title = btn.getAttribute('aria-label') || 'Video';
+      frame.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
+      frame.allowFullscreen = true;
+      btn.replaceWith(frame);
+    }, { once: true });
+  });
+})();
+</script>
 </body>
 </html>

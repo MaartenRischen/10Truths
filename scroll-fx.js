@@ -150,7 +150,7 @@
   var spineSpec = [
     { sel: '.bd-herocenter', label: 'Thesis' },
     { sel: '#vision',        label: 'The map' },
-    { sel: '.dt-grid',       label: 'Decode Talk' },
+    { sel: '.dt-grid',       label: 'Decode:talk' },
     { sel: '.vids',          label: 'Videos' },
     { sel: '.faq-cols',      label: 'Questions' }
   ].map(function (s) { return { el: $(s.sel), label: s.label, frac: 0 }; })

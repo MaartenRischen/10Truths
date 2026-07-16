@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Decode Talk · Live - Demismatch</title>
+<title>Decode:talk · Live - Demismatch</title>
 <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -548,7 +548,7 @@ body {
 <div class="page">
   <button class="settings-toggle" id="settings-toggle" aria-label="Open settings" title="Settings">⚙</button>
   <div class="title-block">
-    <h1><em>Decode Talk</em></h1>
+    <h1><em>Decode:talk</em></h1>
     <p class="standfirst">Describe a situation, get the evolutionary read. Not a companion. The mechanism story behind what you're feeling - plus, if you want it, the nearest achievable next step.</p>
     <span class="status" id="status-badge">Live</span>
   </div>
@@ -684,7 +684,7 @@ function saveSettings() {
 let settings = loadSettings();
 
 // ─── Satiation session (client-side, privacy-preserving) ────────────────────────
-// decode:talk can become its own M2 (open-loop) proxy: chasing reads for hours. A satiation
+// Decode:talk can become its own M2 (open-loop) proxy: chasing reads for hours. A satiation
 // interrupt (server-side, currently SHADOW only) needs to see a sustained loop-chasing pattern
 // that spans MANY short conversations (the server caps a single conversation at 3 reads, then
 // the user starts fresh, so a server that is stateless across conversations cannot see it).
