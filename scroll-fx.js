@@ -94,7 +94,7 @@
   if ('IntersectionObserver' in window) {
     var soloObs = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) { if (e.isIntersecting) { reveal(e.target); soloObs.unobserve(e.target); } });
-    }, { threshold: 0.16, rootMargin: '0px 0px -6% 0px' });
+    }, { threshold: 0.04, rootMargin: '0px 0px 4% 0px' });
     $all(soloSel).forEach(function (el) { soloObs.observe(el); });
 
     GROUPS.forEach(function (g) {
@@ -106,7 +106,7 @@
           var base = g.base || 0, cap = g.cap == null ? 999 : g.cap;
           $all(g.i, e.target).forEach(function (el, idx) { reveal(el, base + Math.min(idx, cap) * g.step); });
         });
-      }, { threshold: 0.14, rootMargin: '0px 0px -8% 0px' });
+      }, { threshold: 0.04, rootMargin: '0px 0px 4% 0px' });
       conts.forEach(function (c) { obs.observe(c); });
     });
   } else {
@@ -150,7 +150,7 @@
   var spineSpec = [
     { sel: '.bd-herocenter', label: 'Thesis' },
     { sel: '#vision',        label: 'The map' },
-    { sel: '.dt-grid',       label: 'Decode:talk' },
+    { sel: '.dt-grid',       label: 'Decode:Talk' },
     { sel: '.vids',          label: 'Videos' },
     { sel: '.faq-cols',      label: 'Questions' }
   ].map(function (s) { return { el: $(s.sel), label: s.label, frac: 0 }; })
@@ -253,13 +253,13 @@
     // section-title word brightening
     for (var h = 0; h < scrollHeads.length; h++) {
       var head = scrollHeads[h], r = head.el.getBoundingClientRect();
-      var p = clamp01((vh * 0.9 - r.top) / (vh * 0.9 - vh * 0.32));
-      var N = head.words.length, lead = N + 3;
+      var p = clamp01((vh * 1.05 - r.top) / (vh * 1.05 - vh * 0.70));
+      var N = head.words.length, lead = N * 0.5 + 2;
       for (var i = 0; i < N; i++) {
         var wp = clamp01(p * lead - i);
         var w = head.words[i];
-        w.style.opacity = (0.12 + 0.88 * wp).toFixed(3);
-        w.style.filter = wp > 0.985 ? 'none' : 'blur(' + ((1 - wp) * 6).toFixed(2) + 'px)';
+        w.style.opacity = (0.5 + 0.5 * wp).toFixed(3);
+        w.style.filter = wp > 0.985 ? 'none' : 'blur(' + ((1 - wp) * 1.5).toFixed(2) + 'px)';
       }
     }
 

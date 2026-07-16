@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>About | Demismatch</title>
-<meta name="description" content="What Cor is, how it was built, what the canonical counts mean, plus the working papers and how to reach me.">
-<meta property="og:title" content="About | Demismatch">
-<meta property="og:description" content="What Cor is, and how it was built.">
-<meta property="og:type" content="website">
+<title>About the founder | Demismatch</title>
+<meta name="description" content="Who built Cor, and how I got here. Maarten Rischen - musician, journalist, and the person behind the atlas.">
+<meta property="og:title" content="About the founder | Demismatch">
+<meta property="og:description" content="Maarten Rischen - who built Cor, and how I got here.">
+<meta property="og:type" content="profile">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
@@ -279,7 +279,6 @@ section .eyebrow {
   display: block;
   margin-bottom: 12px;
 }
-section h1,
 section h2 {
   font-family: var(--serif);
   font-weight: 500;
@@ -289,38 +288,6 @@ section h2 {
   letter-spacing: -0.01em;
   color: var(--oxblood);
   margin-bottom: 20px;
-}
-#what-this-is h1 { font-size: clamp(34px, 4.4vw, 46px); }
-
-/* ── About the founder link (project page) ── */
-.founder-link {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 8px 16px;
-  margin: 0 0 44px;
-}
-.founder-link a {
-  font-family: var(--mono);
-  font-size: 12px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  font-weight: 500;
-  color: var(--teal);
-  text-decoration: none;
-  border-bottom: 1px solid rgba(45, 107, 107, 0.45);
-  transition: color 140ms ease, border-color 140ms ease;
-}
-.founder-link a:hover,
-.founder-link a:focus-visible {
-  color: var(--oxblood);
-  border-bottom-color: var(--oxblood);
-}
-.founder-link-note {
-  font-family: var(--serif);
-  font-style: italic;
-  font-size: 15px;
-  color: var(--muted-warm);
 }
 section .section-lede {
   font-family: var(--serif);
@@ -600,106 +567,37 @@ section .section-lede + .section-lede {
 
 <div class="page">
   <div class="masthead">
-    <span class="label">Demismatch · About · April 2026</span>
-    <a class="back" href="https://demismatch.com/">&larr; Home</a>
+    <span class="label">Demismatch · About the founder · April 2026</span>
+    <a class="back" href="about.html">&larr; About Cor</a>
   </div>
 
-  <p class="founder-link"><a href="founder.html">About the founder &rarr;</a><span class="founder-link-note">who built Cor, and how I got here</span></p>
+  <section class="person">
+    <h1 class="person-title">About the founder</h1>
+    <img class="person-photo" src="images/maarten-portrait.jpg"
+         alt="Maarten Rischen" width="800" height="800" loading="lazy" decoding="async">
+    <p>I'm Maarten Rischen. For more than a decade I've been unable to leave one idea alone: that we've got the diagnosis backwards about almost all modern suffering. When a modern human is anxious, exhausted, numb, hooked on something that isn't feeding them, the standard move is to look for what's broken inside the person. It's the wrong place to look. Most of the time the person is working fine. What they're reacting to is what's broken.</p>
+    <p>For a long time I could only describe the problem, not solve it. I could see clearly how modern life pulls human drives toward things that never satisfy them, and I had nothing to offer as a way out. Cor is the way out. It is what came of going at this full-time for a year, unfunded.</p>
+    <p class="essay-cta"><a href="essay.html">Read the essay &rarr;</a><span class="cta-note">the whole argument, written by hand</span></p>
 
-  <section id="what-this-is">
-    <h1>What this is.</h1>
-    <p class="section-lede">Cor is an evidence-graded atlas of the human motivational-emotional architecture, built toward a specification: what each evolved need is, what mechanism produces its signal, what the signal is for, and what stops it once it's met. It is what stands today; the next phase of work is the reliability and evidence pass that makes it independently applicable.</p>
-    <p class="section-lede">The atlas covers 15 motivational mechanisms and 17 foundations, built on graded extractions from primary works, structured as a derivation chain. It runs from two operating frames through three premises, nine design affordances, and three design consequences, into the 15 mechanisms and 14 convergences between them. M3 (attachment-based co-regulation) is operationalized to coding-criteria level as the worked example.</p>
-    <p class="section-lede">Each step is a move a reader can check, and each evidential claim carries explicit provenance. A spec of the human motivational-emotional architecture does not exist until someone builds one. This is the first pass at what one looks like.</p>
-    <div class="simple-grid two-col">
-      <div class="surface">
-        <h3>How it was built</h3>
-        <p>Sources are books from my personal library and papers harvested via PubMed and bibliographic chains. Full-text access for journals I couldn't reach came through Groningen's university library, courtesy of Han-Thomas Adriaenssen. All primary sources. No textbooks, no secondary summaries.</p>
-        <p>Three rules ran the build. Every work carries a DOI or PMID, or sits in physical collection and is marked as such. Every extraction draws from full text; no snippet-only sourcing. Every author quote is verbatim, not stitched or paraphrased into one.</p>
-        <p>Grading runs at three layers. Works are tiered pillar, key, or supporting by how load-bearing each one is. Foundations carry epistemic grades that distinguish convergent evidence from single-source claims. Mechanisms carry tier ratings for evidential strength: 10 Tier 1, 4 Tier 2, 1 Tier 3.</p>
-        <p>The extraction and linking ran through a multi-agent AI pipeline. I set the spec, chose the foundations and mechanisms, wrote the derivation chain, and ran review on what came out. The pipeline did corpus work at scale, which is how the atlas reached this coverage after a year of full-time work. It is also the source of the data-quality problems the next phase of work fixes. Extractions found to be snippet-only sourced are quarantined and held out of the evidence base. That is the discipline in practice: audit catches things and the quarantine holds them out.</p>
-      </div>
-      <div class="surface">
-        <h3>What ships now, and what comes next</h3>
-        <p>The next phase of work is led by a postdoc in evolutionary psychiatry or behavioral ecology. They are not hired to ratify what stands. They are hired to re-audit it, with full latitude to change, downgrade, or delete any part that does not survive stronger review. I orchestrate. They build. That is what the SFF Main Track funds.</p>
-        <p>Cor gets published now because the hardest thing to prove about a new kind of research object is that the object can exist and be inspected. The atlas shows it can. The format is the contribution: the derivation chain from OF1 and OF2 through the foundations and convergences to M3 as the worked mechanism. That is what the next phase of work inherits. The data is what it redoes under domain-expert methodology.</p>
-      </div>
-    </div>
+    <h2 class="person-subtitle">How I got here</h2>
+    <figure class="mhph-embed">
+      <button type="button" class="mhph-facade"
+              data-embed="https://www.youtube-nocookie.com/embed/MRVdtc45TPk?rel=0&amp;modestbranding=1&amp;start=2&amp;autoplay=1"
+              aria-label="Play: Most Human Post-Human - Adelaide Fringe 2024">
+        <img src="https://i.ytimg.com/vi/MRVdtc45TPk/maxresdefault.jpg"
+             alt="Most Human Post-Human - musical theatre production, Adelaide Fringe 2024"
+             width="1280" height="720" loading="lazy" decoding="async"
+             onload="if(this.naturalWidth<=121){this.onload=null;this.src='https://i.ytimg.com/vi/MRVdtc45TPk/sddefault.jpg';}"
+             onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/MRVdtc45TPk/sddefault.jpg';">
+        <span class="mhph-play" aria-hidden="true"></span>
+      </button>
+      <figcaption class="video-cap"><em>Most Human Post-Human</em> - Adelaide Fringe, 2024</figcaption>
+    </figure>
+    <p>Sideways, mostly. I'm a musician by training, got an MA in Music from the University of Groningen and been composing/recording/performing ever since. Did crossover academic-artistic residencies at Banff Centre and Trinity College Dublin, and I worked as a journalist for over a decade alongside all of it. Not the obvious runway for building an evidence atlas of human needs, and I'd rather be honest about that than dress it up.</p>
+    <p>What forced the turn was theatre. In 2024 I wrote and staged a musical production, <a href="https://www.youtube.com/watch?v=MRVdtc45TPk&t=2s" target="_blank" rel="noopener"><em>Most Human Post-Human</em></a>, at Adelaide Fringe, directed by Gavin Robins (King Kong on Broadway). I was writing music around one question, roughly what happens when technology moving this fast collides with an animal that hasn't been redesigned in two hundred thousand years, and at some point the question outgrew the show. It stopped being something I could answer with a song and started needing real evidence underneath it. After Adelaide I dropped everything else and went to build it.</p>
+    <p>I'm not a domain academic. The atlas is evidence-graded and sourced, but I don't expect you to take that on my word. I'm raising funds to bring in academic researchers and outside review to test it and carry its standing.</p>
   </section>
 
-  <section id="numbers">
-    <span class="eyebrow">The numbers</span>
-    <h2>What the canonical counts mean.</h2>
-    <p class="section-lede">The atlas reports its counts live on the Cor home page. Here is what lives inside each category, and which carry caveats. For current values, read the <a href="https://cor.demismatch.com/">live counts</a>.</p>
-    <div class="simple-grid two-col">
-      <div class="surface">
-        <h3>Extractions</h3>
-        <p>The extraction total adds up four kinds, not only the primary ones:</p>
-        <ul>
-          <li><strong>Primary</strong> - direct claims from pillar and key works</li>
-          <li><strong>Propagation</strong> - downstream claims forced by an already-extracted primary</li>
-          <li><strong>Challenge</strong> - claims that contest or qualify an extraction elsewhere</li>
-          <li><strong>Empirical</strong> - demonstrations whose evidential structure is itself an extraction</li>
-        </ul>
-        <p>Earlier versions reported only the primary layer. The canonical panel reports all four kinds together so the primary layer doesn't look like the whole evidence base.</p>
-      </div>
-      <div class="surface">
-        <h3>Gaps - two kinds</h3>
-        <p>The gap inventory splits into two categories with different remediation paths.</p>
-        <ul>
-          <li><strong>Framework-level</strong> - holes in the specification itself. Questions the spec cannot answer because the primary literature hasn't converged, or because the evolutionary explanation is under-specified. These are the questions the academic program is organized around.</li>
-          <li><strong>Corpus-engineering</strong> - known coverage limits in the works selection, ingestion pipeline, or extraction process. They don't require new research. They require the next phase of work under proper methodology.</li>
-        </ul>
-        <p>The public <a href="https://cor.demismatch.com/atlas.html#gaps">spec gap section</a> shows the current gaps grouped by category.</p>
-      </div>
-      <div class="surface">
-        <h3>15 Mechanisms (14 + R1 Touch)</h3>
-        <p>The mechanism inventory is M1-M14 plus R1 Touch. R1 is a Tier 3 regulatory input to M3 Social Bonding (C-tactile afferents), not a standalone motivational system. I count it in the panel and keep the "(14 + R1 Touch)" parenthetical so a reader sees the total without losing the distinction. Tier breakdown: 10 Tier-1 (forced), 4 Tier-2 (strongly supported), 1 Tier-3 (moderate).</p>
-      </div>
-      <div class="surface">
-        <h3>17 Foundations - by layer</h3>
-        <p>The foundation stack has four layers: 2 frames (OF1 Fitness Interface, OF2 Signal-Default Epistemology), 3 premises (P1 Inclusive Fitness, P2 Domain-Sensitive Interacting Adaptations, P3 Systematic Mismatch), 9 properties (DA1-DA9), 3 consequences (DC1-DC3).</p>
-      </div>
-      <div class="surface">
-        <h3>Works - by importance</h3>
-        <p>The bibliography tiers works as pillar (load-bearing for a specific foundation or mechanism), key (strong empirical or synthetic contributions), and supporting (historical precedents and adjuncts). Current counts are on the Cor home page.</p>
-      </div>
-      <div class="surface">
-        <h3>Researchers - by tier</h3>
-        <p>The researcher list sorts into foundational (primary spec contributors), empirical (evidence-layer), and adjacent (complementary frameworks and benchmarks). Current counts are on the Cor home page.</p>
-      </div>
-      <div class="surface" style="grid-column:1 / -1">
-        <h3>Extraction × mechanism links</h3>
-        <p>The density number, shown separately on the Cor home page. Each linked extraction grounds one or more mechanisms, so the edge count runs well above the extraction count. I keep this separate from the headline extraction count so the two can't be mistaken for inconsistent versions of the same thing. Current counts are on the Cor home page.</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="working-papers">
-    <span class="eyebrow">Working papers</span>
-    <h2>Two working papers. Both updated April 2026.</h2>
-    <p class="section-lede">Both papers are mine, written alongside Cor. They argue the framing and its human-facing articulation in long form.</p>
-    <div class="simple-grid two-col">
-      <article class="paper-card">
-        <strong><a href="https://cor.demismatch.com/bridge-paper.html">What Alignment Misses</a></strong>
-        <small>Working paper. Alignment framing and six failure modes.</small>
-      </article>
-      <article class="paper-card">
-        <strong><a href="https://cor.demismatch.com/constitutional.html">What You Are Talking To</a></strong>
-        <small>Working paper. Human-facing articulation of the architecture.</small>
-      </article>
-    </div>
-  </section>
-
-  <section id="contact">
-    <span class="eyebrow">Contact</span>
-    <h2>Reach me directly.</h2>
-    <div class="surface contact-surface">
-      <p><strong>Maarten Rischen</strong></p>
-      <p><a href="mailto:maartenrischen@protonmail.com">maartenrischen@protonmail.com</a></p>
-      <p>For grant inquiries, researcher outreach, and everything else, write. I read every message.</p>
-    </div>
-  </section>
 
   <div class="xsite-footer">
     <ul class="xsite-cols" aria-label="Demismatch network">
@@ -718,8 +616,25 @@ section .section-lede + .section-lede {
 
   <div class="page-footer">
     <p class="motto"><em>Demismatch</em> the world &nbsp;·&nbsp; <em>then</em> augment</p>
-    <div class="folio">demismatch.com / about</div>
+    <div class="folio">demismatch.com / founder</div>
   </div>
 </div>
+
+<!-- MHPH: click-to-play facade -> nocookie embed (no iframe until asked for) -->
+<script>
+(function () {
+  document.querySelectorAll('.mhph-facade').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var frame = document.createElement('iframe');
+      frame.className = 'mhph-frame';
+      frame.src = btn.getAttribute('data-embed');
+      frame.title = btn.getAttribute('aria-label') || 'Video';
+      frame.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
+      frame.allowFullscreen = true;
+      btn.replaceWith(frame);
+    }, { once: true });
+  });
+})();
+</script>
 </body>
 </html>
