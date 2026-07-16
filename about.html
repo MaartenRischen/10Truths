@@ -280,6 +280,16 @@ section .section-lede + .section-lede {
   color: var(--oxblood);
   border-bottom-color: var(--oxblood);
 }
+.essay-cta {
+  margin-top: 18px;
+}
+.essay-cta a {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
 
 .simple-grid {
   display: grid;
@@ -290,21 +300,6 @@ section .section-lede + .section-lede {
   .simple-grid.two-col { grid-template-columns: 1fr 1fr; }
 }
 
-.video-wrap {
-  position: relative;
-  padding-top: 56.25%;
-  border-radius: 10px;
-  overflow: hidden;
-  margin: 14px 0 12px;
-  border: 1px solid rgba(58, 18, 24, 0.2);
-}
-.video-wrap iframe {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  border: 0;
-}
 .video-cap {
   font-family: var(--serif);
   font-style: italic;
@@ -468,18 +463,13 @@ section .section-lede + .section-lede {
       </div>
       <div class="surface">
         <h2>How I got here</h2>
-        <p>My background is music. MA from Royal University Groningen, residencies at Banff Centre (2016) and Trinity College Dublin (2017). In 2024 I did a musical theatre production called <em>Most Human Post-Human</em> at Adelaide Fringe with director Gavin Robins (King Kong on Broadway).</p>
+        <p>My background is music. MA from Royal University Groningen, residencies at Banff Centre (2016) and Trinity College Dublin (2017). In 2024 I did a musical theatre production called <a href="https://www.youtube.com/watch?v=MRVdtc45TPk&t=2s" target="_blank" rel="noopener"><em>Most Human Post-Human</em></a> at Adelaide Fringe with director Gavin Robins (King Kong on Broadway).</p>
         <p>That production is where Cor took its current shape. The question I was writing music around - what happens when exponential technology meets an organism that hasn't changed in 200,000 years? - stopped working as an artistic prompt and started demanding an evidence base. After Adelaide I went full-time on building one.</p>
         <p>I came at this sideways. I'm not a domain academic. The plan accounts for that: the academic hire and external review carry the rigor, not me.</p>
+        <p class="essay-cta"><a href="essay.html">Read the essay &rarr;</a></p>
       </div>
     </div>
 
-    <div class="surface" style="margin-top:20px">
-      <h2>Most Human Post-Human</h2>
-      <div class="video-wrap">
-        <iframe src="https://www.youtube.com/embed/MRVdtc45TPk" title="Most Human Post-Human trailer" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-      </div>
-    </div>
   </section>
 
   <section id="what-this-is">

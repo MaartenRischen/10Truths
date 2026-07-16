@@ -891,8 +891,8 @@
     .bd-needs-toggle-icon::before { content: "+"; }
     .bd-needs-toggle[aria-expanded="true"] .bd-needs-toggle-icon::before { content: "–"; }
 
-    /* centred "try decode:talk!" CTA - now the second line, tucked under the essay link */
-    .bd-decode-row { text-align: center; margin: clamp(1rem, 2.2vw, 1.5rem) 0 0; }
+    /* centred "try decode:talk!" CTA - now the first line under the film */
+    .bd-decode-row { text-align: center; margin: clamp(2rem, 4.5vw, 3.2rem) 0 0; }
     .bd-decode-link {
       display: inline-flex; align-items: center;
       padding: 0 0 2px; border: 0;
@@ -905,8 +905,8 @@
     }
     .bd-decode-link:hover, .bd-decode-link:focus-visible { color: var(--oxblood); border-bottom-color: var(--oxblood); }
 
-    /* essay link - the first CTA line under the film, with a muted subline */
-    .bd-essay-row { text-align: center; margin: clamp(2rem, 4.5vw, 3.2rem) 0 0; }
+    /* essay link - now the second CTA line, tucked under the decode link, with a muted subline */
+    .bd-essay-row { text-align: center; margin: clamp(1rem, 2.2vw, 1.5rem) 0 0; }
     .bd-essay-link {
       display: inline-block;
       padding: 0 0 2px; border: 0;
@@ -1534,12 +1534,12 @@
           </button>
         </figure>
 
+        <div class="bd-decode-row">
+          <a class="bd-decode-link" href="decode-talk.html">Try decode:talk!</a>
+        </div>
         <div class="bd-essay-row">
           <a class="bd-essay-link" href="essay.html">Read the essay →</a>
           <span class="bd-essay-sub">written by hand, by the founder</span>
-        </div>
-        <div class="bd-decode-row">
-          <a class="bd-decode-link" href="decode-talk.html">Try decode:talk!</a>
         </div>
         <div class="bd-needs-row">
           <button type="button" id="needs-toggle" class="bd-needs-toggle" aria-expanded="false" aria-controls="needs-fold">What humans need <span class="bd-needs-toggle-icon" aria-hidden="true"></span></button>
