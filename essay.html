@@ -103,6 +103,26 @@
       letter-spacing: -0.006em;
       color: var(--teal);
     }
+    .essay-about {
+      margin: 0.5rem 0 0;
+      font-family: var(--mono);
+      font-size: 0.66rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+    .essay-about a {
+      color: var(--muted-warm);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(138, 125, 94, 0.4);
+      padding-bottom: 1px;
+      transition: color 0.16s ease, border-color 0.16s ease;
+    }
+    .essay-about a:hover,
+    .essay-about a:focus-visible {
+      color: var(--teal);
+      border-bottom-color: var(--teal);
+    }
 
     /* ── Section headers - display serif, clearly below the H1 ── */
     .essay-body h2 {
@@ -184,6 +204,7 @@
       <header class="essay-head">
         <h1 class="essay-title">Demismatch the world, then augment the human.</h1>
         <p class="essay-byline"><em>By Maarten Rischen, 100% human-written</em></p>
+        <p class="essay-about"><a href="about.html">About the founder &rarr;</a></p>
       </header>
 
       <div class="essay-body">
