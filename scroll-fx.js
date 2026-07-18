@@ -50,12 +50,14 @@
     hw.forEach(function (w, i) { w.style.setProperty('--i', i); });
   }
 
-  /* ── 2. Section titles: brighten on scroll as they rise through view ─ */
+  /* ── 2. Section titles: DISABLED. This used to brighten titles word-by-word
+        on scroll, but the per-word progress math (lead = N*0.5+2) never fully
+        brightened the trailing words of any title that wrapped past ~4 words,
+        so "human second", "the signal", "needs" stayed permanently dim. Titles
+        now render at their full CSS colour; scrollHeads stays empty so the
+        update() word loop is a no-op. (Hero-thesis load brighten in §1 is
+        separate and still runs.) ─────────────────────────────────────────── */
   var scrollHeads = [];
-  $all('.bd-source-title, .bd-arm-title').forEach(function (el) {
-    var ws = splitWords(el);
-    if (ws.length) scrollHeads.push({ el: el, words: ws });
-  });
 
   /* ── 3. Reveal-on-scroll. Two modes, both pre-hidden by scroll-fx.css:
         GROUPS - the cluster triggers as a UNIT when it enters, then its

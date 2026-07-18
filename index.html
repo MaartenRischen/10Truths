@@ -4,12 +4,12 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Demismatch - Humans need a world that fits humans.</title>
-  <meta name="description" content="Modern distress is accurate signaling about a world that no longer fits you, not a disorder in you. We can specify what you are actually built to need. Then build to it.">
+  <meta name="description" content="Modern distress is accurate signaling about a world that no longer fits you, not a disorder in you. Fix the world first, augment the human second - and align AI to what humans need, not what they say they want.">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Demismatch">
   <meta property="og:url" content="https://demismatch.com/">
   <meta property="og:title" content="Demismatch - Humans need a world that fits humans.">
-  <meta property="og:description" content="Modern distress is accurate signaling about a world that no longer fits you, not a disorder in you. We can specify what you are actually built to need. Then build to it.">
+  <meta property="og:description" content="Modern distress is accurate signaling about a world that no longer fits you, not a disorder in you. Fix the world first, augment the human second - and align AI to what humans need, not what they say they want.">
   <meta property="og:image" content="https://demismatch.com/og-demismatch.jpg?v=1">
   <meta property="og:image:secure_url" content="https://demismatch.com/og-demismatch.jpg?v=1">
   <meta property="og:image:type" content="image/jpeg">
@@ -19,7 +19,7 @@
   <!-- Twitter / X card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Demismatch - Humans need a world that fits humans.">
-  <meta name="twitter:description" content="Modern distress is accurate signaling about a world that no longer fits you, not a disorder in you. We can specify what you are actually built to need. Then build to it.">
+  <meta name="twitter:description" content="Modern distress is accurate signaling about a world that no longer fits you, not a disorder in you. Fix the world first, augment the human second - and align AI to what humans need, not what they say they want.">
   <meta name="twitter:image" content="https://demismatch.com/og-demismatch.jpg?v=1">
   <meta name="twitter:image:alt" content="A wooden figure alone in a grey concrete corridor on the left; the same figures together in a warm garden and timber homes on the right.">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -1502,6 +1502,50 @@
                    text-transform: uppercase; font-weight: 600; color: var(--teal); text-decoration: none;
                    border-bottom: 1px solid rgba(45,107,107,.4); transition: color .16s, border-color .16s; }
     .vid-channel:hover, .vid-channel:focus-visible { color: var(--oxblood); border-bottom-color: var(--oxblood); }
+
+    /* Two conclusions - the pair of flagship positions, stated between the hero and the map */
+    .bd-conclusions {
+      max-width: 62rem;
+      margin: clamp(2.4rem, 5vw, 3.8rem) auto 0;
+    }
+    .bd-conclusions-intro {
+      display: block; text-align: center;
+      font-family: var(--mono); font-size: 0.72rem;
+      letter-spacing: 0.24em; text-transform: uppercase; font-weight: 500;
+      color: var(--teal); margin-bottom: clamp(1.3rem, 2.6vw, 2rem);
+    }
+    .bd-conclusions-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: clamp(1.6rem, 4vw, 3.2rem); text-align: left;
+    }
+    .bd-conclusions-grid .bd-arm-tag { max-width: none; }
+    /* stacked taglines (alignment lead + conclusions) need breathing room */
+    .bd-arm-tag + .bd-arm-tag { margin-top: clamp(0.7rem, 1.4vw, 1rem); }
+    @media (max-width: 720px) {
+      .bd-conclusions-grid { grid-template-columns: 1fr; gap: clamp(1.6rem, 5vw, 2.2rem); }
+    }
+
+    /* Sequenced transhumanism - standalone position, after the map */
+    .bd-sequence-inner { max-width: var(--read); margin: 0 auto; text-align: left; }
+    .bd-sequence-title {
+      font-family: var(--serif); font-style: italic; font-weight: 500;
+      font-size: clamp(1.55rem, 3vw, 2.25rem); line-height: 1.06; letter-spacing: -0.015em;
+      color: var(--oxblood); margin: 0 0 clamp(1.1rem, 2.2vw, 1.5rem);
+    }
+    .bd-sequence-inner p {
+      font-family: var(--serif); font-weight: 400;
+      font-size: clamp(0.98rem, 1.25vw, 1.1rem); line-height: 1.6;
+      color: var(--oxblood-ink); margin: 0 0 clamp(0.9rem, 1.8vw, 1.25rem);
+    }
+    .bd-sequence-link {
+      display: inline-block; margin-top: clamp(0.4rem, 1vw, 0.7rem);
+      font-family: var(--mono); font-size: clamp(0.82rem, 1vw, 0.92rem);
+      letter-spacing: 0.14em; text-transform: uppercase; font-weight: 500;
+      color: var(--teal); text-decoration: none;
+      border-bottom: 1px solid rgba(45,107,107,0.4); padding-bottom: 2px;
+      transition: color 0.16s ease, border-color 0.16s ease;
+    }
+    .bd-sequence-link:hover, .bd-sequence-link:focus-visible { color: var(--oxblood); border-color: var(--oxblood); }
 </style>
 </head>
 <body data-page="home">
@@ -1561,6 +1605,24 @@
         </div>
       </div>
 
+      <!-- Two conclusions - the pair of flagship positions, stated plainly before the map.
+           The block states the positions; the hero row above lists the destinations. -->
+      <div class="bd-conclusions">
+        <span class="bd-conclusions-intro">Two conclusions follow.</span>
+        <div class="bd-conclusions-grid">
+          <div class="bd-conclusion bd-arm-head">
+            <p class="bd-arm-title">Align AI to the spec, not the signal.</p>
+            <p class="bd-arm-tag">Preferences are mechanism outputs, not ground truth. There is no hidden true preference to infer. There is something to specify, and it is being written down in the open.</p>
+            <a class="bd-arm-paper" href="https://cor.demismatch.com/bridge-paper.html">Read the paper - <em>The Optimizer Without a Target</em> →</a>
+          </div>
+          <div class="bd-conclusion bd-arm-head">
+            <p class="bd-arm-title">Fix the world first. Augment the human second.</p>
+            <p class="bd-arm-tag">You cannot upgrade a system whose error signals you are still ignoring.</p>
+            <a class="bd-arm-paper" href="essay.html">Read the essay - written by hand, by the founder →</a>
+          </div>
+        </div>
+      </div>
+
       <!-- Fold-out: the needs lists, expanded inline from "what humans need" above. -->
       <div class="bd-needs-fold" id="needs-fold" role="region" aria-label="What humans need, and what humans don't">
         <div class="bd-disclosure-body">
@@ -1616,7 +1678,8 @@
             <header class="bd-arm-head">
               <span class="bd-arm-kicker">For machines</span>
               <h3 class="bd-arm-title">AI alignment</h3>
-              <p class="bd-arm-tag">Align the AI being built on us - to what humans <em>are</em>, beneath what they say they want.</p>
+              <p class="bd-arm-tag"><strong>Preferences are mechanism outputs, not ground truth.</strong> Every alignment method in serious use - RLHF, Constitutional AI, inverse reinforcement learning - assumes a true human preference waiting to be inferred. There isn't one. What looks like preference is the readout of ancient mechanisms firing in an environment they weren't built for. Align to the readout and you don't align AI with humans. You align it with the mismatch, and you industrialize it. We already ran that experiment at civilizational scale. It's called the attention economy.</p>
+              <p class="bd-arm-tag">The alternative isn't better inference. It's specification. Align the AI being built on us to what humans need, beneath what they say they want.</p>
               <a class="bd-arm-paper" href="https://cor.demismatch.com/bridge-paper.html">Read the paper · <em>What Alignment Misses</em> →</a>
             </header>
             <details class="bd-arm-fold" open>
@@ -1828,7 +1891,6 @@
             <p><strong>Dynamic egalitarianism.</strong> The only status that sits right with the organism is the kind you earn inside a group that can see you, and lose the moment you stop earning it. Rank that answers to what you actually do, and that the group can take back.</p>
             <p><strong>Economic substrate.</strong> A basic income, or something like it, is not charity. It's the floor everything else stands on. Stop forcing people to sell their hours into anonymous markets just to earn the right to exist, and most of the rest opens up.</p>
             <p><strong>Sovereign groups.</strong> Give small, Dunbar-scale groups real legal standing, as the layer where belonging and governance actually live. Nobody's seceding. The unit of belonging just moves down to a size a person can hold.</p>
-            <p><strong>Augment from the baseline.</strong> Once the environment fits, technology goes back to its real job: making a good life bigger instead of standing in for one. <em>Demismatch the world - then augment.</em></p>
           </div>
         </details>
 
@@ -1836,6 +1898,18 @@
 
       </div><!-- /.bd-stage -->
 
+    </section>
+
+
+    <!-- Sequenced transhumanism - the standalone position: fix the fit, then augment. -->
+    <section class="panel reveal d2" aria-label="Fix the world first, augment the human second">
+      <div class="bd-sequence-inner">
+        <h2 class="bd-sequence-title">Fix the world first. Augment the human second.</h2>
+        <p>Transhumanism has the order of operations backwards. You do not augment a mismatched animal - you only augment the mismatch. Bolt god-tier technology onto a nervous system already spiraling on proxies and hyperstimuli and you don't get transcendence. You get the same traps with more horsepower.</p>
+        <p>This is not primitivism. Nature is full of mosquitoes. It is sequencing. Build the room the animal was built for first - the faces you see daily, work that visibly feeds people you can name, signals that resolve instead of loops that never close. Once the environment fits, technology goes back to its real job: making a good life bigger instead of standing in for one.</p>
+        <p>Then augment, if you still want to. You will be upgrading a system that works, instead of accelerating one that is screaming.</p>
+        <a class="bd-sequence-link" href="essay.html">Read the essay - the whole argument, written by hand →</a>
+      </div>
     </section>
 
 
@@ -1970,6 +2044,11 @@
         <details class="faq-item">
           <summary>Why does a project about human suffering care so much about AI?</summary>
           <p class="faq-a">Because the machines that will design, coordinate, and operate human environments at scale are being built right now against an unexamined assumption: that what a person clicks, says, or prefers is reliable evidence of what is good for them. AI aligned to current preferences builds perfect proxies and deepens the mismatch. AI aligned to the specification of what humans actually need can build environments that match. The alignment work and the environment work are not two projects. They are the same project.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>What would prove this wrong?</summary>
+          <p class="faq-a">Environments rebuilt against the atlas should show substantially lower rates of depression, anxiety, and loneliness than matched controls. That study has not been run, and the measurement protocol for running it is an open gap in the atlas, named as one. If it runs and the effect is not there, the framework fails. The full falsification conditions are stated in the <a href="https://cor.demismatch.com/programme.html" style="color:var(--teal);border:0;">research programme</a>.</p>
         </details>
 
         <span class="faq-group-label">The two arms</span>
@@ -2396,6 +2475,6 @@
   })();
   </script>
 
-  <script src="scroll-fx.js?v=7" onerror="document.documentElement.classList.remove('sfx-armed')"></script>
+  <script src="scroll-fx.js?v=8" onerror="document.documentElement.classList.remove('sfx-armed')"></script>
 </body>
 </html>
