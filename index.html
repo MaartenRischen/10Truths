@@ -1612,7 +1612,7 @@
         <div class="bd-conclusions-grid">
           <div class="bd-conclusion bd-arm-head">
             <p class="bd-arm-title">Align AI to the spec, not the signal.</p>
-            <p class="bd-arm-tag">Preferences are mechanism outputs, not ground truth. There is no hidden true preference to infer. There is something to specify, and it is being written down in the open.</p>
+            <p class="bd-arm-tag">Preferences are mechanism outputs, and in a mismatched environment those outputs are proxy-contaminated. Cor does not claim to recover a hidden 'true preference' - it specifies the machinery those preferences read out from, as one input for alignment, and marks what it cannot yet pin down.</p>
             <a class="bd-arm-paper" href="https://cor.demismatch.com/bridge-paper.html">Read the paper - <em>The Optimizer Without a Target</em> →</a>
           </div>
           <div class="bd-conclusion bd-arm-head">
@@ -1678,7 +1678,7 @@
             <header class="bd-arm-head">
               <span class="bd-arm-kicker">For machines</span>
               <h3 class="bd-arm-title">AI alignment</h3>
-              <p class="bd-arm-tag"><strong>Preferences are mechanism outputs, not ground truth.</strong> Every alignment method in serious use - RLHF, Constitutional AI, inverse reinforcement learning - assumes a true human preference waiting to be inferred. There isn't one. What looks like preference is the readout of ancient mechanisms firing in an environment they weren't built for. Align to the readout and you don't align AI with humans. You align it with the mismatch, and you industrialize it. We already ran that experiment at civilizational scale. It's called the attention economy.</p>
+              <p class="bd-arm-tag"><strong>Preference-based alignment inherits whatever contaminates the preference signal.</strong> The field already knows the readout can be corrupted - reward hacking, preference misspecification, and sycophancy are all active work on exactly that. What that work does not settle is what the preference is a readout <em>of</em>. A preference can be ancient machinery firing in an environment it was never built for. Align to the readout without a model of the machinery and you do not align AI with humans; you align it with the mismatch, and you industrialize it. We already ran that experiment at civilizational scale. It is called the attention economy. Cor is a candidate account of the machinery.</p>
               <p class="bd-arm-tag">The alternative isn't better inference. It's specification. Align the AI being built on us to what humans need, beneath what they say they want.</p>
               <a class="bd-arm-paper" href="https://cor.demismatch.com/bridge-paper.html">Read the paper · <em>What Alignment Misses</em> →</a>
             </header>
