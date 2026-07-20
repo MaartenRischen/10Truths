@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Demismatch - Humans need a world that fits humans.</title>
+  <title>Demismatch - FAQ</title>
   <meta name="description" content="Modern distress is accurate signaling about a world that no longer fits you, not a disorder in you. Fix the environment first, upgrade the human second - and align AI to what humans need, not what they say they want.">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Demismatch">
@@ -1177,50 +1177,6 @@
       margin: 0 0 clamp(0.9rem, 1.8vw, 1.3rem);
     }
     .bd-arm-right .bd-conclusion-fig { margin-left: auto; }
-    /* each arm is ONE framed card: conclusion + its roadmap / decode section */
-    .bd-arm-card {
-      background: var(--parchment-soft);
-      border: 1px solid rgba(58, 18, 24, 0.16);
-      border-radius: 12px;
-      box-shadow: 4px 4px 0 var(--teal);
-      padding: clamp(1.3rem, 2.6vw, 2rem);
-    }
-    /* sub-section label (Roadmap / Decode:Talk), divided from the conclusion above */
-    .bd-arm-sub {
-      display: block;
-      margin-top: clamp(1.3rem, 2.6vw, 2rem);
-      padding-top: clamp(1.1rem, 2.2vw, 1.6rem);
-      border-top: 1px solid rgba(58, 18, 24, 0.14);
-      margin-bottom: 0.5rem;
-    }
-    .bd-arm-card .bd-node-name {
-      font-family: var(--serif); font-weight: 600;
-      font-size: clamp(1.02rem, 1.4vw, 1.22rem); color: var(--oxblood);
-    }
-    .bd-extra-tag {
-      font-family: var(--serif); font-weight: 400;
-      font-size: clamp(0.88rem, 1.1vw, 0.98rem); line-height: 1.45;
-      color: var(--oxblood-ink); margin: 0 0 0.7rem;
-    }
-    .bd-arm-card .bd-node-visual { margin: 0.5rem 0; border-radius: 8px; overflow: hidden; border: 1px solid rgba(236, 224, 196, 0.14); }
-    .bd-arm-card .bd-node-visual svg { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; }
-    .bd-extra-form {
-      font-family: var(--serif); font-size: clamp(0.85rem, 1vw, 0.95rem);
-      color: var(--oxblood-ink); margin: 0.7rem 0 0;
-    }
-    .bd-extra-form a { color: var(--teal); text-decoration: none; border-bottom: 1px solid rgba(45, 107, 107, 0.4); padding-bottom: 1px; }
-    .bd-extra-form a:hover, .bd-extra-form a:focus-visible { color: var(--oxblood); border-color: var(--oxblood); }
-    /* Cor video: small play button tucked top-left so it doesn't cover the logo */
-    .bd-source-video .vid-play {
-      top: 12px; left: 12px; transform: none;
-      width: clamp(36px, 4vw, 44px); height: clamp(36px, 4vw, 44px);
-      box-shadow: 0 2px 10px rgba(26, 6, 8, 0.35);
-    }
-    .bd-source-video .vid-play::before { border-width: 7px 0 7px 11px; left: 55%; }
-    .bd-source-video .vid-facade:hover .vid-play { transform: scale(1.06); background: var(--oxblood); }
-    /* Decode:Talk heading link (the card's Try Decode:Talk CTA) */
-    .bd-decode-cta { text-decoration: none; color: var(--oxblood); border-bottom: 2px solid rgba(45, 107, 107, 0.4); padding-bottom: 1px; transition: color 0.16s ease, border-color 0.16s ease; }
-    .bd-decode-cta:hover, .bd-decode-cta:focus-visible { color: var(--teal); border-color: var(--teal); }
     .bd-arm-kicker {
       display: block; font-family: var(--mono); font-size: 0.85rem;
       letter-spacing: 0.36em; text-transform: uppercase; font-variant: normal; font-weight: 600;
@@ -1399,11 +1355,6 @@
     .bd-source-mark .dot { fill: var(--teal-bright); }
     .bd-source-mark .wm { fill: var(--parchment); font-family: var(--serif); font-weight: 500; }
     .bd-source-mark .wm text { font-size: 116px; text-anchor: middle; }
-    /* academic-breakdown video where the logo used to sit (tile already has the teal+gold spine) */
-    .bd-source-video { width: 100%; margin: 0.2rem 0 clamp(1rem, 2vw, 1.4rem); }
-    .bd-source-video .vid-facade, .bd-source-video .vid-embed {
-      box-shadow: none; border-color: rgba(236, 224, 196, 0.25); border-radius: 10px;
-    }
     .bd-source-title { font-family: var(--serif); font-weight: 500; font-style: italic; font-size: clamp(1.5rem, 2.3vw, 2.05rem); line-height: 1.05; letter-spacing: -0.015em; color: var(--parchment); margin: 0 0 0.3rem; }
     .bd-source-spec { font-family: var(--serif); font-size: 1rem; color: #c4b894; margin: 0 0 0.55rem; }
 
@@ -1715,7 +1666,7 @@
 
       <!-- Quiet corner link to the about page -->
       <nav class="bd-corner-nav" aria-label="Secondary">
-        <a class="bd-corner-link" href="faq.html">FAQ</a>
+        <a class="bd-corner-link" href="index.html">Home</a>
         <a class="bd-corner-link" href="about.html">About</a>
       </nav>
 
@@ -1727,201 +1678,267 @@
       </p>
 
       <!-- Stage: hero + map, over the dystopia↔eden mannequin backdrop -->
-      <div class="bd-stage">
 
-      <div class="bd-backdrop bd-backdrop-l" aria-hidden="true"></div>
-      <div class="bd-backdrop bd-backdrop-r" aria-hidden="true"></div>
-
-      <!-- Hero - the hook and the claim, centred. -->
-      <div class="bd-herocenter">
-        <h1 class="bd-thesis">Humans need a world that fits humans.<span class="bd-sub">AI should help build it.</span></h1>
-
-        <!-- Hero film: the V1 mismatch film. Click-to-play facade -> self-hosted <video> (no YouTube chrome). -->
-        <figure class="bd-film" id="bd-film">
-          <button type="button" class="bd-film-trigger" id="film-trigger"
-                  data-src="film.mp4?v=2049"
-                  aria-label="Play the film">
-            <picture>
-              <source srcset="film-poster.webp" type="image/webp">
-              <img class="bd-film-poster" src="film-poster.jpg" alt="A wooden figure facing a single hanging electric light in a dark workshop." width="1280" height="720" loading="eager" fetchpriority="high" decoding="async">
-            </picture>
-            <span class="bd-film-tag" aria-hidden="true">You are not broken</span>
-            <span class="bd-film-play" aria-hidden="true"></span>
-            <span class="bd-film-cap" aria-hidden="true">Demismatch · The Film · 5 min</span>
-          </button>
-        </figure>
-
-        <!-- Structured inventory: what this is, what is human-made, what is AI-made -->
-        <div class="bd-inv">
-          <div class="bd-inv-group">
-            <span class="bd-inv-head">What this is</span>
-            <ul class="bd-inv-list">
-              <li>Demismatch is an open, non-profit project. At its center is Cor: an evidence-graded atlas of what human beings need, built so any environment or technology can be checked against it. <a href="https://cor.demismatch.com/">Open Cor →</a></li>
-            </ul>
-          </div>
-          <div class="bd-inv-group">
-            <span class="bd-inv-head">What is human-made</span>
-            <ul class="bd-inv-list">
-              <li><em class="bd-inv-em">The science in Cor:</em> 610 extractions from 125 published papers. Human researchers, human findings, every claim traceable to a DOI or PMID.</li>
-              <li><em class="bd-inv-em">The essay:</em> written by the founder. No AI. <a href="founder.html">Who I am →</a></li>
-            </ul>
-          </div>
-          <div class="bd-inv-group">
-            <span class="bd-inv-head">What is AI-made</span>
-            <ul class="bd-inv-list">
-              <li>The Cor pipeline, the films, the graphics, the site build, decode:talk.</li>
-            </ul>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- Fold-out: the needs lists, expanded inline from "what humans need" above. -->
-      <div class="bd-needs-fold" id="needs-fold" role="region" aria-label="What humans need, and what humans don't">
-        <div class="bd-disclosure-body">
-
-          <div class="bd-needs">
-            <span class="bd-need-head">Humans need</span>
-            <ul class="bd-need-list">
-              <li class="bd-need-item"><span class="bd-need-title">A reason to get up.</span><span class="bd-need-desc">Something pulling you out of bed before anyone asks.</span></li>
-              <li class="bd-need-item"><span class="bd-need-title">People who'd notice if you vanished.</span><span class="bd-need-desc">A few who'd come looking.</span></li>
-              <li class="bd-need-item"><span class="bd-need-title">Respect from people who know you.</span><span class="bd-need-desc">Earned from faces you'll see again.</span></li>
-              <li class="bd-need-item"><span class="bd-need-title">People who knew you before.</span><span class="bd-need-desc">Someone who remembers the old you and will be there for the next one.</span></li>
-              <li class="bd-need-item"><span class="bd-need-title">To be touched.</span><span class="bd-need-desc">Skin, warmth, another body in the room.</span></li>
-              <li class="bd-need-item"><span class="bd-need-title">A role only you can fill.</span><span class="bd-need-desc">A place that stays empty without you.</span></li>
-              <li class="bd-need-item"><span class="bd-need-title">Real stakes.</span><span class="bd-need-desc">Things that get worse if you don't show up.</span></li>
-              <li class="bd-need-item"><span class="bd-need-title">Effort that costs something.</span><span class="bd-need-desc">The hard part is the point. Remove it and the reward goes with it.</span></li>
-              <li class="bd-need-item"><span class="bd-need-title">Work that leaves a mark.</span><span class="bd-need-desc">Effort that changed something you can point to.</span></li>
-              <li class="bd-need-item"><span class="bd-need-title">Someone smaller to protect.</span><span class="bd-need-desc">A life that needs you to stay alive.</span></li>
-              <li class="bd-need-item"><span class="bd-need-title">A village around your kid.</span><span class="bd-need-desc">One adult doing a five-person job is not a parenting style. It is a missing village.</span></li>
-              <li class="bd-need-item"><span class="bd-need-title">To move the way you're built to.</span><span class="bd-need-desc">Hard physical work your day actually requires.</span></li>
-              <li class="bd-need-item"><span class="bd-need-title">A future worth working toward.</span><span class="bd-need-desc">A tomorrow your effort actually changes.</span></li>
-            </ul>
-          </div>
-
-          <div class="bd-needs bd-needs-no">
-            <span class="bd-need-head">Humans don't need</span>
-            <ul class="bd-need-list">
-              <li class="bd-need-item"><span class="bd-need-title">A feed that never ends.</span><span class="bd-need-desc">Built so the feeling of enough never arrives.</span></li>
-              <li class="bd-need-item"><span class="bd-need-title">More followers.</span><span class="bd-need-desc">A bigger number, and still no one who would notice you gone.</span></li>
-              <li class="bd-need-item"><span class="bd-need-title">An audience.</span><span class="bd-need-desc">Watched by thousands, known by none.</span></li>
-              <li class="bd-need-item"><span class="bd-need-title">An AI that knows your name.</span><span class="bd-need-desc">A chatbot playing the friend you need.</span></li>
-              <li class="bd-need-item"><span class="bd-need-title">A partner made of code.</span><span class="bd-need-desc">Your bonding goes out to something with no life on the other end of it.</span></li>
-              <li class="bd-need-item"><span class="bd-need-title">A job sold as your identity.</span><span class="bd-need-desc">Purpose on loan from someone else's spreadsheet.</span></li>
-              <li class="bd-need-item"><span class="bd-need-title">Points and streaks.</span><span class="bd-need-desc">Progress bars standing in for real consequences.</span></li>
-              <li class="bd-need-item"><span class="bd-need-title">Everything made easy.</span><span class="bd-need-desc">Friction removed until nothing you do can fail or matter.</span></li>
-              <li class="bd-need-item"><span class="bd-need-title">Achievements that unlock nothing.</span><span class="bd-need-desc">Badges and levels filling up while the world stays exactly the same.</span></li>
-              <li class="bd-need-item"><span class="bd-need-title">Care from something that can't die.</span><span class="bd-need-desc">Comfort from a thing that acts like it cares and cannot.</span></li>
-              <li class="bd-need-item"><span class="bd-need-title">Worlds full of fake people.</span><span class="bd-need-desc">Crowds of NPCs, not one of them anyone.</span></li>
-              <li class="bd-need-item"><span class="bd-need-title">Exercise that's just a number.</span><span class="bd-need-desc">Your body was built to carry, build, and cover ground. Closing a ring is none of that.</span></li>
-              <li class="bd-need-item"><span class="bd-need-title">A screen built to keep you watching.</span><span class="bd-need-desc">Engineered to hold the hours you would have spent building something.</span></li>
-            </ul>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- The map - Cor at the hub, two arms (open by default), the horizon (collapsed). -->
-      <section class="bd-map" id="vision" aria-label="The map: Cor at the centre, two arms built on it, and the horizon">
-
-        <div class="bd-map-grid">
-
-          <!-- ARM · For machines -->
-          <div class="bd-arm bd-arm-left">
-            <div class="bd-arm-head bd-arm-card">
-              <img class="bd-conclusion-fig" src="arm-machines.png" alt="A wooden mannequin aiming a bow at a target." width="640" height="395" loading="lazy" decoding="async">
-              <h3 class="bd-arm-title">Align AI to what humans need, not what they click.</h3>
-              <a class="bd-arm-paper" href="https://cor.demismatch.com/bridge-paper.html">Read the paper - <em>The Optimizer Without a Target</em> →</a>
-              <span class="bd-arm-kicker bd-arm-sub">Roadmap</span>
-              <p class="bd-extra-tag">Alignment builds on the atlas in three tracks: a machine-readable spec any model reads at inference through one tool-call surface; steering, data curation, and evals against that spec as ground truth; and small models spec-grounded from pretraining forward.</p>
-            </div>
-          </div>
-
-          <div class="bd-source" id="cor">
-            <span class="bd-source-kicker">The source</span>
-            <figure class="vid-card bd-source-video">
-              <button type="button" class="vid-facade" data-embed="https://www.youtube-nocookie.com/embed/PyomiIbZIQQ?rel=0&amp;modestbranding=1" aria-label="Play: Cor - Academic breakdown">
-                <img class="vid-thumb" src="https://i.ytimg.com/vi/PyomiIbZIQQ/maxresdefault.jpg" alt="Cor - Academic breakdown" width="1280" height="720" loading="lazy" decoding="async" onload="if(this.naturalWidth<=121){this.onload=null;this.src='https://i.ytimg.com/vi/PyomiIbZIQQ/sddefault.jpg';}" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/PyomiIbZIQQ/sddefault.jpg';">
-                <span class="vid-play" aria-hidden="true"></span>
-                <span class="vid-dur" aria-hidden="true">5:51</span>
-              </button>
-            </figure>
-            <h2 class="bd-source-title">Cor - what a human needs</h2>
-            <p class="bd-source-spec">An evidence-graded atlas of the human - built toward a specification.</p>
-            <a class="bd-source-cta" href="https://cor.demismatch.com/">Open Cor →</a>
-            <div class="bd-source-credit">
-              <span class="bd-source-credit-label">Built on the work of</span>
-              <span class="bd-source-credit-names">
-                <span class="cr-pill">Darwin</span>
-                <span class="cr-pill">Bowlby</span>
-                <span class="cr-pill">Trivers</span>
-                <span class="cr-pill">Tooby &amp; Cosmides</span>
-                <span class="cr-pill">Nesse</span>
-                <span class="cr-pill">Panksepp</span>
-                <span class="cr-pill">Dunbar</span>
-                <span class="cr-pill">Hrdy</span>
-                <span class="cr-pill">Sapolsky</span>
-                <span class="cr-pill">de Waal</span>
-                <span class="more">+ more</span>
-              </span>
-            </div>
-            <div class="bd-source-answers">
-              <span class="bd-source-answers-label">It answers</span>
-              <ul>
-                <li>What do humans need? <span class="t">foundations</span></li>
-                <li>How do those needs operate? <span class="t">mechanisms</span></li>
-                <li>Where does mismatch occur? <span class="t">diagnosis</span></li>
-                <li>What repairs it? <span class="t">intervention</span></li>
-              </ul>
-            </div>
-            <div class="bd-source-stats">
-              <div class="stat"><span class="n">17</span><span class="l">Foundations</span></div>
-              <div class="stat"><span class="n">15</span><span class="l">Mechanisms</span></div>
-              <div class="stat"><span class="n">608</span><span class="l">Extractions</span></div>
-              <div class="stat"><span class="n">64</span><span class="l">Researchers</span></div>
-            </div>
-            <p class="bd-source-note">every evidential claim carries explicit provenance: a DOI or a PMID and a verbatim quote; where provenance is incomplete or quarantined, the atlas says so</p>
-          </div>
-
-          <!-- ARM · For humans -->
-          <div class="bd-arm bd-arm-right">
-            <div class="bd-arm-head bd-arm-card">
-              <img class="bd-conclusion-fig" src="arm-people.png" alt="A wooden mannequin building a small house, augmentation parts set aside." width="640" height="563" loading="lazy" decoding="async">
-              <h3 class="bd-arm-title">Fix the environment first. Upgrade the human second.</h3>
-              <a class="bd-arm-paper" href="essay.html">Read the essay - written by hand, by the founder →</a>
-              <span class="bd-node-name bd-arm-sub"><a class="bd-decode-cta" href="decode-talk.html">Try Decode:Talk!</a> <span class="bd-badge bd-badge-live">live</span></span>
-              <p class="bd-extra-tag">Type a situation; get the mechanism firing, the proxy hitting it, and what would resolve.</p>
-              <div class="bd-node-visual"><svg viewBox="0 0 1600 900" class="bd-mock" preserveAspectRatio="xMidYMid slice">
-                <rect width="1600" height="900" fill="#120506"/>
-                <text x="60" y="66" font-family="'JetBrains Mono',monospace" font-size="26" fill="#c4962c" letter-spacing="6">DECODE · TALK</text>
-                <line x1="60" y1="96" x2="1540" y2="96" stroke="#3a1218" stroke-width="1.5"/>
-                <text x="1540" y="148" font-family="'JetBrains Mono',monospace" font-size="18" fill="#6a5a3a" letter-spacing="4" text-anchor="end">YOU</text>
-                <rect x="540" y="170" width="1000" height="130" rx="10" fill="#2a0c11" stroke="#c4962c" stroke-width="1.2"/>
-                <text x="570" y="222" font-family="'Spectral',serif" font-size="32" fill="#ece0c4">I keep checking my phone when I’m with people</text>
-                <text x="570" y="268" font-family="'Spectral',serif" font-size="32" fill="#ece0c4">I actually love. I hate it. I can’t stop.</text>
-                <text x="60" y="348" font-family="'JetBrains Mono',monospace" font-size="18" fill="#c4962c" letter-spacing="4">DECODE · TALK</text>
-                <rect x="60" y="368" width="1320" height="300" rx="10" fill="#1a0608" stroke="#3a1218" stroke-width="2"/>
-                <text x="90" y="428" font-family="'Spectral',serif" font-size="30" fill="#ece0c4">Your coalition monitor is running in the background.</text>
-                <text x="90" y="488" font-family="'Spectral',serif" font-size="26" fill="#c4b894">The circuit evolved to track where your people are. In a</text>
-                <text x="90" y="524" font-family="'Spectral',serif" font-size="26" fill="#c4b894">band of 50 you knew without looking. Now your coalition is</text>
-                <text x="90" y="560" font-family="'Spectral',serif" font-size="26" fill="#c4b894">scattered, and the only channel is the device in your hand.</text>
-                <text x="60" y="760" font-family="'JetBrains Mono',monospace" font-size="16" fill="#c4962c" letter-spacing="3">MECHANISM</text>
-                <text x="60" y="798" font-family="'Spectral',serif" font-size="22" fill="#c4b894">Coalition monitoring</text>
-                <text x="700" y="760" font-family="'JetBrains Mono',monospace" font-size="16" fill="#c4962c" letter-spacing="3">REAL INPUT</text>
-                <text x="700" y="798" font-family="'Spectral',serif" font-size="22" fill="#c4b894">Known people in shared space</text>
-              </svg></div>
-              <p class="bd-extra-form">Chat, grounded in the Cor spec.</p>
-            </div>
-          </div>
-
-        </div>
-
-      </section>
-
-      </div><!-- /.bd-stage -->
 
     </section>
 
+
+    <!-- Panel - Demismatch FAQ -->
+    <section class="panel reveal d3">
+
+      <div class="faq-cols">
+
+      <!-- Left column: the Demismatch FAQ -->
+      <div class="faq-col faq-col-demismatch">
+
+      <span class="bd-eyebrow faq-col-head">Frequently asked about Demismatch</span>
+
+      <div class="faq-list">
+
+        <details class="faq-item">
+          <summary>What is Demismatch?</summary>
+          <p class="faq-a">Demismatch is the whole project. It starts from a single claim: modern human distress is, in most cases, accurate signaling about a world that no longer fits the people in it, not a disorder inside those people. The systems that produce human wanting, fear, and feeling are working. The environment they are running in is wrong. Demismatch sets out to specify what humans are actually built to need, and then to build to it.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>So what is Cor, and how is it different from Demismatch?</summary>
+          <p class="faq-a">Cor is the central reference work inside Demismatch. It is the reference work, not the whole project. Demismatch is the project; Cor is the atlas at the center of it that describes what a human being needs at the level of evolved mechanism. Everything else in the project is built on top of Cor.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>How is the project structured?</summary>
+          <p class="faq-a">Four parts. There is the Why - the case that the problem is mismatch, that suffering is signal, that the fix is the world rather than the person. There is Cor, the source - the evidence-graded account of what humans need and how those needs operate. Then two arms built on Cor: one pointing at machines (aligning AI to the specification of what humans are), one pointing at people (tools that let a person see the mismatch they are in). And there is the Horizon - what comes after, when environments are built to fit human biology rather than against it.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>Why does a project about human suffering care so much about AI?</summary>
+          <p class="faq-a">Because the machines that will design, coordinate, and operate human environments at scale are being built right now against an unexamined assumption: that what a person clicks, says, or prefers is reliable evidence of what is good for them. AI aligned to current preferences builds perfect proxies and deepens the mismatch. AI aligned to the specification of what humans actually need can build environments that match. The alignment work and the environment work are not two projects. They are the same project.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>What would prove this wrong?</summary>
+          <p class="faq-a">Environments rebuilt against the atlas should show substantially lower rates of depression, anxiety, and loneliness than matched controls. That study has not been run, and the measurement protocol for running it is an open gap in the atlas, named as one. If it runs and the effect is not there, the framework fails. The full falsification conditions are stated in the <a href="https://cor.demismatch.com/programme.html" style="color:var(--teal);border:0;">research programme</a>.</p>
+        </details>
+
+        <span class="faq-group-label">The two arms</span>
+
+        <details class="faq-item">
+          <summary>What is the machine-facing arm?</summary>
+          <p class="faq-a">Alignment to Cor as ground truth - giving machines something to read about what humans are, underneath the layer of what humans say they want. Three lines: a machine-readable specification any model can query live; correction through contrastive pairs drawn from named mechanisms; and models built on the specification from the start, aimed at the places where hallucinating about human needs is most costly - clinical triage, educational scaffolding, therapy-adjacent tools.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>What is the human-facing arm?</summary>
+          <p class="faq-a">Software that shows a person what their environment is doing to their biology. Two families: Decode reads the mismatch - you point it at something and it returns the mechanism firing, the proxy modern life is using to hit it, and the real input that would resolve it. Adaptor builds the matched conditions back - tools that help put the missing inputs in front of you, starting with Lens, a morning tool that puts a role, a group, and a goal that matters back in your field of view.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>Which of these tools actually exist right now?</summary>
+          <p class="faq-a">Decode:Talk is live - the chat version, where you type a situation and get the read back. Decode:Web (a browser extension that annotates pages) and Decode:Camera (which reads a photo of a scene) are in build. Adaptor, starting with Lens, is next. There are openable, working public tools today.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>What does Decode give me that a wellness app doesn't?</summary>
+          <p class="faq-a">A wellness app tells you to feel better. An AI companion sits in the place of a relationship without supplying what a relationship is for - the most dangerous proxy of all, because it fires the bonding response while the function that would resolve it goes unsupplied. Decode does neither. It names what is happening: which evolved system is sounding, what cheap modern stand-in is setting it off, and what the real thing would be. The aim is to make the mismatch legible so you can act on the world.</p>
+        </details>
+
+        <span class="faq-group-label">Why you feel so bad</span>
+
+        <details class="faq-item">
+          <summary>Why do you feel so bad?</summary>
+          <p class="faq-a">Because you are a finely working organism in a world that does not fit you. The systems that produce your moods evolved to run in a small band of known people, under the sun, doing work that mattered to those people. You are running them in a world of strangers, screens, and anonymous markets. The bad feeling is those systems reporting the gap accurately. It is not malfunction. It is a correct readout of a wrong environment.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>Is something wrong with you, or with your environment?</summary>
+          <p class="faq-a">Your environment. It does not soften with repetition. The hardware works. Nothing in you is broken or defective or deficient. You have been handed conditions no human was built to run on, and your body is telling you so in the only language it has. The fault was never located in you. It is the gap, and the fact that the gap has been made to look normal.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>Why can't you stop ruminating?</summary>
+          <p class="faq-a">Because your problem-solving system is built to keep working a threat until it is resolved, and most modern threats never resolve. A predator leaves or it doesn't. A debt, a status hit, a relationship that went wrong, a future you can't control - these have no clean end state, so the loop never gets the signal to close. It is not weakness of will. It is a closing mechanism with nothing to close on. The loop stays open because the input stays open.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>What is anxiety actually?</summary>
+          <p class="faq-a">A threat detector doing its job in a world full of cues it cannot switch off. The system that scans for danger evolved to err toward false alarms, because historically the cost of missing a real threat was death and the cost of a false alarm was a wasted sprint. So it is loud and it is biased toward "danger" on purpose. Modern life feeds it an endless stream of things that look like threats - the inbox, the news, the crowd of strangers, the bill - none of which it can resolve by fighting or fleeing. Anxiety is that detector firing correctly at inputs it was never built to face.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>What is depression actually?</summary>
+          <p class="faq-a">In this framework, low mood is often a system pulling you back when something is wrong and effort isn't paying off. It can be a signal to stop, to conserve, to withdraw from a pursuit that is not working or a situation you cannot win. That signal becomes a trap when the underlying condition never changes - no role, no group that needs you, no work that matters, no daylight, no movement, no people. Then the pull-back never lifts, because the thing it was telling you to escape is still there every morning. The mood is reading the conditions. Change the conditions and the reading changes. (This is a framework account of a signal, not a clinical diagnosis - if you are in a dark place, see a real human professional. The two are not in conflict.)</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>Why does none of the usual advice fix it?</summary>
+          <p class="faq-a">Because almost all of it tries to fix you - your thoughts, your habits, your attitude - while leaving the conditions untouched. You can get better at managing a signal, and the signal will keep coming, because it is accurate. Telling a smoke detector to calm down does nothing about the smoke. The interventions that actually move the needle change the input: real people close by, a role that matters, daylight, movement, work tied to specific named others. The advice fails because it is aimed at the wrong layer.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>So what do you actually do about it?</summary>
+          <p class="faq-a">Stop looking for the defect in yourself, because there isn't one, and start reading your environment. Which of your systems is firing. What cheap modern stand-in is setting it off. What the real input would be. That is what the Decode tools are for - to make the mismatch legible so you can act on the world instead of managing your reaction to it. The fix is never "be different." It is "build conditions that fit what you already are."</p>
+        </details>
+
+        <span class="faq-group-label">Where it's going</span>
+
+        <details class="faq-item">
+          <summary>What is the project actually building toward?</summary>
+          <p class="faq-a">Environments that fit human biology. Concretely: people waking up inside conditions matched to what they are built for - a role the group depends on, a group at roughly the scale the human brain evolved to track, work that matters to specific named people, and a basis for living that does not require selling time into an anonymous market just to afford to exist. The claim is that when the environment is right, much of what now reads as individual pathology dissolves, because it was a readout of the gap all along.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>Isn't this just nostalgia for tribal life? Are you telling people to go live in the woods?</summary>
+          <p class="faq-a">No. The ancestral environment is used as a measuring instrument, not a destination. What matters is the function a system is built to receive, never its ancient form. A bonding system needs the function of trusted people close by; it does not need you to live in a hut. An environment built in software that delivers embodied presence, named others, real stakes, and shared work is a real match. Matched environments in software can ship in years.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>Where does technology fit in all this? Is the project anti-tech?</summary>
+          <p class="faq-a">No. Technology is neutral - what matters is whether it delivers the function a mechanism is checking for. The problem is not the tools. It is aiming them at preferences instead of needs, inside an environment that is already mismatched, where every improvement just makes the proxy smoother while the signal stays unmet.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>What is "demismatch first, then augment"?</summary>
+          <p class="faq-a">It is the test the whole project applies. Before adding any new capability - to a person, a tool, an environment - ask whether the underlying environment matches what humans need. If it does not, augmentation deepens the mismatch rather than helping. Fix the fit first, then augment from that baseline. It is the sentence the whole horizon is organized around.</p>
+        </details>
+
+        <span class="faq-group-label">Standing back</span>
+
+        <details class="faq-item">
+          <summary>Who is this for?</summary>
+          <p class="faq-a">Several audiences. People trying to understand their own distress without being told the fault is in them. AI labs and alignment researchers who need a model of the human that sits underneath stated preference. Clinicians, educators, designers, and policy people who work with human environments. And funders and researchers interested in foundational infrastructure for understanding what a human being needs.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>Who is behind this?</summary>
+          <p class="faq-a">One person, Maarten Rischen. <a href="founder.html" style="color:var(--teal);border:0;">Read about the founder</a> for the background, or the <a href="about.html" style="color:var(--teal);border:0;">About page</a> for the working papers and how to get in touch.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>Is a lot of this written by AI? Some of it reads that way.</summary>
+          <p class="faq-a">Yes, this answer included - and that's the honest place to start. The thinking came first, by hand: Maarten Rischen wrote hundreds of pages before any AI touched the project, and a lot of what's on this site is still his words, unchanged. An AI pipeline built out from there under his direction, finding the evidence, grading it, checking the sources, and assembling it into something systematic. That was deliberate. A framework meant to be checked line by line shouldn't rest on one person's conviction, however hard he holds it. The passion started it; it was never meant to be the proof. So don't read "AI-assembled" as a reason to trust it - read it as a reason to check it. Every claim opens onto its source: a DOI or a PMID and a word-for-word quote. Where the pipeline turned up junk, that work is quarantined and flagged, not shipped as evidence. What matters isn't who or what wrote the sentence. It's whether the claim underneath it holds - and that you can check yourself. And if you want the pure human voice, with no pipeline anywhere near it, <a href="essay.html" style="color:var(--teal);border:0;">the essay</a> is Maarten's, written by hand from start to finish.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>Is this proprietary? Can other people build on it?</summary>
+          <p class="faq-a">The atlas at the center is built as open foundational infrastructure, on purpose. It describes what a human being needs at the level of evolved mechanism, and any team can build on that - in technology, policy, education, clinical practice, or design. The alignment work is one application. The human-facing tools are another. Neither is the limit of what the source is for.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>Where do I start?</summary>
+          <p class="faq-a">Start with the Why if you want the case for why the problem is mismatch. Start with Cor if you want to see the evidence and the structure underneath everything. Try <a href="decode-talk.html" style="color:var(--teal);border:0;">Decode:Talk</a> if you want to point the lens at something in your own life. And read the Horizon if you want to know what the whole thing is being built toward.</p>
+        </details>
+
+      </div>
+      </div><!-- /.faq-col-demismatch -->
+
+      <!-- Right column: the Cor FAQ, full, badged with the Cor seal -->
+      <div class="faq-col faq-col-cor">
+
+      <span class="bd-eyebrow faq-col-head faq-col-head-cor">
+        <span class="cor-seal" aria-hidden="true"><svg viewBox="120 50 560 560" role="img" fill="none"><g stroke="currentColor" stroke-width="7" fill="none"><circle cx="399.5" cy="329" r="271"/><circle cx="446.5" cy="376.5" r="200"/><circle cx="488" cy="418" r="129"/></g><circle class="dot" cx="523" cy="453" r="59"/></svg></span>
+        <span>Frequently asked about Cor</span>
+      </span>
+
+      <div class="faq-list">
+
+        <span class="faq-group-label">What it is</span>
+
+        <details class="faq-item">
+          <summary>What is Cor, in one sentence?</summary>
+          <p class="faq-a">Cor is an evidence-graded atlas of what a human being needs: a map of the motivational and emotional systems that drive what humans want, feel, fear, and pursue, what each of those systems was built to need, and what only fires its cue without supplying the function.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>What does "atlas" mean here? I've also seen the word "specification."</summary>
+          <p class="faq-a">Cor is currently an atlas. It maps the territory. The specification is the operational layer it is being built toward, and that word is reserved for that future layer. The precedent is the Allen Brain Atlas or the Human Cell Atlas: open foundational infrastructure that describes what a thing is, built so that anyone can build on top of it.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>What is the core idea behind it?</summary>
+          <p class="faq-a">That modern human suffering is, in most cases, accurate signaling from a sound organism in a mismatched environment. The hardware works. The environment is wrong. Anxiety, low mood, chronic stress, loneliness, restlessness - these are usually intelligible outputs of systems doing their job, responding to conditions they were never built for. The problem is the gap between the world a human is built for and the world a human lives in. The fix is to change the world, not to locate a defect in the person.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>Why does that matter beyond psychology?</summary>
+          <p class="faq-a">Because it points at a blind spot in how we build technology, and especially how we try to align AI. The standard assumption is that what a person wants, clicks, or prefers reveals what is good for them. Cor's position is that preferences are outputs of evolved mechanisms, not ground truth. A lonely person can genuinely want an AI companion. A person caught in a feed can genuinely want the next video. The wanting is real. It is also not reliable evidence that the thing is good for them. Any system that optimizes for stated or revealed preference without a model of the architecture underneath is optimizing against the person it claims to serve. Cor is the model of that architecture. AI alignment is one application built on it. It is not the frame around it.</p>
+        </details>
+
+        <span class="faq-group-label">How it's built</span>
+
+        <details class="faq-item">
+          <summary>How was a source chosen for inclusion in Cor?</summary>
+          <p class="faq-a">A work has to clear three hard gates. First, it needs to be real and findable - every work needs a verifiable identifier (a DOI or PubMed ID) or must be physically in the collection. Second, anything taken from it has to come from the full text - claims sourced from an abstract, snippet, or aggregator summary are rejected outright. This rule is strict because an internal audit found a complete failure rate on claims pulled from snippets: fabricated quotes, drifted paraphrases, invented findings. Third, any direct quote stored against a work has to be word-for-word. A quote stitched from fragments counts as fabrication, not evidence.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>How is the material actually turned into findings?</summary>
+          <p class="faq-a">The process runs from the bottom up, from evidence to conclusions, never the other way around. A work is read, and individual findings are pulled from its full text. Each finding is recorded and graded for how strong the evidence is. These findings accumulate against the human systems they bear on. Where several independent lines of research - different labs, different methods, different decades - point at the same structural fact, that agreement is recorded as a convergence. Where the evidence converges hard enough, the convergence forces a system into the map outright. Five of the fifteen mechanisms are forced that way. The other ten are grounded by converging evidence without a single convergence entailing them, and they are marked as such. Nothing is reverse-engineered to fit a theory decided in advance, and where the derivation is incomplete the atlas says so rather than filling the gap with a story.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>What does the structure look like?</summary>
+          <p class="faq-a">It is a pyramid, derived once and now locked. Reading from the foundation up: two framing premises about how organisms relate to the world. Then three core premises: that survival and reproduction are what evolution optimizes for, that the organism is a set of specialized interacting systems rather than one general-purpose learner, and that modern environments systematically push those systems outside the range they were built for. From those, derived properties of the architecture. Then fourteen convergences. Then, at the top, fifteen mechanisms - the actual systems that produce human motivation and emotion. The shape of this structure is locked and will not be re-derived. How well each layer is grounded is a separate question, and the honest answer is on the <a href="https://cor.demismatch.com/derivation.html">stack page</a>: of the fifteen mechanisms, five are forced by a convergence that entails them, ten are associated by converging evidence without a single convergence forcing them, and two convergences carry no foundational parent yet and are marked open by design.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>What are the fifteen mechanisms?</summary>
+          <p class="faq-a">In plain terms: threat management, pursuit and exploration, social bonding, social calibration through play, status monitoring, agency, circadian regulation, immune regulation, care and alloparenting, movement, cooperation and alliance, contamination avoidance, energy regulation, reproductive motivation, and touch. Each maps to a system shaped by evolution, with a defined input the system checks for and a defined cost when that input is missing.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>How big is the atlas right now?</summary>
+          <p class="faq-a">The live, canonical counts are best read straight from the dashboard here at cor.demismatch.com, because they move as the work continues. Any specific figures quoted elsewhere are superseded by what the dashboard shows.</p>
+        </details>
+
+        <span class="faq-group-label">Quality &amp; philosophy</span>
+
+        <details class="faq-item">
+          <summary>What is the quality philosophy? How do you keep this honest?</summary>
+          <p class="faq-a">One commitment organizes everything: the evidence has to earn its place, and when it cannot, it gets downgraded rather than defended. When there is doubt about how strong a piece of evidence is, it is graded down, not up. The word "replicated" is reserved for genuine agreement across multiple studies. And the framework's own interpretations stay marked as theoretical unless directly tested. Two further rules: evolutionary hypotheses are never written into a system's description as established fact before they are verified; and known failures from psychology's replication crisis are flagged and excluded rather than quietly used.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>Books or papers - which does Cor rely on?</summary>
+          <p class="faq-a">Papers. Books are treated as the map; papers are the territory. A book describes research; a paper is research. So a claim traced to a popular synthesis is treated as a pointer toward the primary literature, not as the evidence itself.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>Doesn't this framework just explain away anything that challenges it?</summary>
+          <p class="faq-a">It is built specifically not to. Two conventions make that concrete, and they cut in opposite directions. When mainstream psychiatry fails - diagnostic categories that don't hold together, treatments that underperform - Cor counts that as support, because the framework predicts it. But findings from addiction neuroscience showing substance-specific neural mechanisms are treated as genuine challenges, not threats to be absorbed. The instinct to defend is exactly what is prohibited there. A framework that nothing could challenge would not be a framework.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>What is the EEA, and aren't you just saying "the caveman life was better"?</summary>
+          <p class="faq-a">No, and the distinction matters. The EEA - the environment a human's systems were shaped in - is used as a diagnostic baseline, a reference point for measuring the gap between what a system expects and what it gets. It is not a prescription, a destination, or a romanticized past. The goal is never to restore the ancestral form of anything. It is to deliver the function the system is actually checking for. A bonding system needs the function of trusted co-regulation; it does not need you to live in a hut.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>"Mismatch" - does that mean evolution broke us, or that we're badly designed?</summary>
+          <p class="faq-a">The opposite. The systems work. They are doing precisely what they were built to do. What has changed is the input. A smoke detector that goes off because the room is full of smoke is not broken. The architecture is sound; it is being fed conditions outside the range it was built for. Cor never locates the problem in the person. The villain is always the gap, and the normalization of that gap - never the human's wanting.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>How does Cor fit into the larger project?</summary>
+          <p class="faq-a">Cor is the central reference work of Demismatch. The atlas is the shared source, and the applied work sits on top of it. For machines, that means aligning systems to the architecture as ground truth. For humans, it means two tools: reading where the mismatch is, and building environments that match. The horizon the whole thing points at is matched environments - changing the world so the deep systems stop sounding the alarm.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>Can other people build on Cor?</summary>
+          <p class="faq-a">Yes. That is the point of building it as open foundational infrastructure rather than a proprietary product. The atlas describes what a human being needs at the level of evolved mechanism. Any team - in technology, policy, education, clinical practice, or design - can build on that. AI alignment is one such application. It is not the limit of what the atlas is for.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>Where do I find the current data?</summary>
+          <p class="faq-a">The dashboard at cor.demismatch.com carries the canonical, live counts and the full structure: every foundation, convergence, mechanism, and the evidence linking them. Any specific figures quoted elsewhere are superseded by what the dashboard shows.</p>
+        </details>
+
+      </div>
+
+      </div><!-- /.faq-col-cor -->
+
+      </div><!-- /.faq-cols -->
+
+    </section>
 
   </main>
 

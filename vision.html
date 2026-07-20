@@ -1,21 +1,2138 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Moved - Demismatch</title>
-<link rel="canonical" href="https://demismatch.com/#vision">
-<meta http-equiv="refresh" content="0; url=https://demismatch.com/#vision">
-<meta name="robots" content="noindex, follow">
-<style>
-  body { font-family: Georgia, "Times New Roman", serif; background: #f6f1e7; color: #2a1e1a;
-         max-width: 34rem; margin: 18vh auto 0; padding: 0 1.5rem; line-height: 1.6; }
-  a { color: #7c2529; }
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Demismatch - The vision</title>
+  <meta name="robots" content="noindex, follow">
+  <meta name="description" content="Modern distress is accurate signaling about a world that no longer fits you, not a disorder in you. Fix the environment first, upgrade the human second - and align AI to what humans need, not what they say they want.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Demismatch">
+  <meta property="og:url" content="https://demismatch.com/">
+  <meta property="og:title" content="Demismatch - Humans need a world that fits humans.">
+  <meta property="og:description" content="Modern distress is accurate signaling about a world that no longer fits you, not a disorder in you. Fix the environment first, upgrade the human second - and align AI to what humans need, not what they say they want.">
+  <meta property="og:image" content="https://demismatch.com/og-demismatch.jpg?v=1">
+  <meta property="og:image:secure_url" content="https://demismatch.com/og-demismatch.jpg?v=1">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="A wooden figure alone in a grey concrete corridor on the left; the same figures together in a warm garden and timber homes on the right.">
+  <!-- Twitter / X card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Demismatch - Humans need a world that fits humans.">
+  <meta name="twitter:description" content="Modern distress is accurate signaling about a world that no longer fits you, not a disorder in you. Fix the environment first, upgrade the human second - and align AI to what humans need, not what they say they want.">
+  <meta name="twitter:image" content="https://demismatch.com/og-demismatch.jpg?v=1">
+  <meta name="twitter:image:alt" content="A wooden figure alone in a grey concrete corridor on the left; the same figures together in a warm garden and timber homes on the right.">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" type="image/png" href="cor-mark.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="cor.css">
+  <!-- EXPERIMENT: scroll-reveal layer (arm before paint to avoid flash; self-disables under reduced-motion) -->
+  <script>(function(){try{if(!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches))document.documentElement.className+=' sfx-armed';}catch(e){}})();</script>
+  <link rel="stylesheet" href="scroll-fx.css?v=7">
+  <style>
+    /* ─────────────────────────────────────────────────────────
+       Front door - broadside cover. Two tan panels on a warm
+       cream page; cross-site nav folded into the top kicker and
+       the bottom network line. Composes cor.css tokens.
+       ───────────────────────────────────────────────────────── */
+
+    :root {
+      --page-bg: #f4f1e7;     /* warm cream behind the panels */
+      --panel-2: #d8caa3;     /* darker tan for the demo panel */
+      --col: 1480px;          /* PROTO: front door widened to full-width */
+      --read: 66ch;           /* PROTO: readable cap for long-form text inside wide panels */
+      --panel-radius: 16px;
+    }
+
+    /* Override cor.css's full-bleed tan surface with the cream cover field */
+    html, body { background: var(--page-bg); }
+    body {
+      background:
+        radial-gradient(circle at 16% 4%, rgba(58, 18, 24, 0.03) 0%, transparent 46%),
+        radial-gradient(circle at 88% 104%, rgba(45, 107, 107, 0.035) 0%, transparent 52%),
+        var(--page-bg);
+    }
+
+    .cover {
+      width: 100%;
+      max-width: var(--col);
+      margin: 0 auto;
+      padding: clamp(1.4rem, 4vw, 3rem) clamp(1rem, 4vw, 2rem) clamp(2.4rem, 5vw, 3.6rem);
+      display: flex;
+      flex-direction: column;
+      gap: clamp(1.1rem, 2vw, 1.6rem);
+    }
+
+    .panel {
+      background: var(--parchment);
+      border-radius: var(--panel-radius);
+      padding: clamp(1.8rem, 4.6vw, 3.4rem) clamp(1.6rem, 4.6vw, 3.4rem);
+      box-shadow: 0 1px 2px rgba(26, 6, 8, 0.06), 0 18px 44px rgba(26, 6, 8, 0.06);
+    }
+    /* shorter top band on the hero panel — trim the kicker-bar height ~⅓ */
+    .panel:has(.bd-kicker) { padding-top: clamp(1.1rem, 2.8vw, 2.05rem); position: relative; }
+
+    /* quiet About affordance, tucked into the hero panel's upper-right corner */
+    .bd-about-link {
+      position: absolute;
+      top: clamp(0.85rem, 2vw, 1.45rem);
+      right: clamp(1.1rem, 3.4vw, 2.4rem);
+      z-index: 4;
+      font-family: var(--mono);
+      font-size: 0.66rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: var(--teal);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(45, 107, 107, 0.35);
+      transition: color 0.16s ease, border-color 0.16s ease;
+    }
+    .bd-about-link:hover, .bd-about-link:focus-visible { color: var(--oxblood); border-bottom-color: var(--oxblood); }
+    @media (max-width: 560px) {
+      .bd-about-link { font-size: 0.58rem; letter-spacing: 0.14em; top: 0.7rem; right: 0.9rem; }
+    }
+
+    /* ── Top kicker - the cross-site line, folded into an eyebrow ── */
+    .bd-kicker {
+      margin: 0 0 clamp(1rem, 2.1vw, 1.45rem);
+      font-family: var(--mono);
+      font-size: 0.74rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: var(--teal);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: center;
+      gap: 0.55rem;
+    }
+    .bd-kicker a {
+      color: var(--teal);
+      border: 0;
+      text-decoration: none;
+      transition: color 0.16s ease;
+    }
+    .bd-kicker a:hover,
+    .bd-kicker a:focus-visible { color: var(--oxblood); }
+    .bd-kicker .cur { color: var(--teal); opacity: 0.95; }
+    .bd-kicker .sep { color: var(--muted-warm); opacity: 0.7; }
+
+    /* ── Hero - the thesis ── */
+    .bd-hero { margin: 0 0 clamp(1.6rem, 3.4vw, 2.4rem); }
+    .bd-thesis {
+      font-family: var(--serif);
+      font-weight: 500;
+      font-size: clamp(1.8rem, 4.25vw, 3.0rem);
+      line-height: 1.04;
+      letter-spacing: -0.032em;
+      color: var(--oxblood);
+      margin: 0;
+      max-width: 18ch;
+    }
+    .bd-sub {
+      display: block;
+      margin-top: 0.34em;
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: clamp(1.3rem, 2.8vw, 1.95rem);
+      letter-spacing: -0.01em;
+      color: var(--teal);
+    }
+
+    .bd-lede {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: clamp(0.9rem, 1.4vw, 1.1rem);
+      line-height: 1.55;
+      color: var(--oxblood-ink);
+      margin: 0;
+      max-width: 60ch;
+    }
+
+    /* Structured inventory - what this is, what is human-made, what is AI-made. Denser than the lede. */
+    .bd-inv {
+      max-width: min(100%, 40rem);
+      margin: clamp(1.1rem, 2.4vw, 1.8rem) auto 0;
+      text-align: center;
+      display: grid;
+      gap: clamp(0.9rem, 2vw, 1.3rem);
+      padding: clamp(1.3rem, 2.8vw, 2.1rem) clamp(1.4rem, 3.2vw, 2.6rem);
+      background: rgba(245, 242, 233, 0.86);
+      -webkit-backdrop-filter: blur(4px);
+      backdrop-filter: blur(4px);
+      border-radius: 14px;
+      box-shadow: 0 1px 24px rgba(42, 12, 17, 0.07);
+    }
+    .bd-inv-head {
+      display: block;
+      font-family: var(--mono);
+      font-size: clamp(0.58rem, 0.8vw, 0.66rem);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: var(--teal);
+      margin-bottom: 0.55rem;
+    }
+    .bd-inv-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.4rem; }
+    .bd-inv-list li {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: clamp(0.85rem, 1.1vw, 0.98rem);
+      line-height: 1.45;
+      color: var(--oxblood-ink);
+    }
+    .bd-inv-em { font-weight: 600; color: var(--oxblood); }
+    .bd-inv-list a {
+      color: var(--teal);
+      text-decoration: none;
+      border-bottom: 1px solid color-mix(in srgb, currentColor 40%, transparent);
+      padding-bottom: 1px;
+      white-space: nowrap;
+    }
+    .bd-inv-list a:hover, .bd-inv-list a:focus-visible { color: var(--oxblood); border-color: var(--oxblood); }
+    @media (max-width: 680px) {
+      .bd-inv { max-width: 30rem; gap: clamp(0.8rem, 3vw, 1.2rem); }
+    }
+
+    /* Quiet under-lede link to the plain-words page - site's mono/teal affordance */
+    .bd-plainlink {
+      display: inline-block;
+      margin-top: clamp(1.1rem, 2vw, 1.5rem);
+      font-family: var(--mono);
+      font-size: 0.74rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: var(--teal);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(45, 107, 107, 0.4);
+      transition: color 0.16s ease, border-color 0.16s ease;
+    }
+    .bd-plainlink:hover,
+    .bd-plainlink:focus-visible {
+      color: var(--oxblood);
+      border-bottom-color: var(--oxblood);
+    }
+
+    /* Plain-words disclosure - a native <details> whose summary reuses the
+       quiet plainlink affordance; the open body reveals the two needs lists
+       under the page's section-eyebrow headers. No JS. */
+    .bd-disclosure { margin-top: clamp(1.1rem, 2vw, 1.5rem); }
+    .bd-disclosure > summary {
+      display: inline-block;
+      list-style: none;
+      cursor: pointer;
+      font-family: var(--mono);
+      font-size: 0.74rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: var(--teal);
+      border-bottom: 1px solid rgba(45, 107, 107, 0.4);
+      transition: color 0.16s ease, border-color 0.16s ease;
+    }
+    .bd-disclosure > summary::-webkit-details-marker { display: none; }
+    .bd-disclosure > summary::marker { content: ""; }
+    .bd-disclosure > summary:hover,
+    .bd-disclosure > summary:focus-visible,
+    .bd-disclosure[open] > summary {
+      color: var(--oxblood);
+      border-bottom-color: var(--oxblood);
+    }
+    /* Plain-words reveal: two feature cards side by side (need | don't need),
+       built on the house card system - parchment-soft fill, oxblood hairline,
+       the signature offset spine shadow (teal for need, gold for don't-need). */
+    .bd-disclosure-body {
+      margin-top: clamp(1.3rem, 2.6vw, 2rem);
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: clamp(1rem, 2.2vw, 1.7rem);
+      align-items: stretch;
+    }
+    .bd-needs {
+      background: var(--parchment-soft);
+      border: 1px solid rgba(58, 18, 24, 0.4);
+      border-radius: var(--radius-sm);
+      padding: clamp(1.4rem, 2.6vw, 2.1rem) clamp(1.3rem, 2.4vw, 1.9rem) clamp(1.5rem, 2.8vw, 2.2rem);
+      box-shadow: var(--shadow-card);
+    }
+    .bd-needs-no { box-shadow: var(--shadow-gold); }
+    /* Card title - the most prominent element in the reveal */
+    .bd-need-head {
+      display: block;
+      font-family: var(--serif);
+      font-weight: 600;
+      font-size: clamp(1.42rem, 2.5vw, 1.95rem);
+      line-height: 1.04;
+      letter-spacing: -0.02em;
+      color: var(--oxblood);
+      margin: 0 0 clamp(0.9rem, 1.8vw, 1.3rem);
+      padding-bottom: clamp(0.7rem, 1.4vw, 1rem);
+      border-bottom: 1px solid rgba(58, 18, 24, 0.2);
+    }
+    .bd-need-list { list-style: none; margin: 0; padding: 0; }
+    .bd-need-item {
+      padding: clamp(0.55rem, 1.1vw, 0.78rem) 0;
+      border-top: 1px solid rgba(58, 18, 24, 0.1);
+    }
+    .bd-need-item:first-child { border-top: 0; padding-top: 0; }
+    .bd-need-title {
+      display: block;
+      font-family: var(--serif);
+      font-weight: 600;
+      font-size: clamp(1rem, 1.3vw, 1.12rem);
+      line-height: 1.2;
+      letter-spacing: -0.008em;
+      color: var(--oxblood);
+    }
+    .bd-need-desc {
+      display: block;
+      margin-top: 0.16rem;
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: clamp(0.85rem, 1vw, 0.93rem);
+      line-height: 1.4;
+      color: var(--oxblood-ink);
+      opacity: 0.78;
+    }
+    .bd-need-link {
+      grid-column: 1 / -1;
+      justify-self: start;
+      display: inline-block;
+      margin-top: clamp(0.8rem, 1.8vw, 1.4rem);
+    }
+    @media (max-width: 680px) {
+      .bd-disclosure-body { grid-template-columns: 1fr; }
+    }
+
+    /* Primary on-ramp: the autoplay explainer. A "watch" affordance carrying the
+       signature teal offset shadow - more prominent than the quiet plain link. */
+    .bd-watch {
+      display: inline-flex; align-items: center; gap: 0.7rem;
+      margin-top: clamp(1.2rem, 2.2vw, 1.7rem);
+      padding: 0.55rem 1.15rem 0.55rem 0.65rem;
+      font-family: var(--mono); font-size: 0.74rem; letter-spacing: 0.14em;
+      text-transform: uppercase; font-weight: 500; color: var(--oxblood);
+      text-decoration: none; background: var(--parchment-soft);
+      border: 1px solid rgba(58, 18, 24, 0.4); border-radius: 999px;
+      box-shadow: 3px 3px 0 var(--teal);
+      transition: box-shadow 0.18s ease, transform 0.18s ease, color 0.18s ease;
+    }
+    .bd-watch:hover, .bd-watch:focus-visible {
+      transform: translate(-1px, -1px); box-shadow: 5px 5px 0 var(--teal); color: var(--teal-deep);
+    }
+    .bd-watch .play {
+      display: inline-flex; align-items: center; justify-content: center; flex: 0 0 auto;
+      width: 24px; height: 24px; border-radius: 50%; background: var(--oxblood); color: var(--parchment);
+    }
+    .bd-watch .play svg { width: 10px; height: 10px; fill: currentColor; margin-left: 1px; display: block; }
+
+    /* ── Section eyebrow inside the panel ── */
+    .bd-eyebrow {
+      display: block;
+      text-align: center;
+      font-family: var(--mono);
+      font-size: clamp(0.9rem, 1.5vw, 1.08rem);
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: var(--teal);
+      margin: clamp(2rem, 4vw, 3rem) 0 clamp(1.2rem, 2.4vw, 1.7rem);
+    }
+
+    /* Two FAQs side by side: Demismatch (left) and Cor (right). Each is its
+       own bordered panel so the two sources read as clearly distinct; the Cor
+       panel carries the Cor seal in its header and a teal offset shadow. */
+    .faq-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(1rem, 2.4vw, 2rem);
+      align-items: start;
+      margin-top: clamp(1.2rem, 2.4vw, 1.7rem);
+    }
+    .faq-col {
+      border: 1px solid rgba(58, 18, 24, 0.4);
+      border-radius: var(--radius-sm);
+      background: var(--parchment-soft);
+      padding: clamp(1.1rem, 2.2vw, 1.8rem) clamp(1rem, 2vw, 1.6rem) clamp(0.7rem, 1.4vw, 1.1rem);
+      box-shadow: 2px 2px 0 rgba(45, 107, 107, 0.14);
+    }
+    .faq-col-cor { box-shadow: 4px 4px 0 var(--teal); }
+    .faq-col-head {
+      margin: 0 0 clamp(0.9rem, 1.8vw, 1.3rem);
+      font-size: clamp(0.74rem, 1.4vw, 0.92rem);
+      letter-spacing: 0.22em;
+    }
+    .faq-col-head-cor {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.55rem;
+    }
+    .cor-seal { width: 1.5em; height: 1.5em; flex: 0 0 auto; color: var(--oxblood); display: inline-block; }
+    .cor-seal svg { width: 100%; height: 100%; display: block; }
+    .cor-seal .dot { fill: var(--teal); }
+    @media (max-width: 820px) {
+      .faq-cols { grid-template-columns: 1fr; }
+    }
+
+    /* ── Cards ── */
+    .bd-card-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(0.7rem, 1.4vw, 1.1rem);
+      margin-top: clamp(0.7rem, 1.4vw, 1.1rem);
+    }
+    .bd-card {
+      display: flex;
+      flex-direction: column;
+      background: var(--parchment-soft);
+      border: 1px solid rgba(58, 18, 24, 0.4);
+      border-radius: var(--radius-sm);
+      padding: clamp(1.2rem, 2.4vw, 1.7rem);
+      text-decoration: none;
+      box-shadow: 2px 2px 0 rgba(45, 107, 107, 0.14);
+      transition: box-shadow 0.2s ease, transform 0.2s ease;
+    }
+    .bd-card:hover,
+    .bd-card:focus-visible {
+      box-shadow: 4px 4px 0 var(--teal);
+      transform: translate(-1px, -1px);
+    }
+    .bd-card-num {
+      font-family: var(--mono);
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      color: var(--gold);
+      margin-bottom: 0.9rem;
+    }
+    .bd-card-title {
+      font-family: var(--serif);
+      font-style: normal;
+      font-weight: 600;
+      font-size: clamp(1.18rem, 1.8vw, 1.38rem);
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+      color: var(--oxblood);
+      margin: 0 0 0.5rem;
+    }
+    .bd-card-desc {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: clamp(0.96rem, 1.2vw, 1.04rem);
+      line-height: 1.5;
+      color: var(--oxblood-ink);
+      margin: 0;
+    }
+
+    /* Lead card - the foundation, full width, the spine shadow. Cor mark on the left. */
+    .bd-card-lead {
+      flex-direction: row;
+      align-items: center;
+      gap: clamp(1.3rem, 4vw, 3rem);
+      margin-bottom: clamp(1rem, 1.8vw, 1.4rem);
+      padding: clamp(1.6rem, 3vw, 2.3rem) clamp(1.6rem, 3vw, 2.3rem) clamp(1.8rem, 3vw, 2.4rem);
+      box-shadow: 5px 5px 0 var(--teal), 10px 10px 0 var(--gold);
+    }
+    /* Cor mark - emblem on the left of the lead card (light-bg SVG, no filter) */
+    .bd-cor-mark {
+      flex: 0 0 auto;
+      width: clamp(68px, 12vw, 128px);
+      height: auto;
+    }
+    .bd-card-lead-body { display: flex; flex-direction: column; min-width: 0; }
+    /* the proof line, folded into the Cor lead card under its description */
+    .bd-card-lead-body .bd-stats {
+      margin: clamp(0.9rem, 1.8vw, 1.25rem) 0 0;
+      padding-top: clamp(0.7rem, 1.4vw, 1rem);
+      border-top: 1px solid rgba(45, 107, 107, 0.28);
+    }
+    .bd-card-lead-body .bd-stats-fig { font-size: clamp(0.94rem, 1.2vw, 1.04rem); }
+    .bd-card-lead-body .bd-stats-note { font-size: 0.78rem; }
+    .bd-card-lead:hover,
+    .bd-card-lead:focus-visible {
+      box-shadow: 7px 7px 0 var(--teal), 14px 14px 0 var(--gold);
+      transform: translate(-1px, -1px);
+    }
+    .bd-card-lead .bd-card-title {
+      font-size: clamp(1.5rem, 2.6vw, 2rem);
+      margin-bottom: 0.7rem;
+    }
+    .bd-card-lead .bd-card-desc {
+      font-size: clamp(1.04rem, 1.4vw, 1.18rem);
+      line-height: 1.52;
+      max-width: 56ch;
+    }
+
+    /* ── Stats line ── */
+    .bd-stats {
+      margin: clamp(1.8rem, 3.4vw, 2.6rem) 0 0;
+      color: var(--teal);
+      line-height: 1.55;
+    }
+    .bd-stats-fig {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: clamp(1.04rem, 1.4vw, 1.18rem);
+    }
+    .bd-stats-note {
+      font-family: var(--mono);
+      font-weight: 400;
+      font-size: 0.88rem;
+      letter-spacing: 0.01em;
+    }
+
+    /* ── Demo panel - proof you can feel ── */
+    .panel-demo { background: var(--panel-2); }
+    .bd-quote {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: clamp(1.3rem, 2.6vw, 1.78rem);
+      line-height: 1.3;
+      letter-spacing: -0.015em;
+      color: var(--oxblood);
+      margin: 0 0 clamp(1.1rem, 2.2vw, 1.6rem);
+      max-width: 34ch;
+    }
+    .bd-read {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: clamp(1.06rem, 1.5vw, 1.24rem);
+      line-height: 1.56;
+      color: var(--oxblood-ink);
+      margin: 0 0 clamp(1.8rem, 3.4vw, 2.6rem);
+      max-width: 62ch;
+    }
+    .bd-read-label {
+      font-family: var(--mono);
+      font-size: 0.74rem;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-right: 0.85rem;
+      white-space: nowrap;
+    }
+    /* Flatter than the house button-primary - mockup keeps the spine shadow on the lead card only */
+    .bd-cta {
+      display: inline-flex;
+      border: 0;
+      box-shadow: 3px 3px 0 rgba(45, 107, 107, 0.32);
+    }
+    .bd-cta:hover,
+    .bd-cta:focus-visible {
+      color: var(--parchment);
+      box-shadow: 5px 5px 0 var(--teal);
+    }
+
+    /* ── Decode:Talk style conversations (mirrors decode-talk.html) ── */
+    .dt-exchange { margin: 0 0 clamp(1.4rem, 2.4vw, 1.9rem); }
+    .dt-label {
+      display: block;
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin: 0 0 clamp(0.55rem, 1.1vw, 0.8rem);
+      padding-bottom: 0.5rem;
+      border-bottom: 1px dashed rgba(58, 18, 24, 0.3);
+    }
+    .dt-q {
+      background: var(--oxblood);
+      color: var(--parchment);
+      padding: clamp(0.65rem, 1.4vw, 0.95rem) clamp(1rem, 2vw, 1.4rem);
+      border-radius: 10px;
+      margin: 0 0 clamp(0.7rem, 1.4vw, 1rem) clamp(1.4rem, 14%, 7rem);
+      font-family: var(--serif);
+      font-size: clamp(1.04rem, 1.8vw, 1.22rem);
+      line-height: 1.4;
+      box-shadow: 4px 4px 0 var(--gold);
+    }
+    .dt-a {
+      background: var(--parchment-soft);
+      border: 1px solid var(--oxblood);
+      border-radius: 10px;
+      padding: clamp(0.8rem, 1.6vw, 1.1rem) clamp(1.1rem, 2.2vw, 1.5rem);
+      margin-right: clamp(0px, 8%, 4rem);
+      box-shadow: 6px 6px 0 var(--teal);
+    }
+    .dt-a p {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: clamp(0.97rem, 1.3vw, 1.08rem);
+      line-height: 1.6;
+      color: var(--oxblood-ink);
+      margin: 0;
+    }
+    .dt-spec {
+      margin: 0.7rem 0 0;
+      padding-top: 0.55rem;
+      border-top: 1px solid rgba(58, 18, 24, 0.2);
+      display: grid;
+      grid-template-columns: max-content 1fr;
+      gap: 0.4rem 1rem;
+    }
+    .dt-spec dt {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--teal);
+      padding-top: 0.2rem;
+    }
+    .dt-spec dd {
+      font-family: var(--serif);
+      font-size: 0.98rem;
+      color: var(--oxblood);
+      line-height: 1.5;
+      margin: 0;
+    }
+    @media (max-width: 680px) {
+      .dt-q { margin-left: 0; }
+      .dt-a { margin-right: 0; }
+      .dt-spec { grid-template-columns: 1fr; gap: 0.15rem 0; }
+      .dt-spec dt { margin-top: 0.4rem; }
+    }
+
+    /* ── Bottom network line ── */
+    .bd-network {
+      margin: clamp(1.8rem, 3.4vw, 2.6rem) 0 0;
+      font-family: var(--mono);
+      font-size: 0.74rem;
+      letter-spacing: 0.1em;
+      color: var(--muted-warm);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .bd-network a {
+      color: var(--oxblood-ink);
+      border: 0;
+      text-decoration: none;
+      transition: color 0.16s ease;
+    }
+    .bd-network a:hover,
+    .bd-network a:focus-visible { color: var(--teal); }
+    .bd-network .name {
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-weight: 500;
+    }
+    .bd-network .sep { opacity: 0.6; }
+
+    /* ════ The argument - the eight-beat slideshow. Scoped under .cx; inherits
+       cor.css tokens, with the per-beat accent palette + compact embed sizing
+       supplied here. Beat images live in explainer/img/. ════ */
+    .cx { box-sizing: border-box; color: var(--ink); font-family: var(--serif);
+          margin-top: clamp(1.6rem, 3.2vw, 2.6rem);
+          --accent: var(--teal); --teal-deep: #1f4f4f; --cue: #b5702a;
+          --state-full: #2d6b6b; --state-mixed: #c4962c; --state-zero: #8a2f2a; }
+    .cx *, .cx *::before, .cx *::after { box-sizing: border-box; }
+    /* fill the panel content width - the panel supplies the frame + padding */
+    .cx-shell { width: 100%; max-width: none; margin: 0; padding: 0; }
+
+    .cx-head { display: flex; align-items: center; justify-content: center; gap: .7rem; margin: 0 0 clamp(1.2rem,2.6vw,1.7rem); }
+    .cx-head .cx-rule { display: none; }
+    .cx-seal { flex: 0 0 auto; width: 30px; height: 30px; display: block; color: var(--oxblood); }
+    .cx-seal svg { width: 100%; height: 100%; display: block; }
+    .cx-seal .dot { fill: var(--teal); transform-origin: center; animation: cx-pulse 4.6s var(--ease, cubic-bezier(.22,.61,.36,1)) infinite; }
+    @keyframes cx-pulse { 0%,100%{opacity:.95} 50%{opacity:.55} }
+    .cx-eyebrow { font-family: var(--mono); font-size: clamp(.9rem, 1.5vw, 1.08rem); letter-spacing: .3em;
+                  text-transform: uppercase; font-weight: 500; color: var(--teal); }
+    .cx-rule { flex: 1; height: 1px; background: rgba(58,18,24,.22); }
+
+    .cx-stage { position: relative; border-radius: 14px;
+                background: linear-gradient(180deg, var(--parchment-soft), var(--parchment-dark));
+                border: 1px solid rgba(58,18,24,.22);
+                box-shadow: 4px 4px 0 var(--teal), 8px 8px 0 var(--gold);
+                overflow: hidden;
+                transition: box-shadow .4s ease; }
+    .cx-stage::before { content:""; position:absolute; top:0; left:0; right:0; height:3px;
+                        background: var(--accent); z-index: 3; transition: background .6s ease; }
+
+    /* Dynamic height: only the active beat is in normal flow, so the stage
+       grows or shrinks to fit the current beat. The new beat fades in; JS sets
+       the stage height to the active beat so the change animates smoothly. */
+    .cx-beat { display: none; grid-template-columns: 1fr; }
+    .cx-beat.is-active { display: grid; animation: cx-fade .5s ease both; }
+    @keyframes cx-fade { from { opacity: 0; } to { opacity: 1; } }
+    @media (min-width: 760px) {
+      .cx-beat { grid-template-columns: 1.08fr 0.92fr; }
+    }
+
+    .cx-text { padding: clamp(1.4rem, 2.8vw, 2.4rem); display: flex; flex-direction: column;
+               justify-content: center; gap: clamp(.6rem,1.3vw,.95rem); min-width: 0; }
+    .cx-kicker { font-family: var(--mono); font-size: .66rem; letter-spacing: .26em;
+                 text-transform: uppercase; font-weight: 500; color: var(--accent);
+                 display: flex; align-items: baseline; gap: .7rem; }
+    .cx-kicker .num { color: var(--gold); }
+    .cx-h { font-family: var(--serif); font-weight: 600; line-height: 1.04;
+            letter-spacing: -.022em; color: var(--oxblood); margin: 0;
+            font-size: clamp(1.55rem, 3.2vw, 2.3rem); text-wrap: balance; }
+    .cx-body { font-family: var(--serif); font-weight: 400; line-height: 1.5;
+               color: var(--oxblood-ink); margin: 0; max-width: 42ch;
+               font-size: clamp(.98rem, 1.4vw, 1.12rem); }
+
+    .cx-rigor { margin-top: .4rem; display: flex; flex-direction: column; gap: .7rem; }
+    .cx-figs { display: flex; flex-wrap: wrap; gap: .35rem 1.1rem; font-family: var(--serif);
+               color: var(--teal-deep); font-size: clamp(.92rem,1.3vw,1.04rem); }
+    .cx-figs b { font-weight: 600; color: var(--oxblood); font-variant-numeric: tabular-nums; }
+    .cx-grades { display: flex; flex-wrap: wrap; gap: .5rem; }
+    .cx-grade { font-family: var(--mono); font-size: .58rem; letter-spacing: .14em;
+                text-transform: uppercase; padding: .26rem .6rem; border-radius: 999px;
+                border: 1px solid currentColor; display: inline-flex; align-items: center; gap: .4rem; }
+    .cx-grade::before { content:""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+    .cx-grade.est { color: var(--teal); }
+    .cx-grade.theo { color: var(--gold-dim); }
+    .cx-grade.cont { color: var(--state-zero); }
+
+    .cx-examples { margin-top: clamp(.4rem,1vw,.7rem); display: flex; flex-direction: column; }
+    .cx-ex { display: flex; align-items: baseline; gap: .5rem; line-height: 1.25; padding: .22rem 0;
+             border-bottom: 1px solid rgba(58,18,24,.10); font-size: clamp(.8rem, 1vw, .94rem); }
+    .cx-ex:last-child { border-bottom: 0; }
+    .cx-ex .fake { font-family: var(--serif); font-weight: 600; color: var(--oxblood); }
+    .cx-ex .arr { color: var(--accent); flex: 0 0 auto; font-family: var(--mono); font-size: .82em; }
+    .cx-ex .need { font-family: var(--serif); font-style: italic; color: var(--oxblood-warm); }
+    .cx-beat--list .cx-text { gap: .35rem; padding-top: clamp(1rem,2vw,1.4rem); padding-bottom: clamp(1rem,2vw,1.4rem); }
+    .cx-beat--list .cx-h { font-size: clamp(1.35rem, 2.6vw, 1.85rem); }
+    .cx-beat--list .cx-body { font-size: clamp(.9rem,1.2vw,1rem); }
+    .cx-beat--list .cx-ex { padding: .14rem 0; }
+
+    .cx-figure { position: relative; margin: 0; min-width: 0; min-height: clamp(160px, 22vh, 210px);
+                 background:
+                   radial-gradient(circle at 50% 40%, rgba(26,6,8,.05), transparent 70%),
+                   linear-gradient(180deg, rgba(42,12,17,.06), rgba(42,12,17,.12)); }
+    .cx-figure img { position: absolute; inset: 0; width: 100%; height: 100%;
+                     object-fit: contain; object-position: center;
+                     padding: clamp(.6rem, 1.6vw, 1.4rem); }
+    .cx-beat.is-active .cx-figure img { animation: cx-settle 7s ease-out both; }
+    @keyframes cx-settle { from { transform: scale(1.045); } to { transform: scale(1); } }
+
+    .cx-controls { display: flex; align-items: center; gap: clamp(.8rem,2vw,1.3rem);
+                   margin-top: clamp(.9rem,1.8vw,1.3rem); }
+    .cx-play { flex: 0 0 auto; width: 42px; height: 42px; border-radius: 50%;
+               border: 1px solid var(--oxblood); background: var(--oxblood); color: var(--parchment);
+               cursor: pointer; display: inline-flex; align-items: center; justify-content: center;
+               box-shadow: 3px 3px 0 var(--teal); transition: box-shadow .18s ease, transform .18s ease; }
+    .cx-play:hover, .cx-play:focus-visible { transform: translate(-1px,-1px); box-shadow: 5px 5px 0 var(--teal); outline: none; }
+    .cx-play svg { width: 16px; height: 16px; fill: currentColor; display:block; }
+    .cx-nav { flex: 0 0 auto; width: 38px; height: 38px; border-radius: 50%;
+              border: 1px solid var(--oxblood); background: var(--parchment-soft); color: var(--oxblood);
+              cursor: pointer; display: inline-flex; align-items: center; justify-content: center;
+              box-shadow: 3px 3px 0 var(--teal); transition: box-shadow .18s ease, transform .18s ease; }
+    .cx-nav:hover, .cx-nav:focus-visible { transform: translate(-1px,-1px); box-shadow: 5px 5px 0 var(--teal); outline: none; }
+    .cx-nav svg { width: 15px; height: 15px; fill: currentColor; display: block; }
+    .cx-nav:disabled { opacity: .3; cursor: default; box-shadow: 2px 2px 0 rgba(45,107,107,.35); transform: none; }
+    .cx-counter { font-family: var(--mono); font-size: .68rem; letter-spacing: .16em;
+                  text-transform: uppercase; color: var(--muted-warm); flex: 0 0 auto;
+                  font-variant-numeric: tabular-nums; }
+    .cx-counter b { color: var(--oxblood); }
+
+    .cx-spine { flex: 1; display: grid; grid-auto-flow: column; grid-auto-columns: 1fr;
+                gap: clamp(4px, .8vw, 8px); min-width: 0; }
+    .cx-seg { appearance: none; border: 0; background: none; padding: 8px 0 0; margin: 0;
+              cursor: pointer; display: flex; flex-direction: column; gap: 6px; min-width: 0; text-align: left; }
+    .cx-seg-bar { height: 4px; border-radius: 3px; background: rgba(58,18,24,.16); overflow: hidden; }
+    .cx-seg-bar i { display: block; height: 100%; width: 0; background: var(--accent); border-radius: 3px; }
+    .cx-seg.done .cx-seg-bar i { width: 100% !important; }
+    .cx-seg-lbl { font-family: var(--mono); font-size: .5rem; letter-spacing: .12em;
+                  text-transform: uppercase; color: var(--muted-warm); white-space: nowrap;
+                  overflow: hidden; text-overflow: ellipsis; transition: color .2s ease; }
+    .cx-seg.active .cx-seg-lbl { color: var(--oxblood); }
+    .cx-seg:hover .cx-seg-lbl, .cx-seg:focus-visible .cx-seg-lbl { color: var(--teal); outline: none; }
+
+    .cx-foot { margin-top: clamp(.8rem,1.6vw,1.1rem); display:flex; justify-content: space-between;
+               align-items:center; gap:1rem; flex-wrap: wrap; }
+    .cx-hint { font-family: var(--mono); font-size: .6rem; letter-spacing: .1em;
+               text-transform: uppercase; color: var(--muted-warm); }
+    .cx-more { font-family: var(--mono); font-size: .68rem; letter-spacing: .14em;
+               text-transform: uppercase; color: var(--teal); text-decoration: none;
+               border-bottom: 1px solid rgba(45,107,107,.4); transition: color .16s, border-color .16s; }
+    .cx-more:hover, .cx-more:focus-visible { color: var(--oxblood); border-bottom-color: var(--oxblood); }
+
+    .cx-end { position: absolute; inset: 0; z-index: 4; display: none;
+              align-items: center; justify-content: center; flex-direction: column; gap: 1rem;
+              background: rgba(42,12,17,.78); color: var(--parchment); text-align: center; padding: 2rem; }
+    .cx.is-ended .cx-end { display: flex; }
+    .cx-end p { font-family: var(--serif); font-style: italic; font-size: clamp(1.1rem,2.4vw,1.5rem);
+                margin: 0; max-width: 24ch; line-height: 1.3; }
+    .cx-replay { font-family: var(--mono); font-size: .72rem; letter-spacing: .18em; text-transform: uppercase;
+                 color: var(--parchment); background: none; border: 1px solid var(--parchment-tan);
+                 padding: .7rem 1.3rem; border-radius: 4px; cursor: pointer; display:inline-flex; gap:.6rem; align-items:center; }
+    .cx-replay:hover, .cx-replay:focus-visible { border-color: var(--gold); color: var(--gold); outline: none; }
+    .cx-replay svg { width: 14px; height: 14px; fill: currentColor; }
+
+    @media (max-width: 620px) {
+      .cx-seg-lbl { display: none; } .cx-seg-bar { height: 5px; }
+      .cx-eyebrow { font-size: .58rem; letter-spacing: .14em; }
+      .cx-head { flex-wrap: wrap; gap: .6rem; }
+      .cx-rule { display: none; }
+      .cx-foot { flex-direction: column; align-items: flex-start; gap: .55rem; }
+      .cx-hint { font-size: .55rem; }
+    }
+    @media (max-width: 759px) {
+      .cx-figure { order: -1; min-height: 38vh; }
+      .cx-figure img { padding: .7rem; }
+      .cx-text { padding: clamp(1.3rem,5vw,1.8rem); }
+    }
+    /* reduced motion / no-JS: every beat shown, stacked and ruled off */
+    .cx:not(.is-player) .cx-stage { box-shadow: 4px 4px 0 var(--teal), 8px 8px 0 var(--gold); }
+    .cx:not(.is-player) .cx-beat { display: grid; border-bottom: 1px solid rgba(58,18,24,.14); }
+    .cx:not(.is-player) .cx-beat:last-child { border-bottom: 0; }
+    .cx:not(.is-player) .cx-beat .cx-figure { min-height: 280px; }
+    .cx:not(.is-player) .cx-controls, .cx:not(.is-player) .cx-end { display: none; }
+    @media (prefers-reduced-motion: reduce) {
+      .cx-seal .dot, .cx-beat.is-active .cx-figure img { animation: none; }
+    }
+
+    /* ── Reveal ── */
+    .reveal { opacity: 0; transform: translateY(12px); animation: bd-rise 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) forwards; }
+    @keyframes bd-rise { to { opacity: 1; transform: none; } }
+    .d1 { animation-delay: 0.05s; }
+    .d2 { animation-delay: 0.16s; }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { animation: none; opacity: 1; transform: none; }
+      html { scroll-behavior: auto; }
+    }
+
+    @media (max-width: 680px) {
+      .bd-card-row { grid-template-columns: 1fr; }
+      .bd-thesis { max-width: none; }
+    }
+    @media (max-width: 560px) {
+      .bd-watch-suffix { display: none; }
+      .bd-watch { letter-spacing: 0.1em; max-width: 100%; }
+    }
+
+    /* ── FAQ accordion ── */
+    .faq-list { display: flex; flex-direction: column; }
+
+    .faq-item {
+      border-top: 1px solid rgba(58, 18, 24, 0.13);
+    }
+    .faq-item:last-child {
+      border-bottom: 1px solid rgba(58, 18, 24, 0.13);
+    }
+
+    .faq-item summary {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 1.4rem;
+      padding: clamp(0.9rem, 1.6vw, 1.25rem) 0;
+      cursor: pointer;
+      list-style: none;
+      font-family: var(--serif);
+      font-weight: 500;
+      font-size: clamp(1.04rem, 1.4vw, 1.18rem);
+      line-height: 1.35;
+      color: var(--oxblood);
+      user-select: none;
+    }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary::after {
+      content: '+';
+      font-family: var(--mono);
+      font-weight: 400;
+      font-size: 1.15rem;
+      color: var(--teal);
+      flex-shrink: 0;
+      opacity: 0.75;
+      transition: opacity 0.15s ease;
+    }
+    .faq-item[open] summary::after { content: '−'; opacity: 1; }
+    .faq-item summary:hover { color: var(--teal); }
+    .faq-item summary:hover::after { opacity: 1; }
+
+    .faq-a {
+      padding: 0 0 clamp(1rem, 1.8vw, 1.4rem);
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: clamp(1rem, 1.3vw, 1.1rem);
+      line-height: 1.62;
+      color: var(--oxblood-ink);
+      max-width: 68ch;
+    }
+
+    .faq-group-label {
+      display: block;
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: var(--teal);
+      opacity: 0.7;
+      margin: clamp(1.4rem, 2.4vw, 1.9rem) 0 clamp(0.3rem, 0.6vw, 0.5rem);
+    }
+    .faq-group-label:first-child { margin-top: 0; }
+
+    
+
+    .d3 { animation-delay: 0.28s; }
+
+    /* ═════════════════════════════════════════════════════════════
+       PROTO · Full-width front door — keep long-form text readable
+       inside the widened cover; only the map uses the full width.
+       ═════════════════════════════════════════════════════════════ */
+    .bd-lede { max-width: var(--read); }
+    .panel-demo .dt-exchange { max-width: var(--read); margin-inline: auto; }
+    /* Two examples side by side to halve the section's height. */
+    .dt-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(1.2rem, 3vw, 2.6rem);
+      align-items: stretch;               /* both columns equal height */
+      max-width: 1180px;
+      margin-inline: auto;
+    }
+    /* each example fills its cell; the answer card grows so both bottoms
+       line up and the mechanism line sits at a shared baseline. */
+    .panel-demo .dt-grid .dt-exchange {
+      max-width: none; margin: 0;
+      display: flex; flex-direction: column;
+    }
+    .panel-demo .dt-grid .dt-a { flex: 1 1 auto; display: flex; flex-direction: column; }
+    .panel-demo .dt-grid .dt-a .dt-spec { margin-top: auto; }
+    @media (max-width: 820px) {
+      .dt-grid { grid-template-columns: 1fr; }
+      .panel-demo .dt-grid .dt-a { display: block; }   /* stacked: no need to stretch */
+    }
+    .panel-demo > div:first-child { max-width: var(--read); margin-inline: auto; text-align: center; } /* "Try Decode:Talk" row - centred */
+    .panel-demo > div:first-child .button { /* enlarged CTA, scoped to this one button */
+      padding: clamp(1.2rem, 2.4vw, 1.7rem) clamp(2rem, 4vw, 3rem);
+      font-size: clamp(0.95rem, 1.4vw, 1.2rem); gap: 0.7rem;
+      box-shadow: 5px 5px 0 var(--teal);
+    }
+    .panel-demo > div:first-child .button:hover,
+    .panel-demo > div:first-child .button:focus-visible { box-shadow: 8px 8px 0 var(--teal); }
+    .panel-demo .bd-cta { display: block; width: max-content; margin-inline: auto; margin-top: clamp(1.8rem, 3.4vw, 2.8rem); }
+    .cx-shell { max-width: 1180px; margin-inline: auto; }
+    .faq-cols { max-width: 1200px; margin-inline: auto; }
+
+    /* ═════════════════════════════════════════════════════════════
+       PROTO · The map — compact vision diagram on the front door.
+       Cor at the hub; two arms (machines / humans); the horizon below.
+       Blueprint card look borrowed from /vision, recoloured to the
+       cream cover. Arm + horizon detail collapsed by default.
+       ═════════════════════════════════════════════════════════════ */
+    /* centred hero - widened copy (fewer lines), tightened toward the Cor card */
+    .bd-herocenter { text-align: center; margin: clamp(0.4rem, 1vw, 1rem) 0 clamp(1.3rem, 2.6vw, 2.3rem); }
+    .bd-herocenter .bd-thesis { max-width: 24ch; margin: 0 auto clamp(0.9rem, 1.8vw, 1.3rem); }
+    .bd-herocenter .bd-lede { max-width: var(--read); margin: 0 auto; }
+    .bd-herocenter .bd-lede + .bd-lede { margin-top: clamp(0.9rem, 1.8vw, 1.3rem); }
+
+    /* hero link pair - "What humans need" toggle + always-on "See how we know - Cor" */
+    .bd-needs-row {
+      display: flex; flex-wrap: wrap; justify-content: center; align-items: baseline;
+      gap: clamp(0.9rem, 3vw, 2.4rem);
+      margin: clamp(1rem, 2.2vw, 1.5rem) 0 0;
+    }
+    .bd-needs-toggle, .bd-needs-cor {
+      display: inline-flex; align-items: center; gap: 0.45rem;
+      background: none; padding: 0 0 2px; border: 0;
+      border-bottom: 1px solid rgba(45, 107, 107, 0.4);
+      cursor: pointer; text-decoration: none;
+      font-family: var(--mono); font-size: clamp(0.9rem, 1.2vw, 1.02rem);
+      letter-spacing: 0.14em; text-transform: uppercase; font-weight: 500; color: var(--teal);
+      transition: color 0.16s ease, border-color 0.16s ease;
+    }
+    .bd-needs-toggle:hover, .bd-needs-toggle:focus-visible,
+    .bd-needs-cor:hover, .bd-needs-cor:focus-visible { color: var(--oxblood); border-bottom-color: var(--oxblood); }
+    .bd-needs-toggle-icon { font-size: 1.08rem; line-height: 1; }
+    .bd-needs-toggle-icon::before { content: "+"; }
+    .bd-needs-toggle[aria-expanded="true"] .bd-needs-toggle-icon::before { content: "–"; }
+
+    /* centred "Try Decode:Talk!" CTA - now the first line under the film */
+    .bd-decode-row { text-align: center; margin: clamp(2rem, 4.5vw, 3.2rem) 0 0; }
+    .bd-decode-link {
+      display: inline-flex; align-items: center;
+      padding: 0 0 2px; border: 0;
+      border-bottom: 1px solid rgba(45, 107, 107, 0.4);
+      text-decoration: none;
+      font-family: var(--mono); font-size: clamp(0.9rem, 1.2vw, 1.02rem);
+      letter-spacing: 0.14em; text-transform: uppercase; font-weight: 600;
+      color: var(--teal);
+      transition: color 0.16s ease, border-color 0.16s ease;
+    }
+    .bd-decode-link:hover, .bd-decode-link:focus-visible { color: var(--oxblood); border-bottom-color: var(--oxblood); }
+
+    /* essay link - now the second CTA line, tucked under the decode link, with a muted subline */
+    .bd-essay-row { text-align: center; margin: clamp(1rem, 2.2vw, 1.5rem) 0 0; }
+    .bd-essay-link {
+      display: inline-block;
+      padding: 0 0 2px; border: 0;
+      border-bottom: 1px solid rgba(45, 107, 107, 0.4);
+      text-decoration: none;
+      font-family: var(--mono); font-size: clamp(0.86rem, 1.1vw, 0.96rem);
+      letter-spacing: 0.14em; text-transform: uppercase; font-weight: 500;
+      color: var(--teal);
+      transition: color 0.16s ease, border-color 0.16s ease;
+    }
+    .bd-essay-link:hover, .bd-essay-link:focus-visible { color: var(--oxblood); border-bottom-color: var(--oxblood); }
+    .bd-essay-sub {
+      display: block; margin-top: 0.45rem;
+      font-family: var(--mono); font-size: 0.72rem;
+      letter-spacing: 0.04em; font-weight: 400;
+      color: var(--muted-warm);
+    }
+
+    /* fold-out container - bounded height, internal scroll, smooth open/close */
+    .bd-needs-fold {
+      text-align: left;
+      max-height: 0; margin-top: 0;
+      overflow: hidden; opacity: 0; visibility: hidden;
+      transition: max-height 0.45s ease, opacity 0.35s ease, margin-top 0.45s ease, visibility 0s linear 0.45s;
+    }
+    .bd-needs-fold.is-open {
+      max-height: 60vh; margin-top: clamp(1.4rem, 2.8vw, 2.2rem);
+      overflow-y: auto; opacity: 1; visibility: visible;
+      transition: max-height 0.45s ease, opacity 0.35s ease, margin-top 0.45s ease, visibility 0s;
+    }
+    .bd-needs-fold .bd-disclosure-body { margin-top: 0; }
+    /* "See how we know - Cor" - bigger, centred, tucked closer under the lists */
+    .bd-needs-fold .bd-need-link {
+      justify-self: center;
+      margin-top: clamp(0.1rem, 0.5vw, 0.4rem);
+      font-size: clamp(0.9rem, 1.2vw, 1.02rem);
+      letter-spacing: 0.14em;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .bd-needs-fold, .bd-needs-fold.is-open { transition: opacity 0s, visibility 0s; }
+    }
+
+    /* ── Hero film — the V1 mismatch film, mounted as a blueprint plate under
+       the thesis. Click-to-play facade: a local poster + on-brand play button,
+       swapped for the privacy embed only on click so the hero stays fast. ── */
+    .bd-film {
+      position: relative; z-index: 1; /* sits above the mannequin backdrop */
+      width: min(100%, 528px);
+      margin: clamp(1.3rem, 2.8vw, 2.1rem) auto clamp(0.2rem, 0.8vw, 0.5rem);
+      background: var(--parchment-soft);
+      padding: clamp(9px, 1.3vw, 13px);
+      border: 1px solid rgba(58, 18, 24, 0.14);
+      box-shadow: 8px 8px 0 var(--teal);
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+    }
+    .bd-film:hover,
+    .bd-film:focus-within {
+      transform: translate(-2px, -2px);
+      box-shadow: 12px 12px 0 var(--teal);
+    }
+    .bd-film-trigger {
+      display: block; position: relative; width: 100%;
+      aspect-ratio: 16 / 9;
+      padding: 0; margin: 0; border: 0; cursor: pointer; overflow: hidden;
+      background: var(--oxblood);
+    }
+    .bd-film-trigger picture { position: absolute; inset: 0; display: block; }
+    .bd-film-poster {
+      display: block; width: 100%; height: 100%;
+      object-fit: cover; object-position: center;
+    }
+    .bd-film-trigger::after { /* light vignette - seats the still, keeps it legible */
+      content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+      background: radial-gradient(135% 120% at 50% 45%, transparent 48%, rgba(28, 12, 16, 0.32) 100%);
+      transition: opacity 0.2s ease;
+    }
+    .bd-film:hover .bd-film-trigger::after { opacity: 0.55; }
+    .bd-film-play {
+      position: absolute; z-index: 2; left: 50%; top: 50%;
+      transform: translate(-50%, -50%);
+      width: clamp(54px, 8.5vw, 80px); aspect-ratio: 1; border-radius: 50%;
+      display: grid; place-items: center;
+      background: var(--oxblood);
+      box-shadow: 0 0 0 5px rgba(242, 232, 207, 0.82), 0 10px 26px rgba(20, 8, 10, 0.45);
+      transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+    }
+    .bd-film:hover .bd-film-play,
+    .bd-film-trigger:focus-visible .bd-film-play {
+      background: var(--teal);
+      transform: translate(-50%, -50%) scale(1.06);
+      box-shadow: 0 0 0 5px rgba(242, 232, 207, 0.92), 0 12px 30px rgba(20, 8, 10, 0.5);
+    }
+    .bd-film-play::before { /* the triangle */
+      content: ""; margin-left: clamp(3px, 0.5vw, 5px);
+      border-style: solid;
+      border-width: clamp(9px, 1.4vw, 13px) 0 clamp(9px, 1.4vw, 13px) clamp(15px, 2.3vw, 22px);
+      border-color: transparent transparent transparent var(--parchment);
+    }
+    .bd-film-tag { /* the film's message, top of frame, a touch larger than the caption */
+      position: absolute; z-index: 3; left: 0; right: 0; top: 0;
+      padding: clamp(0.55rem, 1.3vw, 0.85rem) clamp(0.6rem, 1.5vw, 1rem) clamp(1.6rem, 4vw, 2.4rem);
+      pointer-events: none; text-align: center;
+      font-family: var(--mono);
+      font-size: clamp(0.8rem, 1.05vw, 0.95rem);
+      letter-spacing: 0.2em; text-transform: uppercase; font-weight: 500;
+      color: var(--muted-warm);
+      text-shadow: 0 1px 10px rgba(0, 0, 0, 0.75);
+      background: linear-gradient(to bottom, rgba(24, 10, 14, 0.82) 0%, rgba(24, 10, 14, 0.4) 50%, rgba(24, 10, 14, 0) 100%);
+    }
+    .bd-film-cap { /* quiet caption overlaid on the frame bottom, over a soft scrim */
+      position: absolute; z-index: 3; left: 0; right: 0; bottom: 0;
+      padding: clamp(1.6rem, 4vw, 2.4rem) clamp(0.6rem, 1.5vw, 1rem) clamp(0.55rem, 1.3vw, 0.85rem);
+      pointer-events: none; text-align: center;
+      font-family: var(--mono);
+      font-size: clamp(0.62rem, 0.82vw, 0.72rem);
+      letter-spacing: 0.2em; text-transform: uppercase; font-weight: 500;
+      color: var(--muted-warm);
+      text-shadow: 0 1px 8px rgba(0, 0, 0, 0.7);
+      background: linear-gradient(to top, rgba(24, 10, 14, 0.82) 0%, rgba(24, 10, 14, 0.4) 50%, rgba(24, 10, 14, 0) 100%);
+    }
+    .bd-film-frame { /* the self-hosted <video> after click - same footprint, seamless swap */
+      display: block; width: 100%; aspect-ratio: 16 / 9; border: 0;
+      background: #000; object-fit: cover;
+    }
+    @media (max-width: 560px) {
+      .bd-film { box-shadow: 5px 5px 0 var(--teal); }
+      .bd-film:hover, .bd-film:focus-within { box-shadow: 8px 8px 0 var(--teal); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .bd-film, .bd-film-play { transition: none; }
+      .bd-film:hover, .bd-film:focus-within { transform: none; }
+    }
+
+    /* ── Mannequin backdrop — the dystopia↔eden split behind the hero + map.
+       Fills the empty side gutters: both edge mannequins hug the very edges of
+       the parchment (full image width, never cropped). The busy centre + the
+       bottom fade out so the hero copy stays legible and the oxblood Cor placard
+       overlays it fully opaque. ── */
+    .bd-stage { position: relative; }
+    .bd-stage > .bd-herocenter,
+    .bd-stage > .bd-needs-fold,
+    .bd-stage > .bd-map { position: relative; z-index: 1; }
+
+    /* Split mannequin backdrop — the source is cut down its (transparent)
+       middle into two halves; each is pinned to its parchment edge and scaled
+       up on its own, so the edge mannequins grow and take more vertical space
+       while staying snug to the sides. The halves overlap across the masked-out
+       centre, so the seam never shows. Tune size with --half-w. */
+    .bd-backdrop {
+      --half-w: 70%;
+      --bleed: clamp(1.6rem, 4.6vw, 3.4rem);
+      /* top + bottom fade, shared by both halves */
+      --m-v: linear-gradient(to bottom,
+          rgba(0,0,0,0) 0%, rgba(0,0,0,1) 5%, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 96%);
+      position: absolute;
+      top: clamp(-3rem, -2.4vw, -1rem);
+      width: var(--half-w);
+      aspect-ratio: 600 / 670;
+      z-index: 0;
+      pointer-events: none;
+      background-repeat: no-repeat;
+      background-size: 100% auto;
+      -webkit-mask-image: var(--m-h), var(--m-v);
+      -webkit-mask-composite: source-in;
+      mask-image: var(--m-h), var(--m-v);
+      mask-composite: intersect;
+    }
+    /* LEFT half: opaque at the left edge (mannequin), fading into the centre */
+    .bd-backdrop-l {
+      left: calc(-1 * var(--bleed));
+      background-image: url("hero-mannequins-left.webp");
+      background-position: left top;
+      --m-h: linear-gradient(to right,
+          rgba(0,0,0,1) 0%, rgba(0,0,0,1) 11%, rgba(0,0,0,.9) 23%,
+          rgba(0,0,0,.42) 43%, rgba(0,0,0,.14) 63%, rgba(0,0,0,0) 83%);
+    }
+    /* RIGHT half: mirror — opaque at the right edge, fading into the centre */
+    .bd-backdrop-r {
+      right: calc(-1 * var(--bleed));
+      background-image: url("hero-mannequins-right.webp");
+      background-position: right top;
+      --m-h: linear-gradient(to left,
+          rgba(0,0,0,1) 0%, rgba(0,0,0,1) 11%, rgba(0,0,0,.9) 23%,
+          rgba(0,0,0,.42) 43%, rgba(0,0,0,.14) 63%, rgba(0,0,0,0) 83%);
+    }
+    @media (max-width: 900px) { .bd-backdrop { display: none; } }
+
+    .bd-map { margin-top: clamp(3.6rem, 6.5vw, 5.2rem); }
+
+    .bd-map-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.18fr 1fr;
+      gap: clamp(1.8rem, 4vw, 4rem);
+      align-items: center;
+      position: relative;
+    }
+
+    /* ── Arms ── */
+    .bd-arm { position: relative; z-index: 1; display: flex; flex-direction: column; }
+    .bd-arm-head { margin-bottom: clamp(0.8rem, 1.6vw, 1.2rem); }
+    /* mannequin illustration crowning each conclusion - sized by height so the pair aligns */
+    .bd-conclusion-fig {
+      display: block; height: clamp(130px, 15vw, 165px); width: auto; max-width: 100%;
+      margin: 0 0 clamp(0.9rem, 1.8vw, 1.3rem);
+    }
+    .bd-arm-kicker {
+      display: block; font-family: var(--mono); font-size: 0.85rem;
+      letter-spacing: 0.36em; text-transform: uppercase; font-variant: normal; font-weight: 600;
+      color: var(--teal); margin-bottom: 0.5rem;
+    }
+    .bd-arm-title {
+      font-family: var(--serif); font-style: italic; font-weight: 600;
+      font-size: clamp(1.69rem, 2.7vw, 2.35rem); line-height: 1; letter-spacing: -0.015em;
+      color: var(--oxblood); margin: 0 0 0.55rem;
+    }
+    .bd-arm-tag {
+      font-family: var(--serif); font-size: clamp(0.92rem, 1.15vw, 1.02rem);
+      line-height: 1.45; color: var(--oxblood-ink); margin: 0; max-width: 34ch;
+    }
+    .bd-arm-tag em { font-style: italic; color: var(--teal); }
+    .bd-arm-right .bd-arm-head { text-align: right; }
+    .bd-arm-right .bd-arm-tag { margin-left: auto; }
+
+    /* paper link — the alignment artefact, always visible under the machines tagline */
+    .bd-arm-paper {
+      display: inline-block; margin-top: clamp(0.7rem, 1.4vw, 1rem);
+      font-family: var(--mono); font-size: 0.81rem; letter-spacing: 0.12em; text-transform: uppercase;
+      font-weight: 600; color: var(--teal); text-decoration: none;
+      border-bottom: 1px solid color-mix(in srgb, currentColor 42%, transparent); padding-bottom: 2px;
+      transition: color 0.16s ease, border-color 0.16s ease;
+    }
+    .bd-arm-paper em { font-style: italic; text-transform: none; letter-spacing: 0.01em; color: var(--oxblood); }
+    .bd-arm-paper:hover, .bd-arm-paper:focus-visible { color: var(--oxblood); border-color: var(--oxblood); }
+
+    /* fold — collapses each arm's tool/track cards behind a pill toggle */
+    .bd-arm-fold { margin-top: clamp(0.85rem, 1.7vw, 1.25rem); }
+    .bd-arm-fold > summary {
+      list-style: none; cursor: pointer; width: max-content;
+      display: inline-flex; align-items: center; gap: 0.55rem;
+      font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase;
+      font-weight: 500; color: var(--teal);
+      background: var(--parchment-soft); border: 1px solid rgba(45,107,107,0.45); border-radius: 999px;
+      padding: 0.42rem 0.9rem;
+      transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+    }
+    .bd-arm-fold > summary::-webkit-details-marker { display: none; }
+    .bd-arm-fold > summary:hover { background: rgba(45,107,107,0.1); }
+    .bd-fold-label { display: inline-flex; align-items: center; gap: 0.45rem; }
+    .bd-fold-icon::before { content: "+"; font-size: 0.95rem; line-height: 1; }
+    .bd-arm-fold[open] > summary { color: var(--muted-warm); border-color: rgba(138,125,94,0.45); }
+    .bd-arm-fold[open] .bd-fold-icon::before { content: "–"; }
+    .bd-arm-fold .bd-arm-list { margin-top: clamp(0.7rem, 1.4vw, 1rem); }
+    .bd-arm-right .bd-arm-fold { text-align: right; }
+    .bd-arm-right .bd-arm-fold > summary { margin-left: auto; }
+
+    .bd-arm-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: clamp(0.5rem, 1vw, 0.7rem); }
+    .bd-arm-list > li { list-style: none; }
+
+    /* ── Node (collapsed-detail blueprint card, vision-page index-card look) ── */
+    .bd-node {
+      border: 1px solid var(--oxblood);
+      border-radius: var(--radius-sm);
+      background: var(--parchment-dark);
+      box-shadow: 4px 4px 0 var(--teal);
+      transition: box-shadow 0.2s ease, transform 0.2s ease, background 0.2s ease;
+    }
+    .bd-node:hover { box-shadow: 6px 6px 0 var(--teal); transform: translate(-1px,-1px); }
+    .bd-node[open] { box-shadow: 6px 6px 0 var(--teal); background: var(--parchment-soft); }
+    .bd-node > summary {
+      list-style: none; cursor: pointer; position: relative;
+      padding: 0.68rem 1.9rem 0.72rem 0.9rem;
+      display: flex; flex-direction: column; gap: 0.22rem;
+    }
+    .bd-node > summary::-webkit-details-marker { display: none; }
+    .bd-node > summary::after {
+      content: "+"; position: absolute; top: 0.62rem; right: 0.78rem;
+      font-family: var(--mono); color: var(--teal); font-size: 1rem; line-height: 1; font-weight: 500;
+    }
+    .bd-node[open] > summary::after { content: "–"; }
+    .bd-node-name {
+      font-family: var(--serif); font-weight: 600; font-size: 1.02rem; line-height: 1.15;
+      color: var(--oxblood); display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;
+    }
+    .bd-node-line {
+      font-family: var(--serif); font-size: 0.9rem; line-height: 1.42; color: var(--oxblood-ink);
+    }
+    .bd-node-body { padding: 0 0.9rem 0.85rem; }
+    .bd-node-body dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 0.28rem 0.85rem; }
+    .bd-node-body dt {
+      font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--teal); padding-top: 0.22rem;
+    }
+    .bd-node-body dd { margin: 0; font-family: var(--serif); font-size: 0.88rem; line-height: 1.42; color: var(--oxblood-ink); }
+    .bd-node-body a { color: var(--teal); text-decoration: none; border-bottom: 1px solid rgba(45,107,107,0.35); white-space: nowrap; }
+
+    /* visual inside an expanded card — glyph (machines) or screenshot (people) */
+    .bd-node-visual {
+      width: 100%; aspect-ratio: 16 / 9; margin: 0 0 0.8rem;
+      background: var(--ink); border: 1px solid var(--oxblood); border-radius: 6px;
+      overflow: hidden; display: flex; align-items: center; justify-content: center;
+    }
+    .bd-node-visual img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .bd-node-visual .bd-glyph { width: 64%; height: 64%; }
+    .bd-node-visual .bd-mock { width: 100%; height: 100%; display: block; }
+    .bd-glyph { stroke: var(--teal-bright); stroke-width: 1.5; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .bd-glyph .fill { fill: var(--teal-bright); stroke: none; }
+    .bd-glyph .soft { stroke: var(--gold); }
+
+    /* live / build badges */
+    .bd-badge {
+      font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase;
+      font-weight: 500; padding: 0.16em 0.55em; border-radius: 999px; transform: translateY(-1px);
+    }
+    .bd-badge-live { background: var(--teal); color: var(--parchment-soft); }
+    .bd-badge-build { background: transparent; color: var(--muted-warm); border: 1px solid rgba(138,125,94,0.55); }
+
+    .bd-arm-more {
+      font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--muted-warm); padding: 0.35rem 0.2rem 0; text-align: center;
+    }
+    .bd-arm-right .bd-arm-more { /* keep centred */ }
+
+    /* ── Cor source (the hub) — dark oxblood block, vision-page treatment ── */
+    .bd-source {
+      position: relative; z-index: 1; align-self: start;
+      display: flex; flex-direction: column; align-items: center; text-align: center;
+      text-decoration: none;
+      background: var(--oxblood);
+      color: var(--parchment);
+      border-radius: var(--radius-sm);
+      padding: clamp(1.7rem, 2.8vw, 2.5rem) clamp(1.4rem, 2.4vw, 2.1rem) clamp(1.8rem, 2.8vw, 2.5rem);
+      box-shadow: 6px 6px 0 var(--teal), 12px 12px 0 var(--gold);
+      background-image:
+        radial-gradient(circle at 22% 16%, rgba(45,107,107,0.18) 0%, transparent 46%),
+        radial-gradient(circle at 80% 92%, rgba(196,150,44,0.12) 0%, transparent 50%);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .bd-source:hover, .bd-source:focus-visible {
+      transform: translate(-1px,-1px);
+      box-shadow: 7px 7px 0 var(--teal), 14px 14px 0 var(--gold);
+    }
+    /* connectors — FALLBACK (no-JS / reduced-motion): a teal node + short stub
+       emitting from each side of the hub. Self-contained, so it can never fall
+       out of alignment with the (differently-tall) arms. When scroll-fx.js boots
+       the live SVG connector layer it sets html.sfx-links, hiding these. */
+    .bd-source::before, .bd-source::after {
+      content: ""; position: absolute; top: 50%; transform: translateY(-50%);
+      height: 9px; width: clamp(1.4rem, 3vw, 2.6rem); z-index: 2; pointer-events: none;
+      background-repeat: no-repeat;
+      background-image:
+        linear-gradient(var(--teal), var(--teal)),
+        radial-gradient(circle, var(--teal) 0 4px, transparent 4.5px);
+      background-size: 100% 2px, 9px 9px;
+    }
+    .bd-source::before { right: 100%; background-position: left center, right center; }   /* node at the Cor (right) end */
+    .bd-source::after  { left: 100%;  background-position: right center, left center; }    /* node at the Cor (left) end */
+    html.sfx-links .bd-source::before, html.sfx-links .bd-source::after { display: none; }
+
+    /* 3D parallax stage — the map folds like a triptych as it scrolls through.
+       scroll-fx.js drives the per-element transforms; these establish the depth
+       context and hint the compositor. All gated on html.sfx-links so the static
+       fallback layout is never touched. */
+    html.sfx-links .bd-map-grid { perspective: 1200px; }
+    html.sfx-links .bd-source { will-change: translate; }
+    html.sfx-links .bd-arm { will-change: transform; transform-origin: center center; }
+
+    /* live connector layer — teal signal lines drawn hub → each arm, redrawn
+       each frame so they always meet the cards and flex with the parallax. */
+    .bd-links {
+      position: absolute; inset: 0; z-index: 2; pointer-events: none;
+      overflow: visible; opacity: 0; transition: opacity 0.7s ease;
+    }
+    .bd-links.is-in { opacity: 1; }
+    .bd-links path.line { fill: none; stroke: var(--teal); stroke-width: 2; stroke-linecap: round; }
+    .bd-links .node { fill: var(--teal-bright); stroke: var(--parchment-soft); stroke-width: 1.5; }
+    .bd-links .head { fill: var(--teal); }
+
+    .bd-source-kicker { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.85rem; }
+    .bd-source-mark { width: clamp(116px, 15vw, 176px); height: auto; margin: 0 auto 0.55rem; display: block; }
+    .bd-source-mark .rings circle { stroke: var(--parchment); stroke-width: 5; fill: none; }
+    .bd-source-mark .dot { fill: var(--teal-bright); }
+    .bd-source-mark .wm { fill: var(--parchment); font-family: var(--serif); font-weight: 500; }
+    .bd-source-mark .wm text { font-size: 116px; text-anchor: middle; }
+    .bd-source-title { font-family: var(--serif); font-weight: 500; font-style: italic; font-size: clamp(1.5rem, 2.3vw, 2.05rem); line-height: 1.05; letter-spacing: -0.015em; color: var(--parchment); margin: 0 0 0.3rem; }
+    .bd-source-spec { font-family: var(--serif); font-size: 1rem; color: #c4b894; margin: 0 0 0.55rem; }
+
+    .bd-source-answers { width: 100%; margin: 0 0 1.2rem; padding: 1.1rem 0 0; border-top: 1px solid rgba(236,224,196,0.22); }
+    .bd-source-answers-label { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 0.7rem; }
+    .bd-source-answers ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.42rem; }
+    .bd-source-answers li { font-family: var(--serif); font-size: clamp(0.92rem, 1.1vw, 1rem); line-height: 1.35; color: var(--parchment); }
+    .bd-source-answers li .t { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); margin-left: 0.4rem; white-space: nowrap; }
+
+    .bd-source-stats { width: 100%; display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.6rem 0.3rem; padding-top: 1.1rem; border-top: 1px solid rgba(236,224,196,0.22); }
+    .bd-source-stats .stat { position: relative; text-align: center; }
+    .bd-source-stats .stat:not(:last-child)::after { content: ""; position: absolute; top: 16%; bottom: 16%; right: -0.15rem; width: 1px; background: rgba(236,224,196,0.16); }
+    .bd-source-stats .n { font-family: var(--serif); font-weight: 500; font-size: clamp(1.5rem, 2.2vw, 1.95rem); line-height: 1; color: var(--gold); display: block; margin-bottom: 0.32rem; letter-spacing: -0.01em; }
+    .bd-source-stats .l { font-family: var(--mono); font-size: 0.55rem; letter-spacing: 0.12em; text-transform: uppercase; color: #c4b894; display: block; line-height: 1.3; }
+    .bd-source-note { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.04em; color: #a08f6a; margin: 0.85rem 0 0; }
+    .bd-source-cta { display: inline-block; margin-top: clamp(1.1rem, 2vw, 1.5rem); font-family: var(--mono); font-size: clamp(0.78rem, 1vw, 0.9rem); letter-spacing: 0.16em; text-transform: uppercase; font-weight: 600; color: #a08f6a; text-decoration: none; transition: color 0.16s ease; }
+    .bd-source-cta:hover, .bd-source-cta:focus-visible { color: var(--parchment); }
+    .bd-source-vid { display: inline-block; margin-top: clamp(0.6rem, 1.2vw, 0.85rem); font-family: var(--mono); font-size: clamp(0.66rem, 0.86vw, 0.76rem); letter-spacing: 0.16em; text-transform: uppercase; font-weight: 500; color: #a08f6a; text-decoration: none; transition: color 0.16s ease; }
+    .bd-source-vid:hover, .bd-source-vid:focus-visible { color: var(--parchment); }
+
+    /* ── Horizon strip ── */
+    .bd-horizon {
+      position: relative; margin-top: clamp(1.8rem, 3.2vw, 2.8rem);
+      border: 1px solid rgba(58,18,24,0.4); border-radius: var(--radius-sm);
+      background: var(--parchment-soft); box-shadow: 2px 2px 0 rgba(45,107,107,0.14);
+    }
+    .bd-horizon::before { /* downward connector from the hub into the horizon */
+      content: ""; position: absolute; left: 50%; top: calc(-1 * clamp(1.8rem, 3.2vw, 2.8rem));
+      width: 1px; height: clamp(1.8rem, 3.2vw, 2.8rem); background: rgba(45,107,107,0.5);
+    }
+    .bd-horizon > summary {
+      list-style: none; cursor: pointer; padding: clamp(0.95rem, 2vw, 1.4rem) clamp(1rem, 2vw, 1.5rem);
+      display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.45rem 1rem;
+    }
+    .bd-horizon > summary::-webkit-details-marker { display: none; }
+    .bd-horizon-kicker { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--teal); }
+    .bd-horizon-title { font-family: var(--serif); font-style: italic; font-weight: 500; font-size: clamp(1.3rem, 2vw, 1.65rem); line-height: 1.05; color: var(--oxblood); }
+    .bd-horizon-tag { font-family: var(--serif); font-size: 0.98rem; line-height: 1.4; color: var(--oxblood-ink); flex: 1 1 16rem; }
+    .bd-horizon-open { margin-left: auto; font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--teal); }
+    .bd-horizon[open] .bd-horizon-open { color: var(--muted-warm); }
+    .bd-horizon[open] .bd-horizon-open::after { content: " ✕"; }
+    .bd-horizon-body {
+      padding: 0 clamp(1rem, 2vw, 1.5rem) clamp(1rem, 2vw, 1.4rem);
+      columns: 2; column-gap: clamp(1.6rem, 3vw, 3rem);
+    }
+    .bd-horizon-body p { break-inside: avoid; margin: 0 0 0.78rem; font-family: var(--serif); font-size: 0.95rem; line-height: 1.48; color: var(--oxblood-ink); }
+    .bd-horizon-body strong { color: var(--oxblood); font-weight: 600; }
+    .bd-horizon-body em { font-style: italic; color: var(--teal); }
+
+    .bd-map-link { display: block; width: max-content; margin: clamp(1.3rem, 2.6vw, 2rem) auto 0; }
+
+    /* ── Map · responsive collapse ── */
+    @media (max-width: 900px) {
+      .bd-map-grid { grid-template-columns: 1fr; gap: clamp(1.2rem, 3vw, 1.8rem); }
+      .bd-source { order: -1; }
+      .bd-source::before, .bd-source::after { display: none; }
+      .bd-arm-right .bd-arm-head { text-align: left; }
+      .bd-arm-right .bd-arm-tag { margin-left: 0; }
+      .bd-arm-right .bd-arm-fold { text-align: left; }
+      .bd-arm-right .bd-arm-fold > summary { margin-left: 0; }
+      .bd-horizon::before { display: none; }
+    }
+    @media (max-width: 720px) {
+      .bd-horizon-body { columns: 1; }
+    }
+
+    /* ── PROTO · Hero masthead — claim left, ring mark right (full width) ── */
+    .bd-herorow {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+      gap: clamp(2rem, 5vw, 5rem);
+      align-items: center;
+      margin: 0 0 clamp(1.6rem, 3.4vw, 2.4rem);
+    }
+    .bd-herorow-text { min-width: 0; }
+    .bd-herorow-text .bd-hero { margin-bottom: clamp(1.1rem, 2.2vw, 1.6rem); }
+    .bd-herorow-art {
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: clamp(0.9rem, 1.8vw, 1.4rem);
+    }
+    .bd-heromark {
+      width: clamp(170px, 22vw, 300px); height: auto;
+      color: var(--oxblood); opacity: 0.92;
+    }
+    .bd-heromark .dot { fill: var(--teal); }
+    .bd-heromotto {
+      font-family: var(--mono); font-size: clamp(0.72rem, 1vw, 0.82rem);
+      letter-spacing: 0.16em; text-transform: uppercase; color: var(--teal);
+      text-align: center; margin: 0;
+    }
+    .bd-heromotto em { font-style: italic; text-transform: none; letter-spacing: 0.02em; }
+    @media (max-width: 860px) {
+      .bd-herorow { grid-template-columns: 1fr; gap: 0; }
+      .bd-herorow-art { display: none; }
+    }
+
+    /* ── PROTO · Expand-the-full-vision toggle (button styled as plainlink) ── */
+    .bd-map-expand {
+      display: block; width: max-content; margin: clamp(1.3rem, 2.6vw, 2rem) auto 0;
+      background: none; border: 0; border-bottom: 1px solid rgba(45,107,107,0.4);
+      cursor: pointer; padding: 0 0 2px; font: inherit;
+    }
+    .bd-map-expand[aria-expanded="true"] { color: var(--muted-warm); border-bottom-color: rgba(138,125,94,0.5); }
+
+    
+
+    /* Built on the work of - compact credit inside the Cor placard */
+    .bd-source-credit { width: 100%; margin: clamp(1.3rem, 2.6vw, 1.9rem) 0 1.2rem; padding-top: clamp(1rem, 2vw, 1.3rem); border-top: 1px solid rgba(236,224,196,0.22); }
+    .bd-source-credit-label { display: block; font-family: var(--mono); font-size: 0.56rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem; }
+    .bd-source-credit-names { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: clamp(0.32rem, 0.8vw, 0.45rem); }
+    .cr-pill { /* credit pill tuned for the dark card - warm gold outline, cream text */
+      display: inline-flex; align-items: center; padding: 0.26rem 0.58rem;
+      border: 1px solid rgba(196, 150, 44, 0.5);
+      background: rgba(196, 150, 44, 0.08);
+      color: var(--parchment); font-family: var(--mono);
+      font-size: clamp(0.6rem, 0.82vw, 0.7rem); letter-spacing: 0.04em;
+      border-radius: 0; box-shadow: 2px 2px 0 rgba(196, 150, 44, 0.28); white-space: nowrap;
+    }
+    .bd-source-credit-names .more { color: #c4b894; font-style: italic; white-space: nowrap; font-size: 0.72rem; margin-left: 0.2rem; }
+  
+    /* ===== Mobile-only optimisations ===== */
+    @media (max-width: 480px) {
+      /* cross-site nav fits cleanly */
+      .bd-kicker { font-size: 0.62rem; letter-spacing: 0.12em; gap: 0.4rem; }
+      /* Cor placard stats: 2x2 instead of cramped 4-up */
+      .bd-source-stats { grid-template-columns: repeat(2, 1fr); gap: 1.1rem 0.5rem; }
+      .bd-source-stats .stat::after { display: none; }
+    }
+    @media (max-width: 620px) {
+      /* slideshow figure: match the landscape image, kill the letterbox bands */
+      .cx-figure,
+      .cx:not(.is-player) .cx-beat .cx-figure { min-height: 0; height: auto; aspect-ratio: 16 / 9; }
+    }
+
+    /* ════ Videos - the @Demismatch YouTube films. Click-to-play facade
+       (thumbnail + play) swaps to a nocookie embed. House print-shadow. ════ */
+    .vids-shell { max-width: 1180px; margin-inline: auto; }
+    .vid-head { display: flex; align-items: center; gap: .8rem; margin: 0 0 clamp(1.4rem, 3vw, 2.2rem); }
+    .vid-seal { flex: 0 0 auto; width: 30px; height: 30px; display: block; color: var(--oxblood); }
+    .vid-seal svg { width: 100%; height: 100%; display: block; }
+    .vid-seal .dot { fill: var(--teal); }
+    .vid-eyebrow { font-family: var(--mono); font-size: clamp(.9rem, 1.5vw, 1.08rem); letter-spacing: .3em;
+                   text-transform: uppercase; font-weight: 500; color: var(--teal); }
+    .vid-rule { flex: 1; height: 1px; background: rgba(58,18,24,.22); }
+
+    .vid-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1.4rem, 3.4vw, 2.8rem); align-items: start; }
+    @media (max-width: 760px) { .vid-grid { grid-template-columns: 1fr; } }
+
+    .vid-card { margin: 0; display: flex; flex-direction: column; min-width: 0; }
+    /* facade / embed share the 16:9 frame + the teal+gold offset spine */
+    .vid-facade, .vid-embed {
+      display: block; width: 100%; aspect-ratio: 16 / 9; border-radius: 14px;
+      border: 1px solid rgba(58,18,24,.22);
+      box-shadow: 5px 5px 0 var(--teal), 10px 10px 0 var(--gold);
+    }
+    .vid-facade {
+      position: relative; overflow: hidden; padding: 0; cursor: pointer; background: var(--oxblood-deep);
+      transition: box-shadow .2s ease, transform .2s ease;
+    }
+    .vid-facade:hover, .vid-facade:focus-visible {
+      box-shadow: 7px 7px 0 var(--teal), 14px 14px 0 var(--gold);
+      transform: translate(-1px,-1px); outline: none;
+    }
+    .vid-thumb { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+    .vid-facade::after { /* warm scrim so the play button reads */
+      content: ""; position: absolute; inset: 0;
+      background: radial-gradient(circle at 50% 50%, rgba(26,6,8,.12), rgba(26,6,8,.42));
+      transition: background .2s ease;
+    }
+    .vid-facade:hover::after { background: radial-gradient(circle at 50% 50%, rgba(26,6,8,.05), rgba(26,6,8,.3)); }
+    .vid-play {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+      width: clamp(54px, 7vw, 74px); height: clamp(54px, 7vw, 74px); border-radius: 50%;
+      background: var(--oxblood); border: 2px solid var(--parchment);
+      box-shadow: 0 6px 20px rgba(26,6,8,.4); z-index: 2;
+      transition: transform .2s ease, background .2s ease;
+    }
+    .vid-play::before {
+      content: ""; position: absolute; top: 50%; left: 54%; transform: translate(-50%,-50%);
+      border-style: solid; border-width: 11px 0 11px 18px;
+      border-color: transparent transparent transparent var(--parchment);
+    }
+    .vid-facade:hover .vid-play { transform: translate(-50%,-50%) scale(1.08); background: var(--teal); }
+    .vid-dur {
+      position: absolute; right: 10px; bottom: 10px; z-index: 2;
+      font-family: var(--mono); font-size: .72rem; letter-spacing: .04em; color: var(--parchment);
+      background: rgba(26,6,8,.78); padding: .2rem .5rem; border-radius: 5px;
+    }
+    .vid-embed { border: 0; }
+
+    .vid-meta { margin-top: clamp(.9rem, 1.8vw, 1.3rem); display: flex; flex-direction: column; gap: .35rem; }
+    .vid-title { font-family: var(--serif); font-weight: 600; font-size: clamp(1.1rem, 1.7vw, 1.34rem);
+                 line-height: 1.15; letter-spacing: -.01em; color: var(--oxblood); }
+    .vid-yt { align-self: flex-start; font-family: var(--mono); font-size: .72rem; letter-spacing: .14em;
+              text-transform: uppercase; font-weight: 500; color: var(--teal); text-decoration: none;
+              border-bottom: 1px solid rgba(45,107,107,.4); transition: color .16s, border-color .16s; }
+    .vid-yt:hover, .vid-yt:focus-visible { color: var(--oxblood); border-bottom-color: var(--oxblood); }
+
+    .vid-channel { display: block; width: max-content; margin: clamp(1.8rem, 3.6vw, 3rem) auto 0;
+                   font-family: var(--mono); font-size: clamp(.82rem, 1.1vw, .95rem); letter-spacing: .16em;
+                   text-transform: uppercase; font-weight: 600; color: var(--teal); text-decoration: none;
+                   border-bottom: 1px solid rgba(45,107,107,.4); transition: color .16s, border-color .16s; }
+    .vid-channel:hover, .vid-channel:focus-visible { color: var(--oxblood); border-bottom-color: var(--oxblood); }
+
+    /* Two conclusions - the pair of flagship positions, stated between the hero and the map */
+    .bd-conclusions {
+      max-width: 62rem;
+      margin: clamp(2.4rem, 5vw, 3.8rem) auto 0;
+    }
+    .bd-conclusions-intro {
+      display: block; text-align: center;
+      font-family: var(--mono); font-size: 0.85rem;
+      letter-spacing: 0.36em; text-transform: uppercase; font-variant: normal; font-weight: 600;
+      color: var(--teal); margin-bottom: clamp(1.3rem, 2.6vw, 2rem);
+    }
+    .bd-conclusions-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: clamp(1.6rem, 4vw, 3.2rem); text-align: left;
+      position: relative;
+      padding: clamp(1.6rem, 3.5vw, 2.8rem);
+      background: var(--parchment-soft);
+      border: 1px solid rgba(58, 18, 24, 0.14);
+      box-shadow: 10px 10px 0 var(--teal);
+    }
+    /* hairline divider down the centre of the framed pair */
+    .bd-conclusions-grid::before {
+      content: ""; position: absolute; left: 50%;
+      top: clamp(1.6rem, 3.5vw, 2.8rem); bottom: clamp(1.6rem, 3.5vw, 2.8rem);
+      width: 1px; background: rgba(58, 18, 24, 0.12);
+    }
+    .bd-conclusions-grid .bd-arm-tag { max-width: none; }
+    /* conclusions earn a standout: teal accent bar down each card */
+    .bd-conclusion { padding-left: clamp(1rem, 1.8vw, 1.5rem); border-left: 3px solid var(--teal); }
+    /* collapsible bodies - the title toggles its paragraph(s); first glance = title + link */
+    .bd-arm-collapsible .bd-arm-title { cursor: pointer; }
+    .bd-arm-collapsible .bd-arm-title::after {
+      content: ""; display: inline-block; width: 0.4em; height: 0.4em; margin-left: 0.5em;
+      border-right: 2.5px solid var(--teal); border-bottom: 2.5px solid var(--teal);
+      transform: translateY(-0.22em) rotate(45deg); transition: transform 0.25s ease;
+      opacity: 0.55; vertical-align: middle;
+    }
+    .bd-arm-collapsible.is-open .bd-arm-title::after { transform: translateY(-0.02em) rotate(225deg); opacity: 0.8; }
+    .bd-arm-collapsible .bd-arm-tag {
+      max-height: 0; overflow: hidden; margin: 0;
+      transition: max-height 0.4s ease, margin 0.4s ease;
+    }
+    .bd-arm-collapsible.is-open .bd-arm-tag { max-height: 80rem; }
+    .bd-arm-collapsible.is-open .bd-arm-tag + .bd-arm-tag { margin-top: clamp(0.7rem, 1.4vw, 1rem); }
+    /* stacked taglines (alignment lead + conclusions) need breathing room */
+    .bd-arm-tag + .bd-arm-tag { margin-top: clamp(0.7rem, 1.4vw, 1rem); }
+    @media (max-width: 720px) {
+      .bd-conclusions-grid { grid-template-columns: 1fr; gap: clamp(1.6rem, 5vw, 2.2rem); box-shadow: 6px 6px 0 var(--teal); }
+      .bd-conclusions-grid::before { display: none; }
+    }
+
+    /* Sequenced transhumanism - standalone position, after the map */
+    .bd-sequence-inner { max-width: var(--read); margin: 0 auto; text-align: left; }
+    .bd-sequence-title {
+      font-family: var(--serif); font-style: italic; font-weight: 500;
+      font-size: clamp(1.55rem, 3vw, 2.25rem); line-height: 1.06; letter-spacing: -0.015em;
+      color: var(--oxblood); margin: 0 0 clamp(1.1rem, 2.2vw, 1.5rem);
+    }
+    .bd-sequence-inner p {
+      font-family: var(--serif); font-weight: 400;
+      font-size: clamp(0.98rem, 1.25vw, 1.1rem); line-height: 1.6;
+      color: var(--oxblood-ink); margin: 0 0 clamp(0.9rem, 1.8vw, 1.25rem);
+    }
+    .bd-sequence-link {
+      display: inline-block; margin-top: clamp(0.4rem, 1vw, 0.7rem);
+      font-family: var(--mono); font-size: clamp(0.82rem, 1vw, 0.92rem);
+      letter-spacing: 0.14em; text-transform: uppercase; font-weight: 500;
+      color: var(--teal); text-decoration: none;
+      border-bottom: 1px solid rgba(45,107,107,0.4); padding-bottom: 2px;
+      transition: color 0.16s ease, border-color 0.16s ease;
+    }
+    .bd-sequence-link:hover, .bd-sequence-link:focus-visible { color: var(--oxblood); border-color: var(--oxblood); }
 </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://demismatch.com/#org",
+        "name": "Demismatch",
+        "url": "https://demismatch.com/",
+        "logo": "https://demismatch.com/cor-mark.png"
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://demismatch.com/#website",
+        "name": "Demismatch - Humans need a world that fits humans.",
+        "url": "https://demismatch.com/",
+        "description": "Modern distress is accurate signaling about a world that no longer fits you, not a disorder in you. Fix the environment first, upgrade the human second - and align AI to what humans need, not what they say they want.",
+        "publisher": {
+          "@id": "https://demismatch.com/#org"
+        }
+      }
+    ]
+  }
+  </script>
 </head>
-<body>
-  <p>The Vision has moved. Its content now lives on the Demismatch front door.</p>
-  <p><a href="https://demismatch.com/#vision">Continue to the front door &rarr;</a></p>
-  <script>location.replace("https://demismatch.com/#vision");</script>
+<body data-page="home">
+
+  <main class="cover">
+
+    <!-- Panel 1 - the cover: thesis, claim, skeleton, proof -->
+    <section class="panel reveal d1">
+
+      <!-- Quiet corner link to the about page -->
+      <a class="bd-about-link" href="about.html">About</a>
+
+      <!-- Top kicker - the three-site line -->
+      <p class="bd-kicker">
+        <span class="cur">Demismatch</span>
+        <span class="sep" aria-hidden="true">·</span>
+        <a href="https://cor.demismatch.com/">Cor</a>
+      </p>
+
+      <!-- Stage: hero + map, over the dystopia↔eden mannequin backdrop -->
+      <div class="bd-stage">
+
+
+      <!-- Hero - the hook and the claim, centred. -->
+      <!-- The map - Cor at the hub, two arms (open by default), the horizon (collapsed). -->
+      <section class="bd-map" id="vision" aria-label="The map: Cor at the centre, two arms built on it, and the horizon">
+
+        <div class="bd-map-grid">
+
+          <!-- ARM · For machines -->
+          <div class="bd-arm bd-arm-left">
+            <header class="bd-arm-head bd-arm-collapsible">
+              <span class="bd-arm-kicker">For machines</span>
+              <h3 class="bd-arm-title">AI alignment</h3>
+              <p class="bd-arm-tag"><strong>Preference-based alignment inherits whatever contaminates the preference signal.</strong> The field already knows the readout can be corrupted - reward hacking, preference misspecification, and sycophancy are all active work on exactly that. What that work does not settle is what the preference is a readout <em>of</em>. A preference can be ancient machinery firing in an environment it was never built for. Align to the readout without a model of the machinery and you do not align AI with humans; you align it with the mismatch, and you industrialize it. We already ran that experiment at civilizational scale. It is called the attention economy. Cor is a candidate account of the machinery.</p>
+              <p class="bd-arm-tag">The alternative isn't better inference. It's specification. Align the AI being built on us to what humans need, beneath what they say they want.</p>
+              <a class="bd-arm-paper" href="https://cor.demismatch.com/bridge-paper.html">Read the paper · <em>What Alignment Misses</em> →</a>
+            </header>
+            <details class="bd-arm-fold" open>
+              <summary><span class="bd-fold-label">Three alignment tracks</span><span class="bd-fold-icon" aria-hidden="true"></span></summary>
+              <ul class="bd-arm-list">
+              <li><details class="bd-node" open>
+                <summary>
+                  <span class="bd-node-name">The spec, machine-readable</span>
+                  <span class="bd-node-line">Any LLM reads the foundations and mechanisms at inference, through one tool-call surface.</span>
+                </summary>
+                <div class="bd-node-body">
+                  <div class="bd-node-visual"><svg viewBox="0 0 100 56" class="bd-glyph">
+                    <rect x="10" y="10" width="28" height="36" rx="1"/>
+                    <rect x="62" y="10" width="28" height="36" rx="1"/>
+                    <line x1="38" y1="28" x2="62" y2="28"/>
+                    <circle cx="44" cy="28" r="2" class="fill"/><circle cx="56" cy="28" r="2" class="fill"/>
+                    <line x1="16" y1="18" x2="32" y2="18" class="soft"/><line x1="16" y1="24" x2="32" y2="24" class="soft"/>
+                    <line x1="16" y1="30" x2="28" y2="30" class="soft"/><line x1="16" y1="36" x2="32" y2="36" class="soft"/>
+                    <line x1="68" y1="18" x2="84" y2="18" class="soft"/><line x1="68" y1="24" x2="84" y2="24" class="soft"/>
+                    <line x1="68" y1="30" x2="80" y2="30" class="soft"/><line x1="68" y1="36" x2="84" y2="36" class="soft"/>
+                  </svg></div>
+                  <dl>
+                  <dt>Form</dt><dd>MCP server - a tool-call surface for any model.</dd>
+                  <dt>Real input</dt><dd>The spec, queryable per mechanism: “this request engages M3; resolution requires reciprocal human co-regulation.”</dd>
+                </dl></div>
+              </details></li>
+              <li><details class="bd-node">
+                <summary>
+                  <span class="bd-node-name">Alignment through the spec</span>
+                  <span class="bd-node-line">Steering, data curation, and evals against the spec as ground truth.</span>
+                </summary>
+                <div class="bd-node-body">
+                  <div class="bd-node-visual"><svg viewBox="0 0 100 56" class="bd-glyph">
+                    <line x1="10" y1="46" x2="90" y2="10" stroke-dasharray="2 2" class="soft"/>
+                    <line x1="10" y1="46" x2="90" y2="14"/>
+                    <polygon points="90,14 82,12 84,20" class="fill"/>
+                    <circle cx="10" cy="46" r="3" class="fill"/>
+                    <line x1="10" y1="46" x2="30" y2="40" class="soft" stroke-dasharray="1 1"/>
+                    <line x1="10" y1="46" x2="50" y2="34" class="soft" stroke-dasharray="1 1"/>
+                    <line x1="10" y1="46" x2="70" y2="24" class="soft" stroke-dasharray="1 1"/>
+                  </svg></div>
+                  <dl>
+                  <dt>Targets</dt><dd>The three places alignment has to hold - activations, the training distribution, and evaluation.</dd>
+                  <dt>Proxy</dt><dd>Preference-maximising RLHF and preference-derived benchmarks - they grade preferences, not mechanisms.</dd>
+                </dl></div>
+              </details></li>
+              <li><details class="bd-node">
+                <summary>
+                  <span class="bd-node-name">Models built on the spec</span>
+                  <span class="bd-node-line">Small models spec-grounded from pretraining forward - no preferences to correct later.</span>
+                </summary>
+                <div class="bd-node-body">
+                  <div class="bd-node-visual"><svg viewBox="0 0 100 56" class="bd-glyph">
+                    <rect x="16" y="16" width="24" height="24" rx="1"/>
+                    <rect x="60" y="16" width="24" height="24" rx="1"/>
+                    <circle cx="28" cy="28" r="3" class="fill"/><circle cx="72" cy="28" r="3" class="fill"/>
+                    <line x1="40" y1="28" x2="60" y2="28" stroke-dasharray="2 2"/>
+                    <line x1="22" y1="22" x2="34" y2="22" class="soft"/><line x1="22" y1="34" x2="34" y2="34" class="soft"/>
+                    <line x1="66" y1="22" x2="78" y2="22" class="soft"/><line x1="66" y1="34" x2="78" y2="34" class="soft"/>
+                  </svg></div>
+                  <dl>
+                  <dt>Form</dt><dd>Purpose-built small models; constitutions that encode resolution conditions.</dd>
+                  <dt>For</dt><dd>Where hallucinating about human needs is costly - clinical triage, education, therapy-adjacent tools.</dd>
+                </dl></div>
+              </details></li>
+              <li class="bd-arm-more">… and more</li>
+              </ul>
+            </details>
+          </div>
+
+          <!-- HUB · Cor -->
+          <div class="bd-source" id="cor">
+            <span class="bd-source-kicker">The source</span>
+            <svg class="bd-source-mark" viewBox="104 34 592 592" fill="none" aria-hidden="true">
+              <g class="rings">
+                <circle cx="399.5" cy="329" r="271"/>
+                <circle cx="446.5" cy="376.5" r="200"/>
+                <circle cx="488" cy="418" r="129"/>
+              </g>
+              <circle class="dot" cx="523" cy="453" r="59"/>
+              <g class="wm"><text x="424" y="492">C</text><text x="624" y="492">R</text></g>
+            </svg>
+            <h2 class="bd-source-title">Cor - what a human needs</h2>
+            <p class="bd-source-spec">An evidence-graded atlas of the human - built toward a specification.</p>
+            <a class="bd-source-cta" href="https://cor.demismatch.com/">Open Cor →</a>
+            <a class="bd-source-vid" href="https://youtu.be/PyomiIbZIQQ" target="_blank" rel="noopener">Academic breakdown (video) →</a>
+            <div class="bd-source-credit">
+              <span class="bd-source-credit-label">Built on the work of</span>
+              <span class="bd-source-credit-names">
+                <span class="cr-pill">Darwin</span>
+                <span class="cr-pill">Bowlby</span>
+                <span class="cr-pill">Trivers</span>
+                <span class="cr-pill">Tooby &amp; Cosmides</span>
+                <span class="cr-pill">Nesse</span>
+                <span class="cr-pill">Panksepp</span>
+                <span class="cr-pill">Dunbar</span>
+                <span class="cr-pill">Hrdy</span>
+                <span class="cr-pill">Sapolsky</span>
+                <span class="cr-pill">de Waal</span>
+                <span class="more">+ more</span>
+              </span>
+            </div>
+            <div class="bd-source-answers">
+              <span class="bd-source-answers-label">It answers</span>
+              <ul>
+                <li>What do humans need? <span class="t">foundations</span></li>
+                <li>How do those needs operate? <span class="t">mechanisms</span></li>
+                <li>Where does mismatch occur? <span class="t">diagnosis</span></li>
+                <li>What repairs it? <span class="t">intervention</span></li>
+              </ul>
+            </div>
+            <div class="bd-source-stats">
+              <div class="stat"><span class="n">17</span><span class="l">Foundations</span></div>
+              <div class="stat"><span class="n">15</span><span class="l">Mechanisms</span></div>
+              <div class="stat"><span class="n">608</span><span class="l">Extractions</span></div>
+              <div class="stat"><span class="n">64</span><span class="l">Researchers</span></div>
+            </div>
+            <p class="bd-source-note">every evidential claim carries explicit provenance: a DOI or a PMID and a verbatim quote; where provenance is incomplete or quarantined, the atlas says so</p>
+          </div>
+
+          <!-- ARM · For humans -->
+          <div class="bd-arm bd-arm-right">
+            <header class="bd-arm-head">
+              <span class="bd-arm-kicker">For people</span>
+              <h3 class="bd-arm-title">Demismatch tools</h3>
+              <p class="bd-arm-tag">See the mismatch you’re in - then build the matched conditions back.</p>
+            </header>
+            <details class="bd-arm-fold" open>
+              <summary><span class="bd-fold-label">Four tools <span class="bd-badge bd-badge-live">1 live</span></span><span class="bd-fold-icon" aria-hidden="true"></span></summary>
+              <ul class="bd-arm-list">
+              <li><details class="bd-node" open>
+                <summary>
+                  <span class="bd-node-name">Decode:Talk <span class="bd-badge bd-badge-live">live</span></span>
+                  <span class="bd-node-line">Type a situation; get the mechanism firing, the proxy hitting it, and what would resolve.</span>
+                </summary>
+                <div class="bd-node-body">
+                  <div class="bd-node-visual"><svg viewBox="0 0 1600 900" class="bd-mock" preserveAspectRatio="xMidYMid slice">
+                    <rect width="1600" height="900" fill="#120506"/>
+                    <text x="60" y="66" font-family="'JetBrains Mono',monospace" font-size="26" fill="#c4962c" letter-spacing="6">DECODE · TALK</text>
+                    <line x1="60" y1="96" x2="1540" y2="96" stroke="#3a1218" stroke-width="1.5"/>
+                    <text x="1540" y="148" font-family="'JetBrains Mono',monospace" font-size="18" fill="#6a5a3a" letter-spacing="4" text-anchor="end">YOU</text>
+                    <rect x="540" y="170" width="1000" height="130" rx="10" fill="#2a0c11" stroke="#c4962c" stroke-width="1.2"/>
+                    <text x="570" y="222" font-family="'Spectral',serif" font-size="32" fill="#ece0c4">I keep checking my phone when I’m with people</text>
+                    <text x="570" y="268" font-family="'Spectral',serif" font-size="32" fill="#ece0c4">I actually love. I hate it. I can’t stop.</text>
+                    <text x="60" y="348" font-family="'JetBrains Mono',monospace" font-size="18" fill="#c4962c" letter-spacing="4">DECODE · TALK</text>
+                    <rect x="60" y="368" width="1320" height="300" rx="10" fill="#1a0608" stroke="#3a1218" stroke-width="2"/>
+                    <text x="90" y="428" font-family="'Spectral',serif" font-size="30" fill="#ece0c4">Your coalition monitor is running in the background.</text>
+                    <text x="90" y="488" font-family="'Spectral',serif" font-size="26" fill="#c4b894">The circuit evolved to track where your people are. In a</text>
+                    <text x="90" y="524" font-family="'Spectral',serif" font-size="26" fill="#c4b894">band of 50 you knew without looking. Now your coalition is</text>
+                    <text x="90" y="560" font-family="'Spectral',serif" font-size="26" fill="#c4b894">scattered, and the only channel is the device in your hand.</text>
+                    <text x="60" y="760" font-family="'JetBrains Mono',monospace" font-size="16" fill="#c4962c" letter-spacing="3">MECHANISM</text>
+                    <text x="60" y="798" font-family="'Spectral',serif" font-size="22" fill="#c4b894">Coalition monitoring</text>
+                    <text x="700" y="760" font-family="'JetBrains Mono',monospace" font-size="16" fill="#c4962c" letter-spacing="3">REAL INPUT</text>
+                    <text x="700" y="798" font-family="'Spectral',serif" font-size="22" fill="#c4b894">Known people in shared space</text>
+                  </svg></div>
+                  <dl>
+                  <dt>Form</dt><dd>Chat, grounded in the Cor spec. <a href="decode-talk/">Open Decode:Talk →</a></dd>
+                </dl></div>
+              </details></li>
+              <li><details class="bd-node">
+                <summary>
+                  <span class="bd-node-name">Decode:Web <span class="bd-badge bd-badge-build">in build</span></span>
+                  <span class="bd-node-line">A Chrome extension: every flagged page element gets the read, in place.</span>
+                </summary>
+                <div class="bd-node-body">
+                  <dl>
+                  <dt>Form</dt><dd>Browser extension - each annotation traces to a named mechanism.</dd>
+                </dl></div>
+              </details></li>
+              <li><details class="bd-node">
+                <summary>
+                  <span class="bd-node-name">Decode:Camera <span class="bd-badge bd-badge-build">in build</span></span>
+                  <span class="bd-node-line">Upload a scene; each object is outlined and read - the stimulus it imitates, the real input it stands in for.</span>
+                </summary>
+                <div class="bd-node-body">
+                  <dl>
+                  <dt>Form</dt><dd>Scene HUD - image upload now, live camera next. <a href="decode-camera.html">See Decode:Camera →</a></dd>
+                </dl></div>
+              </details></li>
+              <li><details class="bd-node">
+                <summary>
+                  <span class="bd-node-name">Adaptor - Lens <span class="bd-badge bd-badge-build">next</span></span>
+                  <span class="bd-node-line">Build matched conditions back. A morning tool that puts a role, a group, and a goal that matters in front of you.</span>
+                </summary>
+                <div class="bd-node-body"><dl>
+                  <dt>Family</dt><dd>Adaptor - assembly, not commentary. Group-formation tooling; VR/AR environment scripts.</dd>
+                </dl></div>
+              </details></li>
+              </ul>
+            </details>
+          </div>
+
+        </div>
+
+        <!-- HORIZON · collapsed by default -->
+        <details class="bd-horizon">
+          <summary>
+            <span class="bd-horizon-kicker">Horizon</span>
+            <span class="bd-horizon-title">Build the world that fits</span>
+            <span class="bd-horizon-tag">What comes after mismatch - environments matched to human biology.</span>
+            <span class="bd-horizon-open">expand →</span>
+          </summary>
+          <div class="bd-horizon-body">
+            <p><strong>Aligned AI as builder.</strong> The machines that build environments at scale will be AI. Point them at preferences and you get perfect proxies. Point them at what people actually need and you get the real thing. Same machine, opposite result. Alignment and world-building are one project.</p>
+            <p><strong>Medium is not the constraint.</strong> Resolution conditions are. A VR headset that gives you real presence, people who know you, actual stakes, and work you share is a real match. More of one than most suburbs. And it ships in years, where a city takes generations.</p>
+            <p><strong>Scale ≈ Dunbar.</strong> Identity, dependence, governance: keep them at the size the brain evolved to track. A nation is plumbing for coordinating millions. It was never somewhere you could belong.</p>
+            <p><strong>Role, not job.</strong> A role is something the group can see. It matters to whether they make it, and they'd feel it if you left. A job is an interchangeable input sold into a market that never learns your name. We're built for the first one.</p>
+            <p><strong>Purpose as infrastructure.</strong> Waking up needed by specific, named people, for work that matters. You don't catch that up on a weekend or stumble into it at forty. You have it daily, or you feel the hole where it should be. Most of what we call a meaning crisis is that hole.</p>
+            <p><strong>Dynamic egalitarianism.</strong> The only status that sits right with the organism is the kind you earn inside a group that can see you, and lose the moment you stop earning it. Rank that answers to what you actually do, and that the group can take back.</p>
+            <p><strong>Economic substrate.</strong> A basic income, or something like it, is not charity. It's the floor everything else stands on. Stop forcing people to sell their hours into anonymous markets just to earn the right to exist, and most of the rest opens up.</p>
+            <p><strong>Sovereign groups.</strong> Give small, Dunbar-scale groups real legal standing, as the layer where belonging and governance actually live. Nobody's seceding. The unit of belonging just moves down to a size a person can hold.</p>
+          </div>
+        </details>
+
+      </section>
+
+      </div><!-- /.bd-stage -->
+
+    </section>
+
+
+  </main>
+
+  <!-- Player for the embedded eight-beat argument slideshow (.cx unit) -->
+  <script>
+  (function () {
+    var root = document.querySelector('.cx');
+    if (!root) return;
+    var stage = document.getElementById('cx-stage');
+    var beats = Array.prototype.slice.call(stage.querySelectorAll('.cx-beat'));
+    var playBtn = document.getElementById('cx-play');
+    var prevBtn = document.getElementById('cx-prev');
+    var nextBtn = document.getElementById('cx-next');
+    var icPause = playBtn.querySelector('.ic-pause');
+    var icPlay = playBtn.querySelector('.ic-play');
+    var curEl = document.getElementById('cx-cur');
+    var spine = document.getElementById('cx-spine');
+    var replayBtn = document.getElementById('cx-replay');
+
+    var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduced) { return; } // leave the static stacked read in place, no player
+
+    root.classList.add('is-player');
+
+    var LABELS = ['Claim','Mismatch','Hijack','Loop','Wanting','Cor','AI','Fix'];
+    var durs = beats.map(function (b) { return parseInt(b.getAttribute('data-dur'), 10) || 8000; });
+
+    // build the scrub spine
+    var segs = beats.map(function (b, i) {
+      var btn = document.createElement('button');
+      btn.type = 'button'; btn.className = 'cx-seg'; btn.setAttribute('role', 'tab');
+      btn.setAttribute('aria-label', 'Beat ' + (i + 1) + ': ' + LABELS[i]);
+      btn.innerHTML = '<span class="cx-seg-bar"><i></i></span><span class="cx-seg-lbl">' + LABELS[i] + '</span>';
+      btn.addEventListener('click', function () { gotoBeat(i, true); });
+      spine.appendChild(btn);
+      return btn;
+    });
+    var fills = segs.map(function (s) { return s.querySelector('i'); });
+
+    var idx = 0, elapsed = 0, playing = false, userPaused = false, ended = false, lastT = null;
+
+    function setAccent(b) { root.style.setProperty('--accent', b.getAttribute('data-accent') || 'var(--teal)'); }
+
+    function render() {
+      beats.forEach(function (b, i) { b.classList.toggle('is-active', i === idx); });
+      setAccent(beats[idx]);
+      curEl.textContent = ('0' + (idx + 1)).slice(-2);
+      if (prevBtn) prevBtn.disabled = (idx === 0);
+      if (nextBtn) nextBtn.disabled = (idx === beats.length - 1);
+      segs.forEach(function (s, i) {
+        s.classList.toggle('active', i === idx);
+        s.classList.toggle('done', i < idx);
+        if (i > idx) fills[i].style.width = '0%';
+        if (i < idx) fills[i].style.width = '100%';
+      });
+      fills[idx].style.width = '0%';
+    }
+
+    function setPlaying(p) {
+      playing = p;
+      icPause.style.display = p ? 'block' : 'none';
+      icPlay.style.display = p ? 'none' : 'block';
+      playBtn.setAttribute('aria-label', p ? 'Pause' : 'Play');
+    }
+
+    function gotoBeat(i, byUser) {
+      ended = false; root.classList.remove('is-ended');
+      idx = Math.max(0, Math.min(beats.length - 1, i));
+      elapsed = 0; render();
+      if (byUser) { userPaused = true; setPlaying(false); }
+    }
+
+    function play() { if (ended) { idx = 0; elapsed = 0; render(); } ended = false; root.classList.remove('is-ended'); userPaused = false; setPlaying(true); }
+    function pause(byUser) { setPlaying(false); if (byUser) userPaused = true; }
+
+    function finish() { setPlaying(false); ended = true; root.classList.add('is-ended'); fills[idx].style.width = '100%'; }
+
+    function tick(t) {
+      if (lastT == null) lastT = t;
+      var dt = t - lastT; lastT = t;
+      if (playing && !ended) {
+        elapsed += dt;
+        var dur = durs[idx];
+        fills[idx].style.width = Math.min(100, (elapsed / dur) * 100) + '%';
+        if (elapsed >= dur) {
+          if (idx < beats.length - 1) { idx++; elapsed = 0; render(); }
+          else { finish(); }
+        }
+      }
+      requestAnimationFrame(tick);
+    }
+
+    // controls
+    playBtn.addEventListener('click', function () { playing ? pause(true) : play(); });
+    if (prevBtn) prevBtn.addEventListener('click', function () { gotoBeat(idx - 1, true); });
+    if (nextBtn) nextBtn.addEventListener('click', function () { gotoBeat(idx + 1, true); });
+    replayBtn.addEventListener('click', function () { gotoBeat(0); play(); });
+    stage.addEventListener('click', function (e) {
+      if (e.target.closest('.cx-replay')) return;
+      playing ? pause(true) : play();
+    });
+    document.addEventListener('keydown', function (e) {
+      if (!isInView()) return;
+      if (e.key === ' ') { e.preventDefault(); playing ? pause(true) : play(); }
+      else if (e.key === 'ArrowRight') { gotoBeat(idx + 1, true); }
+      else if (e.key === 'ArrowLeft') { gotoBeat(idx - 1, true); }
+    });
+
+    // autoplay while in view; never fight a manual pause
+    var inView = false;
+    function isInView() { return inView; }
+    function inViewport(el) {
+      var r = el.getBoundingClientRect();
+      var vh = window.innerHeight || document.documentElement.clientHeight;
+      return r.top < vh * 0.85 && r.bottom > vh * 0.15;
+    }
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          inView = en.isIntersecting && en.intersectionRatio >= 0.4;
+          if (inView && !userPaused && !ended) play();
+          else if (!inView && playing) setPlaying(false); // soft pause, not a user pause
+        });
+      }, { threshold: [0, 0.4, 1] });
+      io.observe(stage);
+    }
+
+    render();
+    requestAnimationFrame(tick);
+    // kick off immediately if the stage is already on screen at load
+    if (inViewport(stage)) { inView = true; play(); }
+  })();
+  </script>
+
+  <!-- PROTO · Expand / collapse the whole vision (all arm + horizon details) -->
+  <script>
+  (function () {
+    var btn = document.querySelector('[data-expand-vision]');
+    var map = document.getElementById('vision');
+    if (!btn || !map) return;
+    var items = map.querySelectorAll('details');
+    btn.addEventListener('click', function () {
+      var expand = btn.getAttribute('aria-expanded') !== 'true';
+      items.forEach(function (d) { d.open = expand; });
+      btn.setAttribute('aria-expanded', expand ? 'true' : 'false');
+      btn.textContent = expand ? 'Collapse the vision ↑' : 'Expand the full vision ↓';
+    });
+  })();
+  </script>
+
+  <!-- PROTO · "what humans need" hero fold-out (in-memory state only) -->
+  <script>
+  (function () {
+    var toggle = document.getElementById('needs-toggle');
+    var fold = document.getElementById('needs-fold');
+    if (!toggle || !fold) return;
+    toggle.addEventListener('click', function () {
+      var open = toggle.getAttribute('aria-expanded') !== 'true';
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      fold.classList.toggle('is-open', open);
+      if (open) fold.scrollTop = 0;
+    });
+  })();
+  </script>
+
+  <!-- Collapsible arm bodies: the title toggles its paragraph(s); collapsed by default -->
+  <script>
+  (function () {
+    document.querySelectorAll('.bd-arm-collapsible').forEach(function (card) {
+      var title = card.querySelector('.bd-arm-title');
+      if (!title) return;
+      title.setAttribute('role', 'button');
+      title.setAttribute('tabindex', '0');
+      title.setAttribute('aria-expanded', 'false');
+      function toggle() {
+        var open = !card.classList.contains('is-open');
+        card.classList.toggle('is-open', open);
+        title.setAttribute('aria-expanded', open ? 'true' : 'false');
+      }
+      title.addEventListener('click', toggle);
+      title.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
+      });
+    });
+  })();
+  </script>
+
+  <script>
+  (function () {
+    var trigger = document.getElementById('film-trigger');
+    if (!trigger) return;
+    trigger.addEventListener('click', function () {
+      // self-hosted player: clean native controls, no YouTube branding/overlays
+      var video = document.createElement('video');
+      video.className = 'bd-film-frame';
+      video.src = trigger.getAttribute('data-src');
+      video.poster = 'film-poster.jpg';
+      video.controls = true;
+      video.playsInline = true;
+      video.preload = 'auto';
+      video.setAttribute('controlslist', 'nodownload');
+      trigger.replaceWith(video);
+      // the click is the user gesture, so play() with sound is allowed
+      var p = video.play();
+      if (p && p.catch) p.catch(function () { /* user can press the native play button */ });
+    }, { once: true });
+  })();
+  </script>
+
+  <!-- EXPERIMENT: scroll-reveal engine (drop-in; remove this line + the head block to revert) -->
+  <!-- Videos: click-to-play facade -> nocookie embed (no iframes until asked for) -->
+  <script>
+  (function () {
+    document.querySelectorAll('.vid-facade').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var frame = document.createElement('iframe');
+        frame.className = 'vid-embed';
+        frame.src = btn.getAttribute('data-embed');
+        frame.title = btn.getAttribute('aria-label') || 'Video';
+        frame.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
+        frame.allowFullscreen = true;
+        btn.replaceWith(frame);
+      }, { once: true });
+    });
+  })();
+  </script>
+
+  <script src="scroll-fx.js?v=9" onerror="document.documentElement.classList.remove('sfx-armed')"></script>
 </body>
 </html>

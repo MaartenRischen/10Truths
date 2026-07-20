@@ -75,7 +75,7 @@
     { c: '.bd-herocenter',     i: '.bd-lede, .bd-film, .bd-decode-row, .bd-needs-row', step: 0.12, base: 0.28 },
     { c: '.bd-arm-head',       i: '.bd-arm-kicker, .bd-arm-tag, .bd-arm-paper', step: 0.11 },
     { c: '.bd-arm-list',       i: ':scope > li', step: 0.20 },                 // CARDS - block by block
-    { c: '.bd-source',         i: '.bd-source-kicker, .bd-source-mark, .bd-source-spec, .bd-source-cta, .bd-source-vid', step: 0.11 },
+    { c: '.bd-source',         i: '.bd-source-kicker, .bd-source-video, .bd-source-spec, .bd-source-cta', step: 0.11 },
     { c: '.bd-source-credit',  i: '.bd-source-credit-label, .cr-pill, .more', step: 0.10 },   // CHIPS - one by one
     { c: '.bd-source-answers', i: '.bd-source-answers-label, li', step: 0.15 },               // LINES - line by line
     { c: '.bd-source-stats',   i: '.stat', step: 0.12 },
@@ -191,6 +191,9 @@
   var armL = $('.bd-arm-left'), armR = $('.bd-arm-right');
   var mapReady = false, mapMobile = null;
   var links = null, lineL, lineR, nodeL, nodeR, headL, headR;
+  var lineL2, lineR2, nodeL2, nodeR2, headL2, headR2;
+  var armLc = $('.bd-arm-left .bd-arm-head'), armLx = $('.bd-arm-left .bd-roadmap');
+  var armRc = $('.bd-arm-right .bd-arm-head'), armRx = $('.bd-arm-right .bd-decode');
 
   function mkConn() {
     var line = document.createElementNS(SVGNS, 'path'); line.setAttribute('class', 'line');
@@ -200,13 +203,15 @@
     return { line: line, node: node, head: head };
   }
 
-  if (mapGrid && hub && mark && armL && armR) {
+  if (mapGrid && hub && armL && armR) {
     links = document.createElementNS(SVGNS, 'svg');
     links.setAttribute('class', 'bd-links');
     links.setAttribute('aria-hidden', 'true');
-    var cL = mkConn(), cR = mkConn();
+    var cL = mkConn(), cR = mkConn(), cL2 = mkConn(), cR2 = mkConn();
     lineL = cL.line; nodeL = cL.node; headL = cL.head;
     lineR = cR.line; nodeR = cR.node; headR = cR.head;
+    lineL2 = cL2.line; nodeL2 = cL2.node; headL2 = cL2.head;
+    lineR2 = cR2.line; nodeR2 = cR2.node; headR2 = cR2.head;
     mapGrid.appendChild(links);
     docEl.classList.add('sfx-links');
     mapReady = true;
@@ -229,16 +234,22 @@
 
   function drawLinks(gr) {
     var h = hub.getBoundingClientRect();
-    var lr = armL.getBoundingClientRect(), rr = armR.getBoundingClientRect();
-    // emit from the hub's vertical centre — the one height where the (tallest)
-    // hub and the centre-aligned arms all line up, so the lines cross the gap
-    // level and land on the card bodies, not the whitespace above them.
-    var y = (h.top + h.height / 2) - gr.top;
     var hxL = h.left - gr.left, hxR = h.right - gr.left;
-    var axL = lr.right - gr.left - 2;               // left arm inner edge
-    var axR = rr.left - gr.left + 2;                // right arm inner edge
-    drawConn(lineL, nodeL, headL, hxL, y, axL, y, -1);
-    drawConn(lineR, nodeR, headR, hxR, y, axR, y, 1);
+    // one horizontal connector to each block, landing at that block's own centre
+    function toLeft(line, node, head, el) {
+      var r = (el || armL).getBoundingClientRect();
+      var y = (r.top + r.height / 2) - gr.top;
+      drawConn(line, node, head, hxL, y, r.right - gr.left - 2, y, -1);
+    }
+    function toRight(line, node, head, el) {
+      var r = (el || armR).getBoundingClientRect();
+      var y = (r.top + r.height / 2) - gr.top;
+      drawConn(line, node, head, hxR, y, r.left - gr.left + 2, y, 1);
+    }
+    toLeft(lineL, nodeL, headL, armLc);
+    toRight(lineR, nodeR, headR, armRc);
+    if (armLx) toLeft(lineL2, nodeL2, headL2, armLx);
+    if (armRx) toRight(lineR2, nodeR2, headR2, armRx);
   }
 
   function mapReset() {
