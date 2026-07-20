@@ -154,6 +154,51 @@
       max-width: 60ch;
     }
 
+    /* Structured inventory - what this is, what is human-made, what is AI-made. Denser than the lede. */
+    .bd-inv {
+      max-width: min(100%, 40rem);
+      margin: clamp(1.1rem, 2.4vw, 1.8rem) auto 0;
+      text-align: center;
+      display: grid;
+      gap: clamp(0.9rem, 2vw, 1.3rem);
+      padding: clamp(1.3rem, 2.8vw, 2.1rem) clamp(1.4rem, 3.2vw, 2.6rem);
+      background: rgba(245, 242, 233, 0.86);
+      -webkit-backdrop-filter: blur(4px);
+      backdrop-filter: blur(4px);
+      border-radius: 14px;
+      box-shadow: 0 1px 24px rgba(42, 12, 17, 0.07);
+    }
+    .bd-inv-head {
+      display: block;
+      font-family: var(--mono);
+      font-size: clamp(0.58rem, 0.8vw, 0.66rem);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: var(--teal);
+      margin-bottom: 0.55rem;
+    }
+    .bd-inv-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.4rem; }
+    .bd-inv-list li {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: clamp(0.85rem, 1.1vw, 0.98rem);
+      line-height: 1.45;
+      color: var(--oxblood-ink);
+    }
+    .bd-inv-em { font-weight: 600; color: var(--oxblood); }
+    .bd-inv-list a {
+      color: var(--teal);
+      text-decoration: none;
+      border-bottom: 1px solid color-mix(in srgb, currentColor 40%, transparent);
+      padding-bottom: 1px;
+      white-space: nowrap;
+    }
+    .bd-inv-list a:hover, .bd-inv-list a:focus-visible { color: var(--oxblood); border-color: var(--oxblood); }
+    @media (max-width: 680px) {
+      .bd-inv { max-width: 30rem; gap: clamp(0.8rem, 3vw, 1.2rem); }
+    }
+
     /* Quiet under-lede link to the plain-words page - site's mono/teal affordance */
     .bd-plainlink {
       display: inline-block;
@@ -1121,6 +1166,11 @@
     /* ── Arms ── */
     .bd-arm { position: relative; z-index: 1; display: flex; flex-direction: column; }
     .bd-arm-head { margin-bottom: clamp(0.8rem, 1.6vw, 1.2rem); }
+    /* mannequin illustration crowning each conclusion - sized by height so the pair aligns */
+    .bd-conclusion-fig {
+      display: block; height: clamp(130px, 15vw, 165px); width: auto; max-width: 100%;
+      margin: 0 0 clamp(0.9rem, 1.8vw, 1.3rem);
+    }
     .bd-arm-kicker {
       display: block; font-family: var(--mono); font-size: 0.85rem;
       letter-spacing: 0.36em; text-transform: uppercase; font-variant: normal; font-weight: 600;
@@ -1628,7 +1678,28 @@
       <div class="bd-herocenter">
         <h1 class="bd-thesis">Humans need a world that fits humans.<span class="bd-sub">AI should help build it.</span></h1>
 
-        <p class="bd-lede">Modern distress is accurate signaling about a world that no longer fits you. The science of what you're built to need already exists, scattered and never assembled. Cor assembles it, so you can hold any environment or technology up against what you actually require. Then build the ones that fit.</p>
+        <!-- Structured inventory: what this is, what is human-made, what is AI-made -->
+        <div class="bd-inv">
+          <div class="bd-inv-group">
+            <span class="bd-inv-head">What this is</span>
+            <ul class="bd-inv-list">
+              <li>Demismatch is an open, non-profit project. At its center is Cor: an evidence-graded atlas of what human beings need, built so any environment or technology can be checked against it. <a href="https://cor.demismatch.com/">Open Cor →</a></li>
+            </ul>
+          </div>
+          <div class="bd-inv-group">
+            <span class="bd-inv-head">What is human-made</span>
+            <ul class="bd-inv-list">
+              <li><em class="bd-inv-em">The science in Cor:</em> 610 extractions from 125 published papers. Human researchers, human findings, every claim traceable to a DOI or PMID.</li>
+              <li><em class="bd-inv-em">The essay:</em> written by the founder. No AI. <a href="founder.html">Who I am →</a></li>
+            </ul>
+          </div>
+          <div class="bd-inv-group">
+            <span class="bd-inv-head">What is AI-made</span>
+            <ul class="bd-inv-list">
+              <li>The Cor pipeline, the films, the graphics, the site build, decode:talk.</li>
+            </ul>
+          </div>
+        </div>
 
         <!-- Hero film: the V1 mismatch film. Click-to-play facade -> self-hosted <video> (no YouTube chrome). -->
         <figure class="bd-film" id="bd-film">
@@ -1648,10 +1719,6 @@
         <div class="bd-decode-row">
           <a class="bd-decode-link" href="decode-talk.html">Try Decode:Talk!</a>
         </div>
-        <div class="bd-essay-row">
-          <a class="bd-essay-link" href="essay.html">Read the essay →</a>
-          <span class="bd-essay-sub">written by hand, by the founder</span>
-        </div>
       </div>
 
       <!-- Two conclusions - the pair of flagship positions, stated plainly before the map.
@@ -1659,11 +1726,13 @@
       <div class="bd-conclusions">
         <div class="bd-conclusions-grid">
           <div class="bd-conclusion bd-arm-head bd-arm-collapsible">
+            <img class="bd-conclusion-fig" src="arm-machines.png" alt="A wooden mannequin aiming a bow at a target." width="640" height="395" loading="lazy" decoding="async">
             <p class="bd-arm-title">Align AI to what humans need, not what they click.</p>
             <p class="bd-arm-tag">What a person wants right now is produced by machinery that evolved for a different world. In this one, those wants get hijacked - the food, the feed, the slot machine. An AI trained on revealed preference optimises the hijack. Cor maps the machinery underneath, so there is something to aim at other than the click. It does not claim to know your true preference. It documents what it cannot yet pin down.</p>
             <a class="bd-arm-paper" href="https://cor.demismatch.com/bridge-paper.html">Read the paper - <em>The Optimizer Without a Target</em> →</a>
           </div>
           <div class="bd-conclusion bd-arm-head bd-arm-collapsible">
+            <img class="bd-conclusion-fig" src="arm-people.png" alt="A wooden mannequin building a small house, augmentation parts set aside." width="640" height="563" loading="lazy" decoding="async">
             <p class="bd-arm-title">Fix the environment first. Upgrade the human second.</p>
             <p class="bd-arm-tag">Anxiety, exhaustion, and craving are not defects. They are accurate readings from working hardware in conditions it was never built for. Anyone proposing to enhance the human before repairing those conditions is upgrading a machine while ignoring its warning lights.</p>
             <a class="bd-arm-paper" href="essay.html">Read the essay - written by hand, by the founder →</a>
