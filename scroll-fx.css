@@ -86,75 +86,8 @@ html.sfx-armed .bd-source-stats .stat .n{ font-variant-numeric: tabular-nums; }
 /* ── Parallax backdrops: transform only, never touches layout ────────── */
 html.sfx-armed .bd-backdrop{ will-change: transform; }
 
-/* ── Scroll-progress spine — clickable mini contents map (fixed left rail) ─ */
-.sfx-spine{
-  position: fixed;
-  left: clamp(14px, 3vw, 46px);
-  top: 16vh; height: 68vh; width: 2px;
-  background: rgba(58,18,24,.14);
-  z-index: 60; pointer-events: none;   /* rail line is inert; nodes opt back in */
-  opacity: 0; transition: opacity .6s ease;
-}
-html.sfx-ready .sfx-spine{ opacity: 1; }
-/* invisible, slightly-wider hover zone: lets the thin rail be hovered to reveal
-   the section labels without reserving any layout gutter for them */
-.sfx-spine::before{
-  content: ""; position: absolute; top: 0; bottom: 0; left: -18px; right: -18px;
-  pointer-events: auto;
-}
-.sfx-spine__fill{
-  position: absolute; left: 0; top: 0; width: 100%; height: 0%;
-  background: linear-gradient(var(--teal, #2d6b6b), var(--oxblood, #3a1218));
-}
-/* node = the dot, centred on the rail at its section's position */
-.sfx-node{
-  position: absolute; left: 50%; top: 0;
-  width: 11px; height: 11px; padding: 0; margin: 0;
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-  background: var(--page-bg, #f4f1e7);
-  border: 2px solid rgba(58,18,24,.28);
-  transition: border-color .35s ease, background .35s ease,
-              box-shadow .35s ease, transform .2s ease;
-}
-.sfx-node.reached{ border-color: var(--teal, #2d6b6b); }
-.sfx-node.active{
-  background: var(--oxblood, #3a1218);
-  border-color: var(--gold, #c4962c);
-  box-shadow: 0 0 0 4px rgba(196,150,44,.18);
-  transform: translate(-50%, -50%) scale(1.25);
-}
-/* label hangs to the right of its dot. The full-bleed front door leaves no
-   gutter for it, so at rest the rail is a dots-only progress spine and the
-   labels never sit on top of the content. They reveal on hover (with a faint
-   backing so they stay legible over whatever they cross), and sit at rest only
-   on screens wide enough to have a real left gutter. */
-.sfx-nodelabel{
-  position: absolute; left: 13px; top: 50%; transform: translateY(-50%);
-  white-space: nowrap;
-  font-family: var(--mono, monospace);
-  font-size: 10px; letter-spacing: .16em; text-transform: uppercase;
-  color: var(--muted-warm, #8a7d5e);
-  padding: 2px 8px; border-radius: 999px;
-  background: color-mix(in srgb, var(--page-bg, #f4f1e7) 88%, transparent);
-  opacity: 0; transition: color .3s ease, opacity .3s ease;
-}
-/* hover the rail → reveal the whole contents map */
-.sfx-spine:hover .sfx-nodelabel{ opacity: .82; }
-.sfx-spine:hover .sfx-node.active .sfx-nodelabel{ opacity: 1; color: var(--oxblood, #3a1218); font-weight: 500; }
-/* genuinely wide screens have a left gutter to spare — show the map at rest,
-   no backing needed since the labels land in the empty gutter */
-@media (min-width: 1760px){
-  .sfx-nodelabel{ opacity: .5; background: transparent; padding-inline: 0; left: 15px; }
-  .sfx-node.reached .sfx-nodelabel{ opacity: .8; }
-  .sfx-node.active .sfx-nodelabel{ opacity: 1; color: var(--oxblood, #3a1218); font-weight: 500; }
-  .sfx-spine:hover .sfx-nodelabel{ opacity: .82; }
-}
-@media (max-width: 900px){ .sfx-spine{ display: none; } }
-
 /* ── Reduced motion: sfx-armed is never set by the arm-script, so nothing
-      hides. These are belt-and-suspenders for the word spans + spine. ─── */
+      hides. Belt-and-suspenders for the word spans. ─────────────────────── */
 @media (prefers-reduced-motion: reduce){
   .sfx-w{ opacity: 1 !important; filter: none !important; }
-  .sfx-spine{ display: none; }
 }

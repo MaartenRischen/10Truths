@@ -75,7 +75,7 @@
     { c: '.bd-herocenter',     i: '.bd-lede, .bd-film, .bd-decode-row, .bd-needs-row', step: 0.12, base: 0.28 },
     { c: '.bd-arm-head',       i: '.bd-arm-kicker, .bd-arm-tag, .bd-arm-paper', step: 0.11 },
     { c: '.bd-arm-list',       i: ':scope > li', step: 0.20 },                 // CARDS - block by block
-    { c: '.bd-source',         i: '.bd-source-kicker, .bd-source-video, .bd-source-spec, .bd-source-cta', step: 0.11 },
+    { c: '.bd-source',         i: '.bd-source-kicker, .bd-source-mark, .bd-source-video, .bd-source-spec, .bd-source-cta', step: 0.11 },
     { c: '.bd-source-credit',  i: '.bd-source-credit-label, .cr-pill, .more', step: 0.10 },   // CHIPS - one by one
     { c: '.bd-source-answers', i: '.bd-source-answers-label, li', step: 0.15 },               // LINES - line by line
     { c: '.bd-source-stats',   i: '.stat', step: 0.12 },
@@ -144,35 +144,8 @@
     cio.observe(statsWrap);
   }
 
-  /* ── 5. Scroll-progress spine — a mini contents map built from the real,
-        current sections. Each node sits at its section's true place in the
-        scroll with an always-legible label; the active section is emphasised
-        and the fill tracks progress. (Decorative indicator, not a link set —
-        the page's scroll-reveal would land a jump on hidden content.) ──────── */
-  var spineSpec = [
-    { sel: '.bd-herocenter', label: 'Thesis' },
-    { sel: '#vision',        label: 'The map' },
-    { sel: '.dt-grid',       label: 'Decode:Talk' },
-    { sel: '.vids',          label: 'Videos' },
-    { sel: '.faq-cols',      label: 'Questions' }
-  ].map(function (s) { return { el: $(s.sel), label: s.label, frac: 0 }; })
-   .filter(function (s) { return s.el; });
-
-  var nodes = [], fill = null;
-  if (spineSpec.length > 1) {
-    var spine = document.createElement('div');
-    spine.className = 'sfx-spine'; spine.setAttribute('aria-hidden', 'true');
-    fill = document.createElement('div'); fill.className = 'sfx-spine__fill';
-    spine.appendChild(fill);
-    spineSpec.forEach(function (s) {
-      var d = document.createElement('div'); d.className = 'sfx-node';
-      var lab = document.createElement('span'); lab.className = 'sfx-nodelabel'; lab.textContent = s.label;
-      d.appendChild(lab);
-      spine.appendChild(d); nodes.push(d);
-    });
-    document.body.appendChild(spine);
-    requestAnimationFrame(function () { docEl.classList.add('sfx-ready'); });
-  }
+  /* ── 5. Scroll-progress spine — REMOVED (the fixed left-rail contents map
+        with Thesis / The map / Videos nodes). ───────────────────────────────── */
 
   /* ── 6. Parallax backdrops (transform only) ────────────────────────── */
   var bgL = $('.bd-backdrop-l'), bgR = $('.bd-backdrop-r');
@@ -305,25 +278,6 @@
       }
     }
 
-    // spine — fill = scroll progress; each node sits at its section's true
-    // position (recomputed each frame, so it self-heals as folds/accordions
-    // reflow the page); active = the section nearest the viewport centre.
-    if (nodes.length) {
-      var max = docEl.scrollHeight - vh;
-      var prog = max > 0 ? clamp01(sy / max) : 0;
-      fill.style.height = (prog * 100) + '%';
-      var mid = vh / 2, best = 0, bestDist = Infinity;
-      for (var s = 0; s < spineSpec.length; s++) {
-        var br = spineSpec[s].el.getBoundingClientRect();
-        var dist = Math.abs(br.top + br.height / 2 - mid);
-        if (dist < bestDist) { bestDist = dist; best = s; }
-        var frac = max > 0 ? clamp01((br.top + sy + br.height / 2 - vh / 2) / max) : (s / (spineSpec.length - 1));
-        spineSpec[s].frac = frac;
-        nodes[s].style.top = (frac * 100) + '%';
-        nodes[s].classList.toggle('reached', prog >= frac - 0.004);
-      }
-      for (var n = 0; n < nodes.length; n++) nodes[n].classList.toggle('active', n === best);
-    }
   }
 
   var ticking = false;

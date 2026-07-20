@@ -30,7 +30,7 @@
   <link rel="stylesheet" href="cor.css">
   <!-- EXPERIMENT: scroll-reveal layer (arm before paint to avoid flash; self-disables under reduced-motion) -->
   <script>(function(){try{if(!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches))document.documentElement.className+=' sfx-armed';}catch(e){}})();</script>
-  <link rel="stylesheet" href="scroll-fx.css?v=7">
+  <link rel="stylesheet" href="scroll-fx.css?v=8">
   <style>
     /* ─────────────────────────────────────────────────────────
        Front door - broadside cover. Two tan panels on a warm
@@ -148,6 +148,12 @@
       letter-spacing: -0.01em;
       color: var(--teal);
     }
+    /* Brand wordmark hero: all-caps mark, not tightly-tracked body copy. */
+    .bd-wordmark {
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      max-width: none;
+    }
 
     .bd-lede {
       font-family: var(--serif);
@@ -173,6 +179,19 @@
       border-radius: 14px;
       box-shadow: 0 1px 24px rgba(42, 12, 17, 0.07);
     }
+    /* Intro thesis line at the top of the frame - carries the old hero split (oxblood + teal italic). */
+    .bd-inv-intro {
+      font-family: var(--serif);
+      font-weight: 500;
+      font-size: clamp(1.15rem, 2vw, 1.5rem);
+      line-height: 1.22;
+      letter-spacing: -0.015em;
+      color: var(--oxblood);
+      margin: 0;
+      padding-bottom: clamp(0.7rem, 1.6vw, 1.1rem);
+      border-bottom: 1px solid rgba(42, 12, 17, 0.1);
+    }
+    .bd-inv-intro-sub { color: var(--teal); font-style: italic; font-weight: 400; }
     .bd-inv-head {
       display: block;
       font-family: var(--mono);
@@ -1745,10 +1764,11 @@
 
       <!-- Hero - the hook and the claim, centred. -->
       <div class="bd-herocenter">
-        <h1 class="bd-thesis">Humans need a world that fits humans.<span class="bd-sub">AI should help build it.</span></h1>
+        <h1 class="bd-thesis bd-wordmark">Demismatch</h1>
 
-        <!-- Structured inventory: what this is, what is human-made, what is AI-made -->
+        <!-- Structured inventory: intro thesis, then what this is, what is human-made, what is AI-made -->
         <div class="bd-inv">
+          <p class="bd-inv-intro">Humans need a world that fits humans.</p>
           <div class="bd-inv-group">
             <span class="bd-inv-head">What this is</span>
             <ul class="bd-inv-list">
@@ -1875,8 +1895,8 @@
             <div class="bd-source-stats">
               <div class="stat"><span class="n">17</span><span class="l">Foundations</span></div>
               <div class="stat"><span class="n">15</span><span class="l">Mechanisms</span></div>
-              <div class="stat"><span class="n">608</span><span class="l">Extractions</span></div>
-              <div class="stat"><span class="n">64</span><span class="l">Researchers</span></div>
+              <div class="stat"><span class="n">610</span><span class="l">Extractions</span></div>
+              <div class="stat"><span class="n">65</span><span class="l">Researchers</span></div>
             </div>
             <p class="bd-source-note">every evidential claim carries explicit provenance: a DOI or a PMID and a verbatim quote; where provenance is incomplete or quarantined, the atlas says so</p>
           </div>
@@ -1964,11 +1984,9 @@
               <button type="button" class="vid-facade"
                       data-embed="https://www.youtube-nocookie.com/embed/PyomiIbZIQQ?rel=0&amp;modestbranding=1"
                       aria-label="Play: Demismatch - Cor - Academic breakdown">
-                <img class="vid-thumb" src="https://i.ytimg.com/vi/PyomiIbZIQQ/maxresdefault.jpg"
+                <img class="vid-thumb" src="cor-thumbnail.jpg?v=2"
                      alt="Demismatch - Cor - Academic breakdown" width="1280" height="720"
-                     loading="lazy" decoding="async"
-                     onload="if(this.naturalWidth<=121){this.onload=null;this.src='https://i.ytimg.com/vi/PyomiIbZIQQ/sddefault.jpg';}"
-                     onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/PyomiIbZIQQ/sddefault.jpg';">
+                     loading="lazy" decoding="async">
                 <span class="vid-play" aria-hidden="true"></span>
                 <span class="vid-dur" aria-hidden="true">5:51</span>
               </button>
@@ -2212,6 +2230,6 @@
   })();
   </script>
 
-  <script src="scroll-fx.js?v=9" onerror="document.documentElement.classList.remove('sfx-armed')"></script>
+  <script src="scroll-fx.js?v=11" onerror="document.documentElement.classList.remove('sfx-armed')"></script>
 </body>
 </html>
