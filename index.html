@@ -1018,7 +1018,7 @@
        swapped for the privacy embed only on click so the hero stays fast. ── */
     .bd-film {
       position: relative; z-index: 1; /* sits above the mannequin backdrop */
-      width: min(100%, 528px);
+      width: min(100%, 680px);
       margin: clamp(1.3rem, 2.8vw, 2.1rem) auto clamp(0.2rem, 0.8vw, 0.5rem);
       background: var(--parchment-soft);
       padding: clamp(9px, 1.3vw, 13px);
@@ -1051,24 +1051,25 @@
     .bd-film-play {
       position: absolute; z-index: 2; left: 50%; top: 50%;
       transform: translate(-50%, -50%);
-      width: clamp(54px, 8.5vw, 80px); aspect-ratio: 1; border-radius: 50%;
-      display: grid; place-items: center;
-      background: var(--oxblood);
-      box-shadow: 0 0 0 5px rgba(242, 232, 207, 0.82), 0 10px 26px rgba(20, 8, 10, 0.45);
-      transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+      display: inline-flex; align-items: center; gap: 0.4em; white-space: nowrap;
+      padding: 0 0 3px; background: none; box-shadow: none; color: var(--parchment);
+      font-family: var(--mono); font-size: clamp(0.6rem, 0.85vw, 0.72rem); letter-spacing: 0.12em; text-transform: uppercase;
+      border-bottom: 1px solid rgba(242, 232, 207, 0.6);
+      text-shadow: 0 1px 6px rgba(20, 8, 10, 0.7);
+      transition: color 0.2s ease, border-color 0.2s ease;
     }
     .bd-film:hover .bd-film-play,
     .bd-film-trigger:focus-visible .bd-film-play {
-      background: var(--teal);
-      transform: translate(-50%, -50%) scale(1.06);
-      box-shadow: 0 0 0 5px rgba(242, 232, 207, 0.92), 0 12px 30px rgba(20, 8, 10, 0.5);
+      background: none; box-shadow: none; transform: translate(-50%, -50%);
+      color: var(--teal-bright); border-bottom-color: var(--teal-bright);
     }
-    .bd-film-play::before { /* the triangle */
-      content: ""; margin-left: clamp(3px, 0.5vw, 5px);
+    .bd-film-play::before { /* small play triangle before the label */
+      content: "";
       border-style: solid;
-      border-width: clamp(9px, 1.4vw, 13px) 0 clamp(9px, 1.4vw, 13px) clamp(15px, 2.3vw, 22px);
+      border-width: 5px 0 5px 8px;
       border-color: transparent transparent transparent var(--parchment);
     }
+    .bd-film:hover .bd-film-play::before, .bd-film-trigger:focus-visible .bd-film-play::before { border-left-color: var(--teal-bright); }
     .bd-film-tag { /* the film's message, top of frame, a touch larger than the caption */
       position: absolute; z-index: 3; left: 0; right: 0; top: 0;
       padding: clamp(0.55rem, 1.3vw, 0.85rem) clamp(0.6rem, 1.5vw, 1rem) clamp(1.6rem, 4vw, 2.4rem);
@@ -1158,7 +1159,7 @@
     }
     @media (max-width: 900px) { .bd-backdrop { display: none; } }
 
-    .bd-map { margin-top: clamp(3.6rem, 6.5vw, 5.2rem); }
+    .bd-map { margin-top: clamp(1.4rem, 2.8vw, 2.4rem); }
 
     .bd-map-grid {
       display: grid;
@@ -1193,6 +1194,7 @@
       border-top: 1px solid rgba(58, 18, 24, 0.14);
       margin-bottom: 0.5rem;
     }
+    .bd-arm-right .bd-arm-sub { justify-content: flex-end; text-align: right; }
     .bd-arm-card .bd-node-name {
       font-family: var(--serif); font-weight: 600;
       font-size: clamp(1.02rem, 1.4vw, 1.22rem); color: var(--oxblood);
@@ -1213,11 +1215,20 @@
     /* Cor video: small play button tucked top-left so it doesn't cover the logo */
     .bd-source-video .vid-play {
       top: 12px; left: 12px; transform: none;
-      width: clamp(36px, 4vw, 44px); height: clamp(36px, 4vw, 44px);
-      box-shadow: 0 2px 10px rgba(26, 6, 8, 0.35);
+      width: auto; height: auto; border: none; border-radius: 0;
+      padding: 0 0 2px; background: none; box-shadow: none; white-space: nowrap;
+      display: inline-flex; align-items: center; gap: 0.35em;
+      border-bottom: 1px solid rgba(242, 232, 207, 0.55);
+      font-family: var(--mono); font-size: 0.55rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--parchment);
     }
-    .bd-source-video .vid-play::before { border-width: 7px 0 7px 11px; left: 55%; }
-    .bd-source-video .vid-facade:hover .vid-play { transform: scale(1.06); background: var(--oxblood); }
+    .bd-source-video .vid-play::before {
+      position: static; transform: none; top: auto; left: auto;
+      border-width: 4px 0 4px 6px; border-color: transparent transparent transparent var(--parchment);
+    }
+    .bd-source-video .vid-facade:hover .vid-play { color: var(--teal-bright); border-bottom-color: var(--teal-bright); }
+    .bd-source-video .vid-facade:hover .vid-play::before { border-left-color: var(--teal-bright); }
+    /* no frame growth on hover (it overlapped the title) */
+    .bd-source-video .vid-facade:hover { box-shadow: none; transform: none; }
     /* Decode:Talk heading link (the card's Try Decode:Talk CTA) */
     .bd-decode-cta { text-decoration: none; color: var(--oxblood); border-bottom: 2px solid rgba(45, 107, 107, 0.4); padding-bottom: 1px; transition: color 0.16s ease, border-color 0.16s ease; }
     .bd-decode-cta:hover, .bd-decode-cta:focus-visible { color: var(--teal); border-color: var(--teal); }
@@ -1746,7 +1757,7 @@
               <img class="bd-film-poster" src="film-poster.jpg" alt="A wooden figure facing a single hanging electric light in a dark workshop." width="1280" height="720" loading="eager" fetchpriority="high" decoding="async">
             </picture>
             <span class="bd-film-tag" aria-hidden="true">You are not broken</span>
-            <span class="bd-film-play" aria-hidden="true"></span>
+            <span class="bd-film-play" aria-hidden="true">Play video</span>
             <span class="bd-film-cap" aria-hidden="true">Demismatch · The Film · 5 min</span>
           </button>
         </figure>
@@ -1756,7 +1767,7 @@
           <div class="bd-inv-group">
             <span class="bd-inv-head">What this is</span>
             <ul class="bd-inv-list">
-              <li>Demismatch is an open, non-profit project. At its center is Cor: an evidence-graded atlas of what human beings need, built so any environment or technology can be checked against it. <a href="https://cor.demismatch.com/">Open Cor →</a></li>
+              <li>Demismatch is an open, non-profit, research project. At its center is Cor: an evidence-graded atlas of what human beings need, built so any environment or technology can be checked against it. <a href="https://cor.demismatch.com/">Open Cor →</a></li>
             </ul>
           </div>
           <div class="bd-inv-group">
@@ -1842,7 +1853,7 @@
             <figure class="vid-card bd-source-video">
               <button type="button" class="vid-facade" data-embed="https://www.youtube-nocookie.com/embed/PyomiIbZIQQ?rel=0&amp;modestbranding=1" aria-label="Play: Cor - Academic breakdown">
                 <img class="vid-thumb" src="https://i.ytimg.com/vi/PyomiIbZIQQ/maxresdefault.jpg" alt="Cor - Academic breakdown" width="1280" height="720" loading="lazy" decoding="async" onload="if(this.naturalWidth<=121){this.onload=null;this.src='https://i.ytimg.com/vi/PyomiIbZIQQ/sddefault.jpg';}" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/PyomiIbZIQQ/sddefault.jpg';">
-                <span class="vid-play" aria-hidden="true"></span>
+                <span class="vid-play" aria-hidden="true">Play video</span>
                 <span class="vid-dur" aria-hidden="true">5:51</span>
               </button>
             </figure>
@@ -1889,7 +1900,7 @@
               <img class="bd-conclusion-fig" src="arm-people.png" alt="A wooden mannequin building a small house, augmentation parts set aside." width="640" height="563" loading="lazy" decoding="async">
               <h3 class="bd-arm-title">Fix the environment first. Upgrade the human second.</h3>
               <a class="bd-arm-paper" href="essay.html">Read the essay - written by hand, by the founder →</a>
-              <span class="bd-node-name bd-arm-sub"><a class="bd-decode-cta" href="decode-talk.html">Try Decode:Talk!</a> <span class="bd-badge bd-badge-live">live</span></span>
+              <span class="bd-node-name bd-arm-sub"><span class="bd-badge bd-badge-live">live</span> <a class="bd-decode-cta" href="decode-talk.html">Try Decode:Talk!</a></span>
               <p class="bd-extra-tag">Type a situation; get the mechanism firing, the proxy hitting it, and what would resolve.</p>
               <div class="bd-node-visual"><svg viewBox="0 0 1600 900" class="bd-mock" preserveAspectRatio="xMidYMid slice">
                 <rect width="1600" height="900" fill="#120506"/>
