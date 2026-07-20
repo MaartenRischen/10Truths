@@ -1122,13 +1122,13 @@
     .bd-arm { position: relative; z-index: 1; display: flex; flex-direction: column; }
     .bd-arm-head { margin-bottom: clamp(0.8rem, 1.6vw, 1.2rem); }
     .bd-arm-kicker {
-      display: block; font-family: var(--mono); font-size: 0.72rem;
-      letter-spacing: 0.24em; text-transform: uppercase; font-weight: 500;
+      display: block; font-family: var(--mono); font-size: 0.85rem;
+      letter-spacing: 0.36em; text-transform: uppercase; font-variant: normal; font-weight: 600;
       color: var(--teal); margin-bottom: 0.5rem;
     }
     .bd-arm-title {
-      font-family: var(--serif); font-style: italic; font-weight: 500;
-      font-size: clamp(1.4rem, 2.3vw, 1.95rem); line-height: 1; letter-spacing: -0.015em;
+      font-family: var(--serif); font-style: italic; font-weight: 600;
+      font-size: clamp(1.69rem, 2.7vw, 2.35rem); line-height: 1; letter-spacing: -0.015em;
       color: var(--oxblood); margin: 0 0 0.55rem;
     }
     .bd-arm-tag {
@@ -1142,9 +1142,9 @@
     /* paper link — the alignment artefact, always visible under the machines tagline */
     .bd-arm-paper {
       display: inline-block; margin-top: clamp(0.7rem, 1.4vw, 1rem);
-      font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.1em; text-transform: uppercase;
-      font-weight: 500; color: var(--teal); text-decoration: none;
-      border-bottom: 1px solid rgba(45,107,107,0.4); padding-bottom: 2px;
+      font-family: var(--mono); font-size: 0.81rem; letter-spacing: 0.12em; text-transform: uppercase;
+      font-weight: 600; color: var(--teal); text-decoration: none;
+      border-bottom: 1px solid color-mix(in srgb, currentColor 42%, transparent); padding-bottom: 2px;
       transition: color 0.16s ease, border-color 0.16s ease;
     }
     .bd-arm-paper em { font-style: italic; text-transform: none; letter-spacing: 0.01em; color: var(--oxblood); }
@@ -1510,19 +1510,39 @@
     }
     .bd-conclusions-intro {
       display: block; text-align: center;
-      font-family: var(--mono); font-size: 0.72rem;
-      letter-spacing: 0.24em; text-transform: uppercase; font-weight: 500;
+      font-family: var(--mono); font-size: 0.85rem;
+      letter-spacing: 0.36em; text-transform: uppercase; font-variant: normal; font-weight: 600;
       color: var(--teal); margin-bottom: clamp(1.3rem, 2.6vw, 2rem);
     }
     .bd-conclusions-grid {
       display: grid; grid-template-columns: 1fr 1fr;
       gap: clamp(1.6rem, 4vw, 3.2rem); text-align: left;
+      position: relative;
+      padding: clamp(1.6rem, 3.5vw, 2.8rem);
+      background: var(--parchment-soft);
+      border: 1px solid rgba(58, 18, 24, 0.14);
+      box-shadow: 10px 10px 0 var(--teal);
+    }
+    /* hairline divider down the centre of the framed pair */
+    .bd-conclusions-grid::before {
+      content: ""; position: absolute; left: 50%;
+      top: clamp(1.6rem, 3.5vw, 2.8rem); bottom: clamp(1.6rem, 3.5vw, 2.8rem);
+      width: 1px; background: rgba(58, 18, 24, 0.12);
     }
     .bd-conclusions-grid .bd-arm-tag { max-width: none; }
+    /* conclusions earn a standout: teal accent bar down each card */
+    .bd-conclusion { padding-left: clamp(1rem, 1.8vw, 1.5rem); border-left: 3px solid var(--teal); }
+    /* concept-name subtitle under each conclusion title */
+    .bd-arm-sub {
+      font-family: var(--serif); font-style: italic; font-weight: 500;
+      font-size: clamp(1.02rem, 1.35vw, 1.18rem); line-height: 1.25;
+      color: var(--teal); margin: 0 0 clamp(0.7rem, 1.4vw, 1rem);
+    }
     /* stacked taglines (alignment lead + conclusions) need breathing room */
     .bd-arm-tag + .bd-arm-tag { margin-top: clamp(0.7rem, 1.4vw, 1rem); }
     @media (max-width: 720px) {
-      .bd-conclusions-grid { grid-template-columns: 1fr; gap: clamp(1.6rem, 5vw, 2.2rem); }
+      .bd-conclusions-grid { grid-template-columns: 1fr; gap: clamp(1.6rem, 5vw, 2.2rem); box-shadow: 6px 6px 0 var(--teal); }
+      .bd-conclusions-grid::before { display: none; }
     }
 
     /* Sequenced transhumanism - standalone position, after the map */
@@ -1636,11 +1656,13 @@
         <div class="bd-conclusions-grid">
           <div class="bd-conclusion bd-arm-head">
             <p class="bd-arm-title">Align AI to what humans need, not what they click.</p>
+            <p class="bd-arm-sub">The optimizer's target</p>
             <p class="bd-arm-tag">What a person wants right now is produced by machinery that evolved for a different world. In this one, those wants get hijacked - the food, the feed, the slot machine. An AI trained on revealed preference optimises the hijack. Cor maps the machinery underneath, so there is something to aim at other than the click. It does not claim to know your true preference. It documents what it cannot yet pin down.</p>
             <a class="bd-arm-paper" href="https://cor.demismatch.com/bridge-paper.html">Read the paper - <em>The Optimizer Without a Target</em> →</a>
           </div>
           <div class="bd-conclusion bd-arm-head">
             <p class="bd-arm-title">Fix the environment first. Upgrade the human second.</p>
+            <p class="bd-arm-sub">Sequential transhumanism</p>
             <p class="bd-arm-tag">Anxiety, exhaustion, and craving are not defects. They are accurate readings from working hardware in conditions it was never built for. Anyone proposing to enhance the human before repairing those conditions is upgrading a machine while ignoring its warning lights.</p>
             <a class="bd-arm-paper" href="essay.html">Read the essay - written by hand, by the founder →</a>
           </div>
@@ -1930,7 +1952,7 @@
       <div class="bd-sequence-inner">
         <h2 class="bd-sequence-title">Fix the environment first. Upgrade the human second.</h2>
         <p>Transhumanism has the order of operations backwards. You do not augment a mismatched animal - you only augment the mismatch. Bolt god-tier technology onto a nervous system already spiraling on proxies and hyperstimuli and you don't get transcendence. You get the same traps with more horsepower.</p>
-        <p>This is not primitivism. Nature is full of mosquitoes. It is sequencing. Build the room the animal was built for first - the faces you see daily, work that visibly feeds people you can name, signals that resolve instead of loops that never close. Once the environment fits, technology goes back to its real job: making a good life bigger instead of standing in for one.</p>
+        <p>This is not primitivism. It is sequencing. Build the room the animal was built for first - the faces you see daily, work that visibly feeds people you can name, signals that resolve instead of loops that never close. Once the environment fits, technology goes back to its real job: making a good life bigger instead of standing in for one.</p>
         <p>Then augment, if you still want to. You will be upgrading a system that works, instead of accelerating one that is screaming.</p>
         <a class="bd-sequence-link" href="essay.html">Read the essay - the whole argument, written by hand →</a>
       </div>

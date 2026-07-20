@@ -213,12 +213,13 @@ code, pre {
   align-items: center;
   gap: 0.7rem;
   font-family: var(--mono);
-  font-size: 0.78rem;
-  letter-spacing: 0.3em;
+  font-size: 0.85rem;
+  letter-spacing: 0.36em;
   text-transform: uppercase;
+  font-variant: normal;
   color: var(--teal);
   margin-bottom: 1.2rem;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .eyebrow::before {
