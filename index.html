@@ -1532,12 +1532,21 @@
     .bd-conclusions-grid .bd-arm-tag { max-width: none; }
     /* conclusions earn a standout: teal accent bar down each card */
     .bd-conclusion { padding-left: clamp(1rem, 1.8vw, 1.5rem); border-left: 3px solid var(--teal); }
-    /* concept-name subtitle under each conclusion title */
-    .bd-arm-sub {
-      font-family: var(--serif); font-style: italic; font-weight: 500;
-      font-size: clamp(1.02rem, 1.35vw, 1.18rem); line-height: 1.25;
-      color: var(--teal); margin: 0 0 clamp(0.7rem, 1.4vw, 1rem);
+    /* collapsible bodies - the title toggles its paragraph(s); first glance = title + link */
+    .bd-arm-collapsible .bd-arm-title { cursor: pointer; }
+    .bd-arm-collapsible .bd-arm-title::after {
+      content: ""; display: inline-block; width: 0.4em; height: 0.4em; margin-left: 0.5em;
+      border-right: 2.5px solid var(--teal); border-bottom: 2.5px solid var(--teal);
+      transform: translateY(-0.22em) rotate(45deg); transition: transform 0.25s ease;
+      opacity: 0.55; vertical-align: middle;
     }
+    .bd-arm-collapsible.is-open .bd-arm-title::after { transform: translateY(-0.02em) rotate(225deg); opacity: 0.8; }
+    .bd-arm-collapsible .bd-arm-tag {
+      max-height: 0; overflow: hidden; margin: 0;
+      transition: max-height 0.4s ease, margin 0.4s ease;
+    }
+    .bd-arm-collapsible.is-open .bd-arm-tag { max-height: 80rem; }
+    .bd-arm-collapsible.is-open .bd-arm-tag + .bd-arm-tag { margin-top: clamp(0.7rem, 1.4vw, 1rem); }
     /* stacked taglines (alignment lead + conclusions) need breathing room */
     .bd-arm-tag + .bd-arm-tag { margin-top: clamp(0.7rem, 1.4vw, 1rem); }
     @media (max-width: 720px) {
@@ -1649,15 +1658,13 @@
            The block states the positions; the hero row above lists the destinations. -->
       <div class="bd-conclusions">
         <div class="bd-conclusions-grid">
-          <div class="bd-conclusion bd-arm-head">
+          <div class="bd-conclusion bd-arm-head bd-arm-collapsible">
             <p class="bd-arm-title">Align AI to what humans need, not what they click.</p>
-            <p class="bd-arm-sub">The optimizer's target</p>
             <p class="bd-arm-tag">What a person wants right now is produced by machinery that evolved for a different world. In this one, those wants get hijacked - the food, the feed, the slot machine. An AI trained on revealed preference optimises the hijack. Cor maps the machinery underneath, so there is something to aim at other than the click. It does not claim to know your true preference. It documents what it cannot yet pin down.</p>
             <a class="bd-arm-paper" href="https://cor.demismatch.com/bridge-paper.html">Read the paper - <em>The Optimizer Without a Target</em> →</a>
           </div>
-          <div class="bd-conclusion bd-arm-head">
+          <div class="bd-conclusion bd-arm-head bd-arm-collapsible">
             <p class="bd-arm-title">Fix the environment first. Upgrade the human second.</p>
-            <p class="bd-arm-sub">Sequential transhumanism</p>
             <p class="bd-arm-tag">Anxiety, exhaustion, and craving are not defects. They are accurate readings from working hardware in conditions it was never built for. Anyone proposing to enhance the human before repairing those conditions is upgrading a machine while ignoring its warning lights.</p>
             <a class="bd-arm-paper" href="essay.html">Read the essay - written by hand, by the founder →</a>
           </div>
@@ -1716,7 +1723,7 @@
 
           <!-- ARM · For machines -->
           <div class="bd-arm bd-arm-left">
-            <header class="bd-arm-head">
+            <header class="bd-arm-head bd-arm-collapsible">
               <span class="bd-arm-kicker">For machines</span>
               <h3 class="bd-arm-title">AI alignment</h3>
               <p class="bd-arm-tag"><strong>Preference-based alignment inherits whatever contaminates the preference signal.</strong> The field already knows the readout can be corrupted - reward hacking, preference misspecification, and sycophancy are all active work on exactly that. What that work does not settle is what the preference is a readout <em>of</em>. A preference can be ancient machinery firing in an environment it was never built for. Align to the readout without a model of the machinery and you do not align AI with humans; you align it with the mismatch, and you industrialize it. We already ran that experiment at civilizational scale. It is called the attention economy. Cor is a candidate account of the machinery.</p>
@@ -2472,6 +2479,28 @@
       toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
       fold.classList.toggle('is-open', open);
       if (open) fold.scrollTop = 0;
+    });
+  })();
+  </script>
+
+  <!-- Collapsible arm bodies: the title toggles its paragraph(s); collapsed by default -->
+  <script>
+  (function () {
+    document.querySelectorAll('.bd-arm-collapsible').forEach(function (card) {
+      var title = card.querySelector('.bd-arm-title');
+      if (!title) return;
+      title.setAttribute('role', 'button');
+      title.setAttribute('tabindex', '0');
+      title.setAttribute('aria-expanded', 'false');
+      function toggle() {
+        var open = !card.classList.contains('is-open');
+        card.classList.toggle('is-open', open);
+        title.setAttribute('aria-expanded', open ? 'true' : 'false');
+      }
+      title.addEventListener('click', toggle);
+      title.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
+      });
     });
   })();
   </script>
