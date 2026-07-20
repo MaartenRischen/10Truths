@@ -1747,21 +1747,6 @@
       <div class="bd-herocenter">
         <h1 class="bd-thesis">Humans need a world that fits humans.<span class="bd-sub">AI should help build it.</span></h1>
 
-        <!-- Hero film: the V1 mismatch film. Click-to-play facade -> self-hosted <video> (no YouTube chrome). -->
-        <figure class="bd-film" id="bd-film">
-          <button type="button" class="bd-film-trigger" id="film-trigger"
-                  data-src="film.mp4?v=2049"
-                  aria-label="Play the film">
-            <picture>
-              <source srcset="film-poster.webp" type="image/webp">
-              <img class="bd-film-poster" src="film-poster.jpg" alt="A wooden figure facing a single hanging electric light in a dark workshop." width="1280" height="720" loading="eager" fetchpriority="high" decoding="async">
-            </picture>
-            <span class="bd-film-tag" aria-hidden="true">You are not broken</span>
-            <span class="bd-film-play" aria-hidden="true">Play video</span>
-            <span class="bd-film-cap" aria-hidden="true">Demismatch · The Film · 5 min</span>
-          </button>
-        </figure>
-
         <!-- Structured inventory: what this is, what is human-made, what is AI-made -->
         <div class="bd-inv">
           <div class="bd-inv-group">
@@ -1850,13 +1835,15 @@
 
           <div class="bd-source" id="cor">
             <span class="bd-source-kicker">The source</span>
-            <figure class="vid-card bd-source-video">
-              <button type="button" class="vid-facade" data-embed="https://www.youtube-nocookie.com/embed/PyomiIbZIQQ?rel=0&amp;modestbranding=1" aria-label="Play: Cor - Academic breakdown">
-                <img class="vid-thumb" src="https://i.ytimg.com/vi/PyomiIbZIQQ/maxresdefault.jpg" alt="Cor - Academic breakdown" width="1280" height="720" loading="lazy" decoding="async" onload="if(this.naturalWidth<=121){this.onload=null;this.src='https://i.ytimg.com/vi/PyomiIbZIQQ/sddefault.jpg';}" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/PyomiIbZIQQ/sddefault.jpg';">
-                <span class="vid-play" aria-hidden="true">Play video</span>
-                <span class="vid-dur" aria-hidden="true">5:51</span>
-              </button>
-            </figure>
+            <svg class="bd-source-mark" viewBox="104 34 592 592" fill="none" aria-hidden="true">
+              <g class="rings">
+                <circle cx="399.5" cy="329" r="271"/>
+                <circle cx="446.5" cy="376.5" r="200"/>
+                <circle cx="488" cy="418" r="129"/>
+              </g>
+              <circle class="dot" cx="523" cy="453" r="59"/>
+              <g class="wm"><text x="424" y="492">C</text><text x="624" y="492">R</text></g>
+            </svg>
             <h2 class="bd-source-title">Cor - what a human needs</h2>
             <p class="bd-source-spec">An evidence-graded atlas of the human - built toward a specification.</p>
             <a class="bd-source-cta" href="https://cor.demismatch.com/">Open Cor →</a>
@@ -1932,6 +1919,71 @@
       </div><!-- /.bd-stage -->
 
     </section>
+
+
+    <!-- Panel - Videos (YouTube @Demismatch) -->
+    <section class="panel panel-demo reveal d3">
+
+      <section class="vids" aria-label="Demismatch - videos">
+        <div class="vids-shell">
+
+          <div class="vid-head">
+            <span class="vid-seal" aria-hidden="true">
+              <svg viewBox="120 50 560 560" fill="none">
+                <g stroke="currentColor" stroke-width="22" fill="none">
+                  <circle cx="399.5" cy="329" r="271"/>
+                  <circle cx="446.5" cy="376.5" r="200"/>
+                  <circle cx="488" cy="418" r="129"/>
+                </g>
+                <circle class="dot" cx="523" cy="453" r="59"/>
+              </svg>
+            </span>
+            <span class="vid-eyebrow">Videos</span>
+            <span class="vid-rule"></span>
+          </div>
+
+          <div class="vid-grid">
+
+            <figure class="vid-card">
+              <button type="button" class="vid-facade"
+                      data-embed="https://www.youtube-nocookie.com/embed/GyNi2ZUSsuk?rel=0&amp;modestbranding=1"
+                      aria-label="Play: Demismatch - The Film">
+                <img class="vid-thumb" src="film-poster.jpg"
+                     alt="Demismatch - The Film" width="1280" height="720"
+                     loading="lazy" decoding="async">
+                <span class="vid-play" aria-hidden="true"></span>
+                <span class="vid-dur" aria-hidden="true">5:27</span>
+              </button>
+              <figcaption class="vid-meta">
+                <span class="vid-title">Demismatch - The Film</span>
+                <a class="vid-yt" href="https://www.youtube.com/watch?v=GyNi2ZUSsuk" target="_blank" rel="noopener">Watch on YouTube &#8594;</a>
+              </figcaption>
+            </figure>
+
+            <figure class="vid-card">
+              <button type="button" class="vid-facade"
+                      data-embed="https://www.youtube-nocookie.com/embed/PyomiIbZIQQ?rel=0&amp;modestbranding=1"
+                      aria-label="Play: Demismatch - Cor - Academic breakdown">
+                <img class="vid-thumb" src="https://i.ytimg.com/vi/PyomiIbZIQQ/maxresdefault.jpg"
+                     alt="Demismatch - Cor - Academic breakdown" width="1280" height="720"
+                     loading="lazy" decoding="async"
+                     onload="if(this.naturalWidth<=121){this.onload=null;this.src='https://i.ytimg.com/vi/PyomiIbZIQQ/sddefault.jpg';}"
+                     onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/PyomiIbZIQQ/sddefault.jpg';">
+                <span class="vid-play" aria-hidden="true"></span>
+                <span class="vid-dur" aria-hidden="true">5:51</span>
+              </button>
+              <figcaption class="vid-meta">
+                <span class="vid-title">Cor - Academic Breakdown</span>
+                <a class="vid-yt" href="https://www.youtube.com/watch?v=PyomiIbZIQQ" target="_blank" rel="noopener">Watch on YouTube &#8594;</a>
+              </figcaption>
+            </figure>
+
+          </div>
+
+        </div>
+      </section>
+
+    </section><!-- /Panel: Videos -->
 
 
   </main>
