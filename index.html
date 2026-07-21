@@ -1191,10 +1191,10 @@
     /* ── Arms ── */
     .bd-arm { position: relative; z-index: 1; display: flex; flex-direction: column; }
     .bd-arm-head { margin-bottom: clamp(0.8rem, 1.6vw, 1.2rem); }
-    /* mannequin illustration crowning each conclusion - sized by height so the pair aligns */
+    /* mannequin illustration sits below the paper/essay link - left-aligned on the machines arm, right-aligned on the humans arm */
     .bd-conclusion-fig {
-      display: block; height: clamp(130px, 15vw, 165px); width: auto; max-width: 100%;
-      margin: 0 0 clamp(0.9rem, 1.8vw, 1.3rem);
+      display: block; height: clamp(120px, 14vw, 155px); width: auto; max-width: 100%;
+      margin: clamp(0.9rem, 1.8vw, 1.3rem) 0 0;
     }
     .bd-arm-right .bd-conclusion-fig { margin-left: auto; }
     /* each arm is ONE framed card: conclusion + its roadmap / decode section */
@@ -1845,9 +1845,9 @@
           <!-- ARM · For machines -->
           <div class="bd-arm bd-arm-left">
             <div class="bd-arm-head bd-arm-card">
-              <img class="bd-conclusion-fig" src="arm-machines.png" alt="A wooden mannequin aiming a bow at a target." width="640" height="395" loading="lazy" decoding="async">
               <h3 class="bd-arm-title">Align AI to what humans need, not what they click.</h3>
               <a class="bd-arm-paper" href="https://cor.demismatch.com/bridge-paper.html">Read the paper - <em>The Optimizer Without a Target</em> →</a>
+              <img class="bd-conclusion-fig" src="arm-machines.png" alt="A wooden mannequin aiming a bow at a target." width="640" height="395" loading="lazy" decoding="async">
               <span class="bd-arm-kicker bd-arm-sub">Roadmap</span>
               <p class="bd-extra-tag">Alignment builds on the atlas in three tracks: a machine-readable spec any model reads at inference through one tool-call surface; steering, data curation, and evals against that spec as ground truth; and small models spec-grounded from pretraining forward.</p>
             </div>
@@ -1904,9 +1904,9 @@
           <!-- ARM · For humans -->
           <div class="bd-arm bd-arm-right">
             <div class="bd-arm-head bd-arm-card">
-              <img class="bd-conclusion-fig" src="arm-people.png" alt="A wooden mannequin building a small house, augmentation parts set aside." width="640" height="563" loading="lazy" decoding="async">
               <h3 class="bd-arm-title">Fix the environment first. Upgrade the human second.</h3>
               <a class="bd-arm-paper" href="essay.html">Read the essay - written by hand, by the founder →</a>
+              <img class="bd-conclusion-fig" src="arm-people.png" alt="A wooden mannequin building a small house, augmentation parts set aside." width="640" height="563" loading="lazy" decoding="async">
               <span class="bd-node-name bd-arm-sub"><span class="bd-badge bd-badge-live">live</span> <a class="bd-decode-cta" href="decode-talk.html">Try Decode:Talk!</a></span>
               <p class="bd-extra-tag">Type a situation; get the mechanism firing, the proxy hitting it, and what would resolve.</p>
               <div class="bd-node-visual"><svg viewBox="0 0 1600 900" class="bd-mock" preserveAspectRatio="xMidYMid slice">
