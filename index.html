@@ -225,6 +225,67 @@
       .bd-inv { max-width: 30rem; gap: clamp(0.8rem, 3vw, 1.2rem); }
     }
 
+    /* ── Try Decode:Talk - free floating under the hero frame, on the backdrop.
+       The chip carries its own contrast; the line under it is dark ink with a
+       cream halo, so it holds over both the dark hall and the bright garden. ── */
+    .bd-try {
+      display: grid;
+      justify-items: center;
+      gap: 0.62rem;
+      max-width: min(100%, 46rem);
+      margin-inline: auto;
+      margin-block: clamp(1.1rem, 2.4vw, 1.7rem) clamp(0.1rem, 0.6vw, 0.4rem);
+    }
+    .bd-try-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.6rem 1.15rem;
+      border: 1px solid var(--oxblood);
+      background: var(--oxblood);
+      color: var(--parchment);
+      font-family: var(--mono);
+      font-size: clamp(0.7rem, 0.95vw, 0.78rem);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      text-decoration: none;
+      box-shadow: 3px 3px 0 var(--teal), 0 8px 26px rgba(26, 6, 8, 0.24);
+      transition: background 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
+    }
+    .bd-try-btn:hover, .bd-try-btn:focus-visible {
+      background: var(--oxblood-deep);
+      transform: translate(-1px, -1px);
+      box-shadow: 5px 5px 0 var(--teal), 0 10px 30px rgba(26, 6, 8, 0.26);
+      outline: none;
+    }
+    .bd-try-live {
+      font-size: 0.55rem;
+      letter-spacing: 0.16em;
+      padding: 0.16rem 0.42rem;
+      border-radius: 3px;
+      background: var(--teal);
+      color: var(--parchment-soft);
+    }
+    .bd-try-arw { font-family: var(--serif); letter-spacing: 0; font-size: 1.02em; }
+    .bd-try-desc {
+      margin: 0;
+      max-width: 48ch;
+      font-family: var(--serif);
+      font-weight: 500;
+      font-size: clamp(0.82rem, 1.05vw, 0.94rem);
+      line-height: 1.45;
+      color: var(--oxblood);
+      text-wrap: balance;
+      text-shadow:
+        0 1px 0 rgba(245, 242, 233, 0.92),
+        0 0 10px rgba(245, 242, 233, 0.95),
+        0 0 24px rgba(245, 242, 233, 0.88),
+        0 0 40px rgba(245, 242, 233, 0.7);
+    }
+    @media (max-width: 680px) {
+      .bd-try-btn { white-space: normal; letter-spacing: 0.16em; text-align: center; }
+    }
+
     /* Quiet under-lede link to the plain-words page - site's mono/teal affordance */
     .bd-plainlink {
       display: inline-block;
@@ -1801,6 +1862,16 @@
               <li>Environments and technology built to fit human needs.</li>
             </ul>
           </div>
+        </div>
+
+        <!-- Try Decode:Talk - free floating under the frame, on the backdrop -->
+        <div class="bd-try">
+          <a class="bd-try-btn" href="decode-talk.html">
+            <span class="bd-try-live">live</span>
+            Try Decode:Talk
+            <span class="bd-try-arw" aria-hidden="true">→</span>
+          </a>
+          <p class="bd-try-desc">Type in a situation. It names the mechanism firing, the proxy hitting it, and what would actually resolve it.</p>
         </div>
 
       </div>
