@@ -505,23 +505,6 @@ body {
 }
 .drawer-actions button.primary:hover { background: var(--teal); border-color: var(--teal); }
 
-/* TEMP NOTICE: high-demand model downgrade. Remove with the matching markup. */
-.demand-notice {
-  margin: 18px auto 0;
-  max-width: 640px;
-  padding: 12px 16px;
-  border: 1px solid rgba(124, 90, 20, 0.5);
-  border-left: 3px solid #9a6f15;
-  border-radius: 4px;
-  background: rgba(196, 150, 44, 0.16);
-  color: var(--ink);
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 12.5px;
-  line-height: 1.55;
-  letter-spacing: 0.01em;
-}
-.demand-notice strong { color: var(--oxblood); letter-spacing: 0.04em; }
-
 @media (max-width: 900px) {
   .page { padding: 32px 20px 24px; }
   .title-block h1 { font-size: 48px; }
@@ -551,12 +534,6 @@ body {
     <h1><em>Decode:Talk</em></h1>
     <p class="standfirst">Describe a situation, get the evolutionary read. Not a companion. The mechanism story behind what you're feeling - plus, if you want it, the nearest achievable next step.</p>
     <span class="status" id="status-badge">Live</span>
-  </div>
-
-  <!-- TEMP NOTICE: high-demand quality downgrade. -->
-  <div class="demand-notice" id="demand-notice" role="status">
-    <strong>Heads up:</strong> due to unusually high demand, decodes may be a little
-    less sharp than usual right now. We'll be back to full strength once load settles.
   </div>
 
   <div class="cor-link-wrap">
