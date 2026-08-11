@@ -187,28 +187,43 @@ body {
   justify-content: center;
   margin: 0 auto 72px;
 }
+/* Teal, not oxblood. Every other filled block on this page is an oxblood
+   question bubble; the way out to the live tool should not look like one more
+   of them. Teal ties it to the wordmark instead, and one offset replaces two. */
 .try-cta {
   display: inline-flex;
   align-items: center;
-  padding: 20px 42px;
-  background: var(--oxblood);
+  gap: 14px;
+  padding: 18px 38px;
+  background: var(--teal);
   color: var(--parchment);
   font-family: 'JetBrains Mono', monospace;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 500;
   letter-spacing: 0.24em;
   text-transform: uppercase;
   text-decoration: none;
-  border: 1px solid var(--oxblood);
+  border: 1px solid var(--teal);
   border-radius: 2px;
-  box-shadow: 5px 5px 0 var(--teal), 10px 10px 0 var(--gold);
-  transition: transform 160ms ease, box-shadow 160ms ease;
+  box-shadow: 5px 5px 0 var(--oxblood);
+  transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+}
+.try-cta .arw {
+  font-family: 'Spectral', serif;
+  font-size: 20px;
+  letter-spacing: 0;
+  line-height: 1;
+  transition: transform 160ms ease;
 }
 .try-cta:hover,
 .try-cta:focus-visible {
+  background: var(--teal-bright);
+  border-color: var(--teal-bright);
   transform: translate(-2px, -2px);
-  box-shadow: 7px 7px 0 var(--teal), 13px 13px 0 var(--gold);
+  box-shadow: 7px 7px 0 var(--oxblood);
 }
+.try-cta:hover .arw,
+.try-cta:focus-visible .arw { transform: translateX(3px); }
 
 .exchange {
   margin-bottom: 80px;
@@ -390,7 +405,7 @@ body {
   </div>
 
   <div class="try-cta-wrap">
-    <a class="try-cta" href="https://demismatch.com/decode-talk/">Try Decode:Talk</a>
+    <a class="try-cta" href="https://demismatch.com/decode-talk/">Open Decode:Talk <span class="arw" aria-hidden="true">→</span></a>
   </div>
 
   <section class="exchange">
