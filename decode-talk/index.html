@@ -596,7 +596,9 @@ body {
 // ─── Settings schema ──────────────────────────────────────────────────────────
 // Must match DEFAULT_SETTINGS in worker/src/toggles.js.
 const DEFAULTS = {
-  helpfulness: 'light',
+  // Recommending is the point, not an opt-in. At 'light' the model named the
+  // mechanism and stopped; measured 0 recommendations across four test prompts.
+  helpfulness: 'advisor',
   warmth: 'neutral',
   formality: 'neutral',
   humor: 'dry',

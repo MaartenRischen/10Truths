@@ -275,13 +275,16 @@ body {
 }
 .a p + p { margin-top: 14px; }
 
+/* The read, up front. It sits above the prose so the answer arrives before the
+   argument for it, and the reader can stop here if that is all they came for. */
 .a-spec {
-  margin-top: 24px;
-  padding-top: 18px;
-  border-top: 1px solid rgba(58, 18, 24, 0.2);
+  margin-bottom: 30px;
+  padding-bottom: 26px;
+  border-bottom: 1px solid rgba(58, 18, 24, 0.2);
   display: grid;
   grid-template-columns: max-content 1fr;
-  gap: 7px 18px;
+  gap: 9px 18px;
+  align-items: center;
 }
 .a-spec dt {
   font-family: 'JetBrains Mono', monospace;
@@ -297,6 +300,11 @@ body {
   color: #3a1a22;
   line-height: 1.5;
 }
+/* The Need is the payload, carried by weight alone. No frame, no plate, no second
+   colour: the question bubble and the button are already oxblood, and anything
+   boxed in here competes with them. */
+.a-spec .need-dt { font-weight: 600; }
+.a-spec .need-dd { font-weight: 600; }
 
 .proto-note {
   margin-top: 72px;
@@ -377,8 +385,8 @@ body {
 
   <div class="intro">
     <p>Decode:Talk is a Demismatch tool. You describe a situation - something you're feeling, something that happened, a pattern you can't name - and it responds with the evolutionary read: <strong>what circuit is firing, why, what it was built to resolve, and where the modern environment diverges from what it expects.</strong></p>
-    <p>It names what is happening and stops there. It does not validate, reassure, or recommend. What you do with it is your business.</p>
-    <p>Below: four representative exchanges, drafted in the voice the live version will use. Grounded in the Cor spec (v4 - fourteen mechanisms plus R1 Touch).</p>
+    <p>It names what is happening, then what would resolve it, then the nearest real move. It does not flatter you and it does not sell you a coping tip.</p>
+    <p>Below: four exchanges from the live tool. Grounded in the Cor spec (v4 - fourteen mechanisms plus R1 Touch).</p>
   </div>
 
   <div class="try-cta-wrap">
@@ -389,15 +397,16 @@ body {
     <span class="exchange-label">EX · 01 / Status monitoring on feeds</span>
     <div class="q">Why do I feel so inadequate scrolling through my friends' lives?</div>
     <div class="a">
-      <p>Your status monitor is firing on the compressed highlight reel of two hundred people, delivered to you as if each of them occupied a slot in your band.</p>
-      <p>The circuit that produces this feeling - envy, inadequacy, quiet defeat - was built to track relative rank in a group of about 150 you see face-to-face. It runs continuously and silently; you cannot switch it off. It is not a defect. It is a signal: <em>"they have what you want, do something about it."</em></p>
-      <p>In the EEA that signal drove you toward a goal you could actually reach - your rivals were in your camp, their wins within your grasp. On a feed, the "rivals" are strangers whose achievements have no causal relationship to yours. The circuit does not know that. It just reads visible rank change and runs the defeat subroutine.</p>
-      <p>You are not shallow. You are running a 300,000-year-old calibrator against a stream it was never built for.</p>
       <dl class="a-spec">
         <dt>Mechanism</dt><dd>M5 Status Monitoring</dd>
         <dt>Proxy</dt><dd>Compressed highlight reel delivered as band data</dd>
-        <dt>Real input</dt><dd>Rank position within a reference group on the order of ~150 people you actually co-exist with</dd>
+        <dt class="need-dt">Need</dt><dd class="need-dd">Respect from people who know you - rank inside a group of about 150 you actually co-exist with</dd>
       </dl>
+      <p>Your status monitor (M5) is firing on the compressed highlight reel of two hundred people, delivered to you as if each of them occupied a slot in your band.</p>
+      <p>The circuit that produces this feeling - envy, inadequacy, quiet defeat - was built to track relative rank in a group of about 150 you see face-to-face. It runs continuously and silently; you cannot switch it off. It is not a defect. It is a signal: <em>"they have what you want, do something about it."</em></p>
+      <p>In the environment your organism was calibrated for, that signal drove you toward a goal you could actually reach - your rivals were in your camp, their wins within your grasp. On a feed, the "rivals" are strangers whose achievements have no causal relationship to yours. The circuit does not know that. It just reads visible rank change and runs the defeat subroutine.</p>
+      <p>The nearest move is not to quit the feed. It is to give M5 something real to calibrate against. One recurring context where the same people see you week after week, where your competence is visible, where rank is stable enough to feel earned. A class, a team, a regular game, a project with a small group. The feed does not disappear, but it stops being the only data your status monitor has.</p>
+      <p>You are not shallow. You are running a 300,000-year-old calibrator against a stream it was never built for.</p>
     </div>
   </section>
 
@@ -405,29 +414,33 @@ body {
     <span class="exchange-label">EX · 02 / 3 am dread</span>
     <div class="q">Why do I wake up at 3 am with dread about nothing specific?</div>
     <div class="a">
-      <p>Two systems in conspiracy: your threat detector and your social co-regulator.</p>
+      <dl class="a-spec">
+        <dt>Mechanism</dt><dd>M1 Threat Management &times; M3 Social Bonding (Coan, Social Baseline)</dd>
+        <dt>Proxy</dt><dd>Silent room, solitary bed, no ambient band presence</dd>
+        <dt class="need-dt">Need</dt><dd class="need-dd">To be touched - the proximity of a trusted body, even sleeping, even silent</dd>
+      </dl>
+      <p>Two systems in conspiracy: your threat detector (M1) and your social co-regulator (M3).</p>
       <p>The prefrontal cortex - the part that suppresses rumination - is at its weakest between two and five in the morning. Open loops your daytime self keeps locked surface without inhibition. Add one more signal: your social co-regulator is reading "alone." In the EEA, 3 am was not solitary - the camp was present, someone was stirring, someone was breathing next to you. Your threat system is calibrated to treat the proximity of trusted others as <em>safe.</em></p>
       <p>Without that signal, your threat detector runs at a higher baseline. Anything ambiguous becomes a threat. The dread attaches to nothing specific because everything is specific - your brain is just offering candidates.</p>
-      <dl class="a-spec">
-        <dt>Mechanism</dt><dd>M1 Threat Management × M3 Social Bonding (Coan, Social Baseline)</dd>
-        <dt>Proxy</dt><dd>Silent room, solitary bed, no ambient band presence</dd>
-        <dt>Real input</dt><dd>Proximity of a trusted body - even sleeping, even silent</dd>
-      </dl>
+      <p>The nearest move is not to solve the open loops at 3 am. That asks the cortical override machinery to run when it is at minimum capacity. The move is earlier: reduce the ambient threat load before sleep. One loop closed before bed - a sent message, a written-down decision, a task marked done - gives the system slightly less to surface. And if there is a trusted body you could sleep near, even a friend, even a dog, your M3 reads proximity as the safety signal it was built to receive.</p>
+      <p>You are not anxious. You are running a threat detector that expects a body nearby and is not finding one.</p>
     </div>
   </section>
 
   <section class="exchange">
-    <span class="exchange-label">EX · 03 / Grief taking too long</span>
-    <div class="q">It's been two months since my father died. People are telling me I should be getting better. Why am I not?</div>
+    <span class="exchange-label">EX &middot; 03 / Parenting without a village</span>
+    <div class="q">I have one kid and I'm exhausted and irritable all the time. Everyone tells me this is just what parenting is. Is it?</div>
     <div class="a">
-      <p>Grief is not a mood problem to recover from. It is a physiological and cognitive re-calibration that rewrites your predictive model of the world. Your daily routines, expectations, attentional habits - all tuned to a world that included your father. Each time one of those habits fires and he is not there, the model updates. Painfully.</p>
-      <p>In the EEA that re-calibration happened inside a band that absorbed it. People covered your tasks, held witness, sat with you. Grief was long <strong>and</strong> distributed. Modern structures give you a few days off and return you to a system that cannot hold it.</p>
-      <p><em>"You should be getting better"</em> is a cultural proxy, not a signal from your organism. Your organism is on the correct timeline. The mismatch is the system around you, not you.</p>
       <dl class="a-spec">
-        <dt>Mechanism</dt><dd>M3 Social Bonding (grief mode)</dd>
-        <dt>Proxy</dt><dd>Staged-grief timelines, bereavement leave, medicalization of ordinary loss</dd>
-        <dt>Real input</dt><dd>A band that absorbs the bereaved's tasks and witnesses the re-calibration, for as long as it takes</dd>
+        <dt>Mechanism</dt><dd>M9 Care / Alloparenting</dd>
+        <dt>Proxy</dt><dd>Nuclear-unit solo caregiving normalized as sufficient</dd>
+        <dt class="need-dt">Need</dt><dd class="need-dd">A village around your kid - multiple committed caregivers sharing the load as the default, not as emergency backup</dd>
       </dl>
+      <p>Partially. But "this is just parenting" is doing a lot of work to normalize a structural mismatch.</p>
+      <p>Your care system (M9) was built for a village. Traditional-society data shows four or more non-parent caregivers actively involved in raising a child - not as backup, but as the default operating structure. The organism expects to hand the infant off, recover, re-enter, hand off again. Continuous solo or dual-parent caregiving is not the ancestral condition; it is an aberration the architecture was never calibrated for.</p>
+      <p>Exhaustion in that context is not weakness or a bad attitude. It is accurate reporting from a system running beyond its designed load. The irritability is downstream: when M9 is chronically overwhelmed, M1 Threat Management loses its suppressor. Your threat detector runs hotter because the co-regulator that damps it - trusted others physically present - is absent or undersized. Small provocations land harder than they should because the buffer is gone.</p>
+      <p>The people telling you "this is just parenting" are likely describing their own mismatch as the baseline. That is a different thing from it being correct.</p>
+      <p>The nearest move is not "find a village" - that is the matched endpoint, not a step. The step is one person who can reliably take the child for a predictable block of time each week, not as a favour but as a standing arrangement. Reliability is the operative variable: your nervous system needs to predict the recovery window, not hope one appears.</p>
     </div>
   </section>
 
@@ -435,15 +448,16 @@ body {
     <span class="exchange-label">EX · 04 / Productive and worthless</span>
     <div class="q">I'm productive by every measure at work and I feel worthless. What?</div>
     <div class="a">
-      <p>Productivity and purpose are different readouts.</p>
-      <p>Your Controllability/Agency mechanism tracks whether your actions produce tangible results you can see. Your Pursuit mechanism fires when it closes loops - when an effort lands visibly in the world. Both are offline in most knowledge work: results are abstract, loops don't close, and your contribution disappears into a system where you cannot point at what you made.</p>
-      <p>"Productive by every measure" usually means: the metrics say you closed things. Your organism says: <em>"I saw no loops close."</em> Different measurement systems. Your metrics are reading a proxy; your worthlessness is the real signal - the mechanism is not getting what it was built for.</p>
-      <p>It's not that you're ungrateful or broken. It's that 300,000 years of evolution did not produce a system that registers tangible contribution by receiving a calendar invite.</p>
       <dl class="a-spec">
-        <dt>Mechanism</dt><dd>M6 Controllability / Agency × M2 Pursuit / Exploration</dd>
+        <dt>Mechanism</dt><dd>M6 Controllability / Agency &times; M2 Pursuit / Exploration</dd>
         <dt>Proxy</dt><dd>Productivity metrics, tickets closed, calendar fullness</dd>
-        <dt>Real input</dt><dd>Visible closed loops - effort landing in the world in a form the organism can see</dd>
+        <dt class="need-dt">Need</dt><dd class="need-dd">Work that leaves a mark - effort landing in the world in a form you can point to</dd>
       </dl>
+      <p>Productivity and purpose are different readouts.</p>
+      <p>Your controllability/agency circuit (M6) tracks whether your actions produce tangible results you can see and point at. Your pursuit system (M2) fires when it closes loops - when effort lands visibly in the world. Both are typically offline in knowledge work: results are abstract, loops do not close, and your contribution disappears into a system where you cannot point at what you made.</p>
+      <p>"Productive by every measure" usually means the metrics say you closed things. Your organism says: <em>"I saw no loops close."</em> Different measurement systems. The metrics are reading a proxy; the worthlessness is the real signal - the mechanism is not getting what it was built for.</p>
+      <p>The nearest move is not quitting your job. It is finding one loop per day that closes visibly. A conversation where you can see the other person's understanding shift. A problem solved for a named individual. A thing that exists after you made it that did not exist before.</p>
+      <p>It is not that you are ungrateful or broken. It is that 300,000 years of evolution did not produce a system that registers tangible contribution by receiving a calendar invite.</p>
     </div>
   </section>
 
