@@ -182,6 +182,33 @@ body {
   font-weight: 600;
 }
 
+.disclaimer {
+  max-width: 780px;
+  margin: 0 auto 40px;
+  text-align: center;
+  font-family: 'Spectral', serif;
+  font-weight: 300;
+  font-style: italic;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #6b4a52;
+}
+.disclaimer .disclaimer-link {
+  margin-top: 10px;
+  font-family: 'JetBrains Mono', monospace;
+  font-style: normal;
+  font-size: 11.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+.disclaimer .disclaimer-link a {
+  color: var(--teal);
+  text-decoration: none;
+  border-bottom: 1px solid var(--teal);
+  transition: color 140ms ease, border-color 140ms ease;
+}
+.disclaimer .disclaimer-link a:hover { color: var(--teal-bright); border-color: var(--teal-bright); }
+
 .try-cta-wrap {
   display: flex;
   justify-content: center;
@@ -402,6 +429,11 @@ body {
     <p>Decode:Talk is a Demismatch tool. You describe a situation - something you're feeling, something that happened, a pattern you can't name - and it responds with the evolutionary read: <strong>what circuit is firing, why, what it was built to resolve, and where the modern environment diverges from what it expects.</strong></p>
     <p>It names what is happening, then what would resolve it, then the nearest real move. It does not flatter you and it does not sell you a coping tip.</p>
     <p>Below: four exchanges from the live tool. Grounded in the Cor atlas (v4 - 15 mechanisms, M1-M14 plus R1 Touch).</p>
+  </div>
+
+  <div class="disclaimer">
+    <p>Decode:Talk is not therapy and it is not medical advice. It does not diagnose anything, and it is not a substitute for professional care. If something in your life needs a doctor or a therapist, please go and see one.</p>
+    <p class="disclaimer-link"><a href="decode-talk/privacy">What happens to what you type</a></p>
   </div>
 
   <div class="try-cta-wrap">
