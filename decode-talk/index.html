@@ -630,7 +630,11 @@ body {
 const DEFAULTS = {
   // Recommending is the point, not an opt-in. At 'light' the model named the
   // mechanism and stopped; measured 0 recommendations across four test prompts.
-  helpfulness: 'advisor',
+  // 2026-08-14: moved 'advisor' -> 'guided', the tier between the two. Still gives a
+  // concrete step, but only when asked, and exactly one - 'advisor' volunteers steps
+  // unprompted and will ask a clarifying question to advise, which is more forward
+  // than this tool should default to for people arriving with distress.
+  helpfulness: 'guided',
   warmth: 'neutral',
   formality: 'neutral',
   humor: 'dry',
@@ -655,7 +659,7 @@ const SCHEMA = [
   {
     title: 'Voice',
     rows: [
-      { key: 'helpfulness', label: 'Helpfulness', desc: 'How much guidance follows the read.', options: ['read-only', 'light', 'advisor'] },
+      { key: 'helpfulness', label: 'Helpfulness', desc: 'How much guidance follows the read.', options: ['read-only', 'light', 'guided', 'advisor'] },
       { key: 'warmth', label: 'Warmth', desc: 'Tone warmth. Sycophancy stays off at every level.', options: ['clinical', 'neutral', 'warm'] },
       { key: 'formality', label: 'Formality', desc: 'Register.', options: ['casual', 'neutral', 'formal'] },
       { key: 'humor', label: 'Humor', desc: 'Deadpan latitude.', options: ['off', 'dry', 'sardonic'] },
