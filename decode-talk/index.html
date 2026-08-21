@@ -615,7 +615,10 @@ const DEFAULTS = {
   warmth: 'neutral',
   formality: 'neutral',
   humor: 'dry',
-  certainty: 'hedged',
+  // 'definitive' matches the worker default, which the page had been silently
+  // overriding. The hedge was landing on the reframe closer - "you are LIKELY not
+  // shallow" - which is the one line in the read that cannot afford to hedge.
+  certainty: 'definitive',
   length: 'medium',
   eea_contrast: 'implicit',
   physio: 'medium',
