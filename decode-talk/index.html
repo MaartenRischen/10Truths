@@ -505,23 +505,6 @@ body {
 }
 .drawer-actions button.primary:hover { background: var(--teal); border-color: var(--teal); }
 
-/* TEMP NOTICE: high-demand model downgrade. Remove with the matching markup. */
-.demand-notice {
-  margin: 18px auto 0;
-  max-width: 640px;
-  padding: 12px 16px;
-  border: 1px solid rgba(124, 90, 20, 0.5);
-  border-left: 3px solid #9a6f15;
-  border-radius: 4px;
-  background: rgba(196, 150, 44, 0.16);
-  color: var(--ink);
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 12.5px;
-  line-height: 1.55;
-  letter-spacing: 0.01em;
-}
-.demand-notice strong { color: var(--oxblood); letter-spacing: 0.04em; }
-
 .disclaimer {
   max-width: 640px;
   margin: 22px auto 0;
@@ -585,12 +568,6 @@ body {
     <p class="disclaimer-link"><a href="privacy">What happens to what you type</a></p>
   </div>
 
-  <!-- TEMP NOTICE: high-demand quality downgrade. -->
-  <div class="demand-notice" id="demand-notice" role="status">
-    <strong>Heads up:</strong> due to unusually high demand, decodes may be a little
-    less sharp than usual right now. We'll be back to full strength once load settles.
-  </div>
-
   <div class="cor-link-wrap">
     <a class="cor-link" href="https://cor.demismatch.com/" target="_blank" rel="noopener">
       <span class="cor-dot" aria-hidden="true"></span>
@@ -648,10 +625,11 @@ const DEFAULTS = {
   density: 'primary',
   followups: 'forbidden',
   persona: '',
-  // TEMP: high demand — downgraded from 'anthropic/claude-opus-4-6' to spare OpenRouter quota.
-  model: 'anthropic/claude-sonnet-4-6',
-  temperature: 0.7,
-  max_tokens: 2048,
+  // Advisory only: the worker pins model, max_tokens and reasoning effort server-side
+  // and sends no sampling params at all (removed on Opus 5). Kept in sync so nothing
+  // here contradicts what actually ships.
+  model: 'anthropic/claude-opus-5',
+  max_tokens: 8192,
   debug: false,
 };
 
@@ -679,7 +657,7 @@ const SCHEMA = [
   {
     title: 'Tag',
     rows: [
-      { key: 'tag', label: 'Tag placement', desc: 'Mechanism / Proxy / Real input block.', options: ['always', 'on-request', 'off'] },
+      { key: 'tag', label: 'Tag placement', desc: 'Mechanism / Proxy / Need block.', options: ['always', 'on-request', 'off'] },
       { key: 'density', label: 'Mechanism density', desc: 'How many mechanisms in the tag.', options: ['primary', 'interacting', 'cascade'] },
     ],
   },
@@ -703,9 +681,10 @@ const API_CHAT = '/api/decode-talk/chat';
 const messages = [];
 let streaming = false;
 
-// TEMP: high demand — pin every session to Sonnet regardless of saved/selected model.
+// Normalizes any model left in a returning visitor's saved settings. The worker pins
+// the model server-side regardless; this only stops the page sending a stale value.
 // Remove this constant and its uses to restore user model choice.
-const PINNED_MODEL = 'anthropic/claude-sonnet-4-6';
+const PINNED_MODEL = 'anthropic/claude-opus-5';
 function loadSettings() {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
@@ -945,7 +924,7 @@ async function runInference() {
     const res = await fetch(API_CHAT, {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
-      // TEMP: high demand — force Sonnet on the wire regardless of selected model.
+      // Send the pinned model; the worker overrides it server-side either way.
       // session = rolling cross-conversation signals (timestamps + abstraction scores +
       // captured commitment); consumed server-side in SHADOW mode only. No server-side state.
       body: JSON.stringify({ messages, settings: { ...settings, model: PINNED_MODEL }, session: sessionPayload() }),
