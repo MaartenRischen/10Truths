@@ -259,6 +259,19 @@ body {
   font-size: 13px;
   line-height: 1.5;
 }
+/* The worker's product wall (conversation cap, daily cap, burst guard) speaks in the
+   page's own voice. It is not an error and must not look like one. */
+.notice {
+  background: var(--parchment-dark);
+  border: 1px solid var(--teal);
+  color: var(--ink);
+  padding: 14px 18px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  font-family: 'Spectral', serif;
+  font-size: 16px;
+  line-height: 1.5;
+}
 
 .composer {
   display: flex;
@@ -706,7 +719,7 @@ let settings = loadSettings();
 // ─── Satiation session (client-side, privacy-preserving) ────────────────────────
 // Decode:Talk can become its own M2 (open-loop) proxy: chasing reads for hours. A satiation
 // interrupt (server-side, currently SHADOW only) needs to see a sustained loop-chasing pattern
-// that spans MANY short conversations (the server caps a single conversation at 3 reads, then
+// that spans MANY short conversations (the server caps a single conversation at 10 reads, then
 // the user starts fresh, so a server that is stateless across conversations cannot see it).
 // The server stays STATELESS - it stores nothing cross-session and keys nothing to IP or cookie.
 // Instead the BROWSER keeps a rolling session here and sends it with each request, the same way
@@ -936,7 +949,12 @@ async function runInference() {
     if (!res.ok) {
       let detail = res.statusText;
       try { detail = (await res.json()).error?.message || detail; } catch {}
-      throw new Error(`${res.status}: ${detail}`);
+      // 429 is the worker's product wall (conversation cap, daily cap, burst guard):
+      // show its sentence as-is, with no status code, styled as a notice, not an error.
+      const wall = res.status === 429;
+      const err = new Error(wall ? detail : `${res.status}: ${detail}`);
+      err.wall = wall;
+      throw err;
     }
 
     let fullText = '';
@@ -974,7 +992,8 @@ async function runInference() {
     $a.classList.remove('streaming');
     $a.remove();
     messages.pop();
-    showError(err.message || 'Unknown error.');
+    if (err.wall) showNotice(err.message);
+    else showError(err.message || 'Unknown error.');
   } finally {
     streaming = false;
     $submit.disabled = false;
@@ -1029,6 +1048,13 @@ function removeAllRegenButtons() {
 function showError(msg) {
   const div = document.createElement('div');
   div.className = 'error';
+  div.textContent = msg;
+  $errorSlot.appendChild(div);
+  scroll();
+}
+function showNotice(msg) {
+  const div = document.createElement('div');
+  div.className = 'notice';
   div.textContent = msg;
   $errorSlot.appendChild(div);
   scroll();
