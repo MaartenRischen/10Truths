@@ -217,12 +217,41 @@ body {
   letter-spacing: 0.3em;
   color: var(--teal);
 }
-.a.streaming::after {
+.a.streaming:empty::after,
+.a.streaming > p:last-child::after {
   content: '▊';
   animation: blink 1s infinite;
   color: var(--teal);
   margin-left: 2px;
 }
+.a p + p { margin-top: 14px; }
+/* The Mechanism / Proxy / Need block, in the shape the examples page hand-authors
+   (decode-talk.html .a-spec). In a live read it arrives last, so it sits under the
+   prose with the rule above it rather than below. */
+.a .a-spec {
+  margin-top: 22px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(58, 18, 24, 0.2);
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 9px 18px;
+  align-items: start;
+}
+.a .a-spec dt {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--teal);
+  padding-top: 3px;
+}
+.a .a-spec dd {
+  font-size: 14px;
+  line-height: 1.5;
+  color: #3a1a22;
+}
+.a .a-spec .need-dt,
+.a .a-spec .need-dd { font-weight: 600; }
 @keyframes blink { 50% { opacity: 0; } }
 
 .regen-row {
@@ -550,6 +579,8 @@ body {
   .title-block h1 { font-size: 48px; }
   .q { margin-left: 0; font-size: 16px; }
   .a { margin-right: 0; padding: 18px 20px; font-size: 16px; }
+  .a .a-spec { grid-template-columns: 1fr; gap: 2px 0; }
+  .a .a-spec dt { margin-top: 6px; }
   .regen-row { margin-right: 0; }
   .composer { flex-direction: column; }
   .composer button { padding: 12px; }
@@ -978,13 +1009,14 @@ async function runInference() {
           const delta = parsed.choices?.[0]?.delta?.content;
           if (delta) {
             fullText += delta;
-            $a.textContent = fullText;
+            renderReply($a, fullText, true);
             scroll();
           }
         } catch {}
       }
     }
 
+    renderReply($a, fullText, false);
     $a.classList.remove('streaming');
     messages.push({ role: 'assistant', content: fullText });
     appendRegenButton($turn);
@@ -1012,6 +1044,80 @@ async function regenerate() {
   await runInference();
 }
 
+// ─── Reply rendering ───────────────────────────────────────────────────────────
+// A reply is prose plus, when the Tag setting is on, the three-line Mechanism /
+// Proxy / Need block. The prompt (§04) shows that block inside ``` fences, so the
+// model emits it fenced. Until 2026-09-07 the page dropped the whole reply in as one
+// text node, so the fences and the *italics* the voice rules permit showed up as
+// literal characters. This renders exactly the constructs the prompt uses and no
+// more: the fenced tag becomes the same <dl class="a-spec"> the examples page
+// hand-authors, and *em* / **strong** become <em> / <strong>. Everything is built
+// from DOM nodes, never innerHTML, so model text can never become markup. The raw
+// text is what `messages` keeps and sends back to the model; only the display
+// changes.
+const TAG_LINE = /^\**\s*(Mechanism|Proxy|Need|Real input)\s*\**\s*:\s*\**\s*(.*?)\s*\**\s*$/i;
+function splitTag(text) {
+  // Fenced (with or without a language hint; unclosed while still streaming).
+  const fence = text.match(/\n?```[^\n]*\n([\s\S]*?)(?:\n```|$)/);
+  if (fence) {
+    const lines = fence[1].split('\n').map(l => l.trim()).filter(Boolean);
+    const prose = text.slice(0, fence.index) + text.slice(fence.index + fence[0].length);
+    if (lines.some(l => TAG_LINE.test(l))) return { prose, tag: lines };
+    // A fence that is not the tag: show its lines as prose, without the fence.
+    return { prose: prose.replace(/\s+$/, '') + '\n\n' + lines.join('\n'), tag: null };
+  }
+  // Unfenced: a trailing run of Mechanism / Proxy / Need lines.
+  const lines = text.replace(/\s+$/, '').split('\n');
+  let i = lines.length;
+  while (i > 0 && TAG_LINE.test(lines[i - 1].trim())) i--;
+  if (i < lines.length) return { prose: lines.slice(0, i).join('\n'), tag: lines.slice(i).map(l => l.trim()) };
+  return { prose: text, tag: null };
+}
+function appendInline(parent, text) {
+  // *em* and **strong** only. A lone asterisk stays literal.
+  const re = /\*\*([^*\n]+?)\*\*|\*([^*\n]+?)\*/g;
+  let last = 0, m;
+  while ((m = re.exec(text))) {
+    if (m.index > last) parent.appendChild(document.createTextNode(text.slice(last, m.index)));
+    const strong = m[1] !== undefined;
+    const el = document.createElement(strong ? 'strong' : 'em');
+    el.textContent = strong ? m[1] : m[2];
+    parent.appendChild(el);
+    last = m.index + m[0].length;
+  }
+  if (last < text.length) parent.appendChild(document.createTextNode(text.slice(last)));
+}
+function renderReply(el, raw, streaming) {
+  // A fence arriving one backtick at a time would flash as literal backticks.
+  const text = streaming ? raw.replace(/`{1,2}$/, '') : raw;
+  const { prose, tag } = splitTag(text);
+  const frag = document.createDocumentFragment();
+  for (const para of prose.split(/\n{2,}/)) {
+    const t = para.trim();
+    if (!t) continue;
+    const p = document.createElement('p');
+    appendInline(p, t);
+    frag.appendChild(p);
+  }
+  if (tag && tag.length) {
+    const dl = document.createElement('dl');
+    dl.className = 'a-spec';
+    for (const line of tag) {
+      const m = line.match(TAG_LINE);
+      const key = m ? m[1] : '';
+      const val = m ? m[2] : line.replace(/^\*+|\*+$/g, '');
+      const dt = document.createElement('dt');
+      dt.textContent = key ? key[0].toUpperCase() + key.slice(1).toLowerCase() : '';
+      const dd = document.createElement('dd');
+      appendInline(dd, val);
+      if (/^(need|real input)$/i.test(key)) { dt.className = 'need-dt'; dd.className = 'need-dd'; }
+      dl.appendChild(dt);
+      dl.appendChild(dd);
+    }
+    frag.appendChild(dl);
+  }
+  el.replaceChildren(frag);
+}
 function renderUser(text) {
   const turn = appendTurn();
   const q = document.createElement('div');
