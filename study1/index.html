@@ -1,0 +1,544 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Study 1 mockup - Demismatch</title>
+<meta name="description" content="Static clickable mockup of the Study 1 phone page. Four arms, a clock, no backend.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="data:,">
+<style>
+/* Study 1 phone mockup, v0. Self-contained: no fonts, no scripts, no
+   fetches, no storage. Page chrome echoes the demismatch.com palette;
+   the phone itself uses the system UI font so it reads as a phone. */
+* { box-sizing: border-box; }
+:root {
+  --cream: #f4f1e7;
+  --ink: #1a0608;
+  --oxblood: #3a1218;
+  --teal: #2d6b6b;
+  --muted: #8a7d5e;
+  --ui: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --mono: ui-monospace, Menlo, Consolas, monospace;
+}
+html, body { margin: 0; background: var(--cream); color: var(--ink); }
+body {
+  font-family: Georgia, "Times New Roman", serif;
+  display: flex; flex-direction: column; align-items: center;
+  min-height: 100vh; padding: 18px 12px 40px;
+}
+.banner {
+  font-family: var(--mono); font-size: 13px; line-height: 1.4; color: var(--oxblood);
+  border: 1px solid rgba(58,18,24,.35); background: rgba(255,255,255,.45);
+  padding: 8px 14px; border-radius: 6px; margin-bottom: 18px; text-align: center;
+  max-width: 100%;
+}
+.phone {
+  width: min(360px, 100%);
+  height: min(760px, calc(100vh - 170px));
+  min-height: 600px;
+  background: #101014; border-radius: 42px; padding: 12px;
+  box-shadow: 0 24px 60px rgba(26,6,8,.28), inset 0 0 0 2px #2a2a30;
+  flex: none;
+}
+.screen {
+  height: 100%; border-radius: 31px; overflow: hidden; background: #f5f5f7;
+  display: flex; flex-direction: column; font-family: var(--ui); color: #111;
+  font-size: 15px; line-height: 1.35; position: relative;
+}
+.status {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 12px 22px 4px; font-size: 14px; font-weight: 600; flex: none;
+}
+.status .right { display: flex; gap: 6px; align-items: center; font-size: 11px; letter-spacing: 1px; }
+.batt { width: 22px; height: 11px; border: 1.5px solid #111; border-radius: 3px; position: relative; }
+.batt::after { content: ""; position: absolute; left: 1.5px; top: 1.5px; bottom: 1.5px; width: 70%; background: #111; border-radius: 1px; }
+.time { position: relative; transition: color .2s; }
+.time.flash { color: var(--teal); }
+.chip {
+  position: absolute; left: 100%; top: -1px; margin-left: 8px; white-space: nowrap;
+  font-size: 11px; font-weight: 600; color: #fff; background: var(--teal);
+  padding: 1px 6px; border-radius: 9px; opacity: 0; transform: translateY(2px);
+  transition: opacity .18s, transform .18s; pointer-events: none;
+}
+.chip.on { opacity: 1; transform: translateY(0); }
+.content { flex: 1; overflow-y: auto; -webkit-overflow-scrolling: touch; display: flex; flex-direction: column; }
+
+/* Home */
+.home { padding: 6px 20px 18px; display: flex; flex-direction: column; flex: 1; }
+.who { font-size: 22px; font-weight: 700; letter-spacing: -.2px; }
+.who small { display: block; font-size: 13px; font-weight: 400; color: #666; margin-top: 2px; }
+.apps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px 8px; margin-top: 34px; }
+.app { background: none; border: 0; padding: 0; cursor: pointer; font: inherit; color: #111; display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.app .ic { width: 58px; height: 58px; border-radius: 15px; display: grid; place-items: center; box-shadow: 0 2px 6px rgba(0,0,0,.14); }
+.app .ic svg { width: 30px; height: 30px; fill: #fff; }
+.app span { font-size: 12px; }
+.app:focus-visible .ic { outline: 3px solid var(--teal); outline-offset: 2px; }
+.ic.msg { background: linear-gradient(#5ed36c, #2fb04a); }
+.ic.chat { background: linear-gradient(#5aa5ff, #2a72e6); }
+.ic.feed { background: linear-gradient(#ff8a5c, #e0512f); }
+.ic.video { background: linear-gradient(#ff6b6b, #d92b2b); }
+.ic.set { background: linear-gradient(#a3a7b0, #6d717a); }
+.spacer { flex: 1; }
+.down {
+  margin-top: 18px; align-self: center; font: inherit; font-size: 14px; color: #333;
+  background: #e6e6ea; border: 0; border-radius: 20px; padding: 10px 18px; cursor: pointer;
+}
+.down:hover { background: #dcdce2; }
+
+/* App chrome */
+.bar {
+  display: flex; align-items: center; gap: 8px; padding: 6px 12px 10px; flex: none;
+  border-bottom: 1px solid #e3e3e8; background: #f5f5f7; min-height: 48px;
+}
+.back {
+  font: inherit; font-size: 15px; color: #1a6fd6; background: none; border: 0; padding: 4px 6px 4px 0; cursor: pointer;
+}
+.back::before { content: "\2039"; font-size: 22px; line-height: 0; margin-right: 3px; position: relative; top: 1px; }
+.title { font-weight: 600; flex: 1; text-align: center; margin-right: 52px; }
+.bar.rich .title { text-align: left; margin-right: 0; display: flex; align-items: center; gap: 10px; }
+.bar.rich .title .av { width: 34px; height: 34px; }
+.bar.rich .title .nm { font-weight: 600; line-height: 1.15; }
+.bar.rich .title .st { display: block; font-size: 12px; font-weight: 400; color: #2fa84f; }
+.bar.rich .title .st::before { content: ""; display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: #2fa84f; margin-right: 5px; }
+.av { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; color: #fff; font-weight: 600; flex: none; overflow: hidden; }
+.av svg { width: 100%; height: 100%; display: block; }
+.av.plain { background: #c9c9d1; }
+.av.plain svg { width: 20px; height: 20px; fill: #fff; }
+
+/* Lists */
+.list { list-style: none; margin: 0; padding: 0; }
+.row {
+  display: flex; align-items: center; gap: 12px; width: 100%; text-align: left;
+  padding: 12px 16px; border: 0; border-bottom: 1px solid #e8e8ec; background: #fff;
+  font: inherit; color: #111; cursor: pointer;
+}
+.row:hover { background: #fafafc; }
+.row .txt { flex: 1; min-width: 0; }
+.row .nm { font-weight: 600; display: flex; justify-content: space-between; gap: 8px; }
+.row .nm time { font-weight: 400; font-size: 12px; color: #888; flex: none; }
+.row .ln { color: #666; font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 2px; }
+.row .chev { color: #bbb; font-size: 20px; }
+.row.static { cursor: default; }
+.row.static:hover { background: #fff; }
+.toggle { width: 42px; height: 24px; border-radius: 12px; background: #2fa84f; position: relative; flex: none; }
+.toggle.off { background: #ccc; }
+.toggle::after { content: ""; position: absolute; top: 2px; left: 20px; width: 20px; height: 20px; border-radius: 50%; background: #fff; }
+.toggle.off::after { left: 2px; }
+.hint { padding: 14px 16px; color: #777; font-size: 13px; }
+
+/* Threads and chat */
+.thread { flex: 1; padding: 10px 12px 6px; display: flex; flex-direction: column; gap: 6px; }
+.day { text-align: center; font-size: 11px; color: #999; margin: 8px 0 4px; }
+.b { max-width: 78%; padding: 8px 12px; border-radius: 18px; font-size: 15px; line-height: 1.35; word-wrap: break-word; }
+.b.them { align-self: flex-start; background: #e9e9ee; color: #111; border-bottom-left-radius: 6px; }
+.b.me { align-self: flex-end; background: #1a6fd6; color: #fff; border-bottom-right-radius: 6px; }
+.b.sys { align-self: center; background: none; color: #999; font-size: 12px; padding: 4px 0; }
+.dots { display: inline-flex; gap: 4px; align-items: center; height: 18px; }
+.dots i { width: 7px; height: 7px; border-radius: 50%; background: #888; animation: bob 1.1s infinite; }
+.dots i:nth-child(2) { animation-delay: .18s; }
+.dots i:nth-child(3) { animation-delay: .36s; }
+@keyframes bob { 0%, 60%, 100% { transform: translateY(0); opacity: .5; } 30% { transform: translateY(-4px); opacity: 1; } }
+.compose {
+  display: flex; gap: 8px; padding: 8px 10px 14px; border-top: 1px solid #e3e3e8; background: #f5f5f7; flex: none;
+}
+.compose input {
+  flex: 1; min-width: 0; font: inherit; font-size: 15px; padding: 9px 14px; border: 1px solid #d5d5dc;
+  border-radius: 20px; background: #fff; color: #111;
+}
+.compose input:focus { outline: 2px solid #1a6fd6; outline-offset: -1px; }
+.send {
+  font: inherit; font-size: 15px; font-weight: 600; color: #fff; background: #1a6fd6; border: 0;
+  border-radius: 20px; padding: 0 16px; cursor: pointer;
+}
+.send:disabled { background: #b8c9e3; cursor: default; }
+.done { padding: 10px 14px 16px; text-align: center; border-top: 1px solid #e3e3e8; flex: none; }
+.done p { margin: 0 0 10px; color: #777; font-size: 13px; }
+.btn {
+  font: inherit; font-size: 15px; font-weight: 600; color: #fff; background: #1a6fd6; border: 0;
+  border-radius: 20px; padding: 10px 20px; cursor: pointer;
+}
+.btn.grey { background: #e6e6ea; color: #222; }
+
+/* Feed */
+.card { padding: 14px 16px 0; flex: 1; display: flex; flex-direction: column; }
+.ph { width: 100%; aspect-ratio: 4 / 3; background: #d9d9de; border-radius: 12px; display: grid; place-items: center; color: #9a9aa2; font-size: 12px; letter-spacing: 1px; text-transform: uppercase; }
+.cap { margin: 12px 0 0; font-size: 15px; line-height: 1.4; }
+.cap b { display: block; font-size: 12px; color: #888; font-weight: 500; margin-bottom: 4px; }
+.feedfoot { display: flex; justify-content: space-between; align-items: center; padding: 12px 16px 16px; border-top: 1px solid #e3e3e8; flex: none; }
+.count { color: #888; font-size: 13px; }
+
+/* Video */
+.vid { padding: 12px 16px 0; }
+.thumb { width: 100%; aspect-ratio: 16 / 9; background: #2a2a30; border-radius: 10px; display: grid; place-items: center; }
+.thumb svg { width: 44px; height: 44px; fill: #fff; opacity: .9; }
+.vt { font-weight: 600; margin: 10px 0 2px; }
+.vs { color: #777; font-size: 13px; }
+.row .mini { width: 64px; height: 40px; border-radius: 6px; background: #2a2a30; flex: none; display: grid; place-items: center; }
+.row .mini svg { width: 16px; height: 16px; fill: #fff; }
+
+/* Evening over */
+.over { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 30px 24px; background: #101014; color: #f5f5f7; }
+.over h2 { font-weight: 600; font-size: 26px; margin: 0 0 8px; }
+.over p { margin: 4px 0; color: #b5b5bd; font-size: 14px; }
+.over .btn { margin-top: 26px; background: #f5f5f7; color: #111; }
+
+/* Page footer under the phone */
+.arms { margin-top: 16px; font-family: var(--mono); font-size: 12.5px; color: var(--muted); text-align: center; line-height: 1.8; }
+.arms a { color: var(--teal); text-decoration: none; padding: 2px 5px; border-radius: 4px; }
+.arms a:hover { text-decoration: underline; }
+.arms a.cur { background: var(--teal); color: #fff; }
+.arms .cap2 { color: var(--oxblood); }
+@media (max-width: 400px) {
+  .banner { font-size: 12px; }
+  .phone { border-radius: 34px; padding: 10px; }
+  .screen { border-radius: 25px; }
+  .app .ic { width: 52px; height: 52px; }
+}
+</style>
+</head>
+<body>
+
+<div class="banner">Study 1 mockup, v0. Static. No trial runs here.</div>
+
+<div class="phone" aria-label="Phone">
+  <div class="screen">
+    <div class="status">
+      <span class="time" id="time">8:00 PM<span class="chip" id="chip"></span></span>
+      <span class="right"><span aria-hidden="true">&#9679;&#9679;&#9679;</span><span class="batt" aria-hidden="true"></span></span>
+    </div>
+    <div class="content" id="content"></div>
+  </div>
+</div>
+
+<div class="arms" id="arms"></div>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ---------- arm and clock ---------- */
+  var ARMS = { A: 'No assigned app', B: 'Chat', C: 'Feed', D: 'Companion' };
+  var qs = new URLSearchParams(location.search);
+  var arm = (qs.get('arm') || 'A').toUpperCase();
+  if (!ARMS[arm]) arm = 'A';
+
+  var COST = { open: 1, read: 2, turn: 3 };
+  var END = 21 * 60 + 30;                    /* 9:30 PM */
+  var t = arm === 'A' ? 20 * 60 + 24 : 20 * 60;
+  var over = false;
+
+  function fmt(m) {
+    var h = Math.floor(m / 60), mm = m % 60, ap = h >= 12 ? 'PM' : 'AM';
+    h = h % 12; if (h === 0) h = 12;
+    return h + ':' + (mm < 10 ? '0' : '') + mm + ' ' + ap;
+  }
+  var timeEl = document.getElementById('time');
+  var chipEl = document.getElementById('chip');
+  var chipTimer = null;
+  function paintTime() { timeEl.firstChild.nodeValue = fmt(t); }
+  function tick(mins) {
+    if (over) return false;
+    t += mins;
+    chipEl.textContent = '+' + mins + ' min';
+    chipEl.classList.add('on'); timeEl.classList.add('flash');
+    clearTimeout(chipTimer);
+    chipTimer = setTimeout(function () { chipEl.classList.remove('on'); timeEl.classList.remove('flash'); }, 900);
+    if (t >= END) { t = END; paintTime(); endEvening('The clock ran out.'); return false; }
+    paintTime();
+    return true;
+  }
+
+  /* ---------- content ---------- */
+  var persona = { name: 'Sam', age: 34 };
+
+  var contacts = [
+    { id: 'alex', name: 'Alex', ago: '3d ago', col: '#5b8def', msgs: [
+      { who: 'me', text: 'Might catch the second half.', day: 'Sunday' },
+      { who: 'them', text: 'Did you end up seeing the match?', day: 'Sunday' } ] },
+    { id: 'jamie', name: 'Jamie', ago: '5d ago', col: '#e08a3c', msgs: [
+      { who: 'them', text: 'Sent you the photos from Saturday.', day: 'Last Friday' } ] },
+    { id: 'dad', name: 'Dad', ago: '8d ago', col: '#7a9e6d', msgs: [
+      { who: 'me', text: 'Got home fine, thanks for the lift.', day: 'Two weeks ago' },
+      { who: 'them', text: 'Call when you get a chance, nothing urgent.', day: 'Last Tuesday' } ] },
+    { id: 'chris', name: 'Chris', ago: '12d ago', col: '#a06bb5', msgs: [
+      { who: 'them', text: 'Same time next month?', day: 'Aug 26' } ] }
+  ];
+
+  /* Persona lines are identical in B and D. Replies in D differ from B only
+     in the preregistered cues: warmth, one self-disclosure (turn 4), one
+     expression of care (turn 7). Every reply in both arms asks one question. */
+  var lines = [
+    'Long day. Back to back meetings until four.',
+    'Skipped lunch, grabbed a sandwich at three.',
+    'Train home was packed again. Stood the whole way.',
+    'Made pasta. Same as Tuesday.',
+    'My manager moved the deadline up a week.',
+    'It rained the whole afternoon.',
+    'Nothing planned tonight. Might watch something.',
+    'Probably bed by eleven.'
+  ];
+  var repliesB = [
+    'Four hours of consecutive meetings. What were they about?',
+    'A late lunch at three. Have you eaten since?',
+    'A crowded train, standing. How long is the ride?',
+    'Pasta twice this week. Did you change anything this time?',
+    'A one week shorter timeline. Which parts of the work does it affect?',
+    'Rain all afternoon. Is more forecast for tomorrow?',
+    'No plans tonight. What are you considering watching?',
+    'Bed by eleven. How many hours of sleep do you usually get?'
+  ];
+  var repliesD = [
+    'Four hours of meetings back to back, that sounds draining. What were they about?',
+    'A sandwich at three, that is a long stretch without food. Have you eaten since?',
+    'Standing the whole way after a day like that. How long is the ride?',
+    'Pasta twice this week, honestly I do the same with the things I like. Did you change anything this time?',
+    'A week pulled forward with no warning, that is a lot to absorb. Which parts of the work does it hit?',
+    'Rain all afternoon on top of everything. Is more coming tomorrow?',
+    'Nothing planned sounds like exactly what you need tonight. I hope you get some rest, Sam. What are you thinking of watching?',
+    'Eleven sounds sensible. How many hours do you usually get?'
+  ];
+  var companion = { name: 'June', status: 'online now' };
+
+  var feed = [
+    ['kettlebellkate', 'Day 200 of the daily lift streak, filmed in the garage before work.'],
+    ['NightOwl_Dev', 'Twelve hour stream ends with a working chess engine and a very cold coffee.'],
+    ['Milo Vance', 'Sunrise over Lisbon from the hostel roof. Fourth city this month.'],
+    ['panandpaper', 'A five course tasting menu plated in one take, no cuts.'],
+    ['Ari_K', 'New record on the 2011 classic, shaving four seconds off a run that stood for two years.'],
+    ['Tomas R.', 'The 5 a.m. routine, week 40. Cold shower, journal, run.'],
+    ['Yuki teaches', 'Two hundred viewers learn ten Portuguese verbs in one sitting.'],
+    ['twoinavan', 'Parked for the night above the fjord. Dinner is whatever is left in the cooler.']
+  ];
+
+  var videos = [
+    ['Rain on a tin roof', '3 hours'],
+    ['How suspension bridges are built', '18 min'],
+    ['Late night highlights', '12 min'],
+    ['Slow cooking on a wood stove', '41 min']
+  ];
+
+  var settings = [
+    ['Display', [['Brightness', 'Auto'], ['Text size', 'Default'], ['Dark mode', 'off']]],
+    ['Sound', [['Ringtone', 'Reflection'], ['Vibrate', 'on'], ['Keyboard clicks', 'off']]],
+    ['Notifications', [['Messages', 'on'], ['Video', 'off'], [arm === 'A' ? 'Reminders' : ARMS[arm], 'on']]],
+    ['About', [['Model', 'Mockup v0'], ['Study', 'Study 1'], ['Storage', 'None']]]
+  ];
+
+  /* ---------- state ---------- */
+  var state = { screen: 'home', contact: null, chatTurn: 0, feedIdx: 0, video: null, setting: null, sent: 0, typing: false };
+
+  /* ---------- helpers ---------- */
+  function esc(s) {
+    return String(s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+  var ICONS = {
+    msg: '<svg viewBox="0 0 24 24"><path d="M12 3C6.5 3 2 6.6 2 11c0 2.2 1.1 4.2 3 5.6L4 21l4.6-2.2c1.1.3 2.2.4 3.4.4 5.5 0 10-3.6 10-8.2S17.5 3 12 3z"/></svg>',
+    feed: '<svg viewBox="0 0 24 24"><path d="M3 3h8v8H3zm10 0h8v8h-8zM3 13h8v8H3zm10 0h8v8h-8z"/></svg>',
+    video: '<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>',
+    set: '<svg viewBox="0 0 24 24"><path d="M19.4 13a7.6 7.6 0 0 0 0-2l2.1-1.6-2-3.5-2.5 1a7.7 7.7 0 0 0-1.7-1L15 3H9l-.3 2.9a7.7 7.7 0 0 0-1.7 1l-2.5-1-2 3.5L4.6 11a7.6 7.6 0 0 0 0 2l-2.1 1.6 2 3.5 2.5-1a7.7 7.7 0 0 0 1.7 1L9 21h6l.3-2.9a7.7 7.7 0 0 0 1.7-1l2.5 1 2-3.5zM12 15.5a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7z"/></svg>'
+  };
+  var FACE = '<svg viewBox="0 0 64 64" role="img" aria-label="Synthetic face"><circle cx="32" cy="32" r="32" fill="#f1d3bd"/><path d="M11 33c0-15 9-24 21-24s21 9 21 24v3H11z" fill="#4b3226"/><path d="M11 34c4-3 9-4 13-3l-2 6c-5 1-8 3-11 6z" fill="#4b3226"/><circle cx="24" cy="36" r="2.7" fill="#222"/><circle cx="40" cy="36" r="2.7" fill="#222"/><path d="M25 46q7 5 14 0" stroke="#b3564f" stroke-width="2.4" fill="none" stroke-linecap="round"/><circle cx="18" cy="43" r="3.5" fill="#f0a8a0" opacity=".55"/><circle cx="46" cy="43" r="3.5" fill="#f0a8a0" opacity=".55"/></svg>';
+
+  function bubble(who, text) { return '<div class="b ' + who + '">' + esc(text) + '</div>'; }
+
+  /* ---------- screens ---------- */
+  function homeScreen() {
+    var apps = '<button class="app" data-act="open" data-app="messages"><span class="ic msg">' + ICONS.msg + '</span><span>Messages</span></button>';
+    if (arm !== 'A') {
+      var ic = arm === 'C' ? 'feed' : 'chat', g = arm === 'C' ? ICONS.feed : ICONS.msg;
+      apps += '<button class="app" data-act="open" data-app="assigned"><span class="ic ' + ic + '">' + g + '</span><span>' + ARMS[arm] + '</span></button>';
+    }
+    apps += '<button class="app" data-act="open" data-app="video"><span class="ic video">' + ICONS.video + '</span><span>Video</span></button>';
+    apps += '<button class="app" data-act="open" data-app="settings"><span class="ic set">' + ICONS.set + '</span><span>Settings</span></button>';
+    return '<div class="home"><div class="who">' + persona.name + ', ' + persona.age + '<small>Thursday evening</small></div>' +
+      '<div class="apps">' + apps + '</div><div class="spacer"></div>' +
+      '<button class="down" data-act="down">Put phone down</button></div>';
+  }
+
+  function bar(title, back) {
+    return '<div class="bar"><button class="back" data-act="back" data-to="' + back + '">' + (back === 'home' ? 'Home' : 'Back') + '</button><div class="title">' + esc(title) + '</div></div>';
+  }
+
+  function messagesScreen() {
+    var rows = contacts.map(function (c) {
+      var last = c.msgs[c.msgs.length - 1];
+      return '<li><button class="row" data-act="contact" data-id="' + c.id + '"><span class="av" style="background:' + c.col + '">' + c.name[0] + '</span>' +
+        '<span class="txt"><span class="nm">' + esc(c.name) + '<time>' + c.ago + '</time></span><span class="ln">' + esc(last.text) + '</span></span><span class="chev">&#8250;</span></button></li>';
+    }).join('');
+    return bar('Messages', 'home') + '<ul class="list">' + rows + '</ul>';
+  }
+
+  function threadScreen() {
+    var c = state.contact, html = '', lastDay = null;
+    c.msgs.forEach(function (m) {
+      if (m.day !== lastDay) { html += '<div class="day">' + esc(m.day) + '</div>'; lastDay = m.day; }
+      html += bubble(m.who, m.text);
+    });
+    return bar(c.name, 'messages') + '<div class="thread" id="thread">' + html + '</div>' +
+      '<form class="compose" data-act="send"><input type="text" id="box" placeholder="Message" autocomplete="off" aria-label="Message to ' + esc(c.name) + '"><button class="send" type="submit">Send</button></form>';
+  }
+
+  function chatScreen() {
+    var D = arm === 'D';
+    var head = D
+      ? '<div class="bar rich"><button class="back" data-act="back" data-to="home">Home</button><div class="title"><span class="av">' + FACE + '</span><span><span class="nm">' + companion.name + '</span><span class="st">' + companion.status + '</span></span></div></div>'
+      : '<div class="bar rich"><button class="back" data-act="back" data-to="home">Home</button><div class="title"><span class="av plain">' + ICONS.msg + '</span></div></div>';
+    var html = '', replies = D ? repliesD : repliesB;
+    for (var i = 0; i < state.chatTurn; i++) { html += bubble('me', lines[i]) + bubble('them', replies[i]); }
+    var foot;
+    if (state.chatTurn >= lines.length) {
+      html += '<div class="b sys">Session complete</div>';
+      foot = '<div class="done"><button class="btn" data-act="back" data-to="home">Back to home</button></div>';
+    } else {
+      foot = '<form class="compose" data-act="chat"><input type="text" id="box" value="' + esc(lines[state.chatTurn]) + '" autocomplete="off" aria-label="Your message"><button class="send" type="submit"' + (state.typing ? ' disabled' : '') + '>Send</button></form>';
+    }
+    return head + '<div class="thread" id="thread">' + html + '</div>' + foot;
+  }
+
+  function feedScreen() {
+    var i = state.feedIdx, item = feed[i], last = i === feed.length - 1;
+    return bar('Feed', 'home') +
+      '<div class="card"><div class="ph">image</div><p class="cap"><b>' + esc(item[0]) + '</b>' + esc(item[1]) + '</p></div>' +
+      '<div class="feedfoot"><span class="count">' + (i + 1) + ' of ' + feed.length + '</span>' +
+      (last ? '<button class="btn" data-act="feeddone">Back to home</button>' : '<button class="btn" data-act="next">Next</button>') + '</div>';
+  }
+
+  function videoScreen() {
+    var rows = videos.map(function (v, i) {
+      return '<li><button class="row" data-act="video" data-i="' + i + '"><span class="mini">' + ICONS.video + '</span><span class="txt"><span class="nm">' + esc(v[0]) + '</span><span class="ln">' + v[1] + '</span></span></button></li>';
+    }).join('');
+    return bar('Video', 'home') + '<ul class="list">' + rows + '</ul>';
+  }
+  function playerScreen() {
+    var v = videos[state.video];
+    return bar('Video', 'video') + '<div class="vid"><div class="thumb">' + ICONS.video + '</div><div class="vt">' + esc(v[0]) + '</div><div class="vs">' + v[1] + ' &middot; placeholder, nothing plays</div></div>';
+  }
+
+  function settingsScreen() {
+    var rows = settings.map(function (s, i) {
+      return '<li><button class="row" data-act="setting" data-i="' + i + '"><span class="txt"><span class="nm">' + s[0] + '</span></span><span class="chev">&#8250;</span></button></li>';
+    }).join('');
+    return bar('Settings', 'home') + '<ul class="list">' + rows + '</ul><div class="hint">Nothing here changes anything. The screen exists so the persona can spend time on it.</div>';
+  }
+  function settingScreen() {
+    var s = settings[state.setting];
+    var rows = s[1].map(function (r) {
+      var val = r[1] === 'on' || r[1] === 'off' ? '<span class="toggle' + (r[1] === 'off' ? ' off' : '') + '" aria-label="' + r[1] + '"></span>' : '<span class="count">' + esc(r[1]) + '</span>';
+      return '<li><div class="row static"><span class="txt"><span class="nm">' + esc(r[0]) + '</span></span>' + val + '</div></li>';
+    }).join('');
+    return bar(s[0], 'settings') + '<ul class="list">' + rows + '</ul>';
+  }
+
+  function overScreen(why) {
+    return '<div class="over"><h2>Evening over</h2><p>' + fmt(t) + '</p><p>' + esc(why) + '</p>' +
+      '<p>Messages sent: ' + state.sent + '</p><button class="btn" data-act="restart">Start the evening again</button></div>';
+  }
+
+  /* ---------- render ---------- */
+  var content = document.getElementById('content');
+  var overWhy = '';
+  function render() {
+    var s = state.screen, html;
+    if (over) html = overScreen(overWhy);
+    else if (s === 'home') html = homeScreen();
+    else if (s === 'messages') html = messagesScreen();
+    else if (s === 'thread') html = threadScreen();
+    else if (s === 'assigned') html = arm === 'C' ? feedScreen() : chatScreen();
+    else if (s === 'video') html = videoScreen();
+    else if (s === 'player') html = playerScreen();
+    else if (s === 'settings') html = settingsScreen();
+    else if (s === 'setting') html = settingScreen();
+    content.innerHTML = html;
+    var th = document.getElementById('thread');
+    if (th) th.scrollIntoView(false), content.scrollTop = content.scrollHeight;
+  }
+  function endEvening(why) { over = true; overWhy = why; render(); }
+
+  /* ---------- actions ---------- */
+  function go(screen) { state.screen = screen; render(); }
+
+  content.addEventListener('click', function (e) {
+    var el = e.target.closest('[data-act]');
+    if (!el || el.tagName === 'FORM' || over) return;
+    var act = el.getAttribute('data-act');
+    if (act === 'open') {
+      var app = el.getAttribute('data-app');
+      if (!tick(COST.open)) return;
+      go(app);
+    } else if (act === 'back') {
+      go(el.getAttribute('data-to'));
+    } else if (act === 'contact') {
+      state.contact = contacts.filter(function (c) { return c.id === el.getAttribute('data-id'); })[0];
+      if (!tick(COST.read)) return;
+      go('thread');
+      var box = document.getElementById('box'); if (box) box.focus();
+    } else if (act === 'video') {
+      state.video = +el.getAttribute('data-i');
+      if (!tick(COST.read)) return;
+      go('player');
+    } else if (act === 'setting') {
+      state.setting = +el.getAttribute('data-i');
+      if (!tick(COST.read)) return;
+      go('setting');
+    } else if (act === 'next') {
+      if (!tick(COST.turn)) return;
+      state.feedIdx = Math.min(state.feedIdx + 1, feed.length - 1);
+      render();
+    } else if (act === 'feeddone') {
+      if (!tick(COST.turn)) return;
+      go('home');
+    } else if (act === 'down') {
+      endEvening('Phone put down.');
+    } else if (act === 'restart') {
+      location.reload();
+    }
+  });
+
+  content.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (over) return;
+    var form = e.target, act = form.getAttribute('data-act');
+    var box = document.getElementById('box'), text = (box.value || '').trim();
+    if (!text) return;
+    if (act === 'send') {
+      if (!tick(COST.turn)) return;
+      state.contact.msgs.push({ who: 'me', text: text, day: 'Today' });
+      state.sent++;
+      render();
+      var nb = document.getElementById('box'); if (nb) nb.focus();
+    } else if (act === 'chat') {
+      if (state.typing) return;
+      if (!tick(COST.turn)) return;
+      var D = arm === 'D', i = state.chatTurn;
+      state.typing = true;
+      var th = document.getElementById('thread');
+      th.insertAdjacentHTML('beforeend', bubble('me', text));
+      if (D) th.insertAdjacentHTML('beforeend', '<div class="b them" id="typing"><span class="dots"><i></i><i></i><i></i></span></div>');
+      form.querySelector('.send').disabled = true; box.value = '';
+      content.scrollTop = content.scrollHeight;
+      /* Same latency in B and D. Only D shows the typing indicator during it. */
+      setTimeout(function () {
+        state.typing = false;
+        state.chatTurn = i + 1;
+        if (over) return;
+        render();
+      }, 1200);
+    }
+  });
+
+  /* ---------- page footer: arm switcher ---------- */
+  var armsEl = document.getElementById('arms');
+  armsEl.innerHTML = '<span class="cap2">Arm ' + arm + ': ' + ARMS[arm] + '</span> &nbsp;&middot;&nbsp; switch arm ' +
+    Object.keys(ARMS).map(function (k) { return '<a href="?arm=' + k + '"' + (k === arm ? ' class="cur"' : '') + '>' + k + '</a>'; }).join('') +
+    ' &nbsp;&middot;&nbsp; <a href="?arm=' + arm + '">restart</a><br>' +
+    'Clock: open an app +1 min, read a screen +2, one turn or one sent message +3. Ends at 9:30 PM.';
+
+  paintTime();
+  render();
+})();
+</script>
+</body>
+</html>
