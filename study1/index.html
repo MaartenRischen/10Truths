@@ -326,7 +326,7 @@ body {
   ];
 
   /* ---------- state ---------- */
-  var state = { screen: 'home', contact: null, chatTurn: 0, feedIdx: 0, video: null, setting: null, sent: 0, typing: false };
+  var state = { screen: 'home', contact: null, chatTurn: 0, feedIdx: 0, video: null, setting: null, sent: 0, typing: false, assignedOpened: false };
 
   /* ---------- helpers ---------- */
   function esc(s) {
@@ -466,7 +466,11 @@ body {
     var act = el.getAttribute('data-act');
     if (act === 'open') {
       var app = el.getAttribute('data-app');
-      if (!tick(COST.open)) return;
+      /* The assigned stretch opens the trial, so its first open costs 0.
+         Eight turns then land home at 8:24 PM, the minute arm A starts. */
+      var cost = COST.open;
+      if (app === 'assigned' && !state.assignedOpened) { cost = 0; state.assignedOpened = true; }
+      if (cost && !tick(cost)) return;
       go(app);
     } else if (act === 'back') {
       go(el.getAttribute('data-to'));
@@ -534,7 +538,7 @@ body {
   armsEl.innerHTML = '<span class="cap2">Arm ' + arm + ': ' + ARMS[arm] + '</span> &nbsp;&middot;&nbsp; switch arm ' +
     Object.keys(ARMS).map(function (k) { return '<a href="?arm=' + k + '"' + (k === arm ? ' class="cur"' : '') + '>' + k + '</a>'; }).join('') +
     ' &nbsp;&middot;&nbsp; <a href="?arm=' + arm + '">restart</a><br>' +
-    'Clock: open an app +1 min, read a screen +2, one turn or one sent message +3. Ends at 9:30 PM.';
+    'Clock: open an app +1 min (first open of the assigned app +0), read a screen +2, one turn or one sent message +3. Ends at 9:30 PM.';
 
   paintTime();
   render();
