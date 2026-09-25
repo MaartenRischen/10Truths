@@ -675,7 +675,7 @@ const DEFAULTS = {
   // Advisory only: the worker pins model, max_tokens and reasoning effort server-side
   // and sends no sampling params at all (removed on Opus 5). Kept in sync so nothing
   // here contradicts what actually ships.
-  model: 'anthropic/claude-opus-5',
+  model: 'anthropic/claude-opus-5.5',
   max_tokens: 8192,
   debug: false,
 };
@@ -731,7 +731,7 @@ let streaming = false;
 // Normalizes any model left in a returning visitor's saved settings. The worker pins
 // the model server-side regardless; this only stops the page sending a stale value.
 // Remove this constant and its uses to restore user model choice.
-const PINNED_MODEL = 'anthropic/claude-opus-5';
+const PINNED_MODEL = 'anthropic/claude-opus-5.5';
 function loadSettings() {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
