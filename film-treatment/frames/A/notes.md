@@ -1,0 +1,12 @@
+# Direction A — ONE LINE: render notes
+- **Engine (code in `kit/scenes/A/`).** `extract.js` renders the kit manikin in three.js as a per-part label buffer plus a depth buffer. `figure.py` traces each part's contour and uses depth to keep only the occluding lines, then joins them into one pen path with cursive joint loops. It also projects construction lines from the rig: the egg-head centre and eye lines, and the chest and pelvis rings and centre lines. `ink.py` stamps a signed-distance stroke with curvature-driven pressure, hand wobble, a wet rim, paper tooth, an ember glow and the ink bead. Knots are precessing great-circle bands with over/under breaks. Architecture is drawn as depth-tested 3D edges. Handwriting uses the single-stroke EMS Allure font (from the `hersheytext` npm package). P16 replays the recorded strokes of all 15 panels as one drawing.
+- **Render.** Everything is 2x supersampled on the CPU. Panels take 5–30 s each (P06 is the slowest, with 205 posed rigs); heroes take about 20–26 s. `loop.mp4` is 120 frames on a 1.7x canvas and took about 7 min: 5.0 s, 24 fps, H.264, 0.26 MB.
+- **Colour rule kept:** ember appears only on the alarm dots and open loops. The loops that close (P09, P15) cool from ember to bone, and P13's pulled thread cools to bone as it becomes the horizon.
+- **Weakest panels.** P06: seen from above, the 205 figures are tiny blobs and the fire at the centre is small, so it reads as a diagram. P15: busy, and the wide lens bends the side houses. P07: the frieze figures are about 150 px, so the six drives read only at full size.
+- **Changes from the shot list:**
+  - P02 is a medium close-up in profile, holding a chip up to the eye, not an extreme close-up. The kit's mitten hand looks like a paddle that close.
+  - P05's doorway is a lit, figure-shaped hole in a hatched wall, with the figure standing out of register in front of it.
+  - P09's loop is a true circle joining the two chests, with a faint ghost of the reaching pose to show the release.
+  - P12's machine is drawn as a patent drawing: spool, gears, a flywheel with crank, a gauge pinned past its maximum, and a coin chute.
+- **Heroes.** hero-1 is the pull (P13). hero-2 is P10 flipped left to right, so the figure stands on the right and its layout differs from hero-1.
+- **Recommendation:** make one thread the spine of P10–P13. It opens at the phone, joins the cocoon, winds onto the machine and is pulled out into the horizon. Use loop.mp4's camera throughout: stay close on the pen, then pull back when the line gets away.

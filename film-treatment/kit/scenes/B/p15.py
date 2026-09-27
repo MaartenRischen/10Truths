@@ -1,0 +1,23 @@
+# P15 THE NEW WORLD: pale timber and glass homes around a shared garden, a long outdoor table full of manikins,
+# solar panels, a small tram, trees. Warm late light. It all fits in one frame (same camera as P06).
+import sys; sys.path.insert(0, '/tmp/claude-0/-home-user-10Truths/2a0c663b-9f0e-5c83-85fc-9e15159b1ca0/scratchpad/kit/scenes/B')
+from dio import *
+A = args()
+reset()
+E = lambda k, d: float(os.environ.get(k, d))
+people, card, hgt = new_world_set()
+key = light('SPOT', (-1.62, -0.52, 0.36), (0.1, 0.06, 0.05), energy=E('KEYW', '560'), kelv=2900, size=0.06, spot=50, blend=0.6, name='sunlamp')
+exclude_from_light(key, [card], 'keyexcl')
+keyc = light('SPOT', (-1.62, -0.52, 0.36), (0.1, 0.06, 0.05), energy=E('KEYCW', '70'), kelv=3900, size=0.06, spot=50, blend=0.6, name='sunlamp_card')
+link_light_to(keyc, [card], 'keycard')
+rim = light('SPOT', (1.35, 1.2, 0.85), (0, 0.05, 0.08), energy=E('RIMW', '130'), kelv=3400, size=0.08, spot=45, blend=0.5, name='rim')
+fill = light('AREA', (1.2, -2.2, 1.6), (0, 0, 0), energy=E('FILLW', '16'), kelv=5600, size=1.2, name='fill')
+wash = light('AREA', (0.0, -0.1, 0.62), (0.0, 0.7, 0.18), energy=E('WASHW', '4'), kelv=3800, size=(1.4, 0.4), name='skywash')
+link_light_to(wash, [card])
+set_world((0.010, 0.009, 0.010), 1.0)
+far_wall(y=3.4)
+light('AREA', (-2.5, 1.5, 1.8), (-1.0, 3.4, 0.6), energy=60, kelv=7000, size=(2.0, 1.2), name='wallwash')
+cam = camera((E('CX', '1.40'), E('CY', '-2.97'), E('CZ', '0.94')), (0.0, E('TY', '0.05'), E('TZ', '0.1')), lens=E('LENS', '85'), fstop=E('FSTOP', '4'), focus=(0, -0.02, 0.08))
+out = A['out'] or (OUT + '/p15.png')
+render(out, res=A['res'] or (1280, 720), spp=A['spp'] or 40, test=A['test'])
+post(out, vignette=0.3, grain=0.014, bloom=0.12, veil=E('VEIL', '0.22'))

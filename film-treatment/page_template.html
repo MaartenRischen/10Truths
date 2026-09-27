@@ -199,12 +199,14 @@
   .dots { font: 400 14px/1 var(--mono); letter-spacing: 2px; color: var(--acc); white-space: nowrap; }
   .dots i { font-style: normal; color: var(--rule-2); }
   .cmp td.txt { color: var(--muted); font-size: 14.5px; line-height: 1.45; min-width: 200px; }
+  .cmp td.nw { white-space: nowrap; }
 
   /* recommendation + needs */
   .reco { display: grid; gap: 20px; max-width: 72ch; }
   .reco p { font-size: 18.5px; line-height: 1.6; }
   .reco .pickline { font-size: clamp(26px, 3.2vw, 36px); line-height: 1.2; font-weight: 300; }
   .reco .pickline em { color: var(--beech); }
+  .reco strong { font-weight: 500; color: var(--beech); }
   .needs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px; margin-top: 28px; }
   @media (max-width: 860px) { .needs { grid-template-columns: 1fr; } }
   .needs > div { border-top: 1px solid var(--rule-2); padding-top: 16px; display: grid; gap: 12px; align-content: start; }
@@ -267,6 +269,8 @@
   .an-frame { position: relative; width: min(100%, calc((100vh - 230px) * 16 / 9)); aspect-ratio: 16 / 9; background: #000; overflow: hidden; }
   .an-frame img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; opacity: 0; transition: opacity .45s ease; transform-origin: 50% 50%; }
   .an-frame img.on { opacity: 1; }
+  .an-frame video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; opacity: 0; transition: opacity .45s ease; background: #000; }
+  .an-frame video.on { opacity: 1; }
   .an-frame img.kb { animation-name: kb; animation-timing-function: linear; animation-fill-mode: both; }
   @keyframes kb { from { transform: scale(1.0); } to { transform: scale(1.07); } }
   .an-empty { position: absolute; inset: 0; display: grid; place-items: center; font: 500 12px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--faint); }
@@ -388,7 +392,7 @@
       </div>
       <div class="an-ctl" style="display:contents"><button type="button" id="an-close">Close</button></div>
     </div>
-    <div class="an-stage"><div class="an-frame"><img id="an-l0" alt=""><img id="an-l1" alt=""><div class="an-empty" id="an-empty" hidden>Frame rendering</div></div></div>
+    <div class="an-stage"><div class="an-frame"><img id="an-l0" alt=""><img id="an-l1" alt=""><video id="an-v" muted playsinline loop preload="none" aria-hidden="true"></video><div class="an-empty" id="an-empty" hidden>Frame rendering</div></div></div>
     <p class="an-sub" id="an-sub"></p>
     <div class="an-ctl">
       <button type="button" id="an-pp">Play</button>
@@ -447,7 +451,19 @@
     const k = fr.length > 1 && t >= (b.s + b.e) / 2 ? 1 : 0;
     return { src: fr[k], key: cur + bi + ':' + k, bi, dur: fr.length > 1 ? (b.e - b.s) / 2 : (b.e - b.s), next: (AD.dirs[cur].frames[bi + 1] || [])[0] };
   }
+  const vid = $('#an-v');
+  function clipFor(bi) { const c = AD.dirs[cur] && AD.dirs[cur].clip; return c && c.beat === bi ? c.src : ''; }
+  function syncClip(bi, offset) {
+    const src = clipFor(bi);
+    if (!src || reduce) { vid.classList.remove('on'); if (!vid.paused) vid.pause(); return; }
+    if (vid.getAttribute('src') !== src) { vid.setAttribute('src', src); }
+    const seekTo = () => { try { vid.currentTime = vid.duration ? offset % vid.duration : 0; } catch (e) {} };
+    if (vid.readyState >= 1) seekTo(); else vid.addEventListener('loadedmetadata', seekTo, { once: true });
+    vid.classList.add('on');
+    if (!au.paused) vid.play().catch(() => {});
+  }
   function swap(f, offset) {
+    syncClip(f.bi, offset);
     $('#an-empty').hidden = !!f.src;
     const back = layers[1 - front];
     if (f.src) {
@@ -474,7 +490,11 @@
     $$('.an-dirs button').forEach(b => b.setAttribute('aria-pressed', b.dataset.l === L ? 'true' : 'false'));
     draw();
   }
-  function playState() { $('#an-pp').textContent = au.paused ? 'Play' : 'Pause'; layers.forEach(l => { l.style.animationPlayState = au.paused ? 'paused' : 'running'; }); }
+  function playState() {
+    $('#an-pp').textContent = au.paused ? 'Play' : 'Pause';
+    layers.forEach(l => { l.style.animationPlayState = au.paused ? 'paused' : 'running'; });
+    if (vid.classList.contains('on')) { if (au.paused) vid.pause(); else vid.play().catch(() => {}); }
+  }
   au.addEventListener('play', () => { playState(); cancelAnimationFrame(raf); loop(); });
   au.addEventListener('pause', () => { playState(); draw(); });
   au.addEventListener('ended', () => { playState(); });
@@ -488,7 +508,7 @@
     au.play().catch(() => {});
   }));
   $('#an-close').addEventListener('click', () => dlg.close());
-  dlg.addEventListener('close', () => au.pause());
+  dlg.addEventListener('close', () => { au.pause(); vid.pause(); });
   dlg.addEventListener('keydown', e => {
     if (e.key === ' ' && e.target.tagName !== 'BUTTON' && e.target.tagName !== 'INPUT') { e.preventDefault(); $('#an-pp').click(); }
     if (e.key === 'ArrowRight' && e.target !== seek) { au.currentTime = Math.min(AD.dur, au.currentTime + 5); lastKey = ''; draw(); }

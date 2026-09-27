@@ -23,11 +23,11 @@
 ## Storyboard (16 panels, one per beat)
 - **P01 OPEN.** Black. A small warm light pulses in the chest of a dark walnut manikin, rim-lit. Behind it, very far away, a cold endless lattice of light switching on.
 - **P02 NOT ANTI-TECH.** The figure holds a stone tool. A warm thread runs from its hand into the tool. Ghosted beside it, the same thread runs into a lamp, a lens, a chip. The thread stays warm.
-- **P03 HOW WE FEEL.** Several figures standing far apart in the void. Each one's threads are cut short, flickering stubs. Above them, three thin lines of light rise like graphs.
+- **P03 HOW WE FEEL.** Several figures standing far apart in the void. Their threads reach toward each other and break off partway, dropping embers. Above them, three thin lines of light rise like graphs.
 - **P04 SELF-BLAME.** The figure's own thread wraps around its own chest, tight. Behind it a cold grid of light tilts, out of focus.
 - **P05 MISMATCH.** One figure between two systems of light: a warm organic web on the left, a cold rigid grid on the right. Its threads reach left.
 - **P06 HUMAN-SIZED.** The camp web: a fire at the center, five close figures joined by thick amber threads, a ring of fifty joined more thinly, and further out, points of light. Seen from a high angle, it reads as a glowing mandala.
-- **P07 TUNED DRIVES.** Close-ups of threads doing what drives do: two figures joined and a third figure's thread tensing (jealousy); a spark travelling along a thread from one figure to another (reciprocity); one figure's threads dimming as it looks down (shame); a thread recoiling from a stranger; two hands meeting where threads fuse; a thread landing on a mound and slowly fading (grief).
+- **P07 TUNED DRIVES.** The drives at the camp, staged here in one wide shot (in the film each gets its own close-up): a thread landing on a burial mound and fading (grief); two hands meeting where threads fuse (touch); a spark travelling from one figure to another (reciprocity); a straining, reddening thread (jealousy); a head-down figure whose threads dim (shame).
 - **P08 EVERYTHING CHANGED.** The ground has become a cold grid. Buildings of light rise around the still figure: towers, cables, screens. Along the bottom, a long amber thread (two million years) ends in a tiny cyan segment (ten thousand).
 - **P09 THE LOOP.** Macro: a warm thread leaves one figure's chest, arcs, and lands in another figure's chest with a soft bloom. The light settles to a calm steady glow.
 - **P10 LONELINESS.** The figure alone, a red pulse running along its thread, which shoots toward a galaxy of cold points and splits into thousands of hair-thin cyan threads that land nowhere. A small glowing number floats among them.

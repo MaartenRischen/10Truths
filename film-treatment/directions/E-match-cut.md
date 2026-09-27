@@ -21,7 +21,7 @@
 5. **The merge.** The split line dissolves into a new world where the best of both halves share one frame: a modern courtyard, a long table, a phone face down.
 
 ## Storyboard (16 panels, one per beat; most panels are a match-cut pair: modern shot / ancestral shot)
-- **P01 OPEN.** (a) 6:00 a.m., blue dawn in a small modern bedroom: a manikin's hand reaching for a glowing phone on the nightstand. (b) The same hand, same angle, reaching to touch a sleeping companion's shoulder in a reed hut at dawn, warm light.
+- **P01 OPEN.** (a) 6:00 a.m., seen from above: blue dawn through the blinds of a small modern bedroom, a manikin's hand reaching for the glowing phone on the nightstand. (b) The same reach from the same angle in a reed hut at dawn, landing on a sleeping companion's shoulder.
 - **P02 NOT ANTI-TECH.** (a) Hands typing on a laptop in a dark room. (b) The same hands knapping a flint in the same rhythm, by a fire.
 - **P03 HOW WE FEEL.** (a) A manikin alone in a fluorescent open-plan office at night, rows of empty desks. (b) Rain on a window of a night bus, a manikin's head against the glass.
 - **P04 SELF-BLAME.** (a) A small bathroom at night, the manikin leaning on the sink, facing the mirror, one hand on its own chest. (b) Pull back: the bathroom is the only lit window in a huge dark apartment block.
@@ -35,7 +35,7 @@
 - **P12 ON PURPOSE.** (a) A glass office at night: manikins watching a wall of dashboards. (b) On one screen, our manikin at its kitchen table, seen as a data point.
 - **P13 NOT BROKEN.** Split screen: left, the modern manikin looking up from its phone, lit blue; right, its ancestral self by the fire, lit gold. They look toward each other across the split line.
 - **P14 THE ANSWER.** (a) The phone set face down on the table. (b) The manikin opening the front door, warm light outside.
-- **P15 THE NEW WORLD.** No split: a modern courtyard of timber and glass homes, kids playing, a long outdoor table full of manikins, a tram passing, solar roofs, evening sun.
+- **P15 THE NEW WORLD.** No split, seen from balcony height: a modern courtyard of timber homes, a long table under a solar pergola, a lawn with kids playing, a tram passing in the gap, evening sun.
 - **P16 CLOSE.** (a) A fire pit in the modern courtyard at night, manikins around it, faces lit warm. (b) Back in the bedroom from P01: the hand now resting on another manikin's shoulder, the phone dark.
 
 ## Production

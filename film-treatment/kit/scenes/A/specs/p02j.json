@@ -1,0 +1,1 @@
+{"camera": {"far": 10, "fov": 30, "near": 0.05, "pos": [0, 1, 5], "target": [0, 1, 0]}, "figures": [{"ground": 0, "overrides": {"lShoulder": [0, 0, 6], "rElbow": [-62, 0, 0], "rShoulder": [-30, 0, -8], "rWrist": [0, 0, 0]}, "pose": "stand", "root": {"pos": [0, 0, 0], "rot": [0, 0, 0]}}], "h": 720, "w": 1280}

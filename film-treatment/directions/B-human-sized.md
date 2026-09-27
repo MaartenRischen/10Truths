@@ -34,7 +34,7 @@
 - **P12 ON PURPOSE.** Behind the machine: a small coin-operated mechanism. Each spiral turns a crank that drops a coin into a box. A little price tag hangs from the manikin's wrist.
 - **P13 NOT BROKEN.** Work lights on. The whole studio visible: C-stands, a lamp, gaffer tape, the table edge. The manikin stands intact at the center of the set in a pool of light.
 - **P14 THE ANSWER.** A wooden hand moves a cardboard wall aside and lifts away a tower of glowing screens. Behind it, a window of daylight opens onto the set.
-- **P15 THE NEW WORLD.** The new world on the table: pale timber and glass homes around a shared garden, a long outdoor table full of manikins, solar panels, a small tram, trees. Warm late light. It all fits in one frame.
+- **P15 THE NEW WORLD.** The same camera as P06, the new world on the same table: pale timber and glass homes around a shared garden, a long outdoor table full of manikins, solar panels, a small tram, trees. Warm late light. It all fits in one frame.
 - **P16 CLOSE.** Evening. The long table, lamps on, manikins close together. The camera pulls back through the studio door. On the workbench in the foreground, "demismatch.com" is carved into the wood.
 
 ## Production

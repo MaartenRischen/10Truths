@@ -23,7 +23,7 @@
 
 ## Storyboard (16 panels, one per beat)
 - **P01 OPEN.** Black paper. A bead of ink appears and draws the mannequin in construction lines, standing, small in frame. Beside it, the same line shoots off into an exponential curve that rockets up and out of the frame. The figure stays small and upright.
-- **P02 NOT ANTI-TECH.** Close on the figure's hand. The tool in the hand is redrawn in sequence: hand-axe, hammer, pen, circuit chip. The hand stays the same line. Show the chip version with faint ghost lines of the earlier tools.
+- **P02 NOT ANTI-TECH.** The figure in profile holds up a tool that is redrawn in sequence: hand-axe, hammer, pen, circuit chip. The hand stays the same line. The chip version, with faint ghost lines of the earlier tools.
 - **P03 HOW WE FEEL.** The figure sits alone on a chair, hunched. Three thin plotted lines rise behind it like chart lines and bend into the curve of its back.
 - **P04 SELF-BLAME.** The figure's line turns back on itself: from its own hand a scribbled X crosses out its own chest. Around it, the picture frame (the world) is drawn crooked and askew.
 - **P05 MISMATCH.** Two outlines that almost fit: the figure's outline and a doorway outline, offset. A key that does not fit its lock.

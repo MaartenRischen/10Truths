@@ -17,23 +17,23 @@ DIRS = [
     dict(L='A', key='one-line', name='One Line', file='A-one-line.md', acc='#ff6a33', pipe='Rendered in code by Claude',
          cost='$0–500', time='5–8 days',
          palette=[('Paper black', '#0f0d0b'), ('Bone line', '#efe6d6'), ('Ember', '#ff5a1f'), ('Graphite', '#5b554e')],
-         moments=['1:52', '2:06', '2:40', '3:04', '4:15'], ratio='wide'),
+         moments=['1:52', '2:06', '2:40', '3:04', '4:15'], ratio='wide', clip_beat=1),
     dict(L='B', key='human-sized', name='Human-Sized', file='B-human-sized.md', acc='#f0a14a', pipe='Blender, path-traced',
          cost='$150–1,100', time='2–3 weeks',
          palette=[('Tungsten', '#f0a14a'), ('Beech', '#e2c094'), ('Jute', '#b89a62'), ('Cardboard', '#a57c52'), ('Screen LED', '#8fd6ff'), ('Studio dark', '#151210')],
-         moments=['1:52', '2:40', '3:51', '4:17', '5:02'], ratio='wide'),
+         moments=['1:52', '2:40', '3:51', '4:17', '5:02'], ratio='wide', clip_beat=8),
     dict(L='C', key='wrong-painting', name='The Wrong Painting', file='C-wrong-painting.md', acc='#d9774a', pipe='Image models + code compositing',
          cost='$300–1,800', time='2–3 weeks',
          palette=[('Red ochre', '#b5532e'), ('Charcoal', '#1e1b19'), ('Limestone', '#cdbb9c'), ('Night green', '#1f3a33'), ('Diner light', '#f3e6a0'), ('CGI chrome', '#d9dee3')],
-         moments=['1:52', '2:40', '3:06', '4:29', '5:02'], ratio='wide'),
+         moments=['1:52', '2:40', '3:06', '4:29', '5:02'], ratio='wide', clip_beat=8),
     dict(L='D', key='threads', name='Threads', file='D-threads.md', acc='#ffb45a', pipe='WebGL, rendered in code by Claude',
          cost='$20–1,100', time='1–2 weeks',
          palette=[('Void', '#030406'), ('Walnut', '#4a2f1f'), ('Landed amber', '#ffb45a'), ('Screen cyan', '#9fe3ff'), ('Alarm red', '#ff3b2f')],
-         moments=['1:04', '2:40', '3:51', '4:01', '4:17', '5:02'], ratio='wide'),
+         moments=['1:04', '2:40', '3:51', '4:01', '4:17', '5:02'], ratio='wide', clip_beat=9),
     dict(L='E', key='match-cut', name='Match Cut', file='E-match-cut.md', acc='#62bccb', pipe='Gen-video + Blender references',
          cost='$400–2,000', time='2–3 weeks',
          palette=[('Modern teal', '#2f6f78'), ('Screen blue', '#7fb7ff'), ('Firelight', '#f08a3c'), ('Dusk gold', '#e7b467'), ('Film black', '#0b0c0d')],
-         moments=['0:00', '2:50', '3:06', '4:17', '5:02'], ratio='scope'),
+         moments=['0:00', '2:50', '3:06', '4:17', '5:02'], ratio='scope', clip_beat=1),
 ]
 
 BEATS = [
@@ -94,7 +94,7 @@ def to_webp(src, dst, width=None, q=80):
 def frames_for(L):
     """Collect frames for a direction, convert, and return a dict of relative paths."""
     src = os.path.join(ROOT, 'opt-' + L)
-    res = {'hero': [], 'panels': {}, 'loop': None}
+    res = {'hero': [], 'panels': {}, 'loop': None, 'poster': ''}
     if not os.path.isdir(src):
         return res
     for h in ('hero-1', 'hero-2'):
@@ -121,6 +121,11 @@ def frames_for(L):
         os.makedirs(MEDIA, exist_ok=True)
         shutil.copy2(lp, os.path.join(MEDIA, f'{L}-loop.mp4'))
         res['loop'] = f'media/{L}-loop.mp4'
+        poster = os.path.join(MEDIA, f'{L}-loop.jpg')
+        dur = float(subprocess.run(['ffprobe', '-v', 'error', '-show_entries', 'format=duration', '-of', 'csv=p=0', lp],
+                                   capture_output=True, text=True).stdout.strip() or 4)
+        subprocess.run(['ffmpeg', '-v', 'error', '-y', '-ss', f'{dur * 0.8:.2f}', '-i', lp, '-frames:v', '1', '-q:v', '4', poster], check=False)
+        res['poster'] = f'media/{L}-loop.jpg' if os.path.exists(poster) else ''
     return res
 
 
@@ -150,7 +155,8 @@ def render():
         total_frames += len(fr['hero']) + sum(len(v) for v in fr['panels'].values())
         L = D['L']
         anim['dirs'][L] = {'name': D['name'], 'acc': D['acc'],
-                           'frames': [[it[1] for it in fr['panels'].get(f'{n:02d}', [])] for n in range(1, 17)]}
+                           'frames': [[it[1] for it in fr['panels'].get(f'{n:02d}', [])] for n in range(1, 17)],
+                           'clip': ({'beat': D['clip_beat'] - 1, 'src': fr['loop']} if fr['loop'] else None)}
         # contact sheet tile
         if fr['hero']:
             src = fr['hero'][0][0]
@@ -196,7 +202,7 @@ def render():
                        f'<p class="vo">“{esc(vo_first)}”</p><p class="shot">{body_html}</p></article>')
         loop = ''
         if fr['loop']:
-            loop = (f'<figure class="loop"><video src="{fr["loop"]}" muted loop playsinline autoplay preload="metadata"></video>'
+            loop = (f'<figure class="loop"><video src="{fr["loop"]}" poster="{fr["poster"]}" muted loop playsinline autoplay preload="metadata" aria-label="Motion test for direction {L}"></video>'
                     f'<figcaption><span class="label">Motion test</span> Rendered in this session. Loops.</figcaption></figure>')
         prod = ''.join(f'<li>{md_inline(x)}</li>' for x in d['production'])
         sections.append(f'''
