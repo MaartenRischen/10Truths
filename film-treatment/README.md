@@ -12,6 +12,10 @@ The script stays exactly as published (`script.md`, recovered from the published
 | D | Threads | Drives as threads of light that land in people or never land | WebGL, code-rendered |
 | E | Match Cut | Each modern gesture cuts to the ancestral gesture it was built for | gen-video + Blender references |
 
+## New companion film (concept round, 2026-09-27)
+
+Maarten decided to make a completely new companion film instead of re-visualising this script: same message, 60–90 s, vertical first, near-wordless, one character and one turn. `concepts/` holds the ten concepts (`concepts.json`), the page builder and the built page. Shortlist: The Visitor, Care Instructions, The Night Watch.
+
 ## Layout
 - `script.md`, `script.json` — the published script, 80 lines with timecodes.
 - `beats.md` — the 16 beats and the canon locks every frame must respect.
