@@ -1,0 +1,97 @@
+{
+ "fps": 12,
+ "frames": 960,
+ "dur": 80,
+ "shots": [
+  {
+   "name": "s01-alone",
+   "start": 0,
+   "dur": 5.5
+  },
+  {
+   "name": "s02-phone",
+   "start": 5.5,
+   "dur": 2.5
+  },
+  {
+   "name": "s03-knock",
+   "start": 8,
+   "dur": 2.5
+  },
+  {
+   "name": "s04-door",
+   "start": 10.5,
+   "dur": 5
+  },
+  {
+   "name": "s05-mirror",
+   "start": 15.5,
+   "dur": 3
+  },
+  {
+   "name": "s06-tap",
+   "start": 18.5,
+   "dur": 5.5
+  },
+  {
+   "name": "s07-switch",
+   "start": 24,
+   "dur": 4
+  },
+  {
+   "name": "s08-fridge",
+   "start": 28,
+   "dur": 4.5
+  },
+  {
+   "name": "s09-dance",
+   "start": 32.5,
+   "dur": 4
+  },
+  {
+   "name": "s10-bedroom",
+   "start": 36.5,
+   "dur": 4.5
+  },
+  {
+   "name": "s11-balcony",
+   "start": 41,
+   "dur": 4.5
+  },
+  {
+   "name": "s12-corridor",
+   "start": 45.5,
+   "dur": 4.5
+  },
+  {
+   "name": "s13-ask",
+   "start": 50,
+   "dur": 5
+  },
+  {
+   "name": "s14-sit",
+   "start": 55,
+   "dur": 7.5
+  },
+  {
+   "name": "s15-message",
+   "start": 62.5,
+   "dur": 3.5
+  },
+  {
+   "name": "s16-friends",
+   "start": 66,
+   "dur": 4.5
+  },
+  {
+   "name": "s17-together",
+   "start": 70.5,
+   "dur": 5
+  },
+  {
+   "name": "endcard",
+   "start": 75.5,
+   "dur": 4.5
+  }
+ ]
+}

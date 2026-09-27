@@ -16,6 +16,10 @@ The script stays exactly as published (`script.md`, recovered from the published
 
 Maarten decided to make a completely new companion film instead of re-visualising this script: same message, 60–90 s, vertical first, near-wordless, one character and one turn. `concepts/` holds the ten concepts (`concepts.json`), the page builder and the built page. Shortlist: The Visitor, Care Instructions, The Night Watch.
 
+## Four short films (rough cuts, 2026-09-27)
+
+Maarten asked for the first four concepts to be made: The Visitor, Care Instructions, The Night Watch and Good Dog. Each now has a shooting script, a storyboard and a vertical animatic of 62 to 80 seconds with a temporary score, sound and its end card, made to be tested on people who have never heard of Demismatch. `films/` holds the scripts, notes, cue sheets and the review page with the four films; the engine is in `kit/film/` and each film's code in `kit/films/`. See `films/README.md`.
+
 ## Layout
 - `script.md`, `script.json` — the published script, 80 lines with timecodes.
 - `beats.md` — the 16 beats and the canon locks every frame must respect.

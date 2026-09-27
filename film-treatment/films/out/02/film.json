@@ -1,0 +1,77 @@
+{
+ "fps": 12,
+ "frames": 774,
+ "dur": 64.5,
+ "shots": [
+  {
+   "name": "s01-box",
+   "start": 0,
+   "dur": 5
+  },
+  {
+   "name": "s02-pose",
+   "start": 5,
+   "dur": 4
+  },
+  {
+   "name": "s03-days",
+   "start": 9,
+   "dur": 12
+  },
+  {
+   "name": "s04a-screw",
+   "start": 21,
+   "dur": 3
+  },
+  {
+   "name": "s04b-oil",
+   "start": 24,
+   "dur": 2
+  },
+  {
+   "name": "s04c-stand",
+   "start": 26,
+   "dur": 2
+  },
+  {
+   "name": "s04d-star",
+   "start": 28,
+   "dur": 2
+  },
+  {
+   "name": "s04e-shiny",
+   "start": 30,
+   "dur": 3
+  },
+  {
+   "name": "s05-worker",
+   "start": 33,
+   "dur": 5
+  },
+  {
+   "name": "s06-card",
+   "start": 38,
+   "dur": 6
+  },
+  {
+   "name": "s07-office",
+   "start": 44,
+   "dur": 4
+  },
+  {
+   "name": "s08-sill",
+   "start": 48,
+   "dur": 8
+  },
+  {
+   "name": "s09-leave",
+   "start": 56,
+   "dur": 4
+  },
+  {
+   "name": "endcard",
+   "start": 60,
+   "dur": 4.5
+  }
+ ]
+}

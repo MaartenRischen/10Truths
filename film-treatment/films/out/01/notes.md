@@ -1,0 +1,9 @@
+# 01 THE VISITOR — animatic notes
+- **Built:** one continuous flat in three.js on Direction E's renderer (`kit/films/01-the-visitor/set.js`): sofa under an arc lamp, coffee table, kitchenette with a working tap and an opening fridge, front door + switch + hall light, dark bedroom, sliding balcony door onto a night city of balconied towers (E's `modern.js` city), and a corridor of closed doors. Cast (`cast.js`): HOST and VISITOR are the same beech seed-5 manikin; the visitor's only difference is ochre dust on shins/feet and a smear on the right hand. Friends: maple/ash/oak/light oak.
+- **Timing:** 17 shots + end card = 80.0 s at 12 fps (script 78.5 s): 5.5/2.5/2.5/5/3/5.5/4/4.5/4/4.5/4.5/4.5/5/7.5/3.5/4.5/5/4.5. Comedy beats tightened; the search (10–13) and the sit-down (14: 2 s of stillness after the shoulder clack, then the slow head turn) lengthened.
+- **Grade:** E's modern → newworld blended per shot; the flat is cold until the lamp warms shot 14, full warm in 17.
+- **Deviations:** 2 is an over-the-shoulder insert on the scrolling feed (a frontal close let the faceless head dominate). 5 cheats both figures ~35° to camera and adds pitch, because a pure profile hides a head roll. 12 is shot from the lift end so he is small in a long corridor. 17 is a high frontal wide (the opening angle stacked the group behind each other).
+- **Render:** 540x960 at 1 sample (2 in shot 14), Lanczos-upscaled to 720x1280 with fresh grain; end card native 720x1280. Native 720 at 2 samples measured 11.5 s/frame with four films on four cores (~3 h), so I dropped it; ~3.6 s/frame, 906 frames in ~55 min.
+- **Audio:** `cues.json` rendered with a patched copy of `film/audio.py` (two numpy shape bugs, in the `murmur` bed and the `sit` sfx).
+- **Weakest:** TBD
+- **Final version needs:** native 1080x1920 at 16+ samples (real DOF/AA), foot-locked walk cycles, hand shapes (the mitten hands can't show a thumb flick or typing), and a proper laugh cycle for 17.

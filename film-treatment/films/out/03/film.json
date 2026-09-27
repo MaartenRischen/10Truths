@@ -1,0 +1,82 @@
+{
+ "fps": 12,
+ "frames": 876,
+ "dur": 73,
+ "shots": [
+  {
+   "name": "s01-clock",
+   "start": 0,
+   "dur": 4
+  },
+  {
+   "name": "s02-door",
+   "start": 4,
+   "dur": 5
+  },
+  {
+   "name": "s03-blinds",
+   "start": 9,
+   "dur": 4
+  },
+  {
+   "name": "s04-news",
+   "start": 13,
+   "dur": 4
+  },
+  {
+   "name": "s05-again",
+   "start": 17,
+   "dur": 3
+  },
+  {
+   "name": "s06-rock",
+   "start": 20,
+   "dur": 4
+  },
+  {
+   "name": "s07-band",
+   "start": 24,
+   "dur": 5.5
+  },
+  {
+   "name": "s08-rustle",
+   "start": 29.5,
+   "dur": 5
+  },
+  {
+   "name": "s09-relief",
+   "start": 34.5,
+   "dur": 7.5
+  },
+  {
+   "name": "s10-pile",
+   "start": 42,
+   "dur": 6
+  },
+  {
+   "name": "s11-bed",
+   "start": 48,
+   "dur": 4
+  },
+  {
+   "name": "s12-ping",
+   "start": 52,
+   "dur": 6
+  },
+  {
+   "name": "s13-message",
+   "start": 58,
+   "dur": 5
+  },
+  {
+   "name": "s14-rest",
+   "start": 63,
+   "dur": 5.5
+  },
+  {
+   "name": "endcard",
+   "start": 68.5,
+   "dur": 4.5
+  }
+ ]
+}

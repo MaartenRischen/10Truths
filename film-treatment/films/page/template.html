@@ -1,0 +1,375 @@
+<title>Demismatch Rough Cuts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+  /* Demismatch broadside (cor.css tokens): parchment page, oxblood-deep screening band. One deliberate light look. */
+  :root {
+    color-scheme: light;
+    --parchment: #ece0c4; --parchment-soft: #f2e8cf; --parchment-dark: #ddd0b0;
+    --ink: #1a0608; --oxblood: #3a1218; --oxblood-deep: #2a0c11; --oxblood-ink: #4a1e26;
+    --teal: #2d6b6b; --gold: #c4962c; --gold-dim: #a5801f; --muted: #6f6247;
+    --rule: rgba(58, 18, 24, 0.22); --rule-soft: rgba(58, 18, 24, 0.12);
+    --serif: 'Spectral', Georgia, 'Times New Roman', serif;
+    --mono: 'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;
+    --col: 1000px; --gut: clamp(16px, 4vw, 48px);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-padding-top: 64px; }
+  @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+  body { background: var(--parchment); color: var(--ink); font: 400 17px/1.62 var(--serif); padding-inline: var(--gut); padding-block: 0 110px; }
+  a { color: var(--oxblood); }
+  :focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; }
+  h1, h2, h3 { margin: 0; text-wrap: balance; }
+  p, dl, dd, ol, ul, figure { margin: 0; }
+  ol, ul { padding: 0; }
+  .wrap { max-width: var(--col); margin-inline: auto; }
+  .label { font: 500 11px/1.3 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--oxblood-ink); }
+  .num { font-variant-numeric: lining-nums tabular-nums; }
+
+  .bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10; margin-inline: calc(-1 * var(--gut)); padding: 10px var(--gut);
+    background: color-mix(in srgb, var(--parchment) 92%, transparent); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); border-bottom: 1px solid var(--rule); }
+  .bar-in { max-width: var(--col); margin-inline: auto; display: flex; align-items: center; gap: 14px; }
+  .mark { font: italic 400 18px/1 var(--serif); color: var(--oxblood); text-decoration: none; white-space: nowrap; }
+  .chips { display: flex; gap: 4px; margin-left: auto; overflow-x: auto; scrollbar-width: none; }
+  .chips::-webkit-scrollbar { display: none; }
+  .chips a { font: 500 11.5px/1 var(--mono); color: var(--oxblood-ink); text-decoration: none; padding: 7px 8px; border: 1px solid var(--rule); white-space: nowrap; }
+  .chips a:hover { border-color: var(--oxblood); }
+  .chips a.on { background: var(--oxblood); color: var(--parchment); border-color: var(--oxblood); }
+  .chips a[data-stars]:not([data-stars=""])::after { content: " " attr(data-stars) "★"; color: var(--gold-dim); }
+  .chips a.on[data-stars]:not([data-stars=""])::after { color: var(--gold); }
+  @media (max-width: 560px) { .chips .ct { display: none; } }
+
+  .open { padding-block: clamp(44px, 7vw, 88px) 0; display: grid; gap: 20px; max-width: 780px; }
+  .eyebrow { font: 500 11px/1.5 var(--mono); letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
+  h1 { font: 300 clamp(38px, 6.2vw, 68px)/1.03 var(--serif); letter-spacing: -.015em; color: var(--oxblood); }
+  h1 em { font-style: italic; }
+  .lede { font-size: 19px; line-height: 1.55; max-width: 62ch; }
+
+  /* programme: the four films as posters on the screening band */
+  .band { margin-top: 40px; margin-inline: calc(-1 * var(--gut)); padding: 28px var(--gut) 30px; background: var(--oxblood-deep); color: var(--parchment); }
+  .band-in { max-width: var(--col); margin-inline: auto; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; }
+  .pg { display: grid; gap: 10px; align-content: start; text-decoration: none; color: var(--parchment); }
+  .pg img, .pg .ph { display: block; width: 100%; height: auto; aspect-ratio: 9 / 16; object-fit: cover; background: #14060a; border: 1px solid rgba(196,150,44,.35); transition: border-color .15s, transform .15s; }
+  .pg:hover img, .pg:hover .ph { border-color: var(--gold); transform: translateY(-2px); }
+  .pg-t { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 8px; align-items: baseline; }
+  .pg-t .num { font: 500 12px/1 var(--mono); color: var(--gold); }
+  .pg-t strong { font: italic 400 19px/1.15 var(--serif); }
+  .pg-t span:last-child { font: 400 11.5px/1 var(--mono); color: rgba(236,224,196,.7); }
+  .pg-e { font: italic 300 14px/1.4 var(--serif); color: rgba(236,224,196,.78); }
+  @media (max-width: 480px) { .pg-t { grid-template-columns: auto minmax(0, 1fr); } .pg-t span:last-child { grid-column: 2; } .pg-t strong { font-size: 17px; } .pg-e { font-size: 13px; } }
+  @media (max-width: 760px) { .band-in { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px 14px; } }
+
+  /* how to test */
+  .howto { margin-top: 44px; display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 34px; align-items: start; }
+  .howto h2, .next h2 { font: 400 28px/1.15 var(--serif); color: var(--oxblood); }
+  .steps { counter-reset: s; list-style: none; display: grid; gap: 12px; margin-top: 14px; }
+  .steps li { counter-increment: s; display: grid; grid-template-columns: 28px minmax(0, 1fr); gap: 10px; font-size: 16.5px; line-height: 1.5; }
+  .steps li::before { content: counter(s); font: 500 12px/1.9 var(--mono); color: var(--parchment); background: var(--teal); width: 22px; height: 22px; text-align: center; }
+  .asks { background: var(--parchment-soft); border: 1.5px solid var(--oxblood); box-shadow: 4px 4px 0 var(--teal), 8px 8px 0 var(--gold); padding: 18px 18px 20px; display: grid; gap: 10px; margin-right: 8px; }
+  .asks q { display: block; font: italic 400 19px/1.35 var(--serif); color: var(--oxblood); quotes: "\201C" "\201D"; }
+  .asks p { font-size: 15.5px; line-height: 1.5; color: var(--oxblood-ink); }
+  @media (max-width: 760px) { .howto { grid-template-columns: 1fr; } }
+
+  /* one film */
+  .film { margin-top: 72px; padding-top: 32px; border-top: 2px solid var(--oxblood); display: grid; gap: 18px; }
+  .film-head { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 18px; align-items: start; }
+  .film-head .num { font: 300 56px/0.9 var(--serif); color: var(--gold-dim); }
+  .film h2 { font: italic 400 clamp(32px, 4.6vw, 46px)/1.05 var(--serif); color: var(--oxblood); }
+  .meta { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+  .meta span { font: 500 10.5px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--oxblood-ink); border: 1px solid var(--rule); padding: 5px 7px; }
+  .logline { font: 400 21px/1.45 var(--serif); max-width: 60ch; }
+  .film-body { display: grid; grid-template-columns: 340px minmax(0, 1fr); gap: 34px; align-items: start; }
+  .player { background: var(--oxblood-deep); padding: 10px; border: 1px solid var(--oxblood); }
+  .player video { display: block; width: 100%; aspect-ratio: 9 / 16; background: #0d0406; }
+  .pending-v { aspect-ratio: 9 / 16; display: grid; place-content: center; gap: 8px; text-align: center; padding: 20px; color: var(--parchment); background: #14060a; }
+  .pending-v .label { color: var(--gold); }
+  .pending-v p { font: italic 300 16px/1.4 var(--serif); }
+  .side { display: grid; gap: 22px; }
+  .facts { display: grid; gap: 14px; }
+  .facts > div { display: grid; gap: 3px; }
+  .facts dd { font-size: 16.5px; line-height: 1.55; }
+  .facts ul { list-style: none; display: grid; gap: 6px; }
+  .facts li { padding-left: 16px; position: relative; }
+  .facts li::before { content: ""; position: absolute; left: 2px; top: .7em; width: 6px; height: 1.5px; background: var(--oxblood); }
+  @media (max-width: 760px) { .film-body { grid-template-columns: 1fr; } .player { width: min(360px, 100%); justify-self: center; } }
+
+  .call { display: grid; grid-template-columns: auto auto 1fr; align-items: center; gap: 10px 18px; padding: 14px 16px; background: var(--parchment-soft); border: 1px solid var(--rule); }
+  .stars { display: flex; gap: 2px; }
+  .star { font-size: 26px; line-height: 1; background: none; border: 0; padding: 2px; color: var(--parchment-dark); cursor: pointer; -webkit-text-stroke: 1px rgba(58,18,24,.35); }
+  .star.on { color: var(--gold); -webkit-text-stroke: 0; }
+  .pick { display: flex; align-items: center; gap: 8px; font-size: 16px; cursor: pointer; }
+  .pick input, .chk input { appearance: none; width: 19px; height: 19px; margin: 0; border: 1.5px solid var(--oxblood); background: var(--parchment); display: grid; place-items: center; cursor: pointer; flex: none; }
+  .pick input:checked, .chk input:checked { background: var(--oxblood); }
+  .pick input:checked::after, .chk input:checked::after { content: "✓"; color: var(--parchment); font: 700 12px/1 var(--mono); }
+  .cmt { justify-self: end; font: 500 11px/1 var(--mono); letter-spacing: .06em; color: var(--oxblood); background: none; border: 1px solid var(--oxblood); padding: 7px 9px; cursor: pointer; }
+  .cmt:hover { background: var(--oxblood); color: var(--parchment); }
+  .note-l { grid-column: 1 / -1; font: 500 10.5px/1 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+  textarea, input[type=text], .log-form input:not([type]) { width: 100%; background: var(--parchment); color: var(--ink); border: 1px solid var(--rule); padding: 9px 11px; font: 400 16px/1.45 var(--serif); border-radius: 0; }
+  textarea { resize: vertical; }
+  textarea:focus, input:focus { border-color: var(--teal); outline: none; }
+  .call textarea { grid-column: 1 / -1; }
+  .save-state, .log-state { font: 400 11.5px/1.3 var(--mono); color: var(--muted); min-height: 1.3em; }
+  .save-state { grid-column: 1 / -1; }
+  @media (max-width: 520px) { .call { grid-template-columns: 1fr auto; } .stars { grid-column: 1 / -1; } }
+
+  .sub { margin-top: 10px; display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; }
+  .sub span { font-weight: 400; letter-spacing: .04em; text-transform: none; color: var(--muted); }
+  .board { list-style: none; display: grid; grid-auto-flow: column; grid-auto-columns: 108px; gap: 10px; overflow-x: auto; padding-bottom: 10px; scroll-snap-type: x proximity; scrollbar-color: var(--rule) transparent; }
+  .board li { scroll-snap-align: start; }
+  .shot { display: grid; gap: 6px; width: 100%; padding: 0; background: none; border: 0; text-align: left; color: var(--ink); cursor: pointer; font: inherit; }
+  .shot img, .shot .ph { display: block; width: 100%; height: auto; aspect-ratio: 9 / 16; object-fit: cover; background: var(--oxblood-deep); outline: 1px solid var(--rule); outline-offset: -1px; }
+  .shot:hover img { outline: 2px solid var(--oxblood); outline-offset: -2px; }
+  .shot.now img, .shot.now .ph { outline: 3px solid var(--gold); outline-offset: -3px; }
+  .sh-n { display: flex; justify-content: space-between; font: 500 11px/1 var(--mono); color: var(--oxblood); }
+  .sh-n span { color: var(--muted); font-weight: 400; }
+  .sh-c { font-size: 13.5px; line-height: 1.35; color: var(--oxblood-ink); }
+
+  .script { border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+  .script summary { cursor: pointer; padding: 12px 0; font: 500 11px/1.3 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--oxblood-ink); list-style: none; display: flex; gap: 10px; align-items: baseline; }
+  .script summary::-webkit-details-marker { display: none; }
+  .script summary::before { content: "+"; font-size: 14px; color: var(--oxblood); width: 12px; }
+  .script[open] summary::before { content: "−"; }
+  .script summary span { letter-spacing: .04em; text-transform: none; color: var(--muted); font-weight: 400; }
+  .tbl { overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; min-width: 620px; font-size: 14.5px; line-height: 1.45; }
+  th { text-align: left; font: 500 10.5px/1.2 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); padding: 6px 10px 6px 0; border-bottom: 1px solid var(--rule); }
+  td { vertical-align: top; padding: 8px 10px 8px 0; border-bottom: 1px solid var(--rule-soft); }
+  td strong { font-weight: 500; }
+  .c-n, .c-t { font: 400 12px/1.6 var(--mono); white-space: nowrap; color: var(--oxblood-ink); }
+  .c-s { color: var(--oxblood-ink); width: 28%; }
+  .src { font: 400 11.5px/1.5 var(--mono); color: var(--muted); padding: 10px 0 14px; }
+
+  .log { display: grid; gap: 12px; }
+  .count { font-weight: 400; }
+  .log-form { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 16px; padding: 16px; background: var(--parchment-soft); border: 1px solid var(--rule); }
+  .log-form > label { display: grid; gap: 5px; font: 500 10.5px/1.3 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--oxblood-ink); }
+  .log-form > label:first-child { grid-column: 1 / -1; max-width: 360px; }
+  .log-row { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 14px 34px; align-items: end; }
+  .logd > summary { cursor: pointer; list-style: none; display: inline-flex; gap: 8px; align-items: center; font: 500 12px/1 var(--mono); letter-spacing: .06em; color: var(--oxblood); border: 1px solid var(--oxblood); padding: 10px 14px; }
+  .logd > summary::-webkit-details-marker { display: none; }
+  .logd > summary::before { content: "+"; font-size: 14px; }
+  .logd[open] > summary::before { content: "−"; }
+  .logd > summary:hover { background: var(--oxblood); color: var(--parchment); }
+  .logd[open] > summary { margin-bottom: 10px; }
+  fieldset { border: 0; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 6px 18px; align-items: center; }
+  legend { display: block; width: 100%; padding: 0; margin-bottom: 6px; font: 500 10.5px/1.3 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--oxblood-ink); }
+  fieldset label, .chk { display: flex; gap: 7px; align-items: center; font-size: 16px; cursor: pointer; }
+  fieldset input { accent-color: var(--oxblood); width: 17px; height: 17px; margin: 0; }
+  .log-actions { grid-column: 1 / -1; display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
+  .log-actions button { font: 500 12px/1 var(--mono); letter-spacing: .06em; color: var(--parchment); background: var(--oxblood); border: 1px solid var(--oxblood); padding: 10px 14px; cursor: pointer; }
+  .log-actions button:hover { background: var(--oxblood-ink); }
+  .log-actions button:disabled { opacity: .5; cursor: default; }
+  @media (max-width: 620px) { .log-form { grid-template-columns: 1fr; } }
+  .entries { list-style: none; display: grid; gap: 10px; }
+  .entry { display: grid; gap: 6px; padding: 12px 14px; border-left: 3px solid var(--teal); background: rgba(242,232,207,.6); }
+  .entry-h { display: flex; gap: 10px; flex-wrap: wrap; align-items: baseline; font: 400 11.5px/1.3 var(--mono); color: var(--muted); }
+  .entry-h strong { font: 500 12.5px/1.3 var(--mono); color: var(--oxblood); }
+  .tag { font: 500 10px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; padding: 4px 6px; border: 1px solid var(--rule); color: var(--oxblood-ink); }
+  .tag.yes { background: var(--teal); border-color: var(--teal); color: var(--parchment); }
+  .entry p { font-size: 15.5px; line-height: 1.5; }
+  .entry p b { font: 500 10px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-right: 6px; }
+  .rm { margin-left: auto; font: 400 11px/1 var(--mono); color: var(--muted); background: none; border: 0; padding: 2px 0; cursor: pointer; text-decoration: underline; text-underline-offset: 2px; }
+  .rm.sure { color: var(--oxblood); font-weight: 500; }
+
+  .next { margin-top: 80px; padding-top: 30px; border-top: 2px solid var(--oxblood); display: grid; gap: 14px; max-width: 780px; }
+  .next p { max-width: 66ch; }
+  footer { margin-top: 70px; font: 400 11.5px/1.7 var(--mono); color: var(--muted); border-top: 1px solid var(--rule); padding-top: 16px; }
+  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; } }
+</style>
+
+<div class="bar"><div class="bar-in">
+  <a class="mark" href="#top">Rough cuts</a>
+  <nav class="chips" aria-label="Films">{{CHIPS}}</nav>
+</div></div>
+
+<main id="top">
+<div class="wrap">
+  <header class="open">
+    <p class="eyebrow">Demismatch · four one-minute films · rough cuts · 27 September 2026</p>
+    <h1>Four films to show people who have <em>never heard of us</em></h1>
+    <p class="lede">These are animatics. The story, timing, acting and sound are what the finished films will have. The picture is a quick render, and the music is a temporary score I generated in code. Watch them on your phone first. Then show them to a few people who know nothing about Demismatch: what they say back decides which film gets finished.</p>
+  </header>
+</div>
+
+<section class="band" aria-label="The four films"><div class="band-in">{{PROGRAMME}}</div></section>
+
+<div class="wrap">
+  <section class="howto" aria-labelledby="howto-h">
+    <div>
+      <h2 id="howto-h">How to test them</h2>
+      <ol class="steps">
+        <li>Show one film on a phone, full screen, sound on. Say only that it's a one-minute film. Don't explain Demismatch first.</li>
+        <li>When it ends, ask the three questions in the box. Write down their words, not your summary of them.</li>
+        <li>Show at least one person a film with the sound off. If they still get it, the pictures carry it.</li>
+        <li>Log each viewer under the film. Five to eight people per film is enough to see a pattern. I read the log back.</li>
+      </ol>
+    </div>
+    <div class="asks">
+      <q>What was that about?</q>
+      <q>How did it make you feel?</q>
+      <q>Would you tap the link at the end?</q>
+      <p>A film works when people say its idea back to you in their own words without being told. Each film lists the answer it's aiming for.</p>
+    </div>
+  </section>
+
+  {{FILMS}}
+
+  <section class="next" aria-labelledby="next-h">
+    <h2 id="next-h">After the screenings</h2>
+    <p>Pick one or two to finish. The final version keeps this timing and these shots and changes everything about the finish: a full render at 1080×1920 with real light, depth and motion, composed music instead of the temporary score, and a horizontal cut for YouTube and the site.</p>
+    <p>The final renders need more computing power than this session can reach. Either open network access for this environment (so I can use rendering and music services), or I hand over a project you run on your Mac.</p>
+  </section>
+
+  <footer>Rough cuts by Claude in Claude Code for Demismatch · 27 September 2026</footer>
+</div>
+</main>
+
+<script>
+(() => {
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+  const KEYS = {{KEYS}};
+
+  // players: one at a time; storyboard follows the playhead; a shot seeks and plays
+  const vids = $$('video');
+  vids.forEach(v => v.addEventListener('play', () => vids.forEach(o => { if (o !== v) o.pause(); })));
+  $$('.film').forEach(sec => {
+    const v = $('video', sec), board = $('.board', sec);
+    if (!v || !board) return;
+    const shots = $$('.shot', board).filter(b => b.dataset.t !== '');
+    const starts = shots.map(b => +b.dataset.t);
+    let cur = -1;
+    const mark = () => {
+      let i = -1;
+      for (let j = 0; j < starts.length; j++) if (v.currentTime + 0.04 >= starts[j]) i = j;
+      if (i === cur) return;
+      if (cur >= 0) shots[cur].classList.remove('now');
+      cur = i;
+      if (i < 0) return;
+      shots[i].classList.add('now');
+      const li = shots[i].parentElement, x = li.offsetLeft - board.offsetLeft;
+      if (x < board.scrollLeft || x + li.offsetWidth > board.scrollLeft + board.clientWidth) board.scrollTo({ left: Math.max(0, x - 12), behavior: 'smooth' });
+    };
+    v.addEventListener('timeupdate', mark);
+    v.addEventListener('seeked', mark);
+    shots.forEach((b, i) => b.addEventListener('click', () => { v.currentTime = starts[i] + 0.01; v.play().catch(() => {}); }));
+  });
+
+  // ratings and notes (db: films/<key>)
+  const state = {}, saving = {}, pending = {}, dirty = {};
+  KEYS.forEach(k => { state[k] = { stars: 0, pick: false, note: '' }; });
+  let db = null, known = false;
+  const status = (k, m) => { const el = $('.call[data-k="' + k + '"] .save-state'); if (el) el.textContent = m; };
+  function paint(k) {
+    const s = state[k];
+    $$('.call[data-k="' + k + '"] .star').forEach(b => { const v = +b.dataset.v; b.classList.toggle('on', v <= s.stars); b.setAttribute('aria-checked', v === s.stars ? 'true' : 'false'); });
+    const cb = $('#pick-' + k); if (cb) cb.checked = !!s.pick;
+    const ta = $('#note-' + k); if (ta && document.activeElement !== ta && !dirty[k]) ta.value = s.note || '';
+    const chip = $('.chips a[data-k="' + k + '"]'); if (chip) { chip.dataset.stars = s.stars ? String(s.stars) : ''; chip.classList.toggle('on', !!s.pick); }
+  }
+  async function save(k) {
+    if (!db) { status(k, known ? 'Not saved: saving is off in this view. Tell Claude in chat instead.' : 'Connecting…'); return; }
+    if (saving[k]) { pending[k] = true; return; }
+    saving[k] = true; status(k, 'Saving…');
+    try {
+      const s = state[k];
+      await db.doc('films/' + k).set({ stars: s.stars, pick: !!s.pick, note: s.note || '', updatedAt: new Date().toISOString() });
+      dirty[k] = false; status(k, 'Saved');
+    } catch (e) {
+      status(k, e && e.code === 'invalid_argument' ? 'You can view this page but not save to it.' : 'Could not save. Try again in a moment.');
+    } finally { saving[k] = false; if (pending[k]) { pending[k] = false; save(k); } }
+  }
+  KEYS.forEach(k => {
+    $$('.call[data-k="' + k + '"] .star').forEach(b => b.addEventListener('click', () => { const v = +b.dataset.v; state[k].stars = state[k].stars === v ? 0 : v; paint(k); save(k); }));
+    const cb = $('#pick-' + k); if (cb) cb.addEventListener('change', () => { state[k].pick = cb.checked; paint(k); save(k); });
+    const ta = $('#note-' + k); let t = 0;
+    if (ta) {
+      ta.addEventListener('input', () => { dirty[k] = true; state[k].note = ta.value; status(k, 'Editing…'); clearTimeout(t); t = setTimeout(() => save(k), 900); });
+      ta.addEventListener('blur', () => { if (dirty[k]) { clearTimeout(t); save(k); } });
+    }
+  });
+
+  // screening log (db: screenings/<auto id>, field film = key)
+  const logs = {};
+  const fmtDate = s => { try { return new Date(s).toLocaleDateString(undefined, { day: 'numeric', month: 'short' }); } catch (e) { return ''; } };
+  function renderLogs() {
+    KEYS.forEach(k => {
+      const list = $('.entries[data-k="' + k + '"]'), count = $('.count[data-k="' + k + '"]');
+      const rows = (logs[k] || []).slice().sort((a, b) => String(b.at).localeCompare(String(a.at)));
+      if (count) count.textContent = rows.length ? rows.length + (rows.length === 1 ? ' viewer' : ' viewers') + ' · ' + rows.filter(r => r.click === 'yes').length + ' would tap' : 'none logged yet';
+      if (!list) return;
+      list.replaceChildren(...rows.map(r => {
+        const li = document.createElement('li'); li.className = 'entry';
+        const h = document.createElement('div'); h.className = 'entry-h';
+        const who = document.createElement('strong'); who.textContent = r.viewer || 'Viewer';
+        const when = document.createElement('span'); when.textContent = fmtDate(r.at);
+        h.append(who, when);
+        if (r.click) { const t = document.createElement('span'); t.className = 'tag' + (r.click === 'yes' ? ' yes' : ''); t.textContent = 'tap: ' + r.click; h.append(t); }
+        if (r.mute) { const t = document.createElement('span'); t.className = 'tag'; t.textContent = 'sound off'; h.append(t); }
+        const rm = document.createElement('button'); rm.type = 'button'; rm.className = 'rm'; rm.textContent = 'Remove';
+        let armed = 0;
+        rm.addEventListener('click', async () => {
+          if (!armed) { rm.textContent = 'Remove this entry?'; rm.classList.add('sure'); armed = setTimeout(() => { armed = 0; rm.textContent = 'Remove'; rm.classList.remove('sure'); }, 4000); return; }
+          clearTimeout(armed);
+          try { await db.doc('screenings/' + r.id).delete(); } catch (e) { rm.textContent = 'Could not remove'; }
+        });
+        h.append(rm);
+        li.append(h);
+        [['About', r.about], ['Felt', r.felt]].forEach(([l, v]) => { if (!v) return; const p = document.createElement('p'); const b = document.createElement('b'); b.textContent = l; p.append(b, document.createTextNode(v)); li.append(p); });
+        return li;
+      }));
+    });
+  }
+  $$('.log-form').forEach(form => {
+    const k = form.dataset.k, st = $('.log-state', form), btn = $('button[type=submit]', form);
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!db) { st.textContent = known ? 'Saving is off in this view. Paste it to Claude in chat instead.' : 'Connecting…'; return; }
+      const fd = new FormData(form);
+      const rec = { film: k, viewer: String(fd.get('viewer') || '').trim(), about: String(fd.get('about') || '').trim(), felt: String(fd.get('felt') || '').trim(),
+        click: String(fd.get('click') || ''), mute: fd.get('mute') === 'on', at: new Date().toISOString() };
+      if (!rec.about && !rec.felt) { st.textContent = 'Write down at least what they said it was about.'; return; }
+      btn.disabled = true; st.textContent = 'Saving…';
+      try { await db.collection('screenings').doc().set(rec); form.reset(); st.textContent = 'Saved'; }
+      catch (err) { st.textContent = err && err.code === 'quota_exceeded' ? 'The log is full. Tell Claude.' : err && err.code === 'invalid_argument' ? 'You can view this page but not save to it.' : 'Could not save. Try again in a moment.'; }
+      finally { btn.disabled = false; }
+    });
+  });
+  renderLogs();
+
+  const cl = window.claude;
+  if (cl && typeof cl.use === 'function') {
+    cl.use('db').then(d => {
+      db = d; known = true;
+      if (!db) { KEYS.forEach(k => status(k, 'Saving is off in this view. Tell Claude in chat instead.')); return; }
+      db.collection('films').onSnapshot(snap => {
+        snap.docs.forEach(doc => {
+          if (!KEYS.includes(doc.id)) return;
+          const x = doc.data() || {};
+          state[doc.id] = { stars: +x.stars || 0, pick: !!x.pick, note: dirty[doc.id] ? state[doc.id].note : (x.note || '') };
+          paint(doc.id);
+        });
+      }, () => { KEYS.forEach(k => status(k, 'Live updates stopped. Reload to keep saving.')); });
+      db.collection('screenings').onSnapshot(snap => {
+        KEYS.forEach(k => { logs[k] = []; });
+        snap.docs.forEach(doc => { const x = doc.data() || {}; if (logs[x.film]) logs[x.film].push({ id: doc.id, ...x }); });
+        renderLogs();
+      }, () => {});
+    }).catch(() => { known = true; });
+    cl.use('comments').then(c => {
+      if (!c) return;
+      $$('.cmt').forEach(b => {
+        b.hidden = false;
+        b.addEventListener('click', async () => {
+          try { await c.openComposer({ element: b.closest('.film') }); }
+          catch (e) { if (e && ['unavailable', 'not_granted', 'forbidden', 'capability_disabled', 'capability_removed'].includes(e.code)) $$('.cmt').forEach(x => { x.hidden = true; }); }
+        });
+      });
+    }).catch(() => {});
+  } else {
+    KEYS.forEach(k => status(k, 'Ratings save when this page is opened in Claude.'));
+    $$('.log-state').forEach(el => { el.textContent = 'The log saves when this page is opened in Claude.'; });
+  }
+})();
+</script>

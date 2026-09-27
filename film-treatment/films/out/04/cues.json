@@ -1,0 +1,987 @@
+{
+ "dur": 62.5,
+ "room": 2.2,
+ "fadeOut": 1.8,
+ "master": 1.0,
+ "music": [
+  {
+   "t": 4.0,
+   "inst": "piano",
+   "tempo": 72,
+   "vel": 0.34,
+   "notes": "B3:0.5 F#4:0.5 D4:0.5 F#4:0.5 B3:0.5 F#4:0.5 D4:0.5 F#4:0.5 B3:0.5 F#4:0.5 D4:0.5 F#4:0.5 B3:0.5 F#4:0.5 D4:0.5 F#4:0.5 B3:0.5 F#4:0.5 D4:0.5",
+   "gain": 0.9,
+   "pan": -0.1,
+   "reverb": 0.35
+  },
+  {
+   "t": 4.0,
+   "inst": "pad",
+   "tempo": 72,
+   "vel": 0.2,
+   "notes": "[B2 F#3 D4]:4 [G2 D3 B3]:2 [F#2 C#3 A#3]:3.5",
+   "gain": 0.8,
+   "pan": 0.0,
+   "reverb": 0.35
+  },
+  {
+   "t": 33.0,
+   "inst": "piano",
+   "tempo": 72,
+   "vel": 0.34,
+   "notes": "B3:0.5 F#4:0.5 D4:0.5 F#4:0.5 B3:0.5 F#4:0.5 D4:0.5 F#4:0.5 B3:0.5 F#4:0.5 D4:0.5 F#4:0.5 B3:0.5 F#4:0.5 D4:0.5 F#4:0.5 B3:0.5 F#4:0.5 D4:0.5",
+   "gain": 0.9,
+   "pan": -0.1,
+   "reverb": 0.35
+  },
+  {
+   "t": 33.0,
+   "inst": "pad",
+   "tempo": 72,
+   "vel": 0.2,
+   "notes": "[B2 F#3 D4]:4 [G2 D3 B3]:2 [F#2 C#3 A#3]:3.5",
+   "gain": 0.8,
+   "pan": 0.0,
+   "reverb": 0.35
+  },
+  {
+   "t": 17.95,
+   "inst": "piano",
+   "tempo": 150,
+   "vel": 0.3,
+   "notes": "B4:0.25 C#5:0.25 D5:0.25 E5:0.25 F#5:0.5 D5:0.25 B4:0.25 A4:0.5 r:0.5 E5:0.25 D5:0.25 C#5:0.25 B4:0.25 A4:0.25 F#4:0.25 B4:0.75",
+   "gain": 0.75,
+   "pan": 0.15,
+   "reverb": 0.35
+  },
+  {
+   "t": 19.3,
+   "inst": "piano",
+   "tempo": 160,
+   "vel": 0.26,
+   "notes": "D5:0.25 E5:0.25 F#5:0.25 A5:0.25 G5:0.25 F#5:0.25 E5:0.25 D5:0.25 C#5:0.25 B4:1",
+   "gain": 0.7,
+   "pan": 0.15,
+   "reverb": 0.35
+  },
+  {
+   "t": 27.4,
+   "inst": "pad",
+   "tempo": 60,
+   "vel": 0.16,
+   "notes": "[B1 F#2 B2]:3",
+   "gain": 0.8,
+   "pan": 0.0,
+   "reverb": 0.35
+  },
+  {
+   "t": 45.3,
+   "inst": "piano",
+   "tempo": 60,
+   "vel": 0.3,
+   "notes": "[D3 D4]:3",
+   "gain": 0.9,
+   "pan": 0.0,
+   "reverb": 0.35
+  },
+  {
+   "t": 46.2,
+   "inst": "piano",
+   "tempo": 60,
+   "vel": 0.34,
+   "notes": "F#4:1 A4:1 B4:1 A4:1.8",
+   "gain": 0.9,
+   "pan": 0.0,
+   "reverb": 0.35
+  },
+  {
+   "t": 46.2,
+   "inst": "pad",
+   "tempo": 60,
+   "vel": 0.13,
+   "notes": "[D3 A3 F#4]:4.8",
+   "gain": 0.8,
+   "pan": 0.0,
+   "reverb": 0.35
+  },
+  {
+   "t": 51.0,
+   "inst": "piano",
+   "tempo": 72,
+   "vel": 0.45,
+   "notes": "F#4:1 A4:0.5 B4:0.5 A4:1 F#4:1 E4:1 D4:0.5 E4:0.5 F#4:1 E4:1",
+   "gain": 1.0,
+   "pan": 0.0,
+   "reverb": 0.35
+  },
+  {
+   "t": 51.0,
+   "inst": "piano",
+   "tempo": 72,
+   "vel": 0.28,
+   "notes": "[D3 A3]:2 [B2 F#3]:2 [G2 D3]:2 [A2 E3]:2",
+   "gain": 0.8,
+   "pan": -0.2,
+   "reverb": 0.35
+  },
+  {
+   "t": 51.0,
+   "inst": "pad",
+   "tempo": 72,
+   "vel": 0.22,
+   "notes": "[D3 A3 F#4]:2 [B2 F#3 D4]:2 [G2 D3 B3]:2 [A2 E3 C#4]:2",
+   "gain": 0.9,
+   "pan": 0.0,
+   "reverb": 0.35
+  },
+  {
+   "t": 51.0,
+   "inst": "bass",
+   "tempo": 72,
+   "vel": 0.35,
+   "notes": "D2:2 B1:2 G1:2 A1:2",
+   "gain": 0.8,
+   "pan": 0.0,
+   "reverb": 0.35
+  },
+  {
+   "t": 58.0,
+   "inst": "piano",
+   "tempo": 60,
+   "vel": 0.34,
+   "notes": "[D3 A3 D4 F#4]:4",
+   "gain": 0.9,
+   "pan": 0.0,
+   "reverb": 0.35
+  },
+  {
+   "t": 58.0,
+   "inst": "pad",
+   "tempo": 60,
+   "vel": 0.14,
+   "notes": "[D3 A3 F#4]:2.5",
+   "gain": 0.8,
+   "pan": 0.0,
+   "reverb": 0.35
+  },
+  {
+   "t": 58.0,
+   "inst": "bass",
+   "tempo": 60,
+   "vel": 0.25,
+   "notes": "D2:3",
+   "gain": 0.7,
+   "pan": 0.0,
+   "reverb": 0.35
+  }
+ ],
+ "sfx": [
+  {
+   "t": 0.12,
+   "kind": "thud",
+   "gain": 0.75,
+   "pan": -0.1,
+   "args": {}
+  },
+  {
+   "t": 0.16,
+   "kind": "lockclick",
+   "gain": 0.35,
+   "pan": 0.0,
+   "args": {}
+  },
+  {
+   "t": 0.55,
+   "kind": "lockclick",
+   "gain": 0.3,
+   "pan": 0.1,
+   "args": {}
+  },
+  {
+   "t": 0.95,
+   "kind": "knock",
+   "gain": 0.4,
+   "pan": 0.2,
+   "args": {
+    "n": 1
+   }
+  },
+  {
+   "t": 1.45,
+   "kind": "knock",
+   "gain": 0.3,
+   "pan": 0.12000000000000001,
+   "args": {
+    "n": 1
+   }
+  },
+  {
+   "t": 1.95,
+   "kind": "knock",
+   "gain": 0.2,
+   "pan": 0.04000000000000001,
+   "args": {
+    "n": 1
+   }
+  },
+  {
+   "t": 2.45,
+   "kind": "knock",
+   "gain": 0.12,
+   "pan": -0.03999999999999998,
+   "args": {
+    "n": 1
+   }
+  },
+  {
+   "t": 2.95,
+   "kind": "knock",
+   "gain": 0.07,
+   "pan": -0.12,
+   "args": {
+    "n": 1
+   }
+  },
+  {
+   "t": 1.78,
+   "kind": "woodclick",
+   "gain": 0.18,
+   "pan": 0.0,
+   "args": {
+    "pitch": 1.4
+   }
+  },
+  {
+   "t": 3.3,
+   "kind": "woodclick",
+   "gain": 0.14,
+   "pan": 0.0,
+   "args": {
+    "pitch": 1.3
+   }
+  },
+  {
+   "t": 4.0,
+   "kind": "paws",
+   "gain": 0.32,
+   "pan": 0.0,
+   "args": {
+    "n": 16,
+    "rate": 4.8
+   }
+  },
+  {
+   "t": 7.5,
+   "kind": "thud",
+   "gain": 0.25,
+   "pan": 0.0,
+   "args": {}
+  },
+  {
+   "t": 7.52,
+   "kind": "woodclick",
+   "gain": 0.15,
+   "pan": 0.0,
+   "args": {
+    "pitch": 0.8
+   }
+  },
+  {
+   "t": 7.5,
+   "kind": "woodclick",
+   "gain": 0.22,
+   "pan": 0.0,
+   "args": {
+    "pitch": 2.3
+   }
+  },
+  {
+   "t": 9.0,
+   "kind": "woodclick",
+   "gain": 0.22,
+   "pan": 0.0,
+   "args": {
+    "pitch": 2.3
+   }
+  },
+  {
+   "t": 9.05,
+   "kind": "woodclick",
+   "gain": 0.15,
+   "pan": 0.0,
+   "args": {
+    "pitch": 0.9
+   }
+  },
+  {
+   "t": 9.05,
+   "kind": "paws",
+   "gain": 0.32,
+   "pan": 0.0,
+   "args": {
+    "n": 14,
+    "rate": 4.8
+   }
+  },
+  {
+   "t": 12.25,
+   "kind": "swoosh",
+   "gain": 0.1,
+   "pan": 0.0,
+   "args": {}
+  },
+  {
+   "t": 12.55,
+   "kind": "swoosh",
+   "gain": 0.1,
+   "pan": 0.0,
+   "args": {}
+  },
+  {
+   "t": 12.8,
+   "kind": "swoosh",
+   "gain": 0.1,
+   "pan": 0.0,
+   "args": {}
+  },
+  {
+   "t": 14.3,
+   "kind": "swoosh",
+   "gain": 0.1,
+   "pan": 0.0,
+   "args": {}
+  },
+  {
+   "t": 14.5,
+   "kind": "swoosh",
+   "gain": 0.1,
+   "pan": 0.0,
+   "args": {}
+  },
+  {
+   "t": 13.15,
+   "kind": "whine",
+   "gain": 0.55,
+   "pan": 0.0,
+   "args": {
+    "dur": 0.9
+   }
+  },
+  {
+   "t": 14.85,
+   "kind": "whine",
+   "gain": 0.6,
+   "pan": 0.0,
+   "args": {
+    "dur": 1.3
+   }
+  },
+  {
+   "t": 16.1,
+   "kind": "paws",
+   "gain": 0.2,
+   "pan": 0.0,
+   "args": {
+    "n": 3,
+    "rate": 6
+   }
+  },
+  {
+   "t": 17.05,
+   "kind": "tear",
+   "gain": 0.18,
+   "pan": 0.0,
+   "args": {
+    "dur": 0.25
+   }
+  },
+  {
+   "t": 17.62,
+   "kind": "thud",
+   "gain": 0.3,
+   "pan": 0.0,
+   "args": {}
+  },
+  {
+   "t": 17.9,
+   "kind": "tear",
+   "gain": 0.42,
+   "pan": 0.05,
+   "args": {
+    "dur": 0.55
+   }
+  },
+  {
+   "t": 18.45,
+   "kind": "tear",
+   "gain": 0.42,
+   "pan": 0.05,
+   "args": {
+    "dur": 0.45
+   }
+  },
+  {
+   "t": 18.95,
+   "kind": "tear",
+   "gain": 0.42,
+   "pan": 0.05,
+   "args": {
+    "dur": 0.6
+   }
+  },
+  {
+   "t": 19.5,
+   "kind": "tear",
+   "gain": 0.42,
+   "pan": 0.05,
+   "args": {
+    "dur": 0.5
+   }
+  },
+  {
+   "t": 20.05,
+   "kind": "tear",
+   "gain": 0.42,
+   "pan": 0.05,
+   "args": {
+    "dur": 0.45
+   }
+  },
+  {
+   "t": 17.8,
+   "kind": "paws",
+   "gain": 0.14,
+   "pan": 0.0,
+   "args": {
+    "n": 15,
+    "rate": 6
+   }
+  },
+  {
+   "t": 20.45,
+   "kind": "woodclick",
+   "gain": 0.16,
+   "pan": 0.0,
+   "args": {
+    "pitch": 1.2
+   }
+  },
+  {
+   "t": 23.82,
+   "kind": "woodclick",
+   "gain": 0.2,
+   "pan": 0.0,
+   "args": {
+    "pitch": 0.6
+   }
+  },
+  {
+   "t": 25.05,
+   "kind": "lockclick",
+   "gain": 0.45,
+   "pan": -0.1,
+   "args": {}
+  },
+  {
+   "t": 25.25,
+   "kind": "door",
+   "gain": 0.55,
+   "pan": -0.1,
+   "args": {
+    "dur": 1.2
+   }
+  },
+  {
+   "t": 26.0,
+   "kind": "knock",
+   "gain": 0.3,
+   "pan": -0.1,
+   "args": {
+    "n": 1
+   }
+  },
+  {
+   "t": 26.45,
+   "kind": "knock",
+   "gain": 0.3,
+   "pan": -0.1,
+   "args": {
+    "n": 1
+   }
+  },
+  {
+   "t": 26.85,
+   "kind": "knock",
+   "gain": 0.3,
+   "pan": -0.1,
+   "args": {
+    "n": 1
+   }
+  },
+  {
+   "t": 25.95,
+   "kind": "woodclick",
+   "gain": 0.13,
+   "pan": 0.15,
+   "args": {
+    "pitch": 0.7
+   }
+  },
+  {
+   "t": 26.28,
+   "kind": "woodclick",
+   "gain": 0.13,
+   "pan": 0.15,
+   "args": {
+    "pitch": 0.7
+   }
+  },
+  {
+   "t": 26.61,
+   "kind": "woodclick",
+   "gain": 0.13,
+   "pan": 0.15,
+   "args": {
+    "pitch": 0.7
+   }
+  },
+  {
+   "t": 26.94,
+   "kind": "woodclick",
+   "gain": 0.13,
+   "pan": 0.15,
+   "args": {
+    "pitch": 0.7
+   }
+  },
+  {
+   "t": 27.27,
+   "kind": "woodclick",
+   "gain": 0.13,
+   "pan": 0.15,
+   "args": {
+    "pitch": 0.7
+   }
+  },
+  {
+   "t": 27.6,
+   "kind": "woodclick",
+   "gain": 0.13,
+   "pan": 0.15,
+   "args": {
+    "pitch": 0.7
+   }
+  },
+  {
+   "t": 27.62,
+   "kind": "woodclick",
+   "gain": 0.12,
+   "pan": 0.0,
+   "args": {
+    "pitch": 1.2
+   }
+  },
+  {
+   "t": 28.28,
+   "kind": "thud",
+   "gain": 0.8,
+   "pan": -0.05,
+   "args": {}
+  },
+  {
+   "t": 29.98,
+   "kind": "sit",
+   "gain": 0.7,
+   "pan": 0.0,
+   "args": {}
+  },
+  {
+   "t": 30.04,
+   "kind": "woodclick",
+   "gain": 0.3,
+   "pan": 0.0,
+   "args": {
+    "pitch": 0.9
+   }
+  },
+  {
+   "t": 30.16,
+   "kind": "woodclick",
+   "gain": 0.24,
+   "pan": 0.0,
+   "args": {
+    "pitch": 1.1
+   }
+  },
+  {
+   "t": 31.1,
+   "kind": "swoosh",
+   "gain": 0.08,
+   "pan": 0.0,
+   "args": {}
+  },
+  {
+   "t": 31.75,
+   "kind": "typing",
+   "gain": 0.18,
+   "pan": 0.0,
+   "args": {
+    "dur": 1.2
+   }
+  },
+  {
+   "t": 33.05,
+   "kind": "fridge",
+   "gain": 0.6,
+   "pan": -0.3,
+   "args": {
+    "dur": 1.1
+   }
+  },
+  {
+   "t": 34.15,
+   "kind": "thud",
+   "gain": 0.28,
+   "pan": -0.3,
+   "args": {}
+  },
+  {
+   "t": 34.6,
+   "kind": "fridge",
+   "gain": 0.6,
+   "pan": -0.3,
+   "args": {
+    "dur": 1.2
+   }
+  },
+  {
+   "t": 35.45,
+   "kind": "thud",
+   "gain": 0.2,
+   "pan": -0.3,
+   "args": {}
+  },
+  {
+   "t": 35.5,
+   "kind": "woodclick",
+   "gain": 0.18,
+   "pan": 0.0,
+   "args": {
+    "pitch": 2.3
+   }
+  },
+  {
+   "t": 35.5,
+   "kind": "woodclick",
+   "gain": 0.42,
+   "pan": 0.0,
+   "args": {
+    "pitch": 0.42
+   }
+  },
+  {
+   "t": 35.917,
+   "kind": "woodclick",
+   "gain": 0.42,
+   "pan": 0.0,
+   "args": {
+    "pitch": 0.42
+   }
+  },
+  {
+   "t": 36.333,
+   "kind": "woodclick",
+   "gain": 0.42,
+   "pan": 0.0,
+   "args": {
+    "pitch": 0.42
+   }
+  },
+  {
+   "t": 36.75,
+   "kind": "woodclick",
+   "gain": 0.42,
+   "pan": 0.0,
+   "args": {
+    "pitch": 0.42
+   }
+  },
+  {
+   "t": 37.167,
+   "kind": "woodclick",
+   "gain": 0.42,
+   "pan": 0.0,
+   "args": {
+    "pitch": 0.42
+   }
+  },
+  {
+   "t": 37.583,
+   "kind": "woodclick",
+   "gain": 0.42,
+   "pan": 0.0,
+   "args": {
+    "pitch": 0.42
+   }
+  },
+  {
+   "t": 38.0,
+   "kind": "woodclick",
+   "gain": 0.42,
+   "pan": 0.0,
+   "args": {
+    "pitch": 0.42
+   }
+  },
+  {
+   "t": 38.417,
+   "kind": "woodclick",
+   "gain": 0.42,
+   "pan": 0.0,
+   "args": {
+    "pitch": 0.42
+   }
+  },
+  {
+   "t": 38.833,
+   "kind": "woodclick",
+   "gain": 0.42,
+   "pan": 0.0,
+   "args": {
+    "pitch": 0.42
+   }
+  },
+  {
+   "t": 39.2,
+   "kind": "woodclick",
+   "gain": 0.18,
+   "pan": 0.0,
+   "args": {
+    "pitch": 2.3
+   }
+  },
+  {
+   "t": 39.25,
+   "kind": "thud",
+   "gain": 0.3,
+   "pan": 0.0,
+   "args": {}
+  },
+  {
+   "t": 39.3,
+   "kind": "woodclick",
+   "gain": 0.18,
+   "pan": 0.0,
+   "args": {
+    "pitch": 0.8
+   }
+  },
+  {
+   "t": 40.3,
+   "kind": "woodclick",
+   "gain": 0.18,
+   "pan": 0.0,
+   "args": {
+    "pitch": 2.3
+   }
+  },
+  {
+   "t": 40.4,
+   "kind": "woodclick",
+   "gain": 0.2,
+   "pan": 0.0,
+   "args": {
+    "pitch": 1.0
+   }
+  },
+  {
+   "t": 41.3,
+   "kind": "paws",
+   "gain": 0.2,
+   "pan": 0.0,
+   "args": {
+    "n": 8,
+    "rate": 3.2
+   }
+  },
+  {
+   "t": 47.72,
+   "kind": "lockclick",
+   "gain": 0.25,
+   "pan": -0.1,
+   "args": {}
+  },
+  {
+   "t": 47.8,
+   "kind": "woodclick",
+   "gain": 0.2,
+   "pan": -0.1,
+   "args": {
+    "pitch": 2.8
+   }
+  },
+  {
+   "t": 47.9,
+   "kind": "woodclick",
+   "gain": 0.15,
+   "pan": -0.1,
+   "args": {
+    "pitch": 3.1
+   }
+  },
+  {
+   "t": 47.5,
+   "kind": "woodclick",
+   "gain": 0.32,
+   "pan": 0.1,
+   "args": {
+    "pitch": 0.55
+   }
+  },
+  {
+   "t": 47.82,
+   "kind": "woodclick",
+   "gain": 0.32,
+   "pan": 0.1,
+   "args": {
+    "pitch": 0.55
+   }
+  },
+  {
+   "t": 48.14,
+   "kind": "woodclick",
+   "gain": 0.32,
+   "pan": 0.1,
+   "args": {
+    "pitch": 0.55
+   }
+  },
+  {
+   "t": 48.46,
+   "kind": "woodclick",
+   "gain": 0.32,
+   "pan": 0.1,
+   "args": {
+    "pitch": 0.55
+   }
+  },
+  {
+   "t": 48.78,
+   "kind": "woodclick",
+   "gain": 0.32,
+   "pan": 0.1,
+   "args": {
+    "pitch": 0.55
+   }
+  },
+  {
+   "t": 49.1,
+   "kind": "woodclick",
+   "gain": 0.32,
+   "pan": 0.1,
+   "args": {
+    "pitch": 0.55
+   }
+  },
+  {
+   "t": 49.42,
+   "kind": "woodclick",
+   "gain": 0.32,
+   "pan": 0.1,
+   "args": {
+    "pitch": 0.55
+   }
+  },
+  {
+   "t": 49.74,
+   "kind": "woodclick",
+   "gain": 0.32,
+   "pan": 0.1,
+   "args": {
+    "pitch": 0.55
+   }
+  },
+  {
+   "t": 50.06,
+   "kind": "woodclick",
+   "gain": 0.32,
+   "pan": 0.1,
+   "args": {
+    "pitch": 0.55
+   }
+  },
+  {
+   "t": 50.38,
+   "kind": "woodclick",
+   "gain": 0.32,
+   "pan": 0.1,
+   "args": {
+    "pitch": 0.55
+   }
+  },
+  {
+   "t": 50.7,
+   "kind": "woodclick",
+   "gain": 0.32,
+   "pan": 0.1,
+   "args": {
+    "pitch": 0.55
+   }
+  },
+  {
+   "t": 54.4,
+   "kind": "bell",
+   "gain": 0.5,
+   "pan": -0.3,
+   "args": {}
+  },
+  {
+   "t": 51.2,
+   "kind": "paws",
+   "gain": 0.12,
+   "pan": 0.1,
+   "args": {
+    "n": 44,
+    "rate": 7
+   }
+  }
+ ],
+ "beds": [
+  {
+   "t0": 0,
+   "t1": 62.5,
+   "kind": "room",
+   "gain": 0.9,
+   "fade": 1.0
+  },
+  {
+   "t0": 0,
+   "t1": 22.5,
+   "kind": "city",
+   "gain": 0.16,
+   "fade": 1.5
+  },
+  {
+   "t0": 25.2,
+   "t1": 28.6,
+   "kind": "city",
+   "gain": 0.22,
+   "fade": 0.6
+  },
+  {
+   "t0": 51.0,
+   "t1": 58.4,
+   "kind": "courtyard",
+   "gain": 1.1,
+   "fade": 0.5
+  },
+  {
+   "t0": 51.0,
+   "t1": 58.4,
+   "kind": "city",
+   "gain": 0.12,
+   "fade": 0.5
+  }
+ ],
+ "duck": []
+}

@@ -1,0 +1,8 @@
+# 02 CARE INSTRUCTIONS — animatic notes
+
+- **Built:** `kit/films/02-care-instructions/` — `set.js` (open-plan office by a floor-to-ceiling window: our desk + 3 pods of desks, monitors, felt dividers, task chairs, window ledge, skyline with day/night facades, 5 light phases morning/noon/evening/night/golden), `film.js` (13 shots + end card), `audio02.py` (copy of film/audio.py + rustle, tissue, squeak, drip, ding, metalclick, sticker, chairroll, scrape, paperslide; murmur-bed length bug fixed in the copy), `cues02.py` (cue sheet), `fill.py` (duplicates on-twos frames). E's mat/modern/props/figs reused; LITTLE = beech seed 5 at 0.17 scale (~30 cm), SHINY = lacquered maple (clearcoat 1.0), WORKER = ash.
+- **Timing:** 64.5 s (script 65 s). 1 box 5.0 · 2 pose 4.0 · 3 days 12.0 (16 phases × 0.75 s) · 4a–4e 3/2/2/2/3 · 5 worker 5.0 · 6 card 6.0 · 7 office 4.0 · 8 sill 8.0 · 9 rack 4.0 · end card 4.5.
+- **Deviations:** shots 3/4e have no typing hands in frame (at desk level they became huge blurred blobs over LITTLE; typing is carried by sound). Shots 8/9 are shot from just outside the glass looking in: from inside, the sill group and the room behind it could not share one vertical frame. The walkers come toward the window (the daylight) instead of walking away. Card uses a local variant of text.js printedCard (bigger mono title, hand-set line breaks, no orphans).
+- **Render:** 12–15 s/frame at 720x1280 (machine load 16–19 from the other films). Shot 3 holds rendered on twos, the card insert on threes (duplicated by fill.py).
+- **Weakest:** (filled in at the end)
+- **Final version needs:** (filled in at the end)

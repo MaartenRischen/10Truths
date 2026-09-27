@@ -1,0 +1,67 @@
+{
+ "fps": 12,
+ "frames": 750,
+ "dur": 62.5,
+ "shots": [
+  {
+   "name": "s01-door",
+   "start": 0,
+   "dur": 4
+  },
+  {
+   "name": "s02-day",
+   "start": 4,
+   "dur": 8
+  },
+  {
+   "name": "s03-gap",
+   "start": 12,
+   "dur": 4
+  },
+  {
+   "name": "s04-cushion",
+   "start": 16,
+   "dur": 6
+  },
+  {
+   "name": "s05-wait",
+   "start": 22,
+   "dur": 3
+  },
+  {
+   "name": "s06-home",
+   "start": 25,
+   "dur": 4
+  },
+  {
+   "name": "s07-sofa",
+   "start": 29,
+   "dur": 4
+  },
+  {
+   "name": "s08-evening",
+   "start": 33,
+   "dur": 8
+  },
+  {
+   "name": "s09-knee",
+   "start": 41,
+   "dur": 6
+  },
+  {
+   "name": "s10-lead",
+   "start": 47,
+   "dur": 4
+  },
+  {
+   "name": "s11-court",
+   "start": 51,
+   "dur": 7
+  },
+  {
+   "name": "endcard",
+   "start": 58,
+   "dur": 4.5
+  }
+ ]
+}

@@ -1,0 +1,677 @@
+{
+ "dur": 73.0,
+ "room": 2.2,
+ "fadeOut": 1.2,
+ "master": 1.0,
+ "music": [
+  {
+   "t": 20.5,
+   "inst": "pad",
+   "tempo": 66,
+   "vel": 0.32,
+   "notes": "[D3 A3 F4]:8 [Bb2 F3 D4]:8",
+   "gain": 0.85,
+   "bus": "camp",
+   "reverb": 0.4
+  },
+  {
+   "t": 35.2,
+   "inst": "pad",
+   "tempo": 66,
+   "vel": 0.3,
+   "notes": "[F2 C3 A3]:6 [F3 C4 A4]:5",
+   "gain": 0.85,
+   "bus": "camp",
+   "reverb": 0.4
+  },
+  {
+   "t": 40.05,
+   "inst": "piano",
+   "tempo": 66,
+   "vel": 0.42,
+   "notes": "C5:1 A4:1 G4:1 F4:3",
+   "gain": 0.9,
+   "bus": "camp",
+   "reverb": 0.45
+  },
+  {
+   "t": 40.05,
+   "inst": "piano",
+   "tempo": 66,
+   "vel": 0.26,
+   "notes": "[F3 C4]:3 [Bb2 F3]:3",
+   "gain": 0.8,
+   "bus": "camp",
+   "reverb": 0.45
+  },
+  {
+   "t": 43.3,
+   "inst": "piano",
+   "tempo": 66,
+   "vel": 0.3,
+   "notes": "[C4 E4 G4]:2 [F3 A3 C4 F4]:4",
+   "gain": 0.85,
+   "bus": "camp",
+   "reverb": 0.5
+  },
+  {
+   "t": 44.4,
+   "inst": "pad",
+   "tempo": 66,
+   "vel": 0.3,
+   "notes": "[F2 C3 A3 F4]:5",
+   "gain": 0.85,
+   "bus": "camp",
+   "reverb": 0.4
+  },
+  {
+   "t": 63.3,
+   "inst": "pad",
+   "tempo": 66,
+   "vel": 0.16,
+   "notes": "F4:2 A4:2 G4:2 F4:2",
+   "gain": 0.8,
+   "pan": -0.5,
+   "bus": "flat",
+   "reverb": 0.5
+  },
+  {
+   "t": 65.5,
+   "inst": "piano",
+   "tempo": 66,
+   "vel": 0.36,
+   "notes": "C5:1 A4:1 G4:1 A4:1 F4:4",
+   "gain": 0.9,
+   "bus": "flat",
+   "reverb": 0.5
+  },
+  {
+   "t": 69.14,
+   "inst": "piano",
+   "tempo": 66,
+   "vel": 0.22,
+   "notes": "[F2 C3 A3]:4",
+   "gain": 0.8,
+   "bus": "flat",
+   "reverb": 0.5
+  }
+ ],
+ "sfx": [
+  {
+   "t": 4.18,
+   "kind": "woodclick",
+   "gain": 0.3,
+   "bus": "flat",
+   "pan": 0.0,
+   "args": {
+    "pitch": 0.5
+   }
+  },
+  {
+   "t": 4.72,
+   "kind": "woodclick",
+   "gain": 0.3,
+   "bus": "flat",
+   "pan": 0.0,
+   "args": {
+    "pitch": 0.5
+   }
+  },
+  {
+   "t": 5.26,
+   "kind": "woodclick",
+   "gain": 0.3,
+   "bus": "flat",
+   "pan": 0.0,
+   "args": {
+    "pitch": 0.5
+   }
+  },
+  {
+   "t": 6.1,
+   "kind": "switch",
+   "gain": 0.45,
+   "bus": "flat",
+   "pan": -0.2,
+   "args": {}
+  },
+  {
+   "t": 6.32,
+   "kind": "knock",
+   "gain": 0.22,
+   "bus": "flat",
+   "pan": 0.0,
+   "args": {
+    "n": 2,
+    "gap": 0.09
+   }
+  },
+  {
+   "t": 7.18,
+   "kind": "woodclick",
+   "gain": 0.16,
+   "bus": "flat",
+   "pan": 0.0,
+   "args": {
+    "pitch": 2.3
+   }
+  },
+  {
+   "t": 7.26,
+   "kind": "woodclick",
+   "gain": 0.16,
+   "bus": "flat",
+   "pan": 0.0,
+   "args": {
+    "pitch": 2.0
+   }
+  },
+  {
+   "t": 7.4,
+   "kind": "woodclick",
+   "gain": 0.16,
+   "bus": "flat",
+   "pan": 0.0,
+   "args": {
+    "pitch": 2.5
+   }
+  },
+  {
+   "t": 7.93,
+   "kind": "lockclick",
+   "gain": 0.45,
+   "bus": "flat",
+   "pan": -0.2,
+   "args": {}
+  },
+  {
+   "t": 8.43,
+   "kind": "lockclick",
+   "gain": 0.45,
+   "bus": "flat",
+   "pan": -0.2,
+   "args": {}
+  },
+  {
+   "t": 9.82,
+   "kind": "woodclick",
+   "gain": 0.14,
+   "bus": "flat",
+   "pan": 0.0,
+   "args": {
+    "pitch": 1.6
+   }
+  },
+  {
+   "t": 10.2,
+   "kind": "woodclick",
+   "gain": 0.12,
+   "bus": "flat",
+   "pan": 0.0,
+   "args": {
+    "pitch": 1.8
+   }
+  },
+  {
+   "t": 13.25,
+   "kind": "heartbeat",
+   "gain": 0.4,
+   "bus": "flat",
+   "pan": 0.0,
+   "args": {}
+  },
+  {
+   "t": 14.15,
+   "kind": "heartbeat",
+   "gain": 0.4,
+   "bus": "flat",
+   "pan": 0.0,
+   "args": {}
+  },
+  {
+   "t": 15.05,
+   "kind": "heartbeat",
+   "gain": 0.4,
+   "bus": "flat",
+   "pan": 0.0,
+   "args": {}
+  },
+  {
+   "t": 15.95,
+   "kind": "heartbeat",
+   "gain": 0.4,
+   "bus": "flat",
+   "pan": 0.0,
+   "args": {}
+  },
+  {
+   "t": 16.85,
+   "kind": "heartbeat",
+   "gain": 0.4,
+   "bus": "flat",
+   "pan": 0.0,
+   "args": {}
+  },
+  {
+   "t": 13.35,
+   "kind": "woodclick",
+   "gain": 0.05,
+   "bus": "flat",
+   "pan": 0.0,
+   "args": {
+    "pitch": 2.6
+   }
+  },
+  {
+   "t": 14.05,
+   "kind": "woodclick",
+   "gain": 0.05,
+   "bus": "flat",
+   "pan": 0.0,
+   "args": {
+    "pitch": 2.6
+   }
+  },
+  {
+   "t": 14.7,
+   "kind": "woodclick",
+   "gain": 0.05,
+   "bus": "flat",
+   "pan": 0.0,
+   "args": {
+    "pitch": 2.6
+   }
+  },
+  {
+   "t": 15.45,
+   "kind": "woodclick",
+   "gain": 0.05,
+   "bus": "flat",
+   "pan": 0.0,
+   "args": {
+    "pitch": 2.6
+   }
+  },
+  {
+   "t": 16.2,
+   "kind": "woodclick",
+   "gain": 0.05,
+   "bus": "flat",
+   "pan": 0.0,
+   "args": {
+    "pitch": 2.6
+   }
+  },
+  {
+   "t": 17.48,
+   "kind": "lockclick",
+   "gain": 0.45,
+   "bus": "flat",
+   "pan": -0.2,
+   "args": {}
+  },
+  {
+   "t": 18.42,
+   "kind": "woodclick",
+   "gain": 0.14,
+   "bus": "flat",
+   "pan": 0.0,
+   "args": {
+    "pitch": 2.3
+   }
+  },
+  {
+   "t": 18.5,
+   "kind": "woodclick",
+   "gain": 0.14,
+   "bus": "flat",
+   "pan": 0.0,
+   "args": {
+    "pitch": 2.0
+   }
+  },
+  {
+   "t": 30.5,
+   "kind": "tear",
+   "gain": 0.28,
+   "bus": "camp",
+   "pan": 0.5,
+   "args": {
+    "dur": 0.6
+   }
+  },
+  {
+   "t": 30.78,
+   "kind": "tear",
+   "gain": 0.16,
+   "bus": "camp",
+   "pan": 0.5,
+   "args": {
+    "dur": 0.35
+   }
+  },
+  {
+   "t": 30.95,
+   "kind": "heartbeat",
+   "gain": 0.55,
+   "bus": "camp",
+   "pan": 0.0,
+   "args": {}
+  },
+  {
+   "t": 36.55,
+   "kind": "woodclick",
+   "gain": 0.1,
+   "bus": "camp",
+   "pan": 0.0,
+   "args": {
+    "pitch": 0.45
+   }
+  },
+  {
+   "t": 37.05,
+   "kind": "woodclick",
+   "gain": 0.1,
+   "bus": "camp",
+   "pan": 0.0,
+   "args": {
+    "pitch": 0.45
+   }
+  },
+  {
+   "t": 37.55,
+   "kind": "woodclick",
+   "gain": 0.1,
+   "bus": "camp",
+   "pan": 0.0,
+   "args": {
+    "pitch": 0.45
+   }
+  },
+  {
+   "t": 38.05,
+   "kind": "woodclick",
+   "gain": 0.1,
+   "bus": "camp",
+   "pan": 0.0,
+   "args": {
+    "pitch": 0.45
+   }
+  },
+  {
+   "t": 38.55,
+   "kind": "woodclick",
+   "gain": 0.1,
+   "bus": "camp",
+   "pan": 0.0,
+   "args": {
+    "pitch": 0.45
+   }
+  },
+  {
+   "t": 39.05,
+   "kind": "woodclick",
+   "gain": 0.1,
+   "bus": "camp",
+   "pan": 0.0,
+   "args": {
+    "pitch": 0.45
+   }
+  },
+  {
+   "t": 39.8,
+   "kind": "woodclack",
+   "gain": 0.6,
+   "bus": "camp",
+   "pan": 0.0,
+   "args": {}
+  },
+  {
+   "t": 40.9,
+   "kind": "sit",
+   "gain": 0.18,
+   "bus": "camp",
+   "pan": 0.0,
+   "args": {}
+  },
+  {
+   "t": 41.75,
+   "kind": "sit",
+   "gain": 0.22,
+   "bus": "camp",
+   "pan": 0.0,
+   "args": {}
+  },
+  {
+   "t": 42.9,
+   "kind": "sit",
+   "gain": 0.12,
+   "bus": "camp",
+   "pan": 0.0,
+   "args": {}
+  },
+  {
+   "t": 44.75,
+   "kind": "woodclick",
+   "gain": 0.1,
+   "bus": "camp",
+   "pan": 0.0,
+   "args": {
+    "pitch": 0.8
+   }
+  },
+  {
+   "t": 44.4,
+   "kind": "birds",
+   "gain": 0.35,
+   "bus": "camp",
+   "pan": -0.3,
+   "args": {
+    "dur": 3.5
+   }
+  },
+  {
+   "t": 53.2,
+   "kind": "sit",
+   "gain": 0.3,
+   "bus": "flat",
+   "pan": 0.0,
+   "args": {}
+  },
+  {
+   "t": 54.45,
+   "kind": "thud",
+   "gain": 0.12,
+   "bus": "flat",
+   "pan": 0.0,
+   "args": {}
+  },
+  {
+   "t": 55.3,
+   "kind": "ping",
+   "gain": 0.7,
+   "bus": "flat",
+   "pan": 0.35,
+   "args": {}
+  },
+  {
+   "t": 66.45,
+   "kind": "sit",
+   "gain": 0.16,
+   "bus": "flat",
+   "pan": 0.0,
+   "args": {}
+  },
+  {
+   "t": 67.0,
+   "kind": "tear",
+   "gain": 0.06,
+   "bus": "flat",
+   "pan": 0.0,
+   "args": {
+    "dur": 0.5
+   }
+  }
+ ],
+ "beds": [
+  {
+   "t0": 0.0,
+   "t1": 20.0,
+   "kind": "room",
+   "gain": 2.4,
+   "fade": 0.3,
+   "bus": "flat"
+  },
+  {
+   "t0": 0.0,
+   "t1": 20.0,
+   "kind": "hum",
+   "gain": 0.75,
+   "fade": 0.3,
+   "args": {
+    "f": 50
+   },
+   "bus": "flat",
+   "pan": 0.3
+  },
+  {
+   "t0": 48.0,
+   "t1": 73.0,
+   "kind": "room",
+   "gain": 2.4,
+   "fade": 0.02,
+   "bus": "flat"
+  },
+  {
+   "t0": 48.0,
+   "t1": 73.0,
+   "kind": "hum",
+   "gain": 0.65,
+   "fade": 0.02,
+   "args": {
+    "f": 50
+   },
+   "bus": "flat",
+   "pan": 0.3
+  },
+  {
+   "t0": 0.8,
+   "t1": 3.9,
+   "kind": "city",
+   "gain": 1.4,
+   "fade": 1.3,
+   "bus": "flat",
+   "pan": -0.4
+  },
+  {
+   "t0": 9.0,
+   "t1": 13.3,
+   "kind": "city",
+   "gain": 1.6,
+   "fade": 0.5,
+   "bus": "flat",
+   "pan": -0.5
+  },
+  {
+   "t0": 10.6,
+   "t1": 12.8,
+   "kind": "wind",
+   "gain": 0.55,
+   "fade": 0.9,
+   "bus": "flat",
+   "pan": -0.6
+  },
+  {
+   "t0": 20.0,
+   "t1": 45.0,
+   "kind": "crickets",
+   "gain": 1.3,
+   "fade": 0.02,
+   "args": {
+    "n": 7
+   },
+   "bus": "camp"
+  },
+  {
+   "t0": 43.0,
+   "t1": 48.5,
+   "kind": "crickets",
+   "gain": 0.7,
+   "fade": 1.2,
+   "args": {
+    "n": 2
+   },
+   "bus": "camp"
+  },
+  {
+   "t0": 20.0,
+   "t1": 48.0,
+   "kind": "wind",
+   "gain": 0.45,
+   "fade": 0.02,
+   "bus": "camp",
+   "pan": 0.2
+  },
+  {
+   "t0": 20.0,
+   "t1": 48.0,
+   "kind": "fire",
+   "gain": 0.75,
+   "fade": 0.02,
+   "args": {
+    "pops": 7
+   },
+   "bus": "camp"
+  },
+  {
+   "t0": 63.4,
+   "t1": 68.6,
+   "kind": "baby",
+   "gain": 0.5,
+   "fade": 1.2,
+   "bus": "flat",
+   "pan": -0.6
+  }
+ ],
+ "gates": {
+  "flat": [
+   [
+    0.0,
+    20.0
+   ],
+   [
+    48.0,
+    73.0
+   ]
+  ],
+  "camp": [
+   [
+    20.0,
+    48.0
+   ]
+  ]
+ },
+ "busDuck": [
+  {
+   "bus": "flat",
+   "t0": 18.9,
+   "t1": 20.0,
+   "amount": 0.45,
+   "ramp": 0.3
+  },
+  {
+   "bus": "flat",
+   "t0": 58.3,
+   "t1": 62.8,
+   "amount": 0.25,
+   "ramp": 0.5
+  },
+  {
+   "bus": "flat",
+   "t0": 69.3,
+   "t1": 73.0,
+   "amount": 0.45,
+   "ramp": 0.8
+  }
+ ]
+}

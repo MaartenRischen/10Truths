@@ -1,0 +1,559 @@
+<title>Demismatch Rough Cuts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+  /* Demismatch broadside (cor.css tokens): parchment page, oxblood-deep screening band. One deliberate light look. */
+  :root {
+    color-scheme: light;
+    --parchment: #ece0c4; --parchment-soft: #f2e8cf; --parchment-dark: #ddd0b0;
+    --ink: #1a0608; --oxblood: #3a1218; --oxblood-deep: #2a0c11; --oxblood-ink: #4a1e26;
+    --teal: #2d6b6b; --gold: #c4962c; --gold-dim: #a5801f; --muted: #6f6247;
+    --rule: rgba(58, 18, 24, 0.22); --rule-soft: rgba(58, 18, 24, 0.12);
+    --serif: 'Spectral', Georgia, 'Times New Roman', serif;
+    --mono: 'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;
+    --col: 1000px; --gut: clamp(16px, 4vw, 48px);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-padding-top: 64px; }
+  @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+  body { background: var(--parchment); color: var(--ink); font: 400 17px/1.62 var(--serif); padding-inline: var(--gut); padding-block: 0 110px; }
+  a { color: var(--oxblood); }
+  :focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; }
+  h1, h2, h3 { margin: 0; text-wrap: balance; }
+  p, dl, dd, ol, ul, figure { margin: 0; }
+  ol, ul { padding: 0; }
+  .wrap { max-width: var(--col); margin-inline: auto; }
+  .label { font: 500 11px/1.3 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--oxblood-ink); }
+  .num { font-variant-numeric: lining-nums tabular-nums; }
+
+  .bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10; margin-inline: calc(-1 * var(--gut)); padding: 10px var(--gut);
+    background: color-mix(in srgb, var(--parchment) 92%, transparent); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); border-bottom: 1px solid var(--rule); }
+  .bar-in { max-width: var(--col); margin-inline: auto; display: flex; align-items: center; gap: 14px; }
+  .mark { font: italic 400 18px/1 var(--serif); color: var(--oxblood); text-decoration: none; white-space: nowrap; }
+  .chips { display: flex; gap: 4px; margin-left: auto; overflow-x: auto; scrollbar-width: none; }
+  .chips::-webkit-scrollbar { display: none; }
+  .chips a { font: 500 11.5px/1 var(--mono); color: var(--oxblood-ink); text-decoration: none; padding: 7px 8px; border: 1px solid var(--rule); white-space: nowrap; }
+  .chips a:hover { border-color: var(--oxblood); }
+  .chips a.on { background: var(--oxblood); color: var(--parchment); border-color: var(--oxblood); }
+  .chips a[data-stars]:not([data-stars=""])::after { content: " " attr(data-stars) "★"; color: var(--gold-dim); }
+  .chips a.on[data-stars]:not([data-stars=""])::after { color: var(--gold); }
+  @media (max-width: 560px) { .chips .ct { display: none; } }
+
+  .open { padding-block: clamp(44px, 7vw, 88px) 0; display: grid; gap: 20px; max-width: 780px; }
+  .eyebrow { font: 500 11px/1.5 var(--mono); letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
+  h1 { font: 300 clamp(38px, 6.2vw, 68px)/1.03 var(--serif); letter-spacing: -.015em; color: var(--oxblood); }
+  h1 em { font-style: italic; }
+  .lede { font-size: 19px; line-height: 1.55; max-width: 62ch; }
+
+  /* programme: the four films as posters on the screening band */
+  .band { margin-top: 40px; margin-inline: calc(-1 * var(--gut)); padding: 28px var(--gut) 30px; background: var(--oxblood-deep); color: var(--parchment); }
+  .band-in { max-width: var(--col); margin-inline: auto; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; }
+  .pg { display: grid; gap: 10px; align-content: start; text-decoration: none; color: var(--parchment); }
+  .pg img, .pg .ph { display: block; width: 100%; height: auto; aspect-ratio: 9 / 16; object-fit: cover; background: #14060a; border: 1px solid rgba(196,150,44,.35); transition: border-color .15s, transform .15s; }
+  .pg:hover img, .pg:hover .ph { border-color: var(--gold); transform: translateY(-2px); }
+  .pg-t { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 8px; align-items: baseline; }
+  .pg-t .num { font: 500 12px/1 var(--mono); color: var(--gold); }
+  .pg-t strong { font: italic 400 19px/1.15 var(--serif); }
+  .pg-t span:last-child { font: 400 11.5px/1 var(--mono); color: rgba(236,224,196,.7); }
+  .pg-e { font: italic 300 14px/1.4 var(--serif); color: rgba(236,224,196,.78); }
+  @media (max-width: 480px) { .pg-t { grid-template-columns: auto minmax(0, 1fr); } .pg-t span:last-child { grid-column: 2; } .pg-t strong { font-size: 17px; } .pg-e { font-size: 13px; } }
+  @media (max-width: 760px) { .band-in { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px 14px; } }
+
+  /* how to test */
+  .howto { margin-top: 44px; display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 34px; align-items: start; }
+  .howto h2, .next h2 { font: 400 28px/1.15 var(--serif); color: var(--oxblood); }
+  .steps { counter-reset: s; list-style: none; display: grid; gap: 12px; margin-top: 14px; }
+  .steps li { counter-increment: s; display: grid; grid-template-columns: 28px minmax(0, 1fr); gap: 10px; font-size: 16.5px; line-height: 1.5; }
+  .steps li::before { content: counter(s); font: 500 12px/1.9 var(--mono); color: var(--parchment); background: var(--teal); width: 22px; height: 22px; text-align: center; }
+  .asks { background: var(--parchment-soft); border: 1.5px solid var(--oxblood); box-shadow: 4px 4px 0 var(--teal), 8px 8px 0 var(--gold); padding: 18px 18px 20px; display: grid; gap: 10px; margin-right: 8px; }
+  .asks q { display: block; font: italic 400 19px/1.35 var(--serif); color: var(--oxblood); quotes: "\201C" "\201D"; }
+  .asks p { font-size: 15.5px; line-height: 1.5; color: var(--oxblood-ink); }
+  @media (max-width: 760px) { .howto { grid-template-columns: 1fr; } }
+
+  /* one film */
+  .film { margin-top: 72px; padding-top: 32px; border-top: 2px solid var(--oxblood); display: grid; gap: 18px; }
+  .film-head { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 18px; align-items: start; }
+  .film-head .num { font: 300 56px/0.9 var(--serif); color: var(--gold-dim); }
+  .film h2 { font: italic 400 clamp(32px, 4.6vw, 46px)/1.05 var(--serif); color: var(--oxblood); }
+  .meta { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+  .meta span { font: 500 10.5px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--oxblood-ink); border: 1px solid var(--rule); padding: 5px 7px; }
+  .logline { font: 400 21px/1.45 var(--serif); max-width: 60ch; }
+  .film-body { display: grid; grid-template-columns: 340px minmax(0, 1fr); gap: 34px; align-items: start; }
+  .player { background: var(--oxblood-deep); padding: 10px; border: 1px solid var(--oxblood); }
+  .player video { display: block; width: 100%; aspect-ratio: 9 / 16; background: #0d0406; }
+  .pending-v { aspect-ratio: 9 / 16; display: grid; place-content: center; gap: 8px; text-align: center; padding: 20px; color: var(--parchment); background: #14060a; }
+  .pending-v .label { color: var(--gold); }
+  .pending-v p { font: italic 300 16px/1.4 var(--serif); }
+  .side { display: grid; gap: 22px; }
+  .facts { display: grid; gap: 14px; }
+  .facts > div { display: grid; gap: 3px; }
+  .facts dd { font-size: 16.5px; line-height: 1.55; }
+  .facts ul { list-style: none; display: grid; gap: 6px; }
+  .facts li { padding-left: 16px; position: relative; }
+  .facts li::before { content: ""; position: absolute; left: 2px; top: .7em; width: 6px; height: 1.5px; background: var(--oxblood); }
+  @media (max-width: 760px) { .film-body { grid-template-columns: 1fr; } .player { width: min(360px, 100%); justify-self: center; } }
+
+  .call { display: grid; grid-template-columns: auto auto 1fr; align-items: center; gap: 10px 18px; padding: 14px 16px; background: var(--parchment-soft); border: 1px solid var(--rule); }
+  .stars { display: flex; gap: 2px; }
+  .star { font-size: 26px; line-height: 1; background: none; border: 0; padding: 2px; color: var(--parchment-dark); cursor: pointer; -webkit-text-stroke: 1px rgba(58,18,24,.35); }
+  .star.on { color: var(--gold); -webkit-text-stroke: 0; }
+  .pick { display: flex; align-items: center; gap: 8px; font-size: 16px; cursor: pointer; }
+  .pick input, .chk input { appearance: none; width: 19px; height: 19px; margin: 0; border: 1.5px solid var(--oxblood); background: var(--parchment); display: grid; place-items: center; cursor: pointer; flex: none; }
+  .pick input:checked, .chk input:checked { background: var(--oxblood); }
+  .pick input:checked::after, .chk input:checked::after { content: "✓"; color: var(--parchment); font: 700 12px/1 var(--mono); }
+  .cmt { justify-self: end; font: 500 11px/1 var(--mono); letter-spacing: .06em; color: var(--oxblood); background: none; border: 1px solid var(--oxblood); padding: 7px 9px; cursor: pointer; }
+  .cmt:hover { background: var(--oxblood); color: var(--parchment); }
+  .note-l { grid-column: 1 / -1; font: 500 10.5px/1 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+  textarea, input[type=text], .log-form input:not([type]) { width: 100%; background: var(--parchment); color: var(--ink); border: 1px solid var(--rule); padding: 9px 11px; font: 400 16px/1.45 var(--serif); border-radius: 0; }
+  textarea { resize: vertical; }
+  textarea:focus, input:focus { border-color: var(--teal); outline: none; }
+  .call textarea { grid-column: 1 / -1; }
+  .save-state, .log-state { font: 400 11.5px/1.3 var(--mono); color: var(--muted); min-height: 1.3em; }
+  .save-state { grid-column: 1 / -1; }
+  @media (max-width: 520px) { .call { grid-template-columns: 1fr auto; } .stars { grid-column: 1 / -1; } }
+
+  .sub { margin-top: 10px; display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; }
+  .sub span { font-weight: 400; letter-spacing: .04em; text-transform: none; color: var(--muted); }
+  .board { list-style: none; display: grid; grid-auto-flow: column; grid-auto-columns: 108px; gap: 10px; overflow-x: auto; padding-bottom: 10px; scroll-snap-type: x proximity; scrollbar-color: var(--rule) transparent; }
+  .board li { scroll-snap-align: start; }
+  .shot { display: grid; gap: 6px; width: 100%; padding: 0; background: none; border: 0; text-align: left; color: var(--ink); cursor: pointer; font: inherit; }
+  .shot img, .shot .ph { display: block; width: 100%; height: auto; aspect-ratio: 9 / 16; object-fit: cover; background: var(--oxblood-deep); outline: 1px solid var(--rule); outline-offset: -1px; }
+  .shot:hover img { outline: 2px solid var(--oxblood); outline-offset: -2px; }
+  .shot.now img, .shot.now .ph { outline: 3px solid var(--gold); outline-offset: -3px; }
+  .sh-n { display: flex; justify-content: space-between; font: 500 11px/1 var(--mono); color: var(--oxblood); }
+  .sh-n span { color: var(--muted); font-weight: 400; }
+  .sh-c { font-size: 13.5px; line-height: 1.35; color: var(--oxblood-ink); }
+
+  .script { border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+  .script summary { cursor: pointer; padding: 12px 0; font: 500 11px/1.3 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--oxblood-ink); list-style: none; display: flex; gap: 10px; align-items: baseline; }
+  .script summary::-webkit-details-marker { display: none; }
+  .script summary::before { content: "+"; font-size: 14px; color: var(--oxblood); width: 12px; }
+  .script[open] summary::before { content: "−"; }
+  .script summary span { letter-spacing: .04em; text-transform: none; color: var(--muted); font-weight: 400; }
+  .tbl { overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; min-width: 620px; font-size: 14.5px; line-height: 1.45; }
+  th { text-align: left; font: 500 10.5px/1.2 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); padding: 6px 10px 6px 0; border-bottom: 1px solid var(--rule); }
+  td { vertical-align: top; padding: 8px 10px 8px 0; border-bottom: 1px solid var(--rule-soft); }
+  td strong { font-weight: 500; }
+  .c-n, .c-t { font: 400 12px/1.6 var(--mono); white-space: nowrap; color: var(--oxblood-ink); }
+  .c-s { color: var(--oxblood-ink); width: 28%; }
+  .src { font: 400 11.5px/1.5 var(--mono); color: var(--muted); padding: 10px 0 14px; }
+
+  .log { display: grid; gap: 12px; }
+  .count { font-weight: 400; }
+  .log-form { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 16px; padding: 16px; background: var(--parchment-soft); border: 1px solid var(--rule); }
+  .log-form > label { display: grid; gap: 5px; font: 500 10.5px/1.3 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--oxblood-ink); }
+  .log-form > label:first-child { grid-column: 1 / -1; max-width: 360px; }
+  .log-row { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 14px 34px; align-items: end; }
+  .logd > summary { cursor: pointer; list-style: none; display: inline-flex; gap: 8px; align-items: center; font: 500 12px/1 var(--mono); letter-spacing: .06em; color: var(--oxblood); border: 1px solid var(--oxblood); padding: 10px 14px; }
+  .logd > summary::-webkit-details-marker { display: none; }
+  .logd > summary::before { content: "+"; font-size: 14px; }
+  .logd[open] > summary::before { content: "−"; }
+  .logd > summary:hover { background: var(--oxblood); color: var(--parchment); }
+  .logd[open] > summary { margin-bottom: 10px; }
+  fieldset { border: 0; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 6px 18px; align-items: center; }
+  legend { display: block; width: 100%; padding: 0; margin-bottom: 6px; font: 500 10.5px/1.3 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--oxblood-ink); }
+  fieldset label, .chk { display: flex; gap: 7px; align-items: center; font-size: 16px; cursor: pointer; }
+  fieldset input { accent-color: var(--oxblood); width: 17px; height: 17px; margin: 0; }
+  .log-actions { grid-column: 1 / -1; display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
+  .log-actions button { font: 500 12px/1 var(--mono); letter-spacing: .06em; color: var(--parchment); background: var(--oxblood); border: 1px solid var(--oxblood); padding: 10px 14px; cursor: pointer; }
+  .log-actions button:hover { background: var(--oxblood-ink); }
+  .log-actions button:disabled { opacity: .5; cursor: default; }
+  @media (max-width: 620px) { .log-form { grid-template-columns: 1fr; } }
+  .entries { list-style: none; display: grid; gap: 10px; }
+  .entry { display: grid; gap: 6px; padding: 12px 14px; border-left: 3px solid var(--teal); background: rgba(242,232,207,.6); }
+  .entry-h { display: flex; gap: 10px; flex-wrap: wrap; align-items: baseline; font: 400 11.5px/1.3 var(--mono); color: var(--muted); }
+  .entry-h strong { font: 500 12.5px/1.3 var(--mono); color: var(--oxblood); }
+  .tag { font: 500 10px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; padding: 4px 6px; border: 1px solid var(--rule); color: var(--oxblood-ink); }
+  .tag.yes { background: var(--teal); border-color: var(--teal); color: var(--parchment); }
+  .entry p { font-size: 15.5px; line-height: 1.5; }
+  .entry p b { font: 500 10px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-right: 6px; }
+  .rm { margin-left: auto; font: 400 11px/1 var(--mono); color: var(--muted); background: none; border: 0; padding: 2px 0; cursor: pointer; text-decoration: underline; text-underline-offset: 2px; }
+  .rm.sure { color: var(--oxblood); font-weight: 500; }
+
+  .next { margin-top: 80px; padding-top: 30px; border-top: 2px solid var(--oxblood); display: grid; gap: 14px; max-width: 780px; }
+  .next p { max-width: 66ch; }
+  footer { margin-top: 70px; font: 400 11.5px/1.7 var(--mono); color: var(--muted); border-top: 1px solid var(--rule); padding-top: 16px; }
+  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; } }
+</style>
+
+<div class="bar"><div class="bar-in">
+  <a class="mark" href="#top">Rough cuts</a>
+  <nav class="chips" aria-label="Films"><a href="#f01" data-k="f01"><span class="cn">01</span><span class="ct"> The Visitor</span></a><a href="#f02" data-k="f02"><span class="cn">02</span><span class="ct"> Care Instructions</span></a><a href="#f03" data-k="f03"><span class="cn">03</span><span class="ct"> The Night Watch</span></a><a href="#f04" data-k="f04"><span class="cn">04</span><span class="ct"> Good Dog</span></a></nav>
+</div></div>
+
+<main id="top">
+<div class="wrap">
+  <header class="open">
+    <p class="eyebrow">Demismatch · four one-minute films · rough cuts · 27 September 2026</p>
+    <h1>Four films to show people who have <em>never heard of us</em></h1>
+    <p class="lede">These are animatics. The story, timing, acting and sound are what the finished films will have. The picture is a quick render, and the music is a temporary score I generated in code. Watch them on your phone first. Then show them to a few people who know nothing about Demismatch: what they say back decides which film gets finished.</p>
+  </header>
+</div>
+
+<section class="band" aria-label="The four films"><div class="band-in"><a class="pg" href="#f01"><img src="img/01/poster.webp" alt="" width="720" height="1280"><span class="pg-t"><span class="num">01</span><strong>The Visitor</strong><span>1:20</span></span><span class="pg-e">&ldquo;He&#x27;d love our world. He&#x27;d never understand why we&#x27;re alone in it.&rdquo;</span></a><a class="pg" href="#f02"><img src="img/02/poster.webp" alt="" width="720" height="1280"><span class="pg-t"><span class="num">02</span><strong>Care Instructions</strong><span>1:04</span></span><span class="pg-e">&ldquo;You came with instructions. We&#x27;re writing them down.&rdquo;</span></a><a class="pg" href="#f03"><img src="img/03/poster.webp" alt="" width="720" height="1280"><span class="pg-t"><span class="num">03</span><strong>The Night Watch</strong><span>1:13</span></span><span class="pg-e">&ldquo;You were never meant to keep watch alone.&rdquo;</span></a><a class="pg" href="#f04"><img src="img/04/poster.webp" alt="" width="720" height="1280"><span class="pg-t"><span class="num">04</span><strong>Good Dog</strong><span>1:02</span></span><span class="pg-e">&ldquo;Nobody calls a lonely dog broken.&rdquo;</span></a></div></section>
+
+<div class="wrap">
+  <section class="howto" aria-labelledby="howto-h">
+    <div>
+      <h2 id="howto-h">How to test them</h2>
+      <ol class="steps">
+        <li>Show one film on a phone, full screen, sound on. Say only that it's a one-minute film. Don't explain Demismatch first.</li>
+        <li>When it ends, ask the three questions in the box. Write down their words, not your summary of them.</li>
+        <li>Show at least one person a film with the sound off. If they still get it, the pictures carry it.</li>
+        <li>Log each viewer under the film. Five to eight people per film is enough to see a pattern. I read the log back.</li>
+      </ol>
+    </div>
+    <div class="asks">
+      <q>What was that about?</q>
+      <q>How did it make you feel?</q>
+      <q>Would you tap the link at the end?</q>
+      <p>A film works when people say its idea back to you in their own words without being told. Each film lists the answer it's aiming for.</p>
+    </div>
+  </section>
+
+  
+<section class="film" id="f01" data-k="f01" aria-labelledby="h-f01">
+  <header class="film-head">
+    <span class="num">01</span>
+    <div>
+      <h2 id="h-f01">The Visitor</h2>
+      <p class="meta"><span>1:20</span><span>18 shots</span><span>9:16</span></p>
+    </div>
+  </header>
+  <p class="logline">One night your ancestor from 50,000 years ago knocks on your door. He loves everything in your flat except one thing.</p>
+  <div class="film-body">
+    <div class="player"><video id="v-f01" controls playsinline preload="metadata" poster="img/01/poster.webp" aria-label="The Visitor, rough cut, 1:20"><source src="media/01.mp4" type="video/mp4"></video></div>
+    <div class="side">
+      <dl class="facts"><div><dt class="label">The turn</dt><dd>He can&#x27;t find the others. He sits down close, and the host sends one message.</dd></div><div><dt class="label">It works if viewers say</dt><dd>Our ancestors would love everything we&#x27;ve built, except how alone we are in it.</dd></div><div><dt class="label">Weakest moments now</dt><dd><ul><li>The phone insert in shot 2 is an abstract close-up; a stranger may not read it as a feed.</li><li>The mirror tilt and the search play from behind, so posture has to carry the acting at a distance.</li><li>The laughter in the last shot is small; the full flat needs more life.</li></ul></dd></div><div><dt class="label">The final version needs</dt><dd>Native 1080×1920 with real depth of field, hands that can hold and type, walks with planted feet, a proper laugh, and composed music.</dd></div></dl>
+      <div class="call" data-k="f01">
+        <div class="stars" role="radiogroup" aria-label="Rate The Visitor"><button type="button" class="star" role="radio" aria-checked="false" data-v="1" aria-label="1 of 5">★</button><button type="button" class="star" role="radio" aria-checked="false" data-v="2" aria-label="2 of 5">★</button><button type="button" class="star" role="radio" aria-checked="false" data-v="3" aria-label="3 of 5">★</button><button type="button" class="star" role="radio" aria-checked="false" data-v="4" aria-label="4 of 5">★</button><button type="button" class="star" role="radio" aria-checked="false" data-v="5" aria-label="5 of 5">★</button></div>
+        <label class="pick"><input type="checkbox" id="pick-f01"> <span>Finish this one</span></label>
+        <button type="button" class="cmt" hidden>Comment</button>
+        <label class="note-l" for="note-f01">Notes on The Visitor</label>
+        <textarea id="note-f01" rows="3" maxlength="4000" placeholder="Timing, a shot to change, what to keep"></textarea>
+        <p class="save-state" aria-live="polite"></p>
+      </div>
+    </div>
+  </div>
+  <h3 class="label sub">Storyboard <span>select a shot to play from it</span></h3>
+  <ol class="board" aria-label="Storyboard for The Visitor: select a shot to play from it"><li><button type="button" class="shot" data-t="0" aria-label="Play from shot 1 at 0:00"><img src="img/01/s01.webp" alt="" loading="lazy" width="216" height="384"><span class="sh-n">01<span>0:00</span></span><span class="sh-c">Alone on the sofa, scrolling.</span></button></li><li><button type="button" class="shot" data-t="5.5" aria-label="Play from shot 2 at 0:06"><img src="img/01/s02.webp" alt="" loading="lazy" width="216" height="384"><span class="sh-n">02<span>0:06</span></span><span class="sh-c">The feed.</span></button></li><li><button type="button" class="shot" data-t="8" aria-label="Play from shot 3 at 0:08"><img src="img/01/s03.webp" alt="" loading="lazy" width="216" height="384"><span class="sh-n">03<span>0:08</span></span><span class="sh-c">A knock.</span></button></li><li><button type="button" class="shot" data-t="10.5" aria-label="Play from shot 4 at 0:10"><img src="img/01/s04.webp" alt="" loading="lazy" width="216" height="384"><span class="sh-n">04<span>0:10</span></span><span class="sh-c">At the door: someone identical, dust on his feet.</span></button></li><li><button type="button" class="shot" data-t="15.5" aria-label="Play from shot 5 at 0:16"><img src="img/01/s05.webp" alt="" loading="lazy" width="216" height="384"><span class="sh-n">05<span>0:16</span></span><span class="sh-c">Same head tilt, same moment.</span></button></li><li><button type="button" class="shot" data-t="18.5" aria-label="Play from shot 6 at 0:18"><img src="img/01/s06.webp" alt="" loading="lazy" width="216" height="384"><span class="sh-n">06<span>0:18</span></span><span class="sh-c">Running water.</span></button></li><li><button type="button" class="shot" data-t="24" aria-label="Play from shot 7 at 0:24"><img src="img/01/s07.webp" alt="" loading="lazy" width="216" height="384"><span class="sh-n">07<span>0:24</span></span><span class="sh-c">The light switch.</span></button></li><li><button type="button" class="shot" data-t="28" aria-label="Play from shot 8 at 0:28"><img src="img/01/s08.webp" alt="" loading="lazy" width="216" height="384"><span class="sh-n">08<span>0:28</span></span><span class="sh-c">The fridge, and an apple.</span></button></li><li><button type="button" class="shot" data-t="32.5" aria-label="Play from shot 9 at 0:32"><img src="img/01/s09.webp" alt="" loading="lazy" width="216" height="384"><span class="sh-n">09<span>0:32</span></span><span class="sh-c">Music. He dances.</span></button></li><li><button type="button" class="shot" data-t="36.5" aria-label="Play from shot 10 at 0:36"><img src="img/01/s10.webp" alt="" loading="lazy" width="216" height="384"><span class="sh-n">10<span>0:36</span></span><span class="sh-c">He looks for the others. The bedroom is empty.</span></button></li><li><button type="button" class="shot" data-t="41" aria-label="Play from shot 11 at 0:41"><img src="img/01/s11.webp" alt="" loading="lazy" width="216" height="384"><span class="sh-n">11<span>0:41</span></span><span class="sh-c">The balcony: a thousand windows, nobody out.</span></button></li><li><button type="button" class="shot" data-t="45.5" aria-label="Play from shot 12 at 0:46"><img src="img/01/s12.webp" alt="" loading="lazy" width="216" height="384"><span class="sh-n">12<span>0:46</span></span><span class="sh-c">The corridor: every door closed.</span></button></li><li><button type="button" class="shot" data-t="50" aria-label="Play from shot 13 at 0:50"><img src="img/01/s13.webp" alt="" loading="lazy" width="216" height="384"><span class="sh-n">13<span>0:50</span></span><span class="sh-c">Where is everyone?</span></button></li><li><button type="button" class="shot" data-t="55" aria-label="Play from shot 14 at 0:55"><img src="img/01/s14.webp" alt="" loading="lazy" width="216" height="384"><span class="sh-n">14<span>0:55</span></span><span class="sh-c">He sits down close. The host looks up.</span></button></li><li><button type="button" class="shot" data-t="62.5" aria-label="Play from shot 15 at 1:02"><img src="img/01/s15.webp" alt="" loading="lazy" width="216" height="384"><span class="sh-n">15<span>1:02</span></span><span class="sh-c">One message.</span></button></li><li><button type="button" class="shot" data-t="66" aria-label="Play from shot 16 at 1:06"><img src="img/01/s16.webp" alt="" loading="lazy" width="216" height="384"><span class="sh-n">16<span>1:06</span></span><span class="sh-c">Friends arrive with food.</span></button></li><li><button type="button" class="shot" data-t="70.5" aria-label="Play from shot 17 at 1:10"><img src="img/01/s17.webp" alt="" loading="lazy" width="216" height="384"><span class="sh-n">17<span>1:10</span></span><span class="sh-c">The flat fills.</span></button></li><li><button type="button" class="shot" data-t="75.5" aria-label="Play from shot 18 at 1:16"><img src="img/01/s18.webp" alt="" loading="lazy" width="216" height="384"><span class="sh-n">18<span>1:16</span></span><span class="sh-c">End card.</span></button></li></ol>
+  <details class="script"><summary>The script as written <span>18 shots</span></summary><div class="tbl"><table><thead><tr><th>#</th><th>Time</th><th>Frame and action</th><th>Sound</th></tr></thead><tbody><tr><td class="c-n">1</td><td class="c-t">0:00–0:06</td><td><strong>Wide, eye level from the kitchen side: the HOST small on the sofa in the lower third, the balcony window and the city above him.</strong> HOST hunched over the phone, noodle cup in the other hand. Tiny scroll movements only. Hold.</td><td class="c-s">Room tone, fridge hum, distant city.</td></tr><tr><td class="c-n">2</td><td class="c-t">0:06–0:09</td><td><strong>Close: phone and hands, head bent into the glow.</strong> Thumb flicks twice (stepped).</td><td class="c-s">Two soft woodclicks.</td></tr><tr><td class="c-n">3</td><td class="c-t">0:09–0:11</td><td><strong>Medium: HOST on the sofa, front door visible deep in frame.</strong> KNOCK. Head snaps up (anticipation, then turn toward the door, a two-frame hold).</td><td class="c-s">knock x3.</td></tr><tr><td class="c-n">4</td><td class="c-t">0:11–0:16</td><td><strong>From inside the flat, framed by the door: the landing light behind.</strong> HOST opens the door. The VISITOR stands on the landing, identical, dust on his feet. Hold two full seconds.</td><td class="c-s">Door + latch. First piano note (low, single).</td></tr><tr><td class="c-n">5</td><td class="c-t">0:16–0:19</td><td><strong>Profile two-shot, both full height in the doorway.</strong> The HOST tilts his head. The VISITOR tilts his head the same way at the same moment. Mirror.</td><td class="c-s">Silence, one high piano note (a small joke).</td></tr><tr><td class="c-n">6</td><td class="c-t">0:19–0:25</td><td><strong>Kitchenette, medium, from beside the sink.</strong> HOST turns on the tap. Water. The VISITOR jumps back, then puts both hands under it and keeps them there, head tilting down at the miracle.</td><td class="c-s">Water; playful piano motif starts.</td></tr><tr><td class="c-n">7</td><td class="c-t">0:25–0:29</td><td><strong>Wide on the front-door wall with the switch.</strong> The VISITOR presses the switch: dark / light / dark / light (stepped flicker, 3 cycles). Both arms go up.</td><td class="c-s">switch clicks in rhythm; motif continues.</td></tr><tr><td class="c-n">8</td><td class="c-t">0:29–0:34</td><td><strong>From inside the fridge looking out (or low beside it).</strong> The fridge opens; cold light floods the VISITOR like a sunrise; he takes out an apple and holds it up with both hands.</td><td class="c-s">fridge thump + hum; motif lifts.</td></tr><tr><td class="c-n">9</td><td class="c-t">0:34–0:38</td><td><strong>Medium wide, living room.</strong> HOST taps the little speaker; music plays; the VISITOR sways and does three stepped dance moves.</td><td class="c-s">musicbox_tune (diegetic).</td></tr><tr><td class="c-n">10</td><td class="c-t">0:38–0:42</td><td><strong>Medium: VISITOR stops dancing; turns; walks to the bedroom door; looks in.</strong> Empty bed.</td><td class="c-s">Music box winds down and stops. Room tone only.</td></tr><tr><td class="c-n">11</td><td class="c-t">0:42–0:46</td><td><strong>From behind the VISITOR on the balcony: his small figure at the rail, the endless lit city above and below.</strong> Looks left, right. No one on any balcony.</td><td class="c-s">Wind, city.</td></tr><tr><td class="c-n">12</td><td class="c-t">0:46–0:50</td><td><strong>The stairwell landing, looking down the corridor of closed doors.</strong> He opens the front door, looks down the corridor both ways. Every door closed.</td><td class="c-s">Silence; a far-off lift hum.</td></tr><tr><td class="c-n">13</td><td class="c-t">0:50–0:54</td><td><strong>Living room, wide, low: the HOST on the sofa with the phone again; the VISITOR standing in front of him.</strong> The VISITOR opens his hands a little: where are they? HOST doesn&#x27;t look up. Hold.</td><td class="c-s">Fridge hum only.</td></tr><tr><td class="c-n">14</td><td class="c-t">0:54–1:00</td><td><strong>Two-shot on the sofa, frontal.</strong> The VISITOR sits down close, shoulder touching the HOST (woodclack on contact). Beat. The HOST&#x27;s head slowly turns toward him. The phone screen dims in the HOST&#x27;s hand.</td><td class="c-s">woodclack, then silence; a soft pad enters.</td></tr><tr><td class="c-n">15</td><td class="c-t">1:00–1:04</td><td><strong>Close: the phone in the HOST&#x27;s hands.</strong> He types one short message (unreadable, shallow focus) and sends it.</td><td class="c-s">typing, swoosh.</td></tr><tr><td class="c-n">16</td><td class="c-t">1:04–1:08</td><td><strong>The front door from inside.</strong> Knocks. The door opens and four friends come in carrying food, one after another.</td><td class="c-s">knock, door, murmur rising.</td></tr><tr><td class="c-n">17</td><td class="c-t">1:08–1:14</td><td><strong>Wide, the whole flat, warm: people on the sofa, on the floor, on the kitchen stool.</strong> The VISITOR in the middle with an arm around two of them, shoulders shaking with laughter (stepped bounce). The HOST beside him, upright now.</td><td class="c-s">murmur + a warm resolution of the piano motif.</td></tr><tr><td class="c-n">18</td><td class="c-t">1:14–1:18.5</td><td><strong>End card.</strong> &quot;He&#x27;d love our world. He&#x27;d never understand why we&#x27;re alone in it.&quot;</td><td class="c-s">Last chord decays; near silence.</td></tr></tbody></table></div><p class="src">The animatic follows this closely; where it differs, the film is the newer version.</p></details>
+  <div class="log" data-k="f01">
+    <h3 class="label sub">Screenings <span class="count" data-k="f01"></span></h3>
+    <details class="logd"><summary>Log a screening</summary>
+    <form class="log-form" data-k="f01" autocomplete="off">
+      <label>Viewer <input name="viewer" maxlength="80" placeholder="First name or initials, age"></label>
+      <label>What was it about? <textarea name="about" rows="2" maxlength="1200" placeholder="Their words, as close as you can"></textarea></label>
+      <label>How did it make them feel? <textarea name="felt" rows="2" maxlength="1200"></textarea></label>
+      <div class="log-row">
+        <fieldset><legend>Would they tap the link?</legend>
+          <label><input type="radio" name="click" value="yes"> Yes</label>
+          <label><input type="radio" name="click" value="maybe"> Maybe</label>
+          <label><input type="radio" name="click" value="no"> No</label>
+        </fieldset>
+        <label class="chk"><input type="checkbox" name="mute"> Watched with the sound off</label>
+      </div>
+      <div class="log-actions"><button type="submit">Save screening</button><p class="log-state" aria-live="polite"></p></div>
+    </form></details>
+    <ol class="entries" data-k="f01"></ol>
+  </div>
+</section>
+<section class="film" id="f02" data-k="f02" aria-labelledby="h-f02">
+  <header class="film-head">
+    <span class="num">02</span>
+    <div>
+      <h2 id="h-f02">Care Instructions</h2>
+      <p class="meta"><span>1:04</span><span>14 shots</span><span>9:16</span></p>
+    </div>
+  </header>
+  <p class="logline">A wooden manikin comes in a box with a care card nobody reads, and slowly stops standing up.</p>
+  <div class="film-body">
+    <div class="player"><video id="v-f02" controls playsinline preload="metadata" poster="img/02/poster.webp" aria-label="Care Instructions, rough cut, 1:04"><source src="media/02.mp4" type="video/mp4"></video></div>
+    <div class="side">
+      <dl class="facts"><div><dt class="label">The turn</dt><dd>The card at the bottom of the box: &quot;Keep with its people, never alone.&quot;</dd></div><div><dt class="label">It works if viewers say</dt><dd>People come with needs like company, daylight and being held, and we blame ourselves when a life without them wears us down.</dd></div><div><dt class="label">Weakest moments now</dt><dd><ul><li>The unboxing and first pose (shots 1 and 2) are hard to read: big wooden forearms fill the frame.</li><li>The worker&#x27;s turn to the office (shot 11) is mostly the back of a head.</li><li>In the last shot the full-size colleagues crowd behind the little group, so their leaving together doesn&#x27;t read yet.</li></ul></dd></div><div><dt class="label">The final version needs</dt><dd>A closer, cleaner unboxing, a stronger office reveal, and the people&#x27;s exit staged apart from the windowsill. This one could also be shot for real as stop-motion on a desk.</dd></div></dl>
+      <div class="call" data-k="f02">
+        <div class="stars" role="radiogroup" aria-label="Rate Care Instructions"><button type="button" class="star" role="radio" aria-checked="false" data-v="1" aria-label="1 of 5">★</button><button type="button" class="star" role="radio" aria-checked="false" data-v="2" aria-label="2 of 5">★</button><button type="button" class="star" role="radio" aria-checked="false" data-v="3" aria-label="3 of 5">★</button><button type="button" class="star" role="radio" aria-checked="false" data-v="4" aria-label="4 of 5">★</button><button type="button" class="star" role="radio" aria-checked="false" data-v="5" aria-label="5 of 5">★</button></div>
+        <label class="pick"><input type="checkbox" id="pick-f02"> <span>Finish this one</span></label>
+        <button type="button" class="cmt" hidden>Comment</button>
+        <label class="note-l" for="note-f02">Notes on Care Instructions</label>
+        <textarea id="note-f02" rows="3" maxlength="4000" placeholder="Timing, a shot to change, what to keep"></textarea>
+        <p class="save-state" aria-live="polite"></p>
+      </div>
+    </div>
+  </div>
+  <h3 class="label sub">Storyboard <span>select a shot to play from it</span></h3>
+  <ol class="board" aria-label="Storyboard for Care Instructions: select a shot to play from it"><li><button type="button" class="shot" data-t="0" aria-label="Play from shot 1 at 0:00"><img src="img/02/s01.webp" alt="" loading="lazy" width="216" height="384"><span class="sh-n">01<span>0:00</span></span><span class="sh-c">A manikin arrives in a box.</span></button></li><li><button type="button" class="shot" data-t="5" aria-label="Play from shot 2 at 0:05"><img src="img/02/s02.webp" alt="" loading="lazy" width="216" height="384"><span class="sh-n">02<span>0:05</span></span><span class="sh-c">Posed in triumph beside the monitor.</span></button></li><li><button type="button" class="shot" data-t="9" aria-label="Play from shot 3 at 0:09"><img src="img/02/s03.webp" alt="" loading="lazy" width="216" height="384"><span class="sh-n">03<span>0:09</span></span><span class="sh-c">Four days, same frame: it sinks.</span></button></li><li><button type="button" class="shot" data-t="21" aria-label="Play from shot 4 at 0:21"><img src="img/02/s04.webp" alt="" loading="lazy" width="216" height="384"><span class="sh-n">04<span>0:21</span></span><span class="sh-c">Repair: a screwdriver.</span></button></li><li><button type="button" class="shot" data-t="24" aria-label="Play from shot 5 at 0:24"><img src="img/02/s05.webp" alt="" loading="lazy" width="216" height="384"><span class="sh-n">05<span>0:24</span></span><span class="sh-c">Repair: oil.</span></button></li><li><button type="button" class="shot" data-t="26" aria-label="Play from shot 6 at 0:26"><img src="img/02/s06.webp" alt="" loading="lazy" width="216" height="384"><span class="sh-n">06<span>0:26</span></span><span class="sh-c">Repair: a chrome stand.</span></button></li><li><button type="button" class="shot" data-t="28" aria-label="Play from shot 7 at 0:28"><img src="img/02/s07.webp" alt="" loading="lazy" width="216" height="384"><span class="sh-n">07<span>0:28</span></span><span class="sh-c">Repair: a gold star.</span></button></li><li><button type="button" class="shot" data-t="30" aria-label="Play from shot 8 at 0:30"><img src="img/02/s08.webp" alt="" loading="lazy" width="216" height="384"><span class="sh-n">08<span>0:30</span></span><span class="sh-c">A shiny replacement. Next morning, both slumped.</span></button></li><li><button type="button" class="shot" data-t="33" aria-label="Play from shot 9 at 0:33"><img src="img/02/s09.webp" alt="" loading="lazy" width="216" height="384"><span class="sh-n">09<span>0:33</span></span><span class="sh-c">The worker is slumped too. A card falls out of the box.</span></button></li><li><button type="button" class="shot" data-t="38" aria-label="Play from shot 10 at 0:38"><img src="img/02/s10.webp" alt="" loading="lazy" width="216" height="384"><span class="sh-n">10<span>0:38</span></span><span class="sh-c">The care card.</span></button></li><li><button type="button" class="shot" data-t="44" aria-label="Play from shot 11 at 0:44"><img src="img/02/s11.webp" alt="" loading="lazy" width="216" height="384"><span class="sh-n">11<span>0:44</span></span><span class="sh-c">The office: everyone alone at a screen.</span></button></li><li><button type="button" class="shot" data-t="48" aria-label="Play from shot 12 at 0:48"><img src="img/02/s12.webp" alt="" loading="lazy" width="216" height="384"><span class="sh-n">12<span>0:48</span></span><span class="sh-c">The windowsill, together, in the sun.</span></button></li><li><button type="button" class="shot" data-t="56" aria-label="Play from shot 13 at 0:56"><img src="img/02/s13.webp" alt="" loading="lazy" width="216" height="384"><span class="sh-n">13<span>0:56</span></span><span class="sh-c">The people leave their desks together.</span></button></li><li><button type="button" class="shot" data-t="60" aria-label="Play from shot 14 at 1:00"><img src="img/02/s14.webp" alt="" loading="lazy" width="216" height="384"><span class="sh-n">14<span>1:00</span></span><span class="sh-c">End card.</span></button></li></ol>
+  <details class="script"><summary>The script as written <span>14 shots</span></summary><div class="tbl"><table><thead><tr><th>#</th><th>Time</th><th>Frame and action</th><th>Sound</th></tr></thead><tbody><tr><td class="c-n">1</td><td class="c-t">0:00–0:05</td><td><strong>Top-down on the desk.</strong> The WORKER&#x27;s hands open the box; tissue parts; LITTLE lies inside. At the bottom edge of the box, the corner of a folded card (visible, unnoticed).</td><td class="c-s">Office room tone, keyboard far away, cardboard rustle.</td></tr><tr><td class="c-n">2</td><td class="c-t">0:05–0:09</td><td><strong>Desk level, LITTLE full height beside the monitor.</strong> The hands stand LITTLE up and pose it with both arms raised (triumph). The box gets pushed off the desk edge, out of frame (thud under the desk).</td><td class="c-s">thud. Light piano motif, bright.</td></tr><tr><td class="c-n">3</td><td class="c-t">0:09–0:21</td><td><strong>LOCKED camera, the same framing for all the days.</strong> Day montage, 4 days, ~3 s each: day 1 arms up; day 2 arms down; day 3 head down, shoulders rounded; day 4 sitting against the mug, folded. Between days the window light sweeps (stepped), the monitor glow changes, the mug refills, the WORKER&#x27;s hands type at the edge of frame.</td><td class="c-s">typing bursts, a clock-like piano ostinato that slows each day.</td></tr><tr><td class="c-n">4a</td><td class="c-t">0:21–0:24</td><td><strong>Macro on LITTLE&#x27;s elbow.</strong> A tiny screwdriver tightens the elbow pin. It stands.</td><td class="c-s">squeaky woodclick, a hopeful &quot;ding&quot;.</td></tr><tr><td class="c-n">4b</td><td class="c-t">0:24–0:26</td><td><strong>Macro on the knee.</strong> An oil dropper, one drop on the knee joint.</td><td class="c-s">drip, ding.</td></tr><tr><td class="c-n">4c</td><td class="c-t">0:26–0:28</td><td><strong>Medium on LITTLE.</strong> A shiny chrome stand clamps its waist. It stands… and then sags inside the stand.</td><td class="c-s">metal click, then a descending two-note.</td></tr><tr><td class="c-n">4d</td><td class="c-t">0:28–0:30</td><td><strong>Medium.</strong> A gold star sticker is pressed onto its chest.</td><td class="c-s">sticker press.</td></tr><tr><td class="c-n">4e</td><td class="c-t">0:30–0:33</td><td><strong>Same locked framing as shot 3.</strong> SHINY is placed beside LITTLE, standing proud. Cut: next morning, both slumped.</td><td class="c-s">a bright chord, then the same two descending notes.</td></tr><tr><td class="c-n">5</td><td class="c-t">0:33–0:38</td><td><strong>Wider: the WORKER now visible behind the desk, head on hand, as slumped as the manikins.</strong> The WORKER pushes back, drags the box from under the desk to bin it; the folded card slides out onto the floor.</td><td class="c-s">chair roll, cardboard scrape, a paper whisper. Music stops.</td></tr><tr><td class="c-n">6</td><td class="c-t">0:38–0:44</td><td><strong>INSERT, the card filling the frame, readable.</strong> &quot;CARE INSTRUCTIONS / Keep with its people, never alone. / Needs daylight, and darkness at night. / Hold often. / Give it work that others need. / Let it walk every day.&quot; (film/text.js printedCard)</td><td class="c-s">Silence, one low piano note held.</td></tr><tr><td class="c-n">7</td><td class="c-t">0:44–0:48</td><td><strong>Over the WORKER&#x27;s shoulder.</strong> The WORKER looks from the card to the two slumped manikins, then slowly turns its head to the office: rows of colleagues, each alone at a screen. Beat.</td><td class="c-s">Room tone only.</td></tr><tr><td class="c-n">8</td><td class="c-t">0:48–0:56</td><td><strong>The sunny windowsill, desk level.</strong> The WORKER carries LITTLE and SHINY to the windowsill and sets them with four other small manikins from other desks. Stop-motion: they end up together — two carrying a pencil like a log, one sitting in the sun, one with an arm around another&#x27;s shoulder. All standing.</td><td class="c-s">Woodclicks as they&#x27;re placed; the piano motif returns, warmer, with the pad.</td></tr><tr><td class="c-n">9</td><td class="c-t">0:56–1:00</td><td><strong>Same windowsill; focus racks to the background.</strong> Behind the little group, soft: the WORKER and two colleagues leave their desks together toward the daylight / a shared table.</td><td class="c-s">Murmur, resolution chord.</td></tr><tr><td class="c-n">10</td><td class="c-t">1:00–1:04.5</td><td><strong>End card.</strong> &quot;You came with instructions. We&#x27;re writing them down.&quot;</td><td class="c-s">Chord decays.</td></tr></tbody></table></div><p class="src">The animatic follows this closely; where it differs, the film is the newer version.</p></details>
+  <div class="log" data-k="f02">
+    <h3 class="label sub">Screenings <span class="count" data-k="f02"></span></h3>
+    <details class="logd"><summary>Log a screening</summary>
+    <form class="log-form" data-k="f02" autocomplete="off">
+      <label>Viewer <input name="viewer" maxlength="80" placeholder="First name or initials, age"></label>
+      <label>What was it about? <textarea name="about" rows="2" maxlength="1200" placeholder="Their words, as close as you can"></textarea></label>
+      <label>How did it make them feel? <textarea name="felt" rows="2" maxlength="1200"></textarea></label>
+      <div class="log-row">
+        <fieldset><legend>Would they tap the link?</legend>
+          <label><input type="radio" name="click" value="yes"> Yes</label>
+          <label><input type="radio" name="click" value="maybe"> Maybe</label>
+          <label><input type="radio" name="click" value="no"> No</label>
+        </fieldset>
+        <label class="chk"><input type="checkbox" name="mute"> Watched with the sound off</label>
+      </div>
+      <div class="log-actions"><button type="submit">Save screening</button><p class="log-state" aria-live="polite"></p></div>
+    </form></details>
+    <ol class="entries" data-k="f02"></ol>
+  </div>
+</section>
+<section class="film" id="f03" data-k="f03" aria-labelledby="h-f03">
+  <header class="film-head">
+    <span class="num">03</span>
+    <div>
+      <h2 id="h-f03">The Night Watch</h2>
+      <p class="meta"><span>1:13</span><span>15 shots</span><span>9:16</span></p>
+    </div>
+  </header>
+  <p class="logline">Someone checks the locks again at 3 a.m. Then we see the job their body thinks it&#x27;s doing.</p>
+  <div class="film-body">
+    <div class="player"><video id="v-f03" controls playsinline preload="metadata" poster="img/03/poster.webp" aria-label="The Night Watch, rough cut, 1:13"><source src="media/03.mp4" type="video/mp4"></video></div>
+    <div class="side">
+      <dl class="facts"><div><dt class="label">The turn</dt><dd>The watch was a job for the group, and someone always took over. At the end a neighbour does.</dd></div><div><dt class="label">It works if viewers say</dt><dd>Lying awake on guard is an old job that was always shared. Alone, nobody takes over.</dd></div><div><dt class="label">Weakest moments now</dt><dd><ul><li>The sleeping pile at the camp (shot 10), the emotional peak, is a mass of similar wooden limbs.</li><li>The door and blind checks are shot from behind, so the hands are hidden and the sound carries the checks.</li><li>Getting out of and back into bed has no weight yet.</li></ul></dd></div><div><dt class="label">The final version needs</dt><dd>Hand-keyed get-up and lie-down with weight, a clearer pile with a readable child and the draped arm framed, bedding that moves, and composed music.</dd></div></dl>
+      <div class="call" data-k="f03">
+        <div class="stars" role="radiogroup" aria-label="Rate The Night Watch"><button type="button" class="star" role="radio" aria-checked="false" data-v="1" aria-label="1 of 5">★</button><button type="button" class="star" role="radio" aria-checked="false" data-v="2" aria-label="2 of 5">★</button><button type="button" class="star" role="radio" aria-checked="false" data-v="3" aria-label="3 of 5">★</button><button type="button" class="star" role="radio" aria-checked="false" data-v="4" aria-label="4 of 5">★</button><button type="button" class="star" role="radio" aria-checked="false" data-v="5" aria-label="5 of 5">★</button></div>
+        <label class="pick"><input type="checkbox" id="pick-f03"> <span>Finish this one</span></label>
+        <button type="button" class="cmt" hidden>Comment</button>
+        <label class="note-l" for="note-f03">Notes on The Night Watch</label>
+        <textarea id="note-f03" rows="3" maxlength="4000" placeholder="Timing, a shot to change, what to keep"></textarea>
+        <p class="save-state" aria-live="polite"></p>
+      </div>
+    </div>
+  </div>
+  <h3 class="label sub">Storyboard <span>select a shot to play from it</span></h3>
+  <ol class="board" aria-label="Storyboard for The Night Watch: select a shot to play from it"><li><button type="button" class="shot" data-t="0" aria-label="Play from shot 1 at 0:00"><img src="img/03/s01.webp" alt="" loading="lazy" width="216" height="384"><span class="sh-n">01<span>0:00</span></span><span class="sh-c">3:07.</span></button></li><li><button type="button" class="shot" data-t="4" aria-label="Play from shot 2 at 0:04"><img src="img/03/s02.webp" alt="" loading="lazy" width="216" height="384"><span class="sh-n">02<span>0:04</span></span><span class="sh-c">Checks the front door.</span></button></li><li><button type="button" class="shot" data-t="9" aria-label="Play from shot 3 at 0:09"><img src="img/03/s03.webp" alt="" loading="lazy" width="216" height="384"><span class="sh-n">03<span>0:09</span></span><span class="sh-c">Checks the street.</span></button></li><li><button type="button" class="shot" data-t="13" aria-label="Play from shot 4 at 0:13"><img src="img/03/s04.webp" alt="" loading="lazy" width="216" height="384"><span class="sh-n">04<span>0:13</span></span><span class="sh-c">Reads the news.</span></button></li><li><button type="button" class="shot" data-t="17" aria-label="Play from shot 5 at 0:17"><img src="img/03/s05.webp" alt="" loading="lazy" width="216" height="384"><span class="sh-n">05<span>0:17</span></span><span class="sh-c">Checks the door again…</span></button></li><li><button type="button" class="shot" data-t="20" aria-label="Play from shot 6 at 0:20"><img src="img/03/s06.webp" alt="" loading="lazy" width="216" height="384"><span class="sh-n">06<span>0:20</span></span><span class="sh-c">…and is on watch at a camp, long ago.</span></button></li><li><button type="button" class="shot" data-t="24" aria-label="Play from shot 7 at 0:24"><img src="img/03/s07.webp" alt="" loading="lazy" width="216" height="384"><span class="sh-n">07<span>0:24</span></span><span class="sh-c">Behind the watcher, the band sleeps by the fire.</span></button></li><li><button type="button" class="shot" data-t="29.5" aria-label="Play from shot 8 at 0:30"><img src="img/03/s08.webp" alt="" loading="lazy" width="216" height="384"><span class="sh-n">08<span>0:30</span></span><span class="sh-c">A rustle. Nothing.</span></button></li><li><button type="button" class="shot" data-t="34.5" aria-label="Play from shot 9 at 0:34"><img src="img/03/s09.webp" alt="" loading="lazy" width="216" height="384"><span class="sh-n">09<span>0:34</span></span><span class="sh-c">Before dawn, someone takes over.</span></button></li><li><button type="button" class="shot" data-t="42" aria-label="Play from shot 10 at 0:42"><img src="img/03/s10.webp" alt="" loading="lazy" width="216" height="384"><span class="sh-n">10<span>0:42</span></span><span class="sh-c">The watcher sleeps in the warm pile.</span></button></li><li><button type="button" class="shot" data-t="48" aria-label="Play from shot 11 at 0:48"><img src="img/03/s11.webp" alt="" loading="lazy" width="216" height="384"><span class="sh-n">11<span>0:48</span></span><span class="sh-c">Back in bed. 3:09. Nobody takes over.</span></button></li><li><button type="button" class="shot" data-t="52" aria-label="Play from shot 12 at 0:52"><img src="img/03/s12.webp" alt="" loading="lazy" width="216" height="384"><span class="sh-n">12<span>0:52</span></span><span class="sh-c">About to get up again. A ping.</span></button></li><li><button type="button" class="shot" data-t="58" aria-label="Play from shot 13 at 0:58"><img src="img/03/s13.webp" alt="" loading="lazy" width="216" height="384"><span class="sh-n">13<span>0:58</span></span><span class="sh-c">A neighbour: “I&#x27;m awake if you need anything.”</span></button></li><li><button type="button" class="shot" data-t="63" aria-label="Play from shot 14 at 1:03"><img src="img/03/s14.webp" alt="" loading="lazy" width="216" height="384"><span class="sh-n">14<span>1:03</span></span><span class="sh-c">Lies down. Sleeps.</span></button></li><li><button type="button" class="shot" data-t="68.5" aria-label="Play from shot 15 at 1:08"><img src="img/03/s15.webp" alt="" loading="lazy" width="216" height="384"><span class="sh-n">15<span>1:08</span></span><span class="sh-c">End card.</span></button></li></ol>
+  <details class="script"><summary>The script as written <span>15 shots</span></summary><div class="tbl"><table><thead><tr><th>#</th><th>Time</th><th>Frame and action</th><th>Sound</th></tr></thead><tbody><tr><td class="c-n">1</td><td class="c-t">0:00–0:04</td><td><strong>Close: bedside clock 3:07, the WATCHER&#x27;s head on the pillow behind it, out of focus.</strong> Clock reads 3:07. The head is turned to the ceiling, awake.</td><td class="c-s">Room tone, fridge through the wall, a car far away.</td></tr><tr><td class="c-n">2</td><td class="c-t">0:04–0:09</td><td><strong>The hallway, the front door at the end of it.</strong> The WATCHER walks in and checks the door: pulls the handle, touches the chain, turns the deadbolt back and forth.</td><td class="c-s">lockclick x2, footsteps (soft woodclicks).</td></tr><tr><td class="c-n">3</td><td class="c-t">0:09–0:13</td><td><strong>The window from inside: the WATCHER&#x27;s hand parts two blind slats.</strong> Looks down at the empty street.</td><td class="c-s">Distant city.</td></tr><tr><td class="c-n">4</td><td class="c-t">0:13–0:17</td><td><strong>Sitting on the edge of the bed, the phone glow on the chest.</strong> Scrolls the news: flashes of red and orange (unreadable). Shoulders up.</td><td class="c-s">Heartbeat under the room tone, very quiet.</td></tr><tr><td class="c-n">5</td><td class="c-t">0:17–0:20</td><td><strong>Hallway again, same framing as 2.</strong> Checks the lock again.</td><td class="c-s">lockclick.</td></tr><tr><td class="c-n">6</td><td class="c-t">0:20–0:24</td><td><strong>MATCH CUT on the pose (hand raised, head turned): the WATCHER on a rock at the camp edge, hand shading its eyes, scanning the dark grass.</strong> Same pose, same screen position, new world.</td><td class="c-s">Hard cut in sound too: crickets, wind, fire crackle. A low pad enters.</td></tr><tr><td class="c-n">7</td><td class="c-t">0:24–0:30</td><td><strong>Reverse, wide: over the WATCHER&#x27;s shoulder, the band asleep in a pile by the embers, a child in the middle.</strong> Slow lateral drift. The meaning lands: they sleep because someone is awake.</td><td class="c-s">Fire, crickets, pad.</td></tr><tr><td class="c-n">8</td><td class="c-t">0:30–0:35</td><td><strong>Close on the WATCHER.</strong> A rustle in the grass. The head snaps toward it. Hold. Nothing. The shoulders come down a little. Keeps watching.</td><td class="c-s">grass rustle (tear sfx, very quiet), heartbeat once, then calm.</td></tr><tr><td class="c-n">9</td><td class="c-t">0:35–0:42</td><td><strong>Wide, pre-dawn blue creeping into the sky.</strong> The RELIEVER gets up from the pile, walks over, touches the WATCHER&#x27;s shoulder (woodclack). The WATCHER stands; the RELIEVER sits on the rock and takes over the watch.</td><td class="c-s">woodclack; the piano plays the film&#x27;s motif for the first time, warm.</td></tr><tr><td class="c-n">10</td><td class="c-t">0:42–0:48</td><td><strong>Low, close to the pile.</strong> The WATCHER lies down in the warm pile; someone&#x27;s arm drapes over it; it goes completely still.</td><td class="c-s">A resolving chord. Crickets thinning, first bird.</td></tr><tr><td class="c-n">11</td><td class="c-t">0:48–0:52</td><td><strong>MATCH CUT on the lying pose: back in the flat, same framing, alone in the bed.</strong> Clock: 3:09. Nobody is coming to take over.</td><td class="c-s">Hard cut to room tone. Music gone.</td></tr><tr><td class="c-n">12</td><td class="c-t">0:52–0:58</td><td><strong>Medium, the bed and the door beyond.</strong> The WATCHER sits up and starts to get out of bed again, toward the hallway — PING. The phone lights up on the nightstand.</td><td class="c-s">ping.</td></tr><tr><td class="c-n">13</td><td class="c-t">0:58–1:03</td><td><strong>INSERT: the phone lock screen, readable.</strong> &quot;3:09&quot; / MIRA · 2B: &quot;Up with the baby again. I&#x27;m awake if you need anything.&quot; (film/text.js notificationScreen)</td><td class="c-s">Silence.</td></tr><tr><td class="c-n">14</td><td class="c-t">1:03–1:08</td><td><strong>Medium, same as 12.</strong> The WATCHER reads it. The shoulders drop. It lies back down, turns on its side, and is still. Under the bedroom door, faintly, the warm light of the flat across the hall.</td><td class="c-s">Through the wall, very soft: a lullaby hum (pad) and a baby&#x27;s murmur. The motif resolves.</td></tr><tr><td class="c-n">15</td><td class="c-t">1:08–1:12.5</td><td><strong>End card.</strong> &quot;You were never meant to keep watch alone.&quot;</td><td class="c-s">Near silence.</td></tr></tbody></table></div><p class="src">The animatic follows this closely; where it differs, the film is the newer version.</p></details>
+  <div class="log" data-k="f03">
+    <h3 class="label sub">Screenings <span class="count" data-k="f03"></span></h3>
+    <details class="logd"><summary>Log a screening</summary>
+    <form class="log-form" data-k="f03" autocomplete="off">
+      <label>Viewer <input name="viewer" maxlength="80" placeholder="First name or initials, age"></label>
+      <label>What was it about? <textarea name="about" rows="2" maxlength="1200" placeholder="Their words, as close as you can"></textarea></label>
+      <label>How did it make them feel? <textarea name="felt" rows="2" maxlength="1200"></textarea></label>
+      <div class="log-row">
+        <fieldset><legend>Would they tap the link?</legend>
+          <label><input type="radio" name="click" value="yes"> Yes</label>
+          <label><input type="radio" name="click" value="maybe"> Maybe</label>
+          <label><input type="radio" name="click" value="no"> No</label>
+        </fieldset>
+        <label class="chk"><input type="checkbox" name="mute"> Watched with the sound off</label>
+      </div>
+      <div class="log-actions"><button type="submit">Save screening</button><p class="log-state" aria-live="polite"></p></div>
+    </form></details>
+    <ol class="entries" data-k="f03"></ol>
+  </div>
+</section>
+<section class="film" id="f04" data-k="f04" aria-labelledby="h-f04">
+  <header class="film-head">
+    <span class="num">04</span>
+    <div>
+      <h2 id="h-f04">Good Dog</h2>
+      <p class="meta"><span>1:02</span><span>12 shots</span><span>9:16</span></p>
+    </div>
+  </header>
+  <p class="logline">Everyone knows why a dog left alone all day chews the sofa. Nobody applies that logic to themselves.</p>
+  <div class="film-body">
+    <div class="player"><video id="v-f04" controls playsinline preload="metadata" poster="img/04/poster.webp" aria-label="Good Dog, rough cut, 1:02"><source src="media/04.mp4" type="video/mp4"></video></div>
+    <div class="side">
+      <dl class="facts"><div><dt class="label">The turn</dt><dd>The dog watches the owner do everything it did all day, and puts its head on the owner&#x27;s knee.</dd></div><div><dt class="label">It works if viewers say</dt><dd>We understand why a lonely dog falls apart, but call ourselves broken for the same thing.</dd></div><div><dt class="label">Weakest moments now</dt><dd><ul><li>The owner&#x27;s drop onto the sofa (shot 7) has no weight and crops the head.</li><li>In the courtyard the dogs are small and trot instead of run.</li><li>The morning shots are flat and cool.</li></ul></dd></div><div><dt class="label">The final version needs</dt><dd>A real run and play in the courtyard, a closer and warmer opening, a heavier sofa drop, and composed music.</dd></div></dl>
+      <div class="call" data-k="f04">
+        <div class="stars" role="radiogroup" aria-label="Rate Good Dog"><button type="button" class="star" role="radio" aria-checked="false" data-v="1" aria-label="1 of 5">★</button><button type="button" class="star" role="radio" aria-checked="false" data-v="2" aria-label="2 of 5">★</button><button type="button" class="star" role="radio" aria-checked="false" data-v="3" aria-label="3 of 5">★</button><button type="button" class="star" role="radio" aria-checked="false" data-v="4" aria-label="4 of 5">★</button><button type="button" class="star" role="radio" aria-checked="false" data-v="5" aria-label="5 of 5">★</button></div>
+        <label class="pick"><input type="checkbox" id="pick-f04"> <span>Finish this one</span></label>
+        <button type="button" class="cmt" hidden>Comment</button>
+        <label class="note-l" for="note-f04">Notes on Good Dog</label>
+        <textarea id="note-f04" rows="3" maxlength="4000" placeholder="Timing, a shot to change, what to keep"></textarea>
+        <p class="save-state" aria-live="polite"></p>
+      </div>
+    </div>
+  </div>
+  <h3 class="label sub">Storyboard <span>select a shot to play from it</span></h3>
+  <ol class="board" aria-label="Storyboard for Good Dog: select a shot to play from it"><li><button type="button" class="shot" data-t="0" aria-label="Play from shot 1 at 0:00"><img src="img/04/s01.webp" alt="" loading="lazy" width="216" height="384"><span class="sh-n">01<span>0:00</span></span><span class="sh-c">The door closes. The dog waits.</span></button></li><li><button type="button" class="shot" data-t="4" aria-label="Play from shot 2 at 0:04"><img src="img/04/s02.webp" alt="" loading="lazy" width="216" height="384"><span class="sh-n">02<span>0:04</span></span><span class="sh-c">All day, the same loop.</span></button></li><li><button type="button" class="shot" data-t="12" aria-label="Play from shot 3 at 0:12"><img src="img/04/s03.webp" alt="" loading="lazy" width="216" height="384"><span class="sh-n">03<span>0:12</span></span><span class="sh-c">Nose to the gap under the door.</span></button></li><li><button type="button" class="shot" data-t="16" aria-label="Play from shot 4 at 0:16"><img src="img/04/s04.webp" alt="" loading="lazy" width="216" height="384"><span class="sh-n">04<span>0:16</span></span><span class="sh-c">The cushion.</span></button></li><li><button type="button" class="shot" data-t="22" aria-label="Play from shot 5 at 0:22"><img src="img/04/s05.webp" alt="" loading="lazy" width="216" height="384"><span class="sh-n">05<span>0:22</span></span><span class="sh-c">Waiting in the stuffing.</span></button></li><li><button type="button" class="shot" data-t="25" aria-label="Play from shot 6 at 0:25"><img src="img/04/s06.webp" alt="" loading="lazy" width="216" height="384"><span class="sh-n">06<span>0:25</span></span><span class="sh-c">The owner comes home.</span></button></li><li><button type="button" class="shot" data-t="29" aria-label="Play from shot 7 at 0:29"><img src="img/04/s07.webp" alt="" loading="lazy" width="216" height="384"><span class="sh-n">07<span>0:29</span></span><span class="sh-c">Onto the sofa, onto the phone.</span></button></li><li><button type="button" class="shot" data-t="33" aria-label="Play from shot 8 at 0:33"><img src="img/04/s08.webp" alt="" loading="lazy" width="216" height="384"><span class="sh-n">08<span>0:33</span></span><span class="sh-c">The owner walks the dog&#x27;s loop.</span></button></li><li><button type="button" class="shot" data-t="41" aria-label="Play from shot 9 at 0:41"><img src="img/04/s09.webp" alt="" loading="lazy" width="216" height="384"><span class="sh-n">09<span>0:41</span></span><span class="sh-c">The dog&#x27;s head on the owner&#x27;s knee.</span></button></li><li><button type="button" class="shot" data-t="47" aria-label="Play from shot 10 at 0:47"><img src="img/04/s10.webp" alt="" loading="lazy" width="216" height="384"><span class="sh-n">10<span>0:47</span></span><span class="sh-c">The lead comes off the hook.</span></button></li><li><button type="button" class="shot" data-t="51" aria-label="Play from shot 11 at 0:51"><img src="img/04/s11.webp" alt="" loading="lazy" width="216" height="384"><span class="sh-n">11<span>0:51</span></span><span class="sh-c">The courtyard: dogs and neighbours.</span></button></li><li><button type="button" class="shot" data-t="58" aria-label="Play from shot 12 at 0:58"><img src="img/04/s12.webp" alt="" loading="lazy" width="216" height="384"><span class="sh-n">12<span>0:58</span></span><span class="sh-c">End card.</span></button></li></ol>
+  <details class="script"><summary>The script as written <span>12 shots</span></summary><div class="tbl"><table><thead><tr><th>#</th><th>Time</th><th>Frame and action</th><th>Sound</th></tr></thead><tbody><tr><td class="c-n">1</td><td class="c-t">0:00–0:04</td><td><strong>Low, dog height: the DOG sitting facing the front door, the door filling the top of frame.</strong> The door has just closed. The DOG&#x27;s head tilts. Clock visible: 8:02.</td><td class="c-s">door thud, keys, footsteps fading.</td></tr><tr><td class="c-n">2</td><td class="c-t">0:04–0:12</td><td><strong>LOCKED wide from a high corner: the whole living room.</strong> Time-lapse by stop-motion: the DOG paces the same loop around the rug, lies down, gets up, paces again. The light slides across the floor. The clock jumps 10:15 → 12:40 → 14:30.</td><td class="c-s">paws (wooden clicks), a slow piano ostinato.</td></tr><tr><td class="c-n">3</td><td class="c-t">0:12–0:16</td><td><strong>Dog height at the door.</strong> Nose to the gap under the door. Whines.</td><td class="c-s">whine x2.</td></tr><tr><td class="c-n">4</td><td class="c-t">0:16–0:22</td><td><strong>Medium on the sofa.</strong> The DOG pulls a cushion off and tears it apart: stuffing everywhere (white fluff particles hanging in the stepped frames). Clock 16:50 in the background.</td><td class="c-s">tear, paws, a comic run of piano notes.</td></tr><tr><td class="c-n">5</td><td class="c-t">0:22–0:25</td><td><strong>Low: the DOG lying with its head on its paws, facing the door, stuffing around it.</strong> Hold. Only the tail moves once.</td><td class="c-s">Silence except room tone.</td></tr><tr><td class="c-n">6</td><td class="c-t">0:25–0:29</td><td><strong>From behind the DOG toward the door.</strong> The door opens: the OWNER stands in it, sees the mess, hands on hips, head drops. The bag slides off the shoulder.</td><td class="c-s">keys, door, bag thud. The viewer knows exactly what the dog needed.</td></tr><tr><td class="c-n">7</td><td class="c-t">0:29–0:33</td><td><strong>Medium on the sofa.</strong> The OWNER drops onto the sofa, phone out, scrolling.</td><td class="c-s">sit, two woodclicks.</td></tr><tr><td class="c-n">8</td><td class="c-t">0:33–0:41</td><td><strong>SAME LOCKED high-corner wide as shot 2.</strong> The OWNER does what the dog did: opens the fridge, closes it, opens it again; walks the same loop around the rug; scrolls; lies on the floor; gets up. The DOG watches from the doorway, head following.</td><td class="c-s">fridge x2, footsteps on the same rhythm as the paws, the same ostinato returns (the rhyme).</td></tr><tr><td class="c-n">9</td><td class="c-t">0:41–0:47</td><td><strong>Medium: the OWNER sitting on the sofa edge, elbows on knees.</strong> The DOG walks over and lays its head on the OWNER&#x27;s knee. The OWNER goes still, looks down, and puts a hand on the dog&#x27;s head.</td><td class="c-s">Silence; one piano note, then the motif, slow.</td></tr><tr><td class="c-n">10</td><td class="c-t">0:47–0:51</td><td><strong>Dog height.</strong> The OWNER stands and takes the lead off the hook; the DOG&#x27;s tail goes (stepped wag).</td><td class="c-s">tail thumps (woodclicks), keys.</td></tr><tr><td class="c-n">11</td><td class="c-t">0:51–0:58</td><td><strong>COURTYARD, golden hour, from a balcony.</strong> The DOG runs with two other wooden dogs; the OWNER talks with a neighbour by the bench; kids at the long table; a tram passes behind.</td><td class="c-s">courtyard bed (murmur + birds), tram bell, the motif in full.</td></tr><tr><td class="c-n">12</td><td class="c-t">0:58–1:02.5</td><td><strong>End card.</strong> &quot;Nobody calls a lonely dog broken.&quot;</td><td class="c-s">Near silence.</td></tr></tbody></table></div><p class="src">The animatic follows this closely; where it differs, the film is the newer version.</p></details>
+  <div class="log" data-k="f04">
+    <h3 class="label sub">Screenings <span class="count" data-k="f04"></span></h3>
+    <details class="logd"><summary>Log a screening</summary>
+    <form class="log-form" data-k="f04" autocomplete="off">
+      <label>Viewer <input name="viewer" maxlength="80" placeholder="First name or initials, age"></label>
+      <label>What was it about? <textarea name="about" rows="2" maxlength="1200" placeholder="Their words, as close as you can"></textarea></label>
+      <label>How did it make them feel? <textarea name="felt" rows="2" maxlength="1200"></textarea></label>
+      <div class="log-row">
+        <fieldset><legend>Would they tap the link?</legend>
+          <label><input type="radio" name="click" value="yes"> Yes</label>
+          <label><input type="radio" name="click" value="maybe"> Maybe</label>
+          <label><input type="radio" name="click" value="no"> No</label>
+        </fieldset>
+        <label class="chk"><input type="checkbox" name="mute"> Watched with the sound off</label>
+      </div>
+      <div class="log-actions"><button type="submit">Save screening</button><p class="log-state" aria-live="polite"></p></div>
+    </form></details>
+    <ol class="entries" data-k="f04"></ol>
+  </div>
+</section>
+
+  <section class="next" aria-labelledby="next-h">
+    <h2 id="next-h">After the screenings</h2>
+    <p>Pick one or two to finish. The final version keeps this timing and these shots and changes everything about the finish: a full render at 1080×1920 with real light, depth and motion, composed music instead of the temporary score, and a horizontal cut for YouTube and the site.</p>
+    <p>The final renders need more computing power than this session can reach. Either open network access for this environment (so I can use rendering and music services), or I hand over a project you run on your Mac.</p>
+  </section>
+
+  <footer>Rough cuts by Claude in Claude Code for Demismatch · 27 September 2026</footer>
+</div>
+</main>
+
+<script>
+(() => {
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+  const KEYS = ["f01", "f02", "f03", "f04"];
+
+  // players: one at a time; storyboard follows the playhead; a shot seeks and plays
+  const vids = $$('video');
+  vids.forEach(v => v.addEventListener('play', () => vids.forEach(o => { if (o !== v) o.pause(); })));
+  $$('.film').forEach(sec => {
+    const v = $('video', sec), board = $('.board', sec);
+    if (!v || !board) return;
+    const shots = $$('.shot', board).filter(b => b.dataset.t !== '');
+    const starts = shots.map(b => +b.dataset.t);
+    let cur = -1;
+    const mark = () => {
+      let i = -1;
+      for (let j = 0; j < starts.length; j++) if (v.currentTime + 0.04 >= starts[j]) i = j;
+      if (i === cur) return;
+      if (cur >= 0) shots[cur].classList.remove('now');
+      cur = i;
+      if (i < 0) return;
+      shots[i].classList.add('now');
+      const li = shots[i].parentElement, x = li.offsetLeft - board.offsetLeft;
+      if (x < board.scrollLeft || x + li.offsetWidth > board.scrollLeft + board.clientWidth) board.scrollTo({ left: Math.max(0, x - 12), behavior: 'smooth' });
+    };
+    v.addEventListener('timeupdate', mark);
+    v.addEventListener('seeked', mark);
+    shots.forEach((b, i) => b.addEventListener('click', () => { v.currentTime = starts[i] + 0.01; v.play().catch(() => {}); }));
+  });
+
+  // ratings and notes (db: films/<key>)
+  const state = {}, saving = {}, pending = {}, dirty = {};
+  KEYS.forEach(k => { state[k] = { stars: 0, pick: false, note: '' }; });
+  let db = null, known = false;
+  const status = (k, m) => { const el = $('.call[data-k="' + k + '"] .save-state'); if (el) el.textContent = m; };
+  function paint(k) {
+    const s = state[k];
+    $$('.call[data-k="' + k + '"] .star').forEach(b => { const v = +b.dataset.v; b.classList.toggle('on', v <= s.stars); b.setAttribute('aria-checked', v === s.stars ? 'true' : 'false'); });
+    const cb = $('#pick-' + k); if (cb) cb.checked = !!s.pick;
+    const ta = $('#note-' + k); if (ta && document.activeElement !== ta && !dirty[k]) ta.value = s.note || '';
+    const chip = $('.chips a[data-k="' + k + '"]'); if (chip) { chip.dataset.stars = s.stars ? String(s.stars) : ''; chip.classList.toggle('on', !!s.pick); }
+  }
+  async function save(k) {
+    if (!db) { status(k, known ? 'Not saved: saving is off in this view. Tell Claude in chat instead.' : 'Connecting…'); return; }
+    if (saving[k]) { pending[k] = true; return; }
+    saving[k] = true; status(k, 'Saving…');
+    try {
+      const s = state[k];
+      await db.doc('films/' + k).set({ stars: s.stars, pick: !!s.pick, note: s.note || '', updatedAt: new Date().toISOString() });
+      dirty[k] = false; status(k, 'Saved');
+    } catch (e) {
+      status(k, e && e.code === 'invalid_argument' ? 'You can view this page but not save to it.' : 'Could not save. Try again in a moment.');
+    } finally { saving[k] = false; if (pending[k]) { pending[k] = false; save(k); } }
+  }
+  KEYS.forEach(k => {
+    $$('.call[data-k="' + k + '"] .star').forEach(b => b.addEventListener('click', () => { const v = +b.dataset.v; state[k].stars = state[k].stars === v ? 0 : v; paint(k); save(k); }));
+    const cb = $('#pick-' + k); if (cb) cb.addEventListener('change', () => { state[k].pick = cb.checked; paint(k); save(k); });
+    const ta = $('#note-' + k); let t = 0;
+    if (ta) {
+      ta.addEventListener('input', () => { dirty[k] = true; state[k].note = ta.value; status(k, 'Editing…'); clearTimeout(t); t = setTimeout(() => save(k), 900); });
+      ta.addEventListener('blur', () => { if (dirty[k]) { clearTimeout(t); save(k); } });
+    }
+  });
+
+  // screening log (db: screenings/<auto id>, field film = key)
+  const logs = {};
+  const fmtDate = s => { try { return new Date(s).toLocaleDateString(undefined, { day: 'numeric', month: 'short' }); } catch (e) { return ''; } };
+  function renderLogs() {
+    KEYS.forEach(k => {
+      const list = $('.entries[data-k="' + k + '"]'), count = $('.count[data-k="' + k + '"]');
+      const rows = (logs[k] || []).slice().sort((a, b) => String(b.at).localeCompare(String(a.at)));
+      if (count) count.textContent = rows.length ? rows.length + (rows.length === 1 ? ' viewer' : ' viewers') + ' · ' + rows.filter(r => r.click === 'yes').length + ' would tap' : 'none logged yet';
+      if (!list) return;
+      list.replaceChildren(...rows.map(r => {
+        const li = document.createElement('li'); li.className = 'entry';
+        const h = document.createElement('div'); h.className = 'entry-h';
+        const who = document.createElement('strong'); who.textContent = r.viewer || 'Viewer';
+        const when = document.createElement('span'); when.textContent = fmtDate(r.at);
+        h.append(who, when);
+        if (r.click) { const t = document.createElement('span'); t.className = 'tag' + (r.click === 'yes' ? ' yes' : ''); t.textContent = 'tap: ' + r.click; h.append(t); }
+        if (r.mute) { const t = document.createElement('span'); t.className = 'tag'; t.textContent = 'sound off'; h.append(t); }
+        const rm = document.createElement('button'); rm.type = 'button'; rm.className = 'rm'; rm.textContent = 'Remove';
+        let armed = 0;
+        rm.addEventListener('click', async () => {
+          if (!armed) { rm.textContent = 'Remove this entry?'; rm.classList.add('sure'); armed = setTimeout(() => { armed = 0; rm.textContent = 'Remove'; rm.classList.remove('sure'); }, 4000); return; }
+          clearTimeout(armed);
+          try { await db.doc('screenings/' + r.id).delete(); } catch (e) { rm.textContent = 'Could not remove'; }
+        });
+        h.append(rm);
+        li.append(h);
+        [['About', r.about], ['Felt', r.felt]].forEach(([l, v]) => { if (!v) return; const p = document.createElement('p'); const b = document.createElement('b'); b.textContent = l; p.append(b, document.createTextNode(v)); li.append(p); });
+        return li;
+      }));
+    });
+  }
+  $$('.log-form').forEach(form => {
+    const k = form.dataset.k, st = $('.log-state', form), btn = $('button[type=submit]', form);
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!db) { st.textContent = known ? 'Saving is off in this view. Paste it to Claude in chat instead.' : 'Connecting…'; return; }
+      const fd = new FormData(form);
+      const rec = { film: k, viewer: String(fd.get('viewer') || '').trim(), about: String(fd.get('about') || '').trim(), felt: String(fd.get('felt') || '').trim(),
+        click: String(fd.get('click') || ''), mute: fd.get('mute') === 'on', at: new Date().toISOString() };
+      if (!rec.about && !rec.felt) { st.textContent = 'Write down at least what they said it was about.'; return; }
+      btn.disabled = true; st.textContent = 'Saving…';
+      try { await db.collection('screenings').doc().set(rec); form.reset(); st.textContent = 'Saved'; }
+      catch (err) { st.textContent = err && err.code === 'quota_exceeded' ? 'The log is full. Tell Claude.' : err && err.code === 'invalid_argument' ? 'You can view this page but not save to it.' : 'Could not save. Try again in a moment.'; }
+      finally { btn.disabled = false; }
+    });
+  });
+  renderLogs();
+
+  const cl = window.claude;
+  if (cl && typeof cl.use === 'function') {
+    cl.use('db').then(d => {
+      db = d; known = true;
+      if (!db) { KEYS.forEach(k => status(k, 'Saving is off in this view. Tell Claude in chat instead.')); return; }
+      db.collection('films').onSnapshot(snap => {
+        snap.docs.forEach(doc => {
+          if (!KEYS.includes(doc.id)) return;
+          const x = doc.data() || {};
+          state[doc.id] = { stars: +x.stars || 0, pick: !!x.pick, note: dirty[doc.id] ? state[doc.id].note : (x.note || '') };
+          paint(doc.id);
+        });
+      }, () => { KEYS.forEach(k => status(k, 'Live updates stopped. Reload to keep saving.')); });
+      db.collection('screenings').onSnapshot(snap => {
+        KEYS.forEach(k => { logs[k] = []; });
+        snap.docs.forEach(doc => { const x = doc.data() || {}; if (logs[x.film]) logs[x.film].push({ id: doc.id, ...x }); });
+        renderLogs();
+      }, () => {});
+    }).catch(() => { known = true; });
+    cl.use('comments').then(c => {
+      if (!c) return;
+      $$('.cmt').forEach(b => {
+        b.hidden = false;
+        b.addEventListener('click', async () => {
+          try { await c.openComposer({ element: b.closest('.film') }); }
+          catch (e) { if (e && ['unavailable', 'not_granted', 'forbidden', 'capability_disabled', 'capability_removed'].includes(e.code)) $$('.cmt').forEach(x => { x.hidden = true; }); }
+        });
+      });
+    }).catch(() => {});
+  } else {
+    KEYS.forEach(k => status(k, 'Ratings save when this page is opened in Claude.'));
+    $$('.log-state').forEach(el => { el.textContent = 'The log saves when this page is opened in Claude.'; });
+  }
+})();
+</script>
