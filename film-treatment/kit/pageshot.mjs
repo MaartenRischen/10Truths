@@ -1,0 +1,10 @@
+import { chromium } from 'playwright';
+const [,, file, out, w = '1400', h = '900', full = '0', scrollTo = ''] = process.argv;
+const b = await chromium.launch();
+const p = await b.newPage({ viewport: { width: +w, height: +h } });
+await p.goto('file://' + file);
+await p.waitForTimeout(1500);
+if (scrollTo) await p.evaluate(s => document.querySelector(s)?.scrollIntoView(), scrollTo);
+await p.waitForTimeout(500);
+await p.screenshot({ path: out, fullPage: full === '1' });
+await b.close();

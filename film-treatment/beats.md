@@ -1,0 +1,28 @@
+# The 16 beats of "You Are Not Broken" (published film, 5:26; script recovered from its burned-in subtitles)
+
+| # | beat | time | lines |
+|---|------|------|-------|
+| 01 | OPEN | 0:00–0:13 | This is Demismatch. / The first thing I need to tell you is that you are not broken. / You are a linear creature in an exponentially weird world. |
+| 02 | NOT ANTI-TECH | 0:13–0:25 | And this project is not anti-technology. / We are a tool-making species. / Technology is as human as our biology. / The only question is how we use it. |
+| 03 | HOW WE FEEL | 0:25–0:41 | Look at how we feel. / Loneliness is an epidemic. / Anxiety and depression keep climbing. / Meaning keeps getting harder to find. / By any honest measure we are not thriving. |
+| 04 | SELF-BLAME | 0:41–0:50 | And for thousands of years, we have done the same thing about it: / we blamed ourselves for the pain, and never the world that caused it. |
+| 05 | MISMATCH | 0:50–0:57 | There is a better explanation: / It comes from evolutionary biology and it is called "mismatch." |
+| 06 | HUMAN-SIZED | 0:57–1:12 | For almost all of human history the world barely changed, / and it stayed 'human-sized'. / With a few people you would die for, a band you lived beside, / and around a hundred and fifty you knew by name. |
+| 07 | TUNED DRIVES | 1:12–1:42 | Every drive in you was tuned to that world. / Desire, and the jealousy that guards it. / Reciprocity, and the gossip that enforces it. / Belonging, but also the shame of falling short. / And the wariness of strangers. / Touch, and disgust. / And the grief it costs. |
+| 08 | EVERYTHING CHANGED | 1:42–2:04 | And then, beginning with farming, everything changed. / Cities, money, bosses, screens, AI. / Everything changed, except you. / Your instincts were shaped over millions of years. / They do not rebuild in ten thousand. |
+| 09 | THE LOOP | 2:04–2:24 | Here is what that does to you. / Every instinct works like a loop. / It opens, it pushes you to act, / and the moment you get what it is actually asking for, it closes. / The feeling settles. / The drive lets go. |
+| 10 | LONELINESS | 2:24–3:02 | Take loneliness. / For your ancestors being alone meant death, / so you carry an alarm that fires the moment you feel cut off. / Be truly seen and known by your people, and it goes quiet again. / Now look at where that alarm runs today: eight billion strangers. / A number under a photo standing in for being loved. / Faces on a screen you will never touch. / So it fires and fires, and never gets the one thing that would switch it off. / The loop stays open. |
+| 11 | IT IS EVERYTHING | 3:02–3:56 | And it is not just loneliness. / It is everything. / The need to matter to the people around you, now answered by a score you can never win. / The need for touch, going unmet for days at a time. / The need to use your body, trapped in a life that asks you to sit still. / The need for deep rest in a world where the light and the noise never stop. / The need to feel safe, drowned out by every danger on earth arriving at once, none of them yours to fix. / The drive to search until you find what you need and stop, caught in a feed, built so you never finish. / The pull toward sugar and fat that once kept you alive, turned against you by food engineered so you can't put it down. / Loop after loop, held open. |
+| 12 | ON PURPOSE | 3:56–4:15 | And not by accident. / A drive that settles is a drive that lets you walk away. / So the loop is kept open on purpose, because an open loop is profitable, and a closed one is not. / The most human parts of you have been turned into the thing being sold. |
+| 13 | NOT BROKEN | 4:15–4:36 | So let me be clear. / You are not broken. / Every one of these systems is doing its job perfectly. / The signal is right, the world is wrong. / It is a healthy instrument, reading a world it was never built for, / and telling you the truth. |
+| 14 | THE ANSWER | 4:36–4:48 | Which is why the answer is not to silence the alarm. / You do not fix a working alarm. / You change the thing it is warning you about. |
+| 15 | THE NEW WORLD | 4:48–5:13 | And here is the part that matters most. / The world a human thrives in is not somewhere in the past. / We are not going back. / The answer is not a cabin in the woods, and it is not less technology. / It is a new world, built on purpose, with the best tools we have, / designed so these loops can finally close inside the life you actually live. |
+| 16 | CLOSE | 5:13–5:26 | You were never broken. / You were living in the wrong world. / So let's build the right one. / [end card] demismatch.com — Build a world that fits humans. |
+
+## Canon locks (from years of Maarten's revisions — do not violate in any frame)
+- Anti-primitivism: the answer is a NEW world built with the best modern tools. Never a cabin, never "back to nature". Future frames must visibly contain modern technology (transit, solar, screens used well, good architecture) serving human needs.
+- Not anti-psych: never show pills, therapists or doctors as the villain. "Silencing the alarm" is shown abstractly (a hand muting a bell, covering a light), never as medication.
+- The villain is the loop held open for profit, never the human's wanting.
+- Hunter-gatherer life is egalitarian and not a paradise: it had grief, wariness, shame. No "noble savage" gloss, no loincloth caricature. Mannequins wear nothing or minimal neutral props.
+- Social layers: a few you would die for (~5), a band you lived beside (~50), ~150 you knew by name. Camps were not static (people moved between camps), but bonds lasted.
+- No real human faces or bodies anywhere. No real brands or logos. Generic UI only (a heart, a number, a star rating).
