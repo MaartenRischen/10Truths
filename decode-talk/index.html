@@ -343,6 +343,19 @@ body {
   cursor: pointer;
   transition: background 140ms ease;
 }
+/* Maintenance mode (2026-10-09): the textarea and button carry `disabled` in the markup.
+   Remove both attributes, restore the placeholder and autofocus, and set the badge back to
+   'Live' to bring the page online. */
+.composer textarea:disabled {
+  background: #cfc8b8;
+  border-color: #9a9284;
+  cursor: not-allowed;
+  resize: none;
+}
+.composer textarea:disabled::placeholder {
+  color: #4a4238;
+  opacity: 1;
+}
 .composer button:hover:not(:disabled) { background: var(--teal); }
 .composer button:disabled { opacity: 0.4; cursor: not-allowed; }
 
@@ -604,7 +617,7 @@ body {
   <div class="title-block">
     <h1><em>Decode:Talk</em></h1>
     <p class="standfirst">Describe a situation, get the evolutionary read. Not a companion. The mechanism story behind what you're feeling - plus, if you want it, the nearest achievable next step.</p>
-    <span class="status" id="status-badge">Live</span>
+    <span class="status" id="status-badge">Maintenance</span>
   </div>
 
   <div class="disclaimer">
@@ -625,8 +638,8 @@ body {
   <div id="error-slot"></div>
 
   <form class="composer" id="composer">
-    <textarea id="input" placeholder="Describe the situation…" autofocus></textarea>
-    <button type="submit" id="submit">Decode</button>
+    <textarea id="input" placeholder="Currently under maintenance, back online in a few weeks." disabled></textarea>
+    <button type="submit" id="submit" disabled>Decode</button>
   </form>
 
   <div class="footer">
@@ -914,7 +927,7 @@ function renderRow(row) {
 }
 
 function updateStatusBadge() {
-  $statusBadge.textContent = 'Live';
+  $statusBadge.textContent = 'Maintenance';
 }
 
 // ─── Drawer open/close ─────────────────────────────────────────────────────────
