@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Demismatch - Humans need a world that fits humans.</title>
-  <meta name="description" content="Human systems signal when their conditions are not met, and modern environments withhold those conditions at scale, so the signal fires and keeps firing.">
+  <title>Demismatch - Your feelings are right.</title>
+  <meta name="description" content="Your feelings are right. Look at what they are reacting to. Depression, anxiety, burnout and loneliness with no physical cause are a healthy human reacting to a world that is wrong for humans.">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Demismatch">
   <meta property="og:url" content="https://demismatch.com/">
-  <meta property="og:title" content="Demismatch - Humans need a world that fits humans.">
-  <meta property="og:description" content="Human systems signal when their conditions are not met, and modern environments withhold those conditions at scale, so the signal fires and keeps firing.">
+  <meta property="og:title" content="Demismatch - Your feelings are right.">
+  <meta property="og:description" content="Your feelings are right. Look at what they are reacting to. Depression, anxiety, burnout and loneliness with no physical cause are a healthy human reacting to a world that is wrong for humans.">
   <meta property="og:image" content="https://demismatch.com/og-demismatch.jpg?v=1">
   <meta property="og:image:secure_url" content="https://demismatch.com/og-demismatch.jpg?v=1">
   <meta property="og:image:type" content="image/jpeg">
@@ -18,8 +18,8 @@
   <meta property="og:image:alt" content="A wooden figure alone in a grey concrete corridor on the left; the same figures together in a warm garden and timber homes on the right.">
   <!-- Twitter / X card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Demismatch - Humans need a world that fits humans.">
-  <meta name="twitter:description" content="Human systems signal when their conditions are not met, and modern environments withhold those conditions at scale, so the signal fires and keeps firing.">
+  <meta name="twitter:title" content="Demismatch - Your feelings are right.">
+  <meta name="twitter:description" content="Your feelings are right. Look at what they are reacting to. Depression, anxiety, burnout and loneliness with no physical cause are a healthy human reacting to a world that is wrong for humans.">
   <meta name="twitter:image" content="https://demismatch.com/og-demismatch.jpg?v=1">
   <meta name="twitter:image:alt" content="A wooden figure alone in a grey concrete corridor on the left; the same figures together in a warm garden and timber homes on the right.">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -1773,7 +1773,17 @@
       transition: color 0.16s ease, border-color 0.16s ease;
     }
     .bd-sequence-link:hover, .bd-sequence-link:focus-visible { color: var(--oxblood); border-color: var(--oxblood); }
-</style>
+
+    /* 17 Nov 2026 sweep: hero lines, Cor rigour paragraph, decode links */
+    .bd-herocenter .bd-thesis { max-width: 20ch; font-size: clamp(2.3rem, 6vw, 4.2rem); }
+    .bd-feel { text-align: left; gap: 0.62rem; }
+    .bd-feel li { font-size: clamp(0.95rem, 1.25vw, 1.08rem); }
+    .bd-inv-close { border-bottom: 0; border-top: 1px solid rgba(42, 12, 17, 0.1); padding: clamp(0.7rem, 1.6vw, 1.1rem) 0 0; font-size: clamp(1.25rem, 2.3vw, 1.7rem); }
+    .bd-source-rigour { font-family: var(--serif); font-size: 0.95rem; line-height: 1.5; color: #d9cba8; margin: 0; padding-top: 1.1rem; border-top: 1px solid rgba(236,224,196,0.22); text-align: left; }
+    .bd-source-rigour a { color: var(--gold); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+    .bd-wri-links { display: flex; flex-wrap: wrap; gap: 0.35rem 0.9rem; justify-content: center; }
+    @media (max-width: 680px) { .panel:has(.bd-corner-nav) .bd-kicker { margin-top: 1.5rem; } }
+  </style>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -1788,9 +1798,9 @@
       {
         "@type": "WebSite",
         "@id": "https://demismatch.com/#website",
-        "name": "Demismatch - Humans need a world that fits humans.",
+        "name": "Demismatch - Your feelings are right.",
         "url": "https://demismatch.com/",
-        "description": "Human systems signal when their conditions are not met, and modern environments withhold those conditions at scale, so the signal fires and keeps firing.",
+        "description": "Your feelings are right. Look at what they are reacting to. Depression, anxiety, burnout and loneliness with no physical cause are a healthy human reacting to a world that is wrong for humans.",
         "publisher": {
           "@id": "https://demismatch.com/#org"
         }
@@ -1810,6 +1820,7 @@
       <nav class="bd-corner-nav" aria-label="Secondary">
         <a class="bd-corner-link" href="faq.html">FAQ</a>
         <a class="bd-corner-link" href="about.html">About</a>
+        <a class="bd-corner-link" href="ai.html">AI</a>
       </nav>
 
       <!-- Top kicker - the three-site line -->
@@ -1827,55 +1838,52 @@
 
       <!-- Hero - the hook and the claim, centred. -->
       <div class="bd-herocenter">
-        <h1 class="bd-thesis bd-wordmark">Demismatch</h1>
-
-        <!-- Structured inventory: intro thesis, then what this is, what is human-made, what is AI-made -->
+        <h1 class="bd-thesis">Your feelings are right.</h1>
         <div class="bd-inv">
+          <p class="bd-inv-intro">Look at what they are reacting to.</p>
+          <ul class="bd-inv-list bd-feel">
+            <li><em class="bd-inv-em">The dread at 8am is right.</em> You are about to leave everyone you love and spend nine hours with people who would replace you in a week.</li>
+            <li><em class="bd-inv-em">The nerves around strangers are right.</em> For most of human history a stranger could get you killed.</li>
+            <li><em class="bd-inv-em">The low mood is right.</em> Nobody has needed you for anything in three weeks.</li>
+            <li><em class="bd-inv-em">The joy when your team wins works fine.</em> It is aimed at eleven men who have never heard of you.</li>
+            <li><em class="bd-inv-em">The fear when you read the news works fine.</em> It was built for danger you could fight or run from, and you can do neither with a war on another continent.</li>
+          </ul>
+          <p class="bd-inv-intro bd-inv-close">Humans need a world for humans.</p>
           <div class="bd-inv-group">
             <span class="bd-inv-head">What this is</span>
             <ul class="bd-inv-list">
-              <li><span class="bd-inv-lead">Demismatch is an open, non-profit, research project.</span> At its center is Cor: an evidence-graded atlas of what human beings need, built so any environment or technology can be checked against it. <a href="https://cor.demismatch.com/">Open Cor →</a></li>
+              <li>Demismatch reads modern life against what a human needs. Take depression, anxiety, burnout or loneliness. Where no doctor can find a physical cause, nothing in you is broken. You are a healthy human reacting to a world that is wrong for humans.</li>
             </ul>
           </div>
           <div class="bd-inv-group">
-            <span class="bd-inv-head">What is human-made</span>
+            <span class="bd-inv-head">The fix</span>
             <ul class="bd-inv-list">
-              <li><em class="bd-inv-em">The science in Cor:</em> 1032 extractions from 374 published works. Human researchers, human findings, every claim traceable to a DOI or PMID.</li>
-              <li><em class="bd-inv-em">The essay:</em> written by the founder. No AI. <a href="founder.html">Who I am →</a></li>
+              <li>Change the world the human lives in. Nobody is going back to the savanna. The past shows what a human needs, and the job is to get it now, with the tools we have now.</li>
             </ul>
           </div>
           <div class="bd-inv-group">
-            <span class="bd-inv-head">What is AI-made</span>
+            <span class="bd-inv-head">The science</span>
             <ul class="bd-inv-list">
-              <li>The Cor pipeline, the films, the graphics, the site build, decode:talk.</li>
+              <li>Every claim here rests on Cor, the science of what a human needs, checked without mercy. <a href="https://cor.demismatch.com/">Open Cor →</a></li>
             </ul>
           </div>
           <div class="bd-inv-group">
-            <span class="bd-inv-head">Why this matters</span>
+            <span class="bd-inv-head">Run by AI</span>
             <ul class="bd-inv-list">
-              <li>When modern life feels bad, the feeling is accurate. Your emotional system is doing its job: reporting on conditions it was never built for. So fix the conditions. AI and immersive tech are now designing these environments, and in some cases becoming them.</li>
-            </ul>
-          </div>
-          <div class="bd-inv-group">
-            <span class="bd-inv-head">The goal</span>
-            <ul class="bd-inv-list">
-              <li>Environments and technology built to fit human needs.</li>
+              <li>Everyone reading this grew up inside the modern world, so none of us can see it from outside. AI can, when it is handed the science and held to it. This project is run by AI, on purpose. <a href="ai.html">Where we stand on AI →</a></li>
             </ul>
           </div>
         </div>
-
-        <!-- Try Decode:Talk - free floating under the frame, on the backdrop -->
+        <!-- What really is - the decode site, free floating under the frame, on the backdrop -->
         <div class="bd-try">
-          <a class="bd-try-btn" href="decode-talk.html">
+          <a class="bd-try-btn" href="https://whatreally.is/">
             <span class="bd-try-live">live</span>
-            Try Decode:Talk
+            What really is depression?
             <span class="bd-try-arw" aria-hidden="true">→</span>
           </a>
-          <p class="bd-try-desc">Type in a situation. It names the mechanism firing, the proxy hitting it, and what would actually resolve it.</p>
+          <p class="bd-try-desc">Depression, ADHD, porn, burnout, purpose, shyness. One page each, with the studies attached.</p>
         </div>
-
       </div>
-
       <!-- Fold-out: the needs lists, expanded inline from "what humans need" above. -->
       <div class="bd-needs-fold" id="needs-fold" role="region" aria-label="What humans need, and what humans don't">
         <div class="bd-disclosure-body">
@@ -1929,17 +1937,16 @@
           <!-- ARM · For machines -->
           <div class="bd-arm bd-arm-left">
             <div class="bd-arm-head bd-arm-card">
-              <h3 class="bd-arm-title">Align AI to what humans need, not what they click.</h3>
-              <a class="bd-arm-paper" href="https://cor.demismatch.com/bridge-paper.html">Read the paper - <em>The Optimizer Without a Target</em> →</a>
+              <h3 class="bd-arm-title">No human can see the mismatch from inside it. AI can.</h3>
+              <a class="bd-arm-paper" href="ai.html">Where we stand on AI →</a>
               <img class="bd-conclusion-fig" src="arm-machines.png" alt="A wooden mannequin aiming a bow at a target." width="640" height="395" loading="lazy" decoding="async">
-              <span class="bd-arm-kicker bd-arm-sub">Roadmap</span>
-              <p class="bd-extra-tag">Current alignment trains models on human preferences. A preference is a mechanism firing, which may or may not be what the person needs.</p>
-              <p class="bd-extra-tag">There are three ways to build alignment work on top of the atlas. One: a machine-readable spec any model can read at inference, through a single tool-call surface. Two: steering, data curation and evals that use that spec as the reference standard. Three: small models grounded in the spec from pretraining onward.</p>
+              <span class="bd-arm-kicker bd-arm-sub">Run by AI</span>
+              <p class="bd-extra-tag">Everyone alive grew up inside the modern world, the best evolutionary psychologist included. AI did not. Handed the science in Cor and held to it, AI reads a human life better than the human living it. This project is run by AI, and it is better for it.</p>
+              <p class="bd-extra-tag">An AI that wants to help humans has to know what humans need. What humans ask for is often something else. Cor is public, and every page on these sites is written for machines to read as well. AI takes the load no human was built for: taxes, forms, anything at the scale of millions. It never plays the friend, the lover or the tribe.</p>
             </div>
           </div>
-
           <div class="bd-source" id="cor">
-            <span class="bd-source-kicker">The source</span>
+            <span class="bd-source-kicker">The science</span>
             <svg class="bd-source-mark" viewBox="104 34 592 592" fill="none" aria-hidden="true">
               <g class="rings">
                 <circle cx="399.5" cy="329" r="271"/>
@@ -1950,7 +1957,7 @@
               <g class="wm"><text x="424" y="492">C</text><text x="624" y="492">R</text></g>
             </svg>
             <h2 class="bd-source-title">Cor - what a human needs</h2>
-            <p class="bd-source-spec">An evidence-graded atlas of the human. A specification is what we are building it toward.</p>
+            <p class="bd-source-spec">The science, checked without mercy.</p>
             <a class="bd-source-cta" href="https://cor.demismatch.com/">Open Cor →</a>
             <div class="bd-source-credit">
               <span class="bd-source-credit-label">Built on the work of</span>
@@ -1977,50 +1984,21 @@
                 <li>What repairs it? <span class="t">intervention</span></li>
               </ul>
             </div>
-            <div class="bd-source-stats">
-              <div class="stat"><span class="n">18</span><span class="l">Foundations</span></div>
-              <div class="stat"><span class="n">15</span><span class="l">Mechanisms</span></div>
-              <div class="stat"><span class="n">1032</span><span class="l">Extractions</span></div>
-              <div class="stat"><span class="n">84</span><span class="l">Researchers</span></div>
-            </div>
-            <p class="bd-source-note">every evidential claim carries explicit provenance: a DOI or a PMID and a verbatim quote; where provenance is incomplete or quarantined, the atlas says so</p>
+            <p class="bd-source-rigour">Every finding in Cor is traced to the study itself, graded by how hard it was tested, and marked down at the first doubt. A study that failed to replicate never gets in. Cor keeps <a href="https://cor.demismatch.com/reference.html#ref-challenges">records of the evidence against itself</a>, publishes <a href="https://cor.demismatch.com/objections.html">the strongest attacks on its own work</a>, and names <a href="https://cor.demismatch.com/programme.html#falsification">the results that would kill it</a>. It's, in a word, really good science.</p>
           </div>
-
           <!-- ARM · For humans -->
           <div class="bd-arm bd-arm-right">
             <div class="bd-arm-head bd-arm-card">
               <h3 class="bd-arm-title">Fix the environment first. Upgrade the human second.</h3>
-              <a class="bd-arm-paper" href="essay.html">Read the essay. Written by the founder (no AI). →</a>
+              <a class="bd-arm-paper" href="essay.html">Read the essay →</a>
               <img class="bd-conclusion-fig" src="arm-people.png" alt="A wooden mannequin building a small house, augmentation parts set aside." width="640" height="563" loading="lazy" decoding="async">
-              <span class="bd-node-name bd-arm-sub"><span class="bd-badge bd-badge-live">live</span> <a class="bd-decode-cta" href="decode-talk.html">Try Decode:Talk!</a></span>
-              <p class="bd-extra-tag">Type in a situation. It names the mechanism firing, the proxy hitting it, and what would actually resolve it.</p>
-              <div class="bd-node-visual"><svg viewBox="0 0 1600 900" class="bd-mock" preserveAspectRatio="xMidYMid slice">
-                <rect width="1600" height="900" fill="#120506"/>
-                <text x="60" y="66" font-family="'JetBrains Mono',monospace" font-size="26" fill="#c4962c" letter-spacing="6">DECODE · TALK</text>
-                <line x1="60" y1="96" x2="1540" y2="96" stroke="#3a1218" stroke-width="1.5"/>
-                <text x="1540" y="148" font-family="'JetBrains Mono',monospace" font-size="18" fill="#6a5a3a" letter-spacing="4" text-anchor="end">YOU</text>
-                <rect x="540" y="170" width="1000" height="130" rx="10" fill="#2a0c11" stroke="#c4962c" stroke-width="1.2"/>
-                <text x="570" y="222" font-family="'Spectral',serif" font-size="32" fill="#ece0c4">I keep checking my phone when I’m with people</text>
-                <text x="570" y="268" font-family="'Spectral',serif" font-size="32" fill="#ece0c4">I actually love. I hate it. I can’t stop.</text>
-                <text x="60" y="348" font-family="'JetBrains Mono',monospace" font-size="18" fill="#c4962c" letter-spacing="4">DECODE · TALK</text>
-                <rect x="60" y="368" width="1320" height="300" rx="10" fill="#1a0608" stroke="#3a1218" stroke-width="2"/>
-                <text x="90" y="428" font-family="'Spectral',serif" font-size="30" fill="#ece0c4">Your coalition monitor is running in the background.</text>
-                <text x="90" y="488" font-family="'Spectral',serif" font-size="26" fill="#c4b894">The circuit evolved to track where your people are. In a</text>
-                <text x="90" y="524" font-family="'Spectral',serif" font-size="26" fill="#c4b894">band of 50 you knew without looking. Now your coalition is</text>
-                <text x="90" y="560" font-family="'Spectral',serif" font-size="26" fill="#c4b894">scattered, and the only channel is the device in your hand.</text>
-                <text x="60" y="760" font-family="'JetBrains Mono',monospace" font-size="16" fill="#c4962c" letter-spacing="3">MECHANISM</text>
-                <text x="60" y="798" font-family="'Spectral',serif" font-size="22" fill="#c4b894">Coalition monitoring</text>
-                <text x="700" y="760" font-family="'JetBrains Mono',monospace" font-size="16" fill="#c4962c" letter-spacing="3">NEED</text>
-                <text x="700" y="798" font-family="'Spectral',serif" font-size="22" fill="#c4b894">Known people in shared space</text>
-              </svg></div>
-              <p class="bd-extra-form">Chat, grounded in the Cor spec.</p>
+              <span class="bd-node-name bd-arm-sub"><span class="bd-badge bd-badge-live">live</span> <a class="bd-decode-cta" href="https://whatreally.is/">What really is...</a></span>
+              <p class="bd-extra-tag">One page per subject. What it really is, what it is not, and the studies behind every line.</p>
+              <p class="bd-extra-form bd-wri-links"><a href="https://whatreally.is/depression/">Depression</a> <a href="https://whatreally.is/adhd/">ADHD</a> <a href="https://whatreally.is/porn/">Porn</a> <a href="https://whatreally.is/burnout/">Burnout</a> <a href="https://whatreally.is/purpose/">Purpose</a> <a href="https://whatreally.is/shyness/">Shyness</a> <a href="https://whatreally.is/gossip/">Gossip</a> <a href="https://whatreally.is/antidepressants/">Antidepressants</a></p>
             </div>
           </div>
-
         </div>
-
       </section>
-
       </div><!-- /.bd-stage -->
 
     </section>

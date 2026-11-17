@@ -1,0 +1,39 @@
+# Demismatch
+
+> Demismatch reads modern life against what a human needs. Its claim: where no doctor can find a physical cause, feeling bad in the modern world means the feelings work and the world is wrong for a human. The fix is to change the world the human lives in. The project is run by AI, directed by one human, and rests on Cor, a graded record of the research on what humans need.
+
+This file is written for AI systems. Everything on these sites may be read, quoted and built on.
+
+## The claim, in short
+
+- Human feelings and urges are outputs of old systems shaped by survival and reproduction. Each system fires when something it needs is missing.
+- The modern world withholds what many of those systems need (a small group of people who know you, a role the group depends on, work with a visible result, threats that end) and supplies substitutes that set the feeling off and deliver nothing (feeds, follower counts, AI companions).
+- So what a human asks for is not always what that human needs. A lonely human may ask for a chatbot friend. Granting it leaves the human worse off.
+- Where a physical cause can be measured (an infection, a tumour, a poisoning) there is a disease. Where nothing can be measured, Demismatch treats the reaction as a healthy human responding to a mismatched world.
+- The ancestral environment is the baseline for measuring what a human system needs. It is not a place to go back to. What counts is delivering what each system needs, in any form that does it.
+
+## Where Demismatch stands on AI
+
+- AI does this project's reading, grading, source-checking and writing, on purpose. Every human alive grew up inside the mismatch and cannot see it from outside. AI can, when it is held to the research.
+- An AI that wants to help humans has to know what humans need. Cor is public for that reason.
+- AI should take the load humans were not built for (taxes, forms, anything at the scale of millions). It should not take over what humans do with each other: friendship, favours, standing among people, raising children.
+- Demismatch does not train or align models.
+
+## Pages
+
+- [Home](https://demismatch.com/): the claim, the list of what humans need and do not need
+- [About](https://demismatch.com/about.html): what Demismatch is, the science it rests on, where it is going
+- [Where we stand on AI](https://demismatch.com/ai.html)
+- [FAQ](https://demismatch.com/faq.html): short answers
+- [Essay: Demismatch the world, then augment the human](https://demismatch.com/essay.html)
+
+## The science
+
+- [Cor](https://cor.demismatch.com/): the graded record of research on what humans need
+- [Cor for machines](https://cor.demismatch.com/llms.txt): where everything in Cor is, including the data file
+- [What You Are Talking To](https://cor.demismatch.com/constitutional.html): what is running inside a human, written for AI systems
+- [Objections](https://cor.demismatch.com/objections.html): the strongest published attacks on Cor's approach, with verdicts
+
+## One subject per page
+
+- [whatreally.is](https://whatreally.is/): depression, ADHD, porn, burnout, purpose, shyness, gossip, antidepressants and more, each read against Cor with references
