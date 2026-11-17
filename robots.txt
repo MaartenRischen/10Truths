@@ -1,4 +1,3 @@
-# Everyone may read this site, AI crawlers included. Machine-readable summary: /llms.txt
 User-agent: *
 Allow: /
 
