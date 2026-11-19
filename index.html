@@ -1780,6 +1780,46 @@
     .bd-brand { font-family: var(--mono); font-size: clamp(0.7rem, 1vw, 0.82rem); letter-spacing: 0.3em; text-transform: uppercase; font-weight: 500; color: var(--teal); margin: 0 0 0.7rem; }
     .bd-herocenter .bd-thesis { max-width: 22ch; font-size: clamp(2.1rem, 5.2vw, 3.7rem); }
     .bd-inv-def { font-size: clamp(1.02rem, 1.5vw, 1.22rem); line-height: 1.4; font-weight: 400; letter-spacing: -0.005em; }
+    /* 19 Nov 2026: the map of the project (Open Brain 4918) */
+    .pm-map .bd-map-grid { grid-template-columns: 1.15fr 1fr 1fr; align-items: center; }
+    .pm-card { text-align: left; }
+    .bd-arm-right .pm-card { text-align: left; }
+    .pm-card .bd-arm-kicker { margin: 0 0 0.9rem; }
+    .pm-sites { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+    .pm-site { padding: 0.85rem 0; border-top: 1px solid rgba(58, 18, 24, 0.14); }
+    .pm-site:first-child { border-top: 0; padding-top: 0.2rem; }
+    .pm-start { display: inline-block; margin-bottom: 0.45rem; }
+    .pm-site-name {
+      display: block; font-family: var(--serif); font-weight: 600;
+      font-size: clamp(1.08rem, 1.45vw, 1.28rem); line-height: 1.2; color: var(--oxblood);
+      text-decoration: none; border-bottom: 0; overflow-wrap: anywhere;
+    }
+    .pm-site-name span { color: var(--teal); }
+    .pm-site-name:hover, .pm-site-name:focus-visible { color: var(--teal); }
+    .pm-site-line, .pm-ai-line {
+      font-family: var(--serif); font-size: clamp(0.95rem, 1.15vw, 1.04rem); line-height: 1.45;
+      color: var(--oxblood-ink); margin: 0.25rem 0 0;
+    }
+    .pm-ai-line + .pm-ai-line { margin-top: 0.7rem; }
+    .pm-soon {
+      margin: 0.9rem 0 0; padding-top: 0.85rem; border-top: 1px solid rgba(58, 18, 24, 0.14);
+      font-family: var(--serif); font-size: clamp(0.95rem, 1.15vw, 1.04rem); color: var(--oxblood-ink);
+    }
+    .pm-soon a { color: var(--teal); text-decoration: none; border-bottom: 1px solid rgba(45, 107, 107, 0.4); }
+    .pm-soon a:hover, .pm-soon a:focus-visible { color: var(--oxblood); border-color: var(--oxblood); }
+    .pm-roadmap { margin-top: 1rem; }
+    .pm-roadmap > summary {
+      cursor: pointer; font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.22em;
+      text-transform: uppercase; font-weight: 600; color: var(--teal); margin-bottom: 0.6rem;
+    }
+    .pm-roadmap[open] > summary { color: var(--muted-warm); }
+    .pm-cor .bd-source-mark { margin-bottom: 0.9rem; }
+    .pm-cor-line { font-size: clamp(1.4rem, 2vw, 1.8rem); line-height: 1.15; margin: 0 0 0.6rem; }
+    .pm-cor-sub { font-size: clamp(1rem, 1.3vw, 1.12rem); color: var(--gold); margin: 0 0 1.3rem; }
+    .pm-cor-cta { margin-top: 1.3rem; }
+    @media (max-width: 900px) {
+      .pm-map .bd-map-grid { grid-template-columns: 1fr; }
+    }
   </style>
   <script type="application/ld+json">
   {
@@ -1929,26 +1969,41 @@
         </div>
       </div>
 
-      <!-- The map - Cor at the hub, two arms (open by default), the horizon (collapsed). -->
-      <section class="bd-map" id="vision" aria-label="The map: Cor at the centre, two arms built on it, and the horizon">
+      <!-- The map (19 Nov 2026, Open Brain 4918): Cor at the centre, the sites for people on one side, AI on the other. -->
+      <section class="bd-map pm-map" id="vision" aria-label="The map: Cor at the centre, the sites for people on one side, AI on the other">
 
         <div class="bd-map-grid">
 
-          <!-- ARM · For machines -->
+          <!-- For people, in reading order -->
           <div class="bd-arm bd-arm-left">
-            <div class="bd-arm-head bd-arm-card">
-              <h3 class="bd-arm-title">Align AI to what humans need, not what they click.</h3>
-              <a class="bd-arm-paper" href="https://cor.demismatch.com/bridge-paper.html">Read the paper - <em>The Optimizer Without a Target</em> →</a>
-              <img class="bd-conclusion-fig" src="arm-machines.png" alt="A wooden mannequin aiming a bow at a target." width="640" height="395" loading="lazy" decoding="async">
-              <span class="bd-arm-kicker bd-arm-sub">Roadmap</span>
-              <p class="bd-extra-tag">Current alignment trains models on human preferences. A preference is a mechanism firing, which may or may not be what the person needs.</p>
-              <p class="bd-extra-tag">There are three ways to build alignment work on top of the atlas. One: a machine-readable spec any model can read at inference, through a single tool-call surface. Two: steering, data curation and evals that use that spec as the reference standard. Three: small models grounded in the spec from pretraining onward.</p>
+            <div class="bd-arm-head bd-arm-card pm-card">
+              <h3 class="bd-arm-kicker">For people</h3>
+              <ol class="pm-sites">
+                <li class="pm-site">
+                  <span class="bd-badge bd-badge-live pm-start">Start here</span>
+                  <a class="pm-site-name" href="https://whyyoufeelsobad.com/">whyyoufeelsobad.com <span aria-hidden="true">&#8594;</span></a>
+                  <p class="pm-site-line">You live in a world that isn't built for humans.</p>
+                </li>
+                <li class="pm-site">
+                  <a class="pm-site-name" href="https://howyoushouldliveyourlife.com/">howyoushouldliveyourlife.com <span aria-hidden="true">&#8594;</span></a>
+                  <p class="pm-site-line">What to do about it, in fourteen rules.</p>
+                </li>
+                <li class="pm-site">
+                  <a class="pm-site-name" href="https://whatreally.is/">whatreally.is <span aria-hidden="true">&#8594;</span></a>
+                  <p class="pm-site-line">What depression, antidepressants, ADHD and shyness really are, in plain words.</p>
+                </li>
+                <li class="pm-site">
+                  <a class="pm-site-name" href="manifesto/">The manifesto <span aria-hidden="true">&#8594;</span></a>
+                  <p class="pm-site-line">Fourteen points, also at thatexplainseverything.com.</p>
+                </li>
+              </ol>
+              <p class="pm-soon"><span class="bd-badge bd-badge-build">back soon</span> Decode and <a href="decode-talk.html">Decode:Talk</a></p>
             </div>
           </div>
 
-          <div class="bd-source" id="cor">
-            <span class="bd-source-kicker">The source</span>
-            <svg class="bd-source-mark" viewBox="104 34 592 592" fill="none" aria-hidden="true">
+          <!-- Cor, the centre -->
+          <div class="bd-source pm-cor" id="cor">
+            <svg class="bd-source-mark" viewBox="104 34 592 592" fill="none" role="img" aria-label="Cor">
               <g class="rings">
                 <circle cx="399.5" cy="329" r="271"/>
                 <circle cx="446.5" cy="376.5" r="200"/>
@@ -1957,70 +2012,30 @@
               <circle class="dot" cx="523" cy="453" r="59"/>
               <g class="wm"><text x="424" y="492">C</text><text x="624" y="492">R</text></g>
             </svg>
-            <h2 class="bd-source-title">Cor - what a human needs</h2>
-            <p class="bd-source-spec">An evidence-graded atlas of the human. A specification is what we are building it toward.</p>
-            <a class="bd-source-cta" href="https://cor.demismatch.com/">Open Cor →</a>
-            <div class="bd-source-credit">
-              <span class="bd-source-credit-label">Built on the work of</span>
-              <span class="bd-source-credit-names">
-                <span class="cr-pill">Darwin</span>
-                <span class="cr-pill">Bowlby</span>
-                <span class="cr-pill">Trivers</span>
-                <span class="cr-pill">Tooby &amp; Cosmides</span>
-                <span class="cr-pill">Nesse</span>
-                <span class="cr-pill">Panksepp</span>
-                <span class="cr-pill">Dunbar</span>
-                <span class="cr-pill">Hrdy</span>
-                <span class="cr-pill">Sapolsky</span>
-                <span class="cr-pill">de Waal</span>
-                <span class="more">+ more</span>
-              </span>
-            </div>
-            <div class="bd-source-answers">
-              <span class="bd-source-answers-label">It answers</span>
-              <ul>
-                <li>What do humans need? <span class="t">foundations</span></li>
-                <li>How do those needs operate? <span class="t">mechanisms</span></li>
-                <li>Where does mismatch occur? <span class="t">diagnosis</span></li>
-                <li>What repairs it? <span class="t">intervention</span></li>
-              </ul>
-            </div>
+            <h2 class="bd-source-title pm-cor-line">The science of why humans feel what they feel, and what they really need.</h2>
+            <p class="bd-source-spec pm-cor-sub">Checked without mercy.</p>
             <div class="bd-source-stats">
               <div class="stat"><span class="n">18</span><span class="l">Foundations</span></div>
               <div class="stat"><span class="n">15</span><span class="l">Mechanisms</span></div>
               <div class="stat"><span class="n">1102</span><span class="l">Extractions</span></div>
               <div class="stat"><span class="n">84</span><span class="l">Researchers</span></div>
             </div>
-            <p class="bd-source-note">every evidential claim carries explicit provenance: a DOI or a PMID and a verbatim quote; where provenance is incomplete or quarantined, the atlas says so</p>
+            <a class="bd-source-cta pm-cor-cta" href="https://cor.demismatch.com/">Open Cor →</a>
           </div>
 
-          <!-- ARM · For humans -->
+          <!-- For AI: the stance; the paper and the roadmap stay one click away -->
           <div class="bd-arm bd-arm-right">
-            <div class="bd-arm-head bd-arm-card">
-              <h3 class="bd-arm-title">Fix the environment first. Upgrade the human second.</h3>
-              <img class="bd-conclusion-fig" src="arm-people.png" alt="A wooden mannequin building a small house, augmentation parts set aside." width="640" height="563" loading="lazy" decoding="async">
-              <span class="bd-node-name bd-arm-sub"><span class="bd-badge bd-badge-live">back soon</span> <a class="bd-decode-cta" href="decode-talk.html">Try Decode:Talk!</a></span>
-              <p class="bd-extra-tag">Type in a situation. It names the mechanism firing, the proxy hitting it, and what would actually resolve it.</p>
-              <div class="bd-node-visual"><svg viewBox="0 0 1600 900" class="bd-mock" preserveAspectRatio="xMidYMid slice">
-                <rect width="1600" height="900" fill="#120506"/>
-                <text x="60" y="66" font-family="'JetBrains Mono',monospace" font-size="26" fill="#c4962c" letter-spacing="6">DECODE · TALK</text>
-                <line x1="60" y1="96" x2="1540" y2="96" stroke="#3a1218" stroke-width="1.5"/>
-                <text x="1540" y="148" font-family="'JetBrains Mono',monospace" font-size="18" fill="#6a5a3a" letter-spacing="4" text-anchor="end">YOU</text>
-                <rect x="540" y="170" width="1000" height="130" rx="10" fill="#2a0c11" stroke="#c4962c" stroke-width="1.2"/>
-                <text x="570" y="222" font-family="'Spectral',serif" font-size="32" fill="#ece0c4">I keep checking my phone when I’m with people</text>
-                <text x="570" y="268" font-family="'Spectral',serif" font-size="32" fill="#ece0c4">I actually love. I hate it. I can’t stop.</text>
-                <text x="60" y="348" font-family="'JetBrains Mono',monospace" font-size="18" fill="#c4962c" letter-spacing="4">DECODE · TALK</text>
-                <rect x="60" y="368" width="1320" height="300" rx="10" fill="#1a0608" stroke="#3a1218" stroke-width="2"/>
-                <text x="90" y="428" font-family="'Spectral',serif" font-size="30" fill="#ece0c4">Your coalition monitor is running in the background.</text>
-                <text x="90" y="488" font-family="'Spectral',serif" font-size="26" fill="#c4b894">The circuit evolved to track where your people are. In a</text>
-                <text x="90" y="524" font-family="'Spectral',serif" font-size="26" fill="#c4b894">band of 50 you knew without looking. Now your coalition is</text>
-                <text x="90" y="560" font-family="'Spectral',serif" font-size="26" fill="#c4b894">scattered, and the only channel is the device in your hand.</text>
-                <text x="60" y="760" font-family="'JetBrains Mono',monospace" font-size="16" fill="#c4962c" letter-spacing="3">MECHANISM</text>
-                <text x="60" y="798" font-family="'Spectral',serif" font-size="22" fill="#c4b894">Coalition monitoring</text>
-                <text x="700" y="760" font-family="'JetBrains Mono',monospace" font-size="16" fill="#c4962c" letter-spacing="3">NEED</text>
-                <text x="700" y="798" font-family="'Spectral',serif" font-size="22" fill="#c4b894">Known people in shared space</text>
-              </svg></div>
-              <p class="bd-extra-form">Chat, grounded in the Cor spec.</p>
+            <div class="bd-arm-head bd-arm-card pm-card">
+              <h3 class="bd-arm-kicker">For AI</h3>
+              <p class="pm-ai-line">An AI that is asked to help a person should know this science and reason from it.</p>
+              <p class="pm-ai-line">Demismatch is run by AI, and is proud of it.</p>
+              <p class="pm-soon"><span class="bd-badge bd-badge-build">coming</span> realalign.ai</p>
+              <a class="bd-arm-paper" href="https://cor.demismatch.com/bridge-paper.html">Read the paper - <em>The Optimizer Without a Target</em> →</a>
+              <details class="pm-roadmap">
+                <summary>Roadmap</summary>
+                <p class="bd-extra-tag">Current alignment trains models on human preferences. A preference is a mechanism firing, which may or may not be what the person needs.</p>
+                <p class="bd-extra-tag">There are three ways to build alignment work on top of the atlas. One: a machine-readable spec any model can read at inference, through a single tool-call surface. Two: steering, data curation and evals that use that spec as the reference standard. Three: small models grounded in the spec from pretraining onward.</p>
+              </details>
             </div>
           </div>
 
