@@ -98,6 +98,8 @@
     @media (max-width: 560px) {
       .bd-corner-nav { top: 0.7rem; right: 0.9rem; gap: 1rem; }
       .bd-corner-link { font-size: 0.58rem; letter-spacing: 0.14em; }
+      /* three corner links reach the centred kicker on a phone: the kicker moves down a line */
+      .panel .bd-kicker { margin-top: 1.35rem; }
     }
 
     /* ── Top kicker - the cross-site line, folded into an eyebrow ── */
@@ -1813,6 +1815,7 @@
 
       <!-- Quiet corner link to the about page -->
       <nav class="bd-corner-nav" aria-label="Secondary">
+        <a class="bd-corner-link" href="manifesto/">Manifesto</a>
         <a class="bd-corner-link" href="faq.html">FAQ</a>
         <a class="bd-corner-link" href="about.html">About</a>
       </nav>

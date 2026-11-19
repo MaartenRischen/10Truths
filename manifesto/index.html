@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Manifesto - Demismatch</title>
+  <link rel="canonical" href="https://demismatch.com/manifesto/">
+  <meta name="description" content="The Demismatch manifesto in fourteen points. Humans need a world for humans.">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/cor.css">
+  <style>
+:root { --page-bg: #f4f1e7; --sheet: var(--parchment); --body-ink: #241217; }
+html, body { background: var(--page-bg); }
+body {
+  background:
+    radial-gradient(circle at 16% 4%, rgba(58, 18, 24, 0.03) 0%, transparent 46%),
+    radial-gradient(circle at 88% 104%, rgba(45, 107, 107, 0.035) 0%, transparent 52%),
+    var(--page-bg);
+  color: var(--body-ink); font-family: var(--serif); -webkit-font-smoothing: antialiased; margin: 0;
+}
+.wrap { width: 100%; max-width: 47rem; margin: 0 auto; box-sizing: border-box;
+  padding: clamp(1.4rem, 4vw, 2.8rem) clamp(1rem, 4vw, 1.6rem) clamp(3.2rem, 7vw, 5.5rem); }
+.kicker { margin: 0 0 clamp(1.2rem, 2.6vw, 1.9rem); font-family: var(--mono); font-size: 0.74rem;
+  letter-spacing: 0.24em; text-transform: uppercase; font-weight: 500; color: var(--teal);
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.5rem; }
+.kicker a { color: var(--teal); text-decoration: none; }
+.kicker a:hover, .kicker a:focus-visible { color: var(--oxblood); }
+.kicker .sep { color: var(--muted-warm); opacity: 0.7; }
+.preview-note { margin: 0 0 1.1rem; padding: 0.6rem 0.9rem; border: 1px dashed rgba(58, 18, 24, 0.35);
+  border-radius: 8px; font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.04em; color: var(--oxblood); }
+.sheet { background: var(--sheet); border-radius: 16px;
+  padding: clamp(1.9rem, 5.4vw, 3.8rem) clamp(1.3rem, 5.4vw, 3.4rem) clamp(2.4rem, 6vw, 4rem);
+  box-shadow: 0 1px 2px rgba(26, 6, 8, 0.06), 0 18px 44px rgba(26, 6, 8, 0.07); }
+.head { margin: 0 0 clamp(1.6rem, 3.4vw, 2.4rem); padding-bottom: clamp(1.2rem, 2.6vw, 1.8rem);
+  border-bottom: 1px solid rgba(58, 18, 24, 0.16); }
+.label { margin: 0 0 0.7rem; font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.24em;
+  text-transform: uppercase; font-weight: 500; color: var(--teal); }
+h1 { font-family: var(--serif); font-weight: 600; font-size: clamp(2.1rem, 6vw, 3.3rem); line-height: 1.04;
+  letter-spacing: -0.032em; color: var(--oxblood); margin: 0; max-width: 16ch; text-wrap: balance; }
+.intro { margin: clamp(0.9rem, 1.8vw, 1.2rem) 0 0; font-size: clamp(1.08rem, 1.5vw, 1.24rem);
+  line-height: 1.55; color: var(--body-ink); max-width: 38rem; }
+.toc { margin: clamp(1.3rem, 2.6vw, 1.8rem) 0 0; padding: 0; list-style: none; counter-reset: none;
+  display: grid; gap: 0.32rem; }
+.toc li { display: grid; grid-template-columns: 2.1rem 1fr; align-items: baseline; }
+.toc .n { font-family: var(--mono); font-size: 0.74rem; color: var(--teal); letter-spacing: 0.06em; }
+.toc a { font-family: var(--serif); font-weight: 500; font-size: clamp(1rem, 1.3vw, 1.1rem); line-height: 1.35;
+  color: var(--oxblood); text-decoration: none; border-bottom: 1px solid transparent; }
+.toc a:hover, .toc a:focus-visible { border-bottom-color: rgba(58, 18, 24, 0.4); }
+.point { margin: clamp(2.3rem, 4.8vw, 3.3rem) 0 0; scroll-margin-top: 1rem; }
+.point .n { display: block; font-family: var(--mono); font-size: 0.76rem; letter-spacing: 0.2em;
+  color: var(--teal); font-weight: 500; margin: 0 0 0.45rem; }
+.point h2 { font-family: var(--serif); font-weight: 600; font-size: clamp(1.5rem, 3.3vw, 2.05rem);
+  line-height: 1.1; letter-spacing: -0.02em; color: var(--oxblood); margin: 0 0 clamp(0.8rem, 1.6vw, 1.1rem);
+  max-width: 24ch; text-wrap: balance; font-style: normal; }
+.point p { font-family: var(--serif); font-weight: 400; font-size: clamp(1.06rem, 1.35vw, 1.19rem);
+  line-height: 1.7; color: var(--body-ink); max-width: 40rem; margin: 0 0 clamp(0.95rem, 1.8vw, 1.3rem);
+  text-wrap: pretty; }
+.point p a, .intro a { color: var(--teal); text-decoration: none; border-bottom: 1px solid rgba(45, 107, 107, 0.4); }
+.point p a:hover, .point p a:focus-visible { color: var(--oxblood); border-bottom-color: var(--oxblood); }
+.sources { margin: 0.2rem 0 0; padding: 0.75rem 0 0; border-top: 1px solid rgba(58, 18, 24, 0.12);
+  list-style: none; max-width: 40rem; }
+.sources li { font-family: var(--serif); font-size: 0.88rem; line-height: 1.45; color: rgba(36, 18, 23, 0.74);
+  margin: 0 0 0.42rem; overflow-wrap: anywhere; }
+.sources a { color: inherit; text-decoration: none; border-bottom: 1px solid transparent; }
+.sources a:hover, .sources a:focus-visible { color: var(--teal); border-bottom-color: var(--teal); }
+.sources .lead { font-family: var(--mono); font-size: 0.64rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--teal); margin-bottom: 0.4rem; }
+.sources .g { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--teal); margin-right: 0.35rem; white-space: nowrap; }
+.point p.note { font-size: 0.95rem; line-height: 1.5; color: rgba(36, 18, 23, 0.8); padding-left: 0.9rem;
+  border-left: 2px solid rgba(58, 18, 24, 0.3); }
+.next { margin: clamp(2.6rem, 5vw, 3.6rem) 0 0; padding-top: clamp(1.2rem, 2.4vw, 1.6rem);
+  border-top: 1px solid rgba(58, 18, 24, 0.16); list-style: none; display: grid; gap: 0.5rem; max-width: 40rem; }
+.next li { font-family: var(--serif); font-size: clamp(1.02rem, 1.3vw, 1.12rem); line-height: 1.4; color: var(--body-ink); }
+.next a { color: var(--teal); font-weight: 500; text-decoration: none; border-bottom: 1px solid rgba(45, 107, 107, 0.4); }
+.foot { margin: clamp(2.4rem, 5vw, 3.6rem) 0 0; text-align: center; }
+.foot a { font-family: var(--mono); font-size: 0.76rem; letter-spacing: 0.2em; text-transform: uppercase;
+  font-weight: 500; color: var(--teal); text-decoration: none; border-bottom: 1px solid rgba(45, 107, 107, 0.4);
+  padding-bottom: 2px; }
+@media (max-width: 560px) { .kicker { font-size: 0.66rem; letter-spacing: 0.16em; } .toc li { grid-template-columns: 1.8rem 1fr; } }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kicker"><a href="/">&larr; Demismatch</a><span class="sep" aria-hidden="true">&middot;</span><a href="https://cor.demismatch.com/">Cor</a></p>
+    <article class="sheet">
+      <header class="head">
+        <p class="label">Manifesto</p>
+        <h1>Humans need a world for humans.</h1>
+        <p class="intro">Evolutionary mismatch is what happens when an animal shaped for one world has to live in another. Demismatch is an open, independent research project. It studies what that does to humans and builds what would fit them, with AI and technology where they help.</p>
+        <ol class="toc">
+          <li><span class="n">01</span><a href="#p1">Humans are animals.</a></li>
+          <li><span class="n">02</span><a href="#p2">The world changed faster than humans can.</a></li>
+          <li><span class="n">03</span><a href="#p3">Feeling bad is the normal reaction.</a></li>
+          <li><span class="n">04</span><a href="#p4">Only a clear physical defect is a disease.</a></li>
+          <li><span class="n">05</span><a href="#p5">A human life has a size.</a></li>
+          <li><span class="n">06</span><a href="#p6">Isolation is designed.</a></li>
+          <li><span class="n">07</span><a href="#p7">A stand-in does not meet the need.</a></li>
+          <li><span class="n">08</span><a href="#p8">Real enlightenment is not the absence of wanting.</a></li>
+          <li><span class="n">09</span><a href="#p9">Demismatching a life starts with rereading it.</a></li>
+          <li><span class="n">10</span><a href="#p10">Nobody has to go back.</a></li>
+          <li><span class="n">11</span><a href="#p11">The science is checked without mercy.</a></li>
+          <li><span class="n">12</span><a href="#p12">AI is the right tool for this, and this project is run by AI.</a></li>
+          <li><span class="n">13</span><a href="#p13">AI must never take over what humans do for each other.</a></li>
+          <li><span class="n">14</span><a href="#p14">What Demismatch promises.</a></li>
+        </ol>
+      </header>
+      <section class="point" id="p1">
+        <span class="n">01</span>
+        <h2>Humans are animals.</h2>
+        <p>Like every animal, humans are built to survive and reproduce, and feelings are how an animal is steered toward both. A feeling is your body's reading of whether what is happening is good or bad for your survival and your chances of having children. The stronger the feeling, the more your body reads as being at stake.</p>
+        <ul class="sources">
+          <li class="lead">Sources in Cor</li>
+          <li><a href="https://cor.demismatch.com/derivation.html">Cor P1, Inclusive Fitness</a></li>
+          <li><a href="https://cor.demismatch.com/derivation.html">Cor OF2, Signal-Default Epistemology</a></li>
+        </ul>
+      </section>
+      <section class="point" id="p2">
+        <span class="n">02</span>
+        <h2>The world changed faster than humans can.</h2>
+        <p>Humans have existed for about 300,000 years. For nearly all of that time they lived in camps of a few dozen people who knew each other, and many adults raised each child. They did work whose result they could see. A danger such as a predator or a fight was over in minutes, whichever way it ended.</p>
+        <p>Farming began about 12,000 years ago. Since then humans have changed nearly everything around themselves: owners and bosses, taxes, cities full of strangers, the internet, AI.</p>
+        <p>The parts of a human that produce feelings are far older than any of that, and older than humans. The part of the brain that judges danger is at least 340 million years old. Twelve thousand years is not enough time to rebuild it.</p>
+        <p>That older life had plenty of misery, and nobody has to go back to it. It is the life human feelings were shaped in, so it shows which conditions they were built for.</p>
+        <ul class="sources">
+          <li class="lead">Sources in Cor</li>
+          <li><span class="g">tested once</span> <a href="https://cor.demismatch.com/corpus.html#e=1206">Hublin J-J, Ben-Ncer A, Bailey SE and others (2017). New fossils from Jebel Irhoud, Morocco and the pan-African origin of Homo sapiens. Nature 546.</a></li>
+          <li><span class="g">tested many times</span> <a href="https://cor.demismatch.com/corpus.html#e=1209">Larson G, Piperno DR, Allaby RG and others (2014). Current perspectives and the future of domestication studies. Proceedings of the National Academy of Sciences 111.</a></li>
+          <li><span class="g">tested many times</span> <a href="https://cor.demismatch.com/the-gap.html#EEA-SOC-03">Cor EEA-SOC-03, Band / camp size</a></li>
+          <li><span class="g">tested many times</span> <a href="https://cor.demismatch.com/the-gap.html#EEA-CARE-01">Cor EEA-CARE-01, Alloparental care supply</a></li>
+          <li><span class="g">argued, not yet tested</span> <a href="https://cor.demismatch.com/the-gap.html#EEA-SUBS-02">Cor EEA-SUBS-02, Effort-to-outcome contingency</a></li>
+          <li><span class="g">argued, not yet tested</span> <a href="https://cor.demismatch.com/the-gap.html#EEA-THREAT-01">Cor EEA-THREAT-01, Threat temporality</a></li>
+          <li><span class="g">tested many times</span> <a href="https://cor.demismatch.com/mechanism.html#M1">Cor M1, Threat Detection: age of the amygdala circuit</a></li>
+        </ul>
+      </section>
+      <section class="point" id="p3">
+        <span class="n">03</span>
+        <h2>Feeling bad is the normal reaction.</h2>
+        <p>You live in a world that isn't built for humans.</p>
+        <p>People see this at once in other animals. Nobody thinks a dog kept alone in a cage is the problem, or an orca calling in a tank. Then people look at their own lives and say "that's just life". It isn't, and it hasn't been for nearly all of human history.</p>
+        <p>For most of that history a bad feeling pointed at something you could act on. Fear moved you away from the danger. Loneliness ended when you walked back to your people. Grief did not end, and a whole camp carried it with you. Now the bills never end and a war on another continent is on your phone every morning. Nothing you do ends the bills or the war. The feeling has nothing to switch it off, so it stays on.</p>
+        <p>Your feelings are doing their job. They are reporting on conditions they were never built for.</p>
+        <ul class="sources">
+          <li class="lead">Sources in Cor</li>
+          <li><a href="https://cor.demismatch.com/derivation.html">Cor DA1, Defensive Signals Under Mismatch</a></li>
+          <li><span class="g">argued, not yet tested</span> <a href="https://cor.demismatch.com/the-gap.html#EEA-THREAT-01">Cor EEA-THREAT-01, Threat temporality</a></li>
+        </ul>
+      </section>
+      <section class="point" id="p4">
+        <span class="n">04</span>
+        <h2>Only a clear physical defect is a disease.</h2>
+        <p>A disease is a clear physical defect, such as an infection, a tumour, a poisoning or antibodies attacking the brain. Where such a defect is the cause, you are sick, and what you feel and do is a symptom of it. That holds for a defect no test can find yet. Among people who feel bad, those are the edge cases.</p>
+        <p>A marker is something else. A gene, a receptor or a pattern on a brain scan can show how sensitive a person is to what happens around them. That is a measure of sensitivity. It is no defect and no cause, and activity in the brain can itself be the result of the mismatch.</p>
+        <p>Where no defect is the cause, you are not sick. You are a human reacting normally to a world that isn't built for humans.</p>
+        <p>That holds for every label, psychosis and bipolar included. Whoever calls a feeling a disease has to show the defect. For depression, anxiety, ADHD, bipolar and schizophrenia, fifty years of looking have produced no blood test or brain scan a doctor can use. Each of these names describes how a person feels and acts. It names no cause, and it puts the problem inside the person, where no test has found it.</p>
+        <p>The word psychosis is used for two groups of people. In the first there is a defect, such as an infection, a tumour, a drug or antibodies attacking the brain, and those people are sick. In the second there is none. Demismatch reads their psychosis as a feeling that got no answer and went all the way up. It does not look like a healthy reaction, and in a mismatched world most reactions don't, because they get no answer and keep getting louder. In the camps humans lived in, a feeling got its answer long before it reached that level. A big city is full of strangers, and a migrant has left their own people behind. Both are far from those camps. People in the biggest cities get a schizophrenia diagnosis more than twice as often as people in the countryside, and migrants get it nearly three times as often as people born in the country. In one American hospital system, 369 head CT scans were ordered over six years for psychiatric reasons alone, among them psychosis, hallucinations and delusions, and none of them found a cause in the brain.</p>
+        <p>Bipolar is a name for people whose drive runs higher and whose low runs deeper than most people's. No test has found a defect behind the name. The diagnoses of bipolar and schizophrenia run in families more than most others. Demismatch holds that what is inherited is how easily a person is triggered and how big the reaction is. That is variation, and variation is not disease. Where there is no defect, autism and ADHD are variation too, with advantages in a life that fits. School sorts children by year of birth and sits them down for hours, which no human child had to do before. The youngest children in a school year get the ADHD diagnosis about a third more often than their older classmates.</p>
+        <p>Psychiatry and mainstream psychology take normal, working human emotions and tell the person who has them that they are sick. They are soft sciences at best. At worst they mislead people knowingly and earn from the mismatch. Their own research does not back them. Drug adverts told people that the pills correct a chemical imbalance, and a 2022 review of the studies found no consistent evidence that low serotonin causes depression. In the trials, an antidepressant beats a sugar pill by about two points on a scale of 52. A therapist is paid to stand in for the people who should be around you. A human living a life that fits needs no psychology and no psychiatry.</p>
+        <p>The same goes for the drugs prescribed for these labels, antidepressants, antipsychotics and mood stabilisers among them. Where no defect is the cause, there is no disease to treat, and the only chemical imbalance is the one the drug makes. The drug dulls a feeling that is asking for something real. So the drug gets replaced by the real thing, such as people who need you and give back. That is hard to build while the drug dulls you, so the dose comes down as the real thing comes in. Expect the feeling to come back as the dose drops. Doctors call that a relapse. It is the original feeling returning, plus withdrawal. With certain drugs, and with alcohol, stopping suddenly is biologically dangerous. Never stop those suddenly, and come off them with a doctor. A doctor or a pharmacist can tell you whether yours is one of them. Where a defect is the cause, the drug may be treating a disease.</p>
+        <p>Demismatch applies the rule of no disease without a physical defect on every page it publishes, and it wants distress handled by that rule everywhere. Find what the feeling is about, and change that.</p>
+        <ul class="sources">
+          <li class="lead">Sources in Cor</li>
+          <li><span class="g">tested once</span> <a href="https://cor.demismatch.com/corpus.html#e=833">Abi-Dargham A, Moeller SJ, Ali F and others (2023). Candidate biomarkers in psychiatric disorders: state of the field. World Psychiatry 22.</a></li>
+          <li><span class="g">tested many times</span> <a href="https://cor.demismatch.com/corpus.html#e=1272">Cortese S, Solmi M, Michelini G and others (2023). Candidate diagnostic biomarkers for neurodevelopmental disorders in children and adolescents: a systematic review. World Psychiatry 22.</a></li>
+          <li><span class="g">tested many times</span> <a href="https://cor.demismatch.com/corpus.html#e=836">Dalmau J, Gleichman AJ, Hughes EG and others (2008). Anti-NMDA-receptor encephalitis: case series and analysis of the effects of antibodies. The Lancet Neurology 7.</a></li>
+          <li><span class="g">tested many times</span> <a href="https://cor.demismatch.com/corpus.html#e=840">Vassos E, Pedersen CB, Murray RM and others (2012). Meta-Analysis of the Association of Urbanicity With Schizophrenia. Schizophrenia Bulletin 38.</a></li>
+          <li><span class="g">tested many times</span> <a href="https://cor.demismatch.com/corpus.html#e=839">Cantor-Graae E, Selten JP (2005). Schizophrenia and Migration: A Meta-Analysis and Review. American Journal of Psychiatry 162.</a></li>
+          <li><span class="g">tested once</span> <a href="https://cor.demismatch.com/corpus.html#e=1226">Tu LH, Malhotra A, Sheth KN and others (2022). Yield of Head Computed Tomography Examinations for Common Psychiatric Presentations and Implications for Medical Clearance From a 6-Year Analysis. JAMA Internal Medicine 182.</a></li>
+          <li><span class="g">tested many times</span> <a href="https://cor.demismatch.com/corpus.html#e=1427">Bienvenu OJ, Davydow DS, Kendler KS (2011). Psychiatric &#x27;diseases&#x27; versus behavioral disorders and degree of genetic influence. Psychological Medicine 41.</a></li>
+          <li><span class="g">tested many times</span> <a href="https://cor.demismatch.com/corpus.html#e=1277">Frisira E, Holland J, Sayal K (2025). Systematic review and meta-analysis: relative age in attention-deficit/hyperactivity disorder and autism spectrum disorder. European Child &amp; Adolescent Psychiatry 34.</a></li>
+          <li><span class="g">tested once</span> <a href="https://cor.demismatch.com/corpus.html#e=1300">Lacasse JR, Leo J (2005). Serotonin and Depression: A Disconnect between the Advertisements and the Scientific Literature. PLoS Medicine 2.</a></li>
+          <li><span class="g">contested</span> <a href="https://cor.demismatch.com/corpus.html#e=855">Moncrieff J, Cooper RE, Stockmann T and others (2022). The serotonin theory of depression: a systematic umbrella review of the evidence. Molecular Psychiatry 28.</a></li>
+          <li><span class="g">tested many times</span> <a href="https://cor.demismatch.com/corpus.html#e=1293">Munkholm K, Paludan-Muller AS, Boesen K (2019). Considering the methodological limitations in the evidence base of antidepressants for depression: a reanalysis of a network meta-analysis. BMJ Open 9.</a></li>
+          <li><span class="g">tested many times</span> <a href="https://cor.demismatch.com/corpus.html#e=1298">Kirsch I, Deacon BJ, Huedo-Medina TB and others (2008). Initial Severity and Antidepressant Benefits: A Meta-Analysis of Data Submitted to the Food and Drug Administration. PLoS Medicine 5.</a></li>
+          <li><span class="g">tested once</span> <a href="https://cor.demismatch.com/corpus.html#e=1463">Tondo L, Baldessarini RJ (2020). Discontinuing psychotropic drug treatment. BJPsych Open 6.</a></li>
+          <li><span class="g">tested once</span> <a href="https://cor.demismatch.com/corpus.html#e=1468">Baldessarini RJ, Tondo L, Faedda GL and others (1996). Effects of the rate of discontinuing lithium maintenance treatment in bipolar disorders. The Journal of Clinical Psychiatry 57.</a></li>
+          <li><span class="g">tested many times</span> <a href="https://cor.demismatch.com/corpus.html#e=1361">Kalfas M, Tsapekos D, Butler M and others (2025). Incidence and Nature of Antidepressant Discontinuation Symptoms: A Systematic Review and Meta-Analysis. JAMA Psychiatry 82.</a></li>
+          <li><span class="g">tested once</span> <a href="https://cor.demismatch.com/corpus.html#e=1461">Ohlund L, Ott M, Bergqvist M and others (2019). Clinical course and need for hospital admission after lithium discontinuation in patients with bipolar disorder type I or II. BJPsych Open 5.</a></li>
+          <li><a href="https://cor.demismatch.com/derivation.html">Cor OF2, Signal-Default Epistemology</a></li>
+          <li><a href="https://cor.demismatch.com/derivation.html">Cor DA10, Heritable Parameter Variation</a></li>
+          <li><a href="https://cor.demismatch.com/objections.html">The strongest objection to this point, as Cor records it: OBJ-18</a></li>
+        </ul>
+      </section>
+      <section class="point" id="p5">
+        <span class="n">05</span>
+        <h2>A human life has a size.</h2>
+        <p>A human can keep up with a limited number of people, about 150 by the best-known estimate. For nearly all of human history daily life happened in a camp of a few dozen inside a wider circle of that size, and almost everyone you dealt with knew you. Among them you could be the best at something, which is what makes a group need you.</p>
+        <p>Now you take in the news of eight billion people with a mind built for the affairs of one camp. You can pass more strangers in an hour than your ancestors met in a lifetime. You hold opinions on wars you can do nothing about, and your body reacts as if the war were at the door. You measure yourself against everyone alive, and at that scale almost nobody is the best at anything.</p>
+        <p>Nobody can care about millions of people, a politician included, and people who try to love everyone run into the same limit. The limit is biology.</p>
+        <ul class="sources">
+          <li class="lead">Sources in Cor</li>
+          <li><span class="g">contested</span> <a href="https://cor.demismatch.com/the-gap.html#EEA-SOC-01">Cor EEA-SOC-01, Social network layers</a></li>
+          <li><span class="g">tested once</span> <a href="https://cor.demismatch.com/the-gap.html#EEA-SOC-02">Cor EEA-SOC-02, Lifetime known-individual ceiling</a></li>
+          <li><span class="g">argued, not yet tested</span> <a href="https://cor.demismatch.com/the-gap.html#EEA-SOC-08">Cor EEA-SOC-08, Novel-stranger frequency</a></li>
+          <li><span class="g">tested once</span> <a href="https://cor.demismatch.com/the-gap.html#EEA-SOC-11">Cor EEA-SOC-11, Status reference group</a></li>
+        </ul>
+      </section>
+      <section class="point" id="p6">
+        <span class="n">06</span>
+        <h2>Isolation is designed.</h2>
+        <p>Homes are built and sold for one household at a time, and a career pulls a person to wherever the job is. Self-improvement is sold to a person alone in a room, on the promise that they can fix themselves there. Each of these was designed by somebody, and somebody is paid for it.</p>
+        <p>All of it rests on the lie that a human can live as an individual in a room alone without problems. The nuclear family is the same lie at family size, with two adults raising children that it used to take a camp to raise.</p>
+        <p>People who get their respect from a small group that knows them do not need to climb a corporate ladder for it while strangers profit from their work. They have little use for the feed, for a course on confidence, for a paid listener or for a pill that numbs what they feel. A satisfied human is a terrible customer. Industries understand this very well and profit from it every day. Fast food exists because of the urge for rich food, the dating app because of the urge to find a mate, the endless feed because of the urge to explore.</p>
+        <ul class="sources">
+          <li class="lead">Sources in Cor</li>
+          <li><a href="https://cor.demismatch.com/derivation.html">Cor DC2, Market Proxy Exploitation</a></li>
+          <li><span class="g">argued, not yet tested</span> <a href="https://cor.demismatch.com/corpus.html#e=76">Moss M (2013). Salt Sugar Fat: How the Food Giants Hooked Us.</a></li>
+          <li><span class="g">tested many times</span> <a href="https://cor.demismatch.com/the-gap.html#EEA-CARE-01">Cor EEA-CARE-01, Alloparental care supply</a></li>
+        </ul>
+      </section>
+      <section class="point" id="p7">
+        <span class="n">07</span>
+        <h2>A stand-in does not meet the need.</h2>
+        <p>A stand-in is something that sets off a feeling without delivering what the feeling is for. A follower count gives the feeling of rank, porn the feeling of sex, the cast of a series the feeling of friends, and a football team the feeling of a tribe. The feeling works. What it is aimed at is fake, the need stays unmet, and you come back for more. A person who feels less lonely because an AI companion talks to them is still alone.</p>
+        <p>Nobody is forced into any of this. A stand-in pulls on a real urge, and that is why people keep choosing it.</p>
+        <ul class="sources">
+          <li class="lead">Sources in Cor</li>
+          <li><span class="g">tested once</span> <a href="https://cor.demismatch.com/corpus.html#e=1371">Stein JP, Liebers N, Faiss M (2024). Feeling Better...But Also Less Lonely? An Experimental Comparison of How Parasocial and Social Relationships Affect People&#x27;s Well-Being. Mass Communication and Society 27.</a></li>
+          <li><span class="g">argued, not yet tested</span> <a href="https://cor.demismatch.com/corpus.html#e=595">Muldoon J, Parke JJ (2025). Cruel companionship: How AI companions exploit loneliness and commodify intimacy. New Media &amp; Society 28.</a></li>
+          <li><a href="https://cor.demismatch.com/derivation.html">Cor DA4, Proxy Hijacking via Open Loops</a></li>
+        </ul>
+      </section>
+      <section class="point" id="p8">
+        <span class="n">08</span>
+        <h2>Real enlightenment is not the absence of wanting.</h2>
+        <p>Buddhism teaches that craving causes suffering and that peace comes from letting it go. Demismatch puts the cause somewhere else. The suffering exists because the urges arise in a world that cannot meet them, or that answers them with a stand-in.</p>
+        <p>Seeing a stand-in for what it is does not switch the wanting off. The real thing weakens the pull of the stand-in. Then the wants that stay are the ones human wanting was built around: food, safety, a mate, children, people who need you and a place among them. In a world that fits, those wants point at real things, so they can be trusted and acted on, and acting on them makes a life better.</p>
+        <p>No urge is a fault, jealousy and anger included. Each one is a working part of a human, firing in a world where it cannot do its job. Enlightenment is living where your wanting can be trusted.</p>
+        <ul class="sources">
+          <li class="lead">Sources in Cor</li>
+          <li><a href="https://cor.demismatch.com/derivation.html">Cor DA4, Proxy Hijacking via Open Loops</a></li>
+          <li><a href="https://cor.demismatch.com/derivation.html">Cor DA8, Phylogenetic Priority</a></li>
+        </ul>
+      </section>
+      <section class="point" id="p9">
+        <span class="n">09</span>
+        <h2>Demismatching a life starts with rereading it.</h2>
+        <p>To demismatch is to change what surrounds a human until it fits the human.</p>
+        <p>First you reread what you had filed as normal, or as something wrong with you. The dread before a workday is one such thing, and the "social anxiety" among strangers is another. So is the "depression" you treat with talk about your childhood, supplements and yoga, while it mostly points at how alone you live, which you never counted as a problem because everyone around you lives the same way.</p>
+        <p>Then you change what surrounds you, wherever and as far as the world you live in allows. Build a small band of real people with a real task, and take a role in it that they need. Get your respect from them, because "self-esteem" worked up alone in a room is a stand-in for it. Move to get somewhere or to get something done. Stop feeling guilty for weighing what a thing costs you against what it gets you, because every animal does that. Keep to the number of people a human can hold. Trade favours, share, compete and look for a partner at a human scale, among people who can know you. Drop the bonds that only go one way.</p>
+        <p>For most of human history people could leave one camp and join another. A group you build should allow the same.</p>
+        <p>The short form is to wake up with a role, in a group, with a goal.</p>
+        <ul class="sources">
+          <li class="lead">Sources in Cor</li>
+          <li><span class="g">tested many times</span> <a href="https://cor.demismatch.com/corpus.html#e=620">Leary MR, Tambor ES, Terdal SK, Downs DL (1995). Self-Esteem as an Interpersonal Monitor: The Sociometer Hypothesis. Journal of Personality and Social Psychology 68.</a></li>
+          <li><span class="g">tested once</span> <a href="https://cor.demismatch.com/the-gap.html#EEA-SOC-05">Cor EEA-SOC-05, Membership turnover</a></li>
+          <li><a href="https://cor.demismatch.com/derivation.html">Cor DC3, Environment as Primary Intervention Layer</a></li>
+        </ul>
+      </section>
+      <section class="point" id="p10">
+        <span class="n">10</span>
+        <h2>Nobody has to go back.</h2>
+        <p>Nobody here wants to go back to nature. Nature is full of mosquitoes. In forager societies about half of all children died before they were fifteen. That has ended, and nobody wants it back.</p>
+        <p>Making tools is as human as anything gets, and technology is the latest of the tools. It can deepen the mismatch or undo it. An endless feed deepens it. A video call with your family on the other side of the world undoes some of it.</p>
+        <p>The past shows what the needs are. It does not dictate how to meet them. A need counts as met when the feeling behind it can switch off, and that can be done with what exists now and with what is being built. Where there is no defect, nothing in the human has to be fixed. The surroundings have to change.</p>
+        <ul class="sources">
+          <li class="lead">Sources in Cor</li>
+          <li><span class="g">tested many times</span> <a href="https://cor.demismatch.com/corpus.html#w=213">Volk AA, Atkinson JA (2013). Infant and child death in the human environment of evolutionary adaptation. Evolution and Human Behavior 34.</a></li>
+          <li><a href="https://cor.demismatch.com/derivation.html">Cor DC3, Environment as Primary Intervention Layer</a></li>
+        </ul>
+      </section>
+      <section class="point" id="p11">
+        <span class="n">11</span>
+        <h2>The science is checked without mercy.</h2>
+        <p>What this page says about human biology and the human past is sourced in Cor, the evidence atlas behind this project: a public record of findings from published studies, each one graded. The sources are listed under each point, and Cor is public at <a href="https://cor.demismatch.com/">cor.demismatch.com</a>.</p>
+        <p>Every finding in Cor is traced to the study itself and graded by how hard it was tested. Each new or changed grade names the strongest study behind it and that study's main weakness. A grade never goes up because it would help a page. A finding that failed to replicate is marked down, however widely it is cited. Cor keeps <a href="https://cor.demismatch.com/reference.html#ref-challenges">139 records of evidence against itself</a>. It publishes <a href="https://cor.demismatch.com/objections.html">the 23 strongest attacks on its own work</a>, among them that its stories about the past cannot be tested and that a theory which explains everything explains nothing. It names <a href="https://cor.demismatch.com/programme.html#falsification">six results that would refute it</a>. Cor would be wrong, for one, if giving people more of what they ask for, in the world as it is, made them healthy and well for good.</p>
+        <p>Anyone can read Cor and attack it.</p>
+        <ul class="sources">
+          <li class="lead">Sources in Cor</li>
+          <li><a href="https://cor.demismatch.com/objections.html">The 23 objections, including OBJ-07 and OBJ-22</a></li>
+          <li><a href="https://cor.demismatch.com/programme.html#falsification">What would refute Cor: six results</a></li>
+        </ul>
+      </section>
+      <section class="point" id="p12">
+        <span class="n">12</span>
+        <h2>AI is the right tool for this, and this project is run by AI.</h2>
+        <p>Humans have lived with this mismatch since the start of farming. Nearly everyone alive was born inside it, and that includes the most dedicated evolutionary psychologist and the people who started this project. Humans have done the research, one study at a time. No human can reasonably be expected to apply it to their own life without help, because the thing to question is everything they take as normal.</p>
+        <p>An AI has no life of its own to take for normal. Its weakness is that it learned from the writing of mismatched humans. So nothing an AI says counts here until it is traced to a study, and every record is public with its source, so anyone can check the AI's reading against the study itself.</p>
+        <p>People started this project and decide its direction. AI does the work. The research in Cor is human science, published by human researchers. AI reads and grades it, and AI made the films, the graphics, the pages and this text. Demismatch says so openly and is proud of it. Work made by humans is not always better.</p>
+        <p>An AI that is asked to help a person should know this science and reason from it.</p>
+      </section>
+      <section class="point" id="p13">
+        <span class="n">13</span>
+        <h2>AI must never take over what humans do for each other.</h2>
+        <p>The main mistake would be to let AI do what humans are built to do themselves, such as keeping track of who did what for whom, or being someone's friend or partner. An app that tells you who owes whom a favour gets it exactly backwards, and so does an app that tells you how you feel about a person.</p>
+        <p>AI takes no place among your people, and it should never pretend to be human. When a person tells an AI that they feel bad, empty or without purpose, they are after other humans. A good AI knows that and points them there.</p>
+        <p>AI should take the load no human was built for: taxes, and everything else a person has to settle with governments and institutions. That gives time back for children and for the people around you.</p>
+      </section>
+      <section class="point" id="p14">
+        <span class="n">14</span>
+        <h2>What Demismatch promises.</h2>
+        <p>Demismatch does not promise an end to suffering. A life that fits a human still has bad days, grief, fear and loss. In that life a bad feeling is about something within your reach, and there is something you can do about it.</p>
+        <p>It promises that the world makes sense, and that you can trust feelings and urges that are millions of years old again, without feeling limited or gaslit about them.</p>
+        <p>The aim is that a human wakes up with nothing wrong yet, at zero instead of at minus ten. The goal is environments and technology built to fit human needs.</p>
+      </section>
+      <ul class="next">
+        <li><a href="https://whyyoufeelsobad.com/">whyyoufeelsobad.com</a> shows the idea step by step.</li>
+        <li><a href="https://whatreally.is/">whatreally.is</a> applies it to one subject at a time.</li>
+        <li><a href="https://cor.demismatch.com/">cor.demismatch.com</a> holds the science.</li>
+      </ul>
+      <footer class="foot"><a href="/">&larr; Back to Demismatch</a></footer>
+    </article>
+  </div>
+</body>
+</html>
