@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>What happens to what you type - Decode:Talk - Demismatch</title>
-<meta name="description" content="What Decode:Talk stores, what it does not, why, and how to have something removed.">
+<title>What happens to what you type - Decode Talk - Demismatch</title>
+<meta name="description" content="What Decode Talk stores, where your words go, why, and how to have something removed.">
 <meta name="robots" content="index,follow">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Demismatch">
 <meta property="og:url" content="https://demismatch.com/decode-talk/privacy">
-<meta property="og:title" content="What happens to what you type - Decode:Talk">
-<meta property="og:description" content="What Decode:Talk stores, what it does not, why, and how to have something removed.">
+<meta property="og:title" content="What happens to what you type - Decode Talk">
+<meta property="og:description" content="What Decode Talk stores, where your words go, why, and how to have something removed.">
 <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -163,38 +163,45 @@ body {
 <div class="page">
 
   <div class="nav">
-    <div class="left"><a href="/decode-talk/">← Decode:Talk</a></div>
+    <div class="left"><a href="/decode-talk/">← Decode Talk</a></div>
     <div class="right">Privacy</div>
   </div>
 
   <article class="doc">
     <h1>What happens to what you type</h1>
 
-    <p class="lead">Short version: what you type and what the tool says back are kept for 30 days, along with which country you are in. Nothing else. Then they are deleted.</p>
+    <p class="lead">Short version: your messages and the replies are kept for 30 days, with the date and your country, so the replies can be checked. Then they are deleted. Your IP address is kept for two days, only to count your messages, and never next to what you wrote.</p>
 
-    <h2>What is stored</h2>
-    <p>The text of your message, the text of the reply, the date, and your country. That is the whole record.</p>
+    <h2>Where your words go</h2>
+    <p>Your browser holds the conversation and sends it, with each new message, to the Decode Talk server on demismatch.com, which runs on Cloudflare. The server sends it to OpenRouter, which passes it to Anthropic's model Claude Opus 5.5 to write the reply. OpenRouter's and Anthropic's own terms cover what they keep.</p>
+    <p>When your words show distress, your last five messages also go, through OpenRouter, to a smaller Anthropic model, Claude Haiku 4.5. It answers with one label: whether to show you the crisis reply with places to get help.</p>
+
+    <h2>What is stored, for 30 days</h2>
+    <p>Each message you send, the reply it got, the date and time, your country, which message of the conversation it was, whether the crisis reply was shown, and two settings of the tool itself. After 30 days it is deleted automatically.</p>
+
+    <h2>What is stored without your words</h2>
+    <p>A count of your messages for the day, filed under your IP address and deleted after 48 hours. It enforces the limit of 50 messages a day and holds no text.</p>
+    <p>For each message, a record with no text and no IP address: how many messages the conversation has had, how long it has run, and the signals and label the safety check worked from. It is kept for 120 days, to tune that check.</p>
 
     <h2>What is not stored</h2>
-    <p>No account, because there are none. No name and no email address. No IP address. No city. Nothing that links one conversation to another, or to you.</p>
-    <p>The conversation on your screen lives in your browser and disappears when you reload the page.</p>
+    <p>No account, because there are none. No name and no email address. No IP address and no city next to your words. Nothing that ties one conversation to another.</p>
 
-    <h2>Why it is kept at all</h2>
-    <p>So I can check the tool is behaving. People describe difficult things to Decode:Talk, and the only way to know it is responding well, particularly when someone is in real trouble, is to read what it actually said.</p>
-    <p>One thing worth being straight about: I can strip the identifiers, but I cannot make the text itself anonymous. If you describe your job and your street and your family, that describes you. Only tell it what you are comfortable having read.</p>
+    <h2>Why your words are kept</h2>
+    <p>To check the replies. People bring hard things to Decode Talk, and the only way to know how it answers someone in real trouble is to read what it said.</p>
+    <p>The text itself cannot be made anonymous. If you describe your job, your street and your family, that describes you. Tell it only what you are fine with having read.</p>
 
     <h2>Who reads it</h2>
-    <p>Me. Nobody else has access.</p>
+    <p>The person who runs Demismatch, on a password-protected page. Nobody else. Once a day an email goes to that person with the number of new messages and how many got the crisis reply. The email holds no text.</p>
 
-    <h2>Messages that trigger the crisis response</h2>
-    <p>Kept the same way as everything else, and read the same way.</p>
+    <h2>Messages that get the crisis reply</h2>
+    <p>Kept and read the same way as the rest.</p>
 
     <h2>Having something removed</h2>
-    <p>Email <a href="mailto:info@demismatch.com">info@demismatch.com</a> and I will delete it. Telling me roughly when you used the tool makes it easier to find.</p>
+    <p>Email <a href="mailto:info@demismatch.com">info@demismatch.com</a> and it will be deleted. Say roughly when you used Decode Talk, so it can be found.</p>
   </article>
 
   <div class="footer">
-    <a href="/decode-talk/">← Decode:Talk</a>
+    <a href="/decode-talk/">← Decode Talk</a>
     <span>demismatch.com/decode-talk/privacy</span>
   </div>
 
