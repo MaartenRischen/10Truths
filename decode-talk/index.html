@@ -2,30 +2,50 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Decode:Talk · Live - Demismatch</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Decode Talk | Demismatch</title>
+<meta name="description" content="A private conversation about your own life. A few questions, one complete decode with the studies attached, steps for this week with your own people, and then it ends. Opens soon.">
+<link rel="canonical" href="https://demismatch.com/decode-talk/">
+<meta property="og:title" content="Decode Talk | Demismatch">
+<meta property="og:description" content="A private conversation about your own life, with the studies attached. Closer to a librarian than a therapist. Opens soon.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Demismatch">
+<meta property="og:url" content="https://demismatch.com/decode-talk/">
+<meta property="og:image" content="https://demismatch.com/og-demismatch.jpg?v=1">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://demismatch.com/og-demismatch.jpg?v=1">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
+
 * { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
   --oxblood: #3a1218;
   --oxblood-deep: #2a0c11;
+  --oxblood-warm: #5a2a32;
   --parchment: #ece0c4;
   --parchment-dark: #ddd0b0;
   --ink: #1a0608;
   --teal: #2d6b6b;
   --teal-bright: #3d8585;
   --gold: #c4962c;
+  --muted-warm: #8a7d5e;
+  --serif: 'Spectral', Georgia, serif;
+  --mono: 'JetBrains Mono', 'Courier New', monospace;
 }
 body {
   background: var(--oxblood-deep);
+  font-family: var(--serif);
   color: var(--parchment);
-  font-family: 'Spectral', serif;
   min-height: 100vh;
   margin: 0;
-  padding: 0;
+  padding: 24px 16px;
 }
+a { color: inherit; }
 
+/* ── Cross-site navbar ── */
 .xsite-nav {
   background: var(--oxblood-deep);
   border-bottom: 1px solid var(--teal);
@@ -34,6 +54,7 @@ body {
   align-items: center;
   gap: 1rem;
   padding: 0.5rem clamp(0.9rem, 3vw, 2.5rem);
+  margin: -24px -16px 40px;
   line-height: 1.2;
 }
 .xsite-nav-links {
@@ -41,9 +62,11 @@ body {
   display: flex;
   align-items: center;
   gap: 0.6rem;
+  margin: 0;
+  padding: 0;
 }
 .xsite-nav-links a {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--mono);
   font-size: 0.555rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -52,554 +75,431 @@ body {
   transition: color 140ms ease;
 }
 .xsite-nav-links a:hover { color: var(--teal-bright); }
-.xsite-nav-links a[aria-current="page"] { color: var(--teal-bright); font-weight: 500; }
-.xsite-nav-sep { color: #8a7d5e; font-family: 'JetBrains Mono', monospace; font-size: 0.555rem; opacity: 0.7; }
+.xsite-nav-links a[aria-current="page"] {
+  color: var(--teal-bright);
+  font-weight: 500;
+}
+.xsite-nav-sep {
+  color: var(--muted-warm);
+  font-family: var(--mono);
+  font-size: 0.555rem;
+  opacity: 0.7;
+}
 @media (max-width: 560px) {
-  .xsite-nav { padding: 0.45rem 0.9rem; gap: 0.6rem; }
+  .xsite-nav { padding: 0.45rem 0.9rem; gap: 0.6rem; margin: -12px -6px 32px; }
   .xsite-nav-links { gap: 0.4rem; }
   .xsite-nav-links a { font-size: 0.455rem; letter-spacing: 0.15em; }
 }
 
+/* ── Parchment page ── */
 .page {
-  position: relative;
-  width: 1200px;
-  max-width: calc(100% - 40px);
-  margin: 40px auto;
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
   background: var(--parchment);
   color: var(--ink);
-  padding: 56px 72px 40px;
+  padding: 56px clamp(28px, 5vw, 72px) 64px;
   border-radius: 14px;
   box-shadow: 0 40px 120px rgba(0,0,0,0.8), 0 10px 30px rgba(0,0,0,0.5);
+  background-image:
+    radial-gradient(circle at 20% 20%, rgba(58, 18, 24, 0.04) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(45, 107, 107, 0.04) 0%, transparent 50%);
 }
 
-.title-block {
-  text-align: center;
-  margin-bottom: 28px;
-  padding-bottom: 22px;
+.masthead {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  padding-bottom: 14px;
   border-bottom: 2px solid var(--oxblood);
+  margin-bottom: 36px;
+  flex-wrap: wrap;
 }
-.title-block h1 {
-  font-family: 'Spectral', serif;
-  font-weight: 400;
-  font-size: 72px;
-  font-style: italic;
-  letter-spacing: -0.03em;
-  line-height: 0.95;
-  color: var(--oxblood);
-  margin-bottom: 18px;
-}
-.title-block h1 em {
-  font-style: normal;
-  font-weight: 600;
-  color: var(--teal);
-}
-.title-block .standfirst {
-  font-family: 'Spectral', serif;
-  font-weight: 300;
-  font-size: 18px;
-  font-style: italic;
-  max-width: 640px;
-  margin: 0 auto;
-  line-height: 1.5;
-  color: #4a1e26;
-}
-.title-block .status {
-  display: inline-block;
-  margin-top: 14px;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: var(--teal);
-  padding: 3px 10px;
-  border: 1px solid var(--teal);
-  border-radius: 3px;
-}
-.cor-link-wrap {
-  display: flex;
-  justify-content: center;
-  margin: 60px 0;
-}
-.cor-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  font-family: 'JetBrains Mono', monospace;
+.masthead .label {
+  font-family: var(--mono);
   font-size: 12px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--parchment);
-  background: var(--oxblood);
-  padding: 10px 20px;
-  border: 1px solid var(--oxblood);
-  border-radius: 3px;
-  text-decoration: none;
-  box-shadow: 3px 3px 0 var(--teal), 6px 6px 0 var(--gold);
-  transition: transform 140ms ease, box-shadow 140ms ease;
-}
-.cor-link:hover,
-.cor-link:focus-visible {
-  transform: translate(-1px, -1px);
-  box-shadow: 4px 4px 0 var(--teal), 8px 8px 0 var(--gold);
-}
-.cor-link .cor-dot {
-  width: 7px;
-  height: 7px;
-  background: var(--teal-bright);
-  border-radius: 50%;
-  box-shadow: 0 0 8px var(--teal-bright);
-  animation: cor-dot-pulse 1.6s ease-in-out infinite;
-}
-@keyframes cor-dot-pulse {
-  0%, 100% { opacity: 1; box-shadow: 0 0 8px var(--teal-bright); transform: scale(1); }
-  50%      { opacity: 0.35; box-shadow: 0 0 2px var(--teal-bright); transform: scale(0.75); }
-}
-@media (prefers-reduced-motion: reduce) {
-  .cor-link .cor-dot { animation: none; }
-}
-.cor-link .cor-arrow {
-  color: var(--gold);
-  font-size: 15px;
-  line-height: 1;
-}
-
-.conversation { min-height: 40px; margin-bottom: 28px; }
-.conversation:empty { min-height: 0; margin-bottom: 0; }
-
-.turn { margin-bottom: 28px; }
-
-.q {
-  background: var(--oxblood);
-  color: var(--parchment);
-  padding: 18px 24px;
-  border-radius: 10px;
-  margin-left: 15%;
-  font-family: 'Spectral', serif;
-  font-size: 18px;
-  line-height: 1.45;
-  box-shadow: 4px 4px 0 var(--gold);
-  position: relative;
-  white-space: pre-wrap;
-}
-.q::before {
-  content: 'YOU';
-  position: absolute;
-  top: -22px;
-  right: 8px;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.3em;
-  color: var(--gold);
-}
-
-.a {
-  background: var(--parchment-dark);
-  color: var(--ink);
-  padding: 22px 28px;
-  border: 1px solid var(--oxblood);
-  border-radius: 10px;
-  margin-top: 26px;
-  margin-right: 10%;
-  font-family: 'Spectral', serif;
-  font-size: 17px;
-  line-height: 1.6;
-  box-shadow: 6px 6px 0 var(--teal);
-  position: relative;
-  white-space: pre-wrap;
-}
-.a::before {
-  content: 'DECODE · TALK';
-  position: absolute;
-  top: -22px;
-  left: 8px;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.3em;
-  color: var(--teal);
-}
-.a.streaming:empty::after,
-.a.streaming > p:last-child::after {
-  content: '▊';
-  animation: blink 1s infinite;
-  color: var(--teal);
-  margin-left: 2px;
-}
-.a p + p { margin-top: 14px; }
-/* The Mechanism / Proxy / Need block, in the shape the examples page hand-authors
-   (decode-talk.html .a-spec). In a live read it arrives last, so it sits under the
-   prose with the rule above it rather than below. */
-.a .a-spec {
-  margin-top: 22px;
-  padding-top: 18px;
-  border-top: 1px solid rgba(58, 18, 24, 0.2);
-  display: grid;
-  grid-template-columns: max-content 1fr;
-  gap: 9px 18px;
-  align-items: start;
-}
-.a .a-spec dt {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.28em;
   text-transform: uppercase;
   color: var(--teal);
-  padding-top: 3px;
+  font-weight: 500;
 }
-.a .a-spec dd {
-  font-size: 14px;
-  line-height: 1.5;
-  color: #3a1a22;
-}
-.a .a-spec .need-dt,
-.a .a-spec .need-dd { font-weight: 600; }
-@keyframes blink { 50% { opacity: 0; } }
-
-.regen-row {
-  display: flex;
-  justify-content: flex-end;
-  gap: 8px;
-  margin-right: 10%;
-  margin-top: 10px;
-}
-.regen-btn {
-  padding: 6px 14px;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 10px;
+.masthead .back {
+  font-family: var(--mono);
+  font-size: 12px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  background: transparent;
   color: var(--teal);
-  border: 1px solid var(--teal);
-  border-radius: 20px;
-  cursor: pointer;
-  transition: all 140ms ease;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(45, 107, 107, 0.45);
+  transition: color 140ms ease, border-color 140ms ease;
 }
-.regen-btn:hover:not(:disabled) { background: var(--teal); color: var(--parchment); }
-.regen-btn:disabled { opacity: 0.4; cursor: not-allowed; }
-
-.error {
-  background: #fce8e8;
-  border: 1px solid #8a1a1a;
-  color: #5a0e0e;
-  padding: 14px 18px;
-  border-radius: 6px;
-  margin-bottom: 20px;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 13px;
-  line-height: 1.5;
-}
-/* The worker's product wall (conversation cap, daily cap, burst guard) speaks in the
-   page's own voice. It is not an error and must not look like one. */
-.notice {
-  background: var(--parchment-dark);
-  border: 1px solid var(--teal);
-  color: var(--ink);
-  padding: 14px 18px;
-  border-radius: 6px;
-  margin-bottom: 20px;
-  font-family: 'Spectral', serif;
-  font-size: 16px;
-  line-height: 1.5;
+.masthead .back:hover,
+.masthead .back:focus-visible {
+  color: var(--oxblood);
+  border-bottom-color: var(--oxblood);
 }
 
-.composer {
-  display: flex;
-  gap: 12px;
-  margin-top: 8px;
-  border-top: 2px solid var(--oxblood);
-  padding-top: 20px;
+.hero {
+  text-align: left;
+  margin: 0 0 56px;
 }
-.composer textarea {
-  flex: 1;
-  min-height: 80px;
-  max-height: 240px;
-  resize: vertical;
-  padding: 14px 18px;
-  border: 1px solid var(--oxblood);
-  border-radius: 8px;
-  background: #fbf4df;
-  color: var(--ink);
-  font-family: 'Spectral', serif;
+.hero .eyebrow {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--teal);
+  font-weight: 500;
+  display: block;
+  margin-bottom: 16px;
+}
+.hero h1 {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-style: italic;
+  font-size: clamp(40px, 6vw, 64px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--oxblood);
+  margin-bottom: 24px;
+}
+.hero .lede {
+  font-family: var(--serif);
+  font-size: clamp(18px, 1.9vw, 21px);
+  line-height: 1.55;
+  color: var(--oxblood-warm);
+  max-width: 720px;
+}
+.hero .hero-body {
+  font-family: var(--serif);
   font-size: 17px;
-  line-height: 1.5;
-  transition: border-color 140ms ease, box-shadow 140ms ease;
+  line-height: 1.62;
+  color: var(--ink);
+  max-width: 720px;
+  margin-top: 16px;
 }
-.composer textarea:focus {
-  outline: none;
-  border-color: var(--teal);
-  box-shadow: 0 0 0 2px rgba(45, 107, 107, 0.2);
+.hero .hero-essay {
+  margin-top: 26px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px 16px;
 }
-.composer button {
-  padding: 0 24px;
-  background: var(--oxblood);
-  color: var(--parchment);
-  border: none;
-  border-radius: 8px;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 11px;
-  letter-spacing: 0.25em;
+.hero .hero-essay a {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   font-weight: 500;
-  cursor: pointer;
-  transition: background 140ms ease;
+  color: var(--teal);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(45, 107, 107, 0.45);
+  transition: color 140ms ease, border-color 140ms ease;
 }
-/* Maintenance mode (2026-10-09): the textarea and button carry `disabled` in the markup.
-   Remove both attributes, restore the placeholder and autofocus, and set the badge back to
-   'Live' to bring the page online. */
-.composer textarea:disabled {
-  background: #cfc8b8;
-  border-color: #9a9284;
-  cursor: not-allowed;
-  resize: none;
+.hero .hero-essay a:hover,
+.hero .hero-essay a:focus-visible {
+  color: var(--oxblood);
+  border-bottom-color: var(--oxblood);
 }
-.composer textarea:disabled::placeholder {
-  color: #4a4238;
-  opacity: 1;
+.hero .hero-essay-note {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 15px;
+  color: var(--muted-warm);
 }
-.composer button:hover:not(:disabled) { background: var(--teal); }
-.composer button:disabled { opacity: 0.4; cursor: not-allowed; }
 
-.footer {
+section {
+  margin-bottom: 56px;
+}
+section .eyebrow {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--teal);
+  font-weight: 500;
+  display: block;
+  margin-bottom: 12px;
+}
+section h2 {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-style: italic;
+  font-size: clamp(28px, 3.6vw, 38px);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  color: var(--oxblood);
+  margin-bottom: 20px;
+}
+section .section-lede {
+  font-family: var(--serif);
+  font-size: 18px;
+  line-height: 1.55;
+  color: var(--oxblood-warm);
+  max-width: 720px;
+  margin-bottom: 28px;
+}
+section .section-lede + .section-lede {
+  margin-top: -10px;
+}
+
+.surface {
+  background: rgba(221, 208, 176, 0.45);
+  border: 1px solid rgba(58, 18, 24, 0.12);
+  border-radius: 10px;
+  padding: 24px 28px;
+  margin-bottom: 20px;
+}
+.surface h2,
+.surface h3 {
+  font-family: var(--serif);
+  font-weight: 500;
+  color: var(--oxblood);
+  margin-bottom: 14px;
+}
+.surface h2 {
+  font-style: italic;
+  font-size: 26px;
+  line-height: 1.15;
+}
+.surface h3 {
+  font-size: 19px;
+  line-height: 1.2;
+}
+.surface p,
+.surface ul {
+  font-family: var(--serif);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--ink);
+}
+.surface p + p {
+  margin-top: 12px;
+}
+.surface ul {
+  list-style: disc;
+  padding-left: 1.3rem;
+  margin: 10px 0 14px;
+}
+.surface ul li + li {
+  margin-top: 6px;
+}
+.surface a {
+  color: var(--teal);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(45, 107, 107, 0.45);
+  transition: color 140ms ease, border-color 140ms ease;
+}
+.surface a:hover,
+.surface a:focus-visible {
+  color: var(--oxblood);
+  border-bottom-color: var(--oxblood);
+}
+.essay-cta {
+  margin-top: 18px;
+  clear: both;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 14px;
+}
+.essay-cta a {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.essay-cta .cta-note {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 14px;
+  color: var(--muted-warm);
+  border-bottom: 0;
+}
+
+.simple-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+@media (min-width: 720px) {
+  .simple-grid.two-col { grid-template-columns: 1fr 1fr; }
+}
+
+.video-cap {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 14px;
+  color: var(--muted-warm);
+  margin-top: 8px;
+}
+
+/* ── Footer cross-links ── */
+.xsite-footer {
+  margin: 56px 0 0;
+  padding-top: 28px;
+  border-top: 1px solid rgba(58, 18, 24, 0.18);
+}
+.xsite-cols {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.xsite-cols a {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  text-decoration: none;
+  color: var(--ink);
+  transition: color 140ms ease;
+}
+.xsite-cols a:hover { color: var(--teal); }
+.xsite-col-head {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.28em;
+  font-weight: 500;
+  color: var(--oxblood);
+}
+.xsite-col-desc {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 16px;
+  color: var(--oxblood-warm);
+  line-height: 1.4;
+}
+.xsite-col-url {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--muted-warm);
+  letter-spacing: 0.04em;
+}
+@media (max-width: 720px) {
+  .xsite-cols { grid-template-columns: 1fr; gap: 20px; }
+}
+
+.page-footer {
   border-top: 2px solid var(--oxblood);
-  margin-top: 32px;
-  padding-top: 22px;
+  margin-top: 28px;
+  padding-top: 24px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 11px;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.page-footer .motto {
+  font-family: var(--serif);
+  font-size: 20px;
+  letter-spacing: 0.02em;
+  color: var(--oxblood);
+}
+.page-footer .motto em {
+  color: var(--teal);
+  font-weight: 600;
+  font-style: normal;
+}
+.page-footer .folio {
+  font-family: var(--mono);
+  font-size: 12px;
   letter-spacing: 0.25em;
   text-transform: uppercase;
   color: var(--oxblood);
-  flex-wrap: wrap;
-  gap: 12px;
+  opacity: 0.6;
 }
-.footer a { color: inherit; text-decoration: none; transition: color 140ms ease; }
-.footer a:hover { color: var(--teal); }
 
-/* Settings gear */
-.settings-toggle {
-  position: absolute;
-  top: 22px;
-  right: 22px;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background: var(--oxblood);
-  color: var(--parchment);
-  border: 1px solid var(--oxblood);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+/* ── Decode Talk page ── */
+.status {
+  display: inline-block;
+  margin-top: 22px;
+  padding: 10px 16px;
+  border: 1px solid var(--teal);
+  border-radius: 8px;
+  font-family: var(--serif);
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--ink);
+  background: rgba(45, 107, 107, 0.08);
+}
+.status strong { color: var(--teal); }
+.steps { list-style: none; counter-reset: st; padding: 0; margin: 0; max-width: 760px; }
+.steps li {
+  counter-increment: st;
+  position: relative;
+  padding: 0 0 18px 46px;
+  font-family: var(--serif);
   font-size: 17px;
-  line-height: 1;
-  z-index: 40;
-  box-shadow: 2px 2px 0 var(--teal), 4px 4px 0 var(--gold);
-  transition: transform 240ms ease, background 140ms ease, box-shadow 140ms ease;
-}
-.settings-toggle:hover {
-  transform: rotate(90deg) translate(-1px, 1px);
-  background: var(--teal);
-  border-color: var(--teal);
-  box-shadow: 3px 3px 0 var(--teal), 5px 5px 0 var(--gold);
-}
-
-/* Drawer */
-.backdrop {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.5);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 240ms ease;
-  z-index: 150;
-}
-.backdrop.open { opacity: 1; pointer-events: auto; }
-
-.drawer {
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 460px;
-  max-width: 92vw;
-  height: 100vh;
-  background: var(--parchment);
-  color: var(--ink);
-  box-shadow: -20px 0 60px rgba(0,0,0,0.5);
-  overflow-y: auto;
-  transform: translateX(100%);
-  transition: transform 280ms cubic-bezier(0.4, 0, 0.2, 1);
-  z-index: 200;
-  padding: 32px 28px 100px;
-}
-.drawer.open { transform: translateX(0); }
-
-.drawer h2 {
-  font-family: 'Spectral', serif;
-  font-weight: 400;
-  font-style: italic;
-  font-size: 32px;
-  color: var(--oxblood);
-  margin-bottom: 20px;
-}
-
-.drawer-section {
-  margin-bottom: 28px;
-  padding-bottom: 20px;
-  border-bottom: 1px dashed rgba(58, 18, 24, 0.25);
-}
-.drawer-section:last-of-type { border-bottom: none; }
-.drawer-section h3 {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: var(--teal);
-  margin-bottom: 16px;
-  font-weight: 500;
-}
-
-.drawer-row {
-  margin-bottom: 18px;
-}
-.drawer-row:last-child { margin-bottom: 0; }
-.drawer-row label {
-  display: block;
-  font-family: 'Spectral', serif;
-  font-size: 15px;
-  color: var(--ink);
-  margin-bottom: 4px;
-  font-weight: 500;
-}
-.drawer-row .desc {
-  font-family: 'Spectral', serif;
-  font-size: 13px;
-  color: #7a5a60;
-  margin-bottom: 10px;
-  line-height: 1.45;
-}
-
-.pill-group {
-  display: flex;
-  gap: 4px;
-  flex-wrap: wrap;
-}
-.pill {
-  padding: 6px 12px;
-  background: rgba(58, 18, 24, 0.08);
-  border: 1px solid rgba(58, 18, 24, 0.25);
-  border-radius: 20px;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.08em;
-  text-transform: lowercase;
-  cursor: pointer;
-  transition: all 140ms ease;
-  color: var(--ink);
-  user-select: none;
-}
-.pill:hover { background: rgba(58, 18, 24, 0.15); }
-.pill.active {
-  background: var(--oxblood);
-  color: var(--parchment);
-  border-color: var(--oxblood);
-}
-
-.drawer input[type="text"] {
-  width: 100%;
-  padding: 10px 12px;
-  border: 1px solid var(--oxblood);
-  border-radius: 6px;
-  background: #fbf4df;
-  font-family: 'Spectral', serif;
-  font-size: 14px;
-  color: var(--ink);
-}
-.drawer input[type="text"]:focus {
-  outline: none;
-  border-color: var(--teal);
-  box-shadow: 0 0 0 2px rgba(45, 107, 107, 0.2);
-}
-
-.drawer-actions {
-  position: fixed;
-  bottom: 0;
-  right: 0;
-  width: 460px;
-  max-width: 92vw;
-  background: var(--parchment);
-  padding: 16px 28px;
-  border-top: 2px solid var(--oxblood);
-  display: flex;
-  gap: 10px;
-  z-index: 210;
-  transform: translateX(100%);
-  transition: transform 280ms cubic-bezier(0.4, 0, 0.2, 1);
-}
-.drawer.open ~ .drawer-actions { transform: translateX(0); }
-.drawer-actions button {
-  flex: 1;
-  padding: 10px;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  cursor: pointer;
-  border-radius: 6px;
-  border: 1px solid var(--oxblood);
-  background: transparent;
-  color: var(--oxblood);
-  transition: all 140ms ease;
-  font-weight: 500;
-}
-.drawer-actions button:hover { background: var(--oxblood); color: var(--parchment); }
-.drawer-actions button.primary {
-  background: var(--oxblood);
-  color: var(--parchment);
-}
-.drawer-actions button.primary:hover { background: var(--teal); border-color: var(--teal); }
-
-.disclaimer {
-  max-width: 640px;
-  margin: 22px auto 0;
-  text-align: center;
-  font-family: 'Spectral', serif;
-  font-weight: 300;
-  font-style: italic;
-  font-size: 14px;
   line-height: 1.6;
-  color: #6b4a52;
+  color: var(--ink);
 }
-.disclaimer .disclaimer-link {
-  margin-top: 10px;
-  font-family: 'JetBrains Mono', monospace;
-  font-style: normal;
-  font-size: 11.5px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
+.steps li::before {
+  content: counter(st);
+  position: absolute; left: 0; top: 0;
+  width: 30px; height: 30px; border-radius: 50%;
+  background: var(--oxblood); color: var(--parchment);
+  font-family: var(--mono); font-size: 13px;
+  display: flex; align-items: center; justify-content: center;
 }
-.disclaimer .disclaimer-link a {
-  color: var(--teal);
-  text-decoration: none;
-  border-bottom: 1px solid var(--teal);
-  transition: color 140ms ease, border-color 140ms ease;
+.prose p { font-family: var(--serif); font-size: 17px; line-height: 1.62; color: var(--ink); max-width: 760px; }
+.prose p + p { margin-top: 14px; }
+.prose a, .closing a { color: var(--teal); text-decoration: none; border-bottom: 1px solid rgba(45, 107, 107, 0.45); }
+.prose a:hover, .closing a:hover { color: var(--oxblood); border-bottom-color: var(--oxblood); }
+.st-part { max-width: 760px; padding: 0 0 26px; }
+.st-part + .st-part { border-top: 1px solid rgba(58, 18, 24, 0.14); padding-top: 24px; }
+.st-part h3 {
+  font-family: var(--mono); font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--teal); font-weight: 500; margin-bottom: 12px;
 }
-.disclaimer .disclaimer-link a:hover { color: var(--teal-bright); border-color: var(--teal-bright); }
-
-@media (max-width: 900px) {
-  .page { padding: 32px 20px 24px; }
-  .title-block h1 { font-size: 48px; }
-  .q { margin-left: 0; font-size: 16px; }
-  .a { margin-right: 0; padding: 18px 20px; font-size: 16px; }
-  .a .a-spec { grid-template-columns: 1fr; gap: 2px 0; }
-  .a .a-spec dt { margin-top: 6px; }
-  .regen-row { margin-right: 0; }
-  .composer { flex-direction: column; }
-  .composer button { padding: 12px; }
-  .settings-toggle { top: 14px; right: 14px; width: 34px; height: 34px; font-size: 15px; }
-  .drawer { width: 92vw; padding: 28px 22px 110px; }
-  .drawer-actions { width: 92vw; padding: 14px 22px; }
+.st-part p { font-family: var(--serif); font-size: 18px; line-height: 1.6; color: var(--ink); }
+.st-part p + p { margin-top: 12px; }
+.convo { display: flex; flex-direction: column; gap: 14px; max-width: 820px; }
+.turn { border-radius: 10px; padding: 14px 18px 16px; }
+.turn .who {
+  display: block; font-family: var(--mono); font-size: 11px; letter-spacing: 0.2em;
+  text-transform: uppercase; margin-bottom: 6px;
+}
+.turn p { font-family: var(--serif); font-size: 16.5px; line-height: 1.6; }
+.turn p + p { margin-top: 12px; }
+.turn.person {
+  align-self: flex-end; max-width: 88%;
+  background: var(--oxblood); color: var(--parchment);
+}
+.turn.person .who { color: var(--parchment-dark); opacity: 0.8; }
+.turn.bot {
+  align-self: flex-start; max-width: 88%;
+  background: rgba(221, 208, 176, 0.6); border: 1px solid rgba(58, 18, 24, 0.14); color: var(--ink);
+}
+.turn.bot .who { color: var(--teal); }
+.turn.decode { max-width: 100%; padding: 22px clamp(18px, 3vw, 32px) 24px; }
+.turn.decode h4 {
+  font-family: var(--serif); font-style: italic; font-weight: 500; font-size: 22px;
+  color: var(--oxblood); margin: 26px 0 10px;
+}
+.turn.decode h4:first-of-type { margin-top: 6px; }
+.turn.decode strong { color: var(--oxblood); }
+.turn.decode ol { padding-left: 1.4rem; margin: 10px 0 12px; }
+.turn.decode ol li { font-family: var(--serif); font-size: 16.5px; line-height: 1.6; }
+.turn.decode ol li + li { margin-top: 8px; }
+.turn.decode ol.refs li { font-size: 15px; overflow-wrap: anywhere; }
+.turn a { color: var(--teal); text-decoration: none; border-bottom: 1px solid rgba(45, 107, 107, 0.45); }
+.turn a.ref { border-bottom: 0; font-family: var(--mono); font-size: 0.85em; }
+.closing {
+  background: var(--oxblood); color: var(--parchment); border-radius: 12px;
+  padding: 28px clamp(22px, 4vw, 40px);
+}
+.closing h2 { color: var(--parchment); }
+.closing p { font-family: var(--serif); font-size: 17px; line-height: 1.6; max-width: 720px; }
+.closing p + p { margin-top: 12px; }
+.closing a { color: var(--parchment); border-bottom-color: rgba(236, 224, 196, 0.5); }
+.made { font-family: var(--serif); font-style: italic; font-size: 15px; color: var(--muted-warm); margin-top: 18px; }
+@media (max-width: 560px) {
+  .turn.person, .turn.bot { max-width: 100%; }
+  .steps li { padding-left: 40px; }
 }
 </style>
 </head>
@@ -613,583 +513,154 @@ body {
 </nav>
 
 <div class="page">
-  <button class="settings-toggle" id="settings-toggle" aria-label="Open settings" title="Settings">⚙</button>
-  <div class="title-block">
-    <h1><em>Decode:Talk</em></h1>
-    <p class="standfirst">Describe a situation, get the evolutionary read. Not a companion. The mechanism story behind what you're feeling - plus, if you want it, the nearest achievable next step.</p>
-    <span class="status" id="status-badge">Maintenance</span>
+  <div class="masthead">
+    <span class="label">Demismatch · Decode Talk</span>
+    <a class="back" href="/">&larr; Home</a>
   </div>
 
-  <div class="disclaimer">
-    <p>Decode:Talk is not therapy and it is not medical advice. It does not diagnose anything, and it is not a substitute for professional care. If something in your life needs a doctor or a therapist, please go and see one.</p>
-    <p class="disclaimer-link"><a href="privacy">What happens to what you type</a></p>
+  <header class="hero">
+    <span class="eyebrow">Opens soon</span>
+    <h1>Decode Talk</h1>
+    <p class="lede">A private conversation about your own life. You say what is going on, Decode Talk asks a few questions about your ordinary days, and you get one complete decode: what is happening in you, why, the studies behind it, and what to do this week with the people in your life. Then the conversation ends.</p>
+    <p class="status"><strong>Decode Talk opens soon.</strong> Nothing can be bought here yet, and no payment is taken.</p>
+  </header>
+
+  <section>
+    <span class="eyebrow">One payment, one conversation</span>
+    <h2>How a conversation goes</h2>
+    <ol class="steps">
+      <li>You write what is going on.</li>
+      <li>Decode Talk asks three to five short questions, one at a time, about what you treat as normal: who you live with, who you see on an ordinary day, your work, where your family is, what you take, what you did yesterday, and when you last felt the thing you say is missing. The mismatch is usually in the parts of your life you mention as background.</li>
+      <li>You get the complete decode in one message. It says what this really is and names the systems at work in you, with their age and what they are for. It goes through the details of your own life one by one, says plainly what your own part is, and gives you steps for this week with people you named. Every claim rests on numbered studies, each linked to its record in Cor.</li>
+      <li>You can ask follow-up questions, up to a set number. Decode Talk tells you how many are left.</li>
+      <li>The last reply gives the decode in a few lines, the steps for this week and what the feeling will do when it gets its answer. Then the conversation ends.</li>
+    </ol>
+    <p class="made">For adults only.</p>
+  </section>
+
+  <section class="prose">
+    <span class="eyebrow">Built to end</span>
+    <h2>What it never does</h2>
+    <p>Decode Talk keeps no memory between conversations. It has no name and no persona, and it never asks you to come back. It never presents itself as company.</p>
+    <p>It never says it treats or cures anything. It says what a feeling is for and what the feeling will do when it gets its answer.</p>
+    <p>Where your account points at a possible physical cause, it says that a doctor's test settles that. Where you take a medication or a drug, the decode says what it stands in for, such as people who need you and give back, and that it gets replaced by that: the dose comes down while the real thing comes in, with a doctor. Where stopping suddenly is dangerous, as with certain drugs and alcohol, it tells you never to stop suddenly. It never gives a dose or a schedule.</p>
+  </section>
+
+  <section>
+    <span class="eyebrow">Our statement</span>
+    <h2>Decode Talk, therapy and therapy chatbots</h2>
+      <div class="st-part">
+        <h3>What Decode Talk is</h3>
+        <p>Decode Talk is not a therapy chatbot. A therapist is a stranger paid to listen, and a therapy chatbot is software that imitates one. Both stand in for someone who has known you for years, and neither can be that person.</p>
+        <p>Decode Talk is closer to a librarian. You describe what is going on in your life, it finds what the research on human psychology says about a situation like yours, and it explains that to you with the studies attached. Then it points you to the real people in your life, and the conversation ends.</p>
+      </div>
+      <div class="st-part">
+        <h3>What therapy does and where we differ</h3>
+        <p>Therapy helps a modest amount. Part of the reason is simple: once a week a real person listens to you, and being heard by a real person makes anyone feel better. Therapists also give people things to work on. But the work is almost always aimed at the person: your thoughts, your self-esteem, how you react. When it is aimed at your life, it rarely goes far enough, and it almost never starts from what a human being is built for. Since the 1980s far more people have been treated for depression, and depression is as common as it was.</p>
+        <p>Decode Talk works the other way round. It looks first for what in your life does not fit a human being, and for ways to change that, in whatever size of step is possible. It points at the person only where there is a clear defect in the body, and that is for a doctor's test to settle.</p>
+      </div>
+      <div class="st-part">
+        <h3>Intuition</h3>
+        <p>People say this work needs human intuition. Intuition is the weak point. Your gut feeling about another person is made for people you have known for years. A therapist has to use it on a stranger they see for an hour a week, and all they know is what that stranger tells them. The research backs this up. In studies that compare a clinician's judgment with a simple formula, the formula does better, and that is true for experienced clinicians too. And therapists do not get better results as they gain experience.</p>
+      </div>
+      <div class="st-part">
+        <h3>Objectivity</h3>
+        <p>No reading of a person is fully objective. But one person's intuition and the scientific method are far apart. An AI on its own repeats what it picked up online, where pop psychology and bro science outnumber research. Decode Talk works from Cor, a collection of peer-reviewed studies graded by how strong the evidence is. Every claim it makes comes with the study behind it, so you can check it yourself.</p>
+      </div>
+      <div class="st-part">
+        <h3>Danger</h3>
+        <p>If a message reads as someone being at risk of harming themselves or someone else, Decode Talk stops, gives the helpline for their country, and does not charge for the conversation. Someone in danger needs a real person right away.</p>
+      </div>
+      <div class="st-part">
+        <h3>Ending</h3>
+        <p>"You should see someone" has become the standard answer to a person who is struggling. It sends them to a stranger, and away from the people who know them. We say the opposite. Start with your own people. If you have too few, that is the first thing to fix.</p>
+      </div>
+  </section>
+
+  <section>
+    <span class="eyebrow">A demo conversation</span>
+    <h2>Run 1, on a written case</h2>
+    <p class="section-lede">This is a test run. The person is made up. The conversation is shown word for word as it was run, with the studies and their links into Cor.</p>
+    <div class="convo">
+      <div class="turn person"><span class="who">Person</span><p>I feel like I don't have the same range of emotions anymore as I had when I was a kid. Everything just kind of feels flat, with maybe a few peaks here and there of elation or sadness. But if it's sadness, it's more like a panicky sadness. But yeah, the main thing is I don't seem to have the same sense of being amazed at things and happy and all that when I was a kid. The same sense of being amazed at things and happy as when I was a kid.</p></div>
+      <div class="turn bot"><span class="who">Decode Talk</span><p>A few short questions first. What did you do yesterday, from waking up to going to sleep?</p></div>
+      <div class="turn person"><span class="who">Person</span><p>I cared for my goldfish and mostly spent time on the computer. Then I went to work. And just kind of waited until that was done, and then went home and watched Netflix.</p></div>
+      <div class="turn bot"><span class="who">Decode Talk</span><p>Who did you talk to yesterday, and about what?</p></div>
+      <div class="turn person"><span class="who">Person</span><p>I talked to a guy at work about a soccer match. I talked to my mom on WhatsApp about that she wanted to visit, or me visiting her, but we haven't really settled on a date.</p></div>
+      <div class="turn bot"><span class="who">Decode Talk</span><p>What's the work, and who is it for?</p></div>
+      <div class="turn person"><span class="who">Person</span><p>It's data entry for a construction company.</p></div>
+      <div class="turn bot"><span class="who">Decode Talk</span><p>Do you take or use anything most days: medication, alcohol, weed, anything else?</p></div>
+      <div class="turn person"><span class="who">Person</span><p>I take propranolol to counteract some of the anxiety attacks I might have. It's propranolol. And at night I usually have like 1 or 2 joints.</p></div>
+      <div class="turn bot"><span class="who">Decode Talk</span><p>Last one. When was the last time you felt properly happy or amazed as an adult, and who was there?</p></div>
+      <div class="turn person"><span class="who">Person</span><p>It was at my brother's wedding, and I was pretty drunk. My whole family was there.</p></div>
+      <div class="turn bot decode"><span class="who">Decode Talk</span>
+        <h4>What this really is</h4>
+        <p>You are a group animal living without a group. Two old systems in you have reacted the way they react in any mammal that gets cut off. One is sounding an alarm and the other has turned itself down. The panicky sadness is the alarm. The flat feeling is the other one.</p>
+        <p>Nothing you describe is a disease. It is what a healthy human does in the days you have.</p>
+        <h4>The two systems</h4>
+        <p>The first ties you to your people and hurts when you are cut off from them. It is as old as mammals, 165 to 200 million years. A mammal separated from its group first protests with agitation and panic. If nobody comes, it goes quiet and stops trying <a class="ref" href="#ref-1">[1]</a>. Being cut off was a danger to your life, and it still is: people with weak ties die sooner <a class="ref" href="#ref-2">[2]</a>. That is why your sadness has panic in it.</p>
+        <p>The second is the drive that makes an animal curious and eager about what is around it. Its reward pathway is at least 165 million years old. Being amazed at things is this drive running. In the quiet stage after the panic, it turns down <a class="ref" href="#ref-1">[1]</a>.</p>
+        <p>You did not lose your amazement by growing up. Childhood is the last time most people spend every day among people who know them. For nearly all of human history that never stopped, because a person lived in a camp of a few dozen.</p>
+        <h4>How it got here</h4>
+        <p>Take yesterday, piece by piece.</p>
+        <p><strong>The soccer match.</strong> The one conversation you had in person was about a game neither of you played in. Following a team is a stand-in for belonging to a group. It gives you a side and an enemy, and the body takes it for real: fans' testosterone rises when their team wins and falls when it loses <a class="ref" href="#ref-3">[3]</a>. A group you belong to knows your name, needs you and shows up when you are in trouble. Your team does not know you exist. The man you talked to does, and he is the real part of that conversation.</p>
+        <p><strong>WhatsApp with your mother.</strong> She is real and she wants to see you. Friends bond most in person and least by text <a class="ref" href="#ref-4">[4]</a>. The one tie to family in your day went through the weakest way there is to be in contact.</p>
+        <p><strong>Netflix.</strong> In the evening you watch faces that feel familiar and have never seen yours. For nearly all of human history, a person you saw and heard that often knew you back. An evening of it feels a bit like company, and you are still alone at the end of it.</p>
+        <p><strong>The job.</strong> You work for a company that puts up buildings anyone can point at, and your part is typing in the figures. The people on site see at the end of the day what they did. A third system tracks whether what you do changes anything. Its default is to go passive, and it only switches on when your actions visibly work. That was found in rats, in a brain circuit humans share <a class="ref" href="#ref-5">[5]</a>. So you wait for the day to end.</p>
+        <p><strong>The goldfish.</strong> You looked after the one living thing that needed you yesterday, and it was a goldfish. The urge to look after someone works fine in you.</p>
+        <p><strong>"Attacks I might have."</strong> Those are your words. You take the propranolol for attacks that have not come yet, so the alarm is turned down before it goes off.</p>
+        <p><strong>The wedding.</strong> The one day it all came back, your whole family was in the room. You were drunk as well, but you are stoned every night and it does not come back then.</p>
+        <h4>Your part</h4>
+        <p>You manage the alarm and leave it unanswered. The propranolol takes the pounding heart out of the attacks, the joints get you through the evening, and Netflix fills it. All three make it easier to leave your days as they are. Your mother wants to see you and you have not set a date.</p>
+        <h4>What you take</h4>
+        <p>If no doctor has tested your heart and thyroid for those attacks, get that done. A test settles whether there is a physical cause.</p>
+        <p>Where there is none, the attacks are the alarm. The propranolol and the joints stand in for what the alarm is asking for, which is people who need you and give back. They get replaced by that. The dose comes down while the real thing comes in, with a doctor. Never stop propranolol suddenly: stopping a beta blocker at once can be dangerous for the heart.</p>
+        <h4>So now what</h4>
+        <p>The full version is days spent among a small number of people who know you, where some of them need you and you need them. This week:</p>
+        <ol>
+          <li>Set the date with your mother today, and go to her if that is where the rest of your family is.</li>
+          <li>Ask your brother what he needs help with this month, and do it in person.</li>
+          <li>Watch the next match with the man from work, in the same room. The match is still a stand-in. The evening with him is real, and that is what you are there for, so nothing is lost if the team loses. After that, find one thing he needs a hand with, because two men who only ever talk soccer stay strangers.</li>
+        </ol>
+        <p>When the alarm gets its answer it stops, and the interest in things comes back after it.</p>
+        <h4>How we know</h4>
+        <ol class="refs">
+          <li id="ref-1">Panksepp J, Watt D (2011). Why Does Depression Hurt? Ancestral Primary-Process Separation-Distress (PANIC/GRIEF) and Diminished Brain Reward (SEEKING) Processes in the Genesis of Depressive Affect. Psychiatry 74(1):5-13. <a href="https://cor.demismatch.com/corpus.html#e=526">https://cor.demismatch.com/corpus.html#e=526</a></li>
+          <li id="ref-2">Holt-Lunstad J, Smith TB, Layton JB (2010). Social Relationships and Mortality Risk: A Meta-analytic Review. PLoS Medicine. Tested many times: 148 studies, 308,849 people. <a href="https://cor.demismatch.com/corpus.html#e=463">https://cor.demismatch.com/corpus.html#e=463</a></li>
+          <li id="ref-3">Bernhardt PC, Dabbs JM Jr, Fielden JA, Lutter CD (1998). Testosterone changes during vicarious experiences of winning and losing among fans at sporting events. Physiology &amp; Behavior. Tested. <a href="https://cor.demismatch.com/corpus.html#e=1066">https://cor.demismatch.com/corpus.html#e=1066</a></li>
+          <li id="ref-4">Sherman LE, Michikyan M, Greenfield PM (2013). The effects of text, audio, video, and in-person communication on bonding between friends. Cyberpsychology: Journal of Psychosocial Research on Cyberspace. Tested. <a href="https://cor.demismatch.com/corpus.html#e=2112">https://cor.demismatch.com/corpus.html#e=2112</a></li>
+          <li id="ref-5">Maier SF, Seligman MEP (2016). Learned Helplessness at Fifty: Insights from Neuroscience. Psychological Review. <a href="https://cor.demismatch.com/corpus.html#e=441">https://cor.demismatch.com/corpus.html#e=441</a></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="closing">
+    <h2>Opens soon</h2>
+    <p>Decode Talk is not open yet, and this page takes no payment. Until it opens, you can read <a href="https://whatreally.is/how-a-decode-is-made/">how a decode is made</a> on whatreally.is, and the evidence itself in <a href="https://cor.demismatch.com/">Cor</a>.</p>
+  </section>
+
+  <p class="made">AI made this page. Part of Demismatch. General suggestions, not medical advice.</p>
+
+  <div class="xsite-footer">
+    <ul class="xsite-cols" aria-label="Demismatch network">
+      <li><a href="https://demismatch.com/">
+        <span class="xsite-col-head">DEMISMATCH</span>
+        <span class="xsite-col-desc">the front door</span>
+        <span class="xsite-col-url">demismatch.com</span>
+      </a></li>
+      <li><a href="https://cor.demismatch.com/">
+        <span class="xsite-col-head">COR</span>
+        <span class="xsite-col-desc">the atlas</span>
+        <span class="xsite-col-url">cor.demismatch.com</span>
+      </a></li>
+    </ul>
   </div>
 
-  <div class="cor-link-wrap">
-    <a class="cor-link" href="https://cor.demismatch.com/" target="_blank" rel="noopener">
-      <span class="cor-dot" aria-hidden="true"></span>
-      Running live on the Cor spec · cor.demismatch.com
-      <span class="cor-arrow" aria-hidden="true">↗</span>
-    </a>
-  </div>
-
-  <div class="conversation" id="conversation" aria-live="polite"></div>
-
-  <div id="error-slot"></div>
-
-  <form class="composer" id="composer">
-    <textarea id="input" placeholder="Currently under maintenance, back online in a few weeks." disabled></textarea>
-    <button type="submit" id="submit" disabled>Decode</button>
-  </form>
-
-  <div class="footer">
-    <a href="/decode-talk.html">← Sample exchanges</a>
-    <span>demismatch.com/decode-talk · grounded in <a href="https://cor.demismatch.com/" target="_blank" rel="noopener">Cor v4</a></span>
+  <div class="page-footer">
+    <p class="motto"><em>Demismatch</em> the world &nbsp;·&nbsp; <em>then</em> augment</p>
+    <div class="folio">demismatch.com / decode-talk</div>
   </div>
 </div>
-
-<div class="backdrop" id="backdrop"></div>
-<aside class="drawer" id="drawer" aria-hidden="true">
-  <h2>Settings</h2>
-  <div id="drawer-body"></div>
-</aside>
-<div class="drawer-actions">
-  <button id="reset-settings">Reset defaults</button>
-  <button class="primary" id="close-drawer">Close</button>
-</div>
-
-<script>
-// ─── Settings schema ──────────────────────────────────────────────────────────
-// Must match DEFAULT_SETTINGS in worker/src/toggles.js.
-const DEFAULTS = {
-  // Recommending is the point, not an opt-in. At 'light' the model named the
-  // mechanism and stopped; measured 0 recommendations across four test prompts.
-  // 2026-08-14: moved 'advisor' -> 'guided', the tier between the two. Still gives a
-  // concrete step, but only when asked, and exactly one - 'advisor' volunteers steps
-  // unprompted and will ask a clarifying question to advise, which is more forward
-  // than this tool should default to for people arriving with distress.
-  helpfulness: 'guided',
-  warmth: 'neutral',
-  formality: 'neutral',
-  humor: 'dry',
-  // 'definitive' matches the worker default, which the page had been silently
-  // overriding. The hedge was landing on the reframe closer - "you are LIKELY not
-  // shallow" - which is the one line in the read that cannot afford to hedge.
-  certainty: 'definitive',
-  length: 'medium',
-  eea_contrast: 'implicit',
-  physio: 'medium',
-  vocab: 'both',
-  reframe: 'optional',
-  tag: 'always',
-  density: 'primary',
-  followups: 'forbidden',
-  persona: '',
-  // Advisory only: the worker pins model, max_tokens and reasoning effort server-side
-  // and sends no sampling params at all (removed on Opus 5). Kept in sync so nothing
-  // here contradicts what actually ships.
-  model: 'anthropic/claude-opus-5.5',
-  max_tokens: 8192,
-  debug: false,
-};
-
-const SCHEMA = [
-  {
-    title: 'Voice',
-    rows: [
-      { key: 'helpfulness', label: 'Helpfulness', desc: 'How much guidance follows the read.', options: ['read-only', 'light', 'guided', 'advisor'] },
-      { key: 'warmth', label: 'Warmth', desc: 'Tone warmth. Sycophancy stays off at every level.', options: ['clinical', 'neutral', 'warm'] },
-      { key: 'formality', label: 'Formality', desc: 'Register.', options: ['casual', 'neutral', 'formal'] },
-      { key: 'humor', label: 'Humor', desc: 'Deadpan latitude.', options: ['off', 'dry', 'sardonic'] },
-      { key: 'certainty', label: 'Certainty', desc: 'How the read is framed.', options: ['definitive', 'hedged', 'hypotheses'] },
-      { key: 'length', label: 'Length', desc: 'Response budget.', options: ['terse', 'medium', 'expansive'] },
-    ],
-  },
-  {
-    title: 'Content shape',
-    rows: [
-      { key: 'eea_contrast', label: 'EEA contrast', desc: 'Ancestral-vs-modern framing.', options: ['explicit', 'implicit', 'skip'] },
-      { key: 'physio', label: 'Physiology', desc: 'Neuroanatomy / neurochemistry density.', options: ['minimal', 'medium', 'heavy'] },
-      { key: 'vocab', label: 'Mechanism vocabulary', desc: 'Codes, plain names, or both.', options: ['codes', 'plain', 'both'] },
-      { key: 'reframe', label: 'Reframe closer', desc: '"It is not X, it is Y" signature.', options: ['required', 'optional', 'off'] },
-    ],
-  },
-  {
-    title: 'Tag',
-    rows: [
-      { key: 'tag', label: 'Tag placement', desc: 'Mechanism / Proxy / Need block.', options: ['always', 'on-request', 'off'] },
-      { key: 'density', label: 'Mechanism density', desc: 'How many mechanisms in the tag.', options: ['primary', 'interacting', 'cascade'] },
-    ],
-  },
-  {
-    title: 'Conversation',
-    rows: [
-      { key: 'followups', label: 'Follow-up questions', desc: 'Let the model ask you things.', options: ['forbidden', 'allowed', 'encouraged'] },
-    ],
-  },
-  {
-    title: 'Persona',
-    rows: [
-      { key: 'persona', label: 'Voice persona (free text)', desc: 'e.g. "a no-bullshit field biologist", "a tired anthropologist at 2am". Applied inside the hard rules.', text: true },
-    ],
-  },
-];
-
-// ─── State ─────────────────────────────────────────────────────────────────────
-const STORAGE_KEY = 'decode-talk-settings-v1';
-const API_CHAT = '/api/decode-talk/chat';
-const messages = [];
-let streaming = false;
-
-// Normalizes any model left in a returning visitor's saved settings. The worker pins
-// the model server-side regardless; this only stops the page sending a stale value.
-// Remove this constant and its uses to restore user model choice.
-const PINNED_MODEL = 'anthropic/claude-opus-5.5';
-function loadSettings() {
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if (!raw) return { ...DEFAULTS };
-    const parsed = JSON.parse(raw);
-    return { ...DEFAULTS, ...parsed, model: PINNED_MODEL };
-  } catch {
-    return { ...DEFAULTS };
-  }
-}
-function saveSettings() {
-  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(settings)); } catch {}
-}
-let settings = loadSettings();
-
-// ─── Satiation session (client-side, privacy-preserving) ────────────────────────
-// Decode:Talk can become its own M2 (open-loop) proxy: chasing reads for hours. A satiation
-// interrupt (server-side, currently SHADOW only) needs to see a sustained loop-chasing pattern
-// that spans MANY short conversations (the server caps a single conversation at 10 reads, then
-// the user starts fresh, so a server that is stateless across conversations cannot see it).
-// The server stays STATELESS - it stores nothing cross-session and keys nothing to IP or cookie.
-// Instead the BROWSER keeps a rolling session here and sends it with each request, the same way
-// it already sends conversation history. We send only non-content signals: per-turn timestamp +
-// abstraction score, plus any captured real-input commitment. Defeatable by clearing storage -
-// accepted; that population is not who this protects. The at-risk user this protects must not
-// become the most-tracked user to deliver it.
-const SESSION_KEY = 'decode_talk_session_v1';
-const SESSION_MAX_AGE_MS = 6 * 60 * 60 * 1000; // a sitting, not a life history
-const SESSION_MAX_TURNS = 60;
-
-function loadSession() {
-  try {
-    const s = JSON.parse(localStorage.getItem(SESSION_KEY) || 'null');
-    if (!s || typeof s !== 'object') return { turns: [], commitment: null };
-    return { turns: Array.isArray(s.turns) ? s.turns : [], commitment: s.commitment || null };
-  } catch { return { turns: [], commitment: null }; }
-}
-function saveSession(s) {
-  try { localStorage.setItem(SESSION_KEY, JSON.stringify(s)); } catch {}
-}
-function pruneSession(s, now) {
-  s.turns = (s.turns || []).filter(t => t && typeof t.ts === 'number' && now - t.ts <= SESSION_MAX_AGE_MS);
-  if (s.turns.length > SESSION_MAX_TURNS) s.turns = s.turns.slice(-SESSION_MAX_TURNS);
-  return s;
-}
-
-// MIRROR of worker/src/satiation.mjs abstractionScore + extractCommitment - keep in sync. We
-// score the abstraction signal HERE so the turn TEXT never has to be sent for past conversations;
-// only the resulting number travels. The distress gates stay server-side, on the live turn.
-const SAT_META_TOKENS = [
-  'mechanism','mechanisms','rank','priority','order them','the order','right order','first',
-  'complete','exhaustive','framework','heuristic','practitioner','the tool','this tool',
-  'this method','the system','the list','taxonomy','the model','version',' meta ',
-  'am i doing this right','can i be my own','be my own','do i need you','is this all',
-  'the whole set','all 14','14 mechanisms','am i missing','is this complete','is this version',
-];
-const SAT_SITUATIONAL_TOKENS = [
-  'my boss','my partner','my wife','my husband','my girlfriend','my boyfriend','my mom',
-  'my mother','my dad','my father','my friend','my kid','my son','my daughter','at work',
-  'today','yesterday','this morning','tonight','last night','she said','he said','they said',
-  'happened','i went','i saw','i told','my manager','my ex','this week',
-];
-function clientAbstractionScore(text) {
-  if (typeof text !== 'string') return 0;
-  const padded = ' ' + text.toLowerCase() + ' ';
-  const meta = SAT_META_TOKENS.reduce((n, tk) => n + (padded.includes(tk) ? 1 : 0), 0);
-  const situ = SAT_SITUATIONAL_TOKENS.reduce((n, tk) => n + (padded.includes(tk) ? 1 : 0), 0);
-  const raw = meta - situ;
-  if (raw <= 0) return 0;
-  return raw >= 2 ? 1 : 0.5;
-}
-const SAT_COMMIT_MARKERS = [
-  "i'm going to",'i am going to','im going to',"i'll ",'i will ','i plan to','my plan is',
-  "i said i'd",'i said i would','i promised',"i'm meeting",'i am meeting',"i'm seeing",
-  'i am seeing','i committed to','i signed up',"i'm supposed to",'i am supposed to',
-  'i told myself',"i'm meant to",
-];
-function clientExtractCommitment(text) {
-  const sentences = String(text).split(/(?<=[.!?\n])\s+|[\n;]+/).map(s => s.trim()).filter(Boolean);
-  for (const sentence of sentences) {
-    const low = sentence.toLowerCase();
-    if (SAT_COMMIT_MARKERS.some(m => low.includes(m))) return sentence.replace(/\s+/g, ' ').trim();
-  }
-  return null;
-}
-
-let session = pruneSession(loadSession(), Date.now());
-saveSession(session);
-
-// Record a user turn into the rolling session: timestamp + abstraction score (NO text stored),
-// and refresh the captured commitment if this turn states one. Lives in localStorage, so it
-// survives the per-conversation reset that the in-memory `messages` array does not.
-function recordUserTurn(text) {
-  const now = Date.now();
-  session.turns.push({ ts: now, abs: clientAbstractionScore(text) });
-  const commit = clientExtractCommitment(text);
-  if (commit) session.commitment = commit;
-  pruneSession(session, now);
-  saveSession(session);
-}
-// Sent to the worker alongside history. Signals only; never past-turn text.
-function sessionPayload() {
-  return { turns: session.turns, commitment: session.commitment || null };
-}
-
-// ─── DOM refs ──────────────────────────────────────────────────────────────────
-const $conversation = document.getElementById('conversation');
-const $input = document.getElementById('input');
-const $submit = document.getElementById('submit');
-const $form = document.getElementById('composer');
-const $errorSlot = document.getElementById('error-slot');
-const $drawer = document.getElementById('drawer');
-const $drawerBody = document.getElementById('drawer-body');
-const $backdrop = document.getElementById('backdrop');
-const $settingsToggle = document.getElementById('settings-toggle');
-const $closeDrawer = document.getElementById('close-drawer');
-const $resetSettings = document.getElementById('reset-settings');
-const $statusBadge = document.getElementById('status-badge');
-
-// ─── Drawer rendering ──────────────────────────────────────────────────────────
-function renderDrawer() {
-  $drawerBody.innerHTML = '';
-  for (const section of SCHEMA) {
-    const sec = document.createElement('div');
-    sec.className = 'drawer-section';
-    const h3 = document.createElement('h3');
-    h3.textContent = section.title;
-    sec.appendChild(h3);
-    for (const row of section.rows) {
-      sec.appendChild(renderRow(row));
-    }
-    $drawerBody.appendChild(sec);
-  }
-  updateStatusBadge();
-}
-
-function renderRow(row) {
-  const rowEl = document.createElement('div');
-  rowEl.className = 'drawer-row';
-  const label = document.createElement('label');
-  label.textContent = row.label;
-  rowEl.appendChild(label);
-  const desc = document.createElement('div');
-  desc.className = 'desc';
-  desc.textContent = row.desc;
-  rowEl.appendChild(desc);
-
-  if (row.text) {
-    const input = document.createElement('input');
-    input.type = 'text';
-    input.value = settings[row.key] || '';
-    input.placeholder = 'Leave empty for default voice.';
-    input.addEventListener('input', (e) => {
-      settings[row.key] = e.target.value;
-      saveSettings();
-    });
-    rowEl.appendChild(input);
-    return rowEl;
-  }
-
-  const group = document.createElement('div');
-  group.className = 'pill-group';
-  for (const opt of row.options) {
-    const value = typeof opt === 'object' ? opt.value : opt;
-    const display = typeof opt === 'object' ? opt.label : opt;
-    const pill = document.createElement('span');
-    pill.className = 'pill' + (settings[row.key] === value ? ' active' : '');
-    pill.textContent = display;
-    pill.addEventListener('click', () => {
-      settings[row.key] = value;
-      saveSettings();
-      group.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
-      pill.classList.add('active');
-      updateStatusBadge();
-    });
-    group.appendChild(pill);
-  }
-  rowEl.appendChild(group);
-  return rowEl;
-}
-
-function updateStatusBadge() {
-  $statusBadge.textContent = 'Maintenance';
-}
-
-// ─── Drawer open/close ─────────────────────────────────────────────────────────
-function openDrawer() {
-  $drawer.classList.add('open');
-  $backdrop.classList.add('open');
-  $drawer.setAttribute('aria-hidden', 'false');
-}
-function closeDrawer() {
-  $drawer.classList.remove('open');
-  $backdrop.classList.remove('open');
-  $drawer.setAttribute('aria-hidden', 'true');
-}
-$settingsToggle.addEventListener('click', openDrawer);
-$closeDrawer.addEventListener('click', closeDrawer);
-$backdrop.addEventListener('click', closeDrawer);
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape' && $drawer.classList.contains('open')) closeDrawer();
-});
-
-$resetSettings.addEventListener('click', () => {
-  settings = { ...DEFAULTS };
-  saveSettings();
-  renderDrawer();
-});
-
-// ─── Chat flow ─────────────────────────────────────────────────────────────────
-$form.addEventListener('submit', async (e) => {
-  e.preventDefault();
-  if (streaming) return;
-  const text = $input.value.trim();
-  if (!text) return;
-  $errorSlot.innerHTML = '';
-  messages.push({ role: 'user', content: text });
-  recordUserTurn(text); // rolling cross-conversation session (signals only; see above)
-  renderUser(text);
-  $input.value = '';
-  $input.focus();
-  await runInference();
-});
-
-async function runInference() {
-  streaming = true;
-  $submit.disabled = true;
-  removeAllRegenButtons();
-
-  const $turn = appendTurn();
-  const $a = createAssistantBubble();
-  $a.classList.add('streaming');
-  $turn.appendChild($a);
-  scroll();
-
-  try {
-    const res = await fetch(API_CHAT, {
-      method: 'POST',
-      headers: { 'content-type': 'application/json' },
-      // Send the pinned model; the worker overrides it server-side either way.
-      // session = rolling cross-conversation signals (timestamps + abstraction scores +
-      // captured commitment); consumed server-side in SHADOW mode only. No server-side state.
-      body: JSON.stringify({ messages, settings: { ...settings, model: PINNED_MODEL }, session: sessionPayload() }),
-    });
-
-    if (!res.ok) {
-      let detail = res.statusText;
-      try { detail = (await res.json()).error?.message || detail; } catch {}
-      // 429 is the worker's product wall (conversation cap, daily cap, burst guard):
-      // show its sentence as-is, with no status code, styled as a notice, not an error.
-      const wall = res.status === 429;
-      const err = new Error(wall ? detail : `${res.status}: ${detail}`);
-      err.wall = wall;
-      throw err;
-    }
-
-    let fullText = '';
-    const reader = res.body.getReader();
-    const decoder = new TextDecoder();
-    let buffer = '';
-
-    while (true) {
-      const { value, done } = await reader.read();
-      if (done) break;
-      buffer += decoder.decode(value, { stream: true });
-      const events = buffer.split('\n\n');
-      buffer = events.pop() || '';
-      for (const evt of events) {
-        const dataLine = evt.split('\n').find(l => l.startsWith('data: '));
-        if (!dataLine) continue;
-        const payload = dataLine.slice(6).trim();
-        if (!payload || payload === '[DONE]') continue;
-        try {
-          const parsed = JSON.parse(payload);
-          const delta = parsed.choices?.[0]?.delta?.content;
-          if (delta) {
-            fullText += delta;
-            renderReply($a, fullText, true);
-            scroll();
-          }
-        } catch {}
-      }
-    }
-
-    renderReply($a, fullText, false);
-    $a.classList.remove('streaming');
-    messages.push({ role: 'assistant', content: fullText });
-    appendRegenButton($turn);
-  } catch (err) {
-    $a.classList.remove('streaming');
-    $a.remove();
-    messages.pop();
-    if (err.wall) showNotice(err.message);
-    else showError(err.message || 'Unknown error.');
-  } finally {
-    streaming = false;
-    $submit.disabled = false;
-  }
-}
-
-async function regenerate() {
-  if (streaming) return;
-  if (messages.length < 2) return;
-  const last = messages[messages.length - 1];
-  if (last.role !== 'assistant') return;
-  messages.pop();
-  const turns = $conversation.querySelectorAll('.turn');
-  if (turns.length) turns[turns.length - 1].remove();
-  $errorSlot.innerHTML = '';
-  await runInference();
-}
-
-// ─── Reply rendering ───────────────────────────────────────────────────────────
-// A reply is prose plus, when the Tag setting is on, the three-line Mechanism /
-// Proxy / Need block. The prompt (§04) shows that block inside ``` fences, so the
-// model emits it fenced. Until 2026-09-07 the page dropped the whole reply in as one
-// text node, so the fences and the *italics* the voice rules permit showed up as
-// literal characters. This renders exactly the constructs the prompt uses and no
-// more: the fenced tag becomes the same <dl class="a-spec"> the examples page
-// hand-authors, and *em* / **strong** become <em> / <strong>. Everything is built
-// from DOM nodes, never innerHTML, so model text can never become markup. The raw
-// text is what `messages` keeps and sends back to the model; only the display
-// changes.
-const TAG_LINE = /^\**\s*(Mechanism|Proxy|Need|Real input)\s*\**\s*:\s*\**\s*(.*?)\s*\**\s*$/i;
-function splitTag(text) {
-  // Fenced (with or without a language hint; unclosed while still streaming).
-  const fence = text.match(/\n?```[^\n]*\n([\s\S]*?)(?:\n```|$)/);
-  if (fence) {
-    const lines = fence[1].split('\n').map(l => l.trim()).filter(Boolean);
-    const prose = text.slice(0, fence.index) + text.slice(fence.index + fence[0].length);
-    if (lines.some(l => TAG_LINE.test(l))) return { prose, tag: lines };
-    // A fence that is not the tag: show its lines as prose, without the fence.
-    return { prose: prose.replace(/\s+$/, '') + '\n\n' + lines.join('\n'), tag: null };
-  }
-  // Unfenced: a trailing run of Mechanism / Proxy / Need lines.
-  const lines = text.replace(/\s+$/, '').split('\n');
-  let i = lines.length;
-  while (i > 0 && TAG_LINE.test(lines[i - 1].trim())) i--;
-  if (i < lines.length) return { prose: lines.slice(0, i).join('\n'), tag: lines.slice(i).map(l => l.trim()) };
-  return { prose: text, tag: null };
-}
-function appendInline(parent, text) {
-  // *em* and **strong** only. A lone asterisk stays literal.
-  const re = /\*\*([^*\n]+?)\*\*|\*([^*\n]+?)\*/g;
-  let last = 0, m;
-  while ((m = re.exec(text))) {
-    if (m.index > last) parent.appendChild(document.createTextNode(text.slice(last, m.index)));
-    const strong = m[1] !== undefined;
-    const el = document.createElement(strong ? 'strong' : 'em');
-    el.textContent = strong ? m[1] : m[2];
-    parent.appendChild(el);
-    last = m.index + m[0].length;
-  }
-  if (last < text.length) parent.appendChild(document.createTextNode(text.slice(last)));
-}
-function renderReply(el, raw, streaming) {
-  // A fence arriving one backtick at a time would flash as literal backticks.
-  const text = streaming ? raw.replace(/`{1,2}$/, '') : raw;
-  const { prose, tag } = splitTag(text);
-  const frag = document.createDocumentFragment();
-  for (const para of prose.split(/\n{2,}/)) {
-    const t = para.trim();
-    if (!t) continue;
-    const p = document.createElement('p');
-    appendInline(p, t);
-    frag.appendChild(p);
-  }
-  if (tag && tag.length) {
-    const dl = document.createElement('dl');
-    dl.className = 'a-spec';
-    for (const line of tag) {
-      const m = line.match(TAG_LINE);
-      const key = m ? m[1] : '';
-      const val = m ? m[2] : line.replace(/^\*+|\*+$/g, '');
-      const dt = document.createElement('dt');
-      dt.textContent = key ? key[0].toUpperCase() + key.slice(1).toLowerCase() : '';
-      const dd = document.createElement('dd');
-      appendInline(dd, val);
-      if (/^(need|real input)$/i.test(key)) { dt.className = 'need-dt'; dd.className = 'need-dd'; }
-      dl.appendChild(dt);
-      dl.appendChild(dd);
-    }
-    frag.appendChild(dl);
-  }
-  el.replaceChildren(frag);
-}
-function renderUser(text) {
-  const turn = appendTurn();
-  const q = document.createElement('div');
-  q.className = 'q';
-  q.textContent = text;
-  turn.appendChild(q);
-  scroll();
-}
-function appendTurn() {
-  const turn = document.createElement('div');
-  turn.className = 'turn';
-  $conversation.appendChild(turn);
-  return turn;
-}
-function createAssistantBubble() {
-  const a = document.createElement('div');
-  a.className = 'a';
-  return a;
-}
-function appendRegenButton(turnEl) {
-  const row = document.createElement('div');
-  row.className = 'regen-row';
-  const btn = document.createElement('button');
-  btn.type = 'button';
-  btn.className = 'regen-btn';
-  btn.textContent = 'Regenerate';
-  btn.addEventListener('click', regenerate);
-  row.appendChild(btn);
-  turnEl.appendChild(row);
-}
-function removeAllRegenButtons() {
-  $conversation.querySelectorAll('.regen-row').forEach(r => r.remove());
-}
-function showError(msg) {
-  const div = document.createElement('div');
-  div.className = 'error';
-  div.textContent = msg;
-  $errorSlot.appendChild(div);
-  scroll();
-}
-function showNotice(msg) {
-  const div = document.createElement('div');
-  div.className = 'notice';
-  div.textContent = msg;
-  $errorSlot.appendChild(div);
-  scroll();
-}
-function scroll() {
-  window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
-}
-$input.addEventListener('keydown', (e) => {
-  if (e.key === 'Enter' && !e.shiftKey) {
-    e.preventDefault();
-    $form.requestSubmit();
-  }
-});
-
-// ─── Init ──────────────────────────────────────────────────────────────────────
-renderDrawer();
-</script>
 </body>
 </html>
